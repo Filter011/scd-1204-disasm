@@ -1,4 +1,4 @@
-SMPS_Track struct
+SMPS_Track	struct dots
 PlaybackControl:	ds.b	1	; All tracks
 VoiceControl:		ds.b	1	; All tracks
 TempoDivider:		ds.b	1	; All tracks
@@ -28,9 +28,9 @@ FeedbackAlgo:		ds.b	1	; FM only
 VoicePtr:		ds.l	1	; FM SFX only (4 bytes)
 LoopCounters:		ds.l	3	; All tracks (multiple bytes)
 GoSubStack:				; All tracks (multiple bytes. This label won't get to be used because of an optimisation that just uses SMPS_Track.len)
-	ends
+	endstruct
 
-SMPS_RAM struct
+SMPS_RAM	struct dots
 v_1up_ram:
 v_sndprio:		ds.b	1	; sound priority (priority of new music/SFX must be higher or equal to this value or it won't play; bit 7 of priority being set prevents this value from changing)
 v_main_tempo_timeout:	ds.b	1	; Counts down to zero; when zero, resets to next value and delays song by 1 frame
@@ -106,4 +106,4 @@ v_spcsfx_track_ram_end:
 v_track_ram_end:
 
 v_1up_ram_copy:		ds.b	SMPS_RAM.v_1up_ram_end-SMPS_RAM.v_1up_ram
-	ends
+	endstruct

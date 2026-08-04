@@ -1,32 +1,33 @@
 {
     "Flex": 2,
-    "name": "",
-    "node": "60d24780-06fb-41c5-abbb-bc9022c290f7",
+    "name": "CD Sonic The Hedgehog (1204 Prototype)",
     "objects": [
         {
             "format": "Sonic 1.js",
-            "name": "object",
+            "name": "Sonic",
             "palettes": [
                 {
-                    "path": "MMD\\Level\\Salad Plain\\Past\\Palettes\\SPZ.bin",
-                    "length": 3
+                    "path": "../MMD/Level/Salad Plain/Present/Palettes/Sonic.bin",
+                    "length": 1
                 }
             ],
             "art": {
-                "path": "MMD\\Level\\Salad Plain\\Past\\Art\\Nemesis\\8x8 - SPZ.nem",
-                "compression": "Nemesis",
+                "path": "../MMD/Level/Salad Plain/Present/Art/Uncompressed/Sonic.unc",
+                "compression": "Uncompressed",
                 "offset": 0
             },
             "mappings": {
-                "path": "",
+                "path": "../MMD/Level/Salad Plain/Present/Mappings/Sonic.asm",
                 "label": ""
             },
             "dplcs": {
-                "enabled": false,
-                "path": "",
+                "enabled": true,
+                "path": "../MMD/Level/Salad Plain/Present/Mappings/Sonic DPLCs.asm",
                 "label": ""
             },
-            "uuid": "60d24780-06fb-41c5-abbb-bc9022c290f7"
+            "config": {
+                "mapMacros": false
+            }
         }
     ]
 }

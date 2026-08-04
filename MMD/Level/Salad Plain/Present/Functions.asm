@@ -1,2 +1,2 @@
-zoneact	func	zone,act	{zone<<8+act}
-hudmscs	func	min,sec,cen	{min<<16+sec<<8+cen}
+zoneact	function	zone,act,(zone<<8)+act
+hudmscs	function	min,sec,cen,(min<<16)+(sec<<8)+cen

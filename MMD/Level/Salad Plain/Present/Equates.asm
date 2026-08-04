@@ -10,20 +10,23 @@ z80ram:		equ	$A00000
 z80busreq:	equ	$A11100
 z80reset:	equ	$A11200
 
-version:	EQU	$A10001
-port_1:		EQU	$A10003
-port_2:		EQU	$A10005
-port_3:		EQU	$A10007
-cont_1:		EQU	$A10009
-cont_2:		EQU	$A1000B
-cont_3:		EQU	$A1000D
+version:	equ	$A10001
+port_1:		equ	$A10003
+port_2:		equ	$A10005
+port_3:		equ	$A10007
+cont_1:		equ	$A10009
+cont_2:		equ	$A1000B
+cont_3:		equ	$A1000D
+
+; Tile Equates
+tile_size:	equ	8*8/2
 
 ; VDP Equates
 vdpdata:	equ	$C00000
 vdpctrl:	equ	$C00004
 
 ; Mega CD Equates
-wkram:	equ $200000
+wkram:		equ	$200000
 
 ; Mega CD Sub-CPU Equates
 scpu_IRQ2:	equ	$A12000
@@ -31,173 +34,232 @@ scpu_commcmd0:	equ	$A12010
 scpu_commstats:	equ	$A12020
 
 ; Mega CD Sub-CPU Commands
-	rsset	1
-scpu_r11aload:	rs.b	1	; $01
-scpu_r11bload:	rs.b	1	; $02
-scpu_r11cload:	rs.b	1	; $03
-scpu_r11dload:	rs.b	1	; $04
-scpu_mdinit:	rs.b	1	; $05
-scpu_unk0:		rs.b	1	; $06
-scpu_unk1:		rs.b	1	; $07
-scpu_unk2:		rs.b	1	; $08
-scpu_unk3:		rs.b	1	; $09
-scpu_unk4:		rs.b	1	; $0A
-scpu_unk5:		rs.b	1	; $0B
-scpu_unk6:		rs.b	1	; $0C
-scpu_unk7:		rs.b	1	; $0D
-scpu_fadeCDA:	rs.b	1	; $0E Fade out CDDA music
-scpu_r11aMUS:	rs.b	1	; $0F Track 2 (Salad Plain Present)
-scpu_timeattackMUS:	rs.b	1	; $10 Track 3 (Collision Chaos Present)
-scpu_titleMUS:	rs.b	1	; $11 Track 4 (You Can Do Anything)
-scpu_r11dMUS:	rs.b	1	; $12 Track 5 (Salad Plain Good Future)
-scpu_r11cMUS:	rs.b	1	; $13 Track 6 (Salad Plain Bad Future)
-scpu_r11bMUS:	rs.b	1	; $14 Track 7 (Salad Plain Past)
-	rsreset
+	phase	1
+scpu_r11aload:		ds.b	1	; $01
+scpu_r11bload:		ds.b	1	; $02
+scpu_r11cload:		ds.b	1	; $03
+scpu_r11dload:		ds.b	1	; $04
+scpu_mdinit:		ds.b	1	; $05
+scpu_unk0:		ds.b	1	; $06
+scpu_unk1:		ds.b	1	; $07
+scpu_unk2:		ds.b	1	; $08
+scpu_unk3:		ds.b	1	; $09
+scpu_unk4:		ds.b	1	; $0A
+scpu_unk5:		ds.b	1	; $0B
+scpu_unk6:		ds.b	1	; $0C
+scpu_unk7:		ds.b	1	; $0D
+scpu_fadeCDA:		ds.b	1	; $0E Fade out CDDA music
+scpu_r11aMUS:		ds.b	1	; $0F Track 2 (Salad Plain Present)
+scpu_timeattackMUS:	ds.b	1	; $10 Track 3 (Collision Chaos Present)
+scpu_titleMUS:		ds.b	1	; $11 Track 4 (You Can Do Anything)
+scpu_r11dMUS:		ds.b	1	; $12 Track 5 (Salad Plain Good Future)
+scpu_r11cMUS:		ds.b	1	; $13 Track 6 (Salad Plain Bad Future)
+scpu_r11bMUS:		ds.b	1	; $14 Track 7 (Salad Plain Past)
+	dephase
 
 ; Object Structs
-obj			struct
-id:			ds.b 1
-render:		ds.b 1
-vram:		ds.w 1
-mappings:	ds.l 1
-xpos:		ds.l 1
-obj.scrypos:	equ obj.xpos+2
-ypos:		ds.l 1
-xvel:		ds.w 1
-yvel:		ds.w 1
-inertia:	ds.w 1
-height:		ds.b 1
-width:		ds.b 1
-priority:	ds.b 1
-field_19:	ds.b 1
-frame:		ds.b 1
-aniframe:	ds.b 1
-ani:		ds.b 1
-prevani:	ds.b 1
-time:		ds.b 1
-field_1F:	ds.b 1
-colflag:	ds.b 1
-field_21:	ds.b 1
-status:		ds.b 1
-field_23:	ds.b 1
-routine:	ds.b 1
-routine2:	ds.b 1
-angle:		ds.b 1
-field_27:	ds.b 1
-subtype:	ds.b 1
-field_29:	ds.b 1
-field_2A:	ds.b 1
-field_2B:	ds.b 1
-field_2C:	ds.b 1
-field_2D:	ds.b 1
-field_2E:	ds.b 1
-field_2F:	ds.b 1
-field_30:	ds.b 1
-field_31:	ds.b 1
-field_32:	ds.b 1
-field_33:	ds.b 1
-field_34:	ds.b 1
-field_35:	ds.b 1
-field_36:	ds.b 1
-field_37:	ds.b 1
-field_38:	ds.b 1
-field_39:	ds.b 1
-field_3A:	ds.b 1
-field_3B:	ds.b 1
-field_3C:	ds.b 1
-field_3D:	ds.b 1
-field_3E:	ds.b 1
-field_3F:	ds.b 1
-			ends
+obj	struct dots
+id:		ds.b	1
+render:		ds.b	1
+vram:		ds.w	1
+mappings:	ds.l	1
+xpos:		ds.l	1
+obj.scrypos:	equ	obj.xpos+2
+ypos:		ds.l	1
+xvel:		ds.w	1
+yvel:		ds.w	1
+inertia:	ds.w	1
+height:		ds.b	1
+width:		ds.b	1
+priority:	ds.b	1
+field_19:	ds.b	1
+frame:		ds.b	1
+aniframe:	ds.b	1
+ani:		ds.b	1
+prevani:	ds.b	1
+time:		ds.b	1
+field_1F:	ds.b	1
+colflag:	ds.b	1
+field_21:	ds.b	1
+status:		ds.b	1
+field_23:	ds.b	1
+routine:	ds.b	1
+routine2:	ds.b	1
+angle:		ds.b	1
+field_27:	ds.b	1
+subtype:	ds.b	1
+field_29:	ds.b	1
+field_2A:	ds.b	1
+field_2B:	ds.b	1
+field_2C:	ds.b	1
+field_2D:	ds.b	1
+field_2E:	ds.b	1
+field_2F:	ds.b	1
+field_30:	ds.b	1
+field_31:	ds.b	1
+field_32:	ds.b	1
+field_33:	ds.b	1
+field_34:	ds.b	1
+field_35:	ds.b	1
+field_36:	ds.b	1
+field_37:	ds.b	1
+field_38:	ds.b	1
+field_39:	ds.b	1
+field_3A:	ds.b	1
+field_3B:	ds.b	1
+field_3C:	ds.b	1
+field_3D:	ds.b	1
+field_3E:	ds.b	1
+field_3F:	ds.b	1
+	endstruct
+
+; Player Structs
+playframe	struct dots
+empty:		ds.b	1
+stand:		ds.b	1
+wait1:		ds.b	1
+wait2:		ds.b	1
+wait3:		ds.b	1
+lookup:		ds.b	1
+lookback:	ds.b	1
+sneeze1:	ds.b	1
+sneeze2:	ds.b	1
+sneeze3:	ds.b	1
+sneeze4:	ds.b	1
+walkwater1:	ds.b	1
+walkwater2:	ds.b	1
+walkwater3:	ds.b	1
+walkwater4:	ds.b	1
+walkwater5:	ds.b	1
+walkwater6:	ds.b	1
+outofhere1:	ds.b	1
+outofhere2:	ds.b	1
+outofhere3:	ds.b	1
+outofhere4:	ds.b	1
+outofhere5:	ds.b	1
+outofhere6:	ds.b	1
+outofhere7:	ds.b	1
+hang1:		ds.b	1
+hang2:		ds.b	1
+spin1:		ds.b	1
+spin2:		ds.b	1
+spin3:		ds.b	1
+spin4:		ds.b	1
+spin5:		ds.b	1
+spin6:		ds.b	1
+rollfront1:	ds.b	1
+rollfront2:	ds.b	1
+rollfront3:	ds.b	1
+rollball1:	ds.b	1
+rollback1:	ds.b	1
+rollback2:	ds.b	1
+rollback3:	ds.b	1
+rollleft1:	ds.b	1
+rollleft2:	ds.b	1
+rollleft3:	ds.b	1
+rollright1:	ds.b	1
+rollright2:	ds.b	1
+rollright3:	ds.b	1
+roll1:		ds.b	1
+roll2:		ds.b	1
+roll3:		ds.b	1
+roll4:		ds.b	1
+rollball2:	ds.b	1
+spring:		ds.b	1
+walk1:		ds.b	1
+walk2:		ds.b	1
+walk3:		ds.b	1
+walk4:		ds.b	1
+walk5:		ds.b	1
+walk6:		ds.b	1
+walk45_1:	ds.b	1
+walk45_2:	ds.b	1
+walk45_3:	ds.b	1
+walk45_4:	ds.b	1
+walk45_5:	ds.b	1
+walk45_6:	ds.b	1
+walk90_1:	ds.b	1
+walk90_2:	ds.b	1
+walk90_3:	ds.b	1
+walk90_4:	ds.b	1
+walk90_5:	ds.b	1
+walk90_6:	ds.b	1
+walk135_1:	ds.b	1
+walk135_2:	ds.b	1
+walk135_3:	ds.b	1
+walk135_4:	ds.b	1
+walk135_5:	ds.b	1
+walk135_6:	ds.b	1
+run1:		ds.b	1
+run2:		ds.b	1
+run3:		ds.b	1
+run4:		ds.b	1
+run45_1:	ds.b	1
+run45_2:	ds.b	1
+run45_3:	ds.b	1
+run45_4:	ds.b	1
+run90_1:	ds.b	1
+run90_2:	ds.b	1
+run90_3:	ds.b	1
+run90_4:	ds.b	1
+run135_1:	ds.b	1
+run135_2:	ds.b	1
+run135_3:	ds.b	1
+run135_4:	ds.b	1
+skid1:		ds.b	1
+skid2:		ds.b	1
+hurt:		ds.b	1
+waterfall:	ds.b	1
+getair:		ds.b	1
+duck:		ds.b	1
+watertunnel1:	ds.b	1
+watertunnel2:	ds.b	1
+watertunnel3:	ds.b	1
+push1:		ds.b	1
+push2:		ds.b	1
+push3:		ds.b	1
+push4:		ds.b	1
+burnt:		ds.b	1
+drown:		ds.b	1
+death:		ds.b	1
+polehang1:	ds.b	1
+polehang2:	ds.b	1
+balance1:	ds.b	1
+balance2:	ds.b	1
+chibistand:	ds.b	1
+chibiwait1:	ds.b	1
+chibiwait2:	ds.b	1
+chibiduck:	ds.b	1
+chibiwalk1:	ds.b	1
+chibiwalk2:	ds.b	1
+chibiwalk3:	ds.b	1
+chibirun1:	ds.b	1
+chibirun2:	ds.b	1
+chibiskid:	ds.b	1
+chibihurt:	ds.b	1
+chibibalance1:	ds.b	1
+chibibalance2:	ds.b	1
+chibirollball:	ds.b	1
+chibiroll1:	ds.b	1
+chibiroll2:	ds.b	1
+	endstruct
+
+; Player Equates
+playheight:	equ	19
+playwidth:	equ	9
+rollheight:	equ	14
+rollwidth:	equ	7
+chibiheight:	equ	10
+chibiwidth:	equ	5
 
 ; Chunk Equates
 chunksize:	equ	(16*2)*16	; (width*2) * height
-
-; Game Mode Equates
-gmmodeid_lvl:	equ	level_ptr-gamemode_index
-
-; Vertical Interrupts Equates
-vintid_00:	equ vint00_ptr-vint_index
-vintid_02:	equ vint02_ptr-vint_index
-vintid_04:	equ vint04_ptr-vint_index
-vintid_06:	equ vint06_ptr-vint_index
-vintid_08:	equ vint08_ptr-vint_index
-vintid_0A:	equ vint0A_ptr-vint_index
-vintid_0C:	equ vint0C_ptr-vint_index
-vintid_0E:	equ vint0E_ptr-vint_index
-vintid_10:	equ vint10_ptr-vint_index
-vintid_12:	equ vint12_ptr-vint_index
-vintid_14:	equ vint14_ptr-vint_index
-vintid_16:	equ vint16_ptr-vint_index
-vintid_18:	equ vint18_ptr-vint_index
-
-; Object Equates
-objid_00:	equ	0
-objid_01:	equ	(obj01_ptr-off_2034AE+4)/4
-objid_02:	equ	(obj02_ptr-off_2034AE+4)/4
-objid_03:	equ	(obj03_ptr-off_2034AE+4)/4
-objid_04:	equ	(obj04_ptr-off_2034AE+4)/4
-objid_05:	equ	(obj05_ptr-off_2034AE+4)/4
-objid_06:	equ	(obj06_ptr-off_2034AE+4)/4
-objid_07:	equ	(obj07_ptr-off_2034AE+4)/4
-objid_08:	equ	(obj08_ptr-off_2034AE+4)/4
-objid_09:	equ	(obj09_ptr-off_2034AE+4)/4
-objid_0A:	equ	(obj0A_ptr-off_2034AE+4)/4
-objid_0B:	equ	(obj0B_ptr-off_2034AE+4)/4
-objid_0C:	equ	(obj0C_ptr-off_2034AE+4)/4
-objid_0D:	equ	(obj0D_ptr-off_2034AE+4)/4
-objid_0E:	equ	(obj0E_ptr-off_2034AE+4)/4
-objid_0F:	equ	(obj0F_ptr-off_2034AE+4)/4
-objid_10:	equ	(obj10_ptr-off_2034AE+4)/4
-objid_11:	equ	(obj11_ptr-off_2034AE+4)/4
-objid_12:	equ	(obj12_ptr-off_2034AE+4)/4
-objid_13:	equ	(obj13_ptr-off_2034AE+4)/4
-objid_14:	equ	(obj14_ptr-off_2034AE+4)/4
-objid_15:	equ	(obj15_ptr-off_2034AE+4)/4
-objid_16:	equ	(obj16_ptr-off_2034AE+4)/4
-objid_17:	equ	(obj17_ptr-off_2034AE+4)/4
-objid_18:	equ	(obj18_ptr-off_2034AE+4)/4
-objid_19:	equ	(obj19_ptr-off_2034AE+4)/4
-objid_1A:	equ	(obj1A_ptr-off_2034AE+4)/4
-objid_1B:	equ	(obj1B_ptr-off_2034AE+4)/4
-objid_1C:	equ	(obj1C_ptr-off_2034AE+4)/4
-objid_1D:	equ	(obj1D_ptr-off_2034AE+4)/4
-objid_1E:	equ	(obj1E_ptr-off_2034AE+4)/4
-objid_1F:	equ	(obj1F_ptr-off_2034AE+4)/4
-objid_23:	equ	$23
-objid_25:	equ	$25
-objid_29:	equ	$29
-
-; Palette Equates
-palid_segabg:	equ	(pal_segabg_ptr-pal_index)/8
-palid_title:	equ	(pal_title_ptr-pal_index)/8
-palid_levelsel:	equ	(pal_levelsel_ptr-pal_index)/8
-palid_player:	equ	(pal_player_ptr-pal_index)/8
-palid_spz:	equ	(pal_spz_ptr-pal_index)/8
-
-; Division Developer Equates
-ddevid_00:	equ (ddev_00_ptr-divdev_index)/2
-ddevid_01:	equ (ddev_01_ptr-divdev_index)/2
-ddevid_02:	equ (ddev_02_ptr-divdev_index)/2
-ddevid_03:	equ (ddev_03_ptr-divdev_index)/2
-ddevid_04:	equ (ddev_04_ptr-divdev_index)/2
-ddevid_05:	equ (ddev_05_ptr-divdev_index)/2
-ddevid_06:	equ (ddev_06_ptr-divdev_index)/2
-ddevid_07:	equ (ddev_07_ptr-divdev_index)/2
-ddevid_08:	equ (ddev_08_ptr-divdev_index)/2
-ddevid_09:	equ (ddev_09_ptr-divdev_index)/2
-ddevid_0A:	equ (ddev_0A_ptr-divdev_index)/2
-ddevid_0B:	equ (ddev_0B_ptr-divdev_index)/2
-ddevid_0C:	equ (ddev_0C_ptr-divdev_index)/2
-ddevid_0D:	equ (ddev_0D_ptr-divdev_index)/2
-ddevid_0E:	equ (ddev_0E_ptr-divdev_index)/2
-ddevid_0F:	equ (ddev_0F_ptr-divdev_index)/2
 
 ; Zone Equates
 zoneid_SPZ:	equ	0
 
 ; Act Equates
-actid_1:	equ 0
+actid_1:	equ	0
 actid_2:	equ	1
 actid_3:	equ	2
 actid_4:	equ	3
@@ -206,7 +268,7 @@ actid_4:	equ	3
 
 ; Game Mode Equates
 gmmodeid_lvl_S1:	equ	$C
-gmmodeid_ss:		equ	$10
+gmmodeid_ss:	equ	$10
 
 ; Zone Equates
 zoneid_LZ:	equ	1
