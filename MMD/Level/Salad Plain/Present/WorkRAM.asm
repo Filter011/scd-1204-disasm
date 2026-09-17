@@ -190,7 +190,8 @@ dword_FFF616:	ds.l 1
 dword_FFF61A:	ds.l 1
 	ds.b 6
 word_FFF624:	ds.w 1
-word_FFF626:	ds.w 1
+startcolor:	ds.b 1
+colorcnt:	ds.b 1
 byte_FFF628:	ds.b 1
 	ds.b 1
 vint_mode:	ds.b 1
