@@ -1,5 +1,5 @@
 DMA68K		macro	src,len,ram,type
-		lea	(vdpctrl).l,a5
+		lea	vdpctrl,a5
 		move.l	#($9400+((len/2)&$FF00)>>8)<<16+$9300+(len/2)&$FF,(a5)
 		move.l	#($9600+((src/2)&$FF00)>>8)<<16+$9500+(src/2)&$FF,(a5)
 		move.w	#$9700+((src/2)&$7F0000)>>16,(a5)
@@ -10,28 +10,28 @@ DMA68K		macro	src,len,ram,type
 
 ; ---------------------------------------------------------------------------
 ; Set a VRAM address via the VDP control port.
-; input: 16-bit VRAM address, control port (default is (vdpctrl).l)
+; input: 16-bit VRAM address, control port (default is vdpctrl)
 ; ---------------------------------------------------------------------------
 
-writeVRAM:	macro loc,controlport=(vdpctrl).l
+writeVRAM:	macro loc,controlport=vdpctrl
 		move.l	#($40000000+(((loc)&$3FFF)<<16)+(((loc)&$C000)>>14)),controlport
 		endm
 
 ; ---------------------------------------------------------------------------
 ; Set a CRAM address via the VDP control port.
-; input: 16-bit VRAM address, control port (default is (vdpctrl).l)
+; input: 16-bit VRAM address, control port (default is vdpctrl)
 ; ---------------------------------------------------------------------------
 
-writeCRAM:	macro loc=0,controlport=(vdpctrl).l
+writeCRAM:	macro loc=0,controlport=vdpctrl
 		move.l	#$C0000000+(loc<<16),controlport
 		endm
 
 ; ---------------------------------------------------------------------------
 ; Set a VSRAM address via the VDP control port.
-; input: 16-bit VRAM address, control port (default is (vdpctrl).l)
+; input: 16-bit VRAM address, control port (default is vdpctrl)
 ; ---------------------------------------------------------------------------
 
-writeVSRAM:	macro loc=0,controlport=(vdpctrl).l
+writeVSRAM:	macro loc=0,controlport=vdpctrl
 		move.l	#$40000010+(loc<<16),controlport
 		endm
 

@@ -245,12 +245,22 @@ chibiroll2:	ds.b	1
 	endstruct
 
 ; Player Equates
-playheight:	equ	19
-playwidth:	equ	9
+pl_height:	equ	19
+pl_width:	equ	9
 rollheight:	equ	14
 rollwidth:	equ	7
 chibiheight:	equ	10
 chibiwidth:	equ	5
+
+; Player Bit Equates
+plst_xflip:	equ	0
+plst_walk:	equ	1
+plst_jump:	equ	1
+plst_ball:	equ	2
+plst_fcol:	equ	3
+plst_ballj:	equ	4
+plst_push:	equ	5
+plst_water:	equ	6
 
 ; Chunk Equates
 chunksize:	equ	(16*2)*16	; (width*2) * height
