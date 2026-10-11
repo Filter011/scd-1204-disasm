@@ -57,7 +57,7 @@ loc_208A44:
 	ext.w	d5
 	move.b	ringtbl+1(pc,d0.w),d6
 	ext.w	d6
-	movea.l a0,a1
+	movea.l	a0,a1
 	move.w	obj.xpos(a0),d2
 	move.w	obj.ypos(a0),d3
 	lea	1(a2),a3
@@ -180,7 +180,7 @@ off_208BDA:
 	dc.w	loc_208D2A-off_208BDA
 
 loc_208BE4:
-	movea.l a0,a1
+	movea.l	a0,a1
 	moveq	#0,d5
 	move.w	plring,d5
 	moveq	#$20,d0

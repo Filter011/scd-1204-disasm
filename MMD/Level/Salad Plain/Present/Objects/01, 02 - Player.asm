@@ -306,68 +306,68 @@ loc_203994:
 	rts
 
 off_203998:
-	dc.w word_2039C2-off_203998
-	dc.w word_2039A0-off_203998
-	dc.w word_2039EA-off_203998
-	dc.w word_2039C8-off_203998
+	dc.w	word_2039C2-off_203998
+	dc.w	word_2039A0-off_203998
+	dc.w	word_2039EA-off_203998
+	dc.w	word_2039C8-off_203998
 word_2039A0:
-	dc.w 16-1
-	dc.w $13C
-	dc.w $146
-	dc.w $19B
-	dc.w $1AE
-	dc.w $83
-	dc.w $84
-	dc.w $89
-	dc.w $8A
-	dc.w $77
-	dc.w $76
-	dc.w $80
-	dc.w $7F
-	dc.w $7E
-	dc.w $7D
-	dc.w $7C
-	dc.w $82
+	dc.w	16-1
+	dc.w	$13C
+	dc.w	$146
+	dc.w	$19B
+	dc.w	$1AE
+	dc.w	$83
+	dc.w	$84
+	dc.w	$89
+	dc.w	$8A
+	dc.w	$77
+	dc.w	$76
+	dc.w	$80
+	dc.w	$7F
+	dc.w	$7E
+	dc.w	$7D
+	dc.w	$7C
+	dc.w	$82
 word_2039C2:
-	dc.w 2-1
-	dc.w $145
-	dc.w $146
+	dc.w	2-1
+	dc.w	$145
+	dc.w	$146
 word_2039C8:
-	dc.w 16-1
-	dc.w $13C
-	dc.w $146
-	dc.w 0
-	dc.w 0
-	dc.w $83
-	dc.w $84
-	dc.w $89
-	dc.w $8A
-	dc.w $77
-	dc.w $76
-	dc.w $80
-	dc.w $7F
-	dc.w $7E
-	dc.w $7D
-	dc.w $7C
-	dc.w $82
+	dc.w	16-1
+	dc.w	$13C
+	dc.w	$146
+	dc.w	0
+	dc.w	0
+	dc.w	$83
+	dc.w	$84
+	dc.w	$89
+	dc.w	$8A
+	dc.w	$77
+	dc.w	$76
+	dc.w	$80
+	dc.w	$7F
+	dc.w	$7E
+	dc.w	$7D
+	dc.w	$7C
+	dc.w	$82
 word_2039EA:
-	dc.w 16-1
-	dc.w $13C
-	dc.w $146
-	dc.w $165
-	dc.w 0
-	dc.w $83
-	dc.w $84
-	dc.w $89
-	dc.w $8A
-	dc.w $77
-	dc.w $76
-	dc.w $80
-	dc.w $7F
-	dc.w $7E
-	dc.w $7D
-	dc.w $7C
-	dc.w $82
+	dc.w	16-1
+	dc.w	$13C
+	dc.w	$146
+	dc.w	$165
+	dc.w	0
+	dc.w	$83
+	dc.w	$84
+	dc.w	$89
+	dc.w	$8A
+	dc.w	$77
+	dc.w	$76
+	dc.w	$80
+	dc.w	$7F
+	dc.w	$7E
+	dc.w	$7D
+	dc.w	$7C
+	dc.w	$82
 
 loc_203A0C:
 	move.b	#0,byte_FF1886
@@ -412,7 +412,7 @@ loc_203A58:
 	addi.w	#$10,d3
 loc_203A66:
 	move.w	d3,d1
-	movem.l d1-d2,-(sp)
+	movem.l	d1-d2,-(sp)
 	sub.w	obj.xpos(a0),d1
 	sub.w	obj.ypos(a0),d2
 	jsr	calcangle.l
@@ -427,7 +427,7 @@ loc_203A66:
 	bclr	#plst_ballj,obj.status(a0)
 	bclr	#plst_push,obj.status(a0)
 	clr.b	obj.field_3C(a0)
-	movem.l (sp)+,d1-d2
+	movem.l	(sp)+,d1-d2
 	move.w	d2,d4
 	move.w	d1,d5
 	move.w	#0,d3
@@ -556,60 +556,60 @@ off_203C16:
 	dc.w	unk_203C2C-off_203C16
 	dc.w	unk_203C3C-off_203C16
 unk_203C1C:
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   3
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   6
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	3
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	5
+	dc.b	5
+	dc.b	5
+	dc.b	6
 	even
 
 unk_203C2C:
-	dc.b   6
-	dc.b   6
-	dc.b   7
-	dc.b   7
-	dc.b   7
-	dc.b   8
-	dc.b   8
-	dc.b   8
-	dc.b   9
-	dc.b   9
-	dc.b   9
-	dc.b  $A
-	dc.b  $A
-	dc.b  $A
-	dc.b  $B
-	dc.b  $B
+	dc.b	6
+	dc.b	6
+	dc.b	7
+	dc.b	7
+	dc.b	7
+	dc.b	8
+	dc.b	8
+	dc.b	8
+	dc.b	9
+	dc.b	9
+	dc.b	9
+	dc.b	$A
+	dc.b	$A
+	dc.b	$A
+	dc.b	$B
+	dc.b	$B
 	even
 
 unk_203C3C:
-	dc.b  $B
-	dc.b  $C
-	dc.b  $C
-	dc.b  $C
-	dc.b  $D
-	dc.b  $D
-	dc.b  $D
-	dc.b  $E
-	dc.b  $E
-	dc.b  $E
-	dc.b  $F
-	dc.b  $F
-	dc.b  $F
-	dc.b $10
-	dc.b $10
-	dc.b $10
+	dc.b	$B
+	dc.b	$C
+	dc.b	$C
+	dc.b	$C
+	dc.b	$D
+	dc.b	$D
+	dc.b	$D
+	dc.b	$E
+	dc.b	$E
+	dc.b	$E
+	dc.b	$F
+	dc.b	$F
+	dc.b	$F
+	dc.b	$10
+	dc.b	$10
+	dc.b	$10
 	even
 
 loc_203C4C:
@@ -2453,469 +2453,469 @@ locret_20513C:
 	rts
 
 little_patchg:
-	dc.b 33, 24, 35, 35, 39, 31, 38, 40, 32,  9
-	dc.b 10, 11, 12, 36, 14, 15, 40, 17, 18, 19
-	dc.b 20, 21, 22, 23, 24, 25, 37, 37, 28, 29
-	dc.b 30, 31, 32, 33, 34, 35, 36, 37, 38, 39
-	dc.b 40, 41, 42, 48, 44, 45, 46, 47
+	dc.b	33,24,35,35,39,31,38,40,32,9
+	dc.b	10,11,12,36,14,15,40,17,18,19
+	dc.b	20,21,22,23,24,25,37,37,28,29
+	dc.b	30,31,32,33,34,35,36,37,38,39
+	dc.b	40,41,42,48,44,45,46,47
 	even
 
 play_ani:
-	dc.w unk_2051D6-play_ani
-	dc.w unk_2051DE-play_ani
-	dc.w unk_2051E6-play_ani
-	dc.w unk_2051EE-play_ani
-	dc.w unk_2051F6-play_ani
-	dc.w unk_2051FE-play_ani
-	dc.w unk_205214-play_ani
-	dc.w unk_205218-play_ani
-	dc.w unk_20521C-play_ani
-	dc.w unk_205220-play_ani
-	dc.w unk_205224-play_ani
-	dc.w unk_205228-play_ani
-	dc.w unk_20522C-play_ani
-	dc.w unk_205230-play_ani
-	dc.w unk_205234-play_ani
-	dc.w unk_205238-play_ani
-	dc.w unk_205240-play_ani
-	dc.w unk_205244-play_ani
-	dc.w unk_205248-play_ani
-	dc.w unk_20524E-play_ani
-	dc.w unk_205254-play_ani
-	dc.w unk_205258-play_ani
-	dc.w unk_205260-play_ani
-	dc.w unk_205264-play_ani
-	dc.w unk_205268-play_ani
-	dc.w unk_20526C-play_ani
-	dc.w unk_205276-play_ani
-	dc.w unk_20527A-play_ani
-	dc.w unk_20527E-play_ani
-	dc.w unk_205282-play_ani
-	dc.w unk_20528A-play_ani
-	dc.w unk_20528E-play_ani
-	dc.w unk_2052A4-play_ani
-	dc.w unk_2052A8-play_ani
-	dc.w unk_2052AE-play_ani
-	dc.w unk_2052B4-play_ani
-	dc.w unk_2052BA-play_ani
-	dc.w unk_2052BE-play_ani
-	dc.w unk_2052C2-play_ani
-	dc.w unk_2052C6-play_ani
-	dc.w unk_2052CE-play_ani
-	dc.w unk_2052D2-play_ani
-	dc.w unk_2052D6-play_ani
-	dc.w unk_2052E6-play_ani
-	dc.w unk_20530C-play_ani
-	dc.w unk_205310-play_ani
-	dc.w unk_205318-play_ani
-	dc.w unk_205320-play_ani
-	dc.w unk_205326-play_ani
-	dc.w unk_205310-play_ani
-	dc.w unk_205318-play_ani
-	dc.w unk_205320-play_ani
+	dc.w	unk_2051D6-play_ani
+	dc.w	unk_2051DE-play_ani
+	dc.w	unk_2051E6-play_ani
+	dc.w	unk_2051EE-play_ani
+	dc.w	unk_2051F6-play_ani
+	dc.w	unk_2051FE-play_ani
+	dc.w	unk_205214-play_ani
+	dc.w	unk_205218-play_ani
+	dc.w	unk_20521C-play_ani
+	dc.w	unk_205220-play_ani
+	dc.w	unk_205224-play_ani
+	dc.w	unk_205228-play_ani
+	dc.w	unk_20522C-play_ani
+	dc.w	unk_205230-play_ani
+	dc.w	unk_205234-play_ani
+	dc.w	unk_205238-play_ani
+	dc.w	unk_205240-play_ani
+	dc.w	unk_205244-play_ani
+	dc.w	unk_205248-play_ani
+	dc.w	unk_20524E-play_ani
+	dc.w	unk_205254-play_ani
+	dc.w	unk_205258-play_ani
+	dc.w	unk_205260-play_ani
+	dc.w	unk_205264-play_ani
+	dc.w	unk_205268-play_ani
+	dc.w	unk_20526C-play_ani
+	dc.w	unk_205276-play_ani
+	dc.w	unk_20527A-play_ani
+	dc.w	unk_20527E-play_ani
+	dc.w	unk_205282-play_ani
+	dc.w	unk_20528A-play_ani
+	dc.w	unk_20528E-play_ani
+	dc.w	unk_2052A4-play_ani
+	dc.w	unk_2052A8-play_ani
+	dc.w	unk_2052AE-play_ani
+	dc.w	unk_2052B4-play_ani
+	dc.w	unk_2052BA-play_ani
+	dc.w	unk_2052BE-play_ani
+	dc.w	unk_2052C2-play_ani
+	dc.w	unk_2052C6-play_ani
+	dc.w	unk_2052CE-play_ani
+	dc.w	unk_2052D2-play_ani
+	dc.w	unk_2052D6-play_ani
+	dc.w	unk_2052E6-play_ani
+	dc.w	unk_20530C-play_ani
+	dc.w	unk_205310-play_ani
+	dc.w	unk_205318-play_ani
+	dc.w	unk_205320-play_ani
+	dc.w	unk_205326-play_ani
+	dc.w	unk_205310-play_ani
+	dc.w	unk_205318-play_ani
+	dc.w	unk_205320-play_ani
 unk_2051D6:
-	dc.b $FF
-	dc.b playframe.walk3
-	dc.b playframe.walk4
-	dc.b playframe.walk5
-	dc.b playframe.walk6
-	dc.b playframe.walk1
-	dc.b playframe.walk2
-	dc.b $FF
+	dc.b	$FF
+	dc.b	playframe.walk3
+	dc.b	playframe.walk4
+	dc.b	playframe.walk5
+	dc.b	playframe.walk6
+	dc.b	playframe.walk1
+	dc.b	playframe.walk2
+	dc.b	$FF
 	even
 unk_2051DE:
-	dc.b $FF
-	dc.b playframe.run1
-	dc.b playframe.run2
-	dc.b playframe.run3
-	dc.b playframe.run4
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
+	dc.b	$FF
+	dc.b	playframe.run1
+	dc.b	playframe.run2
+	dc.b	playframe.run3
+	dc.b	playframe.run4
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
 	even
 unk_2051E6:
-	dc.b $FE
-	dc.b playframe.roll1
-	dc.b playframe.roll2
-	dc.b playframe.roll3
-	dc.b playframe.roll4
-	dc.b playframe.rollball2
-	dc.b $FF
-	dc.b $FF
+	dc.b	$FE
+	dc.b	playframe.roll1
+	dc.b	playframe.roll2
+	dc.b	playframe.roll3
+	dc.b	playframe.roll4
+	dc.b	playframe.rollball2
+	dc.b	$FF
+	dc.b	$FF
 	even
 unk_2051EE:
-	dc.b $FE
-	dc.b playframe.roll1
-	dc.b playframe.roll2
-	dc.b playframe.rollball2
-	dc.b playframe.roll3
-	dc.b playframe.roll4
-	dc.b playframe.rollball2
-	dc.b $FF
+	dc.b	$FE
+	dc.b	playframe.roll1
+	dc.b	playframe.roll2
+	dc.b	playframe.rollball2
+	dc.b	playframe.roll3
+	dc.b	playframe.roll4
+	dc.b	playframe.rollball2
+	dc.b	$FF
 	even
 unk_2051F6:
-	dc.b $FD
-	dc.b playframe.push1
-	dc.b playframe.push2
-	dc.b playframe.push3
-	dc.b playframe.push4
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
+	dc.b	$FD
+	dc.b	playframe.push1
+	dc.b	playframe.push2
+	dc.b	playframe.push3
+	dc.b	playframe.push4
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
 	even
 unk_2051FE:
-	dc.b $17
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.stand
-	dc.b playframe.wait2
-	dc.b playframe.wait1
-	dc.b playframe.wait1
-	dc.b playframe.wait1
-	dc.b playframe.wait2
-	dc.b playframe.wait3
-	dc.b $FE,2
+	dc.b	$17
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.stand
+	dc.b	playframe.wait2
+	dc.b	playframe.wait1
+	dc.b	playframe.wait1
+	dc.b	playframe.wait1
+	dc.b	playframe.wait2
+	dc.b	playframe.wait3
+	dc.b	$FE,2
 	even
 unk_205214:
-	dc.b $1F
-	dc.b playframe.balance1
-	dc.b playframe.balance2
-	dc.b $FF
+	dc.b	$1F
+	dc.b	playframe.balance1
+	dc.b	playframe.balance2
+	dc.b	$FF
 	even
 unk_205218:
-	dc.b $3F
-	dc.b playframe.lookup
-	dc.b $FF
+	dc.b	$3F
+	dc.b	playframe.lookup
+	dc.b	$FF
 	even
 unk_20521C:
-	dc.b $3F
-	dc.b playframe.duck
-	dc.b $FF
+	dc.b	$3F
+	dc.b	playframe.duck
+	dc.b	$FF
 	even
 unk_205220:
-	dc.b $3F
-	dc.b $33
-	dc.b $FF
+	dc.b	$3F
+	dc.b	$33
+	dc.b	$FF
 	even
 unk_205224:
-	dc.b $3F
-	dc.b $34
-	dc.b $FF
+	dc.b	$3F
+	dc.b	$34
+	dc.b	$FF
 	even
 unk_205228:
-	dc.b $3F
-	dc.b $35
-	dc.b $FF
+	dc.b	$3F
+	dc.b	$35
+	dc.b	$FF
 	even
 unk_20522C:
-	dc.b $3F
-	dc.b $36
-	dc.b $FF
+	dc.b	$3F
+	dc.b	$36
+	dc.b	$FF
 	even
 unk_205230:
-	dc.b 7
-	dc.b playframe.skid1
-	dc.b playframe.skid2
-	dc.b $FF
+	dc.b	7
+	dc.b	playframe.skid1
+	dc.b	playframe.skid2
+	dc.b	$FF
 	even
 unk_205234:
-	dc.b 7
-	dc.b $3C
-	dc.b $3F
-	dc.b $FF
+	dc.b	7
+	dc.b	$3C
+	dc.b	$3F
+	dc.b	$FF
 	even
 unk_205238:
-	dc.b 7
-	dc.b $3C
-	dc.b $3D
-	dc.b $53
-	dc.b $3E
-	dc.b $54
-	dc.b $FF
+	dc.b	7
+	dc.b	$3C
+	dc.b	$3D
+	dc.b	$53
+	dc.b	$3E
+	dc.b	$54
+	dc.b	$FF
 	even
 unk_205240:
-	dc.b $2F
-	dc.b playframe.spring
-	dc.b $FD,0
+	dc.b	$2F
+	dc.b	playframe.spring
+	dc.b	$FD,0
 	even
 unk_205244:
-	dc.b 4
-	dc.b playframe.polehang1
-	dc.b playframe.polehang2
-	dc.b $FF
+	dc.b	4
+	dc.b	playframe.polehang1
+	dc.b	playframe.polehang2
+	dc.b	$FF
 	even
 unk_205248:
-	dc.b $F
-	dc.b $43
-	dc.b $43
-	dc.b $43
-	dc.b $FE,1
+	dc.b	$F
+	dc.b	$43
+	dc.b	$43
+	dc.b	$43
+	dc.b	$FE,1
 	even
 unk_20524E:
-	dc.b $F
-	dc.b $43
-	dc.b $44
-	dc.b $FE,1
+	dc.b	$F
+	dc.b	$43
+	dc.b	$44
+	dc.b	$FE,1
 	even
 unk_205254:
-	dc.b $3F
-	dc.b $49
-	dc.b $FF
+	dc.b	$3F
+	dc.b	$49
+	dc.b	$FF
 	even
 unk_205258:
-	dc.b $B
-	dc.b playframe.getair
-	dc.b playframe.getair
-	dc.b playframe.walk5
-	dc.b playframe.walk6
-	dc.b $FD,0
+	dc.b	$B
+	dc.b	playframe.getair
+	dc.b	playframe.getair
+	dc.b	playframe.walk5
+	dc.b	playframe.walk6
+	dc.b	$FD,0
 	even
 unk_205260:
-	dc.b $20
-	dc.b playframe.burnt
-	dc.b $FF
+	dc.b	$20
+	dc.b	playframe.burnt
+	dc.b	$FF
 	even
 unk_205264:
-	dc.b $2F
-	dc.b playframe.drown
-	dc.b $FF
+	dc.b	$2F
+	dc.b	playframe.drown
+	dc.b	$FF
 	even
 unk_205268:
-	dc.b 3
-	dc.b playframe.death
-	dc.b $FF
+	dc.b	3
+	dc.b	playframe.death
+	dc.b	$FF
 	even
 unk_20526C:
-	dc.b 3
-	dc.b $4E
-	dc.b $4F
-	dc.b $50
-	dc.b $51
-	dc.b $52
-	dc.b 0
-	dc.b $FE,1
+	dc.b	3
+	dc.b	$4E
+	dc.b	$4F
+	dc.b	$50
+	dc.b	$51
+	dc.b	$52
+	dc.b	0
+	dc.b	$FE,1
 	even
 unk_205276:
-	dc.b 3
-	dc.b playframe.hurt
-	dc.b $FF
+	dc.b	3
+	dc.b	playframe.hurt
+	dc.b	$FF
 	even
 unk_20527A:
-	dc.b 7
-	dc.b playframe.hurt
-	dc.b playframe.waterfall
-	dc.b $FF
+	dc.b	7
+	dc.b	playframe.hurt
+	dc.b	playframe.waterfall
+	dc.b	$FF
 	even
 unk_20527E:
-	dc.b $77
-	dc.b playframe.empty
-	dc.b $FD,0
+	dc.b	$77
+	dc.b	playframe.empty
+	dc.b	$FD,0
 	even
 unk_205282:
-	dc.b 3
-	dc.b $3C
-	dc.b $3D
-	dc.b $53
-	dc.b $3E
-	dc.b $54
-	dc.b $FF
+	dc.b	3
+	dc.b	$3C
+	dc.b	$3D
+	dc.b	$53
+	dc.b	$3E
+	dc.b	$54
+	dc.b	$FF
 	even
 unk_20528A:
-	dc.b 3
-	dc.b $3C
-	dc.b $FD,0
+	dc.b	3
+	dc.b	$3C
+	dc.b	$FD,0
 	even
 unk_20528E:
-	dc.b $17
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibistand
-	dc.b playframe.chibiwait1
-	dc.b playframe.chibiwait1
-	dc.b playframe.chibiwait1
-	dc.b playframe.chibiwait2
-	dc.b playframe.chibiwait1
-	dc.b playframe.chibiwait2
-	dc.b $FE,2
+	dc.b	$17
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibiwait1
+	dc.b	playframe.chibiwait1
+	dc.b	playframe.chibiwait1
+	dc.b	playframe.chibiwait2
+	dc.b	playframe.chibiwait1
+	dc.b	playframe.chibiwait2
+	dc.b	$FE,2
 	even
 unk_2052A4:
-	dc.b $3F
-	dc.b playframe.chibiduck
-	dc.b $FF
+	dc.b	$3F
+	dc.b	playframe.chibiduck
+	dc.b	$FF
 	even
 unk_2052A8:
-	dc.b $FF
-	dc.b playframe.chibiwalk1
-	dc.b playframe.chibiwalk2
-	dc.b playframe.chibiwalk3
-	dc.b playframe.chibiwalk2
-	dc.b $FF
+	dc.b	$FF
+	dc.b	playframe.chibiwalk1
+	dc.b	playframe.chibiwalk2
+	dc.b	playframe.chibiwalk3
+	dc.b	playframe.chibiwalk2
+	dc.b	$FF
 	even
 unk_2052AE:
-	dc.b $FF
-	dc.b playframe.chibirun1
-	dc.b playframe.chibirun2
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
+	dc.b	$FF
+	dc.b	playframe.chibirun1
+	dc.b	playframe.chibirun2
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
 	even
 unk_2052B4:
-	dc.b $FE
-	dc.b playframe.chibirollball
-	dc.b playframe.chibiroll1
-	dc.b playframe.chibiroll2
-	dc.b $FF
-	dc.b $FF
+	dc.b	$FE
+	dc.b	playframe.chibirollball
+	dc.b	playframe.chibiroll1
+	dc.b	playframe.chibiroll2
+	dc.b	$FF
+	dc.b	$FF
 	even
 unk_2052BA:
-	dc.b 7
-	dc.b playframe.chibiskid
-	dc.b playframe.chibiskid
-	dc.b $FF
+	dc.b	7
+	dc.b	playframe.chibiskid
+	dc.b	playframe.chibiskid
+	dc.b	$FF
 	even
 unk_2052BE:
-	dc.b 3
-	dc.b playframe.chibihurt
-	dc.b $FF
+	dc.b	3
+	dc.b	playframe.chibihurt
+	dc.b	$FF
 	even
 unk_2052C2:
-	dc.b $1F
-	dc.b playframe.chibibalance1
-	dc.b playframe.chibibalance2
-	dc.b $FF
+	dc.b	$1F
+	dc.b	playframe.chibibalance1
+	dc.b	playframe.chibibalance2
+	dc.b	$FF
 	even
 unk_2052C6:
-	dc.b $FD
-	dc.b playframe.chibiwalk1
-	dc.b playframe.chibiwalk2
-	dc.b playframe.chibiwalk3
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
+	dc.b	$FD
+	dc.b	playframe.chibiwalk1
+	dc.b	playframe.chibiwalk2
+	dc.b	playframe.chibiwalk3
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
 	even
 unk_2052CE:
-	dc.b $3F
-	dc.b playframe.chibistand
-	dc.b $FF
+	dc.b	$3F
+	dc.b	playframe.chibistand
+	dc.b	$FF
 	even
 unk_2052D2:
-	dc.b $3F
-	dc.b playframe.lookback
-	dc.b $FF
+	dc.b	$3F
+	dc.b	playframe.lookback
+	dc.b	$FF
 	even
 unk_2052D6:
-	dc.b 3
-	dc.b playframe.sneeze1
-	dc.b playframe.sneeze1
-	dc.b playframe.sneeze1
-	dc.b playframe.sneeze1
-	dc.b playframe.sneeze1
-	dc.b playframe.sneeze3
-	dc.b playframe.sneeze3
-	dc.b playframe.sneeze2
-	dc.b playframe.sneeze2
-	dc.b playframe.sneeze2
-	dc.b playframe.stand
-	dc.b playframe.sneeze4
-	dc.b playframe.sneeze4
-	dc.b $FD,5
+	dc.b	3
+	dc.b	playframe.sneeze1
+	dc.b	playframe.sneeze1
+	dc.b	playframe.sneeze1
+	dc.b	playframe.sneeze1
+	dc.b	playframe.sneeze1
+	dc.b	playframe.sneeze3
+	dc.b	playframe.sneeze3
+	dc.b	playframe.sneeze2
+	dc.b	playframe.sneeze2
+	dc.b	playframe.sneeze2
+	dc.b	playframe.stand
+	dc.b	playframe.sneeze4
+	dc.b	playframe.sneeze4
+	dc.b	$FD,5
 	even
 unk_2052E6:
-	dc.b 9
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere1
-	dc.b playframe.outofhere2
-	dc.b playframe.outofhere2
-	dc.b playframe.outofhere2
-	dc.b playframe.outofhere2
-	dc.b playframe.outofhere3
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere4
-	dc.b playframe.outofhere5
-	dc.b playframe.outofhere5
-	dc.b playframe.outofhere5
-	dc.b playframe.outofhere5
-	dc.b playframe.outofhere6
-	dc.b playframe.outofhere6
-	dc.b playframe.outofhere6
-	dc.b playframe.outofhere6
-	dc.b playframe.outofhere7
-	dc.b $FE,1
+	dc.b	9
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere1
+	dc.b	playframe.outofhere2
+	dc.b	playframe.outofhere2
+	dc.b	playframe.outofhere2
+	dc.b	playframe.outofhere2
+	dc.b	playframe.outofhere3
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere4
+	dc.b	playframe.outofhere5
+	dc.b	playframe.outofhere5
+	dc.b	playframe.outofhere5
+	dc.b	playframe.outofhere5
+	dc.b	playframe.outofhere6
+	dc.b	playframe.outofhere6
+	dc.b	playframe.outofhere6
+	dc.b	playframe.outofhere6
+	dc.b	playframe.outofhere7
+	dc.b	$FE,1
 	even
 unk_20530C:
-	dc.b 4
-	dc.b playframe.hang1
-	dc.b playframe.hang2
-	dc.b $FF
+	dc.b	4
+	dc.b	playframe.hang1
+	dc.b	playframe.hang2
+	dc.b	$FF
 	even
 unk_205310:
-	dc.b $FC
-	dc.b playframe.spin1
-	dc.b playframe.spin2
-	dc.b playframe.spin3
-	dc.b playframe.spin6
-	dc.b playframe.spin4
-	dc.b playframe.spin5
-	dc.b $FF
+	dc.b	$FC
+	dc.b	playframe.spin1
+	dc.b	playframe.spin2
+	dc.b	playframe.spin3
+	dc.b	playframe.spin6
+	dc.b	playframe.spin4
+	dc.b	playframe.spin5
+	dc.b	$FF
 	even
 unk_205318:
-	dc.b $FF
-	dc.b playframe.walkwater3
-	dc.b playframe.walkwater4
-	dc.b playframe.walkwater5
-	dc.b playframe.walkwater6
-	dc.b playframe.walkwater1
-	dc.b playframe.walkwater2
-	dc.b $FF
+	dc.b	$FF
+	dc.b	playframe.walkwater3
+	dc.b	playframe.walkwater4
+	dc.b	playframe.walkwater5
+	dc.b	playframe.walkwater6
+	dc.b	playframe.walkwater1
+	dc.b	playframe.walkwater2
+	dc.b	$FF
 	even
 unk_205320:
-	dc.b $FF
-	dc.b playframe.watertunnel1
-	dc.b playframe.watertunnel2
-	dc.b playframe.watertunnel3
-	dc.b $FF
+	dc.b	$FF
+	dc.b	playframe.watertunnel1
+	dc.b	playframe.watertunnel2
+	dc.b	playframe.watertunnel3
+	dc.b	$FF
 	even
 unk_205326:
-	dc.b $13
-	dc.b $70
-	dc.b $6F
-	dc.b $70
-	dc.b $79
-	dc.b $FE,1
+	dc.b	$13
+	dc.b	$70
+	dc.b	$6F
+	dc.b	$70
+	dc.b	$79
+	dc.b	$FE,1
 	even
 
 playwrt:
@@ -2949,8 +2949,8 @@ loc_205368:
 	lea	cg_player.l,a1
 	adda.l	d2,a1
 loc_20537E:
-	movem.l (a1)+,d2-d6/a4-a6
-	movem.l d2-d6/a4-a6,(a3)
+	movem.l	(a1)+,d2-d6/a4-a6
+	movem.l	d2-d6/a4-a6,(a3)
 	lea	$20(a3),a3
 	dbf	d0,loc_20537E
 	dbf	d1,loc_205368
@@ -2962,7 +2962,7 @@ frip_spd:
 	move.b	obj.field_3D(a0),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
-	movea.l d0,a1
+	movea.l	d0,a1
 	_cmpi.b	#objid_1E,obj.id(a1)
 	bne.s	locret_2053FE
 	move.b	#1,obj.ani(a1)

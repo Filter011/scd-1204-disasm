@@ -428,8 +428,8 @@ palload_fade:
 	lea	pal_index.l,a1
 	lsl.w	#3,d0
 	adda.w	d0,a1
-	movea.l (a1)+,a2
-	movea.w (a1)+,a3
+	movea.l	(a1)+,a2
+	movea.w	(a1)+,a3
 	adda.w	#palette_fade-palette,a3
 	move.w	(a1)+,d7
 
@@ -442,8 +442,8 @@ palload:
 	lea	pal_index.l,a1
 	lsl.w	#3,d0
 	adda.w	d0,a1
-	movea.l (a1)+,a2
-	movea.w (a1)+,a3
+	movea.l	(a1)+,a2
+	movea.w	(a1)+,a3
 	move.w	(a1)+,d7
 
 .loop:
@@ -460,11 +460,11 @@ __LABEL__:	label	(*-pal_index)/8
 	dc.w	size/2-1
 	endm
 
-palid_segabg:	pal_ptr pal_segabg,0,64
-palid_title:	pal_ptr pal_title,0,64
-palid_levelsel:	pal_ptr pal_levelsel,0,64
-palid_player:	pal_ptr pal_player,0,16
-palid_spz:	pal_ptr pal_spz,2,48
+palid_segabg:	pal_ptr	pal_segabg,0,64
+palid_title:	pal_ptr	pal_title,0,64
+palid_levelsel:	pal_ptr	pal_levelsel,0,64
+palid_player:	pal_ptr	pal_player,0,16
+palid_spz:	pal_ptr	pal_spz,2,48
 
 pal_segabg:
 ;	incbin	"Palettes/Sega Background (Sonic 1).bin"
@@ -566,7 +566,7 @@ sinetbl:
 	dc.w	251,252,253,254,254,255,255,255
 
 calcangle:
-	movem.l d3-d4,-(sp)
+	movem.l	d3-d4,-(sp)
 	moveq	#0,d3
 	moveq	#0,d4
 	move.w	d1,d3
@@ -606,12 +606,12 @@ loc_200980:
 	neg.w	d0
 	addi.w	#$100,d0
 loc_20098C:
-	movem.l (sp)+,d3-d4
+	movem.l	(sp)+,d3-d4
 	rts
 
 loc_200992:
 	move.w	#$40,d0
-	movem.l (sp)+,d3-d4
+	movem.l	(sp)+,d3-d4
 	rts
 
 byte_20099C:
@@ -700,7 +700,7 @@ loc_200AE0:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF768.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	sub_200E82
@@ -716,7 +716,7 @@ loc_200AE0:
 	neg.w	d0
 	add.w	d0,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	sub_200E82
@@ -825,7 +825,7 @@ loc_200C2C:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF768.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	sub_200FF2
@@ -840,7 +840,7 @@ loc_200C2C:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	sub_200FF2
@@ -884,7 +884,7 @@ loc_200CC8:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$D,d5
 	bsr.w	sub_200E82
@@ -900,7 +900,7 @@ loc_200CC8:
 	ext.w	d0
 	sub.w	d0,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$D,d5
 	bsr.w	sub_200E82
@@ -944,7 +944,7 @@ loc_200D6A:
 	sub.w	d0,d3
 	eori.w	#$F,d3
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$D,d5
 	bsr.w	sub_200FF2
@@ -960,7 +960,7 @@ loc_200D6A:
 	sub.w	d0,d3
 	eori.w	#$F,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$D,d5
 	bsr.w	sub_200FF2
@@ -1017,7 +1017,7 @@ sub_200E0C:
 	add.w	d0,d1
 
 loc_200E4A:
-	movea.l d1,a1
+	movea.l	d1,a1
 	rts
 
 loc_200E4E:
@@ -1040,7 +1040,7 @@ loc_200E66:
 	lsr.w	#3,d0
 	andi.w	#$1E,d0
 	add.w	d0,d1
-	movea.l d1,a1
+	movea.l	d1,a1
 	rts
 
 sub_200E82:
@@ -1062,11 +1062,11 @@ loc_200E9C:
 	rts
 
 loc_200EAA:
-	movea.l dword_FFF796.w,a2
+	movea.l	dword_FFF796.w,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_200E9C
-	lea	unk_234A8A.l,a2
+	lea	scddirtbl.l,a2
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d3,d1
@@ -1085,7 +1085,7 @@ loc_200ED0:
 loc_200EE0:
 	andi.w	#$F,d1
 	add.w	d0,d1
-	lea	unk_234B8A.l,a2
+	lea	scdtblwk.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
@@ -1147,11 +1147,11 @@ loc_200F5C:
 	rts
 
 loc_200F6A:
-	movea.l dword_FFF796.w,a2
+	movea.l	dword_FFF796.w,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_200F5C
-	lea	unk_234A8A.l,a2
+	lea	scddirtbl.l,a2
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d3,d1
@@ -1170,7 +1170,7 @@ loc_200F90:
 loc_200FA0:
 	andi.w	#$F,d1
 	add.w	d0,d1
-	lea	unk_234B8A.l,a2
+	lea	scdtblwk.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
@@ -1225,11 +1225,11 @@ loc_20100C:
 	rts
 
 loc_20101A:
-	movea.l dword_FFF796.w,a2
+	movea.l	dword_FFF796.w,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_20100C
-	lea	unk_234A8A.l,a2
+	lea	scddirtbl.l,a2
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d2,d1
@@ -1248,7 +1248,7 @@ loc_201048:
 loc_201050:
 	andi.w	#$F,d1
 	add.w	d0,d1
-	lea	unk_235B8A.l,a2
+	lea	scdtblwk2.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
@@ -1300,11 +1300,11 @@ loc_2010BC:
 	rts
 
 loc_2010CA:
-	movea.l dword_FFF796.w,a2
+	movea.l	dword_FFF796.w,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_2010BC
-	lea	unk_234A8A.l,a2
+	lea	scddirtbl.l,a2
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d2,d1
@@ -1323,7 +1323,7 @@ loc_2010F8:
 loc_201100:
 	andi.w	#$F,d1
 	add.w	d0,d1
-	lea	unk_235B8A.l,a2
+	lea	scdtblwk2.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
@@ -1353,8 +1353,8 @@ loc_201132:
 nullsub_3:
 	rts
 
-	lea	unk_234B8A.l,a1
-	lea	unk_234B8A.l,a2
+	lea	scdtblwk.l,a1
+	lea	scdtblwk.l,a2
 	move.w	#$100-1,d3
 
 loc_201154:
@@ -1376,11 +1376,11 @@ loc_201160:
 	dbf	d2,loc_20115A
 	adda.w	#$20,a1
 	dbf	d3,loc_201154
-	lea	unk_234B8A.l,a1
-	lea	unk_235B8A.l,a2
+	lea	scdtblwk.l,a1
+	lea	scdtblwk2.l,a2
 	bsr.s	sub_201198
-	lea	unk_234B8A.l,a1
-	lea	unk_234B8A.l,a2
+	lea	scdtblwk.l,a1
+	lea	scdtblwk.l,a2
 
 sub_201198:
 	move.w	#$1000-1,d3
@@ -1674,14 +1674,14 @@ sub_2014F0:
 	rts
 
 off_201502:
-	dc.l	spz_collision
-	dc.l	spz_collision
-	dc.l	spz_collision
-	dc.l	spz_collision
-	dc.l	spz_collision
-	dc.l	spz_collision
-	dc.l	spz_collision
-	dc.l	spz_collision
+	dc.l	zone1scd
+	dc.l	zone1scd
+	dc.l	zone1scd
+	dc.l	zone1scd
+	dc.l	zone1scd
+	dc.l	zone1scd
+	dc.l	zone1scd
+	dc.l	zone1scd
 
 sub_201522:
 	subq.b	#1,byte_FF12C0
@@ -1745,7 +1745,7 @@ byte_2015DA:
 	jsr	sub_205404.l
 
 sub_2015E8:
-	writeVRAM $59F*tile_size,d0
+	writeVRAM	$59F*tile_size,d0
 	moveq	#0,d2
 	move.b	time_flag,d2
 	bclr	#7,d2
@@ -1753,14 +1753,14 @@ sub_2015E8:
 	move.l	d0,4(a6)
 	lea	cg_hudicon.l,a1
 	lea	(a1,d2.w),a3
-	rept 32
+	rept	32
 	move.l	(a3)+,(a6)
 	endr
 	rts
 
 vint:
 	bset	#0,scpu_IRQ2
-	movem.l d0-a6,-(sp)
+	movem.l	d0-a6,-(sp)
 	tst.b	vint_mode.w
 	beq.s	vint00
 	move.w	vdpctrl,d0
@@ -1788,29 +1788,29 @@ loc_2016AA:
 	bsr.w	sub_201C66
 	bsr.w	sub_201C4C
 	addq.l	#1,dword_FF120C
-	movem.l (sp)+,d0-a6
+	movem.l	(sp)+,d0-a6
 	rte
 
 vint_index:
 
 vint_ptr	macro	ptr,{INTLABEL}
 __LABEL__:	label	*-vint_index
-	dc.w ptr-vint_index
+	dc.w	ptr-vint_index
 	endm
 
-vintid_00:	vint_ptr vint00
-vintid_02:	vint_ptr vint02
-vintid_04:	vint_ptr vint04
-vintid_06:	vint_ptr vint06
-vintid_08:	vint_ptr vint08
-vintid_0A:	vint_ptr vint0A
-vintid_0C:	vint_ptr vint0C
-vintid_0E:	vint_ptr vint0E
-vintid_10:	vint_ptr vint10
-vintid_12:	vint_ptr vint12
-vintid_14:	vint_ptr vint14
-vintid_16:	vint_ptr vint16
-vintid_18:	vint_ptr vint18
+vintid_00:	vint_ptr	vint00
+vintid_02:	vint_ptr	vint02
+vintid_04:	vint_ptr	vint04
+vintid_06:	vint_ptr	vint06
+vintid_08:	vint_ptr	vint08
+vintid_0A:	vint_ptr	vint0A
+vintid_0C:	vint_ptr	vint0C
+vintid_0E:	vint_ptr	vint0E
+vintid_10:	vint_ptr	vint10
+vintid_12:	vint_ptr	vint12
+vintid_14:	vint_ptr	vint14
+vintid_16:	vint_ptr	vint16
+vintid_18:	vint_ptr	vint18
 
 vint00:
 	cmpi.b	#gmmodeid_lvl_S1+$80,gamemode.w
@@ -1911,10 +1911,10 @@ loc_2018CA:
 
 loc_2018D8:
 	jsr	STARTZ80BUS.l
-	movem.l scra_h_posit.w,d0-d7
-	movem.l d0-d7,scra_h_posiw
-	movem.l scrflaga.w,d0-d1
-	movem.l d0-d1,scrflagaw
+	movem.l	scra_h_posit.w,d0-d7
+	movem.l	d0-d7,scra_h_posiw
+	movem.l	scrflaga.w,d0-d1
+	movem.l	d0-d1,scrflagaw
 	cmpi.b	#96,hintposi+1.w
 	bhs.s	doupdates
 	move.b	#1,byte_FFF64F.w
@@ -1960,10 +1960,10 @@ loc_201986:
 
 loc_201A0A:
 	jsr	STARTZ80BUS.l
-	movem.l scra_h_posit.w,d0-d7
-	movem.l d0-d7,scra_h_posiw
-	movem.l scrflaga.w,d0-d1
-	movem.l d0-d1,scrflagaw
+	movem.l	scra_h_posit.w,d0-d7
+	movem.l	d0-d7,scra_h_posiw
+	movem.l	scrflaga.w,d0-d1
+	movem.l	d0-d1,scrflagaw
 	bsr.w	scrollwrt
 	bsr.w	sub_2020F0
 	jsr	sub_209830.l
@@ -2023,15 +2023,15 @@ hint:
 	tst.w	hintflag.w
 	beq.s	locret_201C38
 	move.w	#0,hintflag.w
-	movem.l a0-a1,-(sp)
+	movem.l	a0-a1,-(sp)
 	lea	vdpdata,a1
 	lea	palette_water.w,a0
 	move.l	#$C0000000,4(a1)
-	rept 32
+	rept	32
 	move.l	(a0)+,(a1)
 	endr
 	move.w	#$8A00+223,4(a1)
-	movem.l (sp)+,a0-a1
+	movem.l	(sp)+,a0-a1
 	tst.b	byte_FFF64F.w
 	bne.s	loc_201C3A
 
@@ -2040,9 +2040,9 @@ locret_201C38:
 
 loc_201C3A:
 	clr.b	byte_FFF64F.w
-	movem.l d0-a6,-(sp)
+	movem.l	d0-a6,-(sp)
 	bsr.w	doupdates
-	movem.l (sp)+,d0-a6
+	movem.l	(sp)+,d0-a6
 	rte
 
 sub_201C4C:
@@ -2149,25 +2149,25 @@ loc_201D40:
 	rts
 
 word_201D50:
-	dc.w $8000+%0100
-	dc.w $8100+%00110100
-	dc.w $8200+plane_a>>10
-	dc.w $8300+plane_w>>10
-	dc.w $8400+plane_b>>13
-	dc.w $8500+sprtbl_vram>>9
-	dc.w $8600
-	dc.w $8700
-	dc.w $8800
-	dc.w $8900
-	dc.w $8A00
-	dc.w $8B00
-	dc.w $8C81
-	dc.w $8D00+hscroll_vram>>10
-	dc.w $8E00
-	dc.w $8F02
-	dc.w $9001
-	dc.w $9100
-	dc.w $9200
+	dc.w	$8000+%0100
+	dc.w	$8100+%00110100
+	dc.w	$8200+plane_a>>10
+	dc.w	$8300+plane_w>>10
+	dc.w	$8400+plane_b>>13
+	dc.w	$8500+sprtbl_vram>>9
+	dc.w	$8600
+	dc.w	$8700
+	dc.w	$8800
+	dc.w	$8900
+	dc.w	$8A00
+	dc.w	$8B00
+	dc.w	$8C81
+	dc.w	$8D00+hscroll_vram>>10
+	dc.w	$8E00
+	dc.w	$8F02
+	dc.w	$9001
+	dc.w	$9100
+	dc.w	$9200
 word_201D50_end:
 
 sub_201D76:
@@ -3060,26 +3060,26 @@ loc_202B7C:
 	move.b	(a0,d0.w),d0
 	ext.w	d0
 	add.w	d0,d0
-	movea.l vblockwrtbtbl(pc,d0.w),a3
+	movea.l	vblockwrtbtbl(pc,d0.w),a3
 	beq.s	loc_202BAE
 	moveq	#-16,d5
 	move.l	a0,-(sp)
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	vramadrset
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	bsr.w	hblockwrt
-	movea.l (sp)+,a0
+	movea.l	(sp)+,a0
 	bra.s	loc_202BC6
 
 loc_202BAE:
 	moveq	#0,d5
 	move.l	a0,-(sp)
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	vramadrset1
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	moveq	#$20-1,d6
 	bsr.w	hblockwrt1
-	movea.l (sp)+,a0
+	movea.l	(sp)+,a0
 loc_202BC6:
 	tst.b	(a2)
 	bne.s	loc_202bhs
@@ -3117,14 +3117,14 @@ loc_202C0E:
 	btst	d0,(a2)
 	beq.s	loc_202C38
 	add.w	d0,d0
-	movea.l vblockwrtbtbl(pc,d0.w),a3
-	movem.l d4-d5/a0,-(sp)
-	movem.l d4-d5,-(sp)
+	movea.l	vblockwrtbtbl(pc,d0.w),a3
+	movem.l	d4-d5/a0,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	mapadrset
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	bsr.w	vramadrset
 	bsr.w	blockwrt
-	movem.l (sp)+,d4-d5/a0
+	movem.l	(sp)+,d4-d5/a0
 loc_202C38:
 	addi.w	#16,d4
 	dbf	d6,loc_202C0E
@@ -3143,13 +3143,13 @@ loc_202C4A:
 	move.l	#$800000,d7
 	move.l	d0,d1
 loc_202C52:
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	mapadrset
 	move.l	d1,d0
 	bsr.w	blockwrt
 	addq.b	#4,d1
 	andi.b	#$7F,d1
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	addi.w	#16,d5
 	dbf	d6,loc_202C52
 	rts
@@ -3158,13 +3158,13 @@ hblockwrt1:
 	move.l	#$800000,d7
 	move.l	d0,d1
 loc_202C7C:
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	mapadrset1
 	move.l	d1,d0
 	bsr.w	blockwrt
 	addq.b	#4,d1
 	andi.b	#$7F,d1
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	addi.w	#16,d5
 	dbf	d6,loc_202C7C
 	rts
@@ -3174,13 +3174,13 @@ vblockwrt:
 	move.l	#$800000,d7
 	move.l	d0,d1
 loc_202CA8:
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	mapadrset
 	move.l	d1,d0
 	bsr.w	blockwrt
 	addi.w	#$100,d1
 	andi.w	#$FFF,d1
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	addi.w	#16,d4
 	dbf	d6,loc_202CA8
 	rts
@@ -3267,7 +3267,7 @@ mapadrset2:
 	andi.w	#$1E,d5
 	add.w	d4,d3
 	add.w	d5,d3
-	movea.l d3,a0
+	movea.l	d3,a0
 	move.w	(a0),d3
 	andi.w	#$3FF,d3
 	lsl.w	#3,d3
@@ -3294,7 +3294,7 @@ locret_202D98:
 	andi.w	#$1E,d5
 	add.w	d4,d3
 	add.w	d5,d3
-	movea.l d3,a0
+	movea.l	d3,a0
 	rts
 
 block_wrt:
@@ -3304,27 +3304,27 @@ block_wrt:
 	lea	vdpdata,a6
 	move.w	#$4000,d2
 	move.l	#$800000,d7
-	movem.l d3-d5,-(sp)
+	movem.l	d3-d5,-(sp)
 	bsr.w	mapadrset2
 	bne.s	loc_202DFE
-	movem.l (sp)+,d3-d5
+	movem.l	(sp)+,d3-d5
 	bra.s	loc_202E26
 
 loc_202DFE:
-	movem.l (sp)+,d3-d5
+	movem.l	(sp)+,d3-d5
 	move.w	d3,(a0)
 	bsr.w	block_chk
 	bne.s	loc_202E26
-	movem.l d3-d5,-(sp)
+	movem.l	d3-d5,-(sp)
 	lea	blkwk.w,a1
 	andi.w	#$3FF,d3
 	lsl.w	#3,d3
 	adda.w	d3,a1
 	bsr.w	vramadrset0
 	bsr.w	blockwrt
-	movem.l (sp)+,d3-d5
+	movem.l	(sp)+,d3-d5
 loc_202E26:
-	movea.l (sp)+,a0
+	movea.l	(sp)+,a0
 	rts
 
 block_chk:
@@ -3399,7 +3399,7 @@ mapwrt2:
 	moveq	#-16,d4
 	moveq	#16-1,d6
 mapwrt3:
-	movem.l d4-d6,-(sp)
+	movem.l	d4-d6,-(sp)
 	moveq	#0,d5
 	move.w	d4,d1
 	bsr.w	vramadrset
@@ -3407,7 +3407,7 @@ mapwrt3:
 	moveq	#0,d5
 	moveq	#$20-1,d6
 	bsr.w	loc_202C4A
-	movem.l (sp)+,d4-d6
+	movem.l	(sp)+,d4-d6
 	addi.w	#16,d4
 	dbf	d6,mapwrt3
 	rts
@@ -3416,14 +3416,14 @@ mapwrt_z81a:
 	moveq	#-16,d4
 	moveq	#16-1,d6
 loc_202EFC:
-	movem.l d4-d6/a0,-(sp)
+	movem.l	d4-d6/a0,-(sp)
 	lea	z81awrttbl.l,a0
 	adda.w	#1,a0
 	move.w	scrb_v_posit.w,d0
 	add.w	d4,d0
 	andi.w	#$1F0,d0
 	bsr.w	mapwrt_sub
-	movem.l (sp)+,d4-d6/a0
+	movem.l	(sp)+,d4-d6/a0
 	addi.w	#16,d4
 	dbf	d6,loc_202EFC
 	rts
@@ -3445,20 +3445,20 @@ mapwrt_sub:
 	lsr.w	#4,d0
 	move.b	(a0,d0.w),d0
 	add.w	d0,d0
-	movea.l mapwrt_tbl(pc,d0.w),a3
+	movea.l	mapwrt_tbl(pc,d0.w),a3
 	beq.s	loc_202F7A
 	moveq	#-16,d5
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	vramadrset
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	bsr.w	hblockwrt
 	bra.s	locret_202F8E
 
 loc_202F7A:
 	moveq	#0,d5
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	bsr.w	vramadrset1
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	moveq	#$20-1,d6
 	bsr.w	hblockwrt1
 locret_202F8E:
@@ -3471,10 +3471,10 @@ mapinit:
 	lea	lvlheader.l,a2
 	move.l	a2,-(sp)
 	addq.l	#4,a2
-	movea.l (a2)+,a0
+	movea.l	(a2)+,a0
 	lea	blkwk.w,a4
 	bsr.w	bitdevwkr
-	movea.l (a2)+,a0
+	movea.l	(a2)+,a0
 	lea	chunkwk.l,a1
 	bsr.w	unlze
 	bsr.w	layoutload
@@ -3482,7 +3482,7 @@ mapinit:
 	move.w	(a2),d0
 	andi.w	#$FF,d0
 	bsr.w	palload_fade
-	movea.l (sp)+,a2
+	movea.l	(sp)+,a2
 	addq.w	#4,a2
 	btst	#7,time_flag
 	beq.s	loc_202FD6
@@ -3513,7 +3513,7 @@ loc_202FEC:
 sub_203002:
 	moveq	#0,d0
 	add.w	d1,d0
-	lea	lvllayout_index.l,a1
+	lea	zonemaptbl.l,a1
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
 	moveq	#0,d1
@@ -3522,7 +3522,7 @@ sub_203002:
 	move.b	(a1)+,d2
 loc_20301C:
 	move.w	d1,d0
-	movea.l a3,a0
+	movea.l	a3,a0
 loc_203020:
 	move.b	(a1)+,(a0)+
 	dbf	d0,loc_203020
@@ -3626,7 +3626,7 @@ loc_2030FA:
 	add.w	d0,d0
 	add.w	d0,d0
 	lea	act_tbl.l,a1
-	movea.l -4(a1,d0.w),a1
+	movea.l	-4(a1,d0.w),a1
 	jsr	(a1)
 	moveq	#0,d0
 loc_203110:
@@ -3675,7 +3675,7 @@ speedset2:
 	move.b	obj.field_3D(a0),d1
 	lsl.w	#6,d1
 	addi.l	#actwk&$FFFFFF,d1
-	movea.l d1,a1
+	movea.l	d1,a1
 	_cmpi.b	#objid_1E,obj.id(a1)
 	bne.s	loc_2031A2
 	move.w	#-$100,d1
@@ -3749,7 +3749,7 @@ locret_20323E:
 	rts
 
 deleteobj:
-	movea.l a0,a1
+	movea.l	a0,a1
 	moveq	#0,d1
 	moveq	#obj.len/4-1,d0
 loc_203246:
@@ -3774,14 +3774,14 @@ loc_20326A:
 	beq.w	loc_203302
 	moveq	#2,d6
 loc_203272:
-	movea.w (a4,d6.w),a0
+	movea.w	(a4,d6.w),a0
 	tst.b	(a0)
 	beq.w	loc_2032FA
 	move.b	obj.render(a0),d0
 	move.b	d0,d4
 	andi.w	#$C,d0
 	beq.s	loc_2032B0
-	movea.l dword_20324E(pc,d0.w),a1
+	movea.l	dword_20324E(pc,d0.w),a1
 	moveq	#0,d0
 	move.b	obj.field_19(a0),d0
 	move.w	obj.xpos(a0),d3
@@ -3807,7 +3807,7 @@ loc_2032B0:
 	cmpi.w	#$180,d2
 	bhs.s	loc_2032FA
 loc_2032D2:
-	movea.l obj.mappings(a0),a1
+	movea.l	obj.mappings(a0),a1
 	moveq	#0,d1
 	btst	#5,d4
 	bne.s	loc_2032F0
@@ -3841,7 +3841,7 @@ loc_20331C:
 	rts
 
 sub_203324:
-	movea.w obj.vram(a0),a3
+	movea.w	obj.vram(a0),a3
 	btst	#0,d4
 	bne.s	loc_20336A
 	btst	#1,d4
@@ -4031,56 +4031,53 @@ act_tbl:
 
 obj_ptr	macro	ptr,{INTLABEL}
 __LABEL__:	label	(*-act_tbl+4)/4
-	dc.l ptr
+	dc.l	ptr
 	endm
 
 objid_00:	equ	0
-objid_01:	obj_ptr play00
-objid_02:	obj_ptr play00
-objid_03:	obj_ptr baria
-objid_04:	obj_ptr taki
-objid_05:	obj_ptr jisin
-objid_06:	obj_ptr obj06
-objid_07:	obj_ptr shooter
-objid_08:	obj_ptr jisin_set
-objid_09:	obj_ptr dai_k
-objid_0A:	obj_ptr spring
-objid_0B:	obj_ptr exit2
-objid_0C:	obj_ptr exit2_set
-objid_0D:	obj_ptr futa
-objid_0E:	obj_ptr mizukiri
-objid_0F:	obj_ptr koma
-objid_10:	obj_ptr ring
-objid_11:	obj_ptr flyring
-objid_12:	obj_ptr block
-objid_13:	obj_ptr marker
-objid_14:	obj_ptr obj14
-objid_15:	obj_ptr obj15
-objid_16:	obj_ptr obj16
-objid_17:	obj_ptr goal
-objid_18:	obj_ptr obj18
-objid_19:	obj_ptr obj19
-objid_1A:	obj_ptr obj1A
-objid_1B:	obj_ptr obj1B
-objid_1C:	obj_ptr obj1C
-objid_1D:	obj_ptr obj1D
-objid_1E:	obj_ptr obj1E
-objid_1F:	obj_ptr obj1F
-objid_20:	obj_ptr obj20
-objid_21:	obj_ptr obj21
-objid_22:	obj_ptr obj22
-objid_23:	obj_ptr obj23
-objid_24:	obj_ptr obj24
-objid_25:	obj_ptr obj25
-objid_26:	obj_ptr obj26
-objid_27:	obj_ptr obj27
-objid_28:	obj_ptr obj28
-objid_29:	obj_ptr obj29
+objid_01:	obj_ptr	play00
+objid_02:	obj_ptr	play00
+objid_03:	obj_ptr	baria
+objid_04:	obj_ptr	taki
+objid_05:	obj_ptr	jisin
+objid_06:	obj_ptr	obj06
+objid_07:	obj_ptr	shooter
+objid_08:	obj_ptr	jisin_set
+objid_09:	obj_ptr	dai_k
+objid_0A:	obj_ptr	spring
+objid_0B:	obj_ptr	exit2
+objid_0C:	obj_ptr	exit2_set
+objid_0D:	obj_ptr	futa
+objid_0E:	obj_ptr	mizukiri
+objid_0F:	obj_ptr	koma
+objid_10:	obj_ptr	ring
+objid_11:	obj_ptr	flyring
+objid_12:	obj_ptr	block
+objid_13:	obj_ptr	marker
+objid_14:	obj_ptr	obj14
+objid_15:	obj_ptr	obj15
+objid_16:	obj_ptr	obj16
+objid_17:	obj_ptr	goal
+objid_18:	obj_ptr	obj18
+objid_19:	obj_ptr	obj19
+objid_1A:	obj_ptr	obj1A
+objid_1B:	obj_ptr	obj1B
+objid_1C:	obj_ptr	obj1C
+objid_1D:	obj_ptr	objNull
+objid_1E:	obj_ptr	objNull
+objid_1F:	obj_ptr	obj1F
+objid_20:	obj_ptr	obj20
+objid_21:	obj_ptr	obj21
+objid_22:	obj_ptr	obj22
+objid_23:	obj_ptr	obj23
+objid_24:	obj_ptr	obj24
+objid_25:	obj_ptr	objNull
+objid_26:	obj_ptr	obj26
+objid_27:	obj_ptr	obj27
+objid_28:	obj_ptr	obj28
+objid_29:	obj_ptr	obj29
 
 objNull:
-obj1D:
-obj1E:
-obj25:
 	move.b	#objid_00,(a0)
 	rts
 
@@ -4642,7 +4639,7 @@ sub_2059B8:
 	move.b	byte_FF127B,d0
 	subq.b	#2,d0
 	add.w	d0,d0
-	movea.l off_205A08(pc,d0.w),a1
+	movea.l	off_205A08(pc,d0.w),a1
 	lea	powerupwrtwk.l,a2
 	move.w	#(powerupwrtwk_end-powerupwrtwk)/4-1,d0
 loc_2059DC:
@@ -4660,684 +4657,684 @@ off_205A08:
 	dc.l	cg_timetravel
 
 obj06_ani:
-	dc.w unk_205A26-obj06_ani
-	dc.w unk_205A2E-obj06_ani
-	dc.w unk_205A34-obj06_ani
-	dc.w unk_205A4E-obj06_ani
-	dc.w unk_205A68-obj06_ani
-	dc.w unk_205A82-obj06_ani
-	dc.w unk_205A8E-obj06_ani
-	dc.w unk_205AC8-obj06_ani
-	dc.w unk_205B02-obj06_ani
+	dc.w	unk_205A26-obj06_ani
+	dc.w	unk_205A2E-obj06_ani
+	dc.w	unk_205A34-obj06_ani
+	dc.w	unk_205A4E-obj06_ani
+	dc.w	unk_205A68-obj06_ani
+	dc.w	unk_205A82-obj06_ani
+	dc.w	unk_205A8E-obj06_ani
+	dc.w	unk_205AC8-obj06_ani
+	dc.w	unk_205B02-obj06_ani
 unk_205A26:
-	dc.b   1
-	dc.b   1
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   3
-	dc.b   0
-	dc.b $FF
+	dc.b	1
+	dc.b	1
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	3
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205A2E:
-	dc.b   5
-	dc.b   4
-	dc.b   5
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+	dc.b	5
+	dc.b	4
+	dc.b	5
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
 unk_205A34:
-	dc.b   0
-	dc.b   4
-	dc.b   4
-	dc.b   0
-	dc.b   4
-	dc.b   4
-	dc.b   0
-	dc.b   5
-	dc.b   5
-	dc.b   0
-	dc.b   5
-	dc.b   5
-	dc.b   0
-	dc.b   6
-	dc.b   6
-	dc.b   0
-	dc.b   6
-	dc.b   6
-	dc.b   0
-	dc.b   7
-	dc.b   7
-	dc.b   0
-	dc.b   7
-	dc.b   7
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	4
+	dc.b	4
+	dc.b	0
+	dc.b	4
+	dc.b	4
+	dc.b	0
+	dc.b	5
+	dc.b	5
+	dc.b	0
+	dc.b	5
+	dc.b	5
+	dc.b	0
+	dc.b	6
+	dc.b	6
+	dc.b	0
+	dc.b	6
+	dc.b	6
+	dc.b	0
+	dc.b	7
+	dc.b	7
+	dc.b	0
+	dc.b	7
+	dc.b	7
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205A4E:
-	dc.b   0
-	dc.b   4
-	dc.b   4
-	dc.b   0
-	dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b   5
-	dc.b   0
-	dc.b   5
-	dc.b   0
-	dc.b   0
-	dc.b   6
-	dc.b   6
-	dc.b   0
-	dc.b   6
-	dc.b   0
-	dc.b   0
-	dc.b   7
-	dc.b   7
-	dc.b   0
-	dc.b   7
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	4
+	dc.b	4
+	dc.b	0
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	5
+	dc.b	0
+	dc.b	5
+	dc.b	0
+	dc.b	0
+	dc.b	6
+	dc.b	6
+	dc.b	0
+	dc.b	6
+	dc.b	0
+	dc.b	0
+	dc.b	7
+	dc.b	7
+	dc.b	0
+	dc.b	7
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205A68:
-	dc.b   0
-	dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b   0
-	dc.b   0
-	dc.b   6
-	dc.b   0
-	dc.b   0
-	dc.b   6
-	dc.b   0
-	dc.b   0
-	dc.b   7
-	dc.b   0
-	dc.b   0
-	dc.b   7
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	0
+	dc.b	0
+	dc.b	6
+	dc.b	0
+	dc.b	0
+	dc.b	6
+	dc.b	0
+	dc.b	0
+	dc.b	7
+	dc.b	0
+	dc.b	0
+	dc.b	7
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205A82:
-	dc.b   0
-	dc.b   8
-	dc.b   9
-	dc.b  $A
-	dc.b  $B
-	dc.b  $C
-	dc.b  $B
-	dc.b  $A
-	dc.b   9
-	dc.b   8
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	8
+	dc.b	9
+	dc.b	$A
+	dc.b	$B
+	dc.b	$C
+	dc.b	$B
+	dc.b	$A
+	dc.b	9
+	dc.b	8
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205A8E:
-	dc.b   0
-	dc.b   8
-	dc.b   8
-	dc.b   0
-	dc.b   8
-	dc.b   8
-	dc.b   0
-	dc.b   9
-	dc.b   9
-	dc.b   0
-	dc.b   9
-	dc.b   9
-	dc.b   0
-	dc.b  $A
-	dc.b  $A
-	dc.b   0
-	dc.b  $A
-	dc.b  $A
-	dc.b   0
-	dc.b  $B
-	dc.b  $B
-	dc.b   0
-	dc.b  $B
-	dc.b  $B
-	dc.b   0
-	dc.b  $C
-	dc.b  $C
-	dc.b   0
-	dc.b  $C
-	dc.b  $C
-	dc.b   0
-	dc.b  $B
-	dc.b  $B
-	dc.b   0
-	dc.b  $B
-	dc.b  $B
-	dc.b   0
-	dc.b  $A
-	dc.b  $A
-	dc.b   0
-	dc.b  $A
-	dc.b  $A
-	dc.b   0
-	dc.b   9
-	dc.b   9
-	dc.b   0
-	dc.b   9
-	dc.b   9
-	dc.b   0
-	dc.b   8
-	dc.b   8
-	dc.b   0
-	dc.b   8
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	8
+	dc.b	8
+	dc.b	0
+	dc.b	8
+	dc.b	8
+	dc.b	0
+	dc.b	9
+	dc.b	9
+	dc.b	0
+	dc.b	9
+	dc.b	9
+	dc.b	0
+	dc.b	$A
+	dc.b	$A
+	dc.b	0
+	dc.b	$A
+	dc.b	$A
+	dc.b	0
+	dc.b	$B
+	dc.b	$B
+	dc.b	0
+	dc.b	$B
+	dc.b	$B
+	dc.b	0
+	dc.b	$C
+	dc.b	$C
+	dc.b	0
+	dc.b	$C
+	dc.b	$C
+	dc.b	0
+	dc.b	$B
+	dc.b	$B
+	dc.b	0
+	dc.b	$B
+	dc.b	$B
+	dc.b	0
+	dc.b	$A
+	dc.b	$A
+	dc.b	0
+	dc.b	$A
+	dc.b	$A
+	dc.b	0
+	dc.b	9
+	dc.b	9
+	dc.b	0
+	dc.b	9
+	dc.b	9
+	dc.b	0
+	dc.b	8
+	dc.b	8
+	dc.b	0
+	dc.b	8
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205AC8:
-	dc.b   0
-	dc.b   8
-	dc.b   8
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   9
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b  $A
-	dc.b   0
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b  $B
-	dc.b   0
-	dc.b  $B
-	dc.b   0
-	dc.b   0
-	dc.b  $C
-	dc.b  $C
-	dc.b   0
-	dc.b  $C
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b  $B
-	dc.b   0
-	dc.b  $B
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b  $A
-	dc.b   0
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   9
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b   8
-	dc.b   8
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	8
+	dc.b	8
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	9
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	$A
+	dc.b	0
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	$B
+	dc.b	0
+	dc.b	$B
+	dc.b	0
+	dc.b	0
+	dc.b	$C
+	dc.b	$C
+	dc.b	0
+	dc.b	$C
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	$B
+	dc.b	0
+	dc.b	$B
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	$A
+	dc.b	0
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	9
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	8
+	dc.b	8
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
 unk_205B02:
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b   0
-	dc.b   0
-	dc.b  $C
-	dc.b   0
-	dc.b   0
-	dc.b  $C
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	0
+	dc.b	0
+	dc.b	$C
+	dc.b	0
+	dc.b	0
+	dc.b	$C
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
 
 obj06_map:
-	dc.w byte_205B56+$B-obj06_map
-	dc.w byte_205B56-obj06_map
-	dc.w byte_205B6B-obj06_map
-	dc.w byte_205B80-obj06_map
-	dc.w byte_205B95-obj06_map
-	dc.w byte_205BAA-obj06_map
-	dc.w byte_205BBF-obj06_map
-	dc.w byte_205BD4-obj06_map
-	dc.w byte_205BEA-obj06_map
-	dc.w byte_205C00-obj06_map
-	dc.w byte_205C16-obj06_map
-	dc.w byte_205C2C-obj06_map
-	dc.w byte_205C42-obj06_map
+	dc.w	byte_205B56+$B-obj06_map
+	dc.w	byte_205B56-obj06_map
+	dc.w	byte_205B6B-obj06_map
+	dc.w	byte_205B80-obj06_map
+	dc.w	byte_205B95-obj06_map
+	dc.w	byte_205BAA-obj06_map
+	dc.w	byte_205BBF-obj06_map
+	dc.w	byte_205BD4-obj06_map
+	dc.w	byte_205BEA-obj06_map
+	dc.w	byte_205C00-obj06_map
+	dc.w	byte_205C16-obj06_map
+	dc.w	byte_205C2C-obj06_map
+	dc.w	byte_205C42-obj06_map
 byte_205B56:
-	dc.b 4
-	dc.b $E8, $A,  0,  0,$E8
-	dc.b $E8, $A,  0,  9,  0
-	dc.b   0, $A,$10,  0,$E8
-	dc.b   0, $A,$10,  9,  0
+	dc.b	4
+	dc.b	$E8,$A,0,0,$E8
+	dc.b	$E8,$A,0,9,0
+	dc.b	0,$A,$10,0,$E8
+	dc.b	0,$A,$10,9,0
 byte_205B6B:
-	dc.b 4
-	dc.b $E8, $A,  0,$12,$E8
-	dc.b $E8, $A,  0,$1B,  0
-	dc.b   0, $A,$10,$12,$E8
-	dc.b   0, $A,$10,$1B,  0
+	dc.b	4
+	dc.b	$E8,$A,0,$12,$E8
+	dc.b	$E8,$A,0,$1B,0
+	dc.b	0,$A,$10,$12,$E8
+	dc.b	0,$A,$10,$1B,0
 byte_205B80:
-	dc.b 4
-	dc.b $E8, $A,  8,  9,$E8
-	dc.b $E8, $A,  8,  0,  0
-	dc.b   0, $A,$18,  9,$E8
-	dc.b   0, $A,$18,  0,  0
+	dc.b	4
+	dc.b	$E8,$A,8,9,$E8
+	dc.b	$E8,$A,8,0,0
+	dc.b	0,$A,$18,9,$E8
+	dc.b	0,$A,$18,0,0
 byte_205B95:
-	dc.b 4
-	dc.b $E8, $A,  0,  0,$E8
-	dc.b $E8, $A,  0,  9,  0
-	dc.b   0, $A,$18,  9,$E8
-	dc.b   0, $A,$18,  0,  0
+	dc.b	4
+	dc.b	$E8,$A,0,0,$E8
+	dc.b	$E8,$A,0,9,0
+	dc.b	0,$A,$18,9,$E8
+	dc.b	0,$A,$18,0,0
 byte_205BAA:
-	dc.b 4
-	dc.b $E8, $A,  8,  9,$E8
-	dc.b $E8, $A,  8,  0,  0
-	dc.b   0, $A,$10,  0,$E8
-	dc.b   0, $A,$10,  9,  0
+	dc.b	4
+	dc.b	$E8,$A,8,9,$E8
+	dc.b	$E8,$A,8,0,0
+	dc.b	0,$A,$10,0,$E8
+	dc.b	0,$A,$10,9,0
 byte_205BBF:
-	dc.b 4
-	dc.b $E8, $A,  0,$12,$E8
-	dc.b $E8, $A,  0,$1B,  0
-	dc.b   0, $A,$18,$1B,$E8
-	dc.b   0, $A,$18,$12,  0
+	dc.b	4
+	dc.b	$E8,$A,0,$12,$E8
+	dc.b	$E8,$A,0,$1B,0
+	dc.b	0,$A,$18,$1B,$E8
+	dc.b	0,$A,$18,$12,0
 byte_205BD4:
-	dc.b 4
-	dc.b $E8, $A,  8,$1B,$E8
-	dc.b $E8, $A,  8,$12,  0
-	dc.b   0, $A,$10,$12,$E8
-	dc.b   0, $A,$10,$1B,  0
+	dc.b	4
+	dc.b	$E8,$A,8,$1B,$E8
+	dc.b	$E8,$A,8,$12,0
+	dc.b	0,$A,$10,$12,$E8
+	dc.b	0,$A,$10,$1B,0
 	even
 byte_205BEA:
-	dc.b 4
-	dc.b $F0,  5,  0,  0,$F0
-	dc.b $F0,  5,  8,  0,  0
-	dc.b   0,  5,$10,  0,$F0
-	dc.b   0,  5,$18,  0,  0
+	dc.b	4
+	dc.b	$F0,5,0,0,$F0
+	dc.b	$F0,5,8,0,0
+	dc.b	0,5,$10,0,$F0
+	dc.b	0,5,$18,0,0
 	even
 byte_205C00:
-	dc.b 4
-	dc.b $F0,  5,  0,  4,$F0
-	dc.b $F0,  5,  8,  4,  0
-	dc.b   0,  5,$10,  4,$F0
-	dc.b   0,  5,$18,  4,  0
+	dc.b	4
+	dc.b	$F0,5,0,4,$F0
+	dc.b	$F0,5,8,4,0
+	dc.b	0,5,$10,4,$F0
+	dc.b	0,5,$18,4,0
 	even
 byte_205C16:
-	dc.b 4
-	dc.b $E8, $A,  0,  8,$E8
-	dc.b $E8, $A,  8,  8,  0
-	dc.b   0, $A,$10,  8,$E8
-	dc.b   0, $A,$18,  8,  0
+	dc.b	4
+	dc.b	$E8,$A,0,8,$E8
+	dc.b	$E8,$A,8,8,0
+	dc.b	0,$A,$10,8,$E8
+	dc.b	0,$A,$18,8,0
 	even
 byte_205C2C:
-	dc.b 4
-	dc.b $F0,  5,  0,$11,$F0
-	dc.b $F0,  5,  0,$15,  0
-	dc.b   0,  5,$18,$15,$F0
-	dc.b   0,  5,$18,$11,  0
+	dc.b	4
+	dc.b	$F0,5,0,$11,$F0
+	dc.b	$F0,5,0,$15,0
+	dc.b	0,5,$18,$15,$F0
+	dc.b	0,5,$18,$11,0
 	even
 byte_205C42:
-	dc.b 2
-	dc.b $F4,  6,  0,$19,$F0
-	dc.b $F4,  6,  8,$19,  0
+	dc.b	2
+	dc.b	$F4,6,0,$19,$F0
+	dc.b	$F4,6,8,$19,0
 	even
 
 obj0B_ani:
-	dc.w unk_205C54-obj0B_ani
-	dc.w unk_205C5C-obj0B_ani
-	dc.w unk_205C62-obj0B_ani
+	dc.w	unk_205C54-obj0B_ani
+	dc.w	unk_205C5C-obj0B_ani
+	dc.w	unk_205C62-obj0B_ani
 unk_205C54:
-	dc.b   3
-	dc.b   0
-	dc.b   4
-	dc.b   3
-	dc.b   1
-	dc.b   2
-	dc.b $FC
+	dc.b	3
+	dc.b	0
+	dc.b	4
+	dc.b	3
+	dc.b	1
+	dc.b	2
+	dc.b	$FC
 	even
 unk_205C5C:
-	dc.b   3
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b $FC
+	dc.b	3
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	$FC
 	even
 unk_205C62:
-	dc.b   3
-	dc.b   6
-	dc.b   5
-	dc.b $FC
+	dc.b	3
+	dc.b	6
+	dc.b	5
+	dc.b	$FC
 	even
 
 obj0B_map:
-	dc.w byte_205C74-obj0B_map
-	dc.w byte_205C80-obj0B_map
-	dc.w byte_205C8C-obj0B_map
-	dc.w byte_205C92-obj0B_map
-	dc.w byte_205CA8-obj0B_map
-	dc.w byte_205CBE-obj0B_map
-	dc.w byte_205CC4-obj0B_map
+	dc.w	byte_205C74-obj0B_map
+	dc.w	byte_205C80-obj0B_map
+	dc.w	byte_205C8C-obj0B_map
+	dc.w	byte_205C92-obj0B_map
+	dc.w	byte_205CA8-obj0B_map
+	dc.w	byte_205CBE-obj0B_map
+	dc.w	byte_205CC4-obj0B_map
 byte_205C74:
-	dc.b 2
-	dc.b $F0,  5,  0,  0,$FC
-	dc.b $F8,  0,  0,  4,$F4
+	dc.b	2
+	dc.b	$F0,5,0,0,$FC
+	dc.b	-8,0,0,4,$F4
 	even
 byte_205C80:
-	dc.b 2
-	dc.b $E0,  0,  0,  5,$F8
-	dc.b $E8, $E,  0,  6,$F0
+	dc.b	2
+	dc.b	$E0,0,0,5,-8
+	dc.b	$E8,$E,0,6,$F0
 	even
 byte_205C8C:
-	dc.b 1
-	dc.b $E0, $F,  0,$12,$F0
+	dc.b	1
+	dc.b	$E0,$F,0,$12,$F0
 	even
 byte_205C92:
-	dc.b 4
-	dc.b $D0,  6,  0,$22,$F8
-	dc.b $D8,  0,  0,$28,$F0
-	dc.b $E0,  0,  0,$29,  8
-	dc.b $E8, $E,  0,$2A,$F0
+	dc.b	4
+	dc.b	$D0,6,0,$22,-8
+	dc.b	$D8,0,0,$28,$F0
+	dc.b	$E0,0,0,$29,8
+	dc.b	$E8,$E,0,$2A,$F0
 	even
 byte_205CA8:
-	dc.b 4
-	dc.b $C0,  0,  0,$36,$F8
-	dc.b $C8,  6,  0,$37,$F8
-	dc.b $D8,  0,  0,$3D,$F0
-	dc.b $E0, $F,  0,$3E,$F0
+	dc.b	4
+	dc.b	$C0,0,0,$36,-8
+	dc.b	$C8,6,0,$37,-8
+	dc.b	$D8,0,0,$3D,$F0
+	dc.b	$E0,$F,0,$3E,$F0
 	even
 byte_205CBE:
-	dc.b 1
-	dc.b $F0,  9,  0,$4E,$F4
+	dc.b	1
+	dc.b	$F0,9,0,$4E,$F4
 	even
 byte_205CC4:
-	dc.b 1
-	dc.b $F8,  4,  0,$54,$F8
+	dc.b	1
+	dc.b	-8,4,0,$54,-8
 	even
 
 obj0D_ani:
-	dc.w unk_205CCC-obj0D_ani
+	dc.w	unk_205CCC-obj0D_ani
 unk_205CCC:
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b   1
-	dc.b $FC
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	$FC
 	even
 
 obj0D_map:
-	dc.w byte_205CE8-obj0D_map
-	dc.w byte_205CDC-obj0D_map
+	dc.w	byte_205CE8-obj0D_map
+	dc.w	byte_205CDC-obj0D_map
 byte_205CDC:
-	dc.b 2
-	dc.b $D0,  3,  0,  0,$E4
-	dc.b $F0,  1,  0,  4,$E4
+	dc.b	2
+	dc.b	$D0,3,0,0,$E4
+	dc.b	$F0,1,0,4,$E4
 	even
 byte_205CE8:
-	dc.b 2
-	dc.b $F8, $C,  0,  6,$E8
-	dc.b $F8,  4,  0, $A,  8
+	dc.b	2
+	dc.b	-8,$C,0,6,$E8
+	dc.b	-8,4,0,$A,8
 	even
 
 obj0E_ani:
-	dc.w unk_205CF6-obj0E_ani
+	dc.w	unk_205CF6-obj0E_ani
 unk_205CF6:
-	dc.b   3
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b $FC
+	dc.b	3
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	$FC
 	even
 
 obj0E_map:
-	dc.w byte_205D02-obj0E_map
-	dc.w byte_205D08-obj0E_map
-	dc.w byte_205D0E-obj0E_map
+	dc.w	byte_205D02-obj0E_map
+	dc.w	byte_205D08-obj0E_map
+	dc.w	byte_205D0E-obj0E_map
 byte_205D02:
-	dc.b 1
-	dc.b $F0, $F,  0,  0,$F0
+	dc.b	1
+	dc.b	$F0,$F,0,0,$F0
 	even
 byte_205D08:
-	dc.b 1
-	dc.b $F4, $A,  0,$10,$F4
+	dc.b	1
+	dc.b	$F4,$A,0,$10,$F4
 	even
 byte_205D0E:
-	dc.b 1
-	dc.b $F8,  5,  0,$19,$F8
+	dc.b	1
+	dc.b	-8,5,0,$19,-8
 	even
 
 obj18_ani:
-	dc.w unk_205D18-obj18_ani
-	dc.w unk_205D20-obj18_ani
+	dc.w	unk_205D18-obj18_ani
+	dc.w	unk_205D20-obj18_ani
 unk_205D18:
-	dc.b   3
-	dc.b   0
-	dc.b   5
-	dc.b   6
-	dc.b   3
-	dc.b   4
-	dc.b $FC
+	dc.b	3
+	dc.b	0
+	dc.b	5
+	dc.b	6
+	dc.b	3
+	dc.b	4
+	dc.b	$FC
 	even
 unk_205D20:
-	dc.b   3
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b $FC
+	dc.b	3
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	$FC
 	even
 
 obj18_map:
-	dc.w byte_205D36-obj18_map
-	dc.w byte_205D42-obj18_map
-	dc.w byte_205D52-obj18_map
-	dc.w byte_205D68-obj18_map
-	dc.w byte_205D7E-obj18_map
-	dc.w byte_205D94-obj18_map
-	dc.w byte_205DA4-obj18_map
+	dc.w	byte_205D36-obj18_map
+	dc.w	byte_205D42-obj18_map
+	dc.w	byte_205D52-obj18_map
+	dc.w	byte_205D68-obj18_map
+	dc.w	byte_205D7E-obj18_map
+	dc.w	byte_205D94-obj18_map
+	dc.w	byte_205DA4-obj18_map
 byte_205D36:
-	dc.b 2
-	dc.b $F8,  5,  0,  0,$F0
-	dc.b $F8,  5,  8,  0,  0
+	dc.b	2
+	dc.b	-8,5,0,0,$F0
+	dc.b	-8,5,8,0,0
 	even
 byte_205D42:
-	dc.b 3
-	dc.b $F0, $D,  0,  4,$F0
-	dc.b   0,  5,  0, $C,$F0
-	dc.b   0,  5,  8, $C,  0
+	dc.b	3
+	dc.b	$F0,$D,0,4,$F0
+	dc.b	0,5,0,$C,$F0
+	dc.b	0,5,8,$C,0
 	even
 byte_205D52:
-	dc.b 4
-	dc.b $F0,  5,  0,$10,$F0
-	dc.b $F0,  5,  0,$14,  0
-	dc.b   0,  5,  0,$18,$F0
-	dc.b   0,  5,$18,$10,  0
+	dc.b	4
+	dc.b	$F0,5,0,$10,$F0
+	dc.b	$F0,5,0,$14,0
+	dc.b	0,5,0,$18,$F0
+	dc.b	0,5,$18,$10,0
 	even
-byte_205D68:	dc.b 4
-	dc.b $E8, $A,  0,$1C,$E8
-	dc.b $E8, $A,  8,$1C,  0
-	dc.b   0, $A,$10,$1C,$E8
-	dc.b   0, $A,$18,$1C,  0
+byte_205D68:	dc.b	4
+	dc.b	$E8,$A,0,$1C,$E8
+	dc.b	$E8,$A,8,$1C,0
+	dc.b	0,$A,$10,$1C,$E8
+	dc.b	0,$A,$18,$1C,0
 	even
 byte_205D7E:
-	dc.b 4
-	dc.b $E8, $A,  0,$25,$E8
-	dc.b $E8, $A,  8,$25,  0
-	dc.b   0, $A,$10,$25,$E8
-	dc.b   0, $A,$18,$25,  0
+	dc.b	4
+	dc.b	$E8,$A,0,$25,$E8
+	dc.b	$E8,$A,8,$25,0
+	dc.b	0,$A,$10,$25,$E8
+	dc.b	0,$A,$18,$25,0
 	even
 byte_205D94:
-	dc.b 3
-	dc.b $F0, $D,  0,$2E,$F0
-	dc.b   0,  5,  0,$36,$F0
-	dc.b   0,  5,  8,$36,  0
+	dc.b	3
+	dc.b	$F0,$D,0,$2E,$F0
+	dc.b	0,5,0,$36,$F0
+	dc.b	0,5,8,$36,0
 	even
 byte_205DA4:
-	dc.b 4
-	dc.b $F0,  5,  0,$3A,$F0
-	dc.b $F0,  5,  0,$3E,  0
-	dc.b   0,  5,  0,$42,$F0
-	dc.b   0,  5,$18,$3A,  0
+	dc.b	4
+	dc.b	$F0,5,0,$3A,$F0
+	dc.b	$F0,5,0,$3E,0
+	dc.b	0,5,0,$42,$F0
+	dc.b	0,5,$18,$3A,0
 	even
 
 obj1F_ani:
-	dc.w unk_205DC2-obj1F_ani
-	dc.w unk_205DC6-obj1F_ani
-	dc.w unk_205DCC-obj1F_ani
-	dc.w unk_205DD2-obj1F_ani
+	dc.w	unk_205DC2-obj1F_ani
+	dc.w	unk_205DC6-obj1F_ani
+	dc.w	unk_205DCC-obj1F_ani
+	dc.w	unk_205DD2-obj1F_ani
 unk_205DC2:
-	dc.b   3
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+	dc.b	3
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
 unk_205DC6:
-	dc.b   3
-	dc.b   2
-	dc.b   3
-	dc.b   2
-	dc.b   3
-	dc.b $FC
+	dc.b	3
+	dc.b	2
+	dc.b	3
+	dc.b	2
+	dc.b	3
+	dc.b	$FC
 	even
 unk_205DCC:
-	dc.b   1
-	dc.b   5
-	dc.b   5
-	dc.b   4
-	dc.b   6
-	dc.b $FC
+	dc.b	1
+	dc.b	5
+	dc.b	5
+	dc.b	4
+	dc.b	6
+	dc.b	$FC
 	even
 unk_205DD2:
-	dc.b $13
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+	dc.b	$13
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
 
 obj1F_map:
-	dc.w byte_205DE6-obj1F_map
-	dc.w byte_205DEC-obj1F_map
-	dc.w byte_205DF2-obj1F_map
-	dc.w byte_205DF8-obj1F_map
-	dc.w byte_205DFE-obj1F_map
-	dc.w byte_205E0A-obj1F_map
-	dc.w byte_205E10-obj1F_map
-	dc.w byte_205E20-obj1F_map
+	dc.w	byte_205DE6-obj1F_map
+	dc.w	byte_205DEC-obj1F_map
+	dc.w	byte_205DF2-obj1F_map
+	dc.w	byte_205DF8-obj1F_map
+	dc.w	byte_205DFE-obj1F_map
+	dc.w	byte_205E0A-obj1F_map
+	dc.w	byte_205E10-obj1F_map
+	dc.w	byte_205E20-obj1F_map
 byte_205DE6:
-	dc.b 1
-	dc.b $F0,  1,  0,  0,$FC
+	dc.b	1
+	dc.b	$F0,1,0,0,$FC
 	even
 byte_205DEC:
-	dc.b 1
-	dc.b $F0,  1,  8,  0,$FC
+	dc.b	1
+	dc.b	$F0,1,8,0,$FC
 	even
 byte_205DF2:
-	dc.b 1
-	dc.b $F0,  5,  0,  2,$F8
+	dc.b	1
+	dc.b	$F0,5,0,2,-8
 	even
 byte_205DF8:
-	dc.b 1
-	dc.b $F0,  5,  0,  6,$F8
+	dc.b	1
+	dc.b	$F0,5,0,6,-8
 	even
 byte_205DFE:
-	dc.b 2
-	dc.b $E8,  9,  0,$1C,$F4
-	dc.b $F8,  0,  0,$22,$FC
+	dc.b	2
+	dc.b	$E8,9,0,$1C,$F4
+	dc.b	-8,0,0,$22,$FC
 	even
 byte_205E0A:
-	dc.b 1
-	dc.b $F0,  5,  0,$23,$F8
+	dc.b	1
+	dc.b	$F0,5,0,$23,-8
 	even
 byte_205E10:
-	dc.b 3
-	dc.b $D0, $A,  0, $A,$F4
-	dc.b $E8,  9,  0,$1C,$F4
-	dc.b $F8,  0,  0,$22,$FC
+	dc.b	3
+	dc.b	$D0,$A,0,$A,$F4
+	dc.b	$E8,9,0,$1C,$F4
+	dc.b	-8,0,0,$22,$FC
 	even
 byte_205E20:
-	dc.b 3
-	dc.b $D0, $A,  0,$13,$F4
-	dc.b $E8,  9,  0,$1C,$F4
-	dc.b $F8,  0,  0,$22,$FC
+	dc.b	3
+	dc.b	$D0,$A,0,$13,$F4
+	dc.b	$E8,9,0,$1C,$F4
+	dc.b	-8,0,0,$22,$FC
 	even
 
 loc_205E30:
@@ -5475,7 +5472,7 @@ loc_20606E:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF768.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	sub_200E82.l
@@ -5490,7 +5487,7 @@ loc_20606E:
 	ext.w	d0
 	sub.w	d0,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	sub_200E82.l
@@ -5515,7 +5512,7 @@ locret_2060E8:
 loc_2060F2:
 	addi.w	#$A,d2
 	lea	byte_FFF768.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	sub_200E82.l
@@ -5537,7 +5534,7 @@ sub_20611C:
 	add.w	d0,d2
 	lea	byte_FFF768.w,a4
 	move.b	#0,(a4)
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	sub_200E82.l
@@ -5559,7 +5556,7 @@ loc_206156:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF768.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5574,7 +5571,7 @@ loc_206156:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5589,7 +5586,7 @@ sub_2061BE:
 loc_2061C6:
 	addi.w	#$A,d3
 	lea	byte_FFF768.w,a4
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5601,7 +5598,7 @@ sub_2061E6:
 	move.w	obj.ypos(a0),d2
 	lea	byte_FFF768.w,a4
 	move.b	#0,(a4)
-	movea.w #$10,a3
+	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5624,7 +5621,7 @@ dircol_u:
 	ext.w	d0
 	add.w	d0,d3
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	sub_200E82.l
@@ -5640,7 +5637,7 @@ dircol_u:
 	ext.w	d0
 	sub.w	d0,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	sub_200E82.l
@@ -5655,7 +5652,7 @@ loc_20628E:
 	subi.w	#$A,d2
 	eori.w	#$F,d2
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	sub_200E82.l
@@ -5671,7 +5668,7 @@ sub_2062B2:
 	sub.w	d0,d2
 	eori.w	#$F,d2
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	sub_200E82.l
@@ -5694,7 +5691,7 @@ loc_2062EC:
 	sub.w	d0,d3
 	eori.w	#$F,d3
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5710,7 +5707,7 @@ loc_2062EC:
 	sub.w	d0,d3
 	eori.w	#$F,d3
 	lea	byte_FFF76A.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5726,7 +5723,7 @@ loc_206364:
 	subi.w	#$A,d3
 	eori.w	#$F,d3
 	lea	byte_FFF768.w,a4
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5738,7 +5735,7 @@ sub_206388:
 	move.w	obj.ypos(a0),d2
 	lea	byte_FFF768.w,a4
 	move.b	#0,(a4)
-	movea.w #-$10,a3
+	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	sub_200FF2.l
@@ -5779,42 +5776,42 @@ loc_2063F6:
 	rts
 
 byte_206042:
-	dc.b $14,$14
-	dc.b  $C,$14
-	dc.b $14, $C
-	dc.b   4,$10
-	dc.b  $C,$12
-	dc.b $10,$10
-	dc.b   6,  6
-	dc.b $18, $C
-	dc.b  $C,$10
-	dc.b $10, $C
-	dc.b   8,  8
-	dc.b $14,$10
-	dc.b $14,  8
-	dc.b  $E, $E
-	dc.b $18,$18
-	dc.b $28,$10
-	dc.b $10,$18
-	dc.b   8,$10
-	dc.b $20,$70
-	dc.b $40,$20
-	dc.b $80,$20
-	dc.b $20,$20
-	dc.b   8,  8
-	dc.b   4,  4
-	dc.b $20,  8
-	dc.b  $C, $C
-	dc.b   8,  4
-	dc.b $18,  4
-	dc.b $28,  4
-	dc.b   4,  8
-	dc.b   4,$18
-	dc.b   4,$28
-	dc.b   4,$20
-	dc.b $18,$18
-	dc.b  $C,$18
-	dc.b $48,  8
+	dc.b	$14,$14
+	dc.b	$C,$14
+	dc.b	$14,$C
+	dc.b	4,$10
+	dc.b	$C,$12
+	dc.b	$10,$10
+	dc.b	6,6
+	dc.b	$18,$C
+	dc.b	$C,$10
+	dc.b	$10,$C
+	dc.b	8,8
+	dc.b	$14,$10
+	dc.b	$14,8
+	dc.b	$E,$E
+	dc.b	$18,$18
+	dc.b	$28,$10
+	dc.b	$10,$18
+	dc.b	8,$10
+	dc.b	$20,$70
+	dc.b	$40,$20
+	dc.b	$80,$20
+	dc.b	$20,$20
+	dc.b	8,8
+	dc.b	4,4
+	dc.b	$20,8
+	dc.b	$C,$C
+	dc.b	8,4
+	dc.b	$18,4
+	dc.b	$28,4
+	dc.b	4,8
+	dc.b	4,$18
+	dc.b	4,$28
+	dc.b	4,$20
+	dc.b	$18,$18
+	dc.b	$C,$18
+	dc.b	$48,8
 	even
 
 loc_20644A:
@@ -5965,7 +5962,7 @@ loc_2065CC:
 	nop
 	tst.w	obj.field_30(a0)
 	bne.s	loc_2065C8
-	movea.l a1,a2
+	movea.l	a1,a2
 	tst.b	byte_FF122C
 	bne.s	loc_206602
 	tst.w	plring
@@ -6219,12 +6216,12 @@ loc_2068E0:
 	moveq	#0,d0
 	move.b	obj.field_2A(a0),d0
 loc_2068EE:
-	movem.l d0/a0,-(sp)
+	movem.l	d0/a0,-(sp)
 	move.w	obj.xpos(a0),d5
 	moveq	#0,d6
 	move.b	obj.field_2C(a0),d6
 loc_2068FC:
-	movem.l d4-d5,-(sp)
+	movem.l	d4-d5,-(sp)
 	subi.w	#$10,d4
 	jsr	mapadrset2.l
 	bne.s	loc_206910
@@ -6234,49 +6231,49 @@ loc_2068FC:
 loc_206910:
 	move.w	(a0),d3
 loc_206912:
-	movem.l (sp)+,d4-d5
+	movem.l	(sp)+,d4-d5
 	jsr	block_wrt.l
 	addi.w	#$10,d5
 	dbf	d6,loc_2068FC
-	movem.l (sp)+,d0/a0
+	movem.l	(sp)+,d0/a0
 	subi.w	#$10,d4
 	dbf	d0,loc_2068EE
 locret_206930:
 	rts
 
-	movem.l (sp)+,d4-d5
-	movem.l (sp)+,d0/a0
+	movem.l	(sp)+,d4-d5
+	movem.l	(sp)+,d0/a0
 	rts
 
 obj04_ani:
-	dc.w unk_20693E-obj04_ani
+	dc.w	unk_20693E-obj04_ani
 unk_20693E:
-	dc.b   4
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+	dc.b	4
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
 
 obj04_map:
-	dc.w byte_206946-obj04_map
-	dc.w byte_206966-obj04_map
+	dc.w	byte_206946-obj04_map
+	dc.w	byte_206966-obj04_map
 byte_206946:
-	dc.b 6
-	dc.b $F0, $F,  0,  0,$A0
-	dc.b $F0, $F,  0,  0,$C0
-	dc.b $F0, $F,  0,  0,$E0
-	dc.b $F0, $F,  0,  0,  0
-	dc.b $F0, $F,  0,  0,$20
-	dc.b $F0, $F,  0,  0,$40
+	dc.b	6
+	dc.b	$F0,$F,0,0,$A0
+	dc.b	$F0,$F,0,0,$C0
+	dc.b	$F0,$F,0,0,$E0
+	dc.b	$F0,$F,0,0,0
+	dc.b	$F0,$F,0,0,$20
+	dc.b	$F0,$F,0,0,$40
 	even
 byte_206966:
-	dc.b 6
-	dc.b $F0, $F,  0,$10,$A0
-	dc.b $F0, $F,  0,$10,$C0
-	dc.b $F0, $F,  0,$10,$E0
-	dc.b $F0, $F,  0,$10,  0
-	dc.b $F0, $F,  0,$10,$20
-	dc.b $F0, $F,  0,$10,$40
+	dc.b	6
+	dc.b	$F0,$F,0,$10,$A0
+	dc.b	$F0,$F,0,$10,$C0
+	dc.b	$F0,$F,0,$10,$E0
+	dc.b	$F0,$F,0,$10,0
+	dc.b	$F0,$F,0,$10,$20
+	dc.b	$F0,$F,0,$10,$40
 	even
 
 	move.b	word_FFF604.w,d0
@@ -6380,450 +6377,450 @@ loc_206B10:
 	jmp	displaysprite.l
 
 dword_206B16:
-	dc.l $4000
+	dc.l	$4000
 byte_206B1A:
-	dc.b $37
-	dc.b   0
-	dc.b $25
-	dc.b   1
-	dc.l off_20CEE2
-	dc.w $31E
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $1B
-	dc.b   1
-	dc.l obj1B_map
-	dc.w $326
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $26
-	dc.b   1
-	dc.l obj26_map
-	dc.w $33A
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $28
-	dc.b   1
-	dc.l obj28_map
-	dc.w $342
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $28
-	dc.b   1
-	dc.l obj28_map
-	dc.w $342
-	dc.b   1
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b  $D
-	dc.b   1
-	dc.l obj0D_map
-	dc.w $357
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $27
-	dc.b   1
-	dc.l obj27_map
-	dc.w $49B
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   1
-	dc.l obj09_map
-	dc.w $4D2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   1
-	dc.l obj09_map
-	dc.w $47C
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b $21
-	dc.b   1
-	dc.l obj21_map
-	dc.w $4000
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $F
-	dc.b   4
-	dc.l obj0F_map
-	dc.w $4D4
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $F
-	dc.b   4
-	dc.l obj0F_map
-	dc.w $493
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map
-	dc.w $520
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map
-	dc.w $520
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_2
-	dc.w $520
-	dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_2
-	dc.w $520
-	dc.b   4
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $3A1
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $3A1
-	dc.b   8
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $3A1
-	dc.b   8
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $3A1
-	dc.b   8
-	dc.b   3
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map
-	dc.w $2520
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map
-	dc.w $2520
-	dc.b   2
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_2
-	dc.w $2520
-	dc.b   6
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_2
-	dc.w $2520
-	dc.b   6
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $23A1
-	dc.b  $A
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $23A1
-	dc.b  $A
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $23A1
-	dc.b  $A
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b   1
-	dc.l obj0A_map_3
-	dc.w $23A1
-	dc.b  $A
-	dc.b   3
-	dc.b   0
-	dc.b   0
-	dc.b $24
-	dc.b   1
-	dc.l obj24_map
-	dc.w $3C7
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $24
-	dc.b   1
-	dc.l obj24b_map
-	dc.w $3C7
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $13
-	dc.b   4
-	dc.l obj13_map
-	dc.w $23DF
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $14
-	dc.b   4
-	dc.l obj14_map
-	dc.w $23DF
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $15
-	dc.b   4
-	dc.l obj15_map
-	dc.w $2456
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $16
-	dc.b   4
-	dc.l obj16_map
-	dc.w $2428
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $22
-	dc.b   4
-	dc.l obj22_map
-	dc.w $2413
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   3
-	dc.b   0
-	dc.b   0
-	dc.b   3
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   4
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   5
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   6
-	dc.b   0
-	dc.b   0
-	dc.b   6
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   7
-	dc.b   0
-	dc.b   0
-	dc.b   7
-	dc.b   4
-	dc.b   1
-	dc.l obj04_map
-	dc.w $3BA
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b  $E
-	dc.b   1
-	dc.l obj0E_map
-	dc.w $31E
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $20
-	dc.b   3
-	dc.l off_20D34C
-	dc.w $4000
-	dc.b $10
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b $20
-	dc.b   3
-	dc.l off_20D34C
-	dc.w $4000
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $20
-	dc.b   3
-	dc.l off_20D418
-	dc.w $4000
-	dc.b $80
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $20
-	dc.b   3
-	dc.l off_20D418
-	dc.w $4000
-	dc.b $81
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b $20
-	dc.b   3
-	dc.l off_20D418
-	dc.w $4000
-	dc.b $82
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b $20
-	dc.b   3
-	dc.l off_20D418
-	dc.w $4000
-	dc.b $83
-	dc.b   0
-	dc.b   0
-	dc.b   3
-	dc.b $20
-	dc.b   3
-	dc.l off_20D418
-	dc.w $4000
-	dc.b $84
-	dc.b   0
-	dc.b   0
-	dc.b   4
-	dc.b $20
-	dc.b   3
-	dc.l off_20D418
-	dc.w $4000
-	dc.b $85
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b $19
-	dc.b   4
-	dc.l monitor_map
-	dc.w $5A8
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b  $C
+	dc.b	$37
+	dc.b	0
+	dc.b	$25
+	dc.b	1
+	dc.l	off_20CEE2
+	dc.w	$31E
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$1B
+	dc.b	1
+	dc.l	obj1B_map
+	dc.w	$326
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$26
+	dc.b	1
+	dc.l	obj26_map
+	dc.w	$33A
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$28
+	dc.b	1
+	dc.l	obj28_map
+	dc.w	$342
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$28
+	dc.b	1
+	dc.l	obj28_map
+	dc.w	$342
+	dc.b	1
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	$D
+	dc.b	1
+	dc.l	obj0D_map
+	dc.w	$357
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$27
+	dc.b	1
+	dc.l	obj27_map
+	dc.w	$49B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	1
+	dc.l	obj09_map
+	dc.w	$4D2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	1
+	dc.l	obj09_map
+	dc.w	$47C
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	$21
+	dc.b	1
+	dc.l	obj21_map
+	dc.w	$4000
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$F
+	dc.b	4
+	dc.l	obj0F_map
+	dc.w	$4D4
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$F
+	dc.b	4
+	dc.l	obj0F_map
+	dc.w	$493
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map
+	dc.w	$520
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map
+	dc.w	$520
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_2
+	dc.w	$520
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_2
+	dc.w	$520
+	dc.b	4
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$3A1
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$3A1
+	dc.b	8
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$3A1
+	dc.b	8
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$3A1
+	dc.b	8
+	dc.b	3
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map
+	dc.w	$2520
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map
+	dc.w	$2520
+	dc.b	2
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_2
+	dc.w	$2520
+	dc.b	6
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_2
+	dc.w	$2520
+	dc.b	6
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$23A1
+	dc.b	$A
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$23A1
+	dc.b	$A
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$23A1
+	dc.b	$A
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	obj0A_map_3
+	dc.w	$23A1
+	dc.b	$A
+	dc.b	3
+	dc.b	0
+	dc.b	0
+	dc.b	$24
+	dc.b	1
+	dc.l	obj24_map
+	dc.w	$3C7
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$24
+	dc.b	1
+	dc.l	obj24b_map
+	dc.w	$3C7
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$13
+	dc.b	4
+	dc.l	obj13_map
+	dc.w	$23DF
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$14
+	dc.b	4
+	dc.l	obj14_map
+	dc.w	$23DF
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$15
+	dc.b	4
+	dc.l	obj15_map
+	dc.w	$2456
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$16
+	dc.b	4
+	dc.l	obj16_map
+	dc.w	$2428
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$22
+	dc.b	4
+	dc.l	obj22_map
+	dc.w	$2413
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	3
+	dc.b	0
+	dc.b	0
+	dc.b	3
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	4
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	5
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	6
+	dc.b	0
+	dc.b	0
+	dc.b	6
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	7
+	dc.b	0
+	dc.b	0
+	dc.b	7
+	dc.b	4
+	dc.b	1
+	dc.l	obj04_map
+	dc.w	$3BA
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$E
+	dc.b	1
+	dc.l	obj0E_map
+	dc.w	$31E
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D34C
+	dc.w	$4000
+	dc.b	$10
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D34C
+	dc.w	$4000
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D418
+	dc.w	$4000
+	dc.b	$80
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D418
+	dc.w	$4000
+	dc.b	$81
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D418
+	dc.w	$4000
+	dc.b	$82
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D418
+	dc.w	$4000
+	dc.b	$83
+	dc.b	0
+	dc.b	0
+	dc.b	3
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D418
+	dc.w	$4000
+	dc.b	$84
+	dc.b	0
+	dc.b	0
+	dc.b	4
+	dc.b	$20
+	dc.b	3
+	dc.l	off_20D418
+	dc.w	$4000
+	dc.b	$85
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	$19
+	dc.b	4
+	dc.l	monitor_map
+	dc.w	$5A8
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	$C
 
 sub_206DB0:
 	moveq	#0,d0
@@ -6838,7 +6835,7 @@ off_206DBE:
 loc_206DC2:
 	addq.b	#2,byte_FFF76C.w
 	lea	off_207000.l,a0
-	movea.l a0,a1
+	movea.l	a0,a1
 	adda.w	(a0),a0
 	move.l	a0,dword_FFF770.w
 	move.l	a0,dword_FFF774.w
@@ -6860,7 +6857,7 @@ loc_206DF2:
 	moveq	#0,d6
 loc_206E0C:
 	andi.w	#$FF80,d6
-	movea.l dword_FFF770.w,a0
+	movea.l	dword_FFF770.w,a0
 loc_206E14:
 	cmp.w	(a0),d6
 	bls.s	loc_206E26
@@ -6874,7 +6871,7 @@ loc_206E22:
 
 loc_206E26:
 	move.l	a0,dword_FFF770.w
-	movea.l dword_FFF774.w,a0
+	movea.l	dword_FFF774.w,a0
 	subi.w	#$80,d6
 	blo.s	loc_206E46
 loc_206E34:
@@ -6899,7 +6896,7 @@ loc_206E50:
 	beq.w	locret_206F0C
 	bge.s	loc_206EC8
 	move.w	d6,word_FFF76E.w
-	movea.l dword_FFF774.w,a0
+	movea.l	dword_FFF774.w,a0
 	subi.w	#$80,d6
 	blo.s	loc_206EA4
 loc_206E78:
@@ -6924,7 +6921,7 @@ loc_206EA2:
 	addq.w	#8,a0
 loc_206EA4:
 	move.l	a0,dword_FFF774.w
-	movea.l dword_FFF770.w,a0
+	movea.l	dword_FFF770.w,a0
 	addi.w	#$300,d6
 loc_206EB0:
 	cmp.w	-8(a0),d6
@@ -6942,7 +6939,7 @@ loc_206EC2:
 
 loc_206EC8:
 	move.w	d6,word_FFF76E.w
-	movea.l dword_FFF770.w,a0
+	movea.l	dword_FFF770.w,a0
 	addi.w	#$280,d6
 loc_206ED4:
 	cmp.w	(a0),d6
@@ -6956,7 +6953,7 @@ loc_206EE2:
 	beq.s	loc_206ED4
 loc_206EE8:
 	move.l	a0,dword_FFF770.w
-	movea.l dword_FFF774.w,a0
+	movea.l	dword_FFF774.w,a0
 	subi.w	#$300,d6
 	blo.s	loc_206F08
 loc_206EF6:
@@ -7036,7 +7033,7 @@ locret_206F9A:
 	rts
 
 sub_206F9C:
-	movea.l a0,a1
+	movea.l	a0,a1
 	move.w	#byte_FFD800_end&$FFFF,d0
 	sub.w	a0,d0
 	lsr.w	#6,d0
@@ -7186,7 +7183,7 @@ loc_207C52:
 
 loc_207C78:
 	move.b	d1,obj.field_3A(a0)
-	movea.l obj.field_3C(a0),a2
+	movea.l	obj.field_3C(a0),a2
 	move.w	(a2,d1.w),obj.field_36(a0)
 	move.w	2(a2,d1.w),obj.field_38(a0)
 	bra.w	sub_207CCC
@@ -7287,303 +7284,303 @@ locret_207D72:
 	rts
 
 word_207D74:
-	dc.w $1000
-	dc.w $C00
-	dc.w $C00
-	dc.w $800
+	dc.w	$1000
+	dc.w	$C00
+	dc.w	$C00
+	dc.w	$800
 
 off_207D7C:
-	dc.w unk_207D8C-off_207D7C
-	dc.w unk_207E16-off_207D7C
-	dc.w unk_207E5C-off_207D7C
-	dc.w sub_207EA2-off_207D7C
-	dc.w sub_207EA2-off_207D7C
-	dc.w sub_207EA2-off_207D7C
-	dc.w sub_207EA2-off_207D7C
-	dc.w sub_207EA2-off_207D7C
+	dc.w	unk_207D8C-off_207D7C
+	dc.w	unk_207E16-off_207D7C
+	dc.w	unk_207E5C-off_207D7C
+	dc.w	sub_207EA2-off_207D7C
+	dc.w	sub_207EA2-off_207D7C
+	dc.w	sub_207EA2-off_207D7C
+	dc.w	sub_207EA2-off_207D7C
+	dc.w	sub_207EA2-off_207D7C
 unk_207D8C:
-	dc.b   0
-	dc.b $88
-	dc.b $14
-	dc.b $40
-	dc.b   0
-	dc.b $F0
-	dc.b $14
-	dc.b $78
-	dc.b   1
-	dc.b   8
-	dc.b $14
-	dc.b $90
-	dc.b   1
-	dc.b $40
-	dc.b $14
-	dc.b $90
-	dc.b   1
-	dc.b $E0
-	dc.b $14
-	dc.b $40
-	dc.b   1
-	dc.b $F8
-	dc.b $14
-	dc.b   0
-	dc.b   1
-	dc.b $E0
-	dc.b $13
-	dc.b $F0
-	dc.b   1
-	dc.b $C0
-	dc.b $13
-	dc.b $F0
-	dc.b   1
-	dc.b $80
-	dc.b $14
-	dc.b   0
-	dc.b   1
-	dc.b $70
-	dc.b $14
-	dc.b $20
-	dc.b   1
-	dc.b $68
-	dc.b $14
-	dc.b $40
-	dc.b   1
-	dc.b $70
-	dc.b $14
-	dc.b $68
-	dc.b   1
-	dc.b $A8
-	dc.b $16
-	dc.b $60
-	dc.b   2
-	dc.b $18
-	dc.b $16
-	dc.b $A0
-	dc.b   2
-	dc.b $10
-	dc.b $16
-	dc.b $C0
-	dc.b   1
-	dc.b $F8
-	dc.b $16
-	dc.b $D0
-	dc.b   1
-	dc.b $C8
-	dc.b $16
-	dc.b $C0
-	dc.b   1
-	dc.b $A8
-	dc.b $16
-	dc.b $80
-	dc.b   1
-	dc.b $98
-	dc.b $16
-	dc.b $58
-	dc.b   1
-	dc.b $A0
-	dc.b $16
-	dc.b $40
-	dc.b   1
-	dc.b $C8
-	dc.b $16
-	dc.b $50
-	dc.b   1
-	dc.b $F0
-	dc.b $16
-	dc.b $80
-	dc.b   2
-	dc.b   0
-	dc.b $16
-	dc.b $C0
-	dc.b   2
-	dc.b   0
-	dc.b $16
-	dc.b $D0
-	dc.b   2
-	dc.b $10
-	dc.b $16
-	dc.b $D0
-	dc.b   2
-	dc.b $88
-	dc.b $16
-	dc.b $C0
-	dc.b   2
-	dc.b $C0
-	dc.b $16
-	dc.b $80
-	dc.b   2
-	dc.b $D8
-	dc.b $16
-	dc.b $50
-	dc.b   2
-	dc.b $C0
-	dc.b $16
-	dc.b $50
-	dc.b   2
-	dc.b $A0
-	dc.b $16
-	dc.b $80
-	dc.b   2
-	dc.b $90
-	dc.b $17
-	dc.b   0
-	dc.b   2
-	dc.b $90
-	dc.b $17
-	dc.b $28
-	dc.b   2
-	dc.b $A0
-	dc.b $17
-	dc.b $28
-	dc.b   2
-	dc.b $E0
-	dc.b $17
-	dc.b   0
-	dc.b   2
-	dc.b $F0
+	dc.b	0
+	dc.b	$88
+	dc.b	$14
+	dc.b	$40
+	dc.b	0
+	dc.b	$F0
+	dc.b	$14
+	dc.b	$78
+	dc.b	1
+	dc.b	8
+	dc.b	$14
+	dc.b	$90
+	dc.b	1
+	dc.b	$40
+	dc.b	$14
+	dc.b	$90
+	dc.b	1
+	dc.b	$E0
+	dc.b	$14
+	dc.b	$40
+	dc.b	1
+	dc.b	$F8
+	dc.b	$14
+	dc.b	0
+	dc.b	1
+	dc.b	$E0
+	dc.b	$13
+	dc.b	$F0
+	dc.b	1
+	dc.b	$C0
+	dc.b	$13
+	dc.b	$F0
+	dc.b	1
+	dc.b	$80
+	dc.b	$14
+	dc.b	0
+	dc.b	1
+	dc.b	$70
+	dc.b	$14
+	dc.b	$20
+	dc.b	1
+	dc.b	$68
+	dc.b	$14
+	dc.b	$40
+	dc.b	1
+	dc.b	$70
+	dc.b	$14
+	dc.b	$68
+	dc.b	1
+	dc.b	$A8
+	dc.b	$16
+	dc.b	$60
+	dc.b	2
+	dc.b	$18
+	dc.b	$16
+	dc.b	$A0
+	dc.b	2
+	dc.b	$10
+	dc.b	$16
+	dc.b	$C0
+	dc.b	1
+	dc.b	$F8
+	dc.b	$16
+	dc.b	$D0
+	dc.b	1
+	dc.b	$C8
+	dc.b	$16
+	dc.b	$C0
+	dc.b	1
+	dc.b	$A8
+	dc.b	$16
+	dc.b	$80
+	dc.b	1
+	dc.b	$98
+	dc.b	$16
+	dc.b	$58
+	dc.b	1
+	dc.b	$A0
+	dc.b	$16
+	dc.b	$40
+	dc.b	1
+	dc.b	$C8
+	dc.b	$16
+	dc.b	$50
+	dc.b	1
+	dc.b	$F0
+	dc.b	$16
+	dc.b	$80
+	dc.b	2
+	dc.b	0
+	dc.b	$16
+	dc.b	$C0
+	dc.b	2
+	dc.b	0
+	dc.b	$16
+	dc.b	$D0
+	dc.b	2
+	dc.b	$10
+	dc.b	$16
+	dc.b	$D0
+	dc.b	2
+	dc.b	$88
+	dc.b	$16
+	dc.b	$C0
+	dc.b	2
+	dc.b	$C0
+	dc.b	$16
+	dc.b	$80
+	dc.b	2
+	dc.b	$D8
+	dc.b	$16
+	dc.b	$50
+	dc.b	2
+	dc.b	$C0
+	dc.b	$16
+	dc.b	$50
+	dc.b	2
+	dc.b	$A0
+	dc.b	$16
+	dc.b	$80
+	dc.b	2
+	dc.b	$90
+	dc.b	$17
+	dc.b	0
+	dc.b	2
+	dc.b	$90
+	dc.b	$17
+	dc.b	$28
+	dc.b	2
+	dc.b	$A0
+	dc.b	$17
+	dc.b	$28
+	dc.b	2
+	dc.b	$E0
+	dc.b	$17
+	dc.b	0
+	dc.b	2
+	dc.b	$F0
 
 unk_207E16:
-	dc.b   0
-	dc.b $44
-	dc.b  $F
-	dc.b   8
-	dc.b   1
-	dc.b $A0
-	dc.b  $F
-	dc.b $90
-	dc.b   1
-	dc.b $A0
-	dc.b  $F
-	dc.b $C8
-	dc.b   1
-	dc.b $B8
-	dc.b  $F
-	dc.b $E0
-	dc.b   1
-	dc.b $F0
-	dc.b  $F
-	dc.b $E0
-	dc.b   2
-	dc.b $60
-	dc.b $10
-	dc.b   0
-	dc.b   2
-	dc.b $90
-	dc.b $10
-	dc.b $30
-	dc.b   2
-	dc.b $A0
-	dc.b $10
-	dc.b $68
-	dc.b   2
-	dc.b $88
-	dc.b $10
-	dc.b $80
-	dc.b   2
-	dc.b $50
-	dc.b $10
-	dc.b $68
-	dc.b   2
-	dc.b $18
-	dc.b $10
-	dc.b $30
-	dc.b   2
-	dc.b   0
-	dc.b  $F
-	dc.b $F0
-	dc.b   2
-	dc.b $20
-	dc.b  $F
-	dc.b $E0
-	dc.b   2
-	dc.b $60
-	dc.b $10
-	dc.b   0
-	dc.b   2
-	dc.b $90
-	dc.b $10
-	dc.b $30
-	dc.b   2
-	dc.b $A0
-	dc.b $10
-	dc.b $68
-	dc.b   2
-	dc.b $88
-	dc.b $11
-	dc.b $30
-	dc.b   1
-	dc.b $C8
+	dc.b	0
+	dc.b	$44
+	dc.b	$F
+	dc.b	8
+	dc.b	1
+	dc.b	$A0
+	dc.b	$F
+	dc.b	$90
+	dc.b	1
+	dc.b	$A0
+	dc.b	$F
+	dc.b	$C8
+	dc.b	1
+	dc.b	$B8
+	dc.b	$F
+	dc.b	$E0
+	dc.b	1
+	dc.b	$F0
+	dc.b	$F
+	dc.b	$E0
+	dc.b	2
+	dc.b	$60
+	dc.b	$10
+	dc.b	0
+	dc.b	2
+	dc.b	$90
+	dc.b	$10
+	dc.b	$30
+	dc.b	2
+	dc.b	$A0
+	dc.b	$10
+	dc.b	$68
+	dc.b	2
+	dc.b	$88
+	dc.b	$10
+	dc.b	$80
+	dc.b	2
+	dc.b	$50
+	dc.b	$10
+	dc.b	$68
+	dc.b	2
+	dc.b	$18
+	dc.b	$10
+	dc.b	$30
+	dc.b	2
+	dc.b	0
+	dc.b	$F
+	dc.b	$F0
+	dc.b	2
+	dc.b	$20
+	dc.b	$F
+	dc.b	$E0
+	dc.b	2
+	dc.b	$60
+	dc.b	$10
+	dc.b	0
+	dc.b	2
+	dc.b	$90
+	dc.b	$10
+	dc.b	$30
+	dc.b	2
+	dc.b	$A0
+	dc.b	$10
+	dc.b	$68
+	dc.b	2
+	dc.b	$88
+	dc.b	$11
+	dc.b	$30
+	dc.b	1
+	dc.b	$C8
 
 unk_207E5C:
-	dc.b   0
-	dc.b $44
-	dc.b $16
-	dc.b $30
-	dc.b   2
-	dc.b $90
-	dc.b $16
-	dc.b $30
-	dc.b   3
-	dc.b $18
-	dc.b $16
-	dc.b $38
-	dc.b   3
-	dc.b $38
-	dc.b $16
-	dc.b $D0
-	dc.b   3
-	dc.b $D0
-	dc.b $17
-	dc.b   0
-	dc.b   3
-	dc.b $E0
-	dc.b $17
-	dc.b $38
-	dc.b   3
-	dc.b $C8
-	dc.b $17
-	dc.b $58
-	dc.b   3
-	dc.b $90
-	dc.b $17
-	dc.b $38
-	dc.b   3
-	dc.b $58
-	dc.b $16
-	dc.b $F8
-	dc.b   3
-	dc.b $40
-	dc.b $16
-	dc.b $C0
-	dc.b   3
-	dc.b $60
-	dc.b $16
-	dc.b $A8
-	dc.b   3
-	dc.b $90
-	dc.b $16
-	dc.b $D0
-	dc.b   3
-	dc.b $D0
-	dc.b $17
-	dc.b   0
-	dc.b   3
-	dc.b $E0
-	dc.b $17
-	dc.b $38
-	dc.b   3
-	dc.b $C8
-	dc.b $17
-	dc.b $B8
-	dc.b   3
-	dc.b $48
-	dc.b $17
-	dc.b $D0
-	dc.b   3
-	dc.b $20
-	dc.b $17
-	dc.b $D0
-	dc.b   2
-	dc.b $78
+	dc.b	0
+	dc.b	$44
+	dc.b	$16
+	dc.b	$30
+	dc.b	2
+	dc.b	$90
+	dc.b	$16
+	dc.b	$30
+	dc.b	3
+	dc.b	$18
+	dc.b	$16
+	dc.b	$38
+	dc.b	3
+	dc.b	$38
+	dc.b	$16
+	dc.b	$D0
+	dc.b	3
+	dc.b	$D0
+	dc.b	$17
+	dc.b	0
+	dc.b	3
+	dc.b	$E0
+	dc.b	$17
+	dc.b	$38
+	dc.b	3
+	dc.b	$C8
+	dc.b	$17
+	dc.b	$58
+	dc.b	3
+	dc.b	$90
+	dc.b	$17
+	dc.b	$38
+	dc.b	3
+	dc.b	$58
+	dc.b	$16
+	dc.b	$F8
+	dc.b	3
+	dc.b	$40
+	dc.b	$16
+	dc.b	$C0
+	dc.b	3
+	dc.b	$60
+	dc.b	$16
+	dc.b	$A8
+	dc.b	3
+	dc.b	$90
+	dc.b	$16
+	dc.b	$D0
+	dc.b	3
+	dc.b	$D0
+	dc.b	$17
+	dc.b	0
+	dc.b	3
+	dc.b	$E0
+	dc.b	$17
+	dc.b	$38
+	dc.b	3
+	dc.b	$C8
+	dc.b	$17
+	dc.b	$B8
+	dc.b	3
+	dc.b	$48
+	dc.b	$17
+	dc.b	$D0
+	dc.b	3
+	dc.b	$20
+	dc.b	$17
+	dc.b	$D0
+	dc.b	2
+	dc.b	$78
 
 sub_207EA2:
 	btst	#3,obj.status(a0)
@@ -7623,7 +7620,7 @@ loc_207F0A:
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
 	beq.s	locret_207F54
-	movea.l d0,a2
+	movea.l	d0,a2
 	bclr	#3,obj.status(a2)
 loc_207F2C:
 	move.w	a0,d0
@@ -7897,22 +7894,22 @@ loc_208212:
 	rts
 
 byte_20821C:
-	dc.b 0
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   3
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   4
-	dc.b   5
-	dc.b   5
-	dc.b   5
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	1
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	3
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	4
+	dc.b	5
+	dc.b	5
+	dc.b	5
 	even
 
 sub_20822C:
@@ -8005,32 +8002,30 @@ loc_208334:
 	rts
 
 obj09_ani:
-	dc.w unk_20833E-obj09_ani
+	dc.w	unk_20833E-obj09_ani
 unk_20833E:
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b $FF
+	dc.b	1
+	dc.b	0,1,2
+	dc.b	$FF
 	even
 
 obj09_map:
-	dc.w byte_20834A-obj09_map
-	dc.w byte_208356-obj09_map
-	dc.w byte_208362-obj09_map
+	dc.w	byte_20834A-obj09_map
+	dc.w	byte_208356-obj09_map
+	dc.w	byte_208362-obj09_map
 byte_20834A:
-	dc.b 2
-	dc.b $F8,  5,  0,  0,$F0
-	dc.b $F8,  5,  8,  0,  0
+	dc.b	2
+	dc.b	-8,5,0,0,$F0
+	dc.b	-8,5,8,0,0
 	even
 byte_208356:
-	dc.b 2
-	dc.b $F8,  5,  0,  0,$F0
-	dc.b $F8,  5,  8,  0,  0
+	dc.b	2
+	dc.b	-8,5,0,0,$F0
+	dc.b	-8,5,8,0,0
 	even
 byte_208362:
-	dc.b 1
-	dc.b $F8, $D,  0,  4,$F0
+	dc.b	1
+	dc.b	-8,$D,0,4,$F0
 	even
 
 obj1B:
@@ -8071,12 +8066,12 @@ locret_2083D8:
 	rts
 
 obj1B_map:
-	dc.w byte_2083DC-obj1B_map
+	dc.w	byte_2083DC-obj1B_map
 
 byte_2083DC:
-	dc.b 2
-	dc.b $F8,  2,  0,  0,$EC
-	dc.b $F0, $F,  0,  3,$F4
+	dc.b	2
+	dc.b	-8,2,0,0,$EC
+	dc.b	$F0,$F,0,3,$F4
 	even
 
 koma:
@@ -8166,7 +8161,7 @@ loc_2084FC:
 	move.l	#$FFFF0000,d1
 	move.w	obj.field_34(a0),d1
 	beq.s	loc_20852E
-	movea.l d1,a1
+	movea.l	d1,a1
 	move.w	obj.xpos(a1),obj.xpos(a0)
 	move.w	obj.ypos(a1),obj.ypos(a0)
 	move.b	obj.field_38(a0),d0
@@ -8459,279 +8454,251 @@ loc_2088A0:
 	rts
 
 off_2088B2:
-	dc.w unk_2088B6-off_2088B2
-	dc.w unk_2088C2-off_2088B2
+	dc.w	unk_2088B6-off_2088B2
+	dc.w	unk_2088C2-off_2088B2
 
 unk_2088B6:
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   0
-	dc.b $FC
+	dc.b	0
+	dc.b	0,0,0,2,2,2,2,2,2,0
+	dc.b	$FC
 	even
 unk_2088C2:
-	dc.b   0
-	dc.b   4
-	dc.b   3
-	dc.b   3
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   3
-	dc.b $FC
+	dc.b	0
+	dc.b	4,3,3,5,5,5,5,5,5,3
+	dc.b	$FC
 	even
 
 off_2088CE:
-	dc.w byte_2088DA-off_2088CE
-	dc.w byte_2088E5-off_2088CE
-	dc.w byte_2088EB-off_2088CE
-	dc.w byte_2088FB-off_2088CE
-	dc.w byte_208901-off_2088CE
-	dc.w byte_208907-off_2088CE
+	dc.w	byte_2088DA-off_2088CE
+	dc.w	byte_2088E5-off_2088CE
+	dc.w	byte_2088EB-off_2088CE
+	dc.w	byte_2088FB-off_2088CE
+	dc.w	byte_208901-off_2088CE
+	dc.w	byte_208907-off_2088CE
 
 byte_2088DA:
-	dc.b 2
-	dc.b $F8, $C,  0,  0,$F0
-	dc.b   0, $C,  0,  4,$F0
+	dc.b	2
+	dc.b	-8,$C,0,0,$F0
+	dc.b	0,$C,0,4,$F0
 byte_2088E5:
-	dc.b 1
-	dc.b   0, $C,  0,  0,$F0
+	dc.b	1
+	dc.b	0,$C,0,0,$F0
 byte_2088EB:
-	dc.b 3
-	dc.b $E8, $C,  0,  0,$F0
-	dc.b $F0,  5,  0,  8,$F8
-	dc.b   0, $C,  0, $C,$F0
+	dc.b	3
+	dc.b	$E8,$C,0,0,$F0
+	dc.b	$F0,5,0,8,-8
+	dc.b	0,$C,0,$C,$F0
 byte_2088FB:
-	dc.b 1
-	dc.b $F0,  7,  0,  0,$F8
+	dc.b	1
+	dc.b	$F0,7,0,0,-8
 byte_208901:
-	dc.b 1
-	dc.b $F0,  3,  0,  4,$F8
+	dc.b	1
+	dc.b	$F0,3,0,4,-8
 byte_208907:
-	dc.b 4
-	dc.b $F0,  3,  0,  4,$10
-	dc.b $F8,  9,  0,  8,$F8
-	dc.b $F0,  0,  0,  0,$F8
-	dc.b   8,  0,  0,  3,$F8
+	dc.b	4
+	dc.b	$F0,3,0,4,$10
+	dc.b	-8,9,0,8,-8
+	dc.b	$F0,0,0,0,-8
+	dc.b	8,0,0,3,-8
 
 off_20891C:
-	dc.w unk_20891E-off_20891C
+	dc.w	unk_20891E-off_20891C
 
 unk_20891E:
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   1
-	dc.b $FC
+	dc.b	0
+	dc.b	0,1,1,2,2,2,2,2,2,1
+	dc.b	$FC
 	even
 
 obj0A_map:
-	dc.w byte_208936-obj0A_map
-	dc.w byte_208942-obj0A_map
-	dc.w byte_208948-obj0A_map
+	dc.w	byte_208936-obj0A_map
+	dc.w	byte_208942-obj0A_map
+	dc.w	byte_208948-obj0A_map
 
 obj0A_map_2:
-	dc.w byte_208958-obj0A_map_2
-	dc.w byte_208964-obj0A_map_2
-	dc.w byte_20896A-obj0A_map_2
+	dc.w	byte_208958-obj0A_map_2
+	dc.w	byte_208964-obj0A_map_2
+	dc.w	byte_20896A-obj0A_map_2
 
 byte_208936:
-	dc.b 2
-	dc.b $F8, $C,  0,  0,$F0
-	dc.b   0, $C,  0,  4,$F0
+	dc.b	2
+	dc.b	-8,$C,0,0,$F0
+	dc.b	0,$C,0,4,$F0
 	even
 byte_208942:
-	dc.b 1
-	dc.b   0, $C,  0,  0,$F0
+	dc.b	1
+	dc.b	0,$C,0,0,$F0
 	even
 byte_208948:
-	dc.b 3
-	dc.b $E0, $C,  0,  0,$F0
-	dc.b $E8,  6,  0,  8,$F8
-	dc.b   0, $C,  0, $E,$F0
+	dc.b	3
+	dc.b	$E0,$C,0,0,$F0
+	dc.b	$E8,6,0,8,-8
+	dc.b	0,$C,0,$E,$F0
 	even
 byte_208958:
-	dc.b 2
-	dc.b $F0,  3,  0,$12,  0
-	dc.b $F0,  3,  0,$16,$F8
+	dc.b	2
+	dc.b	$F0,3,0,$12,0
+	dc.b	$F0,3,0,$16,-8
 	even
 byte_208964:
-	dc.b 1
-	dc.b $F0,  3,  0,$12,$F8
+	dc.b	1
+	dc.b	$F0,3,0,$12,-8
 	even
 byte_20896A:
-	dc.b 3
-	dc.b $F0,  3,  0,$12,$18
-	dc.b $F8,  9,  0,$1A,  0
-	dc.b $F0,  3,  0,$20,$F8
+	dc.b	3
+	dc.b	$F0,3,0,$12,$18
+	dc.b	-8,9,0,$1A,0
+	dc.b	$F0,3,0,$20,-8
 	even
 
 obj0A_map_3:
-	dc.w byte_208980-obj0A_map_3
-	dc.w byte_208990-obj0A_map_3
-	dc.w byte_2089A6-obj0A_map_3
+	dc.w	byte_208980-obj0A_map_3
+	dc.w	byte_208990-obj0A_map_3
+	dc.w	byte_2089A6-obj0A_map_3
 
 byte_208980:
-	dc.b 3
-	dc.b $F0,  8,  0,  0,$F0
-	dc.b $F8, $D,  0,  3,$F0
-	dc.b   8,  8,  0, $B,$F8
+	dc.b	3
+	dc.b	$F0,8,0,0,$F0
+	dc.b	-8,$D,0,3,$F0
+	dc.b	8,8,0,$B,-8
 	even
 byte_208990:
-	dc.b 4
-	dc.b $F0,  5,  0, $E,$F0
-	dc.b $F8,  0,  0,$12,  0
-	dc.b   0,  0,  0,$13,$F0
-	dc.b   0,  9,  0,$14,$F8
+	dc.b	4
+	dc.b	$F0,5,0,$E,$F0
+	dc.b	-8,0,0,$12,0
+	dc.b	0,0,0,$13,$F0
+	dc.b	0,9,0,$14,-8
 	even
 byte_2089A6:
-	dc.b 5
-	dc.b $E0,  8,  0,  0,  0
-	dc.b $E8, $E,  0,$1A,  0
-	dc.b $F0,  1,  0,$26,$F8
-	dc.b $F8,  1,  0,$28,$F0
-	dc.b   0,  5,  0,$2A,$F8
+	dc.b	5
+	dc.b	$E0,8,0,0,0
+	dc.b	$E8,$E,0,$1A,0
+	dc.b	$F0,1,0,$26,-8
+	dc.b	-8,1,0,$28,$F0
+	dc.b	0,5,0,$2A,-8
 	even
 
 off_2089C0:
-	dc.w unk_2089C2-off_2089C0
+	dc.w	unk_2089C2-off_2089C0
 
 unk_2089C2:
-	dc.b   8
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+	dc.b	8
+	dc.b	0,1
+	dc.b	$FF
 	even
 
 obj0F_map:
-	dc.w byte_2089CA-obj0F_map
-	dc.w byte_2089D0-obj0F_map
+	dc.w	byte_2089CA-obj0F_map
+	dc.w	byte_2089D0-obj0F_map
 
 byte_2089CA:
-	dc.b 1
-	dc.b $F8,  5,  0,  0,$F8
+	dc.b	1
+	dc.b	-8,5,0,0,-8
 	even
 byte_2089D0:
-	dc.b 1
-	dc.b $F8,  5,  0,  4,$F8
+	dc.b	1
+	dc.b	-8,5,0,4,-8
 	even
 
 	include	"Objects/10, 11 - Rings.asm"
 
 off_208D7A:
-	dc.w byte_208D82-off_208D7A
-	dc.w byte_208DB5-off_208D7A
-	dc.w byte_208DDE-off_208D7A
-	dc.w byte_208DF3-off_208D7A
+	dc.w	byte_208D82-off_208D7A
+	dc.w	byte_208DB5-off_208D7A
+	dc.w	byte_208DDE-off_208D7A
+	dc.w	byte_208DF3-off_208D7A
 byte_208D82:
-	dc.b 10
-	dc.b $E0,  8,  0,  0,$E8
-	dc.b $E0,  8,  0,  3,  0
-	dc.b $E8, $C,  0,  6,$E0
-	dc.b $E8, $C,  0, $A,  0
-	dc.b $F0,  7,  0, $E,$E0
-	dc.b $F0,  7,  0,$16,$10
-	dc.b $10, $C,  0,$1E,$E0
-	dc.b $10, $C,  0,$22,  0
-	dc.b $18,  8,  0,$26,$E8
-	dc.b $18,  8,  0,$29,  0
+	dc.b	10
+	dc.b	$E0,8,0,0,$E8
+	dc.b	$E0,8,0,3,0
+	dc.b	$E8,$C,0,6,$E0
+	dc.b	$E8,$C,0,$A,0
+	dc.b	$F0,7,0,$E,$E0
+	dc.b	$F0,7,0,$16,$10
+	dc.b	$10,$C,0,$1E,$E0
+	dc.b	$10,$C,0,$22,0
+	dc.b	$18,8,0,$26,$E8
+	dc.b	$18,8,0,$29,0
 byte_208DB5:
-	dc.b 8
-	dc.b $E0, $C,  0,$2C,$F0
-	dc.b $E8,  8,  0,$30,$E8
-	dc.b $E8,  9,  0,$33,  0
-	dc.b $F0,  7,  0,$39,$E8
-	dc.b $F8,  5,  0,$41,  8
-	dc.b   8,  9,  0,$45,  0
-	dc.b $10,  8,  0,$4B,$E8
-	dc.b $18, $C,  0,$4E,$F0
+	dc.b	8
+	dc.b	$E0,$C,0,$2C,$F0
+	dc.b	$E8,8,0,$30,$E8
+	dc.b	$E8,9,0,$33,0
+	dc.b	$F0,7,0,$39,$E8
+	dc.b	-8,5,0,$41,8
+	dc.b	8,9,0,$45,0
+	dc.b	$10,8,0,$4B,$E8
+	dc.b	$18,$C,0,$4E,$F0
 byte_208DDE:
-	dc.b 4
-	dc.b $E0,  7,  0,$52,$F4
-	dc.b $E0,  3,  8,$52,  4
-	dc.b   0,  7,  0,$5A,$F4
-	dc.b   0,  3,  8,$5A,  4
+	dc.b	4
+	dc.b	$E0,7,0,$52,$F4
+	dc.b	$E0,3,8,$52,4
+	dc.b	0,7,0,$5A,$F4
+	dc.b	0,3,8,$5A,4
 byte_208DF3:
-	dc.b 8
-	dc.b $E0, $C,  8,$2C,$F0
-	dc.b $E8,  8,  8,$30,  0
-	dc.b $E8,  9,  8,$33,$E8
-	dc.b $F0,  7,  8,$39,  8
-	dc.b $F8,  5,  8,$41,$E8
-	dc.b   8,  9,  8,$45,$E8
-	dc.b $10,  8,  8,$4B,  0
-	dc.b $18, $C,  8,$4E,$F0
+	dc.b	8
+	dc.b	$E0,$C,8,$2C,$F0
+	dc.b	$E8,8,8,$30,0
+	dc.b	$E8,9,8,$33,$E8
+	dc.b	$F0,7,8,$39,8
+	dc.b	-8,5,8,$41,$E8
+	dc.b	8,9,8,$45,$E8
+	dc.b	$10,8,8,$4B,0
+	dc.b	$18,$C,8,$4E,$F0
 
 off_208E1C:
-	dc.w byte_208E2C-off_208E1C
-	dc.w byte_208E37-off_208E1C
-	dc.w byte_208E4C-off_208E1C
-	dc.w byte_208E61-off_208E1C
-	dc.w byte_208E76-off_208E1C
-	dc.w byte_208E8B-off_208E1C
-	dc.w byte_208EA0-off_208E1C
-	dc.w byte_208EAB-off_208E1C
+	dc.w	byte_208E2C-off_208E1C
+	dc.w	byte_208E37-off_208E1C
+	dc.w	byte_208E4C-off_208E1C
+	dc.w	byte_208E61-off_208E1C
+	dc.w	byte_208E76-off_208E1C
+	dc.w	byte_208E8B-off_208E1C
+	dc.w	byte_208EA0-off_208E1C
+	dc.w	byte_208EAB-off_208E1C
 byte_208E2C:
-	dc.b 2
-	dc.b $E0, $F,  0,  0,  0
-	dc.b   0, $F,$10,  0,  0
+	dc.b	2
+	dc.b	$E0,$F,0,0,0
+	dc.b	0,$F,$10,0,0
 byte_208E37:
-	dc.b 4
-	dc.b $E0, $F,  0,$10,$F0
-	dc.b $E0,  7,  0,$20,$10
-	dc.b   0, $F,$10,$10,$F0
-	dc.b   0,  7,$10,$20,$10
+	dc.b	4
+	dc.b	$E0,$F,0,$10,$F0
+	dc.b	$E0,7,0,$20,$10
+	dc.b	0,$F,$10,$10,$F0
+	dc.b	0,7,$10,$20,$10
 byte_208E4C:
-	dc.b 4
-	dc.b $E0, $F,  0,$28,$E8
-	dc.b $E0, $B,  0,$38,  8
-	dc.b   0, $F,$10,$28,$E8
-	dc.b   0, $B,$10,$38,  8
+	dc.b	4
+	dc.b	$E0,$F,0,$28,$E8
+	dc.b	$E0,$B,0,$38,8
+	dc.b	0,$F,$10,$28,$E8
+	dc.b	0,$B,$10,$38,8
 byte_208E61:
-	dc.b 4
-	dc.b $E0, $F,  8,$34,$E0
-	dc.b $E0, $F,  0,$34,  0
-	dc.b   0, $F,$18,$34,$E0
-	dc.b   0, $F,$10,$34,  0
+	dc.b	4
+	dc.b	$E0,$F,8,$34,$E0
+	dc.b	$E0,$F,0,$34,0
+	dc.b	0,$F,$18,$34,$E0
+	dc.b	0,$F,$10,$34,0
 byte_208E76:
-	dc.b 4
-	dc.b $E0, $B,  8,$38,$E0
-	dc.b $E0, $F,  8,$28,$F8
-	dc.b   0, $B,$18,$38,$E0
-	dc.b   0, $F,$18,$28,$F8
+	dc.b	4
+	dc.b	$E0,$B,8,$38,$E0
+	dc.b	$E0,$F,8,$28,-8
+	dc.b	0,$B,$18,$38,$E0
+	dc.b	0,$F,$18,$28,-8
 byte_208E8B:
-	dc.b 4
-	dc.b $E0,  7,  8,$20,$E0
-	dc.b $E0, $F,  8,$10,$F0
-	dc.b   0,  7,$18,$20,$E0
-	dc.b   0, $F,$18,$10,$F0
+	dc.b	4
+	dc.b	$E0,7,8,$20,$E0
+	dc.b	$E0,$F,8,$10,$F0
+	dc.b	0,7,$18,$20,$E0
+	dc.b	0,$F,$18,$10,$F0
 byte_208EA0:
-	dc.b 2
-	dc.b $E0, $F,  8,  0,$E0
-	dc.b   0, $F,$18,  0,$E0
+	dc.b	2
+	dc.b	$E0,$F,8,0,$E0
+	dc.b	0,$F,$18,0,$E0
 byte_208EAB:
-	dc.b 4
-	dc.b $E0, $F,  0,$44,$E0
-	dc.b $E0, $F,  8,$44,  0
-	dc.b   0, $F,$10,$44,$E0
-	dc.b   0, $F,$18,$44,  0
+	dc.b	4
+	dc.b	$E0,$F,0,$44,$E0
+	dc.b	$E0,$F,8,$44,0
+	dc.b	0,$F,$10,$44,$E0
+	dc.b	0,$F,$18,$44,0
 
 block:
 	moveq	#0,d0
@@ -8848,73 +8815,73 @@ sub_20900E:
 	jmp	sub_207F56.l
 
 obj12_ani:
-	dc.w unk_209024-obj12_ani
-	dc.w unk_209028-obj12_ani
-	dc.w unk_209032-obj12_ani
+	dc.w	unk_209024-obj12_ani
+	dc.w	unk_209028-obj12_ani
+	dc.w	unk_209032-obj12_ani
 unk_209024:
-	dc.b   2
-	dc.b   5
-	dc.b $FF
+	dc.b	2
+	dc.b	5
+	dc.b	$FF
 	even
 unk_209028:
-	dc.b   2
-	dc.b   1
-	dc.b   5
-	dc.b   2
-	dc.b   5
-	dc.b   3
-	dc.b   5
-	dc.b   4
-	dc.b   5
-	dc.b $FC
+	dc.b	2
+	dc.b	1
+	dc.b	5
+	dc.b	2
+	dc.b	5
+	dc.b	3
+	dc.b	5
+	dc.b	4
+	dc.b	5
+	dc.b	$FC
 	even
 unk_209032:
-	dc.b   2
-	dc.b   1
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   3
-	dc.b   0
-	dc.b   4
-	dc.b   0
-	dc.b $FC
+	dc.b	2
+	dc.b	1
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	3
+	dc.b	0
+	dc.b	4
+	dc.b	0
+	dc.b	$FC
 	even
 
 obj12_map:
-	dc.w byte_209048-obj12_map
-	dc.w byte_20904A-obj12_map
-	dc.w byte_20905A-obj12_map
-	dc.w byte_20906A-obj12_map
-	dc.w byte_209076-obj12_map
-	dc.w byte_209082-obj12_map
+	dc.w	byte_209048-obj12_map
+	dc.w	byte_20904A-obj12_map
+	dc.w	byte_20905A-obj12_map
+	dc.w	byte_20906A-obj12_map
+	dc.w	byte_209076-obj12_map
+	dc.w	byte_209082-obj12_map
 byte_209048:
-	dc.b 0
+	dc.b	0
 	even
 byte_20904A:
-	dc.b 3
-	dc.b $F4,  9,  0,  0,$F4
-	dc.b   4,  0,  0,  0,$FC
-	dc.b   4,  0,  0,  0,  4
+	dc.b	3
+	dc.b	$F4,9,0,0,$F4
+	dc.b	4,0,0,0,$FC
+	dc.b	4,0,0,0,4
 	even
 byte_20905A:
-	dc.b 3
-	dc.b $F4,  9,  8,  0,$F4
-	dc.b   4,  0,  8,  0,$F4
-	dc.b   4,  0,  8,  0,$FC
+	dc.b	3
+	dc.b	$F4,9,8,0,$F4
+	dc.b	4,0,8,0,$F4
+	dc.b	4,0,8,0,$FC
 byte_20906A:
-	dc.b 2
-	dc.b $F4,  9,$18,  0,$F4
-	dc.b   4,  0,$18,  0,$FC
+	dc.b	2
+	dc.b	$F4,9,$18,0,$F4
+	dc.b	4,0,$18,0,$FC
 	even
 byte_209076:
-	dc.b 2
-	dc.b $F4,  9,$10,  0,$F4
-	dc.b   4,  0,$10,  0,$FC
+	dc.b	2
+	dc.b	$F4,9,$10,0,$F4
+	dc.b	4,0,$10,0,$FC
 	even
 byte_209082:
-	dc.b 1
-	dc.b $F4, $A,  0,  6,$F4
+	dc.b	1
+	dc.b	$F4,$A,0,6,$F4
 	even
 
 loc_209088:
@@ -9119,7 +9086,7 @@ loc_209308:
 	moveq	#0,d0
 	move.b	obj.ani(a0),d0
 	move.b	d0,obj.frame(a0)
-	movea.l #monitor_map,a1
+	movea.l	#monitor_map,a1
 	add.b	d0,d0
 	adda.w	(a1,d0.w),a1
 	addq.w	#1,a1
@@ -9228,254 +9195,264 @@ loc_2094A2:
 	rts
 
 monitor_ani:
-	dc.w unk_2094C0-monitor_ani
-	dc.w unk_2094CC-monitor_ani
-	dc.w unk_2094D8-monitor_ani
-	dc.w unk_2094E4-monitor_ani
-	dc.w unk_2094F0-monitor_ani
-	dc.w unk_2094FC-monitor_ani
-	dc.w unk_209508-monitor_ani
-	dc.w unk_209514-monitor_ani
-	dc.w unk_209520-monitor_ani
-	dc.w unk_20952A-monitor_ani
-unk_2094C0: dc.b   1
-	dc.b $10
-	dc.b   0
-	dc.b   0
-	dc.b   8
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+	dc.w	unk_2094C0-monitor_ani
+	dc.w	unk_2094CC-monitor_ani
+	dc.w	unk_2094D8-monitor_ani
+	dc.w	unk_2094E4-monitor_ani
+	dc.w	unk_2094F0-monitor_ani
+	dc.w	unk_2094FC-monitor_ani
+	dc.w	unk_209508-monitor_ani
+	dc.w	unk_209514-monitor_ani
+	dc.w	unk_209520-monitor_ani
+	dc.w	unk_20952A-monitor_ani
+unk_2094C0:
+	dc.b	1
+	dc.b	$10
+	dc.b	0
+	dc.b	0
+	dc.b	8
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
-unk_2094CC: dc.b   1
-	dc.b $10
-	dc.b   1
-	dc.b   1
-	dc.b   8
-	dc.b   1
-	dc.b   1
-	dc.b   9
-	dc.b   1
-	dc.b   1
-	dc.b $FF
+unk_2094CC:
+	dc.b	1
+	dc.b	$10
+	dc.b	1
+	dc.b	1
+	dc.b	8
+	dc.b	1
+	dc.b	1
+	dc.b	9
+	dc.b	1
+	dc.b	1
+	dc.b	$FF
 	even
-unk_2094D8: dc.b   1
-	dc.b $10
-	dc.b   2
-	dc.b   2
-	dc.b   8
-	dc.b   2
-	dc.b   2
-	dc.b   9
-	dc.b   2
-	dc.b   2
-	dc.b $FF
+unk_2094D8:
+	dc.b	1
+	dc.b	$10
+	dc.b	2
+	dc.b	2
+	dc.b	8
+	dc.b	2
+	dc.b	2
+	dc.b	9
+	dc.b	2
+	dc.b	2
+	dc.b	$FF
 	even
-unk_2094E4: dc.b   1
-	dc.b $10
-	dc.b   3
-	dc.b   3
-	dc.b   8
-	dc.b   3
-	dc.b   3
-	dc.b   9
-	dc.b   3
-	dc.b   3
-	dc.b $FF
+unk_2094E4:
+	dc.b	1
+	dc.b	$10
+	dc.b	3
+	dc.b	3
+	dc.b	8
+	dc.b	3
+	dc.b	3
+	dc.b	9
+	dc.b	3
+	dc.b	3
+	dc.b	$FF
 	even
-unk_2094F0: dc.b   1
-	dc.b $10
-	dc.b   4
-	dc.b   4
-	dc.b   8
-	dc.b   4
-	dc.b   4
-	dc.b   9
-	dc.b   4
-	dc.b   4
-	dc.b $FF
+unk_2094F0:
+	dc.b	1
+	dc.b	$10
+	dc.b	4
+	dc.b	4
+	dc.b	8
+	dc.b	4
+	dc.b	4
+	dc.b	9
+	dc.b	4
+	dc.b	4
+	dc.b	$FF
 	even
-unk_2094FC: dc.b   1
-	dc.b $10
-	dc.b   5
-	dc.b   5
-	dc.b   8
-	dc.b   5
-	dc.b   5
-	dc.b   9
-	dc.b   5
-	dc.b   5
-	dc.b $FF
+unk_2094FC:
+	dc.b	1
+	dc.b	$10
+	dc.b	5
+	dc.b	5
+	dc.b	8
+	dc.b	5
+	dc.b	5
+	dc.b	9
+	dc.b	5
+	dc.b	5
+	dc.b	$FF
 	even
-unk_209508: dc.b   1
-	dc.b $10
-	dc.b   6
-	dc.b   6
-	dc.b   8
-	dc.b   6
-	dc.b   6
-	dc.b   9
-	dc.b   6
-	dc.b   6
-	dc.b $FF
+unk_209508:
+	dc.b	1
+	dc.b	$10
+	dc.b	6
+	dc.b	6
+	dc.b	8
+	dc.b	6
+	dc.b	6
+	dc.b	9
+	dc.b	6
+	dc.b	6
+	dc.b	$FF
 	even
-unk_209514: dc.b   1
-	dc.b $10
-	dc.b   7
-	dc.b   7
-	dc.b   8
-	dc.b   7
-	dc.b   7
-	dc.b   9
-	dc.b   7
-	dc.b   7
-	dc.b $FF
+unk_209514:
+	dc.b	1
+	dc.b	$10
+	dc.b	7
+	dc.b	7
+	dc.b	8
+	dc.b	7
+	dc.b	7
+	dc.b	9
+	dc.b	7
+	dc.b	7
+	dc.b	$FF
 	even
-unk_209520: dc.b   1
-	dc.b  $A
-	dc.b  $E
-	dc.b  $F
-	dc.b  $E
-	dc.b  $B
-	dc.b  $E
-	dc.b  $F
-	dc.b  $E
-	dc.b $FF
+unk_209520:
+	dc.b	1
+	dc.b	$A
+	dc.b	$E
+	dc.b	$F
+	dc.b	$E
+	dc.b	$B
+	dc.b	$E
+	dc.b	$F
+	dc.b	$E
+	dc.b	$FF
 	even
-unk_20952A: dc.b   1
-	dc.b  $C
-	dc.b  $E
-	dc.b  $F
-	dc.b  $E
-	dc.b  $D
-	dc.b  $E
-	dc.b  $F
-	dc.b  $E
-	dc.b $FF
+unk_20952A:
+	dc.b	1
+	dc.b	$C
+	dc.b	$E
+	dc.b	$F
+	dc.b	$E
+	dc.b	$D
+	dc.b	$E
+	dc.b	$F
+	dc.b	$E
+	dc.b	$FF
 	even
-monitor_map:	dc.w byte_209558-monitor_map
-	dc.w byte_20956E-monitor_map
-	dc.w byte_209584-monitor_map
-	dc.w byte_20959A-monitor_map
-	dc.w byte_2095B0-monitor_map
-	dc.w byte_2095C6-monitor_map
-	dc.w byte_2095DC-monitor_map
-	dc.w byte_2095F2-monitor_map
-	dc.w byte_209608-monitor_map
-	dc.w byte_20961E-monitor_map
-	dc.w byte_209634-monitor_map
-	dc.w byte_20964E-monitor_map
-	dc.w byte_209668-monitor_map
-	dc.w byte_209682-monitor_map
-	dc.w byte_20969C-monitor_map
-	dc.w byte_2096B6-monitor_map
-	dc.w byte_2096D0-monitor_map
-	dc.w byte_2096E0-monitor_map
-byte_209558:	dc.b 4
-	dc.b $F6,  5,  0,$12,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+monitor_map:	dc.w	byte_209558-monitor_map
+	dc.w	byte_20956E-monitor_map
+	dc.w	byte_209584-monitor_map
+	dc.w	byte_20959A-monitor_map
+	dc.w	byte_2095B0-monitor_map
+	dc.w	byte_2095C6-monitor_map
+	dc.w	byte_2095DC-monitor_map
+	dc.w	byte_2095F2-monitor_map
+	dc.w	byte_209608-monitor_map
+	dc.w	byte_20961E-monitor_map
+	dc.w	byte_209634-monitor_map
+	dc.w	byte_20964E-monitor_map
+	dc.w	byte_209668-monitor_map
+	dc.w	byte_209682-monitor_map
+	dc.w	byte_20969C-monitor_map
+	dc.w	byte_2096B6-monitor_map
+	dc.w	byte_2096D0-monitor_map
+	dc.w	byte_2096E0-monitor_map
+byte_209558:	dc.b	4
+	dc.b	$F6,5,0,$12,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_20956E:	dc.b 4
-	dc.b $F6,  5,  0,$16,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_20956E:	dc.b	4
+	dc.b	$F6,5,0,$16,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_209584:	dc.b 4
-	dc.b $F6,  5,  0,$1A,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_209584:	dc.b	4
+	dc.b	$F6,5,0,$1A,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_20959A:	dc.b 4
-	dc.b $F6,  5,  0,$1E,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_20959A:	dc.b	4
+	dc.b	$F6,5,0,$1E,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_2095B0:	dc.b 4
-	dc.b $F6,  5,  0,$22,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_2095B0:	dc.b	4
+	dc.b	$F6,5,0,$22,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_2095C6:	dc.b 4
-	dc.b $F6,  5,  0,$26,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_2095C6:	dc.b	4
+	dc.b	$F6,5,0,$26,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_2095DC:	dc.b 4
-	dc.b $F6,  5,  0,$2A,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_2095DC:	dc.b	4
+	dc.b	$F6,5,0,$2A,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_2095F2:	dc.b 4
-	dc.b $F6,  5,  0,$2E,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_2095F2:	dc.b	4
+	dc.b	$F6,5,0,$2E,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_209608:	dc.b 4
-	dc.b $F6,  5,  0,$48,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_209608:	dc.b	4
+	dc.b	$F6,5,0,$48,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_20961E:	dc.b 4
-	dc.b $F6,  5,  8,$48,$F8
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
+byte_20961E:	dc.b	4
+	dc.b	$F6,5,8,$48,-8
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
 	even
-byte_209634:	dc.b 5
-	dc.b $D8, $D,  0,$32,$F0
-	dc.b $E8,  3,  0,$4C,$F8
-	dc.b $E8,  3,  8,$4C,  0
-	dc.b   8,  1,  0,$50,$F8
-	dc.b   8,  1,  8,$50,  0
-byte_20964E:	dc.b 5
-	dc.b $D8, $D,  8,$32,$F0
-	dc.b $E8,  3,  0,$4C,$F8
-	dc.b $E8,  3,  8,$4C,  0
-	dc.b   8,  1,  0,$50,$F8
-	dc.b   8,  1,  8,$50,  0
-byte_209668:	dc.b 5
-	dc.b $D8, $D,  0,$3A,$F0
-	dc.b $E8,  3,  0,$4C,$F8
-	dc.b $E8,  3,  8,$4C,  0
-	dc.b   8,  1,  0,$50,$F8
-	dc.b   8,  1,  8,$50,  0
-byte_209682:	dc.b 5
-	dc.b $D8, $D,  8,$3A,$F0
-	dc.b $E8,  3,  0,$4C,$F8
-	dc.b $E8,  3,  8,$4C,  0
-	dc.b   8,  1,  0,$50,$F8
-	dc.b   8,  1,  8,$50,  0
-byte_20969C:	dc.b 5
-	dc.b $D8,  5,  0,$42,$F8
-	dc.b $E8,  3,  0,$4C,$F8
-	dc.b $E8,  3,  8,$4C,  0
-	dc.b   8,  1,  0,$50,$F8
-	dc.b   8,  1,  8,$50,  0
-byte_2096B6:	dc.b 5
-	dc.b $D8,  1,  0,$46,$FC
-	dc.b $E8,  3,  0,$4C,$F8
-	dc.b $E8,  3,  8,$4C,  0
-	dc.b   8,  1,  0,$50,$F8
-	dc.b   8,  1,  8,$50,  0
-byte_2096D0:	dc.b 3
-	dc.b $F0,  6,  0,  0,$F0
-	dc.b $F0,  6,  8,  0,  0
-	dc.b   8, $C,  0,  6,$F0
-byte_2096E0:	dc.b 1
-	dc.b   0, $D,  0, $A,$F0
+byte_209634:	dc.b	5
+	dc.b	$D8,$D,0,$32,$F0
+	dc.b	$E8,3,0,$4C,-8
+	dc.b	$E8,3,8,$4C,0
+	dc.b	8,1,0,$50,-8
+	dc.b	8,1,8,$50,0
+byte_20964E:	dc.b	5
+	dc.b	$D8,$D,8,$32,$F0
+	dc.b	$E8,3,0,$4C,-8
+	dc.b	$E8,3,8,$4C,0
+	dc.b	8,1,0,$50,-8
+	dc.b	8,1,8,$50,0
+byte_209668:	dc.b	5
+	dc.b	$D8,$D,0,$3A,$F0
+	dc.b	$E8,3,0,$4C,-8
+	dc.b	$E8,3,8,$4C,0
+	dc.b	8,1,0,$50,-8
+	dc.b	8,1,8,$50,0
+byte_209682:	dc.b	5
+	dc.b	$D8,$D,8,$3A,$F0
+	dc.b	$E8,3,0,$4C,-8
+	dc.b	$E8,3,8,$4C,0
+	dc.b	8,1,0,$50,-8
+	dc.b	8,1,8,$50,0
+byte_20969C:	dc.b	5
+	dc.b	$D8,5,0,$42,-8
+	dc.b	$E8,3,0,$4C,-8
+	dc.b	$E8,3,8,$4C,0
+	dc.b	8,1,0,$50,-8
+	dc.b	8,1,8,$50,0
+byte_2096B6:	dc.b	5
+	dc.b	$D8,1,0,$46,$FC
+	dc.b	$E8,3,0,$4C,-8
+	dc.b	$E8,3,8,$4C,0
+	dc.b	8,1,0,$50,-8
+	dc.b	8,1,8,$50,0
+byte_2096D0:	dc.b	3
+	dc.b	$F0,6,0,0,$F0
+	dc.b	$F0,6,8,0,0
+	dc.b	8,$C,0,6,$F0
+byte_2096E0:	dc.b	1
+	dc.b	0,$D,0,$A,$F0
 
 obj1C:
 	moveq	#0,d0
@@ -9513,51 +9490,51 @@ loc_209756:
 	jmp	displaysprite.l
 
 hud_map:
-	dc.w byte_209762-hud_map
-	dc.w byte_2097B8-hud_map
-	dc.w byte_2097C8-hud_map
+	dc.w	byte_209762-hud_map
+	dc.w	byte_2097B8-hud_map
+	dc.w	byte_2097C8-hud_map
 byte_209762:
-	dc.b 17
-	dc.b   0,  1,  0,  0,  0
-	dc.b   0,  5,  0,  2,  8
-	dc.b   0,  1,  0,  6,$18
-	dc.b   0,  1,  0,  8,$20
-	dc.b   0,  9,  0,$1B,$30
-	dc.b   0,  9,  0,$21,$48
-	dc.b $10,  9,  0, $A,  0
-	dc.b $10,  1,  0,  8,$18
-	dc.b $10,  1,  0,$27,$28
-	dc.b $10,  0,  0,$18,$30
-	dc.b $10,  5,  0,$29,$38
-	dc.b $10,  0,  0,$19,$48
-	dc.b $10,  5,  0,$2D,$50
-	dc.b $20,  1,  0,$10,  0
-	dc.b $20,  9,  0,$12,  8
-	dc.b $20,  1,  0,  0,$20
-	dc.b $20,  9,  0,$31,$30
+	dc.b	17
+	dc.b	0,1,0,0,0
+	dc.b	0,5,0,2,8
+	dc.b	0,1,0,6,$18
+	dc.b	0,1,0,8,$20
+	dc.b	0,9,0,$1B,$30
+	dc.b	0,9,0,$21,$48
+	dc.b	$10,9,0,$A,0
+	dc.b	$10,1,0,8,$18
+	dc.b	$10,1,0,$27,$28
+	dc.b	$10,0,0,$18,$30
+	dc.b	$10,5,0,$29,$38
+	dc.b	$10,0,0,$19,$48
+	dc.b	$10,5,0,$2D,$50
+	dc.b	$20,1,0,$10,0
+	dc.b	$20,9,0,$12,8
+	dc.b	$20,1,0,0,$20
+	dc.b	$20,9,0,$31,$30
 	even
 byte_2097B8:
-	dc.b 3
-	dc.b   0,  5,  0,$37,  0
-	dc.b   8,  0,  0,$1A,$10
-	dc.b   0,  1,  0,$3B,$18
+	dc.b	3
+	dc.b	0,5,0,$37,0
+	dc.b	8,0,0,$1A,$10
+	dc.b	0,1,0,$3B,$18
 	even
 byte_2097C8:
-	dc.b 14
-	dc.b   0,  1,  0,  0,  0
-	dc.b   0,  5,  0,  2,  8
-	dc.b   0,  1,  0,  6,$18
-	dc.b   0,  1,  0,  8,$20
-	dc.b   0,  9,  0,$1B,$30
-	dc.b   0,  9,  0,$21,$48
-	dc.b $10,  9,  0, $A,  0
-	dc.b $10,  1,  0,  8,$18
-	dc.b $10,  5,  0,$29,$40
-	dc.b $10,  5,  0,$2D,$50
-	dc.b $20,  1,  0,$10,  0
-	dc.b $20,  9,  0,$12,  8
-	dc.b $20,  1,  0,  0,$20
-	dc.b $20,  9,  0,$31,$30
+	dc.b	14
+	dc.b	0,1,0,0,0
+	dc.b	0,5,0,2,8
+	dc.b	0,1,0,6,$18
+	dc.b	0,1,0,8,$20
+	dc.b	0,9,0,$1B,$30
+	dc.b	0,9,0,$21,$48
+	dc.b	$10,9,0,$A,0
+	dc.b	$10,1,0,8,$18
+	dc.b	$10,5,0,$29,$40
+	dc.b	$10,5,0,$2D,$50
+	dc.b	$20,1,0,$10,0
+	dc.b	$20,9,0,$12,8
+	dc.b	$20,1,0,0,$20
+	dc.b	$20,9,0,$31,$30
 	even
 
 sub_209810:
@@ -9649,7 +9626,7 @@ locret_209936:
 
 	clr.b	pltime_f
 	lea	actwk.w,a0
-	movea.l a0,a2
+	movea.l	a0,a2
 	bsr.w	playdieset
 	move.b	#1,byte_FF121A
 	rts
@@ -9687,23 +9664,23 @@ loc_2099A4:
 	bra.s	loc_20999E
 
 unk_2099B0:
-	dc.b $16
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
-	dc.b $FF
-	dc.b   0
-	dc.b   0
-	dc.b $14
-	dc.b   0
-	dc.b   0
+	dc.b	$16
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	0
+	dc.b	0
+	dc.b	$14
+	dc.b	0
+	dc.b	0
 unk_2099BC:
-	dc.b $FF
-	dc.b $FF
-	dc.b   0
-	dc.b   0
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	0
+	dc.b	0
 
 sub_2099C0:
 	move.l	#$70E00002,d0
@@ -9805,21 +9782,21 @@ loc_209A74:
 	rts
 
 dword_209AA2:
-	dc.l 100000
-	dc.l 10000
-	dc.l 1000
+	dc.l	100000
+	dc.l	10000
+	dc.l	1000
 dword_209AAE:
-	dc.l 100
+	dc.l	100
 dword_209AB2:
-	dc.l 10
+	dc.l	10
 dword_209AB6:
-	dc.l 1
+	dc.l	1
 
 dword_209ABA:
-	dc.l $1000
-	dc.l $100
-	dc.l $10
-	dc.l 1
+	dc.l	$1000
+	dc.l	$100
+	dc.l	$10
+	dc.l	1
 
 sub_209ACA:
 	moveq	#4-1,d6
@@ -9969,12 +9946,13 @@ loc_209C4C:
 	jsr	off_209C5A(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_209C5A: dc.w loc_209C66-off_209C5A
-	dc.w loc_209CA2-off_209C5A
-	dc.w loc_209CEA-off_209C5A
-	dc.w loc_209D5C-off_209C5A
-	dc.w loc_209D8A-off_209C5A
-	dc.w loc_209DC0-off_209C5A
+off_209C5A:
+	dc.w	loc_209C66-off_209C5A
+	dc.w	loc_209CA2-off_209C5A
+	dc.w	loc_209CEA-off_209C5A
+	dc.w	loc_209D5C-off_209C5A
+	dc.w	loc_209D8A-off_209C5A
+	dc.w	loc_209DC0-off_209C5A
 
 loc_209C66:
 	move.b	#6,obj.colflag(a0)
@@ -10093,12 +10071,13 @@ loc_209DEE:
 	jsr	off_209DFC(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_209DFC: dc.w loc_209E08-off_209DFC
-	dc.w loc_209E4A-off_209DFC
-	dc.w loc_209E92-off_209DFC
-	dc.w loc_209F04-off_209DFC
-	dc.w loc_209F32-off_209DFC
-	dc.w loc_209F68-off_209DFC
+off_209DFC:
+	dc.w	loc_209E08-off_209DFC
+	dc.w	loc_209E4A-off_209DFC
+	dc.w	loc_209E92-off_209DFC
+	dc.w	loc_209F04-off_209DFC
+	dc.w	loc_209F32-off_209DFC
+	dc.w	loc_209F68-off_209DFC
 
 loc_209E08:
 	move.b	#6,obj.colflag(a0)
@@ -10211,11 +10190,12 @@ loc_209F7C:
 	jsr	off_209F90(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_209F90: dc.w loc_209F9A-off_209F90
-	dc.w loc_209FE8-off_209F90
-	dc.w loc_20A11C-off_209F90
-	dc.w loc_20A072-off_209F90
-	dc.w loc_20A11C-off_209F90
+off_209F90:
+	dc.w	loc_209F9A-off_209F90
+	dc.w	loc_209FE8-off_209F90
+	dc.w	loc_20A11C-off_209F90
+	dc.w	loc_20A072-off_209F90
+	dc.w	loc_20A11C-off_209F90
 
 loc_209F9A:
 	move.b	#6,obj.colflag(a0)
@@ -10361,11 +10341,12 @@ loc_20A18E:
 	jsr	off_20A1A2(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20A1A2: dc.w loc_20A1AC-off_20A1A2
-	dc.w loc_20A1FA-off_20A1A2
-	dc.w loc_20A32E-off_20A1A2
-	dc.w loc_20A286-off_20A1A2
-	dc.w loc_20A32E-off_20A1A2
+off_20A1A2:
+	dc.w	loc_20A1AC-off_20A1A2
+	dc.w	loc_20A1FA-off_20A1A2
+	dc.w	loc_20A32E-off_20A1A2
+	dc.w	loc_20A286-off_20A1A2
+	dc.w	loc_20A32E-off_20A1A2
 
 loc_20A1AC:
 	move.b	#6,obj.colflag(a0)
@@ -10517,10 +10498,11 @@ loc_20A3BA:
 	jsr	off_20A3C8(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20A3C8: dc.w loc_20A3D0-off_20A3C8
-	dc.w loc_20A404-off_20A3C8
-	dc.w loc_20A43E-off_20A3C8
-	dc.w loc_20A4AE-off_20A3C8
+off_20A3C8:
+	dc.w	loc_20A3D0-off_20A3C8
+	dc.w	loc_20A404-off_20A3C8
+	dc.w	loc_20A43E-off_20A3C8
+	dc.w	loc_20A4AE-off_20A3C8
 
 loc_20A3D0:
 	move.b	#6,obj.colflag(a0)
@@ -10630,12 +10612,13 @@ loc_20A538:
 	jsr	off_20A546(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20A546: dc.w loc_20A552-off_20A546
-	dc.w loc_20A58C-off_20A546
-	dc.w loc_20A5C6-off_20A546
-	dc.w loc_20A642-off_20A546
-	dc.w loc_20A686-off_20A546
-	dc.w loc_20A664-off_20A546
+off_20A546:
+	dc.w	loc_20A552-off_20A546
+	dc.w	loc_20A58C-off_20A546
+	dc.w	loc_20A5C6-off_20A546
+	dc.w	loc_20A642-off_20A546
+	dc.w	loc_20A686-off_20A546
+	dc.w	loc_20A664-off_20A546
 
 loc_20A552:
 	move.b	#6,obj.colflag(a0)
@@ -10769,10 +10752,11 @@ loc_20A702:
 	jsr	off_20A716(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20A716: dc.w loc_20A71E-off_20A716
-	dc.w loc_20A75A-off_20A716
-	dc.w loc_20A7AA-off_20A716
-	dc.w loc_20A802-off_20A716
+off_20A716:
+	dc.w	loc_20A71E-off_20A716
+	dc.w	loc_20A75A-off_20A716
+	dc.w	loc_20A7AA-off_20A716
+	dc.w	loc_20A802-off_20A716
 
 loc_20A71E:
 	move.b	#6,obj.colflag(a0)
@@ -10855,10 +10839,11 @@ loc_20A814:
 	jsr	off_20A828(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20A828: dc.w loc_20A830-off_20A828
-	dc.w loc_20A86C-off_20A828
-	dc.w loc_20A8BC-off_20A828
-	dc.w loc_20A914-off_20A828
+off_20A828:
+	dc.w	loc_20A830-off_20A828
+	dc.w	loc_20A86C-off_20A828
+	dc.w	loc_20A8BC-off_20A828
+	dc.w	loc_20A914-off_20A828
 
 loc_20A830:
 	move.b	#6,obj.colflag(a0)
@@ -10941,12 +10926,13 @@ loc_20A926:
 	jsr	off_20A93A(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20A93A: dc.w loc_20A946-off_20A93A
-	dc.w loc_20A992-off_20A93A
-	dc.w loc_20A9EA-off_20A93A
-	dc.w loc_20AA90-off_20A93A
-	dc.w loc_20ABA4-off_20A93A
-	dc.w loc_20AB36-off_20A93A
+off_20A93A:
+	dc.w	loc_20A946-off_20A93A
+	dc.w	loc_20A992-off_20A93A
+	dc.w	loc_20A9EA-off_20A93A
+	dc.w	loc_20AA90-off_20A93A
+	dc.w	loc_20ABA4-off_20A93A
+	dc.w	loc_20AB36-off_20A93A
 
 loc_20A946:
 	move.b	#6,obj.colflag(a0)
@@ -11172,12 +11158,12 @@ loc_20AC58:
 	jmp	loc_206FB8.l
 
 off_20AC6C:
-	dc.w loc_20AC78-off_20AC6C
-	dc.w loc_20ACC4-off_20AC6C
-	dc.w loc_20AD1C-off_20AC6C
-	dc.w loc_20ADC2-off_20AC6C
-	dc.w loc_20AED6-off_20AC6C
-	dc.w loc_20AE68-off_20AC6C
+	dc.w	loc_20AC78-off_20AC6C
+	dc.w	loc_20ACC4-off_20AC6C
+	dc.w	loc_20AD1C-off_20AC6C
+	dc.w	loc_20ADC2-off_20AC6C
+	dc.w	loc_20AED6-off_20AC6C
+	dc.w	loc_20AE68-off_20AC6C
 
 loc_20AC78:
 	move.b	#6,obj.colflag(a0)
@@ -11396,685 +11382,721 @@ locret_20AF88:
 	rts
 
 obj13_ani:
-	dc.w unk_20AF92-obj13_ani
-	dc.w unk_20AF9A-obj13_ani
-	dc.w unk_20AF9E-obj13_ani
-	dc.w unk_20AFAE-obj13_ani
-unk_20AF92: dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b $FF
+	dc.w	unk_20AF92-obj13_ani
+	dc.w	unk_20AF9A-obj13_ani
+	dc.w	unk_20AF9E-obj13_ani
+	dc.w	unk_20AFAE-obj13_ani
+unk_20AF92:
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	$FF
 	even
-unk_20AF9A: dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+unk_20AF9A:
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20AF9E: dc.b   6
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b $FF
+unk_20AF9E:
+	dc.b	6
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	$FF
 	even
-unk_20AFAE: dc.b   0
-	dc.b   4
-	dc.b $FF
+unk_20AFAE:
+	dc.b	0
+	dc.b	4
+	dc.b	$FF
 	even
 
 obj13_map:
-	dc.w byte_20AFBC-obj13_map
-	dc.w byte_20AFC7-obj13_map
-	dc.w byte_20AFD2-obj13_map
-	dc.w byte_20AFE2-obj13_map
-	dc.w byte_20AFF2-obj13_map
+	dc.w	byte_20AFBC-obj13_map
+	dc.w	byte_20AFC7-obj13_map
+	dc.w	byte_20AFD2-obj13_map
+	dc.w	byte_20AFE2-obj13_map
+	dc.w	byte_20AFF2-obj13_map
 byte_20AFBC:
-	dc.b 2
-	dc.b $F4, $A,  0,  0,$F8
-	dc.b $FC,  0,  0,  9,$F0
+	dc.b	2
+	dc.b	$F4,$A,0,0,-8
+	dc.b	$FC,0,0,9,$F0
 byte_20AFC7:
-	dc.b 2
-	dc.b $FC,  9,  0, $A,$F8
-	dc.b $FC,  0,  0,  9,$F0
+	dc.b	2
+	dc.b	$FC,9,0,$A,-8
+	dc.b	$FC,0,0,9,$F0
 byte_20AFD2:
-	dc.b 3
-	dc.b $F0,  6,  0,$10,  0
-	dc.b   8,  4,  0,$16,$F0
-	dc.b   0,  0,  0,$18,$F8
+	dc.b	3
+	dc.b	$F0,6,0,$10,0
+	dc.b	8,4,0,$16,$F0
+	dc.b	0,0,0,$18,-8
 byte_20AFE2:
-	dc.b 3
-	dc.b $F0,  9,  0,$19,$F8
-	dc.b   0,  4,  0,$1F,$F8
-	dc.b   8,  0,  0,$21,$F8
+	dc.b	3
+	dc.b	$F0,9,0,$19,-8
+	dc.b	0,4,0,$1F,-8
+	dc.b	8,0,0,$21,-8
 byte_20AFF2:
-	dc.b 3
-	dc.b $F0,  6,  0,$22,$F4
-	dc.b   8,  0,  0,$28,$FC
-	dc.b $F0,  0,  0,$29,  4
+	dc.b	3
+	dc.b	$F0,6,0,$22,$F4
+	dc.b	8,0,0,$28,$FC
+	dc.b	$F0,0,0,$29,4
 	even
 
 obj13b_ani:
-	dc.w unk_20B00A-obj13b_ani
-	dc.w unk_20B012-obj13b_ani
-	dc.w unk_20B016-obj13b_ani
-	dc.w unk_20B020-obj13b_ani
-unk_20B00A: dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b $FF
+	dc.w	unk_20B00A-obj13b_ani
+	dc.w	unk_20B012-obj13b_ani
+	dc.w	unk_20B016-obj13b_ani
+	dc.w	unk_20B020-obj13b_ani
+unk_20B00A:
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	$FF
 	even
-unk_20B012: dc.b   4
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+unk_20B012:
+	dc.b	4
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B016: dc.b  $E
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b   4
-	dc.b $FF
+unk_20B016:
+	dc.b	$E
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	4
+	dc.b	$FF
 	even
-unk_20B020: dc.b   0
-	dc.b   4
-	dc.b $FF
+unk_20B020:
+	dc.b	0
+	dc.b	4
+	dc.b	$FF
 	even
 
 obj13b_map:
-	dc.w byte_20B02E-obj13b_map
-	dc.w byte_20B039-obj13b_map
-	dc.w byte_20B03F-obj13b_map
-	dc.w byte_20B04F-obj13b_map
-	dc.w byte_20B05F-obj13b_map
+	dc.w	byte_20B02E-obj13b_map
+	dc.w	byte_20B039-obj13b_map
+	dc.w	byte_20B03F-obj13b_map
+	dc.w	byte_20B04F-obj13b_map
+	dc.w	byte_20B05F-obj13b_map
 byte_20B02E:
-	dc.b 2
-	dc.b $F4, $A,  0,$2A,$F8
-	dc.b $FC,  1,  0,$33,$F0
+	dc.b	2
+	dc.b	$F4,$A,0,$2A,-8
+	dc.b	$FC,1,0,$33,$F0
 byte_20B039:
-	dc.b 1
-	dc.b $FC, $D,  0,$35,$F0
+	dc.b	1
+	dc.b	$FC,$D,0,$35,$F0
 byte_20B03F:
-	dc.b 3
-	dc.b $F0,  6,  0,$10,  0
-	dc.b   0,  1,  0,$3D,$F8
-	dc.b   8,  0,  0,$3F,$F0
+	dc.b	3
+	dc.b	$F0,6,0,$10,0
+	dc.b	0,1,0,$3D,-8
+	dc.b	8,0,0,$3F,$F0
 byte_20B04F:
-	dc.b 3
-	dc.b $F0,  9,  0,$19,$F8
-	dc.b   0,  4,  0,$40,$F8
-	dc.b   8,  0,  0,$42,$F8
+	dc.b	3
+	dc.b	$F0,9,0,$19,-8
+	dc.b	0,4,0,$40,-8
+	dc.b	8,0,0,$42,-8
 byte_20B05F:
-	dc.b 3
-	dc.b $F0,  6,  0,$43,$F4
-	dc.b   8,  0,  0,$49,$FC
-	dc.b $F0,  0,  0,$29,  4
+	dc.b	3
+	dc.b	$F0,6,0,$43,$F4
+	dc.b	8,0,0,$49,$FC
+	dc.b	$F0,0,0,$29,4
 	even
 
 obj14b_ani:
-	dc.w unk_20B07A-obj14b_ani
-	dc.w unk_20B082-obj14b_ani
-	dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   1
-	dc.b $FF
+	dc.w	unk_20B07A-obj14b_ani
+	dc.w	unk_20B082-obj14b_ani
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B07A: dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   1
-	dc.b $FF
+unk_20B07A:
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B082: dc.b   4
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b   4
-	dc.b $FF
+unk_20B082:
+	dc.b	4
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	4
+	dc.b	$FF
 	even
 obj14_map:
-	dc.w byte_20B096-obj14_map
-	dc.w byte_20B0A6-obj14_map
-	dc.w byte_20B0B6-obj14_map
-	dc.w byte_20B096-obj14_map
-	dc.w byte_20B0A6-obj14_map
-	dc.w byte_20B0B6-obj14_map
+	dc.w	byte_20B096-obj14_map
+	dc.w	byte_20B0A6-obj14_map
+	dc.w	byte_20B0B6-obj14_map
+	dc.w	byte_20B096-obj14_map
+	dc.w	byte_20B0A6-obj14_map
+	dc.w	byte_20B0B6-obj14_map
 byte_20B096:
-	dc.b 3
-	dc.b $F0,  8,  0,  0,$F8
-	dc.b $F8, $D,  0,  3,$F0
-	dc.b   8,  8,  0, $B,$F0
+	dc.b	3
+	dc.b	$F0,8,0,0,-8
+	dc.b	-8,$D,0,3,$F0
+	dc.b	8,8,0,$B,$F0
 	even
 byte_20B0A6:
-	dc.b 3
-	dc.b $F8,  9,  0, $E,$F0
-	dc.b   0,  0,  0,$14,  8
-	dc.b   8,  0,  0,$15,  0
+	dc.b	3
+	dc.b	-8,9,0,$E,$F0
+	dc.b	0,0,0,$14,8
+	dc.b	8,0,0,$15,0
 	even
 byte_20B0B6:
-	dc.b 3
-	dc.b $F0,  0,  0,$16,$F0
-	dc.b $F8,  8,  0,$17,$F0
-	dc.b   0, $D,  0,$1A,$F0
+	dc.b	3
+	dc.b	$F0,0,0,$16,$F0
+	dc.b	-8,8,0,$17,$F0
+	dc.b	0,$D,0,$1A,$F0
 	even
 
 obj14_ani:
-	dc.w unk_20B0D0-obj14_ani
-	dc.w unk_20B0D8-obj14_ani
-	dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   1
-	dc.b $FF
+	dc.w	unk_20B0D0-obj14_ani
+	dc.w	unk_20B0D8-obj14_ani
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B0D0: dc.b   4
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   1
-	dc.b $FF
+unk_20B0D0:
+	dc.b	4
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B0D8: dc.b   4
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b   4
-	dc.b $FF
+unk_20B0D8:
+	dc.b	4
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	4
+	dc.b	$FF
 	even
 
 off_20B0E0:
-	dc.w byte_20B0EC-off_20B0E0
-	dc.w byte_20B0FC-off_20B0E0
-	dc.w byte_20B10C-off_20B0E0
-	dc.w byte_20B0EC-off_20B0E0
-	dc.w byte_20B0FC-off_20B0E0
-	dc.w byte_20B10C-off_20B0E0
+	dc.w	byte_20B0EC-off_20B0E0
+	dc.w	byte_20B0FC-off_20B0E0
+	dc.w	byte_20B10C-off_20B0E0
+	dc.w	byte_20B0EC-off_20B0E0
+	dc.w	byte_20B0FC-off_20B0E0
+	dc.w	byte_20B10C-off_20B0E0
 byte_20B0EC:
-	dc.b 3
-	dc.b $F0,  8,  0,  0,$F8
-	dc.b $F8, $D,  0,$22,$F0
-	dc.b   8,  8,  0, $B,$F0
+	dc.b	3
+	dc.b	$F0,8,0,0,-8
+	dc.b	-8,$D,0,$22,$F0
+	dc.b	8,8,0,$B,$F0
 	even
 byte_20B0FC:
-	dc.b 3
-	dc.b $F8,  9,  0, $E,$F0
-	dc.b   0,  0,  0,$14,  8
-	dc.b   8,  0,  0,$15,  0
+	dc.b	3
+	dc.b	-8,9,0,$E,$F0
+	dc.b	0,0,0,$14,8
+	dc.b	8,0,0,$15,0
 	even
 byte_20B10C:
-	dc.b 3
-	dc.b $F0,  0,  0,$16,$F0
-	dc.b $F8,  8,  0,$17,$F0
-	dc.b   0, $D,  0,$2A,$F0
+	dc.b	3
+	dc.b	$F0,0,0,$16,$F0
+	dc.b	-8,8,0,$17,$F0
+	dc.b	0,$D,0,$2A,$F0
 	even
 
 off_20B11C:
-	dc.w unk_20B132-off_20B11C
-	dc.w unk_20B136-off_20B11C
-	dc.w unk_20B12E-off_20B11C
-	dc.w unk_20B124-off_20B11C
-unk_20B124: dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+	dc.w	unk_20B132-off_20B11C
+	dc.w	unk_20B136-off_20B11C
+	dc.w	unk_20B12E-off_20B11C
+	dc.w	unk_20B124-off_20B11C
+unk_20B124:
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
-unk_20B12E: dc.b $13
-	dc.b   0
-	dc.b $FF
+unk_20B12E:
+	dc.b	$13
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20B132: dc.b   3
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+unk_20B132:
+	dc.b	3
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
-unk_20B136: dc.b   3
-	dc.b   8
-	dc.b   9
-	dc.b $FF
+unk_20B136:
+	dc.b	3
+	dc.b	8
+	dc.b	9
+	dc.b	$FF
 	even
 
 obj15_map:
-	dc.w byte_20B1B6-obj15_map
-	dc.w byte_20B1C6-obj15_map
-	dc.w byte_20B1CC-obj15_map
-	dc.w byte_20B1D2-obj15_map
-	dc.w byte_20B1D8-obj15_map
-	dc.w byte_20B1DE-obj15_map
-	dc.w byte_20B14E-obj15_map
-	dc.w byte_20B168-obj15_map
-	dc.w byte_20B182-obj15_map
-	dc.w byte_20B19C-obj15_map
+	dc.w	byte_20B1B6-obj15_map
+	dc.w	byte_20B1C6-obj15_map
+	dc.w	byte_20B1CC-obj15_map
+	dc.w	byte_20B1D2-obj15_map
+	dc.w	byte_20B1D8-obj15_map
+	dc.w	byte_20B1DE-obj15_map
+	dc.w	byte_20B14E-obj15_map
+	dc.w	byte_20B168-obj15_map
+	dc.w	byte_20B182-obj15_map
+	dc.w	byte_20B19C-obj15_map
 byte_20B14E:
-	dc.b 5
-	dc.b $EA,  5,  0,  0,$F4
-	dc.b $FA,  0,  0,  4,$F4
-	dc.b $FA,  5,  0,  5,$FC
-	dc.b   2,  5,  0,  9,$F8
-	dc.b $FA,  0,  0,$11, $E
+	dc.b	5
+	dc.b	$EA,5,0,0,$F4
+	dc.b	$FA,0,0,4,$F4
+	dc.b	$FA,5,0,5,$FC
+	dc.b	2,5,0,9,-8
+	dc.b	$FA,0,0,$11,$E
 	even
 byte_20B168:
-	dc.b 5
-	dc.b $EB,  5,  0,  0,$F4
-	dc.b $FB,  0,  0,  4,$F4
-	dc.b $FB,  5,  0,  5,$FC
-	dc.b   2,  5,  0, $D,$F8
-	dc.b $FA,  0,  0,$11,$12
+	dc.b	5
+	dc.b	$EB,5,0,0,$F4
+	dc.b	$FB,0,0,4,$F4
+	dc.b	$FB,5,0,5,$FC
+	dc.b	2,5,0,$D,-8
+	dc.b	$FA,0,0,$11,$12
 	even
 byte_20B182:
-	dc.b 5
-	dc.b $EA,  5,  0,$12,$F4
-	dc.b $FA,  0,  0,  4,$F4
-	dc.b $FA,  5,  0,  5,$FC
-	dc.b   2,  5,  0,  9,$F8
-	dc.b $FA,  0,  0,$11, $E
+	dc.b	5
+	dc.b	$EA,5,0,$12,$F4
+	dc.b	$FA,0,0,4,$F4
+	dc.b	$FA,5,0,5,$FC
+	dc.b	2,5,0,9,-8
+	dc.b	$FA,0,0,$11,$E
 	even
 byte_20B19C:
-	dc.b 5
-	dc.b $EB,  5,  0,$12,$F4
-	dc.b $FB,  0,  0,  4,$F4
-	dc.b $FB,  5,  0,  5,$FC
-	dc.b   2,  5,  0, $D,$F8
-	dc.b $FA,  0,  0,$11,$12
+	dc.b	5
+	dc.b	$EB,5,0,$12,$F4
+	dc.b	$FB,0,0,4,$F4
+	dc.b	$FB,5,0,5,$FC
+	dc.b	2,5,0,$D,-8
+	dc.b	$FA,0,0,$11,$12
 	even
 byte_20B1B6:
-	dc.b 3
-	dc.b $F0,  5,  0,  0,$F4
-	dc.b   0,  0,  0,  4,$F4
-	dc.b   0,  5,  0,  5,$FC
+	dc.b	3
+	dc.b	$F0,5,0,0,$F4
+	dc.b	0,0,0,4,$F4
+	dc.b	0,5,0,5,$FC
 	even
 byte_20B1C6:
-	dc.b 1
-	dc.b $F8,  5,  0,  9,$F8
+	dc.b	1
+	dc.b	-8,5,0,9,-8
 	even
 byte_20B1CC:
-	dc.b 1
-	dc.b $F8,  5,  0, $D,$F8
+	dc.b	1
+	dc.b	-8,5,0,$D,-8
 	even
 byte_20B1D2:
-	dc.b 1
-	dc.b $FC,  0,  0,$11,$FC
+	dc.b	1
+	dc.b	$FC,0,0,$11,$FC
 	even
 byte_20B1D8:
-	dc.b 1
-	dc.b $FC,  0,  0,$11,  0
+	dc.b	1
+	dc.b	$FC,0,0,$11,0
 	even
 byte_20B1DE:
-	dc.b 3
-	dc.b $F0,  5,  0,$12,$F4
-	dc.b   0,  0,  0,  4,$F4
-	dc.b   0,  5,  0,  5,$FC
+	dc.b	3
+	dc.b	$F0,5,0,$12,$F4
+	dc.b	0,0,0,4,$F4
+	dc.b	0,5,0,5,$FC
 	even
 
 obj16_ani:
-	dc.w unk_20B202-obj16_ani
-	dc.w unk_20B206-obj16_ani
-	dc.w unk_20B20A-obj16_ani
-	dc.w unk_20B20E-obj16_ani
-	dc.w unk_20B212-obj16_ani
-	dc.w unk_20B216-obj16_ani
-	dc.w unk_20B21A-obj16_ani
-	dc.w unk_20B21E-obj16_ani
-	dc.w unk_20B222-obj16_ani
-	dc.w unk_20B22A-obj16_ani
-unk_20B202: dc.b   9
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+	dc.w	unk_20B202-obj16_ani
+	dc.w	unk_20B206-obj16_ani
+	dc.w	unk_20B20A-obj16_ani
+	dc.w	unk_20B20E-obj16_ani
+	dc.w	unk_20B212-obj16_ani
+	dc.w	unk_20B216-obj16_ani
+	dc.w	unk_20B21A-obj16_ani
+	dc.w	unk_20B21E-obj16_ani
+	dc.w	unk_20B222-obj16_ani
+	dc.w	unk_20B22A-obj16_ani
+unk_20B202:
+	dc.b	9
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
-unk_20B206: dc.b   9
-	dc.b   8
-	dc.b   9
-	dc.b $FF
+unk_20B206:
+	dc.b	9
+	dc.b	8
+	dc.b	9
+	dc.b	$FF
 	even
-unk_20B20A: dc.b $27
-	dc.b  $A
-	dc.b $FF
+unk_20B20A:
+	dc.b	$27
+	dc.b	$A
+	dc.b	$FF
 	even
-unk_20B20E: dc.b $27
-	dc.b  $B
-	dc.b $FF
+unk_20B20E:
+	dc.b	$27
+	dc.b	$B
+	dc.b	$FF
 	even
-unk_20B212: dc.b   9
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+unk_20B212:
+	dc.b	9
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
-unk_20B216: dc.b   9
-	dc.b  $C
-	dc.b  $D
-	dc.b $FF
+unk_20B216:
+	dc.b	9
+	dc.b	$C
+	dc.b	$D
+	dc.b	$FF
 	even
-unk_20B21A: dc.b $27
-	dc.b  $A
-	dc.b $FF
+unk_20B21A:
+	dc.b	$27
+	dc.b	$A
+	dc.b	$FF
 	even
-unk_20B21E: dc.b $27
-	dc.b  $E
-	dc.b $FF
+unk_20B21E:
+	dc.b	$27
+	dc.b	$E
+	dc.b	$FF
 	even
-unk_20B222: dc.b $27
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b $FF
+unk_20B222:
+	dc.b	$27
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	$FF
 	even
-unk_20B22A: dc.b   9
-	dc.b   6
-	dc.b   7
-	dc.b   6
-	dc.b   7
-	dc.b   6
-	dc.b   7
-	dc.b  $A
-	dc.b  $A
-	dc.b  $B
-	dc.b  $B
-	dc.b   8
-	dc.b   9
-	dc.b   9
-	dc.b   8
-	dc.b   9
-	dc.b   8
-	dc.b   9
-	dc.b $FF
+unk_20B22A:
+	dc.b	9
+	dc.b	6
+	dc.b	7
+	dc.b	6
+	dc.b	7
+	dc.b	6
+	dc.b	7
+	dc.b	$A
+	dc.b	$A
+	dc.b	$B
+	dc.b	$B
+	dc.b	8
+	dc.b	9
+	dc.b	9
+	dc.b	8
+	dc.b	9
+	dc.b	8
+	dc.b	9
+	dc.b	$FF
 	even
 
-obj16_map:	dc.w byte_20B25C-obj16_map
-	dc.w byte_20B271-obj16_map
-	dc.w byte_20B286-obj16_map
-	dc.w byte_20B29B-obj16_map
-	dc.w byte_20B2B0-obj16_map
-	dc.w byte_20B2BB-obj16_map
-	dc.w byte_20B2F0-obj16_map
-	dc.w byte_20B310-obj16_map
-	dc.w byte_20B330-obj16_map
-	dc.w byte_20B350-obj16_map
-	dc.w byte_20B370-obj16_map
-	dc.w byte_20B386-obj16_map
-	dc.w byte_20B39B-obj16_map
-	dc.w byte_20B3BA-obj16_map
-	dc.w byte_20B3D9-obj16_map
-byte_20B25C:	dc.b 4
-	dc.b $F0,  3,  0,  0,$F8
-	dc.b $F8,  0,  0,  4,$F0
-	dc.b $F0,  3,  8,  0,  0
-	dc.b $F8,  0,  8,  4,  8
-byte_20B271:	dc.b 4
-	dc.b $F0,  6,  0,  5,$F0
-	dc.b   8,  0,  0, $B,$F8
-	dc.b $F0,  6,  8,  5,  0
-	dc.b   8,  0,  8, $B,  0
-byte_20B286:	dc.b 4
-	dc.b $F8,  6,  0, $C,$F0
-	dc.b $F0,  0,  0,$12,$F8
-	dc.b $F8,  6,  8, $C,  0
-	dc.b $F0,  0,  8,$12,  0
-byte_20B29B:	dc.b 4
-	dc.b $F0,  3,  0,$13,$F8
-	dc.b   0,  0,$10,  4,$F0
-	dc.b $F0,  3,  8,$13,  0
-	dc.b   0,  0,$18,  4,  8
-byte_20B2B0:	dc.b 2
-	dc.b $F4,  6,  0,$17,$F0
-	dc.b $F4,  6,  8,$17,  0
-byte_20B2BB:	dc.b 2
-	dc.b $F4,  6,  0,$1D,$F0
-	dc.b $F4,  6,  8,$1D,  0
+obj16_map:	dc.w	byte_20B25C-obj16_map
+	dc.w	byte_20B271-obj16_map
+	dc.w	byte_20B286-obj16_map
+	dc.w	byte_20B29B-obj16_map
+	dc.w	byte_20B2B0-obj16_map
+	dc.w	byte_20B2BB-obj16_map
+	dc.w	byte_20B2F0-obj16_map
+	dc.w	byte_20B310-obj16_map
+	dc.w	byte_20B330-obj16_map
+	dc.w	byte_20B350-obj16_map
+	dc.w	byte_20B370-obj16_map
+	dc.w	byte_20B386-obj16_map
+	dc.w	byte_20B39B-obj16_map
+	dc.w	byte_20B3BA-obj16_map
+	dc.w	byte_20B3D9-obj16_map
+byte_20B25C:	dc.b	4
+	dc.b	$F0,3,0,0,-8
+	dc.b	-8,0,0,4,$F0
+	dc.b	$F0,3,8,0,0
+	dc.b	-8,0,8,4,8
+byte_20B271:	dc.b	4
+	dc.b	$F0,6,0,5,$F0
+	dc.b	8,0,0,$B,-8
+	dc.b	$F0,6,8,5,0
+	dc.b	8,0,8,$B,0
+byte_20B286:	dc.b	4
+	dc.b	-8,6,0,$C,$F0
+	dc.b	$F0,0,0,$12,-8
+	dc.b	-8,6,8,$C,0
+	dc.b	$F0,0,8,$12,0
+byte_20B29B:	dc.b	4
+	dc.b	$F0,3,0,$13,-8
+	dc.b	0,0,$10,4,$F0
+	dc.b	$F0,3,8,$13,0
+	dc.b	0,0,$18,4,8
+byte_20B2B0:	dc.b	2
+	dc.b	$F4,6,0,$17,$F0
+	dc.b	$F4,6,8,$17,0
+byte_20B2BB:	dc.b	2
+	dc.b	$F4,6,0,$1D,$F0
+	dc.b	$F4,6,8,$1D,0
 
-	dc.b 4
-	dc.b $F8,  6,  0,$23,$F0
-	dc.b $F0,  0,  0,$29,$F8
-	dc.b $F8,  6,  8,$23,  0
-	dc.b $F0,  0,  8,$29,  0
-	dc.b 4
-	dc.b $F0,  3,  0,$2A,$F8
-	dc.b   0,  0,$10,  4,$F0
-	dc.b $F0,  3,  8,$2A,  0
-	dc.b   0,  0,$18,  4,  8
-byte_20B2F0:	dc.b 6
-	dc.b $F0,  3,  0,  0,$F8
-	dc.b $F8,  0,  0,  4,$F0
-	dc.b $F0,  3,  8,  0,  0
-	dc.b $F8,  0,  8,  4,  8
-	dc.b $E5,  6,  0,$17,$F0
-	dc.b $E5,  6,  8,$17,  0
+	dc.b	4
+	dc.b	-8,6,0,$23,$F0
+	dc.b	$F0,0,0,$29,-8
+	dc.b	-8,6,8,$23,0
+	dc.b	$F0,0,8,$29,0
+	dc.b	4
+	dc.b	$F0,3,0,$2A,-8
+	dc.b	0,0,$10,4,$F0
+	dc.b	$F0,3,8,$2A,0
+	dc.b	0,0,$18,4,8
+byte_20B2F0:	dc.b	6
+	dc.b	$F0,3,0,0,-8
+	dc.b	-8,0,0,4,$F0
+	dc.b	$F0,3,8,0,0
+	dc.b	-8,0,8,4,8
+	dc.b	$E5,6,0,$17,$F0
+	dc.b	$E5,6,8,$17,0
 	even
-byte_20B310:	dc.b 6
-	dc.b $F0,  3,  0,  0,$F8
-	dc.b $F8,  0,  0,  4,$F0
-	dc.b $F0,  3,  8,  0,  0
-	dc.b $F8,  0,  8,  4,  8
-	dc.b $E5,  6,  0,$1D,$F0
-	dc.b $E5,  6,  8,$1D,  0
+byte_20B310:	dc.b	6
+	dc.b	$F0,3,0,0,-8
+	dc.b	-8,0,0,4,$F0
+	dc.b	$F0,3,8,0,0
+	dc.b	-8,0,8,4,8
+	dc.b	$E5,6,0,$1D,$F0
+	dc.b	$E5,6,8,$1D,0
 	even
-byte_20B330:	dc.b 6
-	dc.b $F0,  3,  0,$13,$F8
-	dc.b   0,  0,$10,  4,$F0
-	dc.b $F0,  3,  8,$13,  0
-	dc.b   0,  0,$18,  4,  8
-	dc.b   3,  6,$10,$17,$F0
-	dc.b   3,  6,$18,$17,  0
+byte_20B330:	dc.b	6
+	dc.b	$F0,3,0,$13,-8
+	dc.b	0,0,$10,4,$F0
+	dc.b	$F0,3,8,$13,0
+	dc.b	0,0,$18,4,8
+	dc.b	3,6,$10,$17,$F0
+	dc.b	3,6,$18,$17,0
 	even
-byte_20B350:	dc.b 6
-	dc.b $F0,  3,  0,$13,$F8
-	dc.b   0,  0,$10,  4,$F0
-	dc.b $F0,  3,  8,$13,  0
-	dc.b   0,  0,$18,  4,  8
-	dc.b   3,  6,$10,$1D,$F0
-	dc.b   3,  6,$18,$1D,  0
+byte_20B350:	dc.b	6
+	dc.b	$F0,3,0,$13,-8
+	dc.b	0,0,$10,4,$F0
+	dc.b	$F0,3,8,$13,0
+	dc.b	0,0,$18,4,8
+	dc.b	3,6,$10,$1D,$F0
+	dc.b	3,6,$18,$1D,0
 	even
-byte_20B370:	dc.b 4
-	dc.b $F0,  6,  0,  5,$F0
-	dc.b   8,  0,  0, $B,$F8
-	dc.b $F0,  6,  8,  5,  0
-	dc.b   8,  0,  8, $B,  0
+byte_20B370:	dc.b	4
+	dc.b	$F0,6,0,5,$F0
+	dc.b	8,0,0,$B,-8
+	dc.b	$F0,6,8,5,0
+	dc.b	8,0,8,$B,0
 	even
-byte_20B386:	dc.b 4
-	dc.b $F8,  6,  0, $C,$F0
-	dc.b $F0,  0,  0,$12,$F8
-	dc.b $F8,  6,  8, $C,  0
-	dc.b $F0,  0,  8,$12,  0
-byte_20B39B:	dc.b 6
-	dc.b $F0,  3,  0,$2A,$F8
-	dc.b   0,  0,$10,  4,$F0
-	dc.b $F0,  3,  8,$2A,  0
-	dc.b   0,  0,$18,  4,  8
-	dc.b   3,  6,$10,$17,$F0
-	dc.b   3,  6,$18,$17,  0
+byte_20B386:	dc.b	4
+	dc.b	-8,6,0,$C,$F0
+	dc.b	$F0,0,0,$12,-8
+	dc.b	-8,6,8,$C,0
+	dc.b	$F0,0,8,$12,0
+byte_20B39B:	dc.b	6
+	dc.b	$F0,3,0,$2A,-8
+	dc.b	0,0,$10,4,$F0
+	dc.b	$F0,3,8,$2A,0
+	dc.b	0,0,$18,4,8
+	dc.b	3,6,$10,$17,$F0
+	dc.b	3,6,$18,$17,0
 	even
-byte_20B3BA:	dc.b 6
-	dc.b $F0,  3,  0,$2A,$F8
-	dc.b   0,  0,$10,  4,$F0
-	dc.b $F0,  3,  8,$2A,  0
-	dc.b   0,  0,$18,  4,  8
-	dc.b   3,  6,$10,$1D,$F0
-	dc.b   3,  6,$18,$1D,  0
-byte_20B3D9:	dc.b 4
-	dc.b $F8,  6,  0,$23,$F0
-	dc.b $F0,  0,  0,$29,$F8
-	dc.b $F8,  6,  8,$23,  0
-	dc.b $F0,  0,  8,$29,  0
+byte_20B3BA:	dc.b	6
+	dc.b	$F0,3,0,$2A,-8
+	dc.b	0,0,$10,4,$F0
+	dc.b	$F0,3,8,$2A,0
+	dc.b	0,0,$18,4,8
+	dc.b	3,6,$10,$1D,$F0
+	dc.b	3,6,$18,$1D,0
+byte_20B3D9:	dc.b	4
+	dc.b	-8,6,0,$23,$F0
+	dc.b	$F0,0,0,$29,-8
+	dc.b	-8,6,8,$23,0
+	dc.b	$F0,0,8,$29,0
 	even
-obj22_ani:	dc.w unk_20B3F8-obj22_ani
-	dc.w unk_20B434-obj22_ani
-	dc.w unk_20B43A-obj22_ani
-	dc.w unk_20B43E-obj22_ani
-	dc.w unk_20B442-obj22_ani
-unk_20B3F8: dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   5
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   5
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b   6
-	dc.b   7
-	dc.b $FF
+obj22_ani:	dc.w	unk_20B3F8-obj22_ani
+	dc.w	unk_20B434-obj22_ani
+	dc.w	unk_20B43A-obj22_ani
+	dc.w	unk_20B43E-obj22_ani
+	dc.w	unk_20B442-obj22_ani
+unk_20B3F8:
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	5
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	5
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	6
+	dc.b	7
+	dc.b	$FF
 	even
-unk_20B434: dc.b $13
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+unk_20B434:
+	dc.b	$13
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B43A: dc.b $13
-	dc.b   0
-	dc.b   0
-	dc.b $FF
+unk_20B43A:
+	dc.b	$13
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20B43E: dc.b   9
-	dc.b   2
-	dc.b   2
-	dc.b $FF
+unk_20B43E:
+	dc.b	9
+	dc.b	2
+	dc.b	2
+	dc.b	$FF
 	even
-unk_20B442: dc.b   5
-	dc.b   1
-	dc.b   7
-	dc.b   1
-	dc.b   7
-	dc.b $FF
+unk_20B442:
+	dc.b	5
+	dc.b	1
+	dc.b	7
+	dc.b	1
+	dc.b	7
+	dc.b	$FF
 	even
-obj22_map:	dc.w byte_20B458-obj22_map
-	dc.w byte_20B46D-obj22_map
-	dc.w byte_20B482-obj22_map
-	dc.w byte_20B48D-obj22_map
-	dc.w byte_20B493-obj22_map
-	dc.w byte_20B499-obj22_map
-	dc.w byte_20B49F-obj22_map
-	dc.w byte_20B4A5-obj22_map
-byte_20B458:	dc.b 4
-	dc.b $F0,  9,  0,  0,$F8
-	dc.b   0,  9,  0,  6,$F8
-	dc.b $F8,  0,  0, $C,$F0
-	dc.b   0,  0,  0, $D,$F0
-byte_20B46D:	dc.b 4
-	dc.b $F1,  9,  0,  0,$F8
-	dc.b   1,  9,  0, $E,$F8
-	dc.b $F9,  0,  0, $C,$F0
-	dc.b   1,  0,  0, $D,$F0
-byte_20B482:	dc.b 2
-	dc.b $F0,  8,  0,$14,$F8
-	dc.b $F8, $E,  0,$17,$F0
-byte_20B48D:	dc.b 1
-	dc.b $FC,  0,  0,$23,$FC
-byte_20B493:	dc.b 1
-	dc.b $FC,  0,  0,$24,$FC
-byte_20B499:	dc.b 1
-	dc.b $F8,  5,  0,$25,$F8
-byte_20B49F:	dc.b 1
-	dc.b $F8,  5,  0,$29,$F8
-byte_20B4A5:	dc.b 3
-	dc.b $EF,  9,  0,$2D,$F8
-	dc.b $F7,  0,  0, $C,$F0
-	dc.b $FF, $D,  0,$33,$F0
+obj22_map:	dc.w	byte_20B458-obj22_map
+	dc.w	byte_20B46D-obj22_map
+	dc.w	byte_20B482-obj22_map
+	dc.w	byte_20B48D-obj22_map
+	dc.w	byte_20B493-obj22_map
+	dc.w	byte_20B499-obj22_map
+	dc.w	byte_20B49F-obj22_map
+	dc.w	byte_20B4A5-obj22_map
+byte_20B458:	dc.b	4
+	dc.b	$F0,9,0,0,-8
+	dc.b	0,9,0,6,-8
+	dc.b	-8,0,0,$C,$F0
+	dc.b	0,0,0,$D,$F0
+byte_20B46D:	dc.b	4
+	dc.b	$F1,9,0,0,-8
+	dc.b	1,9,0,$E,-8
+	dc.b	$F9,0,0,$C,$F0
+	dc.b	1,0,0,$D,$F0
+byte_20B482:	dc.b	2
+	dc.b	$F0,8,0,$14,-8
+	dc.b	-8,$E,0,$17,$F0
+byte_20B48D:	dc.b	1
+	dc.b	$FC,0,0,$23,$FC
+byte_20B493:	dc.b	1
+	dc.b	$FC,0,0,$24,$FC
+byte_20B499:	dc.b	1
+	dc.b	-8,5,0,$25,-8
+byte_20B49F:	dc.b	1
+	dc.b	-8,5,0,$29,-8
+byte_20B4A5:	dc.b	3
+	dc.b	$EF,9,0,$2D,-8
+	dc.b	$F7,0,0,$C,$F0
+	dc.b	$FF,$D,0,$33,$F0
 	even
-off_20B4B6: dc.w unk_20B4BC-off_20B4B6
-	dc.w unk_20B4C0-off_20B4B6
-	dc.w unk_20B4C4-off_20B4B6
-unk_20B4BC: dc.b $1D
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+off_20B4B6:
+	dc.w	unk_20B4BC-off_20B4B6
+	dc.w	unk_20B4C0-off_20B4B6
+	dc.w	unk_20B4C4-off_20B4B6
+unk_20B4BC:
+	dc.b	$1D
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20B4C0: dc.b   0
-	dc.b   0
-	dc.b $FF
+unk_20B4C0:
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20B4C4: dc.b   0
-	dc.b   1
-	dc.b $FF
+unk_20B4C4:
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-off_20B4C8: dc.w byte_20B4CC-off_20B4C8
-	dc.w byte_20B4D2-off_20B4C8
-byte_20B4CC:	dc.b 1
-	dc.b $F8,  5,  0,  0,$F8
-byte_20B4D2:	dc.b 1
-	dc.b $F8,  5,  0,  4,$F8
+off_20B4C8:
+	dc.w	byte_20B4CC-off_20B4C8
+	dc.w	byte_20B4D2-off_20B4C8
+byte_20B4CC:	dc.b	1
+	dc.b	-8,5,0,0,-8
+byte_20B4D2:	dc.b	1
+	dc.b	-8,5,0,4,-8
 	even
 
 sub_20B4D8:
@@ -12152,29 +12174,29 @@ loc_20B578:
 	rts
 
 obj23_ani:
-	dc.w byte_20B592-obj23_ani
+	dc.w	byte_20B592-obj23_ani
 
 byte_20B592:
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b $FF
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-obj23_map:	dc.w byte_20B59E-obj23_map
-	dc.w byte_20B5B3-obj23_map
-byte_20B59E:	dc.b 4
-	dc.b $F8,  0,  0,$2A,$F8
-	dc.b $F8,  0,  8,$2A,  0
-	dc.b   0,  0,$10,$2A,$F8
-	dc.b   0,  0,$18,$2A,  0
-byte_20B5B3:	dc.b 4
-	dc.b $F8,  0,  0,$2B,$F8
-	dc.b $F8,  0,  8,$2B,  0
-	dc.b   0,  0,$10,$2B,$F8
-	dc.b   0,  0,$18,$2B,  0
+obj23_map:	dc.w	byte_20B59E-obj23_map
+	dc.w	byte_20B5B3-obj23_map
+byte_20B59E:	dc.b	4
+	dc.b	-8,0,0,$2A,-8
+	dc.b	-8,0,8,$2A,0
+	dc.b	0,0,$10,$2A,-8
+	dc.b	0,0,$18,$2A,0
+byte_20B5B3:	dc.b	4
+	dc.b	-8,0,0,$2B,-8
+	dc.b	-8,0,8,$2B,0
+	dc.b	0,0,$10,$2B,-8
+	dc.b	0,0,$18,$2B,0
 	even
 
-	movea.l a0,a1
+	movea.l	a0,a1
 	moveq	#obj.len-1,d0
 	moveq	#0,d1
 loc_20B5CE:
@@ -12351,32 +12373,32 @@ loc_20B7AC:
 	rts
 
 byte_20B7B6:
-	dc.b $10,$F0,$10,$F0
-	dc.b $10,$F0,  4,$FC
-	dc.b   9,$F7,$38,$10
-	dc.b   0,$E8,  4,$FC
-	dc.b   0,$E8, $C,  0
-	dc.b $18,  0,  4,$FC
-	dc.b $18,  0, $C,  0
-	dc.b $20,$E0,$20,$E0
-	dc.b $10,$F0,$10,  0
-	dc.b $20,$E0,$10,  0
-	dc.b   8,$F8,$10,$F0
-	dc.b   8,$F8,$18,$E8
-	dc.b $10,$F0,  8,  1
-	dc.b $10,$F0,  0,$F8
-	dc.b $10,$F0,$10,$F0
-	dc.b   8,$F8,$10,$C0
-	dc.b $17,$E9,$10,$F0
-	dc.b   8,$F8,  8,$F8
-	dc.b $10,$F0,$10,$F0
-	dc.b $10,$F0,$40,$C0
+	dc.b	$10,$F0,$10,$F0
+	dc.b	$10,$F0,4,$FC
+	dc.b	9,$F7,$38,$10
+	dc.b	0,$E8,4,$FC
+	dc.b	0,$E8,$C,0
+	dc.b	$18,0,4,$FC
+	dc.b	$18,0,$C,0
+	dc.b	$20,$E0,$20,$E0
+	dc.b	$10,$F0,$10,0
+	dc.b	$20,$E0,$10,0
+	dc.b	8,$F8,$10,$F0
+	dc.b	8,$F8,$18,$E8
+	dc.b	$10,$F0,8,1
+	dc.b	$10,$F0,0,$F8
+	dc.b	$10,$F0,$10,$F0
+	dc.b	8,$F8,$10,$C0
+	dc.b	$17,$E9,$10,$F0
+	dc.b	8,$F8,8,$F8
+	dc.b	$10,$F0,$10,$F0
+	dc.b	$10,$F0,$40,$C0
 byte_20B806:
-	dc.b $10,$F0,$10,$F0
+	dc.b	$10,$F0,$10,$F0
 byte_20B80A:
-	dc.b $10,$F0,$10,$F0
+	dc.b	$10,$F0,$10,$F0
 byte_20B80E:
-	dc.b $10,$F0,$10,$F0
+	dc.b	$10,$F0,$10,$F0
 
 obj28:
 	moveq	#0,d0
@@ -12386,13 +12408,13 @@ obj28:
 	jmp	loc_206FB8.l
 
 off_20B826:
-	dc.w loc_20B834-off_20B826
-	dc.w loc_20B888-off_20B826
-	dc.w loc_20B8C8-off_20B826
-	dc.w loc_20B9B4-off_20B826
-	dc.w loc_20B908-off_20B826
-	dc.w loc_20B9FC-off_20B826
-	dc.w loc_20B950-off_20B826
+	dc.w	loc_20B834-off_20B826
+	dc.w	loc_20B888-off_20B826
+	dc.w	loc_20B8C8-off_20B826
+	dc.w	loc_20B9B4-off_20B826
+	dc.w	loc_20B908-off_20B826
+	dc.w	loc_20B9FC-off_20B826
+	dc.w	loc_20B950-off_20B826
 
 loc_20B834:
 	move.l	#obj28_map,obj.mappings(a0)
@@ -12564,10 +12586,11 @@ obj27:
 	jsr	off_20BA74(pc,d0.w)
 	jmp	loc_206FB8.l
 
-off_20BA74: dc.w loc_20BA7C-off_20BA74
-	dc.w loc_20BAA2-off_20BA74
-	dc.w loc_20BAE4-off_20BA74
-	dc.w loc_20BBA8-off_20BA74
+off_20BA74:
+	dc.w	loc_20BA7C-off_20BA74
+	dc.w	loc_20BAA2-off_20BA74
+	dc.w	loc_20BAE4-off_20BA74
+	dc.w	loc_20BBA8-off_20BA74
 
 loc_20BA7C:
 	addq.b	#2,obj.routine(a0)
@@ -12685,103 +12708,106 @@ loc_20BC06:
 	jsr	animateobj.l
 	jmp	displaysprite.l
 
-unk_20BC1E: dc.b   1
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   4
-	dc.b   5
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-unk_20BC34: dc.b   7
-	dc.b   7
-	dc.b   8
-	dc.b   8
-	dc.b   9
-	dc.b   9
-	dc.b  $A
-	dc.b  $A
-	dc.b  $B
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   0
-unk_20BC4A: dc.b   0
-	dc.b   5
-	dc.b   4
-	dc.b   3
-	dc.b   2
-	dc.b   1
-	dc.b   0
-	dc.b  $D
-	dc.b   7
-	dc.b   8
-	dc.b   9
-	dc.b  $A
-	dc.b  $B
-	dc.b  $A
-	dc.b   9
-	dc.b   8
-	dc.b   7
-	dc.b  $D
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   3
-	dc.b   2
-	dc.b   1
-	dc.b  $D
-	dc.b   7
-	dc.b   8
-	dc.b   9
-	dc.b  $A
-	dc.b   9
-	dc.b   8
-	dc.b   7
-	dc.b  $D
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   2
-	dc.b   1
-	dc.b  $D
-	dc.b   7
-	dc.b   8
-	dc.b   7
-	dc.b  $D
-	dc.b   1
-	dc.b   2
-	dc.b   1
-	dc.b  $D
-	dc.b   7
-	dc.b  $D
-	dc.b   1
-	dc.b  $D
-	dc.b $FF
+unk_20BC1E:
+	dc.b	1
+	dc.b	1
+	dc.b	2
+	dc.b	2
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	4
+	dc.b	5
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+unk_20BC34:
+	dc.b	7
+	dc.b	7
+	dc.b	8
+	dc.b	8
+	dc.b	9
+	dc.b	9
+	dc.b	$A
+	dc.b	$A
+	dc.b	$B
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	0
+unk_20BC4A:
+	dc.b	0
+	dc.b	5
+	dc.b	4
+	dc.b	3
+	dc.b	2
+	dc.b	1
+	dc.b	0
+	dc.b	$D
+	dc.b	7
+	dc.b	8
+	dc.b	9
+	dc.b	$A
+	dc.b	$B
+	dc.b	$A
+	dc.b	9
+	dc.b	8
+	dc.b	7
+	dc.b	$D
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	3
+	dc.b	2
+	dc.b	1
+	dc.b	$D
+	dc.b	7
+	dc.b	8
+	dc.b	9
+	dc.b	$A
+	dc.b	9
+	dc.b	8
+	dc.b	7
+	dc.b	$D
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	2
+	dc.b	1
+	dc.b	$D
+	dc.b	7
+	dc.b	8
+	dc.b	7
+	dc.b	$D
+	dc.b	1
+	dc.b	2
+	dc.b	1
+	dc.b	$D
+	dc.b	7
+	dc.b	$D
+	dc.b	1
+	dc.b	$D
+	dc.b	$FF
 	even
 
 loc_20BC80:
@@ -12804,23 +12830,23 @@ locret_20BCA2:
 	jmp	off_20BCB2(pc,d0.w)
 
 off_20BCB2:
-	dc.w loc_20BCD4-off_20BCB2
-	dc.w sub_20BDC6-off_20BCB2
-	dc.w loc_20BE6A-off_20BCB2
-	dc.w loc_20BED8-off_20BCB2
-	dc.w loc_20C14C-off_20BCB2
-	dc.w loc_20C18C-off_20BCB2
-	dc.w loc_20C0FE-off_20BCB2
-	dc.w loc_20C2A2-off_20BCB2
-	dc.w loc_20C346-off_20BCB2
-	dc.w loc_20C3B0-off_20BCB2
-	dc.w loc_20C278-off_20BCB2
-	dc.w loc_20C212-off_20BCB2
-	dc.w loc_20C19E-off_20BCB2
-	dc.w loc_20C40A-off_20BCB2
-	dc.w locret_20C5FC-off_20BCB2
-	dc.w loc_20C5E8-off_20BCB2
-	dc.w loc_20C5D4-off_20BCB2
+	dc.w	loc_20BCD4-off_20BCB2
+	dc.w	sub_20BDC6-off_20BCB2
+	dc.w	loc_20BE6A-off_20BCB2
+	dc.w	loc_20BED8-off_20BCB2
+	dc.w	loc_20C14C-off_20BCB2
+	dc.w	loc_20C18C-off_20BCB2
+	dc.w	loc_20C0FE-off_20BCB2
+	dc.w	loc_20C2A2-off_20BCB2
+	dc.w	loc_20C346-off_20BCB2
+	dc.w	loc_20C3B0-off_20BCB2
+	dc.w	loc_20C278-off_20BCB2
+	dc.w	loc_20C212-off_20BCB2
+	dc.w	loc_20C19E-off_20BCB2
+	dc.w	loc_20C40A-off_20BCB2
+	dc.w	locret_20C5FC-off_20BCB2
+	dc.w	loc_20C5E8-off_20BCB2
+	dc.w	loc_20C5D4-off_20BCB2
 
 loc_20BCD4:
 	move.b	#$C,obj.routine(a0)
@@ -12886,12 +12912,12 @@ sub_20BDC6:
 	moveq	#9,d0
 	jsr	sub_20DC4C(pc)
 	move.b	#1,obj.ani(a0)
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	tst.b	obj.subtype(a2)
 	beq.w	loc_20BE04
 	move.b	#$1A,obj.routine(a0)
 loc_20BE04:
-	movea.w obj.field_3E(a0),a1
+	movea.w	obj.field_3E(a0),a1
 	moveq	#0,d1
 	move.b	obj.field_3C(a0),d1
 	mulu.w	#$10,d1
@@ -12910,7 +12936,7 @@ loc_20BE04:
 	sub.w	d1,d0
 	addi.w	#$60,d0
 	move.w	d0,obj.field_36(a0)
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	moveq	#0,d1
 	move.w	obj.xpos(a2),d0
 	move.w	obj.xpos(a0),d1
@@ -12932,7 +12958,7 @@ loc_20BE6A:
 	move.b	#$10,obj.field_19(a0)
 	moveq	#9,d0
 	jsr	sub_20DC4C(pc)
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	tst.b	obj.subtype(a2)
 	beq.w	loc_20BEC0
 	move.b	#$1E,obj.routine(a0)
@@ -12953,7 +12979,7 @@ loc_20BEC0:
 	rts
 
 loc_20BED8:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.b	obj.routine(a2),d0
 	cmpi.b	#$18,d0
 	bne.w	loc_20BEEE
@@ -12967,7 +12993,7 @@ loc_20BEEE:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BF42
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.b	obj.field_3C(a0),d0
 	addq.w	#1,d0
 	move.b	d0,obj.field_31(a2)
@@ -12991,7 +13017,7 @@ loc_20BF42:
 	rts
 
 	moveq	#0,d2
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.b	obj.field_3D(a2),d2
 	lea	unk_20BF8E.l,a3
 	andi.w	#$3F,d2
@@ -13006,76 +13032,76 @@ loc_20BF42:
 	rts
 
 unk_20BF8E:
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   4
-	dc.b   5
-	dc.b   5
-	dc.b   6
-	dc.b   6
-	dc.b   7
-	dc.b   7
-	dc.b   8
-	dc.b   8
-	dc.b   7
-	dc.b   7
-	dc.b   6
-	dc.b   6
-	dc.b   5
-	dc.b   5
-	dc.b   4
-	dc.b   4
-	dc.b   3
-	dc.b   3
-	dc.b   2
-	dc.b   2
-	dc.b   1
-	dc.b   1
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b   6
-	dc.b   7
-	dc.b   8
-	dc.b   9
-	dc.b  $A
-	dc.b  $B
-	dc.b  $C
-	dc.b  $D
-	dc.b  $E
-	dc.b  $F
-	dc.b $10
-	dc.b  $F
-	dc.b  $E
-	dc.b  $D
-	dc.b  $C
-	dc.b  $B
-	dc.b  $A
-	dc.b   9
-	dc.b   8
-	dc.b   7
-	dc.b   6
-	dc.b   5
-	dc.b   4
-	dc.b   3
-	dc.b   2
-	dc.b   1
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	1
+	dc.b	2
+	dc.b	2
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	4
+	dc.b	5
+	dc.b	5
+	dc.b	6
+	dc.b	6
+	dc.b	7
+	dc.b	7
+	dc.b	8
+	dc.b	8
+	dc.b	7
+	dc.b	7
+	dc.b	6
+	dc.b	6
+	dc.b	5
+	dc.b	5
+	dc.b	4
+	dc.b	4
+	dc.b	3
+	dc.b	3
+	dc.b	2
+	dc.b	2
+	dc.b	1
+	dc.b	1
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	6
+	dc.b	7
+	dc.b	8
+	dc.b	9
+	dc.b	$A
+	dc.b	$B
+	dc.b	$C
+	dc.b	$D
+	dc.b	$E
+	dc.b	$F
+	dc.b	$10
+	dc.b	$F
+	dc.b	$E
+	dc.b	$D
+	dc.b	$C
+	dc.b	$B
+	dc.b	$A
+	dc.b	9
+	dc.b	8
+	dc.b	7
+	dc.b	6
+	dc.b	5
+	dc.b	4
+	dc.b	3
+	dc.b	2
+	dc.b	1
 	even
 
 sub_20BFCE:
 	lea	actwk.w,a1
 	lea	unk_20C04E.l,a3
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.w	obj.xpos(a2),d0
 	subi.w	#$10,d0
 	move.w	obj.xpos(a1),d1
@@ -13120,182 +13146,182 @@ locret_20C04C:
 	rts
 
 unk_20C04E:
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   8
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   8
-	dc.b   8
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   8
-	dc.b   8
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   8
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   6
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   4
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	8
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	8
+	dc.b	8
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	8
+	dc.b	8
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	8
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	6
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	4
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
 	even
 
 loc_20C0FE:
@@ -13324,7 +13350,7 @@ locret_20C14A:
 	rts
 
 loc_20C14C:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.b	obj.routine(a2),d0
 	cmpi.b	#$18,d0
 	bne.w	loc_20C162
@@ -13383,7 +13409,7 @@ locret_20C210:
 	rts
 
 loc_20C212:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.b	obj.routine(a2),d0
 	cmpi.b	#$18,d0
 	beq.w	loc_20C228
@@ -13427,7 +13453,7 @@ loc_20C28E:
 	rts
 
 loc_20C2A2:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.b	obj.routine(a2),d0
 	cmpi.b	#$18,d0
 	beq.w	loc_20C2C2
@@ -13563,7 +13589,7 @@ sub_20C45C:
 	dc.b	$12,$34,$56,$78
 
 loc_20C478:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	lea	unk_20C5FE.l,a3
 	move.w	obj.field_32(a0),d0
 	moveq	#0,d1
@@ -13607,7 +13633,7 @@ sub_20C4DC:
 	rts
 
 loc_20C4FC:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	lea	unk_20C708.l,a3
 	move.w	obj.field_32(a0),d0
 	moveq	#0,d1
@@ -13652,7 +13678,7 @@ sub_20C560:
 	rts
 
 loc_20C582:
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	move.w	obj.field_32(a0),d0
 	mulu.w	#$C,d0
 	move.w	obj.ypos(a2),d1
@@ -13693,538 +13719,540 @@ loc_20C5E8:
 locret_20C5FC:
 	rts
 
-unk_20C5FE: dc.b   0
-	dc.b   0
-	dc.b  $F
-	dc.b $F8
-	dc.b $1F
-	dc.b $F0
-	dc.b $2F
-	dc.b $E8
-	dc.b $3F ; ?
-	dc.b $E0
-	dc.b $4F
-	dc.b $D8
-	dc.b $5F ; _
-	dc.b $D0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b $FC
-	dc.b $23 ; #
-	dc.b $F8
-	dc.b $34 ; 4
-	dc.b $F5
-	dc.b $46 ; F
-	dc.b $F1
-	dc.b $57 ; W
-	dc.b $EE
-	dc.b $69 ; i
-	dc.b $EA
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   0
-	dc.b $23 ; #
-	dc.b $FF
-	dc.b $35 ; 5
-	dc.b $FE
-	dc.b $47 ; G
-	dc.b $FD
-	dc.b $59 ; Y
-	dc.b $FC
-	dc.b $6B ; k
-	dc.b $FB
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   5
-	dc.b $22 ; "
-	dc.b  $A
-	dc.b $33 ; 3
-	dc.b  $F
-	dc.b $44 ; D
-	dc.b $14
-	dc.b $55 ; U
-	dc.b $19
-	dc.b $66 ; f
-	dc.b $1E
-	dc.b   0
-	dc.b   0
-	dc.b  $F
-	dc.b   8
-	dc.b $1F
-	dc.b $11
-	dc.b $2E ; .
-	dc.b $1A
-	dc.b $3E ; >
-	dc.b $22 ; "
-	dc.b $4E ; N
-	dc.b $2B ; +
-	dc.b $5D ; ]
-	dc.b $34 ; 4
-	dc.b   0
-	dc.b   0
-	dc.b  $D
-	dc.b  $B
-	dc.b $1B
-	dc.b $16
-	dc.b $29 ; )
-	dc.b $22 ; "
-	dc.b $37 ; 7
-	dc.b $2D ; -
-	dc.b $44 ; D
-	dc.b $39 ; 9
-	dc.b $52 ; R
-	dc.b $44 ; D
-	dc.b   0
-	dc.b   0
-	dc.b  $B
-	dc.b  $D
-	dc.b $17
-	dc.b $1A
-	dc.b $23 ; #
-	dc.b $28 ; (
-	dc.b $2F
-	dc.b $35 ; 5
-	dc.b $3B ; ;
-	dc.b $43 ; C
-	dc.b $46 ; F
-	dc.b $50 ; P
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b  $E
-	dc.b $13
-	dc.b $1D
-	dc.b $1D
-	dc.b $2C ; ,
-	dc.b $27
-	dc.b $3B ; ;
-	dc.b $31 ; 1
-	dc.b $4A ; J
-	dc.b $3B ; ;
-	dc.b $59 ; Y
-	dc.b   0
-	dc.b   0
-	dc.b   8
-	dc.b  $F
-	dc.b $10
-	dc.b $1F
-	dc.b $18
-	dc.b $2F
-	dc.b $21
-	dc.b $3F ; ?
-	dc.b $29 ; )
-	dc.b $4F
-	dc.b $31 ; 1
-	dc.b $5F ; _
-	dc.b   0
-	dc.b   0
-	dc.b   6
-	dc.b $10
-	dc.b  $D
-	dc.b $21
-	dc.b $14
-	dc.b $31 ; 1
-	dc.b $1B
-	dc.b $42 ; B
-	dc.b $21
-	dc.b $52 ; R
-	dc.b $28 ; (
-	dc.b $63 ; c
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b $11
-	dc.b  $B
-	dc.b $22 ; "
-	dc.b $10
-	dc.b $33 ; 3
-	dc.b $16
-	dc.b $44 ; D
-	dc.b $1B
-	dc.b $55 ; U
-	dc.b $21
-	dc.b $66 ; f
-	dc.b   0
-	dc.b   0
-	dc.b   4
-	dc.b $11
-	dc.b   8
-	dc.b $22 ; "
-	dc.b  $D
-	dc.b $33 ; 3
-	dc.b $11
-	dc.b $45 ; E
-	dc.b $16
-	dc.b $56 ; V
-	dc.b $1A
-	dc.b $67 ; g
-	dc.b   0
-	dc.b   0
-	dc.b   3
-	dc.b $11
-	dc.b   7
-	dc.b $23 ; #
-	dc.b  $A
-	dc.b $34 ; 4
-	dc.b  $E
-	dc.b $46 ; F
-	dc.b $12
-	dc.b $57 ; W
-	dc.b $15
-	dc.b $69 ; i
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b $11
-	dc.b   5
-	dc.b $23 ; #
-	dc.b   8
-	dc.b $34 ; 4
-	dc.b  $B
-	dc.b $46 ; F
-	dc.b  $E
-	dc.b $58 ; X
-	dc.b $11
-	dc.b $69 ; i
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b $11
-	dc.b   4
-	dc.b $23 ; #
-	dc.b   6
-	dc.b $35 ; 5
-	dc.b   8
-	dc.b $46 ; F
-	dc.b  $B
-	dc.b $58 ; X
-	dc.b  $D
-	dc.b $6A ; j
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b $11
-	dc.b   3
-	dc.b $23 ; #
-	dc.b   5
-	dc.b $35 ; 5
-	dc.b   6
-	dc.b $47 ; G
-	dc.b   8
-	dc.b $59 ; Y
-	dc.b  $A
-	dc.b $6A ; j
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b $11
-	dc.b   2
-	dc.b $23 ; #
-	dc.b   3
-	dc.b $35 ; 5
-	dc.b   5
-	dc.b $47 ; G
-	dc.b   6
-	dc.b $59 ; Y
-	dc.b   7
-	dc.b $6B ; k
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   1
-	dc.b $23 ; #
-	dc.b   2
-	dc.b $35 ; 5
-	dc.b   3
-	dc.b $47 ; G
-	dc.b   4
-	dc.b $59 ; Y
-	dc.b   5
-	dc.b $6B ; k
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   1
-	dc.b $23 ; #
-	dc.b   1
-	dc.b $35 ; 5
-	dc.b   2
-	dc.b $47 ; G
-	dc.b   3
-	dc.b $59 ; Y
-	dc.b   3
-	dc.b $6B ; k
-unk_20C708: dc.b   0
-	dc.b   0
-	dc.b  $F
-	dc.b   7
-	dc.b $1F
-	dc.b  $F
-	dc.b $2F
-	dc.b $17
-	dc.b $3F ; ?
-	dc.b $1F
-	dc.b $4F
-	dc.b $27
-	dc.b $5F ; _
-	dc.b $2F
-	dc.b   0
-	dc.b   0
-	dc.b  $E
-	dc.b   9
-	dc.b $1D
-	dc.b $13
-	dc.b $2C ; ,
-	dc.b $1D
-	dc.b $3B ; ;
-	dc.b $27
-	dc.b $4A ; J
-	dc.b $31 ; 1
-	dc.b $59 ; Y
-	dc.b $3B ; ;
-	dc.b   0
-	dc.b   0
-	dc.b  $D
-	dc.b  $B
-	dc.b $1B
-	dc.b $17
-	dc.b $28 ; (
-	dc.b $22 ; "
-	dc.b $36 ; 6
-	dc.b $2E ; .
-	dc.b $44 ; D
-	dc.b $3A ; :
-	dc.b $51 ; Q
-	dc.b $45 ; E
-	dc.b   0
-	dc.b   0
-	dc.b  $C
-	dc.b  $D
-	dc.b $18
-	dc.b $1A
-	dc.b $24
-	dc.b $27
-	dc.b $30 ; 0
-	dc.b $34 ; 4
-	dc.b $3C ; <
-	dc.b $41 ; A
-	dc.b $49 ; I
-	dc.b $4E ; N
-	dc.b   0
-	dc.b   0
-	dc.b  $A
-	dc.b  $E
-	dc.b $15
-	dc.b $1C
-	dc.b $20
-	dc.b $2B ; +
-	dc.b $2A ; *
-	dc.b $39 ; 9
-	dc.b $35 ; 5
-	dc.b $47 ; G
-	dc.b $40 ; @
-	dc.b $56 ; V
-	dc.b   0
-	dc.b   0
-	dc.b   9
-	dc.b  $F
-	dc.b $12
-	dc.b $1E
-	dc.b $1B
-	dc.b $2E ; .
-	dc.b $24
-	dc.b $3D ; =
-	dc.b $2D ; -
-	dc.b $4C ; L
-	dc.b $37 ; 7
-	dc.b $5C
-	dc.b   0
-	dc.b   0
-	dc.b   7
-	dc.b $10
-	dc.b  $F
-	dc.b $20
-	dc.b $17
-	dc.b $30 ; 0
-	dc.b $1F
-	dc.b $40 ; @
-	dc.b $26 ; &
-	dc.b $50 ; P
-	dc.b $2E ; .
-	dc.b $60 ; `
-	dc.b   0
-	dc.b   0
-	dc.b   6
-	dc.b $10
-	dc.b  $C
-	dc.b $21
-	dc.b $13
-	dc.b $31 ; 1
-	dc.b $19
-	dc.b $42 ; B
-	dc.b $20
-	dc.b $53 ; S
-	dc.b $26 ; &
-	dc.b $63 ; c
-	dc.b   0
-	dc.b   0
-	dc.b   5
-	dc.b $11
-	dc.b  $A
-	dc.b $22 ; "
-	dc.b $10
-	dc.b $33 ; 3
-	dc.b $15
-	dc.b $44 ; D
-	dc.b $1A
-	dc.b $55 ; U
-	dc.b $20
-	dc.b $66 ; f
-	dc.b   0
-	dc.b   0
-	dc.b   4
-	dc.b $11
-	dc.b   8
-	dc.b $22 ; "
-	dc.b  $D
-	dc.b $34 ; 4
-	dc.b $11
-	dc.b $45 ; E
-	dc.b $15
-	dc.b $56 ; V
-	dc.b $1A
-	dc.b $68 ; h
-	dc.b   0
-	dc.b   0
-	dc.b   3
-	dc.b $11
-	dc.b   6
-	dc.b $23 ; #
-	dc.b  $A
-	dc.b $34 ; 4
-	dc.b  $D
-	dc.b $46 ; F
-	dc.b $11
-	dc.b $57 ; W
-	dc.b $14
-	dc.b $69 ; i
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b $11
-	dc.b   5
-	dc.b $23 ; #
-	dc.b   8
-	dc.b $35 ; 5
-	dc.b  $B
-	dc.b $46 ; F
-	dc.b  $D
-	dc.b $58 ; X
-	dc.b $10
-	dc.b $6A ; j
-	dc.b   0
-	dc.b   0
-	dc.b   2
-	dc.b $11
-	dc.b   4
-	dc.b $23 ; #
-	dc.b   6
-	dc.b $35 ; 5
-	dc.b   8
-	dc.b $47 ; G
-	dc.b  $A
-	dc.b $58 ; X
-	dc.b  $C
-	dc.b $6A ; j
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b $11
-	dc.b   3
-	dc.b $23 ; #
-	dc.b   4
-	dc.b $35 ; 5
-	dc.b   6
-	dc.b $47 ; G
-	dc.b   8
-	dc.b $59 ; Y
-	dc.b   9
-	dc.b $6A ; j
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b $11
-	dc.b   2
-	dc.b $23 ; #
-	dc.b   3
-	dc.b $35 ; 5
-	dc.b   4
-	dc.b $47 ; G
-	dc.b   6
-	dc.b $59 ; Y
-	dc.b   7
-	dc.b $6B ; k
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   1
-	dc.b $23 ; #
-	dc.b   2
-	dc.b $35 ; 5
-	dc.b   3
-	dc.b $47 ; G
-	dc.b   4
-	dc.b $59 ; Y
-	dc.b   5
-	dc.b $6B ; k
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   1
-	dc.b $23 ; #
-	dc.b   1
-	dc.b $35 ; 5
-	dc.b   2
-	dc.b $47 ; G
-	dc.b   3
-	dc.b $59 ; Y
-	dc.b   3
-	dc.b $6B ; k
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   0
-	dc.b $23 ; #
-	dc.b   1
-	dc.b $35 ; 5
-	dc.b   1
-	dc.b $47 ; G
-	dc.b   1
-	dc.b $59 ; Y
-	dc.b   2
-	dc.b $6B ; k
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b $11
-	dc.b   0
-	dc.b $23 ; #
-	dc.b   0
-	dc.b $35 ; 5
-	dc.b   0
-	dc.b $47 ; G
-	dc.b   1
-	dc.b $59 ; Y
-	dc.b   1
-	dc.b $6B ; k
+unk_20C5FE:
+	dc.b	0
+	dc.b	0
+	dc.b	$F
+	dc.b	$F8
+	dc.b	$1F
+	dc.b	$F0
+	dc.b	$2F
+	dc.b	$E8
+	dc.b	$3F
+	dc.b	$E0
+	dc.b	$4F
+	dc.b	$D8
+	dc.b	$5F
+	dc.b	$D0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	$FC
+	dc.b	$23
+	dc.b	$F8
+	dc.b	$34
+	dc.b	$F5
+	dc.b	$46
+	dc.b	$F1
+	dc.b	$57
+	dc.b	$EE
+	dc.b	$69
+	dc.b	$EA
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	0
+	dc.b	$23
+	dc.b	$FF
+	dc.b	$35
+	dc.b	$FE
+	dc.b	$47
+	dc.b	$FD
+	dc.b	$59
+	dc.b	$FC
+	dc.b	$6B
+	dc.b	$FB
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	5
+	dc.b	$22
+	dc.b	$A
+	dc.b	$33
+	dc.b	$F
+	dc.b	$44
+	dc.b	$14
+	dc.b	$55
+	dc.b	$19
+	dc.b	$66
+	dc.b	$1E
+	dc.b	0
+	dc.b	0
+	dc.b	$F
+	dc.b	8
+	dc.b	$1F
+	dc.b	$11
+	dc.b	$2E
+	dc.b	$1A
+	dc.b	$3E
+	dc.b	$22
+	dc.b	$4E
+	dc.b	$2B
+	dc.b	$5D
+	dc.b	$34
+	dc.b	0
+	dc.b	0
+	dc.b	$D
+	dc.b	$B
+	dc.b	$1B
+	dc.b	$16
+	dc.b	$29
+	dc.b	$22
+	dc.b	$37
+	dc.b	$2D
+	dc.b	$44
+	dc.b	$39
+	dc.b	$52
+	dc.b	$44
+	dc.b	0
+	dc.b	0
+	dc.b	$B
+	dc.b	$D
+	dc.b	$17
+	dc.b	$1A
+	dc.b	$23
+	dc.b	$28
+	dc.b	$2F
+	dc.b	$35
+	dc.b	$3B
+	dc.b	$43
+	dc.b	$46
+	dc.b	$50
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	$E
+	dc.b	$13
+	dc.b	$1D
+	dc.b	$1D
+	dc.b	$2C
+	dc.b	$27
+	dc.b	$3B
+	dc.b	$31
+	dc.b	$4A
+	dc.b	$3B
+	dc.b	$59
+	dc.b	0
+	dc.b	0
+	dc.b	8
+	dc.b	$F
+	dc.b	$10
+	dc.b	$1F
+	dc.b	$18
+	dc.b	$2F
+	dc.b	$21
+	dc.b	$3F
+	dc.b	$29
+	dc.b	$4F
+	dc.b	$31
+	dc.b	$5F
+	dc.b	0
+	dc.b	0
+	dc.b	6
+	dc.b	$10
+	dc.b	$D
+	dc.b	$21
+	dc.b	$14
+	dc.b	$31
+	dc.b	$1B
+	dc.b	$42
+	dc.b	$21
+	dc.b	$52
+	dc.b	$28
+	dc.b	$63
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	$11
+	dc.b	$B
+	dc.b	$22
+	dc.b	$10
+	dc.b	$33
+	dc.b	$16
+	dc.b	$44
+	dc.b	$1B
+	dc.b	$55
+	dc.b	$21
+	dc.b	$66
+	dc.b	0
+	dc.b	0
+	dc.b	4
+	dc.b	$11
+	dc.b	8
+	dc.b	$22
+	dc.b	$D
+	dc.b	$33
+	dc.b	$11
+	dc.b	$45
+	dc.b	$16
+	dc.b	$56
+	dc.b	$1A
+	dc.b	$67
+	dc.b	0
+	dc.b	0
+	dc.b	3
+	dc.b	$11
+	dc.b	7
+	dc.b	$23
+	dc.b	$A
+	dc.b	$34
+	dc.b	$E
+	dc.b	$46
+	dc.b	$12
+	dc.b	$57
+	dc.b	$15
+	dc.b	$69
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	$11
+	dc.b	5
+	dc.b	$23
+	dc.b	8
+	dc.b	$34
+	dc.b	$B
+	dc.b	$46
+	dc.b	$E
+	dc.b	$58
+	dc.b	$11
+	dc.b	$69
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	$11
+	dc.b	4
+	dc.b	$23
+	dc.b	6
+	dc.b	$35
+	dc.b	8
+	dc.b	$46
+	dc.b	$B
+	dc.b	$58
+	dc.b	$D
+	dc.b	$6A
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	$11
+	dc.b	3
+	dc.b	$23
+	dc.b	5
+	dc.b	$35
+	dc.b	6
+	dc.b	$47
+	dc.b	8
+	dc.b	$59
+	dc.b	$A
+	dc.b	$6A
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	$11
+	dc.b	2
+	dc.b	$23
+	dc.b	3
+	dc.b	$35
+	dc.b	5
+	dc.b	$47
+	dc.b	6
+	dc.b	$59
+	dc.b	7
+	dc.b	$6B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	1
+	dc.b	$23
+	dc.b	2
+	dc.b	$35
+	dc.b	3
+	dc.b	$47
+	dc.b	4
+	dc.b	$59
+	dc.b	5
+	dc.b	$6B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	1
+	dc.b	$23
+	dc.b	1
+	dc.b	$35
+	dc.b	2
+	dc.b	$47
+	dc.b	3
+	dc.b	$59
+	dc.b	3
+	dc.b	$6B
+unk_20C708:
+	dc.b	0
+	dc.b	0
+	dc.b	$F
+	dc.b	7
+	dc.b	$1F
+	dc.b	$F
+	dc.b	$2F
+	dc.b	$17
+	dc.b	$3F
+	dc.b	$1F
+	dc.b	$4F
+	dc.b	$27
+	dc.b	$5F
+	dc.b	$2F
+	dc.b	0
+	dc.b	0
+	dc.b	$E
+	dc.b	9
+	dc.b	$1D
+	dc.b	$13
+	dc.b	$2C
+	dc.b	$1D
+	dc.b	$3B
+	dc.b	$27
+	dc.b	$4A
+	dc.b	$31
+	dc.b	$59
+	dc.b	$3B
+	dc.b	0
+	dc.b	0
+	dc.b	$D
+	dc.b	$B
+	dc.b	$1B
+	dc.b	$17
+	dc.b	$28
+	dc.b	$22
+	dc.b	$36
+	dc.b	$2E
+	dc.b	$44
+	dc.b	$3A
+	dc.b	$51
+	dc.b	$45
+	dc.b	0
+	dc.b	0
+	dc.b	$C
+	dc.b	$D
+	dc.b	$18
+	dc.b	$1A
+	dc.b	$24
+	dc.b	$27
+	dc.b	$30
+	dc.b	$34
+	dc.b	$3C
+	dc.b	$41
+	dc.b	$49
+	dc.b	$4E
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	$E
+	dc.b	$15
+	dc.b	$1C
+	dc.b	$20
+	dc.b	$2B
+	dc.b	$2A
+	dc.b	$39
+	dc.b	$35
+	dc.b	$47
+	dc.b	$40
+	dc.b	$56
+	dc.b	0
+	dc.b	0
+	dc.b	9
+	dc.b	$F
+	dc.b	$12
+	dc.b	$1E
+	dc.b	$1B
+	dc.b	$2E
+	dc.b	$24
+	dc.b	$3D
+	dc.b	$2D
+	dc.b	$4C
+	dc.b	$37
+	dc.b	$5C
+	dc.b	0
+	dc.b	0
+	dc.b	7
+	dc.b	$10
+	dc.b	$F
+	dc.b	$20
+	dc.b	$17
+	dc.b	$30
+	dc.b	$1F
+	dc.b	$40
+	dc.b	$26
+	dc.b	$50
+	dc.b	$2E
+	dc.b	$60
+	dc.b	0
+	dc.b	0
+	dc.b	6
+	dc.b	$10
+	dc.b	$C
+	dc.b	$21
+	dc.b	$13
+	dc.b	$31
+	dc.b	$19
+	dc.b	$42
+	dc.b	$20
+	dc.b	$53
+	dc.b	$26
+	dc.b	$63
+	dc.b	0
+	dc.b	0
+	dc.b	5
+	dc.b	$11
+	dc.b	$A
+	dc.b	$22
+	dc.b	$10
+	dc.b	$33
+	dc.b	$15
+	dc.b	$44
+	dc.b	$1A
+	dc.b	$55
+	dc.b	$20
+	dc.b	$66
+	dc.b	0
+	dc.b	0
+	dc.b	4
+	dc.b	$11
+	dc.b	8
+	dc.b	$22
+	dc.b	$D
+	dc.b	$34
+	dc.b	$11
+	dc.b	$45
+	dc.b	$15
+	dc.b	$56
+	dc.b	$1A
+	dc.b	$68
+	dc.b	0
+	dc.b	0
+	dc.b	3
+	dc.b	$11
+	dc.b	6
+	dc.b	$23
+	dc.b	$A
+	dc.b	$34
+	dc.b	$D
+	dc.b	$46
+	dc.b	$11
+	dc.b	$57
+	dc.b	$14
+	dc.b	$69
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	$11
+	dc.b	5
+	dc.b	$23
+	dc.b	8
+	dc.b	$35
+	dc.b	$B
+	dc.b	$46
+	dc.b	$D
+	dc.b	$58
+	dc.b	$10
+	dc.b	$6A
+	dc.b	0
+	dc.b	0
+	dc.b	2
+	dc.b	$11
+	dc.b	4
+	dc.b	$23
+	dc.b	6
+	dc.b	$35
+	dc.b	8
+	dc.b	$47
+	dc.b	$A
+	dc.b	$58
+	dc.b	$C
+	dc.b	$6A
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	$11
+	dc.b	3
+	dc.b	$23
+	dc.b	4
+	dc.b	$35
+	dc.b	6
+	dc.b	$47
+	dc.b	8
+	dc.b	$59
+	dc.b	9
+	dc.b	$6A
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	$11
+	dc.b	2
+	dc.b	$23
+	dc.b	3
+	dc.b	$35
+	dc.b	4
+	dc.b	$47
+	dc.b	6
+	dc.b	$59
+	dc.b	7
+	dc.b	$6B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	1
+	dc.b	$23
+	dc.b	2
+	dc.b	$35
+	dc.b	3
+	dc.b	$47
+	dc.b	4
+	dc.b	$59
+	dc.b	5
+	dc.b	$6B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	1
+	dc.b	$23
+	dc.b	1
+	dc.b	$35
+	dc.b	2
+	dc.b	$47
+	dc.b	3
+	dc.b	$59
+	dc.b	3
+	dc.b	$6B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	0
+	dc.b	$23
+	dc.b	1
+	dc.b	$35
+	dc.b	1
+	dc.b	$47
+	dc.b	1
+	dc.b	$59
+	dc.b	2
+	dc.b	$6B
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$11
+	dc.b	0
+	dc.b	$23
+	dc.b	0
+	dc.b	$35
+	dc.b	0
+	dc.b	$47
+	dc.b	1
+	dc.b	$59
+	dc.b	1
+	dc.b	$6B
 	even
 
 obj26:
@@ -14234,8 +14262,8 @@ obj26:
 	jmp	off_20C820(pc,d0.w)
 
 off_20C820:
-	dc.w loc_20C824-off_20C820
-	dc.w loc_20C88A-off_20C820
+	dc.w	loc_20C824-off_20C820
+	dc.w	loc_20C88A-off_20C820
 
 loc_20C824:
 	addq.b	#2,obj.routine(a0)
@@ -14279,10 +14307,10 @@ obj29:
 	jmp	off_20C8C2(pc,d0.w)
 
 off_20C8C2:
-	dc.w loc_20C8CA-off_20C8C2
-	dc.w loc_20C9AC-off_20C8C2
-	dc.w loc_20CB98-off_20C8C2
-	dc.w loc_20CC02-off_20C8C2
+	dc.w	loc_20C8CA-off_20C8C2
+	dc.w	loc_20C9AC-off_20C8C2
+	dc.w	loc_20CB98-off_20C8C2
+	dc.w	loc_20CC02-off_20C8C2
 
 loc_20C8CA:
 	addq.b	#2,obj.routine(a0)
@@ -14300,7 +14328,7 @@ loc_20C8CA:
 	move.b	obj.field_3D(a1),d0
 	ori.b	#$80,d0
 	move.b	d0,obj.field_3D(a1)
-	movea.w a2,a4
+	movea.w	a2,a4
 	subq.w	#1,d6
 loc_20C912:
 	jsr	sub_20C93C(pc)
@@ -14344,38 +14372,38 @@ sub_20C966:
 	rts
 
 unk_20C98C:
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
+	dc.b	1
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
 	even
 
 loc_20C9AC:
@@ -14397,7 +14425,7 @@ loc_20C9DA:
 	andi.w	#$F0,d0
 	asr.w	#2,d0
 	lea	off_20CA06.l,a3
-	movea.l (a3,d0.w),a4
+	movea.l	(a3,d0.w),a4
 	jsr	(a4)
 	lea	obj29_ani.l,a1
 	jsr	animateobj.l
@@ -14405,14 +14433,14 @@ loc_20C9DA:
 	rts
 
 off_20CA06:
-	dc.l loc_20CA26
-	dc.l loc_20CA32
-	dc.l loc_20CA3E
-	dc.l loc_20CA6E
-	dc.l loc_20CA9E
-	dc.l loc_20CAD4
-	dc.l loc_20CB0A
-	dc.l loc_20CA32
+	dc.l	loc_20CA26
+	dc.l	loc_20CA32
+	dc.l	loc_20CA3E
+	dc.l	loc_20CA6E
+	dc.l	loc_20CA9E
+	dc.l	loc_20CAD4
+	dc.l	loc_20CB0A
+	dc.l	loc_20CA32
 
 loc_20CA26:
 	move.b	obj.field_3C(a0),d0
@@ -14533,7 +14561,7 @@ loc_20CB34:
 sub_20CB40:
 	move.l	obj.xpos(a0),obj.field_38(a0)
 	move.l	obj.ypos(a0),obj.field_34(a0)
-	movea.w obj.field_3E(a0),a2
+	movea.w	obj.field_3E(a0),a2
 	moveq	#0,d0
 	move.b	obj.field_3C(a2),d0
 	jsr	calcsine.l
@@ -14630,479 +14658,503 @@ loc_20CC76:
 	moveq	#0,d1
 	rts
 
-	dc.b 1
-	dc.b $F8,  5,  0,  0,$F8
+	dc.b	1
+	dc.b	-8,5,0,0,-8
 	even
-	dc.b 1
-	dc.b $F8, $D,  0,  4,$F0
+	dc.b	1
+	dc.b	-8,$D,0,4,$F0
 	even
-	dc.b 1
-	dc.b $FC,  0,  0, $C,$FC
+	dc.b	1
+	dc.b	$FC,0,0,$C,$FC
 	even
-	dc.b 1
-	dc.b $F0,  3,  0, $D,$FC
+	dc.b	1
+	dc.b	$F0,3,0,$D,$FC
 	even
-	dc.b 1
-	dc.b $F0,  3,  0,$11,$FC
+	dc.b	1
+	dc.b	$F0,3,0,$11,$FC
 	even
-	dc.b 1
-	dc.b $F8,  5,  8,  0,$F8
+	dc.b	1
+	dc.b	-8,5,8,0,-8
 	even
-	dc.b 1
-	dc.b $F8, $D,  8,  4,$F0
+	dc.b	1
+	dc.b	-8,$D,8,4,$F0
 	even
-	dc.b 1
-	dc.b $FC,  0,  8, $C,$FC
+	dc.b	1
+	dc.b	$FC,0,8,$C,$FC
 	even
-	dc.b 1
-	dc.b $F0,  3,  8, $D,$FC
+	dc.b	1
+	dc.b	$F0,3,8,$D,$FC
 	even
-	dc.b 1
-	dc.b $F0,  3,  8,$11,$FC
+	dc.b	1
+	dc.b	$F0,3,8,$11,$FC
 	even
-obj28_ani:	dc.w unk_20CCC0-obj28_ani
-	dc.w unk_20CCD0-obj28_ani
-	dc.w unk_20CCDA-obj28_ani
-	dc.w unk_20CCE4-obj28_ani
-	dc.w unk_20CCE8-obj28_ani
-unk_20CCC0: dc.b   2
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   3
-	dc.b   4
-	dc.b   3
-	dc.b   5
-	dc.b   3
-	dc.b   4
-	dc.b   3
-	dc.b $FF
+obj28_ani:
+	dc.w	unk_20CCC0-obj28_ani
+	dc.w	unk_20CCD0-obj28_ani
+	dc.w	unk_20CCDA-obj28_ani
+	dc.w	unk_20CCE4-obj28_ani
+	dc.w	unk_20CCE8-obj28_ani
+unk_20CCC0:
+	dc.b	2
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	3
+	dc.b	4
+	dc.b	3
+	dc.b	5
+	dc.b	3
+	dc.b	4
+	dc.b	3
+	dc.b	$FF
 	even
-unk_20CCD0: dc.b   2
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b   2
-	dc.b   0
-	dc.b   1
-	dc.b   0
-	dc.b $FF
+unk_20CCD0:
+	dc.b	2
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	2
+	dc.b	0
+	dc.b	1
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20CCDA: dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   3
-	dc.b   5
-	dc.b   3
-	dc.b   4
-	dc.b   3
-	dc.b $FF
+unk_20CCDA:
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	3
+	dc.b	5
+	dc.b	3
+	dc.b	4
+	dc.b	3
+	dc.b	$FF
 	even
-unk_20CCE4: dc.b   0
-	dc.b   0
-	dc.b $FF
+unk_20CCE4:
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20CCE8: dc.b   0
-	dc.b   3
-	dc.b $FF
+unk_20CCE8:
+	dc.b	0
+	dc.b	3
+	dc.b	$FF
 	even
-obj28_map:	dc.w byte_20CCF8-obj28_map
-	dc.w byte_20CD04-obj28_map
-	dc.w byte_20CD10-obj28_map
-	dc.w byte_20CD1C-obj28_map
-	dc.w byte_20CD28-obj28_map
-	dc.w byte_20CD34-obj28_map
-byte_20CCF8:	dc.b 2
-	dc.b $FC,  1,  0,  0,$F8
-	dc.b $FC,  8,  0,  2,  0
+obj28_map:	dc.w	byte_20CCF8-obj28_map
+	dc.w	byte_20CD04-obj28_map
+	dc.w	byte_20CD10-obj28_map
+	dc.w	byte_20CD1C-obj28_map
+	dc.w	byte_20CD28-obj28_map
+	dc.w	byte_20CD34-obj28_map
+byte_20CCF8:	dc.b	2
+	dc.b	$FC,1,0,0,-8
+	dc.b	$FC,8,0,2,0
 	even
-byte_20CD04:	dc.b 2
-	dc.b $FC,  5,  0,  5,$F8
-	dc.b   0,  5,  0,  9,  8
+byte_20CD04:	dc.b	2
+	dc.b	$FC,5,0,5,-8
+	dc.b	0,5,0,9,8
 	even
-byte_20CD10:	dc.b 2
-	dc.b $FC,  5,  0, $D,$F8
-	dc.b $F0,  5,  0,$11,  8
+byte_20CD10:	dc.b	2
+	dc.b	$FC,5,0,$D,-8
+	dc.b	$F0,5,0,$11,8
 	even
-byte_20CD1C:	dc.b 2
-	dc.b $FC,  1,  8,  0,  0
-	dc.b $FC,  8,  8,  2,$E8
+byte_20CD1C:	dc.b	2
+	dc.b	$FC,1,8,0,0
+	dc.b	$FC,8,8,2,$E8
 	even
-byte_20CD28:	dc.b 2
-	dc.b $FC,  5,  8,  5,$F8
-	dc.b   0,  5,  8,  9,$E8
+byte_20CD28:	dc.b	2
+	dc.b	$FC,5,8,5,-8
+	dc.b	0,5,8,9,$E8
 	even
-byte_20CD34:	dc.b 2
-	dc.b $FC,  5,  8, $D,$F8
-	dc.b $F0,  5,  8,$11,$E8
+byte_20CD34:	dc.b	2
+	dc.b	$FC,5,8,$D,-8
+	dc.b	$F0,5,8,$11,$E8
 	even
-obj27_ani:	dc.w unk_20CD5C-obj27_ani
-	dc.w unk_20CD6C-obj27_ani
-	dc.w unk_20CD70-obj27_ani
-	dc.w unk_20CD74-obj27_ani
-	dc.w unk_20CD78-obj27_ani
-	dc.w unk_20CD7C-obj27_ani
-	dc.w unk_20CD80-obj27_ani
-	dc.w unk_20CD84-obj27_ani
-	dc.w unk_20CD88-obj27_ani
-	dc.w unk_20CD8C-obj27_ani
-	dc.w unk_20CD90-obj27_ani
-	dc.w unk_20CD94-obj27_ani
-	dc.w unk_20CD98-obj27_ani
-	dc.w unk_20CD9C-obj27_ani
-unk_20CD5C: dc.b   9
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   4
-	dc.b   5
-	dc.b   6
-	dc.b   7
-	dc.b   8
-	dc.b   9
-	dc.b  $A
-	dc.b  $B
-	dc.b  $C
-	dc.b $FF
+obj27_ani:	dc.w	unk_20CD5C-obj27_ani
+	dc.w	unk_20CD6C-obj27_ani
+	dc.w	unk_20CD70-obj27_ani
+	dc.w	unk_20CD74-obj27_ani
+	dc.w	unk_20CD78-obj27_ani
+	dc.w	unk_20CD7C-obj27_ani
+	dc.w	unk_20CD80-obj27_ani
+	dc.w	unk_20CD84-obj27_ani
+	dc.w	unk_20CD88-obj27_ani
+	dc.w	unk_20CD8C-obj27_ani
+	dc.w	unk_20CD90-obj27_ani
+	dc.w	unk_20CD94-obj27_ani
+	dc.w	unk_20CD98-obj27_ani
+	dc.w	unk_20CD9C-obj27_ani
+unk_20CD5C:
+	dc.b	9
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	4
+	dc.b	5
+	dc.b	6
+	dc.b	7
+	dc.b	8
+	dc.b	9
+	dc.b	$A
+	dc.b	$B
+	dc.b	$C
+	dc.b	$FF
 	even
-unk_20CD6C: dc.b   0
-	dc.b   0
-	dc.b $FF
+unk_20CD6C:
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20CD70: dc.b   0
-	dc.b   1
-	dc.b $FF
+unk_20CD70:
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
-unk_20CD74: dc.b   0
-	dc.b   2
-	dc.b $FF
+unk_20CD74:
+	dc.b	0
+	dc.b	2
+	dc.b	$FF
 	even
-unk_20CD78: dc.b   0
-	dc.b   3
-	dc.b $FF
+unk_20CD78:
+	dc.b	0
+	dc.b	3
+	dc.b	$FF
 	even
-unk_20CD7C: dc.b   0
-	dc.b   4
-	dc.b $FF
+unk_20CD7C:
+	dc.b	0
+	dc.b	4
+	dc.b	$FF
 	even
-unk_20CD80: dc.b   0
-	dc.b   5
-	dc.b $FF
+unk_20CD80:
+	dc.b	0
+	dc.b	5
+	dc.b	$FF
 	even
-unk_20CD84: dc.b   0
-	dc.b   6
-	dc.b $FF
+unk_20CD84:
+	dc.b	0
+	dc.b	6
+	dc.b	$FF
 	even
-unk_20CD88: dc.b   0
-	dc.b   7
-	dc.b $FF
+unk_20CD88:
+	dc.b	0
+	dc.b	7
+	dc.b	$FF
 	even
-unk_20CD8C: dc.b   0
-	dc.b   8
-	dc.b $FF
+unk_20CD8C:
+	dc.b	0
+	dc.b	8
+	dc.b	$FF
 	even
-unk_20CD90: dc.b   0
-	dc.b   9
-	dc.b $FF
+unk_20CD90:
+	dc.b	0
+	dc.b	9
+	dc.b	$FF
 	even
-unk_20CD94: dc.b   0
-	dc.b  $A
-	dc.b $FF
+unk_20CD94:
+	dc.b	0
+	dc.b	$A
+	dc.b	$FF
 	even
-unk_20CD98: dc.b   0
-	dc.b  $B
-	dc.b $FF
+unk_20CD98:
+	dc.b	0
+	dc.b	$B
+	dc.b	$FF
 	even
-unk_20CD9C: dc.b   0
-	dc.b  $C
-	dc.b $FF
+unk_20CD9C:
+	dc.b	0
+	dc.b	$C
+	dc.b	$FF
 	even
-obj27_map:	dc.w byte_20CDBA-obj27_map
-	dc.w byte_20CDCA-obj27_map
-	dc.w byte_20CDE4-obj27_map
-	dc.w byte_20CDF4-obj27_map
-	dc.w byte_20CE18-obj27_map
-	dc.w byte_20CE32-obj27_map
-	dc.w byte_20CE42-obj27_map
-	dc.w byte_20CE52-obj27_map
-	dc.w byte_20CE6C-obj27_map
-	dc.w byte_20CE7C-obj27_map
-	dc.w byte_20CEA0-obj27_map
-	dc.w byte_20CEBA-obj27_map
-	dc.w byte_20CECA-obj27_map
-byte_20CDBA:	dc.b 3
-	dc.b $F0, $C,  0,  0,  0
-	dc.b   8, $C,$18,  0,$E0
-	dc.b $FC,  0,$C0,$2E,$FC
+obj27_map:	dc.w	byte_20CDBA-obj27_map
+	dc.w	byte_20CDCA-obj27_map
+	dc.w	byte_20CDE4-obj27_map
+	dc.w	byte_20CDF4-obj27_map
+	dc.w	byte_20CE18-obj27_map
+	dc.w	byte_20CE32-obj27_map
+	dc.w	byte_20CE42-obj27_map
+	dc.w	byte_20CE52-obj27_map
+	dc.w	byte_20CE6C-obj27_map
+	dc.w	byte_20CE7C-obj27_map
+	dc.w	byte_20CEA0-obj27_map
+	dc.w	byte_20CEBA-obj27_map
+	dc.w	byte_20CECA-obj27_map
+byte_20CDBA:	dc.b	3
+	dc.b	$F0,$C,0,0,0
+	dc.b	8,$C,$18,0,$E0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CDCA:	dc.b 5
-	dc.b $F0, $C,  0,  4,  0
-	dc.b $E8,  0,  0,  8,$18
-	dc.b   8, $C,$18,  4,$E0
-	dc.b $10,  0,$18,  8,$E0
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CDCA:	dc.b	5
+	dc.b	$F0,$C,0,4,0
+	dc.b	$E8,0,0,8,$18
+	dc.b	8,$C,$18,4,$E0
+	dc.b	$10,0,$18,8,$E0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CDE4:	dc.b 3
-	dc.b $E8, $D,  0,  9,  0
-	dc.b   8, $D,$18,  9,$E0
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CDE4:	dc.b	3
+	dc.b	$E8,$D,0,9,0
+	dc.b	8,$D,$18,9,$E0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CDF4:	dc.b 7
-	dc.b $E8, $D,  0,$11,  0
-	dc.b $E0,  0,  0,$19,$10
-	dc.b $F0,  0,  0,$1A,$F8
-	dc.b   8, $D,$18,$11,$E0
-	dc.b $18,  0,$18,$19,$E8
-	dc.b   8,  0,$18,$1A,  0
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CDF4:	dc.b	7
+	dc.b	$E8,$D,0,$11,0
+	dc.b	$E0,0,0,$19,$10
+	dc.b	$F0,0,0,$1A,-8
+	dc.b	8,$D,$18,$11,$E0
+	dc.b	$18,0,$18,$19,$E8
+	dc.b	8,0,$18,$1A,0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CE18:	dc.b 5
-	dc.b $E0, $E,  0,$1B,  0
-	dc.b $F0,  0,  0,$27,$F8
-	dc.b   8, $E,$18,$1B,$E0
-	dc.b   8,  0,$18,$27,  0
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CE18:	dc.b	5
+	dc.b	$E0,$E,0,$1B,0
+	dc.b	$F0,0,0,$27,-8
+	dc.b	8,$E,$18,$1B,$E0
+	dc.b	8,0,$18,$27,0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CE32:	dc.b 3
-	dc.b $E0,  6,  0,$28,$F8
-	dc.b   8,  6,$10,$28,$F8
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CE32:	dc.b	3
+	dc.b	$E0,6,0,$28,-8
+	dc.b	8,6,$10,$28,-8
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CE42:	dc.b 3
-	dc.b $F0, $C,  8,  0,$E0
-	dc.b   8, $C,$10,  0,  0
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CE42:	dc.b	3
+	dc.b	$F0,$C,8,0,$E0
+	dc.b	8,$C,$10,0,0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CE52:	dc.b 5
-	dc.b $F0, $C,  8,  4,$E0
-	dc.b $E8,  0,  8,  8,$E0
-	dc.b   8, $C,$10,  4,  0
-	dc.b $10,  0,$10,  8,$18
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CE52:	dc.b	5
+	dc.b	$F0,$C,8,4,$E0
+	dc.b	$E8,0,8,8,$E0
+	dc.b	8,$C,$10,4,0
+	dc.b	$10,0,$10,8,$18
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CE6C:	dc.b 3
-	dc.b $E8, $D,  8,  9,$E0
-	dc.b   8, $D,$10,  9,  0
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CE6C:	dc.b	3
+	dc.b	$E8,$D,8,9,$E0
+	dc.b	8,$D,$10,9,0
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CE7C:	dc.b 7
-	dc.b $E8, $D,  8,$11,$E0
-	dc.b $E0,  0,  8,$19,$E8
-	dc.b $F0,  0,  8,$1A,  0
-	dc.b   8, $D,$10,$11,  0
-	dc.b $18,  0,$10,$19,$10
-	dc.b   8,  0,$10,$1A,$F8
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CE7C:	dc.b	7
+	dc.b	$E8,$D,8,$11,$E0
+	dc.b	$E0,0,8,$19,$E8
+	dc.b	$F0,0,8,$1A,0
+	dc.b	8,$D,$10,$11,0
+	dc.b	$18,0,$10,$19,$10
+	dc.b	8,0,$10,$1A,-8
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CEA0:	dc.b 5
-	dc.b $E0, $E,  8,$1B,$E0
-	dc.b $F0,  0,  8,$27,  0
-	dc.b   8, $E,$10,$1B,  0
-	dc.b   8,  0,$10,$27,$F8
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CEA0:	dc.b	5
+	dc.b	$E0,$E,8,$1B,$E0
+	dc.b	$F0,0,8,$27,0
+	dc.b	8,$E,$10,$1B,0
+	dc.b	8,0,$10,$27,-8
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CEBA:	dc.b 3
-	dc.b $E0,  6,  8,$28,$F8
-	dc.b   8,  6,$18,$28,$F8
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CEBA:	dc.b	3
+	dc.b	$E0,6,8,$28,-8
+	dc.b	8,6,$18,$28,-8
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-byte_20CECA:	dc.b 1
-	dc.b $FC,  0,$C0,$2E,$FC
+byte_20CECA:	dc.b	1
+	dc.b	$FC,0,$C0,$2E,$FC
 	even
-off_20CED0: dc.w unk_20CED6-off_20CED0
-	dc.w unk_20CEDA-off_20CED0
-	dc.w unk_20CEDE-off_20CED0
-unk_20CED6: dc.b $1D
-	dc.b   0
-	dc.b   1
-	dc.b $FF
-unk_20CEDA: dc.b   0
-	dc.b   0
-	dc.b $FF
+off_20CED0:
+	dc.w	unk_20CED6-off_20CED0
+	dc.w	unk_20CEDA-off_20CED0
+	dc.w	unk_20CEDE-off_20CED0
+unk_20CED6:
+	dc.b	$1D
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
+unk_20CEDA:
+	dc.b	0
+	dc.b	0
+	dc.b	$FF
 	even
-unk_20CEDE: dc.b   0
-	dc.b   1
-	dc.b $FF
+unk_20CEDE:
+	dc.b	0
+	dc.b	1
+	dc.b	$FF
 	even
 off_20CEE2:
-	dc.w byte_20CEE6-off_20CEE2
-	dc.w byte_20CEEC-off_20CEE2
+	dc.w	byte_20CEE6-off_20CEE2
+	dc.w	byte_20CEEC-off_20CEE2
 byte_20CEE6:
-	dc.b 1
-	dc.b $F8,  5,  0,  0,$F8
+	dc.b	1
+	dc.b	-8,5,0,0,-8
 	even
 byte_20CEEC:
-	dc.b 1
-	dc.b $F8,  5,  0,  4,$F8
+	dc.b	1
+	dc.b	-8,5,0,4,-8
 	even
 obj26_ani:
-	dc.w unk_20CEFE-obj26_ani
-	dc.w unk_20CF02-obj26_ani
-	dc.w unk_20CF06-obj26_ani
-	dc.w unk_20CF0A-obj26_ani
-	dc.w unk_20CF0E-obj26_ani
-	dc.w unk_20CF12-obj26_ani
+	dc.w	unk_20CEFE-obj26_ani
+	dc.w	unk_20CF02-obj26_ani
+	dc.w	unk_20CF06-obj26_ani
+	dc.w	unk_20CF0A-obj26_ani
+	dc.w	unk_20CF0E-obj26_ani
+	dc.w	unk_20CF12-obj26_ani
 unk_20CEFE:
-	dc.b $1D
-	dc.b   0
-	dc.b $FF
+	dc.b	$1D
+	dc.b	0
+	dc.b	$FF
 	even
 unk_20CF02:
-	dc.b $1D
-	dc.b   1
-	dc.b $FF
+	dc.b	$1D
+	dc.b	1
+	dc.b	$FF
 	even
 unk_20CF06:
-	dc.b $1D
-	dc.b   2
-	dc.b $FF
+	dc.b	$1D
+	dc.b	2
+	dc.b	$FF
 	even
 unk_20CF0A:
-	dc.b $1D
-	dc.b   3
-	dc.b $FF
+	dc.b	$1D
+	dc.b	3
+	dc.b	$FF
 	even
 unk_20CF0E:
-	dc.b $1D
-	dc.b   4
-	dc.b $FF
+	dc.b	$1D
+	dc.b	4
+	dc.b	$FF
 	even
 unk_20CF12:
-	dc.b $1D
-	dc.b   5
-	dc.b $FF
+	dc.b	$1D
+	dc.b	5
+	dc.b	$FF
 	even
 off_20CF16:
-	dc.w byte_20CF1C-off_20CF16
-	dc.w byte_20CF27-off_20CF16
-	dc.w byte_20CF32-off_20CF16
+	dc.w	byte_20CF1C-off_20CF16
+	dc.w	byte_20CF27-off_20CF16
+	dc.w	byte_20CF32-off_20CF16
 byte_20CF1C:
-	dc.b 2
-	dc.b $F0,  7,  0,  0,$F0
-	dc.b $F0,  7,  0,  0,  0
+	dc.b	2
+	dc.b	$F0,7,0,0,$F0
+	dc.b	$F0,7,0,0,0
 byte_20CF27:
-	dc.b 2
-	dc.b $F0, $D,  0,  8,$F0
-	dc.b   0, $D,  0,  8,$F0
+	dc.b	2
+	dc.b	$F0,$D,0,8,$F0
+	dc.b	0,$D,0,8,$F0
 	even
 byte_20CF32:
-	dc.b 2
-	dc.b $F0, $D,  8,  8,$F0
-	dc.b   0, $D,  8,  8,$F0
+	dc.b	2
+	dc.b	$F0,$D,8,8,$F0
+	dc.b	0,$D,8,8,$F0
 	even
 off_20CF3E:
-	dc.w byte_20CF46-off_20CF3E
-	dc.w byte_20CF5B-off_20CF3E
-	dc.w byte_20CF70-off_20CF3E
-	dc.w byte_20CF85-off_20CF3E
+	dc.w	byte_20CF46-off_20CF3E
+	dc.w	byte_20CF5B-off_20CF3E
+	dc.w	byte_20CF70-off_20CF3E
+	dc.w	byte_20CF85-off_20CF3E
 byte_20CF46:
-	dc.b 4
-	dc.b $F0,  3,  0,  0,$F0
-	dc.b $F1,  3,  0,  0,$F8
-	dc.b $F2,  3,  0,  0,  0
-	dc.b $F3,  3,  0,  0,  8
+	dc.b	4
+	dc.b	$F0,3,0,0,$F0
+	dc.b	$F1,3,0,0,-8
+	dc.b	$F2,3,0,0,0
+	dc.b	$F3,3,0,0,8
 byte_20CF5B:
-	dc.b 4
-	dc.b $F0, $C,  0,  4,$F0
-	dc.b $F8, $C,  0,  4,$F1
-	dc.b   0, $C,  0,  4,$F2
-	dc.b   8, $C,  0,  4,$F3
+	dc.b	4
+	dc.b	$F0,$C,0,4,$F0
+	dc.b	-8,$C,0,4,$F1
+	dc.b	0,$C,0,4,$F2
+	dc.b	8,$C,0,4,$F3
 	even
 byte_20CF70:
-	dc.b 4
-	dc.b $F0, $C,  8,  4,$F3
-	dc.b $F8, $C,  8,  4,$F2
-	dc.b   0, $C,  8,  4,$F1
-	dc.b   8, $C,  8,  4,$F0
+	dc.b	4
+	dc.b	$F0,$C,8,4,$F3
+	dc.b	-8,$C,8,4,$F2
+	dc.b	0,$C,8,4,$F1
+	dc.b	8,$C,8,4,$F0
 byte_20CF85:
-	dc.b 2
-	dc.b $F0,  3,  0,  0,$F4
-	dc.b $F0,  3,  0,  0,  4
+	dc.b	2
+	dc.b	$F0,3,0,0,$F4
+	dc.b	$F0,3,0,0,4
 	even
 obj26_map:
-	dc.w byte_20CF9C-obj26_map
-	dc.w byte_20CFA7-obj26_map
-	dc.w byte_20CFBC-obj26_map
-	dc.w byte_20CFD1-obj26_map
-	dc.w byte_20CFD8-obj26_map
-	dc.w byte_20CFDE-obj26_map
+	dc.w	byte_20CF9C-obj26_map
+	dc.w	byte_20CFA7-obj26_map
+	dc.w	byte_20CFBC-obj26_map
+	dc.w	byte_20CFD1-obj26_map
+	dc.w	byte_20CFD8-obj26_map
+	dc.w	byte_20CFDE-obj26_map
 byte_20CF9C:
-	dc.b 2
-	dc.b $F0,  7,  0,  0,$F0
-	dc.b $F0,  7,  0,  0,  0
+	dc.b	2
+	dc.b	$F0,7,0,0,$F0
+	dc.b	$F0,7,0,0,0
 byte_20CFA7:
-	dc.b 4
-	dc.b $F0, $C,  0,  8,$F0
-	dc.b $F8, $C,  0,  8,$F0
-	dc.b   0, $C,  0,  8,$F0
-	dc.b   8, $C,  0,  8,$F0
+	dc.b	4
+	dc.b	$F0,$C,0,8,$F0
+	dc.b	-8,$C,0,8,$F0
+	dc.b	0,$C,0,8,$F0
+	dc.b	8,$C,0,8,$F0
 	even
 byte_20CFBC:
-	dc.b 4
-	dc.b $F0, $C,  8,  8,$F0
-	dc.b $F8, $C,  8,  8,$F0
-	dc.b   0, $C,  8,  8,$F0
-	dc.b   8, $C,  8,  8,$F0
+	dc.b	4
+	dc.b	$F0,$C,8,8,$F0
+	dc.b	-8,$C,8,8,$F0
+	dc.b	0,$C,8,8,$F0
+	dc.b	8,$C,8,8,$F0
 byte_20CFD1:
-	dc.b 1
-	dc.b $F0,  3,  0,  0,$FC
+	dc.b	1
+	dc.b	$F0,3,0,0,$FC
 	even
 byte_20CFD8:
-	dc.b 1
-	dc.b $FC, $C,  0,  8,$F0
+	dc.b	1
+	dc.b	$FC,$C,0,8,$F0
 	even
 byte_20CFDE:
-	dc.b 1
-	dc.b $FC, $C,  8,  8,$F0
+	dc.b	1
+	dc.b	$FC,$C,8,8,$F0
 	even
 obj29_ani:
-	dc.w unk_20CFEC-obj29_ani
-	dc.w unk_20CFF2-obj29_ani
-	dc.w unk_20CFF6-obj29_ani
-	dc.w unk_20CFFA-obj29_ani
+	dc.w	unk_20CFEC-obj29_ani
+	dc.w	unk_20CFF2-obj29_ani
+	dc.w	unk_20CFF6-obj29_ani
+	dc.w	unk_20CFFA-obj29_ani
 unk_20CFEC:
-	dc.b $1D
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b $FF
+	dc.b	$1D
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	$FF
 	even
 unk_20CFF2:
-	dc.b $1D
-	dc.b   0
-	dc.b $FF
+	dc.b	$1D
+	dc.b	0
+	dc.b	$FF
 	even
 unk_20CFF6:
-	dc.b $1D
-	dc.b   1
-	dc.b $FF
+	dc.b	$1D
+	dc.b	1
+	dc.b	$FF
 	even
 unk_20CFFA:
-	dc.b $1D
-	dc.b   2
-	dc.b $FF
+	dc.b	$1D
+	dc.b	2
+	dc.b	$FF
 	even
 obj29_map:
-	dc.w byte_20D004-obj29_map
-	dc.w byte_20D00A-obj29_map
-	dc.w byte_20D010-obj29_map
+	dc.w	byte_20D004-obj29_map
+	dc.w	byte_20D00A-obj29_map
+	dc.w	byte_20D010-obj29_map
 byte_20D004:
-	dc.b 1
-	dc.b $F8,  5,  0,  0,$F8
+	dc.b	1
+	dc.b	-8,5,0,0,-8
 	even
 byte_20D00A:
-	dc.b 1
-	dc.b $F8,  5,  0,  4,$F8
+	dc.b	1
+	dc.b	-8,5,0,4,-8
 	even
 byte_20D010:
-	dc.b 2
-	dc.b $F8,  9,  0,  8,$E8
-	dc.b $F8,  9,  8,  8,  0
+	dc.b	2
+	dc.b	-8,9,0,8,$E8
+	dc.b	-8,9,8,8,0
 	even
 
 obj20:
@@ -15112,10 +15164,11 @@ obj20:
 	jsr	off_20D030(pc,d0.w)
 	jmp	displaysprite.l
 
-off_20D030: dc.w loc_20D038-off_20D030
-	dc.w loc_20D0AC-off_20D030
-	dc.w loc_20D0F2-off_20D030
-	dc.w loc_20D136-off_20D030
+off_20D030:
+	dc.w	loc_20D038-off_20D030
+	dc.w	loc_20D0AC-off_20D030
+	dc.w	loc_20D0F2-off_20D030
+	dc.w	loc_20D136-off_20D030
 
 loc_20D038:
 	addq.b	#2,obj.routine(a0)
@@ -15230,7 +15283,7 @@ loc_20D182:
 	lea	(a6,d0.w),a6
 	moveq	#0,d0
 	move.b	(a6)+,d0
-	movea.w d0,a5
+	movea.w	d0,a5
 	asl.w	#3,d0
 	move.w	#-$10,d1
 	cmpa.w	#0,a4
@@ -15239,8 +15292,8 @@ loc_20D182:
 	neg.w	d1
 loc_20D1AC:
 	add.w	obj.xpos(a0),d0
-	movea.w d0,a2
-	movea.w d1,a3
+	movea.w	d0,a2
+	movea.w	d1,a3
 	moveq	#0,d6
 	move.b	(a6)+,d6
 	move.w	d6,d4
@@ -15362,291 +15415,292 @@ locret_20D34A:
 	rts
 
 off_20D34C:
-	dc.w byte_20D34E-off_20D34C
+	dc.w	byte_20D34E-off_20D34C
 byte_20D34E:
-	dc.b 23
-	dc.b $D0,  5,  8, $D,$D8
-	dc.b $D0,  5,  8, $D,$E8
-	dc.b $D0,  5,  8, $D,$F8
-	dc.b $D0,  5,  8, $D,  8
-	dc.b $D0,  5,  8, $D,$18
-	dc.b $E0,  5,  8,$11,$D8
-	dc.b $E0,  5,  8,$11,$E8
-	dc.b $E0,  5,  8,$11,$F8
-	dc.b $E0,  5,  8,$11,  8
-	dc.b $E0,  5,  8,$11,$18
-	dc.b $F0,  5,  0,$19,$D8
-	dc.b $F0,  5,  8,$15,$E8
-	dc.b $F0,  5,  8,$15,$F8
-	dc.b $F0,  5,  8,$15,  8
-	dc.b $F0,  5,  8,$15,$18
-	dc.b   0,  5,  8,$25,$D8
-	dc.b   0,  5,  0,$1D,$E8
-	dc.b   0,  5,  0,$21,$F8
-	dc.b   0,  5,  0,$21,  8
-	dc.b   0,  5,  8,$1D,$18
-	dc.b $10,  5,  0,$19,$F8
-	dc.b $10,  5,  0,$19,  8
-	dc.b $10,  5,  0,$19,$18
+	dc.b	23
+	dc.b	$D0,5,8,$D,$D8
+	dc.b	$D0,5,8,$D,$E8
+	dc.b	$D0,5,8,$D,-8
+	dc.b	$D0,5,8,$D,8
+	dc.b	$D0,5,8,$D,$18
+	dc.b	$E0,5,8,$11,$D8
+	dc.b	$E0,5,8,$11,$E8
+	dc.b	$E0,5,8,$11,-8
+	dc.b	$E0,5,8,$11,8
+	dc.b	$E0,5,8,$11,$18
+	dc.b	$F0,5,0,$19,$D8
+	dc.b	$F0,5,8,$15,$E8
+	dc.b	$F0,5,8,$15,-8
+	dc.b	$F0,5,8,$15,8
+	dc.b	$F0,5,8,$15,$18
+	dc.b	0,5,8,$25,$D8
+	dc.b	0,5,0,$1D,$E8
+	dc.b	0,5,0,$21,-8
+	dc.b	0,5,0,$21,8
+	dc.b	0,5,8,$1D,$18
+	dc.b	$10,5,0,$19,-8
+	dc.b	$10,5,0,$19,8
+	dc.b	$10,5,0,$19,$18
 	even
 off_20D3C2:
-	dc.w unk_20D3C4-off_20D3C2
+	dc.w	unk_20D3C4-off_20D3C2
 unk_20D3C4:
-	dc.b   4
-	dc.b   3
-	dc.b $FF
-	dc.b $FF
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   1
-	dc.b   2
-	dc.b   3
-	dc.b   3
-	dc.b   4
-	dc.b   0
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   5
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
-	dc.b   6
+	dc.b	4
+	dc.b	3
+	dc.b	$FF
+	dc.b	$FF
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	1
+	dc.b	2
+	dc.b	3
+	dc.b	3
+	dc.b	4
+	dc.b	0
+	dc.b	5
+	dc.b	5
+	dc.b	5
+	dc.b	5
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
+	dc.b	6
 	even
 obj20_map:
-	dc.w byte_20D3E8-obj20_map
-	dc.w byte_20D3EE-obj20_map
-	dc.w byte_20D3F4-obj20_map
-	dc.w byte_20D3FA-obj20_map
-	dc.w byte_20D400-obj20_map
-	dc.w byte_20D406-obj20_map
-	dc.w byte_20D40C-obj20_map
+	dc.w	byte_20D3E8-obj20_map
+	dc.w	byte_20D3EE-obj20_map
+	dc.w	byte_20D3F4-obj20_map
+	dc.w	byte_20D3FA-obj20_map
+	dc.w	byte_20D400-obj20_map
+	dc.w	byte_20D406-obj20_map
+	dc.w	byte_20D40C-obj20_map
 byte_20D3E8:
-	dc.b 1
-	dc.b $F8,  5,  0,$19,$F8
+	dc.b	1
+	dc.b	-8,5,0,$19,-8
 	even
 byte_20D3EE:
-	dc.b 1
-	dc.b $F8,  5,  8,$25,$F8
+	dc.b	1
+	dc.b	-8,5,8,$25,-8
 	even
 byte_20D3F4:
-	dc.b 1
-	dc.b $F8,  5,  0,$1D,$F8
+	dc.b	1
+	dc.b	-8,5,0,$1D,-8
 	even
 byte_20D3FA:
-	dc.b 1
-	dc.b $F8,  5,  0,$21,$F8
+	dc.b	1
+	dc.b	-8,5,0,$21,-8
 	even
 byte_20D400:
-	dc.b 1
-	dc.b $F8,  5,  8,$1D,$F8
+	dc.b	1
+	dc.b	-8,5,8,$1D,-8
 	even
 byte_20D406:
-	dc.b 1
-	dc.b $F8,  5,  8,$15,$F8
+	dc.b	1
+	dc.b	-8,5,8,$15,-8
 	even
 byte_20D40C:
-	dc.b 2
-	dc.b $E8,  5,  8, $D,$F8
-	dc.b $F8,  5,  8,$11,$F8
+	dc.b	2
+	dc.b	$E8,5,8,$D,-8
+	dc.b	-8,5,8,$11,-8
 	even
-off_20D418: dc.w byte_20D424-off_20D418
-	dc.w byte_20D424-off_20D418
-	dc.w byte_20D47F-off_20D418
-	dc.w byte_20D4E4-off_20D418
-	dc.w byte_20D549-off_20D418
-	dc.w byte_20D57C-off_20D418
+off_20D418:
+	dc.w	byte_20D424-off_20D418
+	dc.w	byte_20D424-off_20D418
+	dc.w	byte_20D47F-off_20D418
+	dc.w	byte_20D4E4-off_20D418
+	dc.w	byte_20D549-off_20D418
+	dc.w	byte_20D57C-off_20D418
 byte_20D424:
-	dc.b 18
-	dc.b $E0,  5,  0, $D,$D0
-	dc.b $E0,  5,  0, $D,$E0
-	dc.b $E0,  5,  0, $D,$F0
-	dc.b $E0,  5,  0, $D,  0
-	dc.b $E0,  5,  0, $D,$10
-	dc.b $E0,  5,  0, $D,$20
-	dc.b $F0,  5,  0,$11,$D0
-	dc.b $F0,  5,  0,$11,$E0
-	dc.b $F0,  5,  0,$11,$F0
-	dc.b $F0,  5,  0,$11,  0
-	dc.b $F0,  5,  0,$11,$10
-	dc.b $F0,  5,  0,$11,$20
-	dc.b   0,  5,  0,$15,$D0
-	dc.b   0,  5,  0,$15,$E0
-	dc.b   0,  5,  0,$15,$F0
-	dc.b   0,  5,  0,$15,  0
-	dc.b   0,  5,  0,$15,$10
-	dc.b   0,  5,  0,$15,$20
+	dc.b	18
+	dc.b	$E0,5,0,$D,$D0
+	dc.b	$E0,5,0,$D,$E0
+	dc.b	$E0,5,0,$D,$F0
+	dc.b	$E0,5,0,$D,0
+	dc.b	$E0,5,0,$D,$10
+	dc.b	$E0,5,0,$D,$20
+	dc.b	$F0,5,0,$11,$D0
+	dc.b	$F0,5,0,$11,$E0
+	dc.b	$F0,5,0,$11,$F0
+	dc.b	$F0,5,0,$11,0
+	dc.b	$F0,5,0,$11,$10
+	dc.b	$F0,5,0,$11,$20
+	dc.b	0,5,0,$15,$D0
+	dc.b	0,5,0,$15,$E0
+	dc.b	0,5,0,$15,$F0
+	dc.b	0,5,0,$15,0
+	dc.b	0,5,0,$15,$10
+	dc.b	0,5,0,$15,$20
 byte_20D47F:
-	dc.b 20
-	dc.b $D0,  5,  0, $D,$E0
-	dc.b $D0,  5,  0, $D,$F0
-	dc.b $D0,  5,  0, $D,  0
-	dc.b $D0,  5,  0, $D,$10
-	dc.b $E0,  5,  0,$11,$E0
-	dc.b $E0,  5,  0,$11,$F0
-	dc.b $E0,  5,  0,$11,  0
-	dc.b $E0,  5,  0,$11,$10
-	dc.b $F0,  5,  0,$15,$E0
-	dc.b $F0,  5,  0,$15,$F0
-	dc.b $F0,  5,  0,$15,  0
-	dc.b $F0,  5,  0,$15,$10
-	dc.b   0,  5,  0,$29,$E0
-	dc.b   0,  5,  0,$33,$F0
-	dc.b   0,  5,  0,$33,  0
-	dc.b   0,  5,  0,$33,$10
-	dc.b $10,  5,  0,$31,$E0
-	dc.b $10,  5,  0,$2B,$F0
-	dc.b $10,  5,  0,$2B,  0
-	dc.b $10,  5,  0,$2B,$10
+	dc.b	20
+	dc.b	$D0,5,0,$D,$E0
+	dc.b	$D0,5,0,$D,$F0
+	dc.b	$D0,5,0,$D,0
+	dc.b	$D0,5,0,$D,$10
+	dc.b	$E0,5,0,$11,$E0
+	dc.b	$E0,5,0,$11,$F0
+	dc.b	$E0,5,0,$11,0
+	dc.b	$E0,5,0,$11,$10
+	dc.b	$F0,5,0,$15,$E0
+	dc.b	$F0,5,0,$15,$F0
+	dc.b	$F0,5,0,$15,0
+	dc.b	$F0,5,0,$15,$10
+	dc.b	0,5,0,$29,$E0
+	dc.b	0,5,0,$33,$F0
+	dc.b	0,5,0,$33,0
+	dc.b	0,5,0,$33,$10
+	dc.b	$10,5,0,$31,$E0
+	dc.b	$10,5,0,$2B,$F0
+	dc.b	$10,5,0,$2B,0
+	dc.b	$10,5,0,$2B,$10
 	even
 byte_20D4E4:
-	dc.b 20
-	dc.b $D0,  5,  0, $D,$E0
-	dc.b $D0,  5,  0, $D,$F0
-	dc.b $D0,  5,  0, $D,  0
-	dc.b $D0,  5,  0, $D,$10
-	dc.b $E0,  5,  0,$11,$E0
-	dc.b $E0,  5,  0,$11,$F0
-	dc.b $E0,  5,  0,$11,  0
-	dc.b $E0,  5,  0,$11,$10
-	dc.b $F0,  5,  0,$15,$E0
-	dc.b $F0,  5,  0,$15,$F0
-	dc.b $F0,  5,  0,$15,  0
-	dc.b $F0,  5,  0,$15,$10
-	dc.b   0,  5,  0,$33,$E0
-	dc.b   0,  5,  0,$33,$F0
-	dc.b   0,  5,  0,$33,  0
-	dc.b   0,  5,  0,$33,$10
-	dc.b $10,  5,  0,$2B,$E0
-	dc.b $10,  5,  0,$2B,$F0
-	dc.b $10,  5,  0,$2B,  0
-	dc.b $10,  5,  0,$2B,$10
+	dc.b	20
+	dc.b	$D0,5,0,$D,$E0
+	dc.b	$D0,5,0,$D,$F0
+	dc.b	$D0,5,0,$D,0
+	dc.b	$D0,5,0,$D,$10
+	dc.b	$E0,5,0,$11,$E0
+	dc.b	$E0,5,0,$11,$F0
+	dc.b	$E0,5,0,$11,0
+	dc.b	$E0,5,0,$11,$10
+	dc.b	$F0,5,0,$15,$E0
+	dc.b	$F0,5,0,$15,$F0
+	dc.b	$F0,5,0,$15,0
+	dc.b	$F0,5,0,$15,$10
+	dc.b	0,5,0,$33,$E0
+	dc.b	0,5,0,$33,$F0
+	dc.b	0,5,0,$33,0
+	dc.b	0,5,0,$33,$10
+	dc.b	$10,5,0,$2B,$E0
+	dc.b	$10,5,0,$2B,$F0
+	dc.b	$10,5,0,$2B,0
+	dc.b	$10,5,0,$2B,$10
 byte_20D549:
-	dc.b 10
-	dc.b $D0,  5,  0, $D,$F0
-	dc.b $D0,  5,  0, $D,  0
-	dc.b $E0,  5,  0,$11,$F0
-	dc.b $E0,  5,  0,$11,  0
-	dc.b $F0,  5,  0,$15,$F0
-	dc.b $F0,  5,  0,$15,  0
-	dc.b   0,  5,  0,$1D,$F0
-	dc.b   0,  5,  0,$21,  0
-	dc.b $10,  5,  0,$19,$F0
-	dc.b $10,  5,  0,$19,  0
+	dc.b	10
+	dc.b	$D0,5,0,$D,$F0
+	dc.b	$D0,5,0,$D,0
+	dc.b	$E0,5,0,$11,$F0
+	dc.b	$E0,5,0,$11,0
+	dc.b	$F0,5,0,$15,$F0
+	dc.b	$F0,5,0,$15,0
+	dc.b	0,5,0,$1D,$F0
+	dc.b	0,5,0,$21,0
+	dc.b	$10,5,0,$19,$F0
+	dc.b	$10,5,0,$19,0
 	even
 byte_20D57C:
-	dc.b 10
-	dc.b $D0,  5,  0, $D,$F0
-	dc.b $D0,  5,  0, $D,  0
-	dc.b $E0,  5,  0,$11,$F0
-	dc.b $E0,  5,  0,$11,  0
-	dc.b $F0,  5,  0,$15,$F0
-	dc.b $F0,  5,  0,$15,  0
-	dc.b   0,  5,  0,$21,$F0
-	dc.b   0,  5,  8,$1D,  0
-	dc.b $10,  5,  0,$19,$F0
-	dc.b $10,  5,  0,$19,  0
+	dc.b	10
+	dc.b	$D0,5,0,$D,$F0
+	dc.b	$D0,5,0,$D,0
+	dc.b	$E0,5,0,$11,$F0
+	dc.b	$E0,5,0,$11,0
+	dc.b	$F0,5,0,$15,$F0
+	dc.b	$F0,5,0,$15,0
+	dc.b	0,5,0,$21,$F0
+	dc.b	0,5,8,$1D,0
+	dc.b	$10,5,0,$19,$F0
+	dc.b	$10,5,0,$19,0
 	even
 
 off_20D5B0:
-	dc.w unk_20D5BC-off_20D5B0
-	dc.w unk_20D5BC-off_20D5B0
-	dc.w unk_20D5C4-off_20D5B0
-	dc.w unk_20D5CA-off_20D5B0
-	dc.w unk_20D5D0-off_20D5B0
-	dc.w unk_20D5D4-off_20D5B0
+	dc.w	unk_20D5BC-off_20D5B0
+	dc.w	unk_20D5BC-off_20D5B0
+	dc.w	unk_20D5C4-off_20D5B0
+	dc.w	unk_20D5CA-off_20D5B0
+	dc.w	unk_20D5D0-off_20D5B0
+	dc.w	unk_20D5D4-off_20D5B0
 unk_20D5BC:
-	dc.b   5
-	dc.b   1
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
-	dc.b   0
+	dc.b	5
+	dc.b	1
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
 	even
 unk_20D5C4:
-	dc.b   3
-	dc.b   3
-	dc.b   1
-	dc.b   2
-	dc.b   2
-	dc.b   2
+	dc.b	3
+	dc.b	3
+	dc.b	1
+	dc.b	2
+	dc.b	2
+	dc.b	2
 	even
 unk_20D5CA:
-	dc.b   3
-	dc.b   3
-	dc.b   2
-	dc.b   2
-	dc.b   2
-	dc.b   2
+	dc.b	3
+	dc.b	3
+	dc.b	2
+	dc.b	2
+	dc.b	2
+	dc.b	2
 	even
 unk_20D5D0:
-	dc.b   1
-	dc.b   3
-	dc.b   3
-	dc.b   5
+	dc.b	1
+	dc.b	3
+	dc.b	3
+	dc.b	5
 	even
 unk_20D5D4:
-	dc.b   1
-	dc.b   3
-	dc.b   5
-	dc.b   4
+	dc.b	1
+	dc.b	3
+	dc.b	5
+	dc.b	4
 	even
 obj20b_map:
-	dc.w byte_20D5E4-obj20b_map
-	dc.w byte_20D5F4-obj20b_map
-	dc.w byte_20D60E-obj20b_map
-	dc.w byte_20D628-obj20b_map
-	dc.w byte_20D642-obj20b_map
-	dc.w byte_20D65C-obj20b_map
+	dc.w	byte_20D5E4-obj20b_map
+	dc.w	byte_20D5F4-obj20b_map
+	dc.w	byte_20D60E-obj20b_map
+	dc.w	byte_20D628-obj20b_map
+	dc.w	byte_20D642-obj20b_map
+	dc.w	byte_20D65C-obj20b_map
 byte_20D5E4:
-	dc.b 3
-	dc.b $E0,  5,  0, $D,$F8
-	dc.b $F0,  5,  0,$11,$F8
-	dc.b   0,  5,  0,$15,$F8
+	dc.b	3
+	dc.b	$E0,5,0,$D,-8
+	dc.b	$F0,5,0,$11,-8
+	dc.b	0,5,0,$15,-8
 	even
 byte_20D5F4:
-	dc.b 5
-	dc.b $D0,  5,  0, $D,$F8
-	dc.b $E0,  5,  0,$11,$F8
-	dc.b $F0,  5,  0,$15,$F8
-	dc.b   0,  5,  0,$29,$F8
-	dc.b $10,  5,  0,$31,$F8
+	dc.b	5
+	dc.b	$D0,5,0,$D,-8
+	dc.b	$E0,5,0,$11,-8
+	dc.b	$F0,5,0,$15,-8
+	dc.b	0,5,0,$29,-8
+	dc.b	$10,5,0,$31,-8
 	even
 byte_20D60E:
-	dc.b 5
-	dc.b $D0,  5,  0, $D,$F8
-	dc.b $E0,  5,  0,$11,$F8
-	dc.b $F0,  5,  0,$15,$F8
-	dc.b   0,  5,  0,$33,$F8
-	dc.b $10,  5,  0,$2B,$F8
+	dc.b	5
+	dc.b	$D0,5,0,$D,-8
+	dc.b	$E0,5,0,$11,-8
+	dc.b	$F0,5,0,$15,-8
+	dc.b	0,5,0,$33,-8
+	dc.b	$10,5,0,$2B,-8
 	even
 byte_20D628:
-	dc.b 5
-	dc.b $D0,  5,  0, $D,$F8
-	dc.b $E0,  5,  0,$11,$F8
-	dc.b $F0,  5,  0,$15,$F8
-	dc.b   0,  5,  0,$1D,$F8
-	dc.b $10,  5,  0,$19,$F8
+	dc.b	5
+	dc.b	$D0,5,0,$D,-8
+	dc.b	$E0,5,0,$11,-8
+	dc.b	$F0,5,0,$15,-8
+	dc.b	0,5,0,$1D,-8
+	dc.b	$10,5,0,$19,-8
 	even
 byte_20D642:
-	dc.b 5
-	dc.b $D0,  5,  0, $D,$F8
-	dc.b $E0,  5,  0,$11,$F8
-	dc.b $F0,  5,  0,$15,$F8
-	dc.b   0,  5,  8,$1D,$F8
-	dc.b $10,  5,  0,$19,$F8
+	dc.b	5
+	dc.b	$D0,5,0,$D,-8
+	dc.b	$E0,5,0,$11,-8
+	dc.b	$F0,5,0,$15,-8
+	dc.b	0,5,8,$1D,-8
+	dc.b	$10,5,0,$19,-8
 	even
 byte_20D65C:
-	dc.b 5
-	dc.b $D0,  5,  0, $D,$F8
-	dc.b $E0,  5,  0,$11,$F8
-	dc.b $F0,  5,  0,$15,$F8
-	dc.b   0,  5,  0,$21,$F8
-	dc.b $10,  5,  0,$19,$F8
+	dc.b	5
+	dc.b	$D0,5,0,$D,-8
+	dc.b	$E0,5,0,$11,-8
+	dc.b	$F0,5,0,$15,-8
+	dc.b	0,5,0,$21,-8
+	dc.b	$10,5,0,$19,-8
 	even
 
 obj21:
@@ -15658,8 +15712,8 @@ obj21:
 	rts
 
 off_20D68C:
-	dc.w loc_20D6A4-off_20D68C
-	dc.w loc_20D776-off_20D68C
+	dc.w	loc_20D6A4-off_20D68C
+	dc.w	loc_20D776-off_20D68C
 
 sub_20D690:
 	lea	actwk.w,a1
@@ -15718,17 +15772,17 @@ loc_20D768:
 	rts
 
 byte_20D76E:
-	dc.b $10
-	dc.b $20
-	dc.b $30
-	dc.b   0
+	dc.b	$10
+	dc.b	$20
+	dc.b	$30
+	dc.b	0
 	even
 
 byte_20D772:
-	dc.b $20
-	dc.b $30
-	dc.b $40
-	dc.b $60
+	dc.b	$20
+	dc.b	$30
+	dc.b	$40
+	dc.b	$60
 	even
 
 loc_20D776:
@@ -15757,16 +15811,16 @@ locret_20D7B8:
 	rts
 
 off_20D7BA:
-	dc.w loc_20D7CE-off_20D7BA
-	dc.w loc_20D7E4-off_20D7BA
-	dc.w loc_20D83E-off_20D7BA
-	dc.w loc_20D862-off_20D7BA
-	dc.w sub_20D888-off_20D7BA
-	dc.w loc_20D89C-off_20D7BA
-	dc.w loc_20D912-off_20D7BA
-	dc.w loc_20D966-off_20D7BA
-	dc.w loc_20D9C6-off_20D7BA
-	dc.w loc_20DA3E-off_20D7BA
+	dc.w	loc_20D7CE-off_20D7BA
+	dc.w	loc_20D7E4-off_20D7BA
+	dc.w	loc_20D83E-off_20D7BA
+	dc.w	loc_20D862-off_20D7BA
+	dc.w	sub_20D888-off_20D7BA
+	dc.w	loc_20D89C-off_20D7BA
+	dc.w	loc_20D912-off_20D7BA
+	dc.w	loc_20D966-off_20D7BA
+	dc.w	loc_20D9C6-off_20D7BA
+	dc.w	loc_20DA3E-off_20D7BA
 
 loc_20D7CE:
 	addq.b	#1,obj.field_2A(a0)
@@ -15894,9 +15948,9 @@ loc_20D912:
 	jmp	off_20D922(pc,d0.w)
 
 off_20D922:
-	dc.w loc_20D928-off_20D922
-	dc.w loc_20D934-off_20D922
-	dc.w loc_20D962-off_20D922
+	dc.w	loc_20D928-off_20D922
+	dc.w	loc_20D934-off_20D922
+	dc.w	loc_20D962-off_20D922
 
 loc_20D928:
 	jsr	sub_20D888(pc)
@@ -15929,9 +15983,9 @@ loc_20D966:
 	jmp	off_20D976(pc,d0.w)
 
 off_20D976:
-	dc.w loc_20D97C-off_20D976
-	dc.w loc_20D98E-off_20D976
-	dc.w loc_20D9C2-off_20D976
+	dc.w	loc_20D97C-off_20D976
+	dc.w	loc_20D98E-off_20D976
+	dc.w	loc_20D9C2-off_20D976
 
 loc_20D97C:
 	jsr	sub_20D888(pc)
@@ -15969,9 +16023,9 @@ loc_20D9C6:
 	jmp	off_20D9D6(pc,d0.w)
 
 off_20D9D6:
-	dc.w loc_20D9DC-off_20D9D6
-	dc.w loc_20D9EE-off_20D9D6
-	dc.w loc_20DA3A-off_20D9D6
+	dc.w	loc_20D9DC-off_20D9D6
+	dc.w	loc_20D9EE-off_20D9D6
+	dc.w	loc_20DA3A-off_20D9D6
 
 loc_20D9DC:
 	jsr	sub_20D888(pc)
@@ -16016,9 +16070,9 @@ loc_20DA3E:
 	jmp	off_20DA4E(pc,d0.w)
 
 off_20DA4E:
-	dc.w loc_20DA54-off_20DA4E
-	dc.w loc_20DA66-off_20DA4E
-	dc.w loc_20DAB2-off_20DA4E
+	dc.w	loc_20DA54-off_20DA4E
+	dc.w	loc_20DA66-off_20DA4E
+	dc.w	loc_20DAB2-off_20DA4E
 
 loc_20DA54:
 	jsr	sub_20D888(pc)
@@ -16068,79 +16122,79 @@ sub_20DAB6:
 	rts
 
 obj21_map:
-	dc.w byte_20DAD4-obj21_map
-	dc.w byte_20DAEA-obj21_map
-	dc.w byte_20DB14-obj21_map
+	dc.w	byte_20DAD4-obj21_map
+	dc.w	byte_20DAEA-obj21_map
+	dc.w	byte_20DB14-obj21_map
 byte_20DAD4:
-	dc.b 4
-	dc.b $F0,  5,  0,  1,$F0
-	dc.b $F0,  5,  8,  1,  0
-	dc.b   0,  5,  0,  5,$F0
-	dc.b   0,  5,  8,  5,  0
+	dc.b	4
+	dc.b	$F0,5,0,1,$F0
+	dc.b	$F0,5,8,1,0
+	dc.b	0,5,0,5,$F0
+	dc.b	0,5,8,5,0
 	even
 byte_20DAEA:
-	dc.b 8
-	dc.b $F0,  5,  0,  1,$E0
-	dc.b $F0,  5,  0,  1,$F0
-	dc.b $F0,  5,  0,  1,  0
-	dc.b $F0,  5,  0,  1,$10
-	dc.b   0,  5,  0,  5,$E0
-	dc.b   0,  5,  0,  9,$F0
-	dc.b   0,  5,  0,  9,  0
-	dc.b   0,  5,  8,  5,$10
+	dc.b	8
+	dc.b	$F0,5,0,1,$E0
+	dc.b	$F0,5,0,1,$F0
+	dc.b	$F0,5,0,1,0
+	dc.b	$F0,5,0,1,$10
+	dc.b	0,5,0,5,$E0
+	dc.b	0,5,0,9,$F0
+	dc.b	0,5,0,9,0
+	dc.b	0,5,8,5,$10
 	even
 byte_20DB14:
-	dc.b 12
-	dc.b $F0,  5,  0,  1,$D0
-	dc.b $F0,  5,  0,  1,$E0
-	dc.b $F0,  5,  0,  1,$F0
-	dc.b $F0,  5,  0,  1,  0
-	dc.b $F0,  5,  0,  1,$10
-	dc.b $F0,  5,  0,  1,$20
-	dc.b   0,  5,  0,  5,$D0
-	dc.b   0,  5,  0,  9,$E0
-	dc.b   0,  5,  0,  9,$F0
-	dc.b   0,  5,  0,  9,  0
-	dc.b   0,  5,  0,  9,$10
-	dc.b   0,  5,  8,  5,$20
+	dc.b	12
+	dc.b	$F0,5,0,1,$D0
+	dc.b	$F0,5,0,1,$E0
+	dc.b	$F0,5,0,1,$F0
+	dc.b	$F0,5,0,1,0
+	dc.b	$F0,5,0,1,$10
+	dc.b	$F0,5,0,1,$20
+	dc.b	0,5,0,5,$D0
+	dc.b	0,5,0,9,$E0
+	dc.b	0,5,0,9,$F0
+	dc.b	0,5,0,9,0
+	dc.b	0,5,0,9,$10
+	dc.b	0,5,8,5,$20
 	even
 
 obj21b_map:
-	dc.w byte_20DB58-obj21b_map
-	dc.w byte_20DB6E-obj21b_map
-	dc.w byte_20DB98-obj21b_map
+	dc.w	byte_20DB58-obj21b_map
+	dc.w	byte_20DB6E-obj21b_map
+	dc.w	byte_20DB98-obj21b_map
 byte_20DB58:
-	dc.b 4
-	dc.b $F0,  5,  0,$31,$F0
-	dc.b $F0,  5,  8,$31,  0
-	dc.b   0,  5,  0,$35,$F0
-	dc.b   0,  5,  8,$35,  0
+	dc.b	4
+	dc.b	$F0,5,0,$31,$F0
+	dc.b	$F0,5,8,$31,0
+	dc.b	0,5,0,$35,$F0
+	dc.b	0,5,8,$35,0
 	even
 byte_20DB6E:
-	dc.b 8
-	dc.b $F0,  5,  0,$31,$E0
-	dc.b $F0,  5,  8,$31,$F0
-	dc.b   0,  5,  0,$35,$E0
-	dc.b   0,  5,  8,$35,$F0
-	dc.b $F0,  5,  0,$31,  0
-	dc.b $F0,  5,  8,$31,$10
-	dc.b   0,  5,  0,$35,  0
-	dc.b   0,  5,  8,$35,$10
+	dc.b	8
+	dc.b	$F0,5,0,$31,$E0
+	dc.b	$F0,5,8,$31,$F0
+	dc.b	0,5,0,$35,$E0
+	dc.b	0,5,8,$35,$F0
+	dc.b	$F0,5,0,$31,0
+	dc.b	$F0,5,8,$31,$10
+	dc.b	0,5,0,$35,0
+	dc.b	0,5,8,$35,$10
 	even
 byte_20DB98:
-	dc.b 12
-	dc.b $F0,  5,  0,$31,$D0
-	dc.b $F0,  5,  8,$31,$E0
-	dc.b   0,  5,  0,$35,$D0
-	dc.b   0,  5,  8,$35,$E0
-	dc.b $F0,  5,  0,$31,$F0
-	dc.b $F0,  5,  8,$31,  0
-	dc.b   0,  5,  0,$35,$F0
-	dc.b   0,  5,  8,$35,  0
-	dc.b $F0,  5,  0,$31,$10
-	dc.b $F0,  5,  8,$31,$20
-	dc.b   0,  5,  0,$35,$10
-	dc.b   0,  5,  8,$35,$20
+	dc.b	12
+	dc.b	$F0,5,0,$31,$D0
+	dc.b	$F0,5,8,$31,$E0
+	dc.b	0,5,0,$35,$D0
+	dc.b	0,5,8,$35,$E0
+	dc.b	$F0,5,0,$31,$F0
+	dc.b	$F0,5,8,$31,0
+	dc.b	0,5,0,$35,$F0
+	dc.b	0,5,8,$35,0
+	dc.b	$F0,5,0,$31,$10
+	dc.b	$F0,5,8,$31,$20
+	dc.b	0,5,0,$35,$10
+	dc.b	0,5,8,$35,$20
 	even
 
 loc_20DBD6:
@@ -16181,28 +16235,28 @@ loc_20DC18:
 	jmp	loc_202060.l
 
 word_20DC28:
-	dc.w $D00
-	dc.w $1100
-	dc.w $1500
-	dc.w $1A00
-	dc.w $2000
-	dc.w $FFFF
+	dc.w	$D00
+	dc.w	$1100
+	dc.w	$1500
+	dc.w	$1A00
+	dc.w	$2000
+	dc.w	$FFFF
 
 word_20DC34:
-	dc.w ddevid_04
-	dc.w ddevid_05
-	dc.w ddevid_06
-	dc.w ddevid_07
-	dc.w ddevid_08
-	dc.w ddevid_09
+	dc.w	ddevid_04
+	dc.w	ddevid_05
+	dc.w	ddevid_06
+	dc.w	ddevid_07
+	dc.w	ddevid_08
+	dc.w	ddevid_09
 
 word_20DC40:
-	dc.w ddevid_0A
-	dc.w ddevid_0B
-	dc.w ddevid_0C
-	dc.w ddevid_0D
-	dc.w ddevid_0E
-	dc.w ddevid_0F
+	dc.w	ddevid_0A
+	dc.w	ddevid_0B
+	dc.w	ddevid_0C
+	dc.w	ddevid_0D
+	dc.w	ddevid_0E
+	dc.w	ddevid_0F
 
 sub_20DC4C:
 	lea	off_20DC6E.l,a1
@@ -16217,42 +16271,42 @@ sub_20DC4C:
 	rts
 
 off_20DC6E:
-	dc.w word_20DC92-off_20DC6E
-	dc.w word_20DC94-off_20DC6E
-	dc.w word_20DC96-off_20DC6E
-	dc.w word_20DC98-off_20DC6E
-	dc.w word_20DC9A-off_20DC6E
-	dc.w word_20DC9C-off_20DC6E
-	dc.w word_20DCA6-off_20DC6E
-	dc.w word_20DCA0-off_20DC6E
-	dc.w word_20DCA4-off_20DC6E
-	dc.w word_20DCA2-off_20DC6E
-	dc.w word_20DC9E-off_20DC6E
-	dc.w word_20DCA8-off_20DC6E
-	dc.w word_20DCAA-off_20DC6E
-	dc.w word_20DCAC-off_20DC6E
-	dc.w word_20DCAE-off_20DC6E
-	dc.w word_20DCB0-off_20DC6E
-	dc.w word_20DCB2-off_20DC6E
-	dc.w word_20DCB4-off_20DC6E
-word_20DC92:	dc.w $23E7
-word_20DC94:	dc.w $24DC
-word_20DC96:	dc.w $245F
-word_20DC98:	dc.w $2431
-word_20DC9A:	dc.w $23E7
-word_20DC9C:	dc.w $4363
-word_20DC9E:	dc.w $33A
-word_20DCA0:	dc.w $342
-word_20DCA2:	dc.w $431E
-word_20DCA4:	dc.w $4495
-word_20DCA6:	dc.w $375
-word_20DCA8:	dc.w $326
-word_20DCAA:	dc.w $8357
-word_20DCAC:	dc.w $475
-word_20DCAE:	dc.w $384
-word_20DCB0:	dc.w $3A1
-word_20DCB2:	dc.w $422
-word_20DCB4:	dc.w 0
+	dc.w	word_20DC92-off_20DC6E
+	dc.w	word_20DC94-off_20DC6E
+	dc.w	word_20DC96-off_20DC6E
+	dc.w	word_20DC98-off_20DC6E
+	dc.w	word_20DC9A-off_20DC6E
+	dc.w	word_20DC9C-off_20DC6E
+	dc.w	word_20DCA6-off_20DC6E
+	dc.w	word_20DCA0-off_20DC6E
+	dc.w	word_20DCA4-off_20DC6E
+	dc.w	word_20DCA2-off_20DC6E
+	dc.w	word_20DC9E-off_20DC6E
+	dc.w	word_20DCA8-off_20DC6E
+	dc.w	word_20DCAA-off_20DC6E
+	dc.w	word_20DCAC-off_20DC6E
+	dc.w	word_20DCAE-off_20DC6E
+	dc.w	word_20DCB0-off_20DC6E
+	dc.w	word_20DCB2-off_20DC6E
+	dc.w	word_20DCB4-off_20DC6E
+word_20DC92:	dc.w	$23E7
+word_20DC94:	dc.w	$24DC
+word_20DC96:	dc.w	$245F
+word_20DC98:	dc.w	$2431
+word_20DC9A:	dc.w	$23E7
+word_20DC9C:	dc.w	$4363
+word_20DC9E:	dc.w	$33A
+word_20DCA0:	dc.w	$342
+word_20DCA2:	dc.w	$431E
+word_20DCA4:	dc.w	$4495
+word_20DCA6:	dc.w	$375
+word_20DCA8:	dc.w	$326
+word_20DCAA:	dc.w	$8357
+word_20DCAC:	dc.w	$475
+word_20DCAE:	dc.w	$384
+word_20DCB0:	dc.w	$3A1
+word_20DCB2:	dc.w	$422
+word_20DCB4:	dc.w	0
 
 obj24:
 	moveq	#0,d0
@@ -16263,8 +16317,8 @@ obj24:
 	jmp	loc_206FB8.l
 
 off_20DCCC:
-	dc.w loc_20DCD0-off_20DCCC
-	dc.w loc_20DDCA-off_20DCCC
+	dc.w	loc_20DCD0-off_20DCCC
+	dc.w	loc_20DDCA-off_20DCCC
 
 loc_20DCD0:
 	moveq	#0,d0
@@ -16273,9 +16327,9 @@ loc_20DCD0:
 	jmp	off_20DCDE(pc,d0.w)
 
 off_20DCDE:
-	dc.w loc_20DCE4-off_20DCDE
-	dc.w loc_20DD22-off_20DCDE
-	dc.w loc_20DD72-off_20DCDE
+	dc.w	loc_20DCE4-off_20DCDE
+	dc.w	loc_20DD22-off_20DCDE
+	dc.w	loc_20DD72-off_20DCDE
 
 loc_20DCE4:
 	addq.b	#2,obj.routine(a0)
@@ -16309,7 +16363,6 @@ loc_20DD58:
 	lea	obj24_ani.l,a1
 	jsr	animateobj.l
 	jmp	displaysprite.l
-
 	rts
 
 loc_20DD6C:
@@ -16338,24 +16391,23 @@ loc_20DDAC:
 	bra.s	loc_20DD58
 
 obj24_ani:
-	dc.w unk_20DDB6-obj24_ani
+	dc.w	unk_20DDB6-obj24_ani
 unk_20DDB6:
-	dc.b $13
-	dc.b 0
-	dc.b 1
-	dc.b $FF
+	dc.b	19
+	dc.b	0,1
+	dc.b	$FF
 	even
 
 obj24_map:
-	dc.w byte_20DDBE-obj24_map
-	dc.w byte_20DDC4-obj24_map
+	dc.w	byte_20DDBE-obj24_map
+	dc.w	byte_20DDC4-obj24_map
 byte_20DDBE:
-	dc.b 1
-	dc.b $F8,  5,  0,  0,$F8
+	dc.b	1
+	dc.b	-8,5,0,0,-8
 	even
 byte_20DDC4:
-	dc.b 1
-	dc.b $F8,  5,  0,  4,$F8
+	dc.b	1
+	dc.b	-8,5,0,4,-8
 	even
 
 loc_20DDCA:
@@ -16365,9 +16417,9 @@ loc_20DDCA:
 	jmp	off_20DDD8(pc,d0.w)
 
 off_20DDD8:
-	dc.w loc_20DDDE-off_20DDD8
-	dc.w loc_20DE12-off_20DDD8
-	dc.w loc_20DE6E-off_20DDD8
+	dc.w	loc_20DDDE-off_20DDD8
+	dc.w	loc_20DE12-off_20DDD8
+	dc.w	loc_20DE6E-off_20DDD8
 
 loc_20DDDE:
 	addq.b	#2,obj.routine(a0)
@@ -16397,7 +16449,6 @@ loc_20DE4C:
 	lea	obj24b_ani.l,a1
 	jsr	animateobj.l
 	jmp	displaysprite.l
-
 	rts
 
 loc_20DE60:
@@ -16426,43 +16477,39 @@ loc_20DEAA:
 	bra.s	loc_20DE4C
 
 obj24b_ani:
-	dc.w unk_20DEBE-obj24b_ani
-	dc.w unk_20DEC2-obj24b_ani
+	dc.w	unk_20DEBE-obj24b_ani
+	dc.w	unk_20DEC2-obj24b_ani
 unk_20DEBE:
-	dc.b $13
-	dc.b 1
-	dc.b $FF
+	dc.b	19
+	dc.b	1
+	dc.b	$FF
 	even
 unk_20DEC2:
-	dc.b $13
-	dc.b 0
-	dc.b $FF
+	dc.b	19
+	dc.b	0
+	dc.b	$FF
 	even
 
 obj24b_map:
-	dc.w byte_20DECA-obj24b_map
-	dc.w byte_20DED0-obj24b_map
+	dc.w	byte_20DECA-obj24b_map
+	dc.w	byte_20DED0-obj24b_map
 byte_20DECA:
-	dc.b 1
-	dc.b $F8,  9,  0,  8,$F4
+	dc.b	1
+	dc.b	-8,9,0,8,-$C
 	even
 byte_20DED0:
-	dc.b 1
-	dc.b $F8,  9,  0, $E,$F4
+	dc.b	1
+	dc.b	-8,9,0,$E,-$C
 	even
 
 	include	"Objects/17 - Signpost.asm"
 
 obj17_ani:
-	dc.w unk_20DFCA-obj17_ani
+	dc.w	unk_20DFCA-obj17_ani
 unk_20DFCA:
-	dc.b 1
-	dc.b 0
-	dc.b 1
-	dc.b 2
-	dc.b 3
-	dc.b 4
-	dc.b $FF
+	dc.b	1
+	dc.b	0,1,2,3,4
+	dc.b	$FF
 	even
 
 obj17_map:
@@ -16479,47 +16526,45 @@ lvlheader:
 	dc.b	palid_spz,palid_spz
 	even
 
-ddev_header	macro	label
-	dc.w	(label)/6-1
+ddev_header:	macro	{INTLABEL}
+__LABEL__:	label	*
+	dc.w	((__LABEL___end-__LABEL__-2)/6)-1
 	endm
 
-ddev_entry	macro	label,vram
-	dc.l	label
+ddev_entry:	macro	cg,vram
+	dc.l	cg
 	dc.w	vram*tile_size
 	endm
 
 divdev_index:
 
-ddev_ptr	macro	ptr,{INTLABEL}
+ddev_ptr:	macro	ptr,{INTLABEL}
 __LABEL__:	label	(*-divdev_index)/2
-	dc.w ptr-divdev_index
+	dc.w	ptr-divdev_index
 	endm
 
-ddevid_00:	ddev_ptr ddev_00
-ddevid_01:	ddev_ptr ddev_01
-ddevid_02:	ddev_ptr ddev_02
-ddevid_03:	ddev_ptr ddev_03
-ddevid_04:	ddev_ptr ddev_04
-ddevid_05:	ddev_ptr ddev_05
-ddevid_06:	ddev_ptr ddev_06
-ddevid_07:	ddev_ptr ddev_07
-ddevid_08:	ddev_ptr ddev_08
-ddevid_09:	ddev_ptr ddev_09
-ddevid_0A:	ddev_ptr ddev_0A
-ddevid_0B:	ddev_ptr ddev_0B
-ddevid_0C:	ddev_ptr ddev_0C
-ddevid_0D:	ddev_ptr ddev_0D
-ddevid_0E:	ddev_ptr ddev_0E
-ddevid_0F:	ddev_ptr ddev_0F
+ddevid_00:	ddev_ptr	ddev_00
+ddevid_01:	ddev_ptr	ddev_01
+ddevid_02:	ddev_ptr	ddev_02
+ddevid_03:	ddev_ptr	ddev_00
+ddevid_04:	ddev_ptr	ddev_04
+ddevid_05:	ddev_ptr	ddev_05
+ddevid_06:	ddev_ptr	ddev_06
+ddevid_07:	ddev_ptr	ddev_07
+ddevid_08:	ddev_ptr	ddev_08
+ddevid_09:	ddev_ptr	ddev_09
+ddevid_0A:	ddev_ptr	ddev_0A
+ddevid_0B:	ddev_ptr	ddev_0B
+ddevid_0C:	ddev_ptr	ddev_0C
+ddevid_0D:	ddev_ptr	ddev_0C
+ddevid_0E:	ddev_ptr	ddev_0E
+ddevid_0F:	ddev_ptr	ddev_0F
 
-ddev_00:
-ddev_03:
-	ddev_header	ddev_00_end-ddev_00
+ddev_00:	ddev_header
 	ddev_entry	spz_8x8,0
 ddev_00_end:
 
-ddev_01:
-	ddev_header	ddev_01_end-ddev_01
+ddev_01:	ddev_header
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
 	ddev_entry	cg_pole,$342
@@ -16536,8 +16581,7 @@ ddev_01:
 	ddev_entry	cg_ring,$7AE
 ddev_01_end:
 
-ddev_02:
-	ddev_header	ddev_02_end-ddev_02
+ddev_02:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
@@ -16547,34 +16591,29 @@ ddev_02:
 	ddev_entry	cg_patabata,$4DC
 ddev_02_end:
 
-ddev_04:
-	ddev_header	ddev_04_end-ddev_04
+ddev_04:	ddev_header
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 ddev_04_end:
 
-ddev_05:
-	ddev_header	ddev_05_end-ddev_05
+ddev_05:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_anton,$45F
 	ddev_entry	cg_splash2,$475
 ddev_05_end:
 
-ddev_06:
-	ddev_header	ddev_06_end-ddev_06
+ddev_06:	ddev_header
 	ddev_entry	cg_splash,$422
 	ddev_entry	cg_card,$495
 ddev_06_end:
 
-ddev_07:
-	ddev_header	ddev_07_end-ddev_07
+ddev_07:	ddev_header
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_splash,$422
 ddev_07_end:
 
-ddev_08:
-	ddev_header	ddev_08_end-ddev_08
+ddev_08:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
@@ -16583,13 +16622,11 @@ ddev_08:
 	ddev_entry	cg_signpost,$503
 ddev_08_end:
 
-ddev_09:
-	ddev_header	ddev_09_end-ddev_09
+ddev_09:	ddev_header
 	ddev_entry	cg_signpost,$503
 ddev_09_end:
 
-ddev_0A:
-	ddev_header	ddev_0A_end-ddev_0A
+ddev_0A:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
@@ -16607,8 +16644,7 @@ ddev_0A:
 	ddev_entry	cg_patabata,$4DC
 ddev_0A_end:
 
-ddev_0B:
-	ddev_header	ddev_0B_end-ddev_0B
+ddev_0B:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
@@ -16625,9 +16661,7 @@ ddev_0B:
 	ddev_entry	cg_patabata,$4DC
 ddev_0B_end:
 
-ddev_0C:
-ddev_0D:
-	ddev_header	ddev_0C_end-ddev_0C
+ddev_0C:	ddev_header
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
 	ddev_entry	cg_pole,$342
@@ -16643,8 +16677,7 @@ ddev_0D:
 	ddev_entry	cg_patabata,$4DC
 ddev_0C_end:
 
-ddev_0E:
-	ddev_header	ddev_0E_end-ddev_0E
+ddev_0E:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
@@ -16661,8 +16694,7 @@ ddev_0E:
 	ddev_entry	cg_patabata,$4DC
 ddev_0E_end:
 
-ddev_0F:
-	ddev_header	ddev_0F_end-ddev_0F
+ddev_0F:	ddev_header
 	ddev_entry	cg_bridge,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
@@ -16692,8 +16724,7 @@ ddev_0F_end:
 	ddev_entry	cg_patabata,$42E
 	ddev_entry	cg_tamabboh,$462
 
-ddev_unused_0:
-	ddev_header	ddev_unused_0_end-ddev_unused_0
+ddev_unused_0:	ddev_header
 	ddev_entry	cg_spikes,$31E
 	ddev_entry	cg_pole,$32A
 	ddev_entry	cg_dspring,$33F
@@ -16708,8 +16739,7 @@ ddev_unused_0:
 	ddev_entry	cg_splash,$469
 ddev_unused_0_end:
 
-ddev_unused_1:
-	ddev_header	ddev_unused_1_end-ddev_unused_1
+ddev_unused_1:	ddev_header
 	ddev_entry	cg_spikes,$31E
 	ddev_entry	cg_pole,$32A
 	ddev_entry	cg_dspring,$33F
@@ -16725,8 +16755,7 @@ ddev_unused_1:
 	ddev_entry	cg_tamabboh,$462
 ddev_unused_1_end:
 
-ddev_unused_2:
-	ddev_header	ddev_unused_2_end-ddev_unused_2
+ddev_unused_2:	ddev_header
 	ddev_entry	cg_spikes,$31E
 	ddev_entry	cg_pole,$32A
 	ddev_entry	cg_dspring,$33F
@@ -16922,55 +16951,57 @@ cg_flickyricky:
 	incbin	"Art/Nemesis/Spikes (Unused 2).nem"
 	even
 
-unk_234A8A:
+scddirtbl:
 	incbin	"Collision/Angle Map.bin"
 	even
 
-unk_234B8A:
+scdtblwk:
 	incbin	"Collision/Collision Array 1.bin"
 	even
 
-unk_235B8A:
+scdtblwk2:
 	incbin	"Collision/Collision Array 2.bin"
 	even
 
-spz_collision:
+zone1scd:
 	incbin	"Collision/SPZ.bin"
 	even
 
-lvllayout_index:
-	dc.w	spz_fg-lvllayout_index, spz_bg-lvllayout_index, spz_z-lvllayout_index
-	dc.w	ghz2_fg-lvllayout_index, unk_237140-lvllayout_index, unk_23701A-lvllayout_index
-	dc.w	ghz3_fg-lvllayout_index, unk_237140-lvllayout_index, unk_237140-lvllayout_index
-	dc.w	unk_237144-lvllayout_index, unk_237144-lvllayout_index, unk_237144-lvllayout_index
-	dc.w	spz_fg-lvllayout_index, spz_bg-lvllayout_index, spz_z-lvllayout_index
-	dc.w	ghz2_fg-lvllayout_index, unk_237140-lvllayout_index, unk_23701A-lvllayout_index
-	dc.w	ghz3_fg-lvllayout_index, unk_237140-lvllayout_index, unk_237140-lvllayout_index
-	dc.w	unk_237144-lvllayout_index, unk_237144-lvllayout_index, unk_237144-lvllayout_index
-	dc.w	spz_fg-lvllayout_index, spz_bg-lvllayout_index, spz_z-lvllayout_index
-	dc.w	ghz2_fg-lvllayout_index, unk_237140-lvllayout_index, unk_23701A-lvllayout_index
-	dc.w	ghz3_fg-lvllayout_index, unk_237140-lvllayout_index, unk_237140-lvllayout_index
-	dc.w	unk_237144-lvllayout_index, unk_237144-lvllayout_index, unk_237144-lvllayout_index
+zonemaptbl:
+	dc.w	zone1_1a-zonemaptbl,	zone1_1b-zonemaptbl,	zone1_1z-zonemaptbl
+	dc.w	zone1_2a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_2z-zonemaptbl
+	dc.w	zone1_3a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_3b-zonemaptbl
+	dc.w	zone1_4-zonemaptbl,	zone1_4-zonemaptbl,	zone1_4-zonemaptbl
 
-spz_fg:
+	dc.w	zone1_1a-zonemaptbl,	zone1_1b-zonemaptbl,	zone1_1z-zonemaptbl
+	dc.w	zone1_2a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_2z-zonemaptbl
+	dc.w	zone1_3a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_3b-zonemaptbl
+	dc.w	zone1_4-zonemaptbl,	zone1_4-zonemaptbl,	zone1_4-zonemaptbl
+
+	dc.w	zone1_1a-zonemaptbl,	zone1_1b-zonemaptbl,	zone1_1z-zonemaptbl
+	dc.w	zone1_2a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_2z-zonemaptbl
+	dc.w	zone1_3a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_3b-zonemaptbl
+	dc.w	zone1_4-zonemaptbl,	zone1_4-zonemaptbl,	zone1_4-zonemaptbl
+
+zone1_1a:
 	incbin	"Layout/Foreground.bin"
 	even
-spz_bg:
+zone1_1b:
 	incbin	"Layout/Background.bin"
 	even
-spz_z:
+zone1_1z:
 	dc.l 0
-ghz2_fg:
+zone1_2a:
 	incbin	"Layout/GHZ2 Foreground (Sonic 1).bin"
 	even
-unk_23701A:
+zone1_2z:
 	dc.l 0
-ghz3_fg:
+zone1_3a:
 	incbin	"Layout/GHZ3 Foreground (Sonic 1).bin"
 	even
-unk_237140:
+zone1_3b:
 	dc.l 0
-unk_237144:
+zone1_4:
 	dc.l 0
 
 spz_16x16:
