@@ -14,7 +14,8 @@
             "art": {
                 "path": "../MMD/Level/Salad Plain/Present/Art/Uncompressed/Sonic.unc",
                 "compression": "Uncompressed",
-                "offset": 0
+                "offset": 0,
+                "extra": []
             },
             "mappings": {
                 "path": "../MMD/Level/Salad Plain/Present/Mappings/Sonic.asm",

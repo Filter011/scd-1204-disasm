@@ -1540,9 +1540,9 @@ loc_201308:
 	bne.s	loc_201308
 	bsr.w	sub_2023FC
 	bsr.w	sub_202550
-	bset	#2,dword_FFF754.w
-	bsr.w	sub_202F90
-	bsr.w	sub_202EA6
+	bset	#2,scrflaga.w
+	bsr.w	mapinit
+	bsr.w	mapwrt
 	jsr	nullsub_3.l
 	bsr.w	sub_2014F0
 
@@ -1858,7 +1858,7 @@ locret_201788:
 
 vint04:
 	bsr.w	sub_201B1A
-	bsr.w	sub_202A76
+	bsr.w	scrollwrtadva
 	bsr.w	sub_2020F0
 	tst.w	generictimer.w
 	beq.w	locret_2017A2
@@ -1912,9 +1912,9 @@ loc_2018CA:
 loc_2018D8:
 	jsr	STARTZ80BUS.l
 	movem.l scra_h_posit.w,d0-d7
-	movem.l d0-d7,dword_FF1310
-	movem.l dword_FFF754.w,d0-d1
-	movem.l d0-d1,dword_FF1330
+	movem.l d0-d7,scra_h_posiw
+	movem.l scrflaga.w,d0-d1
+	movem.l d0-d1,scrflagaw
 	cmpi.b	#96,hintposi+1.w
 	bhs.s	doupdates
 	move.b	#1,byte_FFF64F.w
@@ -1922,7 +1922,7 @@ loc_2018D8:
 	bra.w	loc_2016AA
 
 doupdates:
-	bsr.w	sub_202AA2
+	bsr.w	scrollwrt
 	bsr.w	sub_20210C
 	jsr	sub_209830.l
 	tst.w	generictimer.w
@@ -1961,10 +1961,10 @@ loc_201986:
 loc_201A0A:
 	jsr	STARTZ80BUS.l
 	movem.l scra_h_posit.w,d0-d7
-	movem.l d0-d7,dword_FF1310
-	movem.l dword_FFF754.w,d0-d1
-	movem.l d0-d1,dword_FF1330
-	bsr.w	sub_202AA2
+	movem.l d0-d7,scra_h_posiw
+	movem.l scrflaga.w,d0-d1
+	movem.l d0-d1,scrflagaw
+	bsr.w	scrollwrt
 	bsr.w	sub_2020F0
 	jsr	sub_209830.l
 	rts
@@ -2371,7 +2371,7 @@ loc_20247C:
 	bra.s	loc_2024D4
 
 loc_202498:
-	lea	word_202510.l,a1
+	lea	playpositbl.l,a1
 	tst.w	word_FF13F0
 	bpl.s	loc_2024BA
 	move.w	word_FF13F4,d0
@@ -2393,7 +2393,7 @@ loc_2024C4:
 	move.w	(a1),d0
 	move.w	d0,obj.ypos(a6)
 loc_2024D4:
-	subi.w	#$A0,d1
+	subi.w	#320/2,d1
 	bhs.s	loc_2024DC
 	moveq	#0,d1
 loc_2024DC:
@@ -2403,7 +2403,7 @@ loc_2024DC:
 	move.w	d2,d1
 loc_2024E6:
 	move.w	d1,scra_h_posit.w
-	subi.w	#$60,d0
+	subi.w	#224/2-16,d0
 	bhs.s	loc_2024F2
 	moveq	#0,d0
 loc_2024F2:
@@ -2412,20 +2412,20 @@ loc_2024F2:
 	move.w	scralim_down.w,d0
 loc_2024FC:
 	move.w	d0,scra_v_posit.w
-	bsr.w	sub_202518
-	lea	byte_202514.l,a1
+	bsr.w	scrbinit
+	lea	playmapnotbl.l,a1
 	move.l	(a1),loopmapno.w
 	rts
 
-word_202510:
+playpositbl:
 	incbin	"Player Positions/Player Positions.bin"
 	even
 
-byte_202514:
+playmapnotbl:
 	dc.b	$8C,$7F,$1E,$1E
 	even
 
-sub_202518:
+scrbinit:
 	swap	d0
 	asr.l	#4,d0
 	move.l	d0,d2
@@ -2455,44 +2455,44 @@ sub_202550:
 	rts
 
 loc_20255C:
-	clr.w	dword_FFF754.w
-	clr.w	dword_FFF754+2.w
-	clr.w	word_FFF758.w
-	clr.w	word_FFF75A.w
-	bsr.w	sub_202716
-	bsr.w	sub_2027B8
-	bsr.w	sub_203030
+	clr.w	scrflaga.w
+	clr.w	scrflagb.w
+	clr.w	scrflagc.w
+	clr.w	scrflagz.w
+	bsr.w	scroll_h
+	bsr.w	scroll_v
+	bsr.w	scrchk
 	move.w	scra_v_posit.w,vscroll.w
 	move.w	scrb_v_posit.w,vscroll+2.w
-	move.w	word_FFF73A.w,d4
+	move.w	scra_hz.w,d4
 	ext.l	d4
 	asl.l	#5,d4
 	moveq	#6,d6
-	bsr.w	sub_202A42
-	move.w	word_FFF73A.w,d4
+	bsr.w	scrollz_h
+	move.w	scra_hz.w,d4
 	ext.l	d4
 	asl.l	#6,d4
 	moveq	#4,d6
-	bsr.w	sub_202A0E
+	bsr.w	scrollc_h
 	lea	byte_FFA800+$10.w,a1
-	move.w	word_FFF73A.w,d4
+	move.w	scra_hz.w,d4
 	ext.l	d4
 	asl.l	#7,d4
-	move.w	word_FFF73C.w,d5
+	move.w	scra_vz.w,d5
 	ext.l	d5
 	asl.l	#4,d5
 	move.l	d5,d3
 	add.l	d5,d5
 	add.l	d3,d5
-	bsr.w	sub_20290A
+	bsr.w	scrollb_hv
 	move.w	scrb_v_posit.w,vscroll+2.w
 	move.w	scrb_v_posit.w,scrc_v_posit.w
 	move.w	scrb_v_posit.w,scrz_v_posit.w
-	move.b	word_FFF75A.w,d0
-	or.b	word_FFF758.w,d0
-	or.b	d0,dword_FFF754+2.w
-	clr.b	word_FFF75A.w
-	clr.b	word_FFF758.w
+	move.b	scrflagz.w,d0
+	or.b	scrflagc.w,d0
+	or.b	d0,scrflagb.w
+	clr.b	scrflagz.w
+	clr.b	scrflagc.w
 	lea	byte_FFA800.w,a2
 	addi.l	#$10000,(a2)+
 	addi.l	#$C000,(a2)+
@@ -2622,9 +2622,9 @@ loc_202700:
 	dbf	d1,loc_2026E0
 	rts
 
-sub_202716:
+scroll_h:
 	move.w	scra_h_posit.w,d4
-	bsr.s	sub_20274A
+	bsr.s	scrh_move
 	move.w	scra_h_posit.w,d0
 	andi.w	#$10,d0
 	move.b	scra_h_count.w,d1
@@ -2634,22 +2634,22 @@ sub_202716:
 	move.w	scra_h_posit.w,d0
 	sub.w	d4,d0
 	bpl.s	loc_202742
-	bset	#2,dword_FFF754.w
+	bset	#2,scrflaga.w
 	rts
 
 loc_202742:
-	bset	#3,dword_FFF754.w
+	bset	#3,scrflaga.w
 locret_202748:
 	rts
 
-sub_20274A:
+scrh_move:
 	move.w	obj.xpos(a6),d0
 	sub.w	scra_h_posit.w,d0
 	subi.w	#144,d0
 	blt.s	loc_20278E
 	subi.w	#16,d0
 	bge.s	loc_202764
-	clr.w	word_FFF73A.w
+	clr.w	scra_hz.w
 	rts
 
 loc_202764:
@@ -2666,7 +2666,7 @@ loc_20277C:
 	sub.w	scra_h_posit.w,d1
 	asl.w	#8,d1
 	move.w	d0,scra_h_posit.w
-	move.w	d1,word_FFF73A.w
+	move.w	d1,scra_hz.w
 	rts
 
 loc_20278E:
@@ -2689,122 +2689,122 @@ loc_2027B2:
 	move.w	#2,d0
 	bra.s	loc_202764
 
-sub_2027B8:
+scroll_v:
 	moveq	#0,d1
 	move.w	obj.ypos(a6),d0
 	sub.w	scra_v_posit.w,d0
-	btst	#2,obj.status(a6)
+	btst	#plst_ball,obj.status(a6)
 	beq.s	loc_2027CC
 	subq.w	#5,d0
 loc_2027CC:
-	btst	#1,obj.status(a6)
+	btst	#plst_jump,obj.status(a6)
 	beq.s	loc_2027EC
 	addi.w	#32,d0
 	sub.w	scra_vline.w,d0
-	blo.s	loc_202838
+	blo.s	sv_move_main2
 	subi.w	#64,d0
-	bhs.s	loc_202838
-	tst.b	byte_FFF75C.w
-	bne.s	loc_20284A
+	bhs.s	sv_move_main2
+	tst.b	limmoveflag.w
+	bne.s	sv_move_sub2
 	bra.s	loc_2027F8
 
 loc_2027EC:
 	sub.w	scra_vline.w,d0
-	bne.s	loc_2027FE
-	tst.b	byte_FFF75C.w
-	bne.s	loc_20284A
+	bne.s	sv_move_main
+	tst.b	limmoveflag.w
+	bne.s	sv_move_sub2
 loc_2027F8:
-	clr.w	word_FFF73C.w
+	clr.w	scra_vz.w
 	rts
 
-loc_2027FE:
+sv_move_main:
 	cmpi.w	#$60,scra_vline.w
-	bne.s	loc_202826
+	bne.s	sv_move_main1
 	move.w	obj.inertia(a6),d1
 	bpl.s	loc_20280E
 	neg.w	d1
 loc_20280E:
 	cmpi.w	#$800,d1
-	bhs.s	loc_202838
+	bhs.s	sv_move_main2
 	move.w	#$600,d1
 	cmpi.w	#6,d0
-	bgt.s	loc_202898
+	bgt.s	sv_move_plus
 	cmpi.w	#-6,d0
-	blt.s	loc_202862
-	bra.s	loc_202850
+	blt.s	sv_move_minus
+	bra.s	sv_move_sub
 
-loc_202826:
+sv_move_main1:
 	move.w	#$200,d1
 	cmpi.w	#2,d0
-	bgt.s	loc_202898
+	bgt.s	sv_move_plus
 	cmpi.w	#-2,d0
-	blt.s	loc_202862
-	bra.s	loc_202850
+	blt.s	sv_move_minus
+	bra.s	sv_move_sub
 
-loc_202838:
+sv_move_main2:
 	move.w	#$1000,d1
 	cmpi.w	#$10,d0
-	bgt.s	loc_202898
+	bgt.s	sv_move_plus
 	cmpi.w	#-$10,d0
-	blt.s	loc_202862
-	bra.s	loc_202850
+	blt.s	sv_move_minus
+	bra.s	sv_move_sub
 
-loc_20284A:
+sv_move_sub2:
 	moveq	#0,d0
-	move.b	d0,byte_FFF75C.w
-loc_202850:
+	move.b	d0,limmoveflag.w
+sv_move_sub:
 	moveq	#0,d1
 	move.w	d0,d1
 	add.w	scra_v_posit.w,d1
 	tst.w	d0
-	bpl.w	loc_2028A2
-	bra.w	loc_20286E
+	bpl.w	scrv_down_ch
+	bra.w	scrv_up_ch
 
-loc_202862:
+sv_move_minus:
 	neg.w	d1
 	ext.l	d1
 	asl.l	#8,d1
 	add.l	scra_v_posit.w,d1
 	swap	d1
-loc_20286E:
+scrv_up_ch:
 	cmp.w	scralim_up.w,d1
-	bgt.s	loc_2028C6
+	bgt.s	scrv_move
 	cmpi.w	#-$100,d1
 	bgt.s	loc_202892
 	andi.w	#$7FF,d1
 	andi.w	#$7FF,obj.ypos(a6)
 	andi.w	#$7FF,scra_v_posit.w
 	andi.w	#$3FF,scrb_v_posit.w
-	bra.s	loc_2028C6
+	bra.s	scrv_move
 
 loc_202892:
 	move.w	scralim_up.w,d1
-	bra.s	loc_2028C6
+	bra.s	scrv_move
 
-loc_202898:
+sv_move_plus:
 	ext.l	d1
 	asl.l	#8,d1
 	add.l	scra_v_posit.w,d1
 	swap	d1
-loc_2028A2:
+scrv_down_ch:
 	cmp.w	scralim_down.w,d1
-	blt.s	loc_2028C6
+	blt.s	scrv_move
 	subi.w	#$800,d1
 	blo.s	loc_2028C2
 	andi.w	#$7FF,obj.ypos(a6)
 	subi.w	#$800,scra_v_posit.w
 	andi.w	#$3FF,scrb_v_posit.w
-	bra.s	loc_2028C6
+	bra.s	scrv_move
 
 loc_2028C2:
 	move.w	scralim_down.w,d1
-loc_2028C6:
+scrv_move:
 	move.w	scra_v_posit.w,d4
 	swap	d1
 	move.l	d1,d3
 	sub.l	scra_v_posit.w,d3
 	ror.l	#8,d3
-	move.w	d3,word_FFF73C.w
+	move.w	d3,scra_vz.w
 	move.l	d1,scra_v_posit.w
 	move.w	scra_v_posit.w,d0
 	andi.w	#$10,d0
@@ -2815,15 +2815,15 @@ loc_2028C6:
 	move.w	scra_v_posit.w,d0
 	sub.w	d4,d0
 	bpl.s	loc_202902
-	bset	#0,dword_FFF754.w
+	bset	#0,scrflaga.w
 	rts
 
 loc_202902:
-	bset	#1,dword_FFF754.w
+	bset	#1,scrflaga.w
 locret_202908:
 	rts
 
-sub_20290A:
+scrollb_hv:
 	move.l	scrb_h_posit.w,d2
 	move.l	d2,d0
 	add.l	d4,d0
@@ -2831,17 +2831,17 @@ sub_20290A:
 	move.l	d0,d1
 	swap	d1
 	andi.w	#$10,d1
-	move.b	byte_FFF74C.w,d3
+	move.b	scrb_h_count.w,d3
 	eor.b	d3,d1
 	bne.s	loc_20293E
-	eori.b	#$10,byte_FFF74C.w
+	eori.b	#$10,scrb_h_count.w
 	sub.l	d2,d0
 	bpl.s	loc_202938
-	bset	#2,dword_FFF754+2.w
+	bset	#2,scrflagb.w
 	bra.s	loc_20293E
 
 loc_202938:
-	bset	#3,dword_FFF754+2.w
+	bset	#3,scrflagb.w
 loc_20293E:
 	move.l	scrb_v_posit.w,d3
 	move.l	d3,d0
@@ -2850,17 +2850,17 @@ loc_20293E:
 	move.l	d0,d1
 	swap	d1
 	andi.w	#$10,d1
-	move.b	byte_FFF74D.w,d2
+	move.b	scrb_v_count.w,d2
 	eor.b	d2,d1
 	bne.s	locret_202972
-	eori.b	#$10,byte_FFF74D.w
+	eori.b	#$10,scrb_v_count.w
 	sub.l	d3,d0
 	bpl.s	loc_20296C
-	bset	#0,dword_FFF754+2.w
+	bset	#0,scrflagb.w
 	rts
 
 loc_20296C:
-	bset	#1,dword_FFF754+2.w
+	bset	#1,scrflagb.w
 locret_202972:
 	rts
 
@@ -2871,38 +2871,40 @@ locret_202972:
 	move.l	d0,d1
 	swap	d1
 	andi.w	#$10,d1
-	move.b	byte_FFF74D.w,d2
+	move.b	scrb_v_count.w,d2
 	eor.b	d2,d1
 	bne.s	locret_2029A8
-	eori.b	#$10,byte_FFF74D.w
+	eori.b	#$10,scrb_v_count.w
 	sub.l	d3,d0
 	bpl.s	loc_2029A2
-	bset	#4,dword_FFF754+2.w
+	bset	#4,scrflagb.w
 	rts
 
 loc_2029A2:
-	bset	#5,dword_FFF754+2.w
+	bset	#5,scrflagb.w
 locret_2029A8:
 	rts
 
+scrollb_v:
 	move.w	scrb_v_posit.w,d3
 	move.w	d0,scrb_v_posit.w
 	move.w	d0,d1
 	andi.w	#$10,d1
-	move.b	byte_FFF74D.w,d2
+	move.b	scrb_v_count.w,d2
 	eor.b	d2,d1
 	bne.s	locret_2029D8
-	eori.b	#$10,byte_FFF74D.w
+	eori.b	#$10,scrb_v_count.w
 	sub.w	d3,d0
 	bpl.s	loc_2029D2
-	bset	#0,dword_FFF754+2.w
+	bset	#0,scrflagb.w
 	rts
 
 loc_2029D2:
-	bset	#1,dword_FFF754+2.w
+	bset	#1,scrflagb.w
 locret_2029D8:
 	rts
 
+scrollb_h:
 	move.l	scrb_h_posit.w,d2
 	move.l	d2,d0
 	add.l	d4,d0
@@ -2910,22 +2912,22 @@ locret_2029D8:
 	move.l	d0,d1
 	swap	d1
 	andi.w	#$10,d1
-	move.b	byte_FFF74C.w,d3
+	move.b	scrb_h_count.w,d3
 	eor.b	d3,d1
 	bne.s	locret_202A0C
-	eori.b	#$10,byte_FFF74C.w
+	eori.b	#$10,scrb_h_count.w
 	sub.l	d2,d0
 	bpl.s	loc_202A06
-	bset	d6,dword_FFF754+2.w
+	bset	d6,scrflagb.w
 	bra.s	locret_202A0C
 
 loc_202A06:
 	addq.b	#1,d6
-	bset	d6,dword_FFF754+2.w
+	bset	d6,scrflagb.w
 locret_202A0C:
 	rts
 
-sub_202A0E:
+scrollc_h:
 	move.l	scrc_h_posit.w,d2
 	move.l	d2,d0
 	add.l	d4,d0
@@ -2933,22 +2935,22 @@ sub_202A0E:
 	move.l	d0,d1
 	swap	d1
 	andi.w	#$10,d1
-	move.b	byte_FFF74E.w,d3
+	move.b	scrc_h_count.w,d3
 	eor.b	d3,d1
 	bne.s	locret_202A40
-	eori.b	#$10,byte_FFF74E.w
+	eori.b	#$10,scrc_h_count.w
 	sub.l	d2,d0
 	bpl.s	loc_202A3A
-	bset	d6,word_FFF758.w
+	bset	d6,scrflagc.w
 	bra.s	locret_202A40
 
 loc_202A3A:
 	addq.b	#1,d6
-	bset	d6,word_FFF758.w
+	bset	d6,scrflagc.w
 locret_202A40:
 	rts
 
-sub_202A42:
+scrollz_h:
 	move.l	scrz_h_posit.w,d2
 	move.l	d2,d0
 	add.l	d4,d0
@@ -2956,49 +2958,49 @@ sub_202A42:
 	move.l	d0,d1
 	swap	d1
 	andi.w	#$10,d1
-	move.b	byte_FFF750.w,d3
+	move.b	scrz_h_count.w,d3
 	eor.b	d3,d1
 	bne.s	locret_202A74
-	eori.b	#$10,byte_FFF750.w
+	eori.b	#$10,scrz_h_count.w
 	sub.l	d2,d0
 	bpl.s	loc_202A6E
-	bset	d6,word_FFF75A.w
+	bset	d6,scrflagz.w
 	bra.s	locret_202A74
 
 loc_202A6E:
 	addq.b	#1,d6
-	bset	d6,word_FFF75A.w
+	bset	d6,scrflagz.w
 locret_202A74:
 	rts
 
-sub_202A76:
+scrollwrtadva:
 	lea	vdpctrl,a5
 	lea	vdpdata,a6
-	lea	dword_FFF754+2.w,a2
+	lea	scrflagb.w,a2
 	lea	scrb_h_posit.w,a3
 	lea	lvllayoutwk+$40.w,a4
 	move.w	#$6000,d2
-	bsr.w	sub_202B60
-	lea	word_FFF758.w,a2
+	bsr.w	scrollwrtb
+	lea	scrflagc.w,a2
 	lea	scrc_h_posit.w,a3
-	bra.w	nullsub_1
+	bra.w	scrollwrtc
 
-sub_202AA2:
+scrollwrt:
 	lea	vdpctrl,a5
 	lea	vdpdata,a6
-	lea	dword_FF1330+2,a2
-	lea	dword_FF1318,a3
+	lea	scrflagbw,a2
+	lea	scrb_h_posiw,a3
 	lea	lvllayoutwk+$40.w,a4
 	move.w	#$6000,d2
-	bsr.w	sub_202B60
-	lea	word_FF1334,a2
-	lea	byte_FF1320,a3
-	bsr.w	nullsub_1
-	lea	word_FF1336,a2
-	lea	byte_FF1328,a3
-	bsr.w	nullsub_2
-	lea	dword_FF1330,a2
-	lea	dword_FF1310,a3
+	bsr.w	scrollwrtb
+	lea	scrflagcw,a2
+	lea	scrc_h_posiw,a3
+	bsr.w	scrollwrtc
+	lea	scrflagzw,a2
+	lea	scrz_h_posiw,a3
+	bsr.w	scrollwrtz
+	lea	scrflagaw,a2
+	lea	scra_h_posiw,a3
 	lea	lvllayoutwk.w,a4
 	move.w	#$4000,d2
 	tst.b	(a2)
@@ -3007,42 +3009,42 @@ sub_202AA2:
 	beq.s	loc_202B14
 	moveq	#-16,d4
 	moveq	#-16,d5
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	moveq	#-16,d4
 	moveq	#-16,d5
-	bsr.w	sub_202C48
+	bsr.w	hblockwrt
 loc_202B14:
 	bclr	#1,(a2)
 	beq.s	loc_202B2E
 	move.w	#224,d4
 	moveq	#-16,d5
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	move.w	#224,d4
 	moveq	#-16,d5
-	bsr.w	sub_202C48
+	bsr.w	hblockwrt
 loc_202B2E:
 	bclr	#2,(a2)
 	beq.s	loc_202B44
 	moveq	#-16,d4
 	moveq	#-16,d5
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	moveq	#-16,d4
 	moveq	#-16,d5
-	bsr.w	sub_202C9E
+	bsr.w	vblockwrt
 loc_202B44:
 	bclr	#3,(a2)
 	beq.s	locret_202B5E
 	moveq	#-16,d4
 	move.w	#320,d5
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	moveq	#-16,d4
 	move.w	#320,d5
-	bsr.w	sub_202C9E
+	bsr.w	vblockwrt
 locret_202B5E:
 	rts
 
-sub_202B60:
-	lea	unk_202F26.l,a0
+scrollwrtb:
+	lea	z81awrttbl.l,a0
 	adda.w	#1,a0
 	moveq	#-16,d4
 	bclr	#0,(a2)
@@ -3058,14 +3060,14 @@ loc_202B7C:
 	move.b	(a0,d0.w),d0
 	ext.w	d0
 	add.w	d0,d0
-	movea.l off_202BF6(pc,d0.w),a3
+	movea.l vblockwrtbtbl(pc,d0.w),a3
 	beq.s	loc_202BAE
 	moveq	#-16,d5
 	move.l	a0,-(sp)
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	movem.l (sp)+,d4-d5
-	bsr.w	sub_202C48
+	bsr.w	hblockwrt
 	movea.l (sp)+,a0
 	bra.s	loc_202BC6
 
@@ -3073,10 +3075,10 @@ loc_202BAE:
 	moveq	#0,d5
 	move.l	a0,-(sp)
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202E70
+	bsr.w	vramadrset1
 	movem.l (sp)+,d4-d5
 	moveq	#$20-1,d6
-	bsr.w	sub_202C74
+	bsr.w	hblockwrt1
 	movea.l (sp)+,a0
 loc_202BC6:
 	tst.b	(a2)
@@ -3100,11 +3102,11 @@ loc_202BE0:
 	lea	(a0,d0.w),a0
 	bra.w	loc_202C06
 
-off_202BF6:
-	dc.l	dword_FF1318
-	dc.l	dword_FF1318
-	dc.l	byte_FF1320
-	dc.l	byte_FF1328
+vblockwrtbtbl:
+	dc.l	scrb_h_posiw
+	dc.l	scrb_h_posiw
+	dc.l	scrc_h_posiw
+	dc.l	scrz_h_posiw
 
 loc_202C06:
 	moveq	#16-1,d6
@@ -3115,13 +3117,13 @@ loc_202C0E:
 	btst	d0,(a2)
 	beq.s	loc_202C38
 	add.w	d0,d0
-	movea.l off_202BF6(pc,d0.w),a3
+	movea.l vblockwrtbtbl(pc,d0.w),a3
 	movem.l d4-d5/a0,-(sp)
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202D4A
+	bsr.w	mapadrset
 	movem.l (sp)+,d4-d5
-	bsr.w	sub_202E6E
-	bsr.w	sub_202CCC
+	bsr.w	vramadrset
+	bsr.w	blockwrt
 	movem.l (sp)+,d4-d5/a0
 loc_202C38:
 	addi.w	#16,d4
@@ -3129,22 +3131,22 @@ loc_202C38:
 	clr.b	(a2)
 	rts
 
-nullsub_1:
+scrollwrtc:
 	rts
 
-nullsub_2:
+scrollwrtz:
 	rts
 
-sub_202C48:
+hblockwrt:
 	moveq	#$16-1,d6
 loc_202C4A:
 	move.l	#$800000,d7
 	move.l	d0,d1
 loc_202C52:
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202D4A
+	bsr.w	mapadrset
 	move.l	d1,d0
-	bsr.w	sub_202CCC
+	bsr.w	blockwrt
 	addq.b	#4,d1
 	andi.b	#$7F,d1
 	movem.l (sp)+,d4-d5
@@ -3152,30 +3154,30 @@ loc_202C52:
 	dbf	d6,loc_202C52
 	rts
 
-sub_202C74:
+hblockwrt1:
 	move.l	#$800000,d7
 	move.l	d0,d1
 loc_202C7C:
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202D4C
+	bsr.w	mapadrset1
 	move.l	d1,d0
-	bsr.w	sub_202CCC
+	bsr.w	blockwrt
 	addq.b	#4,d1
 	andi.b	#$7F,d1
 	movem.l (sp)+,d4-d5
-	addi.w	#$10,d5
+	addi.w	#16,d5
 	dbf	d6,loc_202C7C
 	rts
 
-sub_202C9E:
+vblockwrt:
 	moveq	#16-1,d6
 	move.l	#$800000,d7
 	move.l	d0,d1
 loc_202CA8:
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202D4A
+	bsr.w	mapadrset
 	move.l	d1,d0
-	bsr.w	sub_202CCC
+	bsr.w	blockwrt
 	addi.w	#$100,d1
 	andi.w	#$FFF,d1
 	movem.l (sp)+,d4-d5
@@ -3183,7 +3185,7 @@ loc_202CA8:
 	dbf	d6,loc_202CA8
 	rts
 
-sub_202CCC:
+blockwrt:
 	or.w	d2,d0
 	swap	d0
 	btst	#4,(a0)
@@ -3239,12 +3241,12 @@ loc_202D2A:
 	move.l	d5,(a6)
 	rts
 
-sub_202D4A:
+mapadrset:
 	add.w	(a3),d5
 
-sub_202D4C:
+mapadrset1:
 	add.w	4(a3),d4
-loc_202D50:
+mapadrset2:
 	lea	blkwk.w,a1
 	move.w	d4,d3
 	lsr.w	#1,d3
@@ -3295,7 +3297,7 @@ locret_202D98:
 	movea.l d3,a0
 	rts
 
-sub_202DD2:
+block_wrt:
 	move.l	a0,-(sp)
 	lea	lvllayoutwk.w,a4
 	lea	vdpctrl,a5
@@ -3303,7 +3305,7 @@ sub_202DD2:
 	move.w	#$4000,d2
 	move.l	#$800000,d7
 	movem.l d3-d5,-(sp)
-	bsr.w	loc_202D50
+	bsr.w	mapadrset2
 	bne.s	loc_202DFE
 	movem.l (sp)+,d3-d5
 	bra.s	loc_202E26
@@ -3311,21 +3313,21 @@ sub_202DD2:
 loc_202DFE:
 	movem.l (sp)+,d3-d5
 	move.w	d3,(a0)
-	bsr.w	sub_202E2A
+	bsr.w	block_chk
 	bne.s	loc_202E26
 	movem.l d3-d5,-(sp)
 	lea	blkwk.w,a1
 	andi.w	#$3FF,d3
 	lsl.w	#3,d3
 	adda.w	d3,a1
-	bsr.w	loc_202E74
-	bsr.w	sub_202CCC
+	bsr.w	vramadrset0
+	bsr.w	blockwrt
 	movem.l (sp)+,d3-d5
 loc_202E26:
 	movea.l (sp)+,a0
 	rts
 
-sub_202E2A:
+block_chk:
 	move.w	scra_v_posit.w,d0
 	move.w	d0,d1
 	andi.w	#$FFF0,d0
@@ -3353,12 +3355,12 @@ loc_202E6A:
 	moveq	#1,d0
 	rts
 
-sub_202E6E:
+vramadrset:
 	add.w	(a3),d5
 
-sub_202E70:
+vramadrset1:
 	add.w	4(a3),d4
-loc_202E74:
+vramadrset0:
 	andi.w	#$F0,d4
 	andi.w	#$1F0,d5
 	lsl.w	#4,d4
@@ -3381,118 +3383,88 @@ loc_202E74:
 	move.w	d4,d0
 	rts
 
-sub_202EA6:
+mapwrt:
 	lea	vdpctrl,a5
 	lea	vdpdata,a6
 	lea	scra_h_posit.w,a3
 	lea	lvllayoutwk.w,a4
 	move.w	#$4000,d2
-	bsr.s	sub_202ED0
+	bsr.s	mapwrt2
 	lea	scrb_h_posit.w,a3
 	lea	lvllayoutwk+$40.w,a4
 	move.w	#$6000,d2
-	bra.w	loc_202EF8
+	bra.w	mapwrt_z81a
 
-sub_202ED0:
+mapwrt2:
 	moveq	#-16,d4
 	moveq	#16-1,d6
-loc_202ED4:
+mapwrt3:
 	movem.l d4-d6,-(sp)
 	moveq	#0,d5
 	move.w	d4,d1
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	move.w	d1,d4
 	moveq	#0,d5
 	moveq	#$20-1,d6
 	bsr.w	loc_202C4A
 	movem.l (sp)+,d4-d6
 	addi.w	#16,d4
-	dbf	d6,loc_202ED4
+	dbf	d6,mapwrt3
 	rts
 
-loc_202EF8:
+mapwrt_z81a:
 	moveq	#-16,d4
 	moveq	#16-1,d6
 loc_202EFC:
 	movem.l d4-d6/a0,-(sp)
-	lea	unk_202F26.l,a0
+	lea	z81awrttbl.l,a0
 	adda.w	#1,a0
 	move.w	scrb_v_posit.w,d0
 	add.w	d4,d0
 	andi.w	#$1F0,d0
-	bsr.w	sub_202F58
+	bsr.w	mapwrt_sub
 	movem.l (sp)+,d4-d6/a0
 	addi.w	#16,d4
 	dbf	d6,loc_202EFC
 	rts
 
-unk_202F26:
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	6
-	dc.b	6
-	dc.b	6
-	dc.b	4
-	dc.b	4
-	dc.b	4
-	dc.b	4
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
+z81awrttbl:
+	dc.b	0,0,0,0,0,0,0,6,6,6
+	dc.b	4,4,4,4,0,0,0,0,0,0
+	dc.b	0,0,0,0,0,0,0,0,0,0
+	dc.b	0,0,0,0
 	even
 
-off_202F48:
+mapwrt_tbl:
 	dc.l	scrb_h_posit&$FFFFFF
 	dc.l	scrb_h_posit&$FFFFFF
 	dc.l	scrc_h_posit&$FFFFFF
 	dc.l	scrz_h_posit&$FFFFFF
 
-sub_202F58:
+mapwrt_sub:
 	lsr.w	#4,d0
 	move.b	(a0,d0.w),d0
 	add.w	d0,d0
-	movea.l off_202F48(pc,d0.w),a3
+	movea.l mapwrt_tbl(pc,d0.w),a3
 	beq.s	loc_202F7A
 	moveq	#-16,d5
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202E6E
+	bsr.w	vramadrset
 	movem.l (sp)+,d4-d5
-	bsr.w	sub_202C48
+	bsr.w	hblockwrt
 	bra.s	locret_202F8E
 
 loc_202F7A:
 	moveq	#0,d5
 	movem.l d4-d5,-(sp)
-	bsr.w	sub_202E70
+	bsr.w	vramadrset1
 	movem.l (sp)+,d4-d5
 	moveq	#$20-1,d6
-	bsr.w	sub_202C74
+	bsr.w	hblockwrt1
 locret_202F8E:
 	rts
 
-sub_202F90:
+mapinit:
 	moveq	#0,d0
 ;	move.b	zone,d0
 ;	lsl.w	#4,d0
@@ -3560,7 +3532,7 @@ loc_203020:
 
 	rts
 
-sub_203030:
+scrchk:
 	bsr.w	sub_2023EA
 	moveq	#0,d0
 	move.b	zone,d0
@@ -3580,7 +3552,7 @@ sub_203030:
 	andi.w	#$FFFE,scralim_down.w
 loc_20306A:
 	add.w	d1,scralim_down.w
-	move.b	#1,byte_FFF75C.w
+	move.b	#1,limmoveflag.w
 locret_203074:
 	rts
 
@@ -3595,7 +3567,7 @@ loc_203076:
 	add.w	d1,d1
 loc_20308E:
 	add.w	d1,scralim_down.w
-	move.b	#1,byte_FFF75C.w
+	move.b	#1,limmoveflag.w
 	rts
 
 off_20309A:
@@ -6145,7 +6117,7 @@ loc_20679E:
 	bne.s	locret_2067CC
 	moveq	#$B,d6
 loc_2067BE:
-	jsr	sub_202DD2.l
+	jsr	block_wrt.l
 	addi.w	#$10,d5
 	dbf	d6,loc_2067BE
 locret_2067CC:
@@ -6254,7 +6226,7 @@ loc_2068EE:
 loc_2068FC:
 	movem.l d4-d5,-(sp)
 	subi.w	#$10,d4
-	jsr	loc_202D50.l
+	jsr	mapadrset2.l
 	bne.s	loc_206910
 	moveq	#0,d3
 	bra.s	loc_206912
@@ -6263,7 +6235,7 @@ loc_206910:
 	move.w	(a0),d3
 loc_206912:
 	movem.l (sp)+,d4-d5
-	jsr	sub_202DD2.l
+	jsr	block_wrt.l
 	addi.w	#$10,d5
 	dbf	d6,loc_2068FC
 	movem.l (sp)+,d0/a0

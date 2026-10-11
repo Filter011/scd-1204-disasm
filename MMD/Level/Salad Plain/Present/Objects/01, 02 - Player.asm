@@ -431,13 +431,13 @@ loc_203A66:
 	move.w	d2,d4
 	move.w	d1,d5
 	move.w	#0,d3
-	jsr	sub_202DD2.l
-	subi.w	#$10,d5
-	jsr	sub_202DD2.l
-	subi.w	#$10,d4
-	jsr	sub_202DD2.l
-	addi.w	#$10,d5
-	jmp	sub_202DD2.l
+	jsr	block_wrt.l
+	subi.w	#16,d5
+	jsr	block_wrt.l
+	subi.w	#16,d4
+	jsr	block_wrt.l
+	addi.w	#16,d5
+	jmp	block_wrt.l
 
 loc_203ADA:
 	andi.w	#$FFF0,d2
