@@ -77,7 +77,7 @@ loc_2036FC:
 	move.w	#$80,plretspdwk.w
 
 sub_203720:
-	tst.b	zone
+	tst.b	stageno
 	bne.s	locret_203786
 	move.b	gametimer+1,d0
 	andi.b	#3,d0
@@ -93,7 +93,7 @@ sub_203720:
 	bhs.s	locret_203786
 	tst.b	obj.field_2C(a0)
 	beq.s	locret_203786
-	jsr	findfreeobj.l
+	jsr	actwkchk.l
 	bne.s	locret_203786
 	_move.b	#objid_0E,obj.id(a1)
 	move.w	obj.xpos(a0),obj.xpos(a1)
@@ -131,7 +131,7 @@ loc_2037A8:
 loc_2037BA:
 	tst.w	obj.inertia(a0)
 	beq.s	locret_203786
-	jsr	findfreeobj.l
+	jsr	actwkchk.l
 	bne.s	locret_203786
 	_move.b	#objid_0B,obj.id(a1)
 	move.w	obj.xpos(a0),obj.xpos(a1)
@@ -147,7 +147,7 @@ loc_2037EA:
 	move.b	#2,obj.subtype(a1)
 loc_2037F6:
 	move.w	#$A1,d0
-	jmp	queuesound2.l
+	jmp	soundset.l
 
 sub_203800:
 	move.w	d2,d0
@@ -158,20 +158,20 @@ sub_203800:
 	andi.w	#$7F,d1
 	add.w	d1,d0
 	move.l	#chunkwk,d1
-	lea	lvllayoutwk.w,a1
+	lea	mapwka.w,a1
 	move.b	(a1,d0.w),d1
 	andi.b	#$7F,d1
 	rts
 
 sub_203826:
-	cmpi.b	#zoneid_MZ,zone
+	cmpi.b	#zoneid_MZ,stageno
 	beq.s	loc_203832
 	rts
 
 loc_203832:
 	move.w	obj.xvel(a0),d1
 	move.w	obj.yvel(a0),d2
-	jsr	calcangle.l
+	jsr	atan.l
 	subi.b	#$20,d0
 	andi.b	#$C0,d0
 	cmpi.b	#$40,d0
@@ -278,7 +278,7 @@ locret_203952:
 	rts
 
 sub_203954:
-	jsr	sub_200E0C.l
+	jsr	scramapad.l
 	move.w	(a1),d0
 	move.w	d0,d4
 	andi.w	#$7FF,d0
@@ -415,8 +415,8 @@ loc_203A66:
 	movem.l	d1-d2,-(sp)
 	sub.w	obj.xpos(a0),d1
 	sub.w	obj.ypos(a0),d2
-	jsr	calcangle.l
-	jsr	calcsine.l
+	jsr	atan.l
+	jsr	sinset.l
 	muls.w	#-$700,d1
 	asr.l	#8,d1
 	move.w	d1,obj.xvel(a0)
@@ -447,8 +447,8 @@ loc_203ADA:
 	move.w	d3,d1
 	sub.w	obj.xpos(a0),d1
 	sub.w	obj.ypos(a0),d2
-	jsr	calcangle.l
-	jsr	calcsine.l
+	jsr	atan.l
+	jsr	sinset.l
 	muls.w	#-$700,d1
 	asr.l	#8,d1
 	asr.l	#1,d1
@@ -490,8 +490,8 @@ sub_203B50:
 	move.w	d3,d1
 	sub.w	obj.xpos(a0),d1
 	sub.w	obj.ypos(a0),d2
-	jsr	calcangle.l
-	jsr	calcsine.l
+	jsr	atan.l
+	jsr	sinset.l
 	muls.w	#-$700,d1
 	asr.l	#8,d1
 	move.w	d1,obj.xvel(a0)
@@ -534,7 +534,7 @@ loc_203BC6:
 loc_203BD6:
 	move.w	obj.xvel(a0),d1
 	move.w	obj.yvel(a0),d2
-	jsr	calcangle.l
+	jsr	atan.l
 	addi.b	#$80,d0
 	neg.b	d0
 	subi.b	#$20,d0
@@ -542,7 +542,7 @@ loc_203BD6:
 	beq.s	loc_203BF8
 	addi.b	#$40,d0
 loc_203BF8:
-	jsr	calcsine.l
+	jsr	sinset.l
 	muls.w	#-$700,d1
 	asr.l	#8,d1
 	move.w	d1,obj.xvel(a0)
@@ -655,7 +655,7 @@ loc_203CAC:
 
 play00move:
 	bsr.w	sub_203720
-	tst.w	word_FF13FA
+	tst.w	debugflag
 	beq.s	loc_203CD6
 	btst	#4,swdata1+1.w
 	beq.s	loc_203CD6
@@ -685,7 +685,7 @@ loc_203D0E:
 	bsr.w	playposiwkset
 loc_203D1A:
 	move.b	dirstk.w,obj.field_36(a0)
-	move.b	byte_FFF76A.w,obj.field_37(a0)
+	move.b	dirstk2.w,obj.field_37(a0)
 	tst.b	byte_FFF7C7.w
 	beq.s	loc_203D38
 	tst.b	obj.ani(a0)
@@ -695,7 +695,7 @@ loc_203D38:
 	bsr.w	patchgmain
 	tst.b	obj.field_2C(a0)
 	bmi.s	loc_203D48
-	jsr	sub_2063B8.l
+	jsr	pcol.l
 loc_203D48:
 	bsr.w	loopchk
 	bsr.w	sub_203E16
@@ -730,7 +730,7 @@ loc_203D76:
 	btst	#0,dword_FF120C+3
 	beq.s	loc_203D8C
 loc_203D86:
-	jsr	displaysprite.l
+	jsr	actionsub.l
 loc_203D8C:
 	tst.b	plpower_m
 	beq.s	loc_203DDC
@@ -743,8 +743,8 @@ loc_203D8C:
 	cmpi.w	#$C,pl_air
 	blo.s	loc_203DD4
 	moveq	#0,d0
-	move.b	zone,d0
-	cmpi.w	#zoneact(zoneid_LZ,actid_4),zone
+	move.b	stageno,d0
+	cmpi.w	#zoneact(zoneid_LZ,actid_4),stageno
 	bne.s	loc_203DC4
 	moveq	#5,d0
 loc_203DC4:
@@ -777,20 +777,20 @@ sub_203E16:
 	subi.w	#$80,d0
 	blo.s	loc_203E2E
 	cmp.w	obj.xpos(a0),d0
-	bhi.w	deleteobj
+	bhi.w	frameout
 loc_203E2E:
 	addi.w	#$240,d0
 	cmp.w	obj.xpos(a0),d0
-	blt.w	deleteobj
+	blt.w	frameout
 	move.w	scra_v_posit.w,d0
 	subi.w	#$60,d0
 	blo.s	loc_203E4C
 	cmp.w	obj.ypos(a0),d0
-	bhi.w	deleteobj
+	bhi.w	frameout
 loc_203E4C:
 	addi.w	#$180,d0
 	cmp.w	obj.ypos(a0),d0
-	blt.w	deleteobj
+	blt.w	frameout
 locret_203E58:
 	rts
 
@@ -1152,7 +1152,7 @@ loc_2042C8:
 	neg.w	obj.inertia(a0)
 loc_2042FE:
 	move.w	#$9C,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 	bsr.w	ballset
 loc_20430C:
 	bra.s	loc_204354
@@ -1204,7 +1204,7 @@ loc_20437C:
 	move.w	d0,obj.inertia(a0)
 loc_204380:
 	move.b	obj.angle(a0),d0
-	jsr	calcsine.l
+	jsr	sinset.l
 	muls.w	obj.inertia(a0),d1
 	asr.l	#8,d1
 	move.w	d1,obj.xvel(a0)
@@ -1300,7 +1300,7 @@ loc_204468:
 	move.b	#$D,obj.ani(a0)
 	bclr	#plst_xflip,obj.status(a0)
 	move.w	#$90,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 locret_204496:
 	rts
 
@@ -1344,7 +1344,7 @@ loc_2044EA:
 	move.b	#$D,obj.ani(a0)
 	bset	#plst_xflip,obj.status(a0)
 	move.w	#$90,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 locret_204518:
 	rts
 
@@ -1391,7 +1391,7 @@ loc_20457E:
 	beq.s	locret_2045E6
 loc_204594:
 	move.w	#$AB,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 	move.b	#0,obj.field_2A(a0)
 	move.w	#0,obj.inertia(a0)
 	move.w	#0,obj.xvel(a0)
@@ -1403,7 +1403,7 @@ loc_2045BA:
 	bne.s	loc_204594
 	move.b	#0,obj.field_2A(a0)
 	move.w	#$91,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 	btst	#plst_xflip,obj.status(a0)
 	bne.s	loc_2045E0
 	bsr.w	ballwalk_r
@@ -1452,7 +1452,7 @@ loc_20463A:
 	move.b	#5,obj.ani(a0)
 loc_204640:
 	move.b	obj.angle(a0),d0
-	jsr	calcsine.l
+	jsr	sinset.l
 	muls.w	obj.inertia(a0),d0
 	asr.l	#8,d0
 	move.w	d0,obj.yvel(a0)
@@ -1695,7 +1695,7 @@ loc_2048CA:
 	move.b	obj.angle(a0),d0
 	subi.b	#$40,d0
 loc_2048D4:
-	jsr	calcsine.l
+	jsr	sinset.l
 	muls.w	d2,d1
 	asr.l	#8,d1
 	add.w	d1,obj.xvel(a0)
@@ -1708,7 +1708,7 @@ loc_2048D4:
 	move.b	#1,obj.field_3C(a0)
 	clr.b	obj.field_38(a0)
 	move.w	#$92,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 	tst.b	chibi_flag.w
 	beq.s	loc_204920
 	move.b	#chibiheight,obj.height(a0)
@@ -1774,7 +1774,7 @@ keispd:
 	cmpi.b	#$C0,d0
 	bhs.s	locret_2049EA
 	move.b	obj.angle(a0),d0
-	jsr	calcsine.l
+	jsr	sinset.l
 	muls.w	#$20,d0
 	asr.l	#8,d0
 	tst.w	obj.inertia(a0)
@@ -1799,7 +1799,7 @@ keispd2:
 	cmpi.b	#$C0,d0
 	bhs.s	locret_204A2C
 	move.b	obj.angle(a0),d0
-	jsr	calcsine.l
+	jsr	sinset.l
 	muls.w	#$50,d0
 	asr.l	#8,d0
 	tst.w	obj.inertia(a0)
@@ -1868,7 +1868,7 @@ locret_204A8A:
 jumpcolchk:
 	move.w	obj.xvel(a0),d1
 	move.w	obj.yvel(a0),d2
-	jsr	calcangle.l
+	jsr	atan.l
 	move.b	d0,debugwork
 	subi.b	#$20,d0
 	move.b	d0,debugwork2
@@ -2080,7 +2080,7 @@ loc_204D0C:
 	bsr.w	limitchk
 	bsr.w	playposiwkset
 	bsr.w	patchgmain
-	jmp	displaysprite.l
+	jmp	actionsub.l
 
 play00damage_sub:
 	move.w	scralim_down.w,d0
@@ -2105,7 +2105,7 @@ play00die:
 	jsr	speedset.l
 	bsr.w	playposiwkset
 	bsr.w	patchgmain
-	jmp	displaysprite.l
+	jmp	actionsub.l
 
 play00die_sub:
 	move.w	scralim_down.w,d0
@@ -2142,7 +2142,7 @@ loc_204DDE:
 	beq.w	loc_204DFA
 	move.w	#0,gameflag
 	eori.b	#1,byte_FF1219
-	bra.w	deleteobj
+	bra.w	frameout
 
 loc_204DFA:
 	clr.l	dword_FF1880
@@ -2157,9 +2157,9 @@ locret_204E16:
 	rts
 
 loopchk:
-	cmpi.b	#zoneid_SLZ,zone
+	cmpi.b	#zoneid_SLZ,stageno
 	beq.s	loc_204E2C
-	tst.b	zone
+	tst.b	stageno
 	bne.w	locret_204EE2
 loc_204E2C:
 	move.w	obj.ypos(a0),d0
@@ -2168,11 +2168,11 @@ loc_204E2C:
 	move.b	obj.xpos(a0),d1
 	andi.w	#$7F,d1
 	add.w	d1,d0
-	lea	lvllayoutwk.w,a1
+	lea	mapwka.w,a1
 	move.b	(a1,d0.w),d1
 	cmp.b	ballmapno.w,d1
 	bne.s	loc_204E6A
-	tst.b	zone
+	tst.b	stageno
 	bne.w	loc_204EE4
 	move.w	obj.ypos(a0),d0
 	andi.w	#$FF,d0
@@ -2230,7 +2230,7 @@ locret_204EE2:
 
 loc_204EE4:
 	move.w	#$9C,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 	jmp	ballset.l
 
 patchgmain:
@@ -2971,7 +2971,7 @@ frip_spd:
 	addi.w	#$18,d2
 	sub.w	obj.xpos(a0),d1
 	sub.w	obj.ypos(a0),d2
-	jsr	calcangle.l
+	jsr	atan.l
 	moveq	#0,d2
 	move.b	obj.field_19(a1),d2
 	move.w	obj.xpos(a0),d3

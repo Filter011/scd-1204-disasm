@@ -3,7 +3,7 @@ goal:
 	move.b	obj.routine(a0),d0
 	move.w	off_20DEEA(pc,d0.w),d0
 	jsr	off_20DEEA(pc,d0.w)
-	jmp	displaysprite.l
+	jmp	actionsub.l
 
 off_20DEEA:
 	dc.w	loc_20DEF4-off_20DEEA

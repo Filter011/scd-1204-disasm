@@ -19,7 +19,7 @@ byte_FF1206:		ds.b	1
 editmode:		ds.w	1
 	ds.b	2
 dword_FF120C:		ds.l	1
-zone:			ds.b	1
+stageno:		ds.b	1
 act:			ds.b	1
 pl_suu:			ds.b	1
 	ds.b	1
@@ -45,26 +45,26 @@ plpower_m:		ds.b	1
 plpower_s:		ds.b	1
 plpower_a:		ds.b	1
 plflag:			ds.b	1
-byte_FF1231:		ds.b	1
-word_FF1232:		ds.w	1
-word_FF1234:		ds.w	1
-word_FF1236:		ds.w	1
-dword_FF1238:		ds.l	1
+plflag_s:		ds.b	1
+plxposi_s:		ds.w	1
+plyposi_s:		ds.w	1
+plring_s:		ds.w	1
+pltime_s:		ds.l	1
 byte_FF123C:		ds.b	1
 time_flag:		ds.b	1
-word_FF123E:		ds.w	1
-word_FF1240:		ds.w	1
-word_FF1242:		ds.w	1
-word_FF1244:		ds.w	1
-word_FF1246:		ds.w	1
-word_FF1248:		ds.w	1
-word_FF124A:		ds.w	1
-word_FF124C:		ds.w	1
-word_FF124E:		ds.w	1
-word_FF1250:		ds.w	1
-byte_FF1252:		ds.b	1
-byte_FF1253:		ds.b	1
-byte_FF1254:		ds.b	1
+scralim_down_s:		ds.w	1
+scra_h_posit_s:		ds.w	1
+scra_v_posit_s:		ds.w	1
+scrb_h_posit_s:		ds.w	1
+scrb_v_posit_s:		ds.w	1
+scrc_h_posit_s:		ds.w	1
+scrc_v_posit_s:		ds.w	1
+scrz_h_posit_s:		ds.w	1
+scrz_v_posit_s:		ds.w	1
+waterposi_m_s:		ds.w	1
+water_flag_s:		ds.b	1
+waterflag_s:		ds.b	1
+plring_f2_s:		ds.b	1
 plflag_sb:		ds.b	1
 plxposi_sb:		ds.w	1
 plyposi_sb:		ds.w	1
@@ -122,10 +122,10 @@ word_FF13F4:		ds.w	1
 	ds.b	2
 mdstatus:		ds.b	1
 	ds.b	1
-word_FF13FA:		ds.w	1
+debugflag:		ds.w	1
 init_f:			ds.l	1
-unk_FF1400:		ds.b	$180
-unk_FF1400_end:
+flagwork:		ds.b	$180
+flagwork_end:
 byte_FF1580:		ds.b	$300
 dword_FF1880:		ds.l	1
 word_FF1884:		ds.w	1
@@ -143,8 +143,9 @@ powerupwrtwk_dma_end:
 
 	phase	$FFFF8000
 	ds.b	$2400
-lvllayoutwk:		ds.b	$400
-lvllayoutwk_end:
+mapwka:			ds.b	$400
+mapwkb:			equ	mapwka+$40
+mapwka_end:
 byte_FFA800:		ds.b	$200
 bitdevwk:		ds.b	$200
 spr_list:		ds.b	$400
@@ -197,9 +198,9 @@ startcolor:		ds.b	1
 colorcnt:		ds.b	1
 intcnt:			ds.b	1
 	ds.b	1
-vint_mode:		ds.b	1
+int_flg:		ds.b	1
 	ds.b	1
-byte_FFF62C:		ds.b	1
+linkdata:		ds.b	1
 	ds.b	5
 byte_FFF632:		ds.b	1
 byte_FFF633:		ds.b	1
@@ -289,7 +290,7 @@ playpatno:		ds.b	1
 playwrtflag:		ds.b	1
 dirstk:			ds.b	1
 	ds.b	1
-byte_FFF76A:		ds.b	1
+dirstk2:		ds.b	1
 	ds.b	1
 actset_rno:		ds.b	1
 	ds.b	1

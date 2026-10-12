@@ -30,7 +30,7 @@ ringtbl:
 	dc.b	-$18,$10
 
 loc_208A0E:
-	lea	unk_FF1400,a2
+	lea	flagwork,a2
 	moveq	#0,d0
 	move.b	obj.field_23(a0),d0
 	move.w	d0,d1
@@ -82,7 +82,7 @@ loc_208A8E:
 	blo.s	loc_208AEA
 	dbf	d0,loc_208A8E
 	bclr	#7,(a2)
-	bsr.w	findfreeobj
+	bsr.w	actwkchk
 	bne.s	loc_208AF6
 loc_208AA2:
 	_move.b	#objid_10,obj.id(a1)
@@ -106,7 +106,7 @@ loc_208AEA:
 	dbf	d1,loc_208A80
 loc_208AF6:
 	btst	#0,(a2)
-	bne.w	deleteobj
+	bne.w	frameout
 loc_208AFE:
 	move.w	obj.field_32(a0),d0
 	andi.w	#$FF80,d0
@@ -120,14 +120,14 @@ loc_208AFE:
 	bne.s	loc_208B2C
 	move.b	sys_patno2,obj.frame(a0)
 loc_208B2C:
-	bra.w	displaysprite
+	bra.w	actionsub
 
 loc_208B30:
 	addq.b	#2,obj.routine(a0)
 	move.b	#0,obj.colflag(a0)
 	move.b	#1,obj.priority(a0)
 	bsr.w	sub_208B7C
-	lea	unk_FF1400,a2
+	lea	flagwork,a2
 	moveq	#0,d0
 	move.b	obj.field_23(a0),d0
 	move.w	d0,d1
@@ -142,10 +142,10 @@ loc_208B30:
 loc_208B6A:
 	lea	ring_ani.l,a1
 	bsr.w	animateobj
-	bra.w	displaysprite
+	bra.w	actionsub
 
 loc_208B78:
-	bra.w	deleteobj
+	bra.w	frameout
 
 sub_208B7C:
 	addq.w	#1,plring
@@ -164,7 +164,7 @@ loc_208BB6:
 	addq.b	#1,pl_suu_f
 	move.w	#$88,d0
 loc_208BC6:
-	jmp	queuesound2.l
+	jmp	soundset.l
 
 flyring:
 	moveq	#0,d0
@@ -193,7 +193,7 @@ loc_208BF6:
 	bra.s	loc_208C06
 
 loc_208BFE:
-	bsr.w	findfreeobj
+	bsr.w	actwkchk
 	bne.w	loc_208C8E
 loc_208C06:
 	_move.b	#objid_11,obj.id(a1)
@@ -212,7 +212,7 @@ loc_208C06:
 	tst.w	d4
 	bmi.s	loc_208C7E
 	move.w	d4,d0
-	jsr	calcsine.l
+	jsr	sinset.l
 	move.w	d4,d2
 	lsr.w	#8,d2
 	asl.w	d2,d0
@@ -235,7 +235,7 @@ loc_208C8E:
 	move.b	#$80,plring_f
 	move.b	#0,plring_f2
 	move.w	#$94,d0
-	jsr	queuesound2.l
+	jsr	soundset.l
 loc_208CB0:
 	move.b	sys_patno4,obj.frame(a0)
 	bsr.w	speedset2
@@ -260,7 +260,7 @@ loc_208CEE:
 	addi.w	#224,d0
 	cmp.w	obj.ypos(a0),d0
 	blo.s	loc_208D2A
-	bra.w	displaysprite
+	bra.w	actionsub
 
 loc_208D08:
 	addq.b	#2,obj.routine(a0)
@@ -270,10 +270,10 @@ loc_208D08:
 loc_208D1C:
 	lea	ring_ani.l,a1
 	bsr.w	animateobj
-	bra.w	displaysprite
+	bra.w	actionsub
 
 loc_208D2A:
-	bra.w	deleteobj
+	bra.w	frameout
 
 ring_ani:
 	dc.w	unk_208D30-ring_ani
