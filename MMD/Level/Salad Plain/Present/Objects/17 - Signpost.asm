@@ -43,7 +43,7 @@ loc_20DF52:
 	subq.b	#1,obj.field_2A(a0)
 	bne.s	locret_20DF6E
 	bset	#0,byte_FFF7CC.w
-	move.w	#$808,word_FFF602.w
+	move.w	#$808,swdata.w
 	move.b	#60,obj.field_2A(a0)
 	addq.b	#2,obj.routine(a0)
 locret_20DF6E:
@@ -52,7 +52,7 @@ locret_20DF6E:
 loc_20DF70:
 	subq.b	#1,obj.field_2A(a0)
 	bne.s	locret_20DFC6
-	move.w	#2,lvl_reset
+	move.w	#2,gameflag
 	move.b	#0,plflag
 	clr.w	word_FF12F4
 	clr.l	dword_FF1880

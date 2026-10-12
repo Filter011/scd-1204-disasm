@@ -12,11 +12,11 @@ byte_FF0580_ext:	equ	byte_FF0580+$FF<<24
 stackwk:		ds.b	$200
 stackwk_end:
 	ds.b	2
-lvl_reset:		ds.w	1
-word_FF1204:		ds.w	1
+gameflag:		ds.w	1
+gametimer:		ds.w	1
 byte_FF1206:		ds.b	1
 	ds.b	1
-word_FF1208:		ds.w	1
+editmode:		ds.w	1
 	ds.b	2
 dword_FF120C:		ds.l	1
 zone:			ds.b	1
@@ -26,7 +26,7 @@ pl_suu:			ds.b	1
 pl_air:			ds.w	1
 	ds.b	3
 byte_FF1219:		ds.b	1
-byte_FF121A:		ds.b	1
+pltimeover_f:		ds.b	1
 plring_f2:		ds.b	1
 pl_suu_f:		ds.b	1
 plring_f:		ds.b	1
@@ -40,9 +40,9 @@ byte_FF1225:		ds.b	1
 dword_FF1226:		ds.l	1
 byte_FF122A:		ds.b	1
 	ds.b	1
-byte_FF122C:		ds.b	1
-byte_FF122D:		ds.b	1
-byte_FF122E:		ds.b	1
+plpower_b:		ds.b	1
+plpower_m:		ds.b	1
+plpower_s:		ds.b	1
 plpower_a:		ds.b	1
 plflag:			ds.b	1
 byte_FF1231:		ds.b	1
@@ -87,15 +87,15 @@ word_FF1278:		ds.w	1
 byte_FF127A:		ds.b	1
 byte_FF127B:		ds.b	1
 	ds.b	$44
-byte_FF12C0:		ds.b	1
-byte_FF12C1:		ds.b	1
-ring_time:		ds.b	1
-ring_frame:		ds.b	1
-byte_FF12C4:		ds.b	1
-byte_FF12C5:		ds.b	1
-byte_FF12C6:		ds.b	1
-byte_FF12C7:		ds.b	1
-word_FF12C8:		ds.w	1
+sys_pattim:		ds.b	1
+sys_patno:		ds.b	1
+sys_pattim2:		ds.b	1
+sys_patno2:		ds.b	1
+sys_pattim3:		ds.b	1
+sys_patno3:		ds.b	1
+sys_pattim4:		ds.b	1
+sys_patno4:		ds.b	1
+sys_ringtimer:		ds.w	1
 	ds.b	$2A
 word_FF12F4:		ds.w	1
 	ds.b	$1A
@@ -182,20 +182,20 @@ soundram:		SMPS_RAM
 	ds.b	$40
 gamemode:		ds.b	1
 	ds.b	1
-word_FFF602:		ds.w	1
-word_FFF604:		ds.w	1
-word_FFF606:		ds.w	1
+swdata:			ds.w	1
+swdata1:		ds.w	1
+swdata2:		ds.w	1
 	ds.b	4
 word_FFF60C:		ds.w	1
 	ds.b	6
 generictimer:		ds.w	1
 vscroll:		ds.l	1
-dword_FFF61A:		ds.l	1
+hscroll:		ds.l	1
 	ds.b	6
 hintposi:		ds.w	1
 startcolor:		ds.b	1
 colorcnt:		ds.b	1
-byte_FFF628:		ds.b	1
+intcnt:			ds.b	1
 	ds.b	1
 vint_mode:		ds.b	1
 	ds.b	1
@@ -204,10 +204,10 @@ byte_FFF62C:		ds.b	1
 byte_FFF632:		ds.b	1
 byte_FFF633:		ds.b	1
 	ds.b	2
-dword_FFF636:		ds.l	1
-word_FFF63A:		ds.w	1
+ranum:			ds.l	1
+pauseflag:		ds.w	1
 	ds.b	4
-word_FFF640:		ds.w	1
+dmastack:		ds.w	1
 	ds.b	2
 hintflag:		ds.w	1
 	ds.b	2
@@ -215,7 +215,7 @@ waterposi_m:		ds.w	1
 	ds.b	3
 water_flag:		ds.b	1
 waterflag:		ds.b	1
-byte_FFF64F:		ds.b	1
+waterflag2:		ds.b	1
 	ds.b	$C
 byte_FFF65C:		ds.b	1
 byte_FFF65D:		ds.b	1
@@ -237,11 +237,9 @@ scra_v_posit:		ds.l	1
 scrb_h_posit:		ds.l	1
 scrb_v_posit:		ds.l	1
 scrc_h_posit:		ds.l	1
-scrc_v_posit:		ds.w	1
-	ds.b	2
+scrc_v_posit:		ds.l	1
 scrz_h_posit:		ds.l	1
-scrz_v_posit:		ds.w	1
-	ds.b	2
+scrz_v_posit:		ds.l	1
 scralim_n_left:		ds.w	1
 scralim_n_right:	ds.w	1
 scralim_n_up:		ds.w	1
@@ -252,19 +250,20 @@ scralim_up:		ds.w	1
 scralim_down:		ds.w	1
 scrar_no:		ds.w	1
 scra_h_keep:		ds.w	1
-	ds.b	6
+scra_v_keep:		ds.w	1	; unused
+	ds.b	4
 scra_hz:		ds.w	1
 scra_vz:		ds.w	1
 scra_vline:		ds.w	1
-byte_FFF740:		ds.b	1
-byte_FFF741:		ds.b	1
+scrh_flag:		ds.b	1
+scrv_flag:		ds.b	1
 byte_FFF742:		ds.b	1
 	ds.b	1
 scroll_start:		ds.b	1
 	ds.b	1
-byte_FFF746:		ds.b	1
+scr_die:		ds.b	1
 	ds.b	1
-byte_FFF748:		ds.b	1
+scr_timer:		ds.b	1
 	ds.b	1
 scra_h_count:		ds.b	1
 scra_v_count:		ds.b	1
@@ -280,37 +279,37 @@ scrflagb:		ds.w	1
 scrflagc:		ds.w	1
 scrflagz:		ds.w	1
 limmoveflag:		ds.b	1
-byte_FFF75D:		ds.b	1
+playpatno1:		ds.b	1
 chibi_flag:		ds.b	1
 byte_FFF75F:		ds.b	1
 plmaxspdwk:		ds.w	1
 pladdspdwk:		ds.w	1
 plretspdwk:		ds.w	1
-byte_FFF766:		ds.b	1
+playpatno:		ds.b	1
 playwrtflag:		ds.b	1
-byte_FFF768:		ds.b	1
+dirstk:			ds.b	1
 	ds.b	1
 byte_FFF76A:		ds.b	1
 	ds.b	1
-byte_FFF76C:		ds.b	1
+actset_rno:		ds.b	1
 	ds.b	1
-word_FFF76E:		ds.w	1
-dword_FFF770:		ds.l	1
-dword_FFF774:		ds.l	1
-dword_FFF778:		ds.l	1
-dword_FFF77C:		ds.l	1
-word_FFF780:		ds.w	1
-word_FFF782:		ds.w	1
+asetposi:		ds.w	1
+asetadr:		ds.l	1
+asetadr2:		ds.l	1
+asetadrz:		ds.l	1
+asetadrz2:		ds.l	1
+byecnt0:		ds.w	1
+byecnt1:		ds.w	1
 time_item:		ds.b	1
 	ds.b	1
 backto_cnt:		ds.w	1
-byte_FFF788:		ds.b	1
+scr_cnt:		ds.b	1
 	ds.b	7
-word_FFF790:		ds.w	1
+swbufcnt:		ds.w	1
 	ds.b	4
-dword_FFF796:		ds.l	1
+scdadr:			ds.l	1
 	ds.b	$E
-word_FFF7A8:		ds.w	1
+plposiwkadr:		ds.w	1
 bossstart:		ds.b	1
 	ds.b	1
 loopmapno:		ds.b	1

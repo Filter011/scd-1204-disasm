@@ -118,7 +118,7 @@ loc_208AFE:
 	bhi.w	loc_208B78
 	tst.w	word_FF1278
 	bne.s	loc_208B2C
-	move.b	ring_frame,obj.frame(a0)
+	move.b	sys_patno2,obj.frame(a0)
 loc_208B2C:
 	bra.w	displaysprite
 
@@ -208,7 +208,7 @@ loc_208C06:
 	move.b	#3,obj.priority(a1)
 	move.b	#$47,obj.colflag(a1)
 	move.b	#8,obj.field_19(a1)
-	move.b	#-1,byte_FF12C6
+	move.b	#-1,sys_pattim4
 	tst.w	d4
 	bmi.s	loc_208C7E
 	move.w	d4,d0
@@ -237,7 +237,7 @@ loc_208C8E:
 	move.w	#$94,d0
 	jsr	queuesound2.l
 loc_208CB0:
-	move.b	byte_FF12C7,obj.frame(a0)
+	move.b	sys_patno4,obj.frame(a0)
 	bsr.w	speedset2
 	addi.w	#$18,obj.yvel(a0)
 	bmi.s	loc_208CEE
@@ -254,7 +254,7 @@ loc_208CB0:
 	sub.w	d0,obj.yvel(a0)
 	neg.w	obj.yvel(a0)
 loc_208CEE:
-	tst.b	byte_FF12C6
+	tst.b	sys_pattim4
 	beq.s	loc_208D2A
 	move.w	scralim_down.w,d0
 	addi.w	#224,d0

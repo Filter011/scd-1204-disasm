@@ -31,7 +31,7 @@ off_203656:
 
 	tst.b	obj.field_29(a0)
 	beq.s	locret_203674
-	move.b	#1,byte_FF122C
+	move.b	#1,plpower_b
 	move.b	#3,byte_FFD180.w
 locret_203674:
 	rts
@@ -79,7 +79,7 @@ loc_2036FC:
 sub_203720:
 	tst.b	zone
 	bne.s	locret_203786
-	move.b	word_FF1204+1,d0
+	move.b	gametimer+1,d0
 	andi.b	#3,d0
 	bne.s	locret_203786
 	move.b	obj.height(a0),d2
@@ -657,18 +657,18 @@ play00move:
 	bsr.w	sub_203720
 	tst.w	word_FF13FA
 	beq.s	loc_203CD6
-	btst	#4,word_FFF604+1.w
+	btst	#4,swdata1+1.w
 	beq.s	loc_203CD6
-	move.b	#1,word_FF1208
+	move.b	#1,editmode
 	rts
 
 loc_203CD6:
 	tst.b	byte_FFF7CC.w
 	bne.s	loc_203CF0
-	move.w	word_FFF604.w,word_FFF602.w
+	move.w	swdata1.w,swdata.w
 	_cmpi.b	#objid_01,obj.id(a0)
 	beq.s	loc_203CF0
-	move.w	word_FFF606.w,word_FFF602.w
+	move.w	swdata2.w,swdata.w
 loc_203CF0:
 	btst	#0,obj.field_2C(a0)
 	bne.s	loc_203D0E
@@ -684,7 +684,7 @@ loc_203D0E:
 	beq.s	loc_203D1A
 	bsr.w	playposiwkset
 loc_203D1A:
-	move.b	byte_FFF768.w,obj.field_36(a0)
+	move.b	dirstk.w,obj.field_36(a0)
 	move.b	byte_FFF76A.w,obj.field_37(a0)
 	tst.b	byte_FFF7C7.w
 	beq.s	loc_203D38
@@ -732,7 +732,7 @@ loc_203D76:
 loc_203D86:
 	jsr	displaysprite.l
 loc_203D8C:
-	tst.b	byte_FF122D
+	tst.b	plpower_m
 	beq.s	loc_203DDC
 	tst.w	obj.field_32(a0)
 	beq.s	loc_203DDC
@@ -752,9 +752,9 @@ loc_203DC4:
 	move.b	(a1,d0.w),d0
 	jsr	queuesound1.l
 loc_203DD4:
-	move.b	#0,byte_FF122D
+	move.b	#0,plpower_m
 loc_203DDC:
-	tst.b	byte_FF122E
+	tst.b	plpower_s
 	beq.s	locret_203E14
 	tst.w	obj.field_34(a0)
 	beq.s	locret_203E14
@@ -763,7 +763,7 @@ loc_203DDC:
 	move.w	#$600,plmaxspdwk.w
 	move.w	#$C,pladdspdwk.w
 	move.w	#$80,plretspdwk.w
-	move.b	#0,byte_FF122E
+	move.b	#0,plpower_s
 	move.w	#$E3,d0
 	jmp	queuesound1.l
 
@@ -795,12 +795,12 @@ locret_203E58:
 	rts
 
 playposiwkset:
-	move.w	word_FFF7A8.w,d0
+	move.w	plposiwkadr.w,d0
 	lea	playposiwk.w,a1
 	lea	(a1,d0.w),a1
 	move.w	obj.xpos(a0),(a1)+
 	move.w	obj.ypos(a0),(a1)+
-	addq.b	#4,word_FFF7A8+1.w
+	addq.b	#4,plposiwkadr+1.w
 	rts
 
 playsave:
@@ -841,7 +841,7 @@ loc_203F2A:
 	move.w	backto_cnt.w,d1
 	cmpi.w	#$E6,d1
 	blo.s	loc_203F40
-	move.b	#1,lvl_reset
+	move.b	#1,gameflag
 	bra.w	loc_205400
 
 loc_203F40:
@@ -969,11 +969,11 @@ levermove:
 	bne.w	loc_204380
 	tst.w	obj.field_3E(a0)
 	bne.w	loc_204330
-	btst	#2,word_FFF602.w
+	btst	#2,swdata.w
 	beq.s	loc_2040C2
 	bsr.w	plwalk_l
 loc_2040C2:
-	btst	#3,word_FFF602.w
+	btst	#3,swdata.w
 	beq.s	loc_2040CE
 	bsr.w	plwalk_r
 loc_2040CE:
@@ -1038,33 +1038,33 @@ loc_204172:
 loc_20417C:
 	tst.b	obj.field_29(a0)
 	beq.w	loc_2041E4
-	move.b	byte_FFF788.w,d0
+	move.b	scr_cnt.w,d0
 	andi.b	#$F,d0
 	beq.s	loc_204198
-	addq.b	#1,byte_FFF788.w
-	andi.b	#$CF,byte_FFF788.w
+	addq.b	#1,scr_cnt.w
+	andi.b	#$CF,scr_cnt.w
 loc_204198:
-	btst	#7,byte_FFF788.w
+	btst	#7,scr_cnt.w
 	bne.w	loc_204264
-	btst	#6,byte_FFF788.w
+	btst	#6,scr_cnt.w
 	bne.w	loc_20428C
-	btst	#1,word_FFF602.w
+	btst	#1,swdata.w
 	bne.w	loc_20428C
-	andi.b	#$F,byte_FFF788.w
+	andi.b	#$F,scr_cnt.w
 	beq.s	loc_2041D0
-	btst	#0,word_FFF602+1.w
+	btst	#0,swdata+1.w
 	beq.s	loc_2041E4
-	bset	#7,byte_FFF788.w
+	bset	#7,scr_cnt.w
 	bra.w	loc_204354
 
 loc_2041D0:
-	btst	#0,word_FFF602+1.w
+	btst	#0,swdata+1.w
 	beq.w	loc_2041E4
-	move.b	#1,byte_FFF788.w
+	move.b	#1,scr_cnt.w
 	bra.w	loc_204354
 
 loc_2041E4:
-	btst	#0,word_FFF602.w
+	btst	#0,swdata.w
 	beq.s	loc_204224
 	move.b	#7,obj.ani(a0)
 	tst.b	obj.field_2A(a0)
@@ -1079,7 +1079,7 @@ loc_20420A:
 	rts
 
 loc_204210:
-	move.b	word_FFF602+1.w,d0
+	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.s	loc_204220
 	move.b	#1,obj.field_2A(a0)
@@ -1108,7 +1108,7 @@ loc_20425C:
 	bra.w	loc_204330
 
 loc_204264:
-	btst	#0,word_FFF602.w
+	btst	#0,swdata.w
 	beq.s	loc_20428C
 	move.b	#7,obj.ani(a0)
 	tst.b	obj.field_29(a0)
@@ -1121,28 +1121,28 @@ loc_204264:
 loc_20428C:
 	tst.b	obj.field_29(a0)
 	beq.s	loc_2042C8
-	btst	#6,byte_FFF788.w
+	btst	#6,scr_cnt.w
 	bne.w	loc_20430E
-	andi.b	#$F,byte_FFF788.w
+	andi.b	#$F,scr_cnt.w
 	beq.s	loc_2042B6
-	btst	#1,word_FFF602+1.w
+	btst	#1,swdata+1.w
 	beq.s	loc_2042C8
-	bset	#6,byte_FFF788.w
+	bset	#6,scr_cnt.w
 	bra.w	loc_204354
 
 loc_2042B6:
-	btst	#1,word_FFF602+1.w
+	btst	#1,swdata+1.w
 	beq.s	loc_2042C8
-	move.b	#1,byte_FFF788.w
+	move.b	#1,scr_cnt.w
 	bra.w	loc_204354
 
 loc_2042C8:
-	btst	#1,word_FFF602.w
+	btst	#1,swdata.w
 	beq.s	loc_204330
 	move.b	#8,obj.ani(a0)
 	tst.b	obj.field_2A(a0)
 	bne.s	loc_20430C
-	move.b	word_FFF602+1.w,d0
+	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.s	loc_20430C
 	move.b	#1,obj.field_2A(a0)
@@ -1158,7 +1158,7 @@ loc_20430C:
 	bra.s	loc_204354
 
 loc_20430E:
-	btst	#1,word_FFF602.w
+	btst	#1,swdata.w
 	beq.s	loc_204330
 	move.b	#8,obj.ani(a0)
 	tst.b	obj.field_29(a0)
@@ -1171,10 +1171,10 @@ loc_20430E:
 loc_204330:
 	cmpi.w	#$60,scra_vline.w
 	bne.s	loc_20434A
-	move.b	byte_FFF788.w,d0
+	move.b	scr_cnt.w,d0
 	andi.b	#$F,d0
 	bne.s	loc_204354
-	move.b	#0,byte_FFF788.w
+	move.b	#0,scr_cnt.w
 	bra.s	loc_204354
 
 loc_20434A:
@@ -1183,7 +1183,7 @@ loc_20434A:
 loc_204350:
 	subq.w	#2,scra_vline.w
 loc_204354:
-	move.b	word_FFF602.w,d0
+	move.b	swdata.w,d0
 	andi.b	#$C,d0
 	bne.s	loc_204380
 	move.w	obj.inertia(a0),d0
@@ -1265,7 +1265,7 @@ loc_204418:
 	beq.s	loc_204434
 	cmpi.b	#$3D,obj.field_2A(a0)
 	bne.s	locret_204496
-	bset	#2,word_FFF602.w
+	bset	#2,swdata.w
 	lsl.w	#7,d5
 	move.b	#0,obj.field_2A(a0)
 loc_204434:
@@ -1311,7 +1311,7 @@ plwalk_r:
 	beq.s	loc_2044BA
 	cmpi.b	#$3D,obj.field_2A(a0)
 	bne.s	locret_204518
-	bset	#3,word_FFF602.w
+	bset	#3,swdata.w
 	lsl.w	#7,d5
 	move.b	#0,obj.field_2A(a0)
 loc_2044BA:
@@ -1359,11 +1359,11 @@ ballmove:
 	bne.w	loc_204640
 	tst.w	obj.field_3E(a0)
 	bne.s	loc_204552
-	btst	#2,word_FFF602.w
+	btst	#2,swdata.w
 	beq.s	loc_204546
 	bsr.w	ballwalk_l
 loc_204546:
-	btst	#3,word_FFF602.w
+	btst	#3,swdata.w
 	beq.s	loc_204552
 	bsr.w	ballwalk_r
 loc_204552:
@@ -1384,9 +1384,9 @@ loc_204570:
 	move.w	d1,d0
 loc_20457E:
 	move.w	d0,obj.inertia(a0)
-	btst	#1,word_FFF602.w
+	btst	#1,swdata.w
 	beq.s	loc_2045BA
-	move.b	word_FFF602+1.w,d0
+	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.s	locret_2045E6
 loc_204594:
@@ -1508,7 +1508,7 @@ jumpmove:
 	btst	#plst_ballj,obj.status(a0)
 	bne.s	loc_204706
 	move.w	obj.xvel(a0),d0
-	btst	#2,word_FFF602.w
+	btst	#2,swdata.w
 	beq.s	loc_2046EC
 	bset	#plst_xflip,obj.status(a0)
 	sub.w	d5,d0
@@ -1518,7 +1518,7 @@ jumpmove:
 	bgt.s	loc_2046EC
 	move.w	d1,d0
 loc_2046EC:
-	btst	#3,word_FFF602.w
+	btst	#3,swdata.w
 	beq.s	loc_204702
 	bclr	#plst_xflip,obj.status(a0)
 	add.w	d5,d0
@@ -1620,10 +1620,10 @@ ballchk:
 loc_2047EA:
 	cmpi.w	#$80,d0
 	blo.s	locret_204802
-	move.b	word_FFF602.w,d0
+	move.b	swdata.w,d0
 	andi.b	#$C,d0
 	bne.s	locret_204802
-	btst	#1,word_FFF602.w
+	btst	#1,swdata.w
 	bne.s	ballset
 locret_204802:
 	rts
@@ -1656,7 +1656,7 @@ locret_20484A:
 jumpchk:
 	tst.b	obj.field_2A(a0)
 	beq.s	loc_204876
-	move.b	word_FFF602+1.w,d0
+	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.s	loc_204876
 	move.b	#0,obj.field_2A(a0)
@@ -1666,13 +1666,13 @@ jumpchk:
 	bra.s	loc_204888
 
 loc_204876:
-	move.b	word_FFF602.w,d0
+	move.b	swdata.w,d0
 	andi.b	#3,d0
 	beq.s	loc_204888
 	tst.w	obj.inertia(a0)
 	beq.w	locret_204964
 loc_204888:
-	move.b	word_FFF602+1.w,d0
+	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.w	locret_204964
 	btst	#plst_fcol,obj.status(a0)
@@ -1751,7 +1751,7 @@ jumpchk2:
 loc_204984:
 	cmp.w	obj.yvel(a0),d1
 	ble.s	locret_20499E
-	move.b	word_FFF602.w,d0
+	move.b	swdata.w,d0
 	andi.b	#$70,d0
 	bne.s	locret_20499E
 	move.b	#0,obj.field_2A(a0)
@@ -2119,7 +2119,7 @@ play00die_sub:
 	subq.b	#1,pl_suu
 loc_204DA2:
 	move.w	#60,obj.field_3A(a0)
-	tst.b	byte_FF121A
+	tst.b	pltimeover_f
 	beq.s	locret_204DB8
 	move.w	#0,obj.field_3A(a0)
 	bra.s	loc_204DA2
@@ -2132,7 +2132,7 @@ play00erase:
 	beq.s	locret_204E16
 	subq.w	#1,obj.field_3A(a0)
 	bne.s	locret_204E16
-	move.w	#1,lvl_reset
+	move.w	#1,gameflag
 	lea	byte_FFD040.w,a5
 	_cmpi.b	#objid_01,obj.id(a0)
 	beq.s	loc_204DDE
@@ -2140,7 +2140,7 @@ play00erase:
 loc_204DDE:
 	_tst.b	obj.id(a5)
 	beq.w	loc_204DFA
-	move.w	#0,lvl_reset
+	move.w	#0,gameflag
 	eori.b	#1,byte_FF1219
 	bra.w	deleteobj
 
@@ -2919,10 +2919,10 @@ unk_205326:
 	even
 
 playwrt:
-	lea	byte_FFF766.w,a2
+	lea	playpatno.w,a2
 	_cmpi.b	#objid_01,obj.id(a0)
 	beq.s	loc_20533E
-	lea	byte_FFF75D.w,a2
+	lea	playpatno1.w,a2
 loc_20533E:
 	moveq	#0,d0
 	move.b	obj.frame(a0),d0
