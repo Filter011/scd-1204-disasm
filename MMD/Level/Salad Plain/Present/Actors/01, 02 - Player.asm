@@ -867,10 +867,12 @@ backto_chk:
 	move.w	mspeed(a0),d0
 	bpl.s	loc_203F1E
 	neg.w	d0
+
 loc_203F1E:
 	tst.w	backto_cnt.w
 	bne.s	loc_203F2A
 	move.w	#1,backto_cnt.w
+
 loc_203F2A:
 	move.w	backto_cnt.w,d1
 	cmpi.w	#$E6,d1
@@ -894,11 +896,13 @@ loc_203F66:
 	cmpi.b	#3,d0
 	blo.s	loc_203F6E
 	moveq	#2,d0
+
 loc_203F6E:
 	bset	#7,d0
 	move.b	d0,time_flag
 	bsr.w	playsave
 	move.b	#2,plflag
+
 locret_203F84:
 	rts
 
@@ -1131,6 +1135,7 @@ loc_204210:
 	andi.b	#$70,d0
 	beq.s	loc_204220
 	move.b	#1,act2A(a0)
+
 loc_204220:
 	bra.w	loc_204354
 
@@ -1198,10 +1203,12 @@ loc_2042C8:
 	btst	#cd_xflip,cddat(a0)
 	beq.s	loc_2042FE
 	neg.w	mspeed(a0)
+
 loc_2042FE:
 	move.w	#$9C,d0
 	jsr	soundset.l
 	bsr.w	ballset
+
 loc_20430C:
 	bra.s	loc_204354
 
@@ -1228,8 +1235,10 @@ loc_204330:
 loc_20434A:
 	bhs.s	loc_204350
 	addq.w	#4,scra_vline.w
+
 loc_204350:
 	subq.w	#2,scra_vline.w
+
 loc_204354:
 	move.b	swdata.w,d0
 	andi.b	#$C,d0
@@ -1248,8 +1257,10 @@ loc_204374:
 	add.w	d5,d0
 	bhs.s	loc_20437C
 	move.w	#0,d0
+
 loc_20437C:
 	move.w	d0,mspeed(a0)
+
 loc_204380:
 	move.b	direc(a0),d0
 	jsr	sinset.l
@@ -1259,6 +1270,7 @@ loc_204380:
 	muls.w	mspeed(a0),d0
 	asr.l	#8,d0
 	move.w	d0,yspeed(a0)
+
 lmovecol:
 	move.b	direc(a0),d0
 	addi.b	#$40,d0
@@ -1268,6 +1280,7 @@ lmovecol:
 	beq.s	locret_20440E
 	bmi.s	loc_2043B6
 	neg.w	d1
+
 loc_2043B6:
 	move.b	direc(a0),d0
 	add.b	d1,d0
@@ -1301,6 +1314,7 @@ loc_2043F8:
 
 loc_20440A:
 	add.w	d1,yspeed(a0)
+
 locret_20440E:
 	rts
 
@@ -1308,6 +1322,7 @@ plwalk_l:
 	move.w	mspeed(a0),d0
 	beq.s	loc_204418
 	bpl.s	loc_204460
+
 loc_204418:
 	tst.b	act2A(a0)
 	beq.s	loc_204434
@@ -1316,11 +1331,13 @@ loc_204418:
 	bset	#2,swdata.w
 	lsl.w	#7,d5
 	move.b	#0,act2A(a0)
+
 loc_204434:
 	bset	#cd_xflip,cddat(a0)
 	bne.s	loc_204448
 	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
+
 loc_204448:
 	sub.w	d5,d0
 	move.w	d6,d1
@@ -1328,6 +1345,7 @@ loc_204448:
 	cmp.w	d1,d0
 	bgt.s	loc_204454
 	move.w	d1,d0
+
 loc_204454:
 	move.w	d0,mspeed(a0)
 	move.b	#0,mstno(a0)
@@ -1337,6 +1355,7 @@ loc_204460:
 	sub.w	d4,d0
 	bhs.s	loc_204468
 	move.w	#-$80,d0
+
 loc_204468:
 	move.w	d0,mspeed(a0)
 	move.b	direc(a0),d0
@@ -1349,6 +1368,7 @@ loc_204468:
 	bclr	#cd_xflip,cddat(a0)
 	move.w	#$90,d0
 	jsr	soundset.l
+
 locret_204496:
 	rts
 
@@ -1362,16 +1382,19 @@ plwalk_r:
 	bset	#3,swdata.w
 	lsl.w	#7,d5
 	move.b	#0,act2A(a0)
+
 loc_2044BA:
 	bclr	#cd_xflip,cddat(a0)
 	beq.s	loc_2044CE
 	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
+
 loc_2044CE:
 	add.w	d5,d0
 	cmp.w	d6,d0
 	blt.s	loc_2044D6
 	move.w	d6,d0
+
 loc_2044D6:
 	move.w	d0,mspeed(a0)
 	move.b	#0,mstno(a0)
@@ -1381,6 +1404,7 @@ loc_2044E2:
 	add.w	d4,d0
 	bhs.s	loc_2044EA
 	move.w	#$80,d0
+
 loc_2044EA:
 	move.w	d0,mspeed(a0)
 	move.b	direc(a0),d0
@@ -1393,6 +1417,7 @@ loc_2044EA:
 	bset	#cd_xflip,cddat(a0)
 	move.w	#$90,d0
 	jsr	soundset.l
+
 locret_204518:
 	rts
 
@@ -1410,10 +1435,12 @@ ballmove:
 	btst	#2,swdata.w
 	beq.s	loc_204546
 	bsr.w	ballwalk_l
+
 loc_204546:
 	btst	#3,swdata.w
 	beq.s	loc_204552
 	bsr.w	ballwalk_r
+
 loc_204552:
 	tst.b	act2A(a0)
 	beq.w	loc_2045E8
@@ -1424,12 +1451,14 @@ loc_204552:
 	beq.s	loc_204570
 	neg.w	d0
 	neg.w	d1
+
 loc_204570:
 	add.w	d0,mspeed(a0)
 	move.w	mspeed(a0),d0
 	cmp.w	d1,d0
 	bgt.s	loc_20457E
 	move.w	d1,d0
+
 loc_20457E:
 	move.w	d0,mspeed(a0)
 	btst	#1,swdata.w
@@ -1437,6 +1466,7 @@ loc_20457E:
 	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.s	locret_2045E6
+
 loc_204594:
 	move.w	#$AB,d0
 	jsr	soundset.l
@@ -1471,6 +1501,7 @@ loc_2045E8:
 	sub.w	d5,d0
 	bhs.s	loc_2045F8
 	move.w	#0,d0
+
 loc_2045F8:
 	move.w	d0,mspeed(a0)
 	bra.s	loc_20460A
@@ -1479,11 +1510,14 @@ loc_2045FE:
 	add.w	d5,d0
 	bhs.s	loc_204606
 	move.w	#0,d0
+
 loc_204606:
 	move.w	d0,mspeed(a0)
+
 loc_20460A:
 	tst.w	mspeed(a0)
 	bne.s	loc_204640
+
 loc_204610:
 	bclr	#cd_ball,cddat(a0)
 	tst.b	chibi_flag.w
@@ -1496,8 +1530,10 @@ loc_20462A:
 	move.b	#pl_height,sprvsize(a0)
 	move.b	#pl_width,sprhs(a0)
 	subq.w	#5,yposi(a0)
+
 loc_20463A:
 	move.b	#5,mstno(a0)
+
 loc_204640:
 	move.b	direc(a0),d0
 	jsr	sinset.l
@@ -1509,10 +1545,12 @@ loc_204640:
 	cmpi.w	#$1000,d1
 	ble.s	loc_204664
 	move.w	#$1000,d1
+
 loc_204664:
 	cmpi.w	#-$1000,d1
 	bge.s	loc_20466E
 	move.w	#-$1000,d1
+
 loc_20466E:
 	move.w	d1,xspeed(a0)
 	bra.w	lmovecol
@@ -1521,6 +1559,7 @@ ballwalk_l:
 	move.w	mspeed(a0),d0
 	beq.s	loc_20467E
 	bpl.s	loc_20468C
+
 loc_20467E:
 	bset	#cd_xflip,cddat(a0)
 	move.b	#2,mstno(a0)
@@ -1530,6 +1569,7 @@ loc_20468C:
 	sub.w	d4,d0
 	bhs.s	loc_204694
 	move.w	#-$80,d0
+
 loc_204694:
 	move.w	d0,mspeed(a0)
 	rts
@@ -1545,6 +1585,7 @@ loc_2046AE:
 	add.w	d4,d0
 	bhs.s	loc_2046B6
 	move.w	#$80,d0
+
 loc_2046B6:
 	move.w	d0,mspeed(a0)
 	rts
@@ -1565,6 +1606,7 @@ jumpmove:
 	cmp.w	d1,d0
 	bgt.s	loc_2046EC
 	move.w	d1,d0
+
 loc_2046EC:
 	btst	#3,swdata.w
 	beq.s	loc_204702
@@ -1573,8 +1615,10 @@ loc_2046EC:
 	cmp.w	d6,d0
 	blt.s	loc_204702
 	move.w	d6,d0
+
 loc_204702:
 	move.w	d0,xspeed(a0)
+
 loc_204706:
 	tst.b	act29(a0)
 	beq.s	loc_20471E
@@ -1582,8 +1626,10 @@ loc_204706:
 	beq.s	loc_20471E
 	bhs.s	loc_20471A
 	addq.w	#4,scra_vline.w
+
 loc_20471A:
 	subq.w	#2,scra_vline.w
+
 loc_20471E:
 	cmpi.w	#-$400,yspeed(a0)
 	blo.s	locret_20474C
@@ -1595,6 +1641,7 @@ loc_20471E:
 	sub.w	d1,d0
 	bhs.s	loc_20473A
 	move.w	#0,d0
+
 loc_20473A:
 	move.w	d0,xspeed(a0)
 	rts
@@ -1603,8 +1650,10 @@ loc_204740:
 	sub.w	d1,d0
 	blo.s	loc_204748
 	move.w	#0,d0
+
 loc_204748:
 	move.w	d0,xspeed(a0)
+
 locret_20474C:
 	rts
 
@@ -1620,6 +1669,7 @@ hedcolchk:
 	move.w	#0,xspeed(a0)
 	move.w	#0,yspeed(a0)
 	move.b	#$B,mstno(a0)
+
 locret_20477C:
 	rts
 
@@ -1639,9 +1689,11 @@ limitchk:
 	tst.b	bossstart.w
 	bne.s	loc_2047AC
 	addi.w	#$40,d0
+
 loc_2047AC:
 	cmp.w	d1,d0
 	bls.s	loc_2047C4
+
 loc_2047B0:
 	move.w	scralim_down.w,d0
 	addi.w	#224,d0
@@ -1665,6 +1717,7 @@ ballchk:
 	move.w	mspeed(a0),d0
 	bpl.s	loc_2047EA
 	neg.w	d0
+
 loc_2047EA:
 	cmpi.w	#$80,d0
 	blo.s	locret_204802
@@ -1673,6 +1726,7 @@ loc_2047EA:
 	bne.s	locret_204802
 	btst	#1,swdata.w
 	bne.s	ballset
+
 locret_204802:
 	rts
 
@@ -1693,6 +1747,7 @@ loc_204828:
 	move.b	#rollheight,sprvsize(a0)
 	move.b	#rollwidth,sprhs(a0)
 	addq.w	#5,yposi(a0)
+
 loc_204838:
 	move.b	#2,mstno(a0)
 	tst.w	mspeed(a0)
@@ -1771,6 +1826,7 @@ loc_2048D4:
 loc_204920:
 	move.b	#pl_height,sprvsize(a0)
 	move.b	#pl_width,sprhs(a0)
+
 loc_20492C:
 	btst	#cd_ball,cddat(a0)
 	bne.s	loc_204966
@@ -1784,9 +1840,11 @@ loc_204948:
 	move.b	#rollheight,sprvsize(a0)
 	move.b	#rollwidth,sprhs(a0)
 	addq.w	#5,yposi(a0)
+
 loc_204958:
 	bset	#cd_ball,cddat(a0)
 	move.b	#2,mstno(a0)
+
 locret_204964:
 	rts
 
@@ -1801,6 +1859,7 @@ jumpchk2:
 	btst	#cd_water,cddat(a0)
 	beq.s	loc_204984
 	move.w	#-$200,d1
+
 loc_204984:
 	cmp.w	yspeed(a0),d1
 	ble.s	locret_20499E
@@ -1809,6 +1868,7 @@ loc_204984:
 	bne.s	locret_20499E
 	move.b	#0,act2A(a0)
 	move.w	d1,yspeed(a0)
+
 locret_20499E:
 	rts
 
@@ -1816,6 +1876,7 @@ loc_2049A0:
 	cmpi.w	#-$FC0,yspeed(a0)
 	bge.s	locret_2049AE
 	move.w	#-$FC0,yspeed(a0)
+
 locret_2049AE:
 	rts
 
@@ -1948,12 +2009,14 @@ jumpcolchk:
 	bpl.s	loc_204ADE
 	sub.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
+
 loc_204ADE:
 	bsr.w	sub_2061BE
 	tst.w	d1
 	bpl.s	loc_204AF0
 	add.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
+
 loc_204AF0:
 	bsr.w	loc_20606E
 	move.b	d1,debugwork4
@@ -1966,6 +2029,7 @@ loc_204AF0:
 	bge.s	loc_204B0E
 	cmp.b	d2,d0
 	blt.s	locret_204B6E
+
 loc_204B0E:
 	add.w	d1,yposi(a0)
 	move.b	d3,direc(a0)
@@ -1992,11 +2056,13 @@ loc_204B4C:
 	cmpi.w	#$FC0,yspeed(a0)
 	ble.s	loc_204B60
 	move.w	#$FC0,yspeed(a0)
+
 loc_204B60:
 	move.w	yspeed(a0),mspeed(a0)
 	tst.b	d3
 	bpl.s	locret_204B6E
 	neg.w	mspeed(a0)
+
 locret_204B6E:
 	rts
 
@@ -2017,6 +2083,7 @@ loc_204B8A:
 	tst.w	yspeed(a0)
 	bpl.s	locret_204BA2
 	move.w	#0,yspeed(a0)
+
 locret_204BA2:
 	rts
 
@@ -2032,6 +2099,7 @@ loc_204BA4:
 	move.b	#0,mstno(a0)
 	move.w	#0,yspeed(a0)
 	move.w	xspeed(a0),mspeed(a0)
+
 locret_204BD0:
 	rts
 
@@ -2041,12 +2109,14 @@ loc_204BD2:
 	bpl.s	loc_204BE4
 	sub.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
+
 loc_204BE4:
 	bsr.w	sub_2061BE
 	tst.w	d1
 	bpl.s	loc_204BF6
 	add.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
+
 loc_204BF6:
 	bsr.w	dircol_u
 	tst.w	d1
@@ -2066,6 +2136,7 @@ loc_204C16:
 	tst.b	d3
 	bpl.s	locret_204C2C
 	neg.w	mspeed(a0)
+
 locret_204C2C:
 	rts
 
@@ -2086,6 +2157,7 @@ loc_204C48:
 	tst.w	yspeed(a0)
 	bpl.s	locret_204C60
 	move.w	#0,yspeed(a0)
+
 locret_204C60:
 	rts
 
@@ -2101,6 +2173,7 @@ loc_204C62:
 	move.b	#0,mstno(a0)
 	move.w	#0,yspeed(a0)
 	move.w	xspeed(a0),mspeed(a0)
+
 locret_204C8E:
 	rts
 
@@ -2108,6 +2181,7 @@ jumpcolsub:
 	btst	#cd_ballj,cddat(a0)
 	beq.s	loc_204C9A
 	nop
+
 loc_204C9A:
 	bclr	#cd_push,cddat(a0)
 	bclr	#cd_jump,cddat(a0)
@@ -2125,8 +2199,10 @@ loc_204CCE:
 	move.b	#pl_height,sprvsize(a0)
 	move.b	#pl_width,sprhs(a0)
 	subq.w	#5,yposi(a0)
+
 loc_204CDE:
 	move.b	#0,mstno(a0)
+
 loc_204CE4:
 	move.b	#0,jumpflag(a0)
 	move.w	#0,emyscorecnt.w
@@ -2138,6 +2214,7 @@ play00damage:
 	btst	#cd_water,cddat(a0)
 	beq.s	loc_204D0C
 	subi.w	#$20,yspeed(a0)
+
 loc_204D0C:
 	bsr.w	play00damage_sub
 	bsr.w	limitchk
@@ -2160,6 +2237,7 @@ play00damage_sub:
 	move.b	#0,mstno(a0)
 	subq.b	#2,r_no0(a0)
 	move.w	#120,invulnerabilitytimer(a0)
+
 locret_204D5C:
 	rts
 
@@ -3045,7 +3123,7 @@ loc_205368:
 loc_20537E:
 	movem.l	(a1)+,d2-d6/a4-a6
 	movem.l	d2-d6/a4-a6,(a3)
-	lea	$20(a3),a3
+	lea	tile_size(a3),a3
 	dbf	d0,loc_20537E
 	dbf	d1,loc_205368
 
