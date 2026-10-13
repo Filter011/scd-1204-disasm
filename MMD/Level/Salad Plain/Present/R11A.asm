@@ -736,7 +736,7 @@ loc_200B7C:
 	bne.s	loc_200B76
 	bset	#1,cddat(a0)
 	bclr	#5,cddat(a0)
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	rts
 
 locret_200B96:
@@ -860,7 +860,7 @@ loc_200CAE:
 	bne.s	loc_200CA8
 	bset	#1,cddat(a0)
 	bclr	#5,cddat(a0)
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	rts
 
 fcol_u:
@@ -920,7 +920,7 @@ loc_200D50:
 	bne.s	loc_200D4A
 	bset	#1,cddat(a0)
 	bclr	#5,cddat(a0)
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	rts
 
 fcol_l:
@@ -979,7 +979,7 @@ loc_200DF2:
 	bne.s	loc_200DEC
 	bset	#1,cddat(a0)
 	bclr	#5,cddat(a0)
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	rts
 
 scramapad:
@@ -2261,7 +2261,6 @@ soundset:
 	move.b	d0,soundram+SMPS_RAM.v_soundqueue1.w
 	rts
 
-queuesound3:
 	move.b	d0,soundram+SMPS_RAM.v_soundqueue2.w
 	rts
 
@@ -4170,9 +4169,9 @@ patchg:
 	bpl.s	locret_205486
 	moveq	#0,d0
 	move.b	mstno(a0),d0
-	cmp.b	act1D(a0),d0
+	cmp.b	mstrestart(a0),d0
 	beq.s	loc_205446
-	move.b	d0,act1D(a0)
+	move.b	d0,mstrestart(a0)
 	move.b	#0,patcnt(a0)
 	move.b	#0,pattim(a0)
 loc_205446:
@@ -4473,7 +4472,7 @@ loc_2057BE:
 	bra.w	patchg
 
 loc_2057C8:
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	move.b	#0,patno(a0)
 	subq.b	#4,r_no0(a0)
 	rts
@@ -6312,7 +6311,7 @@ loc_206AE0:
 	btst	#4,swdata1+1.w
 	beq.s	loc_206B10
 	move.b	#0,editmode
-	move.l	#player_map,patbase(a0)
+	move.l	#playpat,patbase(a0)
 	move.w	#$780,sproffset(a0)
 	move.b	#2,sprpri(a0)
 	move.b	#0,patno(a0)
@@ -8227,7 +8226,7 @@ loc_208670:
 
 loc_208686:
 	bclr	#3,cddat(a0)
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	subq.b	#4,r_no0(a0)
 	move.b	#0,patno(a0)
 	rts
@@ -8285,7 +8284,7 @@ loc_208734:
 	bra.w	patchg
 
 loc_20874E:
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	subq.b	#4,r_no0(a0)
 	move.b	#0,patno(a0)
 	rts
@@ -8328,7 +8327,7 @@ loc_2087B8:
 	bra.w	patchg
 
 loc_2087CE:
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	subq.b	#4,r_no0(a0)
 	move.b	#0,patno(a0)
 	rts
@@ -8391,7 +8390,7 @@ loc_208896:
 	bra.w	patchg
 
 loc_2088A0:
-	move.b	#1,act1D(a0)
+	move.b	#1,mstrestart(a0)
 	subq.b	#4,r_no0(a0)
 	move.b	#0,patno(a0)
 	rts
@@ -16610,14 +16609,14 @@ mapwk:
 	incbin	"Unknown/Unk1.unc"
 	even
 
-cg_player:
+playcg:
 	incbin	"Art/Uncompressed/Sonic.unc"
 	even
 
-player_map:
+playpat:
 	include	"Mappings/Sonic.asm"
 
-dplc_player:
+playwrtpat:
 	include	"Mappings/Sonic DPLCs.asm"
 
 unk_22E3AC:

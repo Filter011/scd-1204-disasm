@@ -75,7 +75,7 @@ sprhsize:	ds.b	1
 patno:		ds.b	1
 patcnt:		ds.b	1
 mstno:		ds.b	1
-act1D:		ds.b	1
+mstrestart:	ds.b	1
 pattim:		ds.b	1
 pattimm:	ds.b	1
 colino:		ds.b	1
@@ -254,6 +254,9 @@ invulnerabilitytimer:	equ	act30
 mutekitimer:	equ	act32
 speeduptimer:	equ	act34
 footdir:	equ	act36
+convexflag:	equ	act38
+jumpflag:	equ	act3C
+hlocktimer:	equ	act3E
 
 ; Player Bit Equates
 cd_xflip:	equ	0
