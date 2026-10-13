@@ -1596,7 +1596,7 @@ loc_20141E:
 	bne.w	game
 	tst.w	editmode
 	bne.s	loc_201454
-	cmpi.b	#6,actwk+r_no0.w
+	cmpi.b	#6,playerwk+r_no0.w
 	bhs.s	loc_201458
 
 loc_201454:
@@ -1615,7 +1615,7 @@ loc_20146A:
 	bra.w	loc_20141E
 
 sub_20147C:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	moveq	#objid_01,d0
 	tst.b	byte_FF1219
 	beq.s	loc_201490
@@ -1879,7 +1879,7 @@ loc_20180E:
 	move.w	hintposi.w,(a5)
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
-	lea	actwk.w,a0
+	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_201892
@@ -1914,7 +1914,7 @@ loc_2018D8:
 doupdates:
 	bsr.w	scrollwrt
 	bsr.w	sub_20210C
-	jsr	sub_209830.l
+	jsr	scoreset.l
 	tst.w	generictimer.w
 	beq.w	locret_201928
 	subq.w	#1,generictimer.w
@@ -1940,7 +1940,7 @@ loc_201986:
 	move.w	hintposi.w,(a5)
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
-	lea	actwk.w,a0
+	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_201A0A
@@ -1955,7 +1955,7 @@ loc_201A0A:
 	movem.l	d0-d1,scrflagaw
 	bsr.w	scrollwrt
 	bsr.w	sub_2020F0
-	jsr	sub_209830.l
+	jsr	scoreset.l
 	rts
 
 vint0E:
@@ -1976,7 +1976,7 @@ vint16:
 	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	jsr	Z80BUSSTART.l
-	lea	actwk.w,a0
+	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_201B0C
@@ -2301,7 +2301,7 @@ loc_201EE0:
 	include	"Decompression/UnLZE.asm"
 
 sub_2023EA:
-	lea	actwk.w,a6
+	lea	playerwk.w,a6
 	tst.b	byte_FF1219
 	beq.s	locret_2023FA
 	lea	byte_FFD040.w,a6
@@ -4071,7 +4071,7 @@ objid_18:	obj_ptr	obj18
 objid_19:	obj_ptr	obj19
 objid_1A:	obj_ptr	obj1A
 objid_1B:	obj_ptr	obj1B
-objid_1C:	obj_ptr	obj1C
+objid_1C:	obj_ptr	score
 objid_1D:	obj_ptr	objNull
 objid_1E:	obj_ptr	objNull
 objid_1F:	obj_ptr	obj1F
@@ -4463,7 +4463,7 @@ loc_205782:
 	moveq	#$C,d0
 	jsr	sub_20DC4C.l
 loc_2057AE:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_205732
 	lea	byte_FFD040.w,a1
 	bra.w	sub_205732
@@ -5247,12 +5247,14 @@ loc_205E30:
 	move.w	waterposi_m_sb,waterposi_m.w
 	move.b	water_flag_sb,water_flag.w
 	move.b	waterflag_sb,waterflag.w
+
 loc_205ECC:
 	tst.b	plflag
 	bpl.s	locret_205EE2
 	move.w	plxposi_sb,d0
 	subi.w	#160,d0
 	move.w	d0,scralim_left.w
+
 locret_205EE2:
 	rts
 
@@ -5267,8 +5269,8 @@ playload:
 	clr.w	plring
 	clr.b	plring_f2
 	move.l	pltime_s,pltime
-	move.b	#59,byte_FF1225
-	subq.b	#1,byte_FF1224
+	move.b	#59,pltime+3
+	subq.b	#1,pltime+2
 	move.b	zone_flag_s,zone_flag.w
 	move.b	water_flag_s,water_flag.w
 	move.w	scralim_down_s,scralim_down.w
@@ -5286,12 +5288,14 @@ playload:
 	move.w	waterposi_m_s,waterposi_m.w
 	move.b	water_flag_s,water_flag.w
 	move.b	waterflag_s,waterflag.w
+
 loc_205FC4:
 	tst.b	plflag
 	bpl.s	locret_205FDA
 	move.w	plxposi_s,d0
 	subi.w	#160,d0
 	move.w	d0,scralim_left.w
+
 locret_205FDA:
 	rts
 
@@ -5316,6 +5320,7 @@ sub_205FDC:
 	move.b	d1,d0
 	bpl.s	loc_206012
 	subq.b	#1,d0
+
 loc_206012:
 	addi.b	#$20,d0
 	bra.s	loc_206022
@@ -5324,8 +5329,10 @@ loc_206018:
 	move.b	d1,d0
 	bpl.s	loc_20601E
 	addq.b	#1,d0
+
 loc_20601E:
 	addi.b	#$1F,d0
+
 loc_206022:
 	andi.b	#$C0,d0
 	beq.w	loc_2060F2
@@ -5334,6 +5341,7 @@ loc_206022:
 	andi.b	#$38,d1
 	bne.s	loc_20603A
 	addq.w	#8,d2
+
 loc_20603A:
 	cmpi.b	#$40,d0
 	beq.w	loc_206364
@@ -5350,6 +5358,7 @@ dircol2:
 	beq.w	dircol_u
 	cmpi.b	#$C0,d0
 	beq.w	loc_206156
+
 loc_20606E:
 	move.w	yposi(a0),d2
 	move.w	xposi(a0),d3
@@ -5382,16 +5391,19 @@ loc_20606E:
 	jsr	scdchk.l
 	move.w	(sp)+,d0
 	move.b	#0,d2
+
 loc_2060D2:
 	move.b	dirstk2.w,d3
 	cmp.w	d0,d1
 	ble.s	loc_2060E0
 	move.b	dirstk.w,d3
 	exg.l	d0,d1
+
 loc_2060E0:
 	btst	#0,d3
 	beq.s	locret_2060E8
 	move.b	d2,d3
+
 locret_2060E8:
 	rts
 
@@ -5406,11 +5418,13 @@ loc_2060F2:
 	moveq	#$E,d5
 	jsr	scdchk.l
 	move.b	#0,d2
+
 loc_20610E:
 	move.b	dirstk.w,d3
 	btst	#0,d3
 	beq.s	locret_20611A
 	move.b	d2,d3
+
 locret_20611A:
 	rts
 
@@ -5431,6 +5445,7 @@ sub_20611C:
 	btst	#0,d3
 	beq.s	locret_206154
 	move.b	#0,d3
+
 locret_206154:
 	rts
 
@@ -5495,6 +5510,7 @@ sub_2061E6:
 	btst	#0,d3
 	beq.s	locret_206214
 	move.b	#-$40,d3
+
 locret_206214:
 	rts
 
@@ -5565,6 +5581,7 @@ sub_2062B2:
 	btst	#0,d3
 	beq.s	locret_2062EA
 	move.b	#$80,d3
+
 locret_2062EA:
 	rts
 
@@ -5632,6 +5649,7 @@ sub_206388:
 	btst	#0,d3
 	beq.s	locret_2063B6
 	move.b	#$40,d3
+
 locret_2063B6:
 	rts
 
@@ -5978,7 +5996,7 @@ pcolspecial:
 
 loc_206720:
 	addq.b	#1,colicnt(a1)
-	cmpa.w	#actwk,a0
+	cmpa.w	#playerwk,a0
 	beq.s	locret_20672E
 	addq.b	#1,colicnt(a1)
 
@@ -5995,12 +6013,12 @@ taki:
 	jmp	actionsub.l
 
 off_206750:
-	dc.w	loc_206754-off_206750
-	dc.w	loc_20678C-off_206750
+	dc.w	taki_init-off_206750
+	dc.w	taki_move-off_206750
 
-loc_206754:
+taki_init:
 	addq.b	#2,r_no0(a0)
-	move.l	#obj04_map,patbase(a0)
+	move.l	#shibukipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -6010,7 +6028,7 @@ loc_206754:
 	addi.w	#$180,act2A(a0)
 	rts
 
-loc_20678C:
+taki_move:
 	move.w	yposi(a0),d0
 	addq.w	#4,d0
 	cmp.w	act2A(a0),d0
@@ -6028,10 +6046,12 @@ loc_20679E:
 	andi.w	#$F,d6
 	bne.s	locret_2067CC
 	moveq	#$B,d6
+
 loc_2067BE:
 	jsr	block_wrt.l
 	addi.w	#$10,d5
 	dbf	d6,loc_2067BE
+
 locret_2067CC:
 	rts
 
@@ -6059,6 +6079,7 @@ loc_20680A:
 	move.b	cdsts(a0),d0
 	beq.s	loc_20681E
 	bclr	#7,2(a2,d0.w)
+
 loc_20681E:
 	jmp	frameout.l
 
@@ -6072,13 +6093,15 @@ loc_206828:
 	move.b	#1,sprpri(a0)
 	move.l	#obj06_map,patbase(a0)
 	move.w	#$541,sproffset(a0)
+
 loc_206846:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_206886
 	blo.s	loc_20685A
 	lea	byte_FFD040.w,a1
 	bsr.w	sub_206886
 	bhs.s	locret_206884
+
 loc_20685A:
 	move.b	#0,r_no0(a0)
 	_move.b	#objid_05,actno(a0)
@@ -6087,6 +6110,7 @@ loc_20685A:
 	move.b	#9,act2E(a0)
 	move.b	#$17,act2C(a0)
 	move.b	#$2B,act2A(a0)
+
 locret_206884:
 	rts
 
@@ -6101,6 +6125,7 @@ sub_206886:
 	sub.w	yposi(a0),d0
 	addi.w	#$10,d0
 	cmpi.w	#$20,d0
+
 locret_2068AA:
 	rts
 
@@ -6117,6 +6142,7 @@ off_2068BA:
 loc_2068BE:
 	addq.b	#2,r_no0(a0)
 	move.b	#4,actflg(a0)
+
 loc_2068C8:
 	move.b	dword_FF120C+3,d0
 	andi.b	#$F,d0
@@ -6168,9 +6194,9 @@ unk_20693E:
 	dc.b	$FF
 	even
 
-obj04_map:
-	dc.w	byte_206946-obj04_map
-	dc.w	byte_206966-obj04_map
+shibukipat:
+	dc.w	byte_206946-shibukipat
+	dc.w	byte_206966-shibukipat
 byte_206946:
 	dc.b	6
 	dc.b	$F0,$F,0,0,$A0
@@ -6641,7 +6667,7 @@ byte_206B1A:
 	dc.b	7
 	dc.b	4
 	dc.b	1
-	dc.l	obj04_map
+	dc.l	shibukipat
 	dc.w	$3BA
 	dc.b	0
 	dc.b	0
@@ -7735,7 +7761,7 @@ loc_208128:
 loc_208152:
 	tst.b	actflg(a0)
 	bpl.w	locret_2081BC
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.s	sub_2080EA
 	beq.s	loc_208166
 	bsr.s	sub_208172
@@ -7966,7 +7992,7 @@ loc_208386:
 loc_2083B8:
 	tst.b	actflg(a0)
 	bpl.s	locret_2083D8
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_2083CA
 	lea	byte_FFD040.w,a1
 
@@ -8165,7 +8191,7 @@ sub_208616:
 loc_208624:
 	tst.b	actflg(a0)
 	bpl.s	locret_20863C
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.s	sub_208616
 	beq.s	loc_208634
 	bsr.s	sub_20863E
@@ -8188,7 +8214,7 @@ sub_20863E:
 	jmp	soundset.l
 
 loc_208670:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.s	sub_208616
 	lea	byte_FFD040.w,a1
 	bsr.s	sub_208616
@@ -8210,7 +8236,7 @@ sub_20869E:
 loc_2086AC:
 	tst.b	actflg(a0)
 	bpl.s	locret_2086D0
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.s	sub_20869E
 	btst	#5,cddat(a0)
 	beq.s	loc_2086C2
@@ -8247,7 +8273,7 @@ loc_20871A:
 	jmp	soundset.l
 
 loc_208734:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_20869E
 	lea	byte_FFD040.w,a1
 	bsr.w	sub_20869E
@@ -8268,7 +8294,7 @@ sub_208760:
 loc_20876E:
 	tst.b	actflg(a0)
 	bpl.s	locret_208786
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.s	sub_208760
 	beq.s	loc_20877E
 	bsr.s	sub_208788
@@ -8290,7 +8316,7 @@ sub_208788:
 	move.w	#$98,d0
 	jsr	soundset.l
 loc_2087B8:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.s	sub_208760
 	lea	byte_FFD040.w,a1
 	bsr.s	sub_208760
@@ -8306,7 +8332,7 @@ loc_2087CE:
 loc_2087E0:
 	tst.b	actflg(a0)
 	bpl.s	locret_20880C
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_208760
 	bne.s	loc_2087F8
 	btst	#5,cddat(a0)
@@ -8717,7 +8743,7 @@ loc_208FFA:
 	rts
 
 sub_209002:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_20900E
 	lea	byte_FFD040.w,a1
 
@@ -8926,7 +8952,7 @@ loc_20922C:
 loc_20925A:
 	tst.b	actflg(a0)
 	bpl.s	loc_209270
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_20919A
 	lea	byte_FFD040.w,a1
 	bsr.w	sub_20919A
@@ -9295,45 +9321,48 @@ byte_2096E0:
 	dc.b	1
 	dc.b	0,$D,0,$A,$F0
 
-obj1C:
+score:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2096F4(pc,d0.w),d0
-	jmp	off_2096F4(pc,d0.w)
+	move.w	score_move_tbl(pc,d0.w),d0
+	jmp	score_move_tbl(pc,d0.w)
 
-off_2096F4:
-	dc.w	loc_2096F8-off_2096F4
-	dc.w	loc_20973C-off_2096F4
+score_move_tbl:
+	dc.w	score_init-score_move_tbl
+	dc.w	score_move-score_move_tbl
 
-loc_2096F8:
+score_init:
 	addq.b	#2,r_no0(a0)
-	move.l	#hud_map,patbase(a0)
+	move.l	#scorepat,patbase(a0)
 	move.w	#$8568,sproffset(a0)
 	move.w	#$90,xposi(a0)
 	move.w	#$88,$A(a0)
 	tst.w	debugflag
 	beq.s	loc_209724
 	move.b	#2,patno(a0)
+
 loc_209724:
 	tst.b	userflag(a0)
-	beq.s	loc_20973C
+	beq.s	score_move
 	move.w	#$90,xposi(a0)
 	move.w	#$148,$A(a0)
 	move.b	#1,patno(a0)
-loc_20973C:
+
+score_move:
 	tst.b	userflag(a0)
 	bne.s	loc_209756
 	move.b	#0,patno(a0)
 	tst.w	debugflag
 	beq.s	loc_209756
 	move.b	#2,patno(a0)
+
 loc_209756:
 	jmp	actionsub.l
 
-hud_map:
-	dc.w	byte_209762-hud_map
-	dc.w	byte_2097B8-hud_map
-	dc.w	byte_2097C8-hud_map
+scorepat:
+	dc.w	byte_209762-scorepat
+	dc.w	byte_2097B8-scorepat
+	dc.w	byte_2097C8-scorepat
 byte_209762:
 	dc.b	17
 	dc.b	0,1,0,0,0
@@ -9380,183 +9409,190 @@ byte_2097C8:
 
 scoreup:
 	move.b	#1,plscore_f
-	lea	dword_FF1226,a3
+	lea	plscore,a3
 	add.l	d0,(a3)
 	move.l	#999999,d1
 	cmp.l	(a3),d1
-	bhi.s	loc_20982C
+	bhi.s	.jump
 	move.l	d1,(a3)
-loc_20982C:
+.jump:
 	move.l	(a3),d0
 	rts
 
-sub_209830:
+scoreset:
 	tst.w	debugflag
-	beq.s	loc_209852
-	bsr.w	sub_2099C0
+	beq.s	.jump0
+	bsr.w	posiwrt
 	move.l	#$73200002,d0
 	moveq	#0,d1
 	move.b	byte_FF188A,d1
 	bsr.w	sub_209AEA
-	bra.w	loc_209896
+	bra.w	.jump2
 
-loc_209852:
+.jump0:
 	tst.b	plscore_f
-	beq.s	loc_209870
+	beq.s	.jump
 	clr.b	plscore_f
 	move.l	#$70600002,d0
-	move.l	dword_FF1226,d1
-	bsr.w	sub_2099E8
-loc_209870:
+	move.l	plscore,d1
+	bsr.w	scorewrt
+
+.jump:
 	tst.b	plring_f
-	beq.s	loc_209896
-	bpl.s	loc_20987E
-	bsr.w	sub_209952
-loc_20987E:
+	beq.s	.jump2
+	bpl.s	.jump1
+	bsr.w	ringinit
+
+.jump1:
 	clr.b	plring_f
 	move.l	#$73200002,d0
 	moveq	#0,d1
 	move.w	plring,d1
-	bsr.w	sub_2099DE
-loc_209896:
+	bsr.w	ringwrt
+
+.jump2:
 	tst.w	debugflag
-	bne.w	loc_209924
+	bne.w	.jump4
 	tst.b	pltime_f
-	beq.s	loc_209924
+	beq.s	.jump4
 	tst.w	pauseflag.w
-	bne.s	loc_209924
+	bne.s	.jump4
 	lea	pltime,a1
 	cmpi.l	#hudmscs(9,59,59),(a1)+
 	addq.b	#1,-(a1)
 	cmpi.b	#60,(a1)
-	blo.s	loc_2098DE
+	blo.s	.jump3
 	move.b	#0,(a1)
 	addq.b	#1,-(a1)
 	cmpi.b	#60,(a1)
-	blo.s	loc_2098DE
+	blo.s	.jump3
 	move.b	#0,(a1)
 	addq.b	#1,-(a1)
 	cmpi.b	#9,(a1)
-	blo.s	loc_2098DE
+	blo.s	.jump3
 	move.b	#9,(a1)
-loc_2098DE:
+
+.jump3:
 	move.l	#$71E00002,d0
 	moveq	#0,d1
-	move.b	byte_FF1223,d1
-	bsr.w	sub_209AF4
+	move.b	pltime+1,d1
+	bsr.w	timewrt1
 	move.l	#$72200002,d0
 	moveq	#0,d1
-	move.b	byte_FF1224,d1
-	bsr.w	sub_209AFE
+	move.b	pltime+2,d1
+	bsr.w	timewrt
 	move.l	#$72A00002,d0
 	moveq	#0,d1
-	move.b	byte_FF1225,d1
+	move.b	pltime+3,d1
 	mulu.w	#100,d1
 	divu.w	#60,d1
 	swap	d1
 	move.w	#0,d1
 	swap	d1
-	bsr.w	sub_209AFE
-loc_209924:
+	bsr.w	timewrt
+
+.jump4:
 	tst.b	pl_suu_f
-	beq.s	locret_209936
+	beq.s	.jump5
 	clr.b	pl_suu_f
-	bsr.w	sub_209AD4
-locret_209936:
+	bsr.w	playsuuwrt
+
+.jump5:
 	rts
 
+.timeover:
 	clr.b	pltime_f
-	lea	actwk.w,a0
+	lea	playerwk.w,a0
 	movea.l	a0,a2
 	bsr.w	playdieset
 	move.b	#1,pltimeover_f
 	rts
 
-sub_209952:
+ringinit:
 	move.l	#$73200002,vdpctrl
-	lea	unk_2099BC(pc),a2
+	lea	ringinittbl(pc),a2
 	move.w	#3-1,d2
-	bra.s	loc_209982
+	bra.s	scoreinitsub
 
+scoreinit:
 	lea	vdpdata,a6
-	bsr.w	sub_209AD4
+	bsr.w	playsuuwrt
 	move.l	#$5C400003,vdpctrl
-	lea	unk_2099B0(pc),a2
+	lea	scoreinittbl(pc),a2
 	move.w	#15-1,d2
-loc_209982:
-	lea	cg_hudnumbersletters.l,a1
-loc_209988:
+
+scoreinitsub:
+	lea	scorewrtcg.l,a1
+
+.loop:
 	move.w	#16-1,d1
 	move.b	(a2)+,d0
-	bmi.s	loc_2099A4
+	bmi.s	.loop2
 	ext.w	d0
 	lsl.w	#5,d0
 	lea	(a1,d0.w),a3
-loc_209998:
+
+.loop1:
 	move.l	(a3)+,(a6)
-	dbf	d1,loc_209998
-loc_20999E:
-	dbf	d2,loc_209988
+	dbf	d1,.loop1
+
+.jump:
+	dbf	d2,.loop
 	rts
 
-loc_2099A4:
+.loop2:
 	move.l	#0,(a6)
-	dbf	d1,loc_2099A4
-	bra.s	loc_20999E
+	dbf	d1,.loop2
+	bra.s	.jump
 
-unk_2099B0:
-	dc.b	$16
-	dc.b	$FF
-	dc.b	$FF
-	dc.b	$FF
-	dc.b	$FF
-	dc.b	$FF
-	dc.b	$FF
-	dc.b	0
-	dc.b	0
-	dc.b	$14
-	dc.b	0
-	dc.b	0
-unk_2099BC:
+scoreinittbl:
+	dc.b	$16,$FF,$FF,$FF,$FF,$FF,$FF,0
+	dc.b	0,$14,0,0
+
+ringinittbl:
 	dc.b	$FF,$FF,0,0
 
-sub_2099C0:
+posiwrt:
 	move.l	#$70E00002,d0
 	moveq	#0,d1
-	move.w	actwk+xposi.w,d1
-	bsr.w	sub_209ACA
+	move.w	playerwk+xposi.w,d1
+	bsr.w	posiwrt0
 	move.l	#$72200002,d0
-	move.w	actwk+yposi.w,d1
-	bra.w	sub_209ACA
+	move.w	playerwk+yposi.w,d1
+	bra.w	posiwrt0
 
-sub_2099DE:
-	lea	dword_209AAE.l,a2
+ringwrt:
+	lea	subtbl3.l,a2
 	moveq	#3-1,d6
-	bra.s	loc_2099F0
+	bra.s	scorewrt2
 
-sub_2099E8:
-	lea	dword_209AA2.l,a2
+scorewrt:
+	lea	subtbl.l,a2
 	moveq	#6-1,d6
-loc_2099F0:
+
+scorewrt2:
 	moveq	#0,d4
-	lea	cg_hudnumbersletters.l,a1
-loc_2099F8:
+	lea	scorewrtcg.l,a1
+
+.loop:
 	moveq	#0,d2
 	move.l	(a2)+,d3
-loc_2099FC:
-	sub.l	d3,d1
-	blo.s	loc_209A04
-	addq.w	#1,d2
-	bra.s	loc_2099FC
 
-loc_209A04:
+.jump2:
+	sub.l	d3,d1
+	blo.s	.jump3
+	addq.w	#1,d2
+	bra.s	.jump2
+
+.jump3:
 	add.l	d3,d1
 	tst.w	d2
-	beq.s	loc_209A0E
+	beq.s	.jump4
 	move.w	#1,d4
-loc_209A0E:
+
+.jump4:
 	tst.w	d4
-	beq.s	loc_209A3C
+	beq.s	.jump5
 	lsl.w	#6,d2
 	move.l	d0,4(a6)
 	lea	(a1,d2.w),a3
@@ -9576,27 +9612,31 @@ loc_209A0E:
 	move.l	(a3)+,(a6)
 	move.l	(a3)+,(a6)
 	move.l	(a3)+,(a6)
-loc_209A3C:
+
+.jump5:
 	addi.l	#$400000,d0
-	dbf	d6,loc_2099F8
+	dbf	d6,.loop
 	rts
 
+contwrt:
 	move.l	#$5F800003,vdpctrl
 	lea	vdpdata,a6
-	lea	dword_209AB2.l,a2
+	lea	subtbl2.l,a2
 	moveq	#2-1,d6
 	moveq	#0,d4
-	lea	cg_hudnumbersletters.l,a1
-loc_209A68:
+	lea	scorewrtcg.l,a1
+
+.loop:
 	moveq	#0,d2
 	move.l	(a2)+,d3
-loc_209A6C:
-	sub.l	d3,d1
-	blo.s	loc_209A74
-	addq.w	#1,d2
-	bra.s	loc_209A6C
 
-loc_209A74:
+.jump2:
+	sub.l	d3,d1
+	blo.s	.jump3
+	addq.w	#1,d2
+	bra.s	.jump2
+
+.jump3:
 	add.l	d3,d1
 	lsl.w	#6,d2
 	lea	(a1,d2.w),a3
@@ -9616,32 +9656,34 @@ loc_209A74:
 	move.l	(a3)+,(a6)
 	move.l	(a3)+,(a6)
 	move.l	(a3)+,(a6)
-	dbf	d6,loc_209A68
+	dbf	d6,.loop
 	rts
 
-dword_209AA2:
+subtbl:
 	dc.l	100000
+subtbl5:
 	dc.l	10000
+subtbl4:
 	dc.l	1000
-dword_209AAE:
+subtbl3:
 	dc.l	100
-dword_209AB2:
+subtbl2:
 	dc.l	10
-dword_209AB6:
+subtbl1:
 	dc.l	1
 
-dword_209ABA:
+subtblh4:
 	dc.l	$1000
 	dc.l	$100
 	dc.l	$10
 	dc.l	1
 
-sub_209ACA:
+posiwrt0:
 	moveq	#4-1,d6
-	lea	dword_209ABA.l,a2
-	bra.s	loc_209B06
+	lea	subtblh4.l,a2
+	bra.s	timewrt0
 
-sub_209AD4:
+playsuuwrt:
 	move.l	#$74600002,d0
 	moveq	#0,d1
 	move.b	pl_suu,d1
@@ -9650,37 +9692,40 @@ sub_209AD4:
 	moveq	#9,d1
 
 sub_209AEA:
-	lea	dword_209AB6.l,a2
+	lea	subtbl1.l,a2
 	moveq	#1-1,d6
-	bra.s	loc_209B06
+	bra.s	timewrt0
 
-sub_209AF4:
-	lea	dword_209AB6.l,a2
+timewrt1:
+	lea	subtbl1.l,a2
 	moveq	#1-1,d6
-	bra.s	loc_209B06
+	bra.s	timewrt0
 
-sub_209AFE:
-	lea	dword_209AB2.l,a2
+timewrt:
+	lea	subtbl2.l,a2
 	moveq	#2-1,d6
-loc_209B06:
 
+timewrt0:
 	moveq	#0,d4
-	lea	cg_hudnumbersletters.l,a1
-loc_209B0E:
+	lea	scorewrtcg.l,a1
+
+.loop:
 	moveq	#0,d2
 	move.l	(a2)+,d3
-loc_209B12:
-	sub.l	d3,d1
-	blo.s	loc_209B1A
-	addq.w	#1,d2
-	bra.s	loc_209B12
 
-loc_209B1A:
+.jump2:
+	sub.l	d3,d1
+	blo.s	.jump3
+	addq.w	#1,d2
+	bra.s	.jump2
+
+.jump3:
 	add.l	d3,d1
 	tst.w	d2
-	beq.s	loc_209B24
+	beq.s	.jump4
 	move.w	#1,d4
-loc_209B24:
+
+.jump4:
 	lsl.w	#6,d2
 	move.l	d0,4(a6)
 	lea	(a1,d2.w),a3
@@ -9701,7 +9746,7 @@ loc_209B24:
 	move.l	(a3)+,(a6)
 	move.l	(a3)+,(a6)
 	addi.l	#$400000,d0
-	dbf	d6,loc_209B0E
+	dbf	d6,.loop
 	rts
 
 marker:
@@ -9748,19 +9793,19 @@ loc_209BA8:
 	move.w	#$C00,sproffset(a0)
 	move.w	#$1400,sproffset(a0)
 	move.w	#$24FC,sproffset(a0)
-	move.l	actwk+xposi.w,d0
+	move.l	playerwk+xposi.w,d0
 	addi.l	#$A0000,d0
 	move.l	d0,xposi(a0)
-	move.l	actwk+yposi.w,d0
+	move.l	playerwk+yposi.w,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	rts
 
 loc_209BFC:
-	move.l	actwk+xposi.w,d0
+	move.l	playerwk+xposi.w,d0
 	addi.l	#$A0000,d0
 	move.l	d0,xposi(a0)
-	move.l	actwk+yposi.w,d0
+	move.l	playerwk+yposi.w,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	move.b	#0,mstno(a0)
@@ -9844,7 +9889,7 @@ loc_209D12:
 	rts
 
 loc_209D2A:
-	move.w	actwk+xposi.w,d1
+	move.w	playerwk+xposi.w,d1
 	move.w	xposi(a0),d0
 	move.w	d1,d2
 	addi.w	#$32,d1
@@ -9970,7 +10015,7 @@ loc_209EBA:
 	rts
 
 sub_209ED2:
-	move.w	actwk+xposi.w,d1
+	move.w	playerwk+xposi.w,d1
 	move.w	xposi(a0),d0
 	move.w	d1,d2
 	addi.w	#$32,d1
@@ -12021,19 +12066,19 @@ loc_20B612:
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
 	move.w	#$47A,sproffset(a0)
-	move.l	actwk+xposi.w,d0
+	move.l	playerwk+xposi.w,d0
 	addi.l	#$32,d0
 	move.l	d0,xposi(a0)
-	move.l	actwk+yposi.w,d0
+	move.l	playerwk+yposi.w,d0
 	addi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	rts
 
 loc_20B654:
-	move.l	actwk+xposi.w,d0
+	move.l	playerwk+xposi.w,d0
 	addi.l	#$320000,d0
 	move.l	d0,xposi(a0)
-	move.l	actwk+yposi.w,d0
+	move.l	playerwk+yposi.w,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	lea	obj26_ani.l,a1
@@ -12042,7 +12087,7 @@ loc_20B654:
 	rts
 
 sub_20B684:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	yspeed(a1),d1
 	bmi.w	loc_20B694
 	bra.w	loc_20B6EC
@@ -12052,7 +12097,7 @@ loc_20B694:
 	bclr	#3,cddat(a0)
 	rts
 
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	yspeed(a1),d1
 	bpl.w	loc_20B6AE
 	bra.w	loc_20B6EC
@@ -12062,7 +12107,7 @@ loc_20B6AE:
 	bclr	#3,cddat(a0)
 	rts
 
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xspeed(a1),d1
 	bmi.w	loc_20B6C8
 	bra.w	loc_20B6EC
@@ -12072,7 +12117,7 @@ loc_20B6C8:
 	bclr	#3,cddat(a0)
 	rts
 
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xspeed(a1),d1
 	bpl.w	loc_20B6E2
 	bra.w	loc_20B6EC
@@ -12102,7 +12147,7 @@ loc_20B722:
 	andi.w	#$FF,d0
 	asl.w	#2,d0
 	lea	(a2,d0.w),a2
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d0
 	move.w	xposi(a1),d1
 	move.b	sprhs(a1),d3
@@ -12224,7 +12269,7 @@ loc_20B888:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B8B6
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.l	yposi(a0),d0
 	moveq	#0,d1
 	move.b	sprvsize(a1),d1
@@ -12243,7 +12288,7 @@ loc_20B8C8:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B8F6
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.l	yposi(a0),d0
 	moveq	#0,d1
 	move.b	sprvsize(a1),d1
@@ -12267,7 +12312,7 @@ loc_20B908:
 	jmp	actionsub.l
 
 loc_20B926:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 	move.b	#4,r_no0(a0)
 	btst	#1,cddat(a1)
@@ -12285,7 +12330,7 @@ loc_20B950:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B986
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	yspeed(a1),d0
 	addi.w	#$100,d0
 	cmpi.w	#$A00,d0
@@ -12319,7 +12364,7 @@ loc_20B9B4:
 	jmp	actionsub.l
 
 loc_20B9D2:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 	move.b	#2,r_no0(a0)
 	btst	#1,cddat(a1)
@@ -12337,7 +12382,7 @@ loc_20B9FC:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BA32
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	yspeed(a1),d0
 	addi.w	#$100,d0
 	cmpi.w	#$A00,d0
@@ -12391,7 +12436,7 @@ loc_20BAA2:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BAD2
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#1,cddat(a1)
 	bset	#3,cddat(a1)
 	move.b	#4,r_no0(a0)
@@ -12409,12 +12454,12 @@ loc_20BAE4:
 	bsr.w	sub_20B684
 	tst.b	d1
 	bne.w	loc_20BB0C
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 	move.b	#6,r_no0(a0)
 	move.w	#0,act2A(a0)
 loc_20BB0C:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d2
 	move.w	xposi(a1),d3
 	move.w	xspeed(a1),d4
@@ -12467,7 +12512,7 @@ loc_20BBA8:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BBD8
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#1,cddat(a1)
 	bset	#3,cddat(a1)
 	move.b	#4,r_no0(a0)
@@ -12779,7 +12824,7 @@ loc_20BEEE:
 	move.b	act3C(a0),d0
 	addq.w	#1,d0
 	move.b	d0,act31(a2)
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bset	#3,cddat(a1)
 	bset	#3,cddat(a0)
 	bclr	#1,cddat(a1)
@@ -12881,7 +12926,7 @@ unk_20BF8E:
 	even
 
 sub_20BFCE:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	lea	unk_20C04E.l,a3
 	movea.w	act3E(a0),a2
 	move.w	xposi(a2),d0
@@ -13116,7 +13161,7 @@ loc_20C11A:
 	move.b	act3D(a0),d0
 	addq.w	#1,d0
 	move.b	d0,act3D(a0)
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d0
 	move.w	xposi(a1),d1
 	move.w	d0,d2
@@ -13142,7 +13187,7 @@ loc_20C162:
 	bsr.w	loc_20B6EC
 	tst.b	d1
 	beq.w	loc_20C178
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 loc_20C178:
 	lea	off_20CED0.l,a1
@@ -13167,7 +13212,7 @@ loc_20C1B8:
 	move.b	act3D(a0),d0
 	addq.w	#1,d0
 	move.b	d0,act3D(a0)
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d0
 	move.w	xposi(a1),d1
 	move.w	d0,d2
@@ -13213,7 +13258,7 @@ loc_20C24E:
 	bsr.w	loc_20B6EC
 	tst.b	d1
 	beq.w	loc_20C264
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 loc_20C264:
 	lea	off_20CED0.l,a1
@@ -13226,7 +13271,7 @@ loc_20C278:
 	bsr.w	loc_20B6EC
 	tst.b	d1
 	beq.w	loc_20C28E
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 loc_20C28E:
 	lea	off_20CED0.l,a1
@@ -13263,7 +13308,7 @@ loc_20C2C2:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20C32E
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bset	#3,cddat(a1)
 	bset	#3,cddat(a0)
 	bclr	#1,cddat(a1)
@@ -13291,7 +13336,7 @@ loc_20C35A:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20C394
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bset	#3,cddat(a1)
 	bset	#3,cddat(a0)
 	bclr	#1,cddat(a1)
@@ -13314,7 +13359,7 @@ loc_20C3B0:
 	move.b	act3D(a0),d0
 	addq.w	#1,d0
 	move.b	d0,act3D(a0)
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d0
 	move.w	xposi(a1),d1
 	move.w	d0,d2
@@ -13343,7 +13388,7 @@ loc_20C40A:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20C448
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bset	#3,cddat(a1)
 	bset	#3,cddat(a0)
 	bclr	#1,cddat(a1)
@@ -14073,7 +14118,7 @@ locret_20C888:
 	rts
 
 loc_20C88A:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jsr	sub_207F56.l
@@ -14375,7 +14420,7 @@ loc_20CB98:
 	move.b	#$18,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
 	move.b	#8,sprvsize(a0)
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_20B684
 	beq.w	loc_20CBEE
 	bsr.w	sub_20CC4C
@@ -14399,7 +14444,7 @@ loc_20CBEE:
 loc_20CC02:
 	move.b	#3,mstno(a0)
 	bsr.w	sub_20CB40
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	moveq	#$10,d0
 	bsr.w	sub_20B684
 	tst.b	d1
@@ -14420,7 +14465,7 @@ loc_20CC3E:
 	bra.s	loc_20CBEE
 
 sub_20CC4C:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	moveq	#0,d2
 	moveq	#0,d3
 	move.b	sprvsize(a0),d2
@@ -14985,7 +15030,7 @@ loc_20D0AC:
 	bpl.s	locret_20D0E0
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	lea	actwk.w,a3
+	lea	playerwk.w,a3
 	lea	byte_FFD040.w,a1
 	move.b	byte_FF1219,d0
 	beq.w	loc_20D0CE
@@ -15014,7 +15059,7 @@ loc_20D102:
 	beq.w	locret_20D134
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bsr.w	sub_20D11E
 	lea	byte_FFD040.w,a1
 
@@ -15032,7 +15077,7 @@ loc_20D136:
 	add.l	d0,yposi(a0)
 	addi.l	#$4000,act2C(a0)
 	move.w	yposi(a0),d0
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.b	byte_FF1219,d1
 	beq.w	loc_20D15C
 	lea	byte_FFD040.w,a1
@@ -15144,7 +15189,7 @@ loc_20D262:
 	bra.w	loc_20D2C4
 
 loc_20D2A2:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.b	byte_FF1219,d0
 	beq.w	loc_20D2B4
 	lea	byte_FFD040.w,a1
@@ -15495,7 +15540,7 @@ off_20D68C:
 	dc.w	loc_20D776-off_20D68C
 
 sub_20D690:
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	subq.w	#4,d4
@@ -15708,7 +15753,7 @@ loc_20D8E8:
 	jsr	sub_20611C.l
 	tst.w	d1
 	bpl.s	loc_20D8FC
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	bclr	#3,cddat(a1)
 loc_20D8FC:
 	move.w	scra_v_posit.w,d0
@@ -16622,7 +16667,7 @@ cg_hudicon:
 	incbin	"Art/Uncompressed/HUD Icon.unc"
 	even
 
-cg_hudnumbersletters:
+scorewrtcg:
 	incbin	"Art/Uncompressed/HUD Numbers and Letters.unc"
 	even
 

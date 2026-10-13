@@ -33,11 +33,8 @@ plring_f:		ds.b	1
 pltime_f:		ds.b	1
 plscore_f:		ds.b	1
 plring:			ds.w	1
-pltime:			ds.b	1
-byte_FF1223:		ds.b	1
-byte_FF1224:		ds.b	1
-byte_FF1225:		ds.b	1
-dword_FF1226:		ds.l	1
+pltime:			ds.l	1
+plscore:		ds.l	1
 byte_FF122A:		ds.b	1
 	ds.b	1
 plpower_b:		ds.b	1
@@ -158,7 +155,8 @@ hscrollwork:		ds.b	$380
 hscrollwork_end:
 	ds.b	$80
 hscrollwork_end_padded:
-actwk:			ds.b	actfree
+actwk:
+playerwk:		ds.b	actfree
 byte_FFD040:		ds.b	actfree
 byte_FFD080:		ds.b	actfree
 byte_FFD0C0:		ds.b	actfree

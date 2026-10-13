@@ -993,7 +993,7 @@ loc_2040EC:
 	moveq	#0,d0
 	move.b	act3D(a0),d0
 	lsl.w	#6,d0
-	lea	actwk.w,a1
+	lea	playerwk.w,a1
 	lea	(a1,d0.w),a1
 	tst.b	cddat(a1)
 	bmi.s	loc_20417C
