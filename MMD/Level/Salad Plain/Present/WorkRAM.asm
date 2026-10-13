@@ -18,7 +18,7 @@ byte_FF1206:		ds.b	1
 	ds.b	1
 editmode:		ds.w	1
 	ds.b	2
-dword_FF120C:		ds.l	1
+systemtimer:		ds.l	1
 stageno:		ds.b	1
 stageact:		ds.b	1
 pl_suu:			ds.b	1

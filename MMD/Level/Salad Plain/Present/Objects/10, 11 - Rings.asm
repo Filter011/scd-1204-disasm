@@ -1,15 +1,15 @@
 ring:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2089E4(pc,d0.w),d1
-	jmp	off_2089E4(pc,d1.w)
+	move.w	ring_move_tbl(pc,d0.w),d1
+	jmp	ring_move_tbl(pc,d1.w)
 
-off_2089E4:
-	dc.w	loc_208A0E-off_2089E4
-	dc.w	loc_208AFE-off_2089E4
-	dc.w	loc_208B30-off_2089E4
-	dc.w	loc_208B6A-off_2089E4
-	dc.w	loc_208B78-off_2089E4
+ring_move_tbl:
+	dc.w	ringinit_-ring_move_tbl
+	dc.w	ringmove-ring_move_tbl
+	dc.w	ringget-ring_move_tbl
+	dc.w	ringdie-ring_move_tbl
+	dc.w	ringerase-ring_move_tbl
 
 ringtbl:
 	dc.b	$10,0
@@ -29,7 +29,7 @@ ringtbl:
 	dc.b	-$10,8
 	dc.b	-$18,$10
 
-loc_208A0E:
+ringinit_:
 	lea	flagwork,a2
 	moveq	#0,d0
 	move.b	cdsts(a0),d0
@@ -48,6 +48,7 @@ loc_208A0E:
 	cmpi.w	#7,d1
 	bne.s	loc_208A44
 	moveq	#6,d1
+
 loc_208A44:
 	swap	d1
 	move.w	#1,d1
@@ -63,6 +64,7 @@ loc_208A44:
 	lea	1(a2),a3
 	moveq	#0,d0
 	move.b	time_flag,d0
+
 loc_208A70:
 	move.b	-(a3),d4
 	lsr.b	d1,d4
@@ -76,6 +78,7 @@ loc_208A80:
 	lea	1(a2),a3
 	moveq	#0,d0
 	move.b	time_flag,d0
+
 loc_208A8E:
 	move.b	-(a3),d4
 	lsr.b	d1,d4
@@ -84,13 +87,14 @@ loc_208A8E:
 	bclr	#7,(a2)
 	bsr.w	actwkchk
 	bne.s	loc_208AF6
+
 loc_208AA2:
 	_move.b	#objid_10,actno(a1)
 	addq.b	#2,r_no0(a1)
 	move.w	d2,xposi(a1)
 	move.w	xposi(a0),act32(a1)
 	move.w	d3,yposi(a1)
-	move.l	#ring_map,patbase(a1)
+	move.l	#ringpat,patbase(a1)
 	move.w	#$A7AE,sproffset(a1)
 	move.b	#4,actflg(a1)
 	move.b	#2,sprpri(a1)
@@ -98,16 +102,19 @@ loc_208AA2:
 	move.b	#8,sprhsize(a1)
 	move.b	cdsts(a0),cdsts(a1)
 	move.b	d1,act34(a1)
+
 loc_208AEA:
 	addq.w	#1,d1
 	add.w	d5,d2
 	add.w	d6,d3
 	swap	d1
 	dbf	d1,loc_208A80
+
 loc_208AF6:
 	btst	#0,(a2)
 	bne.w	frameout
-loc_208AFE:
+
+ringmove:
 	move.w	act32(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
@@ -115,18 +122,19 @@ loc_208AFE:
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
 	cmpi.w	#$280,d0
-	bhi.w	loc_208B78
+	bhi.w	ringerase
 	tst.w	word_FF1278
 	bne.s	loc_208B2C
 	move.b	sys_patno2,patno(a0)
+
 loc_208B2C:
 	bra.w	actionsub
 
-loc_208B30:
+ringget:
 	addq.b	#2,r_no0(a0)
 	move.b	#0,colino(a0)
 	move.b	#1,sprpri(a0)
-	bsr.w	sub_208B7C
+	bsr.w	ringgetsub
 	lea	flagwork,a2
 	moveq	#0,d0
 	move.b	cdsts(a0),d0
@@ -139,15 +147,15 @@ loc_208B30:
 	move.b	act34(a0),d1
 	subq.b	#1,d1
 	bset	d1,2(a2,d0.w)
-loc_208B6A:
-	lea	ring_ani.l,a1
+ringdie:
+	lea	ringchg.l,a1
 	bsr.w	patchg
 	bra.w	actionsub
 
-loc_208B78:
+ringerase:
 	bra.w	frameout
 
-sub_208B7C:
+ringgetsub:
 	addq.w	#1,plring
 	ori.b	#1,plring_f
 	move.w	#$95,d0
@@ -159,27 +167,29 @@ sub_208B7C:
 	blo.s	loc_208BC6
 	bset	#2,plring_f2
 	bne.s	loc_208BC6
+
 loc_208BB6:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
 	move.w	#$88,d0
+
 loc_208BC6:
 	jmp	soundset.l
 
 flyring:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_208BDA(pc,d0.w),d1
-	jmp	off_208BDA(pc,d1.w)
+	move.w	flyring_move_tbl(pc,d0.w),d1
+	jmp	flyring_move_tbl(pc,d1.w)
 
-off_208BDA:
-	dc.w	loc_208BE4-off_208BDA
-	dc.w	loc_208CB0-off_208BDA
-	dc.w	loc_208D08-off_208BDA
-	dc.w	loc_208D1C-off_208BDA
-	dc.w	loc_208D2A-off_208BDA
+flyring_move_tbl:
+	dc.w	flyringinit-flyring_move_tbl
+	dc.w	flyringmove-flyring_move_tbl
+	dc.w	flyringget-flyring_move_tbl
+	dc.w	flyringdie-flyring_move_tbl
+	dc.w	flyringerase-flyring_move_tbl
 
-loc_208BE4:
+flyringinit:
 	movea.l	a0,a1
 	moveq	#0,d5
 	move.w	plring,d5
@@ -187,6 +197,7 @@ loc_208BE4:
 	cmp.w	d0,d5
 	blo.s	loc_208BF6
 	move.w	d0,d5
+
 loc_208BF6:
 	subq.w	#1,d5
 	move.w	#$288,d4
@@ -195,6 +206,7 @@ loc_208BF6:
 loc_208BFE:
 	bsr.w	actwkchk
 	bne.w	loc_208C8E
+
 loc_208C06:
 	_move.b	#objid_11,actno(a1)
 	addq.b	#2,r_no0(a1)
@@ -202,7 +214,7 @@ loc_208C06:
 	move.b	#8,sprhs(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
-	move.l	#ring_map,patbase(a1)
+	move.l	#ringpat,patbase(a1)
 	move.w	#$A7AE,sproffset(a1)
 	move.b	#4,actflg(a1)
 	move.b	#3,sprpri(a1)
@@ -224,28 +236,31 @@ loc_208C06:
 	subi.w	#$80,d4
 	bhs.s	loc_208C7E
 	move.w	#$288,d4
+
 loc_208C7E:
 	move.w	d2,xspeed(a1)
 	move.w	d3,yspeed(a1)
 	neg.w	d2
 	neg.w	d4
 	dbf	d5,loc_208BFE
+
 loc_208C8E:
 	move.w	#0,plring
 	move.b	#$80,plring_f
 	move.b	#0,plring_f2
 	move.w	#$94,d0
 	jsr	soundset.l
-loc_208CB0:
+
+flyringmove:
 	move.b	sys_patno4,patno(a0)
 	bsr.w	speedset2
 	addi.w	#$18,yspeed(a0)
 	bmi.s	loc_208CEE
-	move.b	dword_FF120C+3,d0
+	move.b	systemtimer+3,d0
 	add.b	d7,d0
 	andi.b	#3,d0
 	bne.s	loc_208CEE
-	jsr	sub_20611C.l
+	jsr	emycol_d.l
 	tst.w	d1
 	bpl.s	loc_208CEE
 	add.w	d1,yposi(a0)
@@ -253,79 +268,81 @@ loc_208CB0:
 	asr.w	#2,d0
 	sub.w	d0,yspeed(a0)
 	neg.w	yspeed(a0)
+
 loc_208CEE:
 	tst.b	sys_pattim4
-	beq.s	loc_208D2A
+	beq.s	flyringerase
 	move.w	scralim_down.w,d0
 	addi.w	#224,d0
 	cmp.w	yposi(a0),d0
-	blo.s	loc_208D2A
+	blo.s	flyringerase
 	bra.w	actionsub
 
-loc_208D08:
+flyringget:
 	addq.b	#2,r_no0(a0)
 	move.b	#0,colino(a0)
 	move.b	#1,sprpri(a0)
-	bsr.w	sub_208B7C
-loc_208D1C:
-	lea	ring_ani.l,a1
+	bsr.w	ringgetsub
+
+flyringdie:
+	lea	ringchg.l,a1
 	bsr.w	patchg
 	bra.w	actionsub
 
-loc_208D2A:
+flyringerase:
 	bra.w	frameout
 
-ring_ani:
-	dc.w	unk_208D30-ring_ani
+ringchg:
+	dc.w	ringchg0-ringchg
 
-unk_208D30:
+ringchg0:
 	dc.b	5
 	dc.b	4,5,6,7
 	dc.b	$FC
 	even
 
-ring_map:
-	dc.w	byte_208D48-ring_map
-	dc.w	byte_208D4E-ring_map
-	dc.w	byte_208D54-ring_map
-	dc.w	byte_208D5A-ring_map
-	dc.w	byte_208D60-ring_map
-	dc.w	byte_208D66-ring_map
-	dc.w	byte_208D6C-ring_map
-	dc.w	byte_208D72-ring_map
-	dc.w	byte_208D78-ring_map
-byte_208D48:
+ringpat:
+	dc.w	ringsp0-ringpat
+	dc.w	ringsp1-ringpat
+	dc.w	ringsp2-ringpat
+	dc.w	ringsp3-ringpat
+	dc.w	ringsp4-ringpat
+	dc.w	ringsp5-ringpat
+	dc.w	ringsp6-ringpat
+	dc.w	ringsp7-ringpat
+	dc.w	ringsp8-ringpat
+ringsp0:
 	dc.b	1
 	dc.b	-8,5,0,0,-8
 	even
-byte_208D4E:
+ringsp1:
 	dc.b	1
 	dc.b	-8,5,0,4,-8
 	even
-byte_208D54:
+ringsp2:
 	dc.b	1
 	dc.b	-8,1,0,8,-4
 	even
-byte_208D5A:
+ringsp3:
 	dc.b	1
 	dc.b	-8,5,8,4,-8
 	even
-byte_208D60:
+ringsp4:
 	dc.b	1
 	dc.b	-8,5,0,$A,-8
 	even
-byte_208D66:
+ringsp5:
 	dc.b	1
 	dc.b	-8,5,$18,$A,-8
 	even
-byte_208D6C:
+ringsp6:
 	dc.b	1
 	dc.b	-8,5,$10,$A,-8
 	even
-byte_208D72:
+ringsp7:
 	dc.b	1
 	dc.b	-8,5,8,$A,-8
 	even
-byte_208D78:
+ringsp8:
 	dc.b	0
 	even

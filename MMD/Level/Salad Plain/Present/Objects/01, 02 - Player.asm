@@ -727,7 +727,7 @@ sub_203D60:
 loc_203D76:
 	tst.b	act29(a0)
 	bne.s	loc_203D86
-	btst	#0,dword_FF120C+3
+	btst	#0,systemtimer+3
 	beq.s	loc_203D8C
 loc_203D86:
 	jsr	actionsub.l
@@ -1017,7 +1017,7 @@ loc_204128:
 	bra.s	loc_20417C
 
 loc_204148:
-	jsr	sub_20611C.l
+	jsr	emycol_d.l
 	cmpi.w	#$C,d1
 	blt.s	loc_20417C
 	cmpi.b	#3,footdir(a0)
