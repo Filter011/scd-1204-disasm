@@ -15977,17 +15977,6 @@ byte_20DED0:
 
 	include	"Actors/17 - Goal.asm"
 
-obj17_ani:
-	dc.w	unk_20DFCA-obj17_ani
-unk_20DFCA:
-	dc.b	1
-	dc.b	0,1,2,3,4
-	dc.b	$FF
-	even
-
-goalpat:
-	include	"Mappings/Goal.asm"
-
 sub_20DFF4:
 	jmp	sub_2059B8.l
 

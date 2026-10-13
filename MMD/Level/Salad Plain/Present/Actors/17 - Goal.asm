@@ -75,3 +75,14 @@ loc_20DFBA:
 
 locret_20DFC6:
 	rts
+
+goalchg:
+	dc.w	goalchg0-goalchg
+goalchg0:
+	dc.b	1
+	dc.b	0,1,2,3,4
+	dc.b	$FF
+	even
+
+goalpat:
+	include	"Mappings/Goal.asm"
