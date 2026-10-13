@@ -1,10 +1,10 @@
-sub_201EEE:
+bitdevr:
 	movem.l d0-d7/a0-a1/a3-a5,-(sp)
-	lea	sub_201FB0.l,a3
+	lea	write_pixels.l,a3
 	lea	vdpdata,a4
 	bra.s	loc_201F0A
 
-bitdevwkr:
+bitdevr_work:
 	movem.l d0-a1/a3-a5,-(sp)
 	lea	loc_201FC6.l,a3
 
@@ -13,7 +13,7 @@ loc_201F0A:
 	move.w	(a0)+,d2
 	lsl.w	#1,d2
 	bhs.s	loc_201F18
-	adda.w	#sub_201FBA-sub_201FB0,a3
+	adda.w	#write_xor_pixels-write_pixels,a3
 
 loc_201F18:
 	lsl.w	#2,d2
@@ -21,7 +21,7 @@ loc_201F18:
 	moveq	#8,d3
 	moveq	#0,d2
 	moveq	#0,d4
-	bsr.w	sub_201FDC
+	bsr.w	build_codetable
 	move.b	(a0)+,d5
 	asl.w	#8,d5
 	move.b	(a0)+,d5
@@ -36,7 +36,7 @@ sub_201F38:
 	move.w	d5,d1
 	lsr.w	d7,d1
 	cmpi.b	#$FC,d1
-	bhs.s	loc_201F84
+	bhs.s	process_inline_data
 	andi.w	#$FF,d1
 	add.w	d1,d1
 	move.b	(a1,d1.w),d0
@@ -72,7 +72,7 @@ loc_201F7E:
 	dbf	d0,loc_201F70
 	bra.s	sub_201F38
 
-loc_201F84:
+process_inline_data:
 	subq.w	#6,d6
 	cmpi.w	#9,d6
 	bhs.s	loc_201F92
@@ -94,14 +94,14 @@ loc_201F92:
 	move.b	(a0)+,d5
 	bra.s	loc_201F6E
 
-sub_201FB0:
+write_pixels:
 	move.l	d4,(a4)
 	subq.w	#1,a5
 	move.w	a5,d4
 	bne.s	sub_201F7A
 	rts
 
-sub_201FBA:
+write_xor_pixels:
 	eor.l	d4,d2
 	move.l	d2,(a4)
 	subq.w	#1,a5
@@ -123,7 +123,7 @@ loc_201FC6:
 	bne.s	sub_201F7A
 	rts
 
-sub_201FDC:
+build_codetable:
 	move.b	(a0)+,d0
 
 loc_201FDE:
@@ -168,9 +168,9 @@ loc_202022:
 	dbf	d5,loc_202022
 	bra.s	loc_201FE8
 
-sub_20202E:
+divdevset:
 	movem.l a1-a2,-(sp)
-	lea	divdev_index.l,a1
+	lea	divdevtbl.l,a1
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
@@ -197,7 +197,7 @@ loc_20205A:
 
 loc_202060:
 	movem.l a1-a2,-(sp)
-	lea	divdev_index.l,a1
+	lea	divdevtbl.l,a1
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
@@ -230,16 +230,16 @@ sub_20209A:
 	tst.w	word_FFF6F8.w
 	bne.s	locret_2020EE
 	movea.l dword_FFF680.w,a0
-	lea	sub_201FB0.l,a3
+	lea	write_pixels.l,a3
 	lea	bitdevwk.w,a1
 	move.w	(a0)+,d2
 	bpl.s	loc_2020BC
-	adda.w	#sub_201FBA-sub_201FB0,a3
+	adda.w	#write_xor_pixels-write_pixels,a3
 
 loc_2020BC:
 	andi.w	#$7FFF,d2
 	move.w	d2,word_FFF6F8.w
-	bsr.w	sub_201FDC
+	bsr.w	build_codetable
 	move.b	(a0)+,d5
 	asl.w	#8,d5
 	move.b	(a0)+,d5
@@ -317,7 +317,7 @@ loc_202190:
 	dbf	d0,loc_202190
 	rts
 
-	lea	divdev_index.l,a1
+	lea	divdevtbl.l,a1
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
@@ -332,6 +332,6 @@ loc_2021AC:
 	ori.w	#$4000,d0
 	swap	d0
 	move.l	d0,vdpctrl
-	bsr.w	sub_201EEE
+	bsr.w	bitdevr
 	dbf	d1,loc_2021AC
 	rts

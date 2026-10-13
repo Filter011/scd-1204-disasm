@@ -141,7 +141,7 @@ loc_208B30:
 	bset	d1,2(a2,d0.w)
 loc_208B6A:
 	lea	ring_ani.l,a1
-	bsr.w	animateobj
+	bsr.w	patchg
 	bra.w	actionsub
 
 loc_208B78:
@@ -269,7 +269,7 @@ loc_208D08:
 	bsr.w	sub_208B7C
 loc_208D1C:
 	lea	ring_ani.l,a1
-	bsr.w	animateobj
+	bsr.w	patchg
 	bra.w	actionsub
 
 loc_208D2A:

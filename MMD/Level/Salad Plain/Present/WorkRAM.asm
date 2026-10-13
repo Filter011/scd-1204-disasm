@@ -146,7 +146,7 @@ powerupwrtwk_dma_end:
 mapwka:			ds.b	$400
 mapwkb:			equ	mapwka+$40
 mapwka_end:
-byte_FFA800:		ds.b	$200
+linework:		ds.b	$200
 bitdevwk:		ds.b	$200
 pbuffer:		ds.b	$400
 blockwk:		ds.b	$1800
@@ -154,10 +154,10 @@ playwrtwk:		ds.b	$2E0
 playwrtwk_end:
 	ds.b	$20
 playposiwk:		ds.b	$100
-hscrollwk:		ds.b	$380
-hscrollwk_end:
+hscrollwork:		ds.b	$380
+hscrollwork_end:
 	ds.b	$80
-hscrollwk_end_padded:
+hscrollwork_end_padded:
 actwk:			ds.b	actfree
 byte_FFD040:		ds.b	actfree
 byte_FFD080:		ds.b	actfree

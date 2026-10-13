@@ -750,7 +750,7 @@ loc_203D8C:
 loc_203DC4:
 	lea	unk_203D5A.l,a1
 	move.b	(a1,d0.w),d0
-	jsr	queuesound1.l
+	jsr	bgmset.l
 loc_203DD4:
 	move.b	#0,plpower_m
 loc_203DDC:
@@ -765,7 +765,7 @@ loc_203DDC:
 	move.w	#$80,plretspdwk.w
 	move.b	#0,plpower_s
 	move.w	#$E3,d0
-	jmp	queuesound1.l
+	jmp	bgmset.l
 
 locret_203E14:
 	rts
