@@ -15898,23 +15898,23 @@ cg_timetravel:
 	even
 
 cg_dspring:
-	incbin	"Art/Nemesis/Diagonal Spring.nem"
+	incbin	"Art/BitDev/Diagonal Spring.nem"
 	even
 
 cg_spring:
-	incbin	"Art/Nemesis/Spring.nem"
+	incbin	"Art/BitDev/Spring.nem"
 	even
 
 cg_monitortimesign:
-	incbin	"Art/Nemesis/Monitor and Time Sign.nem"
+	incbin	"Art/BitDev/Monitor and Time Sign.nem"
 	even
 
 cg_explosion:
-	incbin	"Art/Nemesis/Explosion.nem"
+	incbin	"Art/BitDev/Explosion.nem"
 	even
 
 cg_ring:
-	incbin	"Art/Nemesis/Ring.nem"
+	incbin	"Art/BitDev/Ring.nem"
 	even
 
 cg_hudicon:
@@ -15926,107 +15926,107 @@ scorewrtcg:
 	even
 
 cg_hud:
-	incbin	"Art/Nemesis/HUD.nem"
+	incbin	"Art/BitDev/HUD.nem"
 	even
 
 cg_flowers:
-	incbin	"Art/Nemesis/Flowers.nem"
+	incbin	"Art/BitDev/Flowers.nem"
 	even
 
 cg_signpost:
-	incbin	"Art/Nemesis/Signpost.nem"
+	incbin	"Art/BitDev/Goal.nem"
 	even
 
 cg_rock:
-	incbin	"Art/Nemesis/Rock.nem"
+	incbin	"Art/BitDev/Rock.nem"
 	even
 
 cg_platform:
-	incbin	"Art/Nemesis/Appearing Platform.nem"
+	incbin	"Art/BitDev/Appearing Platform.nem"
 	even
 
 cg_wheels:
-	incbin	"Art/Nemesis/Wheels.nem"
+	incbin	"Art/BitDev/Wheels.nem"
 	even
 
 cg_spinplatform:
-	incbin	"Art/Nemesis/Spinning Platform.nem"
+	incbin	"Art/BitDev/Spinning Platform.nem"
 	even
 
 cg_splash:
-	incbin	"Art/Nemesis/Splash.nem"
+	incbin	"Art/BitDev/Splash.nem"
 	even
 
 cg_flipper:
-	incbin	"Art/Nemesis/Flipper.nem"
+	incbin	"Art/BitDev/Flipper.nem"
 	even
 
 cg_splash2:
-	incbin	"Art/Nemesis/Splash 2.nem"
+	incbin	"Art/BitDev/Splash 2.nem"
 	even
 
 cg_mosqui:
-	incbin	"Art/Nemesis/Mosqui.nem"
+	incbin	"Art/BitDev/Mosqui.nem"
 	even
 
 cg_patabata:
-	incbin	"Art/Nemesis/Pata-Bata.nem"
+	incbin	"Art/BitDev/Pata-Bata.nem"
 	even
 
 cg_anton:
-	incbin	"Art/Nemesis/Anton.nem"
+	incbin	"Art/BitDev/Anton.nem"
 	even
 
 cg_tagataga:
-	incbin	"Art/Nemesis/Taga-Taga.nem"
+	incbin	"Art/BitDev/Taga-Taga.nem"
 	even
 
 cg_tamabboh:
-	incbin	"Art/Nemesis/Tamabboh.nem"
+	incbin	"Art/BitDev/Tamabboh.nem"
 	even
 
 cg_pole:
-	incbin	"Art/Nemesis/Elastic Pole.nem"
+	incbin	"Art/BitDev/Elastic Pole.nem"
 	even
 
 cg_card:
-	incbin	"Art/Nemesis/Rotating Card.nem"
+	incbin	"Art/BitDev/Rotating Card.nem"
 	even
 
 cg_bridge:
-	incbin	"Art/Nemesis/Bridge.nem"
+	incbin	"Art/BitDev/Bridge.nem"
 	even
 
-	incbin	"Art/Nemesis/Switch.nem"
+	incbin	"Art/BitDev/Switch.nem"
 	even
 
 cg_spikes:
-	incbin	"Art/Nemesis/Spikes.nem"
+	incbin	"Art/BitDev/Spikes.nem"
 	even
 
 cg_flickyricky:
-	incbin	"Art/Nemesis/Flicky and Ricky.nem"
+	incbin	"Art/BitDev/Flicky and Ricky.nem"
 	even
 
-	incbin	"Art/Nemesis/Swallow and Pecky.nem"
+	incbin	"Art/BitDev/Swallow and Pecky.nem"
 	even
 
-	incbin	"Art/Nemesis/Canary and Pocky.nem"
+	incbin	"Art/BitDev/Canary and Pocky.nem"
 	even
 
-	incbin	"Art/Nemesis/Fish.nem"
+	incbin	"Art/BitDev/Fish.nem"
 	even
 
-	incbin	"Art/Nemesis/Dove and Sheep.nem"
+	incbin	"Art/BitDev/Dove and Sheep.nem"
 	even
 
-	incbin	"Art/Nemesis/Spinning Platform.nem"
+	incbin	"Art/BitDev/Spinning Platform.nem"
 	even
 
-	incbin	"Art/Nemesis/Spikes (Unused).nem"
+	incbin	"Art/BitDev/Spikes (Unused).nem"
 	even
 
-	incbin	"Art/Nemesis/Spikes (Unused 2).nem"
+	incbin	"Art/BitDev/Spikes (Unused 2).nem"
 	even
 
 scddirtbl:
@@ -16087,7 +16087,7 @@ spz_16x16:
 	even
 
 spz_8x8:
-	incbin	"Art/Nemesis/8x8 - SPZ.nem"
+	incbin	"Art/BitDev/8x8 - SPZ.nem"
 	even
 
 spz_256x256:
