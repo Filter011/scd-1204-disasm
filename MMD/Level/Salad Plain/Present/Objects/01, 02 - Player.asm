@@ -807,7 +807,7 @@ playsave:
 	move.b	plflag,plflag_sb
 	move.w	xposi(a0),plxposi_sb
 	move.w	yposi(a0),plyposi_sb
-	move.b	byte_FFF742.w,byte_FF125A
+	move.b	zone_flag.w,zone_flag_sb
 	move.b	water_flag.w,water_flag_sb
 	move.w	scralim_down.w,scralim_down_sb
 	move.w	scra_h_posit.w,scra_h_posit_sb

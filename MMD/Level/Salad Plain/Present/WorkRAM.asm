@@ -50,7 +50,7 @@ plxposi_s:		ds.w	1
 plyposi_s:		ds.w	1
 plring_s:		ds.w	1
 pltime_s:		ds.l	1
-byte_FF123C:		ds.b	1
+zone_flag_s:		ds.b	1
 time_flag:		ds.b	1
 scralim_down_s:		ds.w	1
 scra_h_posit_s:		ds.w	1
@@ -68,7 +68,7 @@ plring_f2_s:		ds.b	1
 plflag_sb:		ds.b	1
 plxposi_sb:		ds.w	1
 plyposi_sb:		ds.w	1
-byte_FF125A:		ds.b	1
+zone_flag_sb:		ds.b	1
 	ds.b	1
 scralim_down_sb:	ds.w	1
 scra_h_posit_sb:	ds.w	1
@@ -210,7 +210,7 @@ pauseflag:		ds.w	1
 dmastack:		ds.w	1
 	ds.b	2
 hintflag:		ds.w	1
-	ds.b	2
+waterposi:		ds.w	1	; unused
 waterposi_m:		ds.w	1
 	ds.b	3
 water_flag:		ds.b	1
@@ -256,7 +256,7 @@ scra_vz:		ds.w	1
 scra_vline:		ds.w	1
 scrh_flag:		ds.b	1
 scrv_flag:		ds.b	1
-byte_FFF742:		ds.b	1
+zone_flag:		ds.b	1
 	ds.b	1
 scroll_start:		ds.b	1
 	ds.b	1

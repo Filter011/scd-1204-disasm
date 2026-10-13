@@ -2316,7 +2316,7 @@ sub_2023FC:
 	move.b	d0,scrv_flag.w
 	move.b	d0,scr_die.w
 	move.b	d0,scr_timer.w
-	move.b	d0,byte_FFF742.w
+	move.b	d0,zone_flag.w
 	lea	scr_dir_tbl.l,a0
 	move.w	(a0)+,d0
 	move.w	d0,scrar_no.w
@@ -2332,7 +2332,7 @@ sub_2023FC:
 	move.w	#$1010,scra_h_count.w
 	move.w	(a0)+,d0
 	move.w	d0,scra_vline.w
-	bra.w	loc_20247C
+	bra.w	playposiset
 
 scr_dir_tbl:
 	dc.w	4
@@ -2350,7 +2350,7 @@ word_20245C:
 	dc.w	$1B0,$72C
 	dc.w	$1400,$2AC
 
-loc_20247C:
+playposiset:
 	tst.b	plflag
 	beq.s	loc_202498
 	jsr	playload.l
@@ -5230,7 +5230,7 @@ loc_205E30:
 	move.b	plflag_sb,plflag
 	move.w	plxposi_sb,xposi(a6)
 	move.w	plyposi_sb,yposi(a6)
-	move.b	byte_FF125A,byte_FFF742.w
+	move.b	zone_flag_sb,zone_flag.w
 	move.b	water_flag_sb,water_flag.w
 	move.w	scralim_down_sb,scralim_down.w
 	move.w	scralim_down_sb,scralim_n_down.w
@@ -5269,7 +5269,7 @@ playload:
 	move.l	pltime_s,pltime
 	move.b	#59,byte_FF1225
 	subq.b	#1,byte_FF1224
-	move.b	byte_FF123C,byte_FFF742.w
+	move.b	zone_flag_s,zone_flag.w
 	move.b	water_flag_s,water_flag.w
 	move.w	scralim_down_s,scralim_down.w
 	move.w	scralim_down_s,scralim_n_down.w
