@@ -1,24 +1,25 @@
 goal:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20DEEA(pc,d0.w),d0
-	jsr	off_20DEEA(pc,d0.w)
+	move.w	goal_tbl(pc,d0.w),d0
+	jsr	goal_tbl(pc,d0.w)
 	jmp	actionsub.l
 
-off_20DEEA:
-	dc.w	loc_20DEF4-off_20DEEA
-	dc.w	loc_20DF12-off_20DEEA
-	dc.w	loc_20DF40-off_20DEEA
-	dc.w	loc_20DF52-off_20DEEA
-	dc.w	loc_20DF70-off_20DEEA
+goal_tbl:
+	dc.w	goal_init-goal_tbl
+	dc.w	goal_move0-goal_tbl
+	dc.w	goal_move1-goal_tbl
+	dc.w	goal_move2-goal_tbl
+	dc.w	goal_move3-goal_tbl
 
-loc_20DEF4:
+goal_init:
 	addq.b	#2,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.w	#$503,sproffset(a0)
-	move.l	#obj17_map,patbase(a0)
-loc_20DF12:
+	move.l	#goalpat,patbase(a0)
+
+goal_move0:
 	jsr	sub_2023EA.l
 	move.w	xposi(a0),d0
 	cmp.w	xposi(a6),d0
@@ -28,28 +29,31 @@ loc_20DF12:
 	move.b	#60,act2A(a0)
 	move.b	#0,patno(a0)
 	addq.b	#2,r_no0(a0)
+
 locret_20DF3E:
 	rts
 
-loc_20DF40:
+goal_move1:
 	subq.b	#1,act2A(a0)
 	bne.s	locret_20DF50
 	addq.b	#2,r_no0(a0)
 	move.b	#1,act2A(a0)
+
 locret_20DF50:
 	rts
 
-loc_20DF52:
+goal_move2:
 	subq.b	#1,act2A(a0)
 	bne.s	locret_20DF6E
 	bset	#0,plautoflag.w
 	move.w	#$808,swdata.w
 	move.b	#60,act2A(a0)
 	addq.b	#2,r_no0(a0)
+
 locret_20DF6E:
 	rts
 
-loc_20DF70:
+goal_move3:
 	subq.b	#1,act2A(a0)
 	bne.s	locret_20DFC6
 	move.w	#2,gameflag
@@ -64,6 +68,7 @@ loc_20DF70:
 	moveq	#0,d0
 	move.b	#0,pl_suu
 	bclr	#0,byte_FF122A
+
 loc_20DFBA:
 	move.b	d0,stageact
 	jmp	loc_205400.l

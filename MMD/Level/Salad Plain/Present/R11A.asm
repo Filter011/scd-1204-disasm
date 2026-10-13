@@ -16205,7 +16205,7 @@ unk_20DFCA:
 	dc.b	$FF
 	even
 
-obj17_map:
+goalpat:
 	include	"Mappings/Signpost.asm"
 
 sub_20DFF4:
