@@ -81,7 +81,7 @@ water_flag_sb:		ds.b	1
 waterflag_sb:		ds.b	1
 	ds.b	6
 word_FF1278:		ds.w	1
-byte_FF127A:		ds.b	1
+generate_flag:		ds.b	1
 byte_FF127B:		ds.b	1
 	ds.b	$44
 sys_pattim:		ds.b	1

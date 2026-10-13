@@ -1458,7 +1458,7 @@ loc_201244:
 	rts
 
 loc_201256:
-	bsr.w	sub_2015B6
+	bsr.w	da_set
 	moveq	#0,d0
 ;	move.b	stageno,d0
 ;	lsl.w	#4,d0
@@ -1711,20 +1711,20 @@ loc_201586:
 locret_2015B4:
 	rts
 
-sub_2015B6:
+da_set:
 	moveq	#0,d0
 	move.b	time_flag,d0
 	bclr	#7,d0
 	cmpi.b	#2,d0
 	bne.s	loc_2015CE
-	add.b	byte_FF127A,d0
+	add.b	generate_flag,d0
 
 loc_2015CE:
-	move.b	byte_2015DA(pc,d0.w),d0
+	move.b	da_tbl(pc,d0.w),d0
 	ext.w	d0
-	jmp	sub_205404.l
+	jmp	sub_sync.l
 
-byte_2015DA:
+da_tbl:
 	dc.b	scpu_r11bMUS
 	dc.b	scpu_r11aMUS
 	dc.b	scpu_r11cMUS
@@ -1732,7 +1732,7 @@ byte_2015DA:
 	even
 
 	move.w	#scpu_r11aMUS,d0
-	jsr	sub_205404.l
+	jsr	sub_sync.l
 
 sub_2015E8:
 	writeVRAM	$59F*tile_size,d0
@@ -4153,7 +4153,7 @@ locret_203614:
 loc_205400:
 	move.w	#scpu_fadeCDA,d0
 
-sub_205404:
+sub_sync:
 	move.w	d0,scpu_commcmd0
 loc_20540A:
 	tst.w	scpu_commstats
@@ -9599,22 +9599,9 @@ scorewrt2:
 	lsl.w	#6,d2
 	move.l	d0,4(a6)
 	lea	(a1,d2.w),a3
+	rept	16
 	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
+	endr
 
 .jump5:
 	addi.l	#$400000,d0
@@ -9643,22 +9630,9 @@ contwrt:
 	add.l	d3,d1
 	lsl.w	#6,d2
 	lea	(a1,d2.w),a3
+	rept	16
 	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
+	endr
 	dbf	d6,.loop
 	rts
 
@@ -9732,22 +9706,9 @@ timewrt0:
 	lsl.w	#6,d2
 	move.l	d0,4(a6)
 	lea	(a1,d2.w),a3
+	rept	16
 	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
-	move.l	(a3)+,(a6)
+	endr
 	addi.l	#$400000,d0
 	dbf	d6,.loop
 	rts

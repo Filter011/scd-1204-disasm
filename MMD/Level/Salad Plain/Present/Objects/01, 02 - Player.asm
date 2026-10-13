@@ -300,7 +300,7 @@ sub_203954:
 	move.b	time_flag,d1
 	cmpi.b	#2,d1
 	bne.s	loc_203978
-	add.b	byte_FF127A,d1
+	add.b	generate_flag,d1
 
 loc_203978:
 	add.w	d1,d1
@@ -2180,6 +2180,7 @@ play00die_sub:
 	clr.b	pltime_f
 	addq.b	#1,pl_suu_f
 	subq.b	#1,pl_suu
+
 loc_204DA2:
 	move.w	#60,act3A(a0)
 	tst.b	pltimeover_f
@@ -2200,6 +2201,7 @@ play00erase:
 	_cmpi.b	#objid_01,actno(a0)
 	beq.s	loc_204DDE
 	lea	actwk.w,a5
+
 loc_204DDE:
 	_tst.b	actno(a5)
 	beq.w	loc_204DFA
@@ -2213,8 +2215,9 @@ loc_204DFA:
 	tst.b	pl_suu
 	beq.s	loc_204E12
 	clr.w	word_FF12F4
+
 loc_204E12:
-	bra.w	sub_205404
+	bra.w	sub_sync
 
 locret_204E16:
 	rts
@@ -2224,6 +2227,7 @@ loopchk:
 	beq.s	loc_204E2C
 	tst.b	stageno
 	bne.w	locret_204EE2
+
 loc_204E2C:
 	move.w	yposi(a0),d0
 	lsr.w	#1,d0
@@ -2246,6 +2250,7 @@ loc_204E2C:
 loc_204E6A:
 	cmp.b	ballmapno2.w,d1
 	beq.w	loc_204EE4
+
 loc_204E72:
 	cmp.b	loopmapno.w,d1
 	beq.s	loc_204E96
@@ -2288,6 +2293,7 @@ loc_204ED2:
 	cmpi.b	#$80,d1
 	bls.s	locret_204EE2
 	bclr	#6,actflg(a0)
+
 locret_204EE2:
 	rts
 
