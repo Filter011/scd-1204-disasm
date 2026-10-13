@@ -148,8 +148,8 @@ mapwkb:			equ	mapwka+$40
 mapwka_end:
 byte_FFA800:		ds.b	$200
 bitdevwk:		ds.b	$200
-spr_list:		ds.b	$400
-blkwk:			ds.b	$1800
+pbuffer:		ds.b	$400
+blockwk:		ds.b	$1800
 playwrtwk:		ds.b	$2E0
 playwrtwk_end:
 	ds.b	$20

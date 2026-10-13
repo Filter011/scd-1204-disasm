@@ -1462,7 +1462,7 @@ loc_201256:
 	moveq	#0,d0
 ;	move.b	stageno,d0
 ;	lsl.w	#4,d0
-	lea	lvlheader.l,a2
+	lea	mapinittbl.l,a2
 	moveq	#0,d0
 	move.b	(a2),d0
 	beq.s	loc_20126C
@@ -3237,7 +3237,7 @@ mapadrset:
 mapadrset1:
 	add.w	4(a3),d4
 mapadrset2:
-	lea	blkwk.w,a1
+	lea	blockwk.w,a1
 	move.w	d4,d3
 	lsr.w	#1,d3
 	andi.w	#$380,d3
@@ -3306,7 +3306,7 @@ loc_202DFE:
 	bsr.w	block_chk
 	bne.s	loc_202E26
 	movem.l	d3-d5,-(sp)
-	lea	blkwk.w,a1
+	lea	blockwk.w,a1
 	andi.w	#$3FF,d3
 	lsl.w	#3,d3
 	adda.w	d3,a1
@@ -3458,11 +3458,11 @@ mapinit:
 	moveq	#0,d0
 ;	move.b	stageno,d0
 ;	lsl.w	#4,d0
-	lea	lvlheader.l,a2
+	lea	mapinittbl.l,a2
 	move.l	a2,-(sp)
 	addq.l	#4,a2
 	movea.l	(a2)+,a0
-	lea	blkwk.w,a4
+	lea	blockwk.w,a4
 	bsr.w	bitdevwkr
 	movea.l	(a2)+,a0
 	lea	mapwk.l,a1
@@ -3711,7 +3711,7 @@ actionsub:
 	cmpi.w	#224,d1
 	bge.s	locret_203220
 loc_203204:
-	lea	spr_list.w,a1
+	lea	pbuffer.w,a1
 	move.w	sprpri(a0),d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
@@ -3724,7 +3724,7 @@ loc_203204:
 locret_203220:
 	rts
 
-	lea	spr_list.w,a2
+	lea	pbuffer.w,a2
 	move.w	sprpri(a1),d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
@@ -3756,7 +3756,7 @@ patsettbl:
 patset:
 	lea	byte_FFF800.w,a2
 	moveq	#0,d5
-	lea	spr_list.w,a4
+	lea	pbuffer.w,a4
 	moveq	#8-1,d7
 loc_20326A:
 	tst.w	(a4)
@@ -16279,7 +16279,7 @@ obj17_map:
 sub_20DFF4:
 	jmp	sub_2059B8.l
 
-lvlheader:
+mapinittbl:
 	dc.l	ddevid_03<<24+spz_8x8
 	dc.l	ddevid_02<<24+spz_16x16
 	dc.l	spz_256x256
