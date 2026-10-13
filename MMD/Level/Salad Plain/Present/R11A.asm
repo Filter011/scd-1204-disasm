@@ -1660,10 +1660,10 @@ scdset:
 	moveq	#0,d0
 	move.b	stageno,d0
 	lsl.w	#2,d0
-	move.l	off_201502(pc,d0.w),scdadr.w
+	move.l	scdtbl(pc,d0.w),scdadr.w
 	rts
 
-off_201502:
+scdtbl:
 	dc.l	zone1scd
 	dc.l	zone1scd
 	dc.l	zone1scd
