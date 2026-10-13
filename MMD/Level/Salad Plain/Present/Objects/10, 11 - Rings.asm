@@ -89,7 +89,7 @@ loc_208A8E:
 	bne.s	loc_208AF6
 
 loc_208AA2:
-	_move.b	#objid_10,actno(a1)
+	_move.b	#ring_act,actno(a1)
 	addq.b	#2,r_no0(a1)
 	move.w	d2,xposi(a1)
 	move.w	xposi(a0),act32(a1)
@@ -123,7 +123,7 @@ ringmove:
 	sub.w	d1,d0
 	cmpi.w	#$280,d0
 	bhi.w	ringerase
-	tst.w	word_FF1278
+	tst.w	time_stop
 	bne.s	loc_208B2C
 	move.b	sys_patno2,patno(a0)
 
@@ -208,7 +208,7 @@ loc_208BFE:
 	bne.w	loc_208C8E
 
 loc_208C06:
-	_move.b	#objid_11,actno(a1)
+	_move.b	#flyring_act,actno(a1)
 	addq.b	#2,r_no0(a1)
 	move.b	#8,sprvsize(a1)
 	move.b	#8,sprhs(a1)

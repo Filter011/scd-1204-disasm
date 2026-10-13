@@ -14,7 +14,7 @@ stackwk_end:
 	ds.b	2
 gameflag:		ds.w	1
 gametimer:		ds.w	1
-byte_FF1206:		ds.b	1
+editno:			ds.b	1
 	ds.b	1
 editmode:		ds.w	1
 	ds.b	2
@@ -80,9 +80,9 @@ waterposi_m_sb:		ds.w	1
 water_flag_sb:		ds.b	1
 waterflag_sb:		ds.b	1
 	ds.b	6
-word_FF1278:		ds.w	1
+time_stop:		ds.w	1
 generate_flag:		ds.b	1
-byte_FF127B:		ds.b	1
+plsubchg_flag:		ds.b	1
 	ds.b	$44
 sys_pattim:		ds.b	1
 sys_patno:		ds.b	1
@@ -120,11 +120,11 @@ word_FF13F4:		ds.w	1
 mdstatus:		ds.b	1
 	ds.b	1
 debugflag:		ds.w	1
-init_f:			ds.l	1
+init_flag:		ds.l	1
 flagwork:		ds.b	$180
 flagwork_end:
-byte_FF1580:		ds.b	$300
-dword_FF1880:		ds.l	1
+flowercnt:		ds.b	$300
+flowerwk:		ds.l	1
 word_FF1884:		ds.w	1
 byte_FF1886:		ds.b	1
 	ds.b	3
@@ -179,7 +179,7 @@ actwk_end:
 
 soundram:		SMPS_RAM
 	ds.b	$40
-gamemode:		ds.b	1
+gmmode:			ds.b	1
 	ds.b	1
 swdata:			ds.w	1
 swdata1:		ds.w	1
@@ -210,7 +210,8 @@ dmastack:		ds.w	1
 hintflag:		ds.w	1
 waterposi:		ds.w	1	; unused
 waterposi_m:		ds.w	1
-	ds.b	3
+watermoveposi:		ds.w	1	; unused
+waterspeed:		ds.b	1	; unused
 water_flag:		ds.b	1
 waterflag:		ds.b	1
 waterflag2:		ds.b	1
@@ -278,7 +279,7 @@ scrflagz:		ds.w	1
 limmoveflag:		ds.b	1
 playpatno1:		ds.b	1
 chibi_flag:		ds.b	1
-byte_FFF75F:		ds.b	1
+kusya_flag:		ds.b	1
 plmaxspdwk:		ds.w	1
 pladdspdwk:		ds.w	1
 plretspdwk:		ds.w	1
@@ -301,7 +302,9 @@ time_item:		ds.b	1
 	ds.b	1
 backto_cnt:		ds.w	1
 scr_cnt:		ds.b	1
-	ds.b	7
+demo_adr:		ds.l	1	; unused
+demo_cnt:		ds.w	1	; unused
+	ds.b	1
 swbufcnt:		ds.w	1
 	ds.b	4
 scdadr:			ds.l	1
@@ -315,13 +318,18 @@ ballmapno:		ds.b	1
 ballmapno2:		ds.b	1
 	ds.b	$17
 watercoliflag:		ds.b	1
-	ds.b	2
-mizuflag:		ds.b	1
+waterstop:		ds.b	1	; unused
 	ds.b	1
+mizuflag:		ds.b	1
+sekichyuflag:		ds.b	1	; unused
 plautoflag:		ds.b	1
 	ds.b	3
 emyscorecnt:		ds.w	1
-	ds.b	8
+timebonus:		ds.w	1	; unused
+ringbonus:		ds.w	1	; unused
+bonus_f:		ds.b	1	; unused
+edplayflag:		ds.b	1	; unused
+waterdirec:		ds.w	1	; unused
 statusr:		ds.w	1
 byte_FFF7DC:		ds.b	1
 	ds.b	$23

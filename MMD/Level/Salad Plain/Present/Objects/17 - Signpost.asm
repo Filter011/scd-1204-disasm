@@ -55,7 +55,7 @@ loc_20DF70:
 	move.w	#2,gameflag
 	move.b	#0,plflag
 	clr.w	word_FF12F4
-	clr.l	dword_FF1880
+	clr.l	flowerwk
 	move.b	#1,time_flag
 	move.b	stageact,d0
 	addq.b	#1,d0

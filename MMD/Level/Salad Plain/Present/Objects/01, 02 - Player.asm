@@ -46,13 +46,13 @@ loc_203676:
 	tst.b	act29(a0)
 	beq.s	locret_2036BA
 	move.b	#1,plpower_a
-	move.b	#objid_03,byte_FFD300.w
+	move.b	#baria_act,byte_FFD300.w
 	move.b	#5,byte_FFD300+mstno.w
-	move.b	#objid_03,byte_FFD340.w
+	move.b	#baria_act,byte_FFD340.w
 	move.b	#6,byte_FFD340+mstno.w
-	move.b	#objid_03,byte_FFD380.w
+	move.b	#baria_act,byte_FFD380.w
 	move.b	#7,byte_FFD380+mstno.w
-	move.b	#objid_03,byte_FFD3C0.w
+	move.b	#baria_act,byte_FFD3C0.w
 	move.b	#8,byte_FFD3C0+mstno.w
 
 locret_2036BA:
@@ -71,7 +71,7 @@ play00init:
 loc_2036E0:
 	move.l	#playpat,patbase(a0)
 	move.w	#$780,sproffset(a0)
-	_cmpi.b	#objid_01,actno(a0)
+	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_2036FC
 	move.w	#$797,sproffset(a0)
 
@@ -102,7 +102,7 @@ mizuki_set:
 	beq.s	locret_203786
 	jsr	actwkchk.l
 	bne.s	locret_203786
-	_move.b	#objid_0E,actno(a1)
+	_move.b	#mizukiri_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	moveq	#1,d0
@@ -144,7 +144,7 @@ loc_2037BA:
 	beq.s	locret_203786
 	jsr	actwkchk.l
 	bne.s	locret_203786
-	_move.b	#objid_0B,actno(a1)
+	_move.b	#exit2_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	andi.w	#$FFF8,d2
 	move.w	d2,yposi(a1)
@@ -686,7 +686,7 @@ loc_203CD6:
 	tst.b	plautoflag.w
 	bne.s	loc_203CF0
 	move.w	swdata1.w,swdata.w
-	_cmpi.b	#objid_01,actno(a0)
+	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_203CF0
 	move.w	swdata2.w,swdata.w
 
@@ -922,11 +922,11 @@ locret_203FB0:
 	rts
 
 play00walk:
-	tst.b	byte_FFF75F.w
+	tst.b	kusya_flag.w
 	beq.s	loc_203FC4
 	cmpi.b	#5,mstno(a0)
 	bne.s	locret_204018
-	clr.b	byte_FFF75F.w
+	clr.b	kusya_flag.w
 
 loc_203FC4:
 	bsr.w	bye_chk
@@ -2198,7 +2198,7 @@ play00erase:
 	bne.s	locret_204E16
 	move.w	#1,gameflag
 	lea	byte_FFD040.w,a5
-	_cmpi.b	#objid_01,actno(a0)
+	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_204DDE
 	lea	actwk.w,a5
 
@@ -2210,7 +2210,7 @@ loc_204DDE:
 	bra.w	frameout
 
 loc_204DFA:
-	clr.l	dword_FF1880
+	clr.l	flowerwk
 	move.w	#scpu_fadeCDA,d0
 	tst.b	pl_suu
 	beq.s	loc_204E12
@@ -3011,7 +3011,7 @@ plchg48:
 
 playwrt:
 	lea	playpatno.w,a2
-	_cmpi.b	#objid_01,actno(a0)
+	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_20533E
 	lea	playpatno1.w,a2
 

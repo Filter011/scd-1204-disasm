@@ -283,8 +283,8 @@ actid_4:	equ	3
 ; Sonic The Hedgehog (Mega Drive) Leftover Equates
 
 ; Game Mode Equates
-gmmodeid_lvl_S1:	equ	$C
-gmmodeid_ss:	equ	$10
+gamemd_S1:	equ	$C
+spgamemd:	equ	$10
 
 ; Zone Equates
 zoneid_LZ:	equ	1
