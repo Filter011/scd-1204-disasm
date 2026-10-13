@@ -252,17 +252,17 @@ chibiheight:	equ	10
 chibiwidth:	equ	5
 
 ; Player Bit Equates
-plst_xflip:	equ	0
-plst_walk:	equ	1
-plst_jump:	equ	1
-plst_ball:	equ	2
-plst_fcol:	equ	3
-plst_ballj:	equ	4
-plst_push:	equ	5
-plst_water:	equ	6
+cd_xflip:	equ	0
+cd_walk:	equ	1
+cd_jump:	equ	1
+cd_ball:	equ	2
+cd_fcol:	equ	3
+cd_ballj:	equ	4
+cd_push:	equ	5
+cd_water:	equ	6
 
 ; Chunk Equates
-chunksize:	equ	(16*2)*16	; (width*2) * height
+mapsize:	equ	(16*2)*16	; (width*2) * height
 
 ; Zone Equates
 zoneid_SPZ:	equ	0

@@ -246,12 +246,12 @@ loc_2020BC:
 	moveq	#$10,d6
 	moveq	#0,d0
 	move.l	a0,dword_FFF680.w
-	move.l	a3,dword_FFF6E0.w
-	move.l	d0,dword_FFF6E4.w
-	move.l	d0,dword_FFF6E8.w
-	move.l	d0,dword_FFF6EC.w
-	move.l	d5,dword_FFF6F0.w
-	move.l	d6,dword_FFF6F4.w
+	move.l	a3,bitdev_a3.w
+	move.l	d0,bitdev_d0.w
+	move.l	d0,bitdev_d1.w
+	move.l	d0,bitdev_d2.w
+	move.l	d5,bitdev_d5.w
+	move.l	d6,bitdev_d6.w
 
 locret_2020EE:
 	rts
@@ -282,12 +282,12 @@ loc_202124:
 	move.l	d0,(a4)
 	subq.w	#4,a4
 	movea.l dword_FFF680.w,a0
-	movea.l dword_FFF6E0.w,a3
-	move.l	dword_FFF6E4.w,d0
-	move.l	dword_FFF6E8.w,d1
-	move.l	dword_FFF6EC.w,d2
-	move.l	dword_FFF6F0.w,d5
-	move.l	dword_FFF6F4.w,d6
+	movea.l bitdev_a3.w,a3
+	move.l	bitdev_d0.w,d0
+	move.l	bitdev_d1.w,d1
+	move.l	bitdev_d2.w,d2
+	move.l	bitdev_d5.w,d5
+	move.l	bitdev_d6.w,d6
 	lea	bitdevwk.w,a1
 
 loc_202158:
@@ -298,12 +298,12 @@ loc_202158:
 	subq.w	#1,word_FFF6FA.w
 	bne.s	loc_202158
 	move.l	a0,dword_FFF680.w
-	move.l	a3,dword_FFF6E0.w
-	move.l	d0,dword_FFF6E4.w
-	move.l	d1,dword_FFF6E8.w
-	move.l	d2,dword_FFF6EC.w
-	move.l	d5,dword_FFF6F0.w
-	move.l	d6,dword_FFF6F4.w
+	move.l	a3,bitdev_a3.w
+	move.l	d0,bitdev_d0.w
+	move.l	d1,bitdev_d1.w
+	move.l	d2,bitdev_d2.w
+	move.l	d5,bitdev_d5.w
+	move.l	d6,bitdev_d6.w
 
 locret_202188:
 	rts

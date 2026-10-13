@@ -2683,11 +2683,11 @@ scroll_v:
 	moveq	#0,d1
 	move.w	yposi(a6),d0
 	sub.w	scra_v_posit.w,d0
-	btst	#plst_ball,cddat(a6)
+	btst	#cd_ball,cddat(a6)
 	beq.s	loc_2027CC
 	subq.w	#5,d0
 loc_2027CC:
-	btst	#plst_jump,cddat(a6)
+	btst	#cd_jump,cddat(a6)
 	beq.s	loc_2027EC
 	addi.w	#32,d0
 	sub.w	scra_vline.w,d0
@@ -3746,9 +3746,10 @@ frameout:
 	movea.l	a0,a1
 	moveq	#0,d1
 	moveq	#actfree/4-1,d0
-loc_203246:
+
+.loop:
 	move.l	d1,(a1)+
-	dbf	d0,loc_203246
+	dbf	d0,.loop
 	rts
 
 patsettbl:
@@ -3762,10 +3763,12 @@ patset:
 	moveq	#0,d5
 	lea	pbuffer.w,a4
 	moveq	#8-1,d7
+
 loc_20326A:
 	tst.w	(a4)
 	beq.w	loc_203302
 	moveq	#2,d6
+
 loc_203272:
 	movea.w	(a4,d6.w),a0
 	tst.b	actno(a0)
@@ -3799,6 +3802,7 @@ loc_2032B0:
 	blo.s	loc_2032FA
 	cmpi.w	#$180,d2
 	bhs.s	loc_2032FA
+
 loc_2032D2:
 	movea.l	patbase(a0),a1
 	moveq	#0,d1
@@ -3811,14 +3815,18 @@ loc_2032D2:
 	move.b	(a1)+,d1
 	subq.b	#1,d1
 	bmi.s	loc_2032F4
+
 loc_2032F0:
 	bsr.w	spatset
+
 loc_2032F4:
 	bset	#7,actflg(a0)
+
 loc_2032FA:
 	addq.w	#2,d6
 	subq.w	#2,(a4)
 	bne.w	loc_203272
+
 loc_203302:
 	lea	$80(a4),a4
 	dbf	d7,loc_20326A
@@ -3839,6 +3847,7 @@ spatset:
 	bne.s	loc_20336A
 	btst	#1,d4
 	bne.w	loc_2033B8
+
 loc_203336:
 	cmpi.b	#80,d5
 	beq.s	locret_203368
@@ -3860,6 +3869,7 @@ loc_203336:
 	andi.w	#$1FF,d0
 	bne.s	loc_203362
 	addq.w	#1,d0
+
 loc_203362:
 	move.w	d0,(a2)+
 	dbf	d1,loc_203336
@@ -3870,6 +3880,7 @@ locret_203368:
 loc_20336A:
 	btst	#1,d4
 	bne.w	loc_2033FE
+
 loc_203372:
 	cmpi.b	#80,d5
 	beq.s	locret_2033B6
@@ -3898,6 +3909,7 @@ loc_203372:
 	andi.w	#$1FF,d0
 	bne.s	loc_2033B0
 	addq.w	#1,d0
+
 loc_2033B0:
 	move.w	d0,(a2)+
 	dbf	d1,loc_203372
@@ -3933,6 +3945,7 @@ loc_2033B8:
 	andi.w	#$1FF,d0
 	bne.s	loc_2033F6
 	addq.w	#1,d0
+
 loc_2033F6:
 	move.w	d0,(a2)+
 	dbf	d1,loc_2033B8
@@ -3974,6 +3987,7 @@ loc_2033FE:
 	andi.w	#$1FF,d0
 	bne.s	loc_20344A
 	addq.w	#1,d0
+
 loc_20344A:
 	move.w	d0,(a2)+
 	dbf	d1,loc_2033FE
@@ -4179,7 +4193,7 @@ loc_205462:
 	rol.b	#3,d1
 	eor.b	d0,d1
 	andi.b	#3,d1
-	andi.b	#$FC,actflg(a0)
+	andi.b	#%11111100,actflg(a0)
 	or.b	d1,actflg(a0)
 	addq.b	#1,patcnt(a0)
 locret_205486:
@@ -5870,10 +5884,10 @@ playdamageset:
 	move.b	#0,plpower_b
 	move.b	#4,r_no0(a0)
 	bsr.w	jumpcolsub
-	bset	#plst_jump,cddat(a0)
+	bset	#cd_jump,cddat(a0)
 	move.w	#-$400,yspeed(a0)
 	move.w	#-$200,xspeed(a0)
-	btst	#plst_water,cddat(a0)
+	btst	#cd_water,cddat(a0)
 	beq.s	.jump0
 	move.w	#-$200,yspeed(a0)
 	move.w	#-$100,xspeed(a0)
@@ -5903,7 +5917,7 @@ playdieset:
 	move.b	#0,plpower_m
 	move.b	#6,r_no0(a0)
 	bsr.w	jumpcolsub
-	bset	#plst_jump,cddat(a0)
+	bset	#cd_jump,cddat(a0)
 	move.w	#-$700,yspeed(a0)
 	move.w	#0,xspeed(a0)
 	move.w	#0,mspeed(a0)
@@ -5941,7 +5955,7 @@ pcolspecial:
 	bhs.s	.yago4
 	move.w	xposi(a1),d0
 	subq.w	#4,d0
-	btst	#plst_xflip,cddat(a1)
+	btst	#cd_xflip,cddat(a1)
 	beq.s	.yago1
 	subi.w	#$10,d0
 
@@ -6261,7 +6275,7 @@ loc_206A54:
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	move.b	actflg(a0),d0
-	andi.b	#3,d0
+	andi.b	#%0011,d0
 	move.b	d0,actflg(a1)
 	move.b	d0,cddat(a1)
 loc_206AE0:
@@ -7050,8 +7064,8 @@ loc_207BC6:
 	move.w	#0,xspeed(a6)
 	move.w	#0,yspeed(a6)
 	bclr	#5,cddat(a0)
-	bclr	#plst_push,cddat(a6)
-	bset	#plst_jump,cddat(a6)
+	bclr	#cd_push,cddat(a6)
+	bset	#cd_jump,cddat(a6)
 	move.w	xposi(a0),xposi(a6)
 	move.w	yposi(a0),yposi(a6)
 	clr.b	act32(a0)
@@ -7848,7 +7862,7 @@ loc_20827E:
 	andi.b	#$70,d0
 	beq.w	locret_208332
 	move.w	#$680,d2
-	btst	#plst_water,cddat(a0)
+	btst	#cd_water,cddat(a0)
 	beq.s	loc_20829A
 	move.w	#$380,d2
 loc_20829A:
@@ -7862,8 +7876,8 @@ loc_20829A:
 	muls.w	d2,d0
 	asr.l	#8,d0
 	add.w	d0,yspeed(a1)
-	bset	#plst_jump,cddat(a1)
-	bclr	#plst_push,cddat(a1)
+	bset	#cd_jump,cddat(a1)
+	bclr	#cd_push,cddat(a1)
 	move.b	#1,act3C(a1)
 	clr.b	act38(a1)
 	move.w	#$A0,d0
@@ -7878,7 +7892,7 @@ loc_2082EE:
 	move.b	#pl_height,sprvsize(a1)
 	move.b	#pl_width,sprhs(a1)
 loc_2082FA:
-	btst	#plst_ball,cddat(a1)
+	btst	#cd_ball,cddat(a1)
 	bne.s	loc_208334
 	tst.b	chibi_flag.w
 	beq.s	loc_208316
@@ -7891,13 +7905,13 @@ loc_208316:
 	move.b	#rollwidth,sprhs(a1)
 	addq.w	#5,yposi(a1)
 loc_208326:
-	bset	#plst_ball,cddat(a1)
+	bset	#cd_ball,cddat(a1)
 	move.b	#2,mstno(a1)
 locret_208332:
 	rts
 
 loc_208334:
-	bset	#plst_ballj,cddat(a1)
+	bset	#cd_ballj,cddat(a1)
 	rts
 
 obj09_ani:
@@ -16542,7 +16556,7 @@ mapwk:
 	incbin	"Leftovers/Chunks.unc"
 	even
 
-	align	$210000+chunksize*$6C
+	align	$210000+mapsize*$6C
 
 	incbin	"Unknown/Unk1.unc"
 	even

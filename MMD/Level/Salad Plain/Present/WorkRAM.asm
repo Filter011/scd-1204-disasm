@@ -222,12 +222,12 @@ clchgtim:		ds.w	1
 dword_FFF680:		ds.l	1
 word_FFF684:		ds.w	1
 	ds.b	$5A
-dword_FFF6E0:		ds.l	1
-dword_FFF6E4:		ds.l	1
-dword_FFF6E8:		ds.l	1
-dword_FFF6EC:		ds.l	1
-dword_FFF6F0:		ds.l	1
-dword_FFF6F4:		ds.l	1
+bitdev_a3:		ds.l	1
+bitdev_d0:		ds.l	1
+bitdev_d1:		ds.l	1
+bitdev_d2:		ds.l	1
+bitdev_d5:		ds.l	1
+bitdev_d6:		ds.l	1
 word_FFF6F8:		ds.w	1
 word_FFF6FA:		ds.w	1
 	ds.b	4
