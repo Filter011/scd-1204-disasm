@@ -684,7 +684,7 @@ loc_203D0E:
 	beq.s	loc_203D1A
 	bsr.w	playposiwkset
 loc_203D1A:
-	move.b	dirstk.w,act36(a0)
+	move.b	dirstk.w,footdir(a0)
 	move.b	dirstk2.w,act37(a0)
 	tst.b	byte_FFF7C7.w
 	beq.s	loc_203D38
@@ -756,9 +756,9 @@ loc_203DD4:
 loc_203DDC:
 	tst.b	plpower_s
 	beq.s	locret_203E14
-	tst.w	act34(a0)
+	tst.w	speeduptimer(a0)
 	beq.s	locret_203E14
-	subq.w	#1,act34(a0)
+	subq.w	#1,speeduptimer(a0)
 	bne.s	locret_203E14
 	move.w	#$600,plmaxspdwk.w
 	move.w	#$C,pladdspdwk.w
@@ -1020,7 +1020,7 @@ loc_204148:
 	jsr	sub_20611C.l
 	cmpi.w	#$C,d1
 	blt.s	loc_20417C
-	cmpi.b	#3,act36(a0)
+	cmpi.b	#3,footdir(a0)
 	bne.s	loc_204164
 loc_20415C:
 	bclr	#cd_xflip,cddat(a0)

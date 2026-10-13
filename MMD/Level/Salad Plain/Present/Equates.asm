@@ -250,6 +250,8 @@ rollheight:	equ	14
 rollwidth:	equ	7
 chibiheight:	equ	10
 chibiwidth:	equ	5
+speeduptimer:	equ	act34
+footdir:	equ	act36
 
 ; Player Bit Equates
 cd_xflip:	equ	0

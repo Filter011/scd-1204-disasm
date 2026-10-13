@@ -9066,7 +9066,7 @@ loc_209450:
 	bne.s	loc_209480
 loc_209456:
 	move.b	#1,plpower_s
-	move.w	#1200,act34(a6)
+	move.w	#1200,speeduptimer(a6)
 	move.w	#$C00,plmaxspdwk.w
 	move.w	#$18,pladdspdwk.w
 	move.w	#$80,plretspdwk.w
