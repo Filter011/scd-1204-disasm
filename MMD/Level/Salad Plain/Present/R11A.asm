@@ -4155,7 +4155,7 @@ loc_2035DC:
 locret_203614:
 	rts
 
-	include	"Objects/01, 02 - Player.asm"
+	include	"Actors/01, 02 - Player.asm"
 
 loc_205400:
 	move.w	#scpu_fadeCDA,d0
@@ -6915,7 +6915,7 @@ asettbl:
 	dc.w	$FFFF,0,0,0
 
 unk_20700C:
-	incbin	"Object Positions/ObjPos.bin"
+	incbin	"Actor Positions/ActPos.bin"
 	even
 
 asettblz:
@@ -8447,7 +8447,7 @@ byte_2089D0:
 	dc.b	-8,5,0,4,-8
 	even
 
-	include	"Objects/10, 11 - Rings.asm"
+	include	"Actors/10, 11 - Rings.asm"
 
 off_208D7A:
 	dc.w	byte_208D82-off_208D7A
@@ -16195,7 +16195,7 @@ byte_20DED0:
 	dc.b	-8,9,0,$E,-$C
 	even
 
-	include	"Objects/17 - Signpost.asm"
+	include	"Actors/17 - Signpost.asm"
 
 obj17_ani:
 	dc.w	unk_20DFCA-obj17_ani
