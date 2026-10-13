@@ -314,11 +314,11 @@ loopmapno2:		ds.b	1
 ballmapno:		ds.b	1
 ballmapno2:		ds.b	1
 	ds.b	$17
-byte_FFF7C7:		ds.b	1
+watercoliflag:		ds.b	1
 	ds.b	2
 mizuflag:		ds.b	1
 	ds.b	1
-byte_FFF7CC:		ds.b	1
+plautoflag:		ds.b	1
 	ds.b	3
 emyscorecnt:		ds.w	1
 	ds.b	8

@@ -5774,7 +5774,7 @@ pcolitem:
 	beq.s	.item
 
 .ring:
-	cmpi.w	#90,act30(a0)
+	cmpi.w	#90,invulnerabilitytimer(a0)
 	bhs.w	.ringe
 	addq.b	#2,r_no0(a1)
 
@@ -5882,7 +5882,7 @@ pcolend:
 
 pcole:
 	nop
-	tst.w	act30(a0)
+	tst.w	invulnerabilitytimer(a0)
 	bne.s	pcolend
 	movea.l	a1,a2
 
@@ -5919,7 +5919,7 @@ playdamageset:
 .jump:
 	move.w	#0,mspeed(a0)
 	move.b	#$1A,mstno(a0)
-	move.w	#120,act30(a0)
+	move.w	#120,invulnerabilitytimer(a0)
 	moveq	#-1,d0
 	rts
 
@@ -9072,7 +9072,7 @@ loc_2093F0:
 
 sub_2093F6:
 	move.b	#1,plpower_m
-	move.w	#1200,act32(a6)
+	move.w	#1200,mutekitimer(a6)
 	move.b	#3,byte_FFD200.w
 	move.b	#1,byte_FFD200+mstno.w
 	move.b	#3,byte_FFD240.w

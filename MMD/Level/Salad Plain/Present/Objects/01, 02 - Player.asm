@@ -5,8 +5,10 @@ play00:
 	cmpi.b	#60,d0
 	blo.s	loc_203628
 	move.b	#60,d0
+
 loc_203628:
 	move.b	d0,act2A(a0)
+
 loc_20362C:
 	bsr.s	sub_2035B0
 	clr.b	act29(a0)
@@ -16,6 +18,7 @@ loc_20362C:
 	cmp.b	byte_FF1219,d0
 	bne.s	loc_203648
 	move.b	#1,act29(a0)
+
 loc_203648:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
@@ -33,6 +36,7 @@ off_203656:
 	beq.s	locret_203674
 	move.b	#1,plpower_b
 	move.b	#3,byte_FFD180.w
+
 locret_203674:
 	rts
 
@@ -50,6 +54,7 @@ loc_203676:
 	move.b	#7,byte_FFD380+mstno.w
 	move.b	#objid_03,byte_FFD3C0.w
 	move.b	#8,byte_FFD3C0+mstno.w
+
 locret_2036BA:
 	rts
 	rts
@@ -62,12 +67,14 @@ play00init:
 	beq.s	loc_2036E0
 	move.b	#chibiheight,sprvsize(a0)
 	move.b	#chibiwidth,sprhs(a0)
+
 loc_2036E0:
 	move.l	#player_map,patbase(a0)
 	move.w	#$780,sproffset(a0)
 	_cmpi.b	#objid_01,actno(a0)
 	beq.s	loc_2036FC
 	move.w	#$797,sproffset(a0)
+
 loc_2036FC:
 	move.b	#2,sprpri(a0)
 	move.b	#$18,sprhsize(a0)
@@ -76,7 +83,7 @@ loc_2036FC:
 	move.w	#$C,pladdspdwk.w
 	move.w	#$80,plretspdwk.w
 
-sub_203720:
+mizuki_set:
 	tst.b	stageno
 	bne.s	locret_203786
 	move.b	gametimer+1,d0
@@ -102,11 +109,14 @@ sub_203720:
 	tst.w	xspeed(a0)
 	bmi.s	loc_20377E
 	moveq	#0,d0
+
 loc_20377E:
 	move.b	d0,actflg(a1)
 	move.b	d0,cddat(a1)
+
 locret_203786:
 	rts
+
 locret_203788:
 	rts
 
@@ -128,6 +138,7 @@ loc_2037A8:
 	bhs.s	locret_203786
 	cmpi.w	#$298,d2
 	blo.s	locret_203786
+
 loc_2037BA:
 	tst.w	mspeed(a0)
 	beq.s	locret_203786
@@ -141,10 +152,12 @@ loc_2037BA:
 	move.w	mspeed(a0),d0
 	bpl.s	loc_2037EA
 	neg.w	d0
+
 loc_2037EA:
 	cmpi.w	#$600,d0
 	bhs.s	loc_2037F6
 	move.b	#2,userflag(a1)
+
 loc_2037F6:
 	move.w	#$A1,d0
 	jmp	soundset.l
@@ -288,6 +301,7 @@ sub_203954:
 	cmpi.b	#2,d1
 	bne.s	loc_203978
 	add.b	byte_FF127A,d1
+
 loc_203978:
 	add.w	d1,d1
 	move.w	off_203998(pc,d1.w),d1
@@ -295,6 +309,7 @@ loc_203978:
 	moveq	#0,d6
 	move.w	(a1)+,d6
 	moveq	#0,d1
+
 loc_203988:
 	cmp.w	(a1,d1.w),d0
 	beq.s	loc_203A0C
@@ -405,11 +420,13 @@ loc_203A4C:
 	tst.b	d1
 	bne.s	loc_203A58
 	addi.w	#$10,d2
+
 loc_203A58:
 	andi.w	#$FFF0,d3
 	btst	#$B,d4
 	bne.s	loc_203A66
 	addi.w	#$10,d3
+
 loc_203A66:
 	move.w	d3,d1
 	movem.l	d1-d2,-(sp)
@@ -457,6 +474,7 @@ loc_203ADA:
 	asr.l	#8,d0
 	asr.l	#1,d0
 	move.w	d0,yspeed(a0)
+
 loc_203B14:
 	bset	#cd_walk,cddat(a0)
 	bclr	#cd_ballj,cddat(a0)
@@ -525,6 +543,7 @@ sub_203BA4:
 	bne.s	loc_203BC6
 	neg.b	d3
 	addi.b	#$F,d3
+
 loc_203BC6:
 	cmp.b	(a1,d3.w),d2
 	bhs.s	loc_203BD6
@@ -541,6 +560,7 @@ loc_203BD6:
 	btst	#$B,d4
 	beq.s	loc_203BF8
 	addi.b	#$40,d0
+
 loc_203BF8:
 	jsr	sinset.l
 	muls.w	#-$700,d1
@@ -654,7 +674,7 @@ loc_203CAC:
 	bra.w	sub_203B3E
 
 play00move:
-	bsr.w	sub_203720
+	bsr.w	mizuki_set
 	tst.w	debugflag
 	beq.s	loc_203CD6
 	btst	#4,swdata1+1.w
@@ -663,12 +683,13 @@ play00move:
 	rts
 
 loc_203CD6:
-	tst.b	byte_FFF7CC.w
+	tst.b	plautoflag.w
 	bne.s	loc_203CF0
 	move.w	swdata1.w,swdata.w
 	_cmpi.b	#objid_01,actno(a0)
 	beq.s	loc_203CF0
 	move.w	swdata2.w,swdata.w
+
 loc_203CF0:
 	btst	#0,act2C(a0)
 	bne.s	loc_203D0E
@@ -678,24 +699,28 @@ loc_203CF0:
 	move.w	off_203D52(pc,d0.w),d1
 	jsr	off_203D52(pc,d1.w)
 	bsr.w	sub_203826
+
 loc_203D0E:
-	bsr.s	sub_203D60
+	bsr.s	playpowercnt
 	tst.b	act29(a0)
 	beq.s	loc_203D1A
 	bsr.w	playposiwkset
+
 loc_203D1A:
 	move.b	dirstk.w,footdir(a0)
 	move.b	dirstk2.w,act37(a0)
-	tst.b	byte_FFF7C7.w
+	tst.b	watercoliflag.w
 	beq.s	loc_203D38
 	tst.b	mstno(a0)
 	bne.s	loc_203D38
 	move.b	act1D(a0),mstno(a0)
+
 loc_203D38:
 	bsr.w	patchgmain
 	tst.b	act2C(a0)
 	bmi.s	loc_203D48
 	jsr	pcol.l
+
 loc_203D48:
 	bsr.w	loopchk
 	bsr.w	sub_203E16
@@ -716,27 +741,30 @@ unk_203D5A:
 	dc.b	musid_SBZ
 	even
 
-sub_203D60:
+playpowercnt:
 	cmpi.w	#$D2,backto_cnt.w
 	bhs.s	loc_203D8C
-	move.w	act30(a0),d0
+	move.w	invulnerabilitytimer(a0),d0
 	beq.s	loc_203D76
-	subq.w	#1,act30(a0)
+	subq.w	#1,invulnerabilitytimer(a0)
 	lsr.w	#3,d0
 	bhs.s	loc_203D8C
+
 loc_203D76:
 	tst.b	act29(a0)
 	bne.s	loc_203D86
 	btst	#0,systemtimer+3
 	beq.s	loc_203D8C
+
 loc_203D86:
 	jsr	actionsub.l
+
 loc_203D8C:
 	tst.b	plpower_m
 	beq.s	loc_203DDC
-	tst.w	act32(a0)
+	tst.w	mutekitimer(a0)
 	beq.s	loc_203DDC
-	subq.w	#1,act32(a0)
+	subq.w	#1,mutekitimer(a0)
 	bne.s	loc_203DDC
 	tst.b	bossstart.w
 	bne.s	loc_203DD4
@@ -747,12 +775,15 @@ loc_203D8C:
 	cmpi.w	#zoneact(zoneid_LZ,actid_4),stageno
 	bne.s	loc_203DC4
 	moveq	#5,d0
+
 loc_203DC4:
 	lea	unk_203D5A.l,a1
 	move.b	(a1,d0.w),d0
 	jsr	bgmset.l
+
 loc_203DD4:
 	move.b	#0,plpower_m
+
 loc_203DDC:
 	tst.b	plpower_s
 	beq.s	locret_203E14
@@ -778,6 +809,7 @@ sub_203E16:
 	blo.s	loc_203E2E
 	cmp.w	xposi(a0),d0
 	bhi.w	frameout
+
 loc_203E2E:
 	addi.w	#$240,d0
 	cmp.w	xposi(a0),d0
@@ -787,10 +819,12 @@ loc_203E2E:
 	blo.s	loc_203E4C
 	cmp.w	yposi(a0),d0
 	bhi.w	frameout
+
 loc_203E4C:
 	addi.w	#$180,d0
 	cmp.w	yposi(a0),d0
 	blt.w	frameout
+
 locret_203E58:
 	rts
 
@@ -2096,7 +2130,7 @@ play00damage_sub:
 	move.w	d0,mspeed(a0)
 	move.b	#0,mstno(a0)
 	subq.b	#2,r_no0(a0)
-	move.w	#120,act30(a0)
+	move.w	#120,invulnerabilitytimer(a0)
 locret_204D5C:
 	rts
 

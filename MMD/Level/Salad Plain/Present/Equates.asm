@@ -250,6 +250,8 @@ rollheight:	equ	14
 rollwidth:	equ	7
 chibiheight:	equ	10
 chibiwidth:	equ	5
+invulnerabilitytimer:	equ	act30
+mutekitimer:	equ	act32
 speeduptimer:	equ	act34
 footdir:	equ	act36
 

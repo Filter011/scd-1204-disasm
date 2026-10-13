@@ -42,7 +42,7 @@ locret_20DF50:
 loc_20DF52:
 	subq.b	#1,act2A(a0)
 	bne.s	locret_20DF6E
-	bset	#0,byte_FFF7CC.w
+	bset	#0,plautoflag.w
 	move.w	#$808,swdata.w
 	move.b	#60,act2A(a0)
 	addq.b	#2,r_no0(a0)
