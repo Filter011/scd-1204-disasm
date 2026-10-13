@@ -3519,7 +3519,6 @@ loc_203020:
 
 	lea	$80(a3),a3
 	dbf	d2,loc_20301C
-
 	rts
 
 scrchk:
@@ -3689,7 +3688,7 @@ loc_2031A2:
 actionsub:
 	bclr	#7,actflg(a0)
 	move.b	actflg(a0),d0
-	andi.w	#$C,d0
+	andi.w	#%1100,d0
 	beq.s	loc_203204
 	move.b	sprhsize(a0),d0
 	move.w	xposi(a0),d3
@@ -3758,18 +3757,18 @@ patset:
 	lea	byte_FFF800.w,a2
 	moveq	#0,d5
 	lea	spr_list.w,a4
-	moveq	#7,d7
+	moveq	#8-1,d7
 loc_20326A:
 	tst.w	(a4)
 	beq.w	loc_203302
 	moveq	#2,d6
 loc_203272:
 	movea.w	(a4,d6.w),a0
-	tst.b	(a0)
+	tst.b	actno(a0)
 	beq.w	loc_2032FA
 	move.b	actflg(a0),d0
 	move.b	d0,d4
-	andi.w	#$C,d0
+	andi.w	#%1100,d0
 	beq.s	loc_2032B0
 	movea.l	patsettbl(pc,d0.w),a1
 	moveq	#0,d0
