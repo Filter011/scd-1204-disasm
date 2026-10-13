@@ -1,6 +1,6 @@
 ring:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2089E4(pc,d0.w),d1
 	jmp	off_2089E4(pc,d1.w)
 
@@ -32,7 +32,7 @@ ringtbl:
 loc_208A0E:
 	lea	flagwork,a2
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	move.w	d0,d1
 	add.w	d1,d1
 	add.w	d1,d0
@@ -41,7 +41,7 @@ loc_208A0E:
 	add.w	d1,d0
 	lea	2(a2,d0.w),a2
 	move.b	(a2),d4
-	move.b	obj.subtype(a0),d1
+	move.b	userflag(a0),d1
 	moveq	#0,d0
 	move.b	d1,d0
 	andi.w	#7,d1
@@ -58,8 +58,8 @@ loc_208A44:
 	move.b	ringtbl+1(pc,d0.w),d6
 	ext.w	d6
 	movea.l	a0,a1
-	move.w	obj.xpos(a0),d2
-	move.w	obj.ypos(a0),d3
+	move.w	xposi(a0),d2
+	move.w	yposi(a0),d3
 	lea	1(a2),a3
 	moveq	#0,d0
 	move.b	time_flag,d0
@@ -85,19 +85,19 @@ loc_208A8E:
 	bsr.w	actwkchk
 	bne.s	loc_208AF6
 loc_208AA2:
-	_move.b	#objid_10,obj.id(a1)
-	addq.b	#2,obj.routine(a1)
-	move.w	d2,obj.xpos(a1)
-	move.w	obj.xpos(a0),obj.field_32(a1)
-	move.w	d3,obj.ypos(a1)
-	move.l	#ring_map,obj.mappings(a1)
-	move.w	#$A7AE,obj.vram(a1)
-	move.b	#4,obj.render(a1)
-	move.b	#2,obj.priority(a1)
-	move.b	#$47,obj.colflag(a1)
-	move.b	#8,obj.field_19(a1)
-	move.b	obj.field_23(a0),obj.field_23(a1)
-	move.b	d1,obj.field_34(a1)
+	_move.b	#objid_10,actno(a1)
+	addq.b	#2,r_no0(a1)
+	move.w	d2,xposi(a1)
+	move.w	xposi(a0),act32(a1)
+	move.w	d3,yposi(a1)
+	move.l	#ring_map,patbase(a1)
+	move.w	#$A7AE,sproffset(a1)
+	move.b	#4,actflg(a1)
+	move.b	#2,sprpri(a1)
+	move.b	#$47,colino(a1)
+	move.b	#8,sprhsize(a1)
+	move.b	cdsts(a0),cdsts(a1)
+	move.b	d1,act34(a1)
 loc_208AEA:
 	addq.w	#1,d1
 	add.w	d5,d2
@@ -108,7 +108,7 @@ loc_208AF6:
 	btst	#0,(a2)
 	bne.w	frameout
 loc_208AFE:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -118,25 +118,25 @@ loc_208AFE:
 	bhi.w	loc_208B78
 	tst.w	word_FF1278
 	bne.s	loc_208B2C
-	move.b	sys_patno2,obj.frame(a0)
+	move.b	sys_patno2,patno(a0)
 loc_208B2C:
 	bra.w	actionsub
 
 loc_208B30:
-	addq.b	#2,obj.routine(a0)
-	move.b	#0,obj.colflag(a0)
-	move.b	#1,obj.priority(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#0,colino(a0)
+	move.b	#1,sprpri(a0)
 	bsr.w	sub_208B7C
 	lea	flagwork,a2
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	move.w	d0,d1
 	add.w	d1,d1
 	add.w	d1,d0
 	moveq	#0,d1
 	move.b	time_flag,d1
 	add.w	d1,d0
-	move.b	obj.field_34(a0),d1
+	move.b	act34(a0),d1
 	subq.b	#1,d1
 	bset	d1,2(a2,d0.w)
 loc_208B6A:
@@ -168,7 +168,7 @@ loc_208BC6:
 
 flyring:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_208BDA(pc,d0.w),d1
 	jmp	off_208BDA(pc,d1.w)
 
@@ -196,18 +196,18 @@ loc_208BFE:
 	bsr.w	actwkchk
 	bne.w	loc_208C8E
 loc_208C06:
-	_move.b	#objid_11,obj.id(a1)
-	addq.b	#2,obj.routine(a1)
-	move.b	#8,obj.height(a1)
-	move.b	#8,obj.width(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	move.l	#ring_map,obj.mappings(a1)
-	move.w	#$A7AE,obj.vram(a1)
-	move.b	#4,obj.render(a1)
-	move.b	#3,obj.priority(a1)
-	move.b	#$47,obj.colflag(a1)
-	move.b	#8,obj.field_19(a1)
+	_move.b	#objid_11,actno(a1)
+	addq.b	#2,r_no0(a1)
+	move.b	#8,sprvsize(a1)
+	move.b	#8,sprhs(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	move.l	#ring_map,patbase(a1)
+	move.w	#$A7AE,sproffset(a1)
+	move.b	#4,actflg(a1)
+	move.b	#3,sprpri(a1)
+	move.b	#$47,colino(a1)
+	move.b	#8,sprhsize(a1)
 	move.b	#-1,sys_pattim4
 	tst.w	d4
 	bmi.s	loc_208C7E
@@ -225,8 +225,8 @@ loc_208C06:
 	bhs.s	loc_208C7E
 	move.w	#$288,d4
 loc_208C7E:
-	move.w	d2,obj.xvel(a1)
-	move.w	d3,obj.yvel(a1)
+	move.w	d2,xspeed(a1)
+	move.w	d3,yspeed(a1)
 	neg.w	d2
 	neg.w	d4
 	dbf	d5,loc_208BFE
@@ -237,9 +237,9 @@ loc_208C8E:
 	move.w	#$94,d0
 	jsr	soundset.l
 loc_208CB0:
-	move.b	sys_patno4,obj.frame(a0)
+	move.b	sys_patno4,patno(a0)
 	bsr.w	speedset2
-	addi.w	#$18,obj.yvel(a0)
+	addi.w	#$18,yspeed(a0)
 	bmi.s	loc_208CEE
 	move.b	dword_FF120C+3,d0
 	add.b	d7,d0
@@ -248,24 +248,24 @@ loc_208CB0:
 	jsr	sub_20611C.l
 	tst.w	d1
 	bpl.s	loc_208CEE
-	add.w	d1,obj.ypos(a0)
-	move.w	obj.yvel(a0),d0
+	add.w	d1,yposi(a0)
+	move.w	yspeed(a0),d0
 	asr.w	#2,d0
-	sub.w	d0,obj.yvel(a0)
-	neg.w	obj.yvel(a0)
+	sub.w	d0,yspeed(a0)
+	neg.w	yspeed(a0)
 loc_208CEE:
 	tst.b	sys_pattim4
 	beq.s	loc_208D2A
 	move.w	scralim_down.w,d0
 	addi.w	#224,d0
-	cmp.w	obj.ypos(a0),d0
+	cmp.w	yposi(a0),d0
 	blo.s	loc_208D2A
 	bra.w	actionsub
 
 loc_208D08:
-	addq.b	#2,obj.routine(a0)
-	move.b	#0,obj.colflag(a0)
-	move.b	#1,obj.priority(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#0,colino(a0)
+	move.b	#1,sprpri(a0)
 	bsr.w	sub_208B7C
 loc_208D1C:
 	lea	ring_ani.l,a1

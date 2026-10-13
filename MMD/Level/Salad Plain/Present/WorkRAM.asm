@@ -20,7 +20,7 @@ editmode:		ds.w	1
 	ds.b	2
 dword_FF120C:		ds.l	1
 stageno:		ds.b	1
-act:			ds.b	1
+stageact:		ds.b	1
 pl_suu:			ds.b	1
 	ds.b	1
 pl_air:			ds.w	1
@@ -158,22 +158,22 @@ hscrollwk:		ds.b	$380
 hscrollwk_end:
 	ds.b	$80
 hscrollwk_end_padded:
-actwk:			obj
-byte_FFD040:		obj
-byte_FFD080:		obj
-byte_FFD0C0:		obj
-byte_FFD100:		obj
-byte_FFD140:		obj
-byte_FFD180:		obj
-byte_FFD1C0:		obj
-byte_FFD200:		obj
-byte_FFD240:		obj
-byte_FFD280:		obj
-byte_FFD2C0:		obj
-byte_FFD300:		obj
-byte_FFD340:		obj
-byte_FFD380:		obj
-byte_FFD3C0:		obj
+actwk:			ds.b	actfree
+byte_FFD040:		ds.b	actfree
+byte_FFD080:		ds.b	actfree
+byte_FFD0C0:		ds.b	actfree
+byte_FFD100:		ds.b	actfree
+byte_FFD140:		ds.b	actfree
+byte_FFD180:		ds.b	actfree
+byte_FFD1C0:		ds.b	actfree
+byte_FFD200:		ds.b	actfree
+byte_FFD240:		ds.b	actfree
+byte_FFD280:		ds.b	actfree
+byte_FFD2C0:		ds.b	actfree
+byte_FFD300:		ds.b	actfree
+byte_FFD340:		ds.b	actfree
+byte_FFD380:		ds.b	actfree
+byte_FFD3C0:		ds.b	actfree
 unk_FFD400:		ds.b	$400
 byte_FFD800:		ds.b	$1800
 byte_FFD800_end:

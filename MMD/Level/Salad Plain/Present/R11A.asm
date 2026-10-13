@@ -487,7 +487,7 @@ pal_spz:
 	even
 
 frameoutchk:
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	andi.w	#-$80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -500,7 +500,7 @@ frameoutchk:
 loc_20067A:
 	lea	flagwork,a2
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	beq.s	.delete
 	bclr	#7,2(a2,d0.w)
 
@@ -578,10 +578,12 @@ atan:
 	tst.w	d3
 	bpl.w	loc_200950
 	neg.w	d3
+
 loc_200950:
 	tst.w	d4
 	bpl.w	loc_200958
 	neg.w	d4
+
 loc_200958:
 	cmp.w	d3,d4
 	bhs.w	loc_20096A
@@ -596,16 +598,19 @@ loc_20096A:
 	divu.w	d4,d3
 	moveq	#$40,d0
 	sub.b	atantbl(pc,d3.w),d0
+
 loc_200974:
 	tst.w	d1
 	bpl.w	loc_200980
 	neg.w	d0
 	addi.w	#$80,d0
+
 loc_200980:
 	tst.w	d2
 	bpl.w	loc_20098C
 	neg.w	d0
 	addi.w	#$100,d0
+
 loc_20098C:
 	movem.l	(sp)+,d3-d4
 	rts
@@ -636,7 +641,7 @@ atantbl:
 	even
 
 fcol:
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	beq.s	loc_200AB2
 	moveq	#0,d0
 	move.b	d0,dirstk.w
@@ -647,10 +652,10 @@ loc_200AB2:
 	moveq	#3,d0
 	move.b	d0,dirstk.w
 	move.b	d0,dirstk2.w
-	move.b	obj.angle(a0),d0
+	move.b	direc(a0),d0
 	addi.b	#$20,d0
 	bpl.s	loc_200AD4
-	move.b	obj.angle(a0),d0
+	move.b	direc(a0),d0
 	bpl.s	loc_200ACE
 	subq.b	#1,d0
 
@@ -659,7 +664,7 @@ loc_200ACE:
 	bra.s	loc_200AE0
 
 loc_200AD4:
-	move.b	obj.angle(a0),d0
+	move.b	direc(a0),d0
 	bpl.s	loc_200ADC
 	addq.b	#1,d0
 
@@ -676,13 +681,13 @@ loc_200AE0:
 	beq.w	fcol_r
 
 fcol_d:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk.w,a4
@@ -691,13 +696,13 @@ fcol_d:
 	moveq	#$D,d5
 	bsr.w	scdchk
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	neg.w	d0
 	add.w	d0,d3
@@ -713,7 +718,7 @@ fcol_d:
 	bpl.s	loc_200B70
 	cmpi.w	#-$E,d1
 	blt.s	locret_200B96
-	add.w	d1,obj.ypos(a0)
+	add.w	d1,yposi(a0)
 
 locret_200B6E:
 	rts
@@ -723,60 +728,60 @@ loc_200B70:
 	bgt.s	loc_200B7C
 
 loc_200B76:
-	add.w	d1,obj.ypos(a0)
+	add.w	d1,yposi(a0)
 	rts
 
 loc_200B7C:
-	tst.b	obj.field_38(a0)
+	tst.b	act38(a0)
 	bne.s	loc_200B76
-	bset	#1,obj.status(a0)
-	bclr	#5,obj.status(a0)
-	move.b	#1,obj.prevani(a0)
+	bset	#1,cddat(a0)
+	bclr	#5,cddat(a0)
+	move.b	#1,act1D(a0)
 	rts
 
 locret_200B96:
 	rts
 
-	move.l	obj.xpos(a0),d2
-	move.w	obj.xvel(a0),d0
+	move.l	xposi(a0),d2
+	move.w	xspeed(a0),d0
 	ext.l	d0
 	asl.l	#8,d0
 	sub.l	d0,d2
-	move.l	d2,obj.xpos(a0)
+	move.l	d2,xposi(a0)
 	move.w	#$38,d0
 	ext.l	d0
 	asl.l	#8,d0
 	sub.l	d0,d3
-	move.l	d3,obj.ypos(a0)
+	move.l	d3,yposi(a0)
 	rts
 
 locret_200BBA:
 	rts
 
-	move.l	obj.ypos(a0),d3
-	move.w	obj.yvel(a0),d0
+	move.l	yposi(a0),d3
+	move.w	yspeed(a0),d0
 	subi.w	#$38,d0
-	move.w	d0,obj.yvel(a0)
+	move.w	d0,yspeed(a0)
 	ext.l	d0
 	asl.l	#8,d0
 	sub.l	d0,d3
-	move.l	d3,obj.ypos(a0)
+	move.l	d3,yposi(a0)
 	rts
 
 	rts
 
-	move.l	obj.xpos(a0),d2
-	move.l	obj.ypos(a0),d3
-	move.w	obj.xvel(a0),d0
+	move.l	xposi(a0),d2
+	move.l	yposi(a0),d3
+	move.w	xspeed(a0),d0
 	ext.l	d0
 	asl.l	#8,d0
 	sub.l	d0,d2
-	move.w	obj.yvel(a0),d0
+	move.w	yspeed(a0),d0
 	ext.l	d0
 	asl.l	#8,d0
 	sub.l	d0,d3
-	move.l	d2,obj.xpos(a0)
-	move.l	d3,obj.ypos(a0)
+	move.l	d2,xposi(a0)
+	move.l	d3,yposi(a0)
 	rts
 
 dirchk:
@@ -789,25 +794,25 @@ dirchk:
 loc_200C0E:
 	btst	#0,d2
 	bne.s	loc_200C1A
-	move.b	d2,obj.angle(a0)
+	move.b	d2,direc(a0)
 	rts
 
 loc_200C1A:
-	move.b	obj.angle(a0),d2
+	move.b	direc(a0),d2
 	addi.b	#$20,d2
 	andi.b	#$C0,d2
-	move.b	d2,obj.angle(a0)
+	move.b	d2,direc(a0)
 	rts
 
 fcol_r:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	neg.w	d0
 	add.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk.w,a4
@@ -816,13 +821,13 @@ fcol_r:
 	moveq	#$D,d5
 	bsr.w	scdchk_r
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk2.w,a4
@@ -837,7 +842,7 @@ fcol_r:
 	bpl.s	loc_200CA2
 	cmpi.w	#-$E,d1
 	blt.w	locret_200BBA
-	add.w	d1,obj.xpos(a0)
+	add.w	d1,xposi(a0)
 
 locret_200CA0:
 	rts
@@ -847,26 +852,26 @@ loc_200CA2:
 	bgt.s	loc_200CAE
 
 loc_200CA8:
-	add.w	d1,obj.xpos(a0)
+	add.w	d1,xposi(a0)
 	rts
 
 loc_200CAE:
-	tst.b	obj.field_38(a0)
+	tst.b	act38(a0)
 	bne.s	loc_200CA8
-	bset	#1,obj.status(a0)
-	bclr	#5,obj.status(a0)
-	move.b	#1,obj.prevani(a0)
+	bset	#1,cddat(a0)
+	bclr	#5,cddat(a0)
+	move.b	#1,act1D(a0)
 	rts
 
 fcol_u:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
 	eori.w	#$F,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk.w,a4
@@ -875,14 +880,14 @@ fcol_u:
 	moveq	#$D,d5
 	bsr.w	scdchk
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
 	eori.w	#$F,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	lea	dirstk2.w,a4
@@ -897,7 +902,7 @@ fcol_u:
 	bpl.s	loc_200D44
 	cmpi.w	#-$E,d1
 	blt.w	locret_200B96
-	sub.w	d1,obj.ypos(a0)
+	sub.w	d1,yposi(a0)
 
 locret_200D42:
 	rts
@@ -907,25 +912,25 @@ loc_200D44:
 	bgt.s	loc_200D50
 
 loc_200D4A:
-	sub.w	d1,obj.ypos(a0)
+	sub.w	d1,yposi(a0)
 	rts
 
 loc_200D50:
-	tst.b	obj.field_38(a0)
+	tst.b	act38(a0)
 	bne.s	loc_200D4A
-	bset	#1,obj.status(a0)
-	bclr	#5,obj.status(a0)
-	move.b	#1,obj.prevani(a0)
+	bset	#1,cddat(a0)
+	bclr	#5,cddat(a0)
+	move.b	#1,act1D(a0)
 	rts
 
 fcol_l:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
@@ -935,13 +940,13 @@ fcol_l:
 	moveq	#$D,d5
 	bsr.w	scdchk_r
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
@@ -957,7 +962,7 @@ fcol_l:
 	bpl.s	loc_200DE6
 	cmpi.w	#-$E,d1
 	blt.w	locret_200BBA
-	sub.w	d1,obj.xpos(a0)
+	sub.w	d1,xposi(a0)
 
 locret_200DE4:
 	rts
@@ -966,15 +971,15 @@ loc_200DE6:
 	cmpi.w	#$E,d1
 	bgt.s	loc_200DF2
 loc_200DEC:
-	sub.w	d1,obj.xpos(a0)
+	sub.w	d1,xposi(a0)
 	rts
 
 loc_200DF2:
-	tst.b	obj.field_38(a0)
+	tst.b	act38(a0)
 	bne.s	loc_200DEC
-	bset	#1,obj.status(a0)
-	bclr	#5,obj.status(a0)
-	move.b	#1,obj.prevani(a0)
+	bset	#1,cddat(a0)
+	bclr	#5,cddat(a0)
+	move.b	#1,act1D(a0)
 	rts
 
 scramapad:
@@ -1008,7 +1013,7 @@ loc_200E4A:
 
 loc_200E4E:
 	andi.w	#$7F,d1
-	btst	#6,obj.render(a0)
+	btst	#6,actflg(a0)
 	beq.s	loc_200E66
 	addq.w	#1,d1
 	cmpi.w	#$29,d1
@@ -1541,7 +1546,7 @@ loc_20133E:
 	bsr.w	sub_20147C
 	move.b	#objid_1C,byte_FFD080.w
 	move.b	#objid_1C,byte_FFD0C0.w
-	move.b	#1,byte_FFD0C0+obj.subtype.w
+	move.b	#1,byte_FFD0C0+userflag.w
 	bsr.w	sub_2015E8
 	move.w	#0,swdata.w
 	move.w	#0,swdata1.w
@@ -1591,7 +1596,7 @@ loc_20141E:
 	bne.w	level
 	tst.w	editmode
 	bne.s	loc_201454
-	cmpi.b	#6,actwk+obj.routine.w
+	cmpi.b	#6,actwk+r_no0.w
 	bhs.s	loc_201458
 
 loc_201454:
@@ -1618,7 +1623,7 @@ sub_20147C:
 	moveq	#objid_02,d0
 
 loc_201490:
-	_move.b	d0,obj.id(a1)
+	_move.b	d0,actno(a1)
 	rts
 
 	lea	dword_FF1880,a1
@@ -1632,7 +1637,7 @@ loc_201490:
 	moveq	#0,d1
 
 loc_2014B6:
-	_move.b	#objid_1F,obj.id(a2)
+	_move.b	#objid_1F,actno(a2)
 	move.w	d1,d2
 	add.w	d2,d2
 	add.w	d2,d2
@@ -1642,9 +1647,9 @@ loc_2014B6:
 	lsl.w	#8,d3
 	add.w	d3,d2
 	lea	byte_FF1580,a3
-	move.w	(a3,d2.w),obj.xpos(a2)
-	move.w	2(a3,d2.w),obj.ypos(a2)
-	adda.w	#obj.len,a2
+	move.w	(a3,d2.w),xposi(a2)
+	move.w	2(a3,d2.w),yposi(a2)
+	adda.w	#actfree,a2
 	addq.b	#1,d1
 	dbf	d0,loc_2014B6
 
@@ -2351,8 +2356,8 @@ loc_20247C:
 	jsr	playload.l
 	moveq	#0,d0
 	moveq	#0,d1
-	move.w	obj.xpos(a6),d1
-	move.w	obj.ypos(a6),d0
+	move.w	xposi(a6),d1
+	move.w	yposi(a6),d0
 	bra.s	loc_2024D4
 
 loc_202498:
@@ -2373,10 +2378,10 @@ loc_2024BA:
 loc_2024C4:
 	moveq	#0,d1
 	move.w	(a1)+,d1
-	move.w	d1,obj.xpos(a6)
+	move.w	d1,xposi(a6)
 	moveq	#0,d0
 	move.w	(a1),d0
-	move.w	d0,obj.ypos(a6)
+	move.w	d0,yposi(a6)
 loc_2024D4:
 	subi.w	#320/2,d1
 	bhs.s	loc_2024DC
@@ -2628,7 +2633,7 @@ locret_202748:
 	rts
 
 scrh_move:
-	move.w	obj.xpos(a6),d0
+	move.w	xposi(a6),d0
 	sub.w	scra_h_posit.w,d0
 	subi.w	#144,d0
 	blt.s	loc_20278E
@@ -2676,13 +2681,13 @@ loc_2027B2:
 
 scroll_v:
 	moveq	#0,d1
-	move.w	obj.ypos(a6),d0
+	move.w	yposi(a6),d0
 	sub.w	scra_v_posit.w,d0
-	btst	#plst_ball,obj.status(a6)
+	btst	#plst_ball,cddat(a6)
 	beq.s	loc_2027CC
 	subq.w	#5,d0
 loc_2027CC:
-	btst	#plst_jump,obj.status(a6)
+	btst	#plst_jump,cddat(a6)
 	beq.s	loc_2027EC
 	addi.w	#32,d0
 	sub.w	scra_vline.w,d0
@@ -2705,7 +2710,7 @@ loc_2027F8:
 sv_move_main:
 	cmpi.w	#$60,scra_vline.w
 	bne.s	sv_move_main1
-	move.w	obj.inertia(a6),d1
+	move.w	mspeed(a6),d1
 	bpl.s	loc_20280E
 	neg.w	d1
 loc_20280E:
@@ -2757,7 +2762,7 @@ scrv_up_ch:
 	cmpi.w	#-$100,d1
 	bgt.s	loc_202892
 	andi.w	#$7FF,d1
-	andi.w	#$7FF,obj.ypos(a6)
+	andi.w	#$7FF,yposi(a6)
 	andi.w	#$7FF,scra_v_posit.w
 	andi.w	#$3FF,scrb_v_posit.w
 	bra.s	scrv_move
@@ -2776,7 +2781,7 @@ scrv_down_ch:
 	blt.s	scrv_move
 	subi.w	#$800,d1
 	blo.s	loc_2028C2
-	andi.w	#$7FF,obj.ypos(a6)
+	andi.w	#$7FF,yposi(a6)
 	subi.w	#$800,scra_v_posit.w
 	andi.w	#$3FF,scrb_v_posit.w
 	bra.s	scrv_move
@@ -3546,7 +3551,7 @@ loc_203076:
 	addq.w	#8,d0
 	cmp.w	scralim_down.w,d0
 	blo.s	loc_20308E
-	btst	#1,obj.status(a6)
+	btst	#1,cddat(a6)
 	beq.s	loc_20308E
 	add.w	d1,d1
 	add.w	d1,d1
@@ -3567,7 +3572,7 @@ off_20309A:
 
 zone1chk:
 	moveq	#0,d0
-	move.b	act,d0
+	move.b	stageact,d0
 	add.w	d0,d0
 	move.w	off_2030BC(pc,d0.w),d0
 	jmp	off_2030BC(pc,d0.w)
@@ -3583,7 +3588,7 @@ zone11chk:
 
 zone3chk:
 	moveq	#0,d0
-	move.b	act,d0
+	move.b	stageact,d0
 	add.w	d0,d0
 	move.w	off_2030DC(pc,d0.w),d0
 	jmp	off_2030DC(pc,d0.w)
@@ -3603,7 +3608,7 @@ zone4chk:
 
 sub_2030F2:
 	lea	actwk.w,a0
-	moveq	#(byte_FFD800_end-actwk)/obj.len-1,d7
+	moveq	#(byte_FFD800_end-actwk)/actfree-1,d7
 	moveq	#0,d0
 loc_2030FA:
 	move.b	(a0),d0
@@ -3615,56 +3620,56 @@ loc_2030FA:
 	jsr	(a1)
 	moveq	#0,d0
 loc_203110:
-	lea	obj.len(a0),a0
+	lea	actfree(a0),a0
 	dbf	d7,loc_2030FA
 	rts
 
-	moveq	#(byte_FFD800-actwk)/obj.len-1,d7
+	moveq	#(byte_FFD800-actwk)/actfree-1,d7
 	bsr.s	loc_2030FA
-	moveq	#$1800/obj.len-1,d7
+	moveq	#$1800/actfree-1,d7
 loc_203120:
 	moveq	#0,d0
 	move.b	(a0),d0
 	beq.s	loc_203130
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_203130
 	bsr.w	actionsub
 loc_203130:
-	lea	obj.len(a0),a0
+	lea	actfree(a0),a0
 	dbf	d7,loc_203120
 	rts
 
 speedset:
-	move.l	obj.xpos(a0),d2
-	move.l	obj.ypos(a0),d3
-	move.w	obj.xvel(a0),d0
+	move.l	xposi(a0),d2
+	move.l	yposi(a0),d3
+	move.w	xspeed(a0),d0
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d2
-	move.w	obj.yvel(a0),d0
-	addi.w	#$38,obj.yvel(a0)
+	move.w	yspeed(a0),d0
+	addi.w	#$38,yspeed(a0)
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d3
-	move.l	d2,obj.xpos(a0)
-	move.l	d3,obj.ypos(a0)
+	move.l	d2,xposi(a0)
+	move.l	d3,yposi(a0)
 	rts
 
 speedset2:
-	move.l	obj.xpos(a0),d2
-	move.l	obj.ypos(a0),d3
-	move.w	obj.xvel(a0),d0
-	btst	#3,obj.status(a0)
+	move.l	xposi(a0),d2
+	move.l	yposi(a0),d3
+	move.w	xspeed(a0),d0
+	btst	#3,cddat(a0)
 	beq.s	loc_2031A2
 	moveq	#0,d1
-	move.b	obj.field_3D(a0),d1
+	move.b	act3D(a0),d1
 	lsl.w	#6,d1
 	addi.l	#actwk&$FFFFFF,d1
 	movea.l	d1,a1
-	_cmpi.b	#objid_1E,obj.id(a1)
+	_cmpi.b	#objid_1E,actno(a1)
 	bne.s	loc_2031A2
 	move.w	#-$100,d1
-	btst	#0,obj.status(a1)
+	btst	#0,cddat(a1)
 	beq.s	loc_2031A0
 	neg.w	d1
 loc_2031A0:
@@ -3673,21 +3678,21 @@ loc_2031A2:
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d2
-	move.w	obj.yvel(a0),d0
+	move.w	yspeed(a0),d0
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d3
-	move.l	d2,obj.xpos(a0)
-	move.l	d3,obj.ypos(a0)
+	move.l	d2,xposi(a0)
+	move.l	d3,yposi(a0)
 	rts
 
 actionsub:
-	bclr	#7,obj.render(a0)
-	move.b	obj.render(a0),d0
+	bclr	#7,actflg(a0)
+	move.b	actflg(a0),d0
 	andi.w	#$C,d0
 	beq.s	loc_203204
-	move.b	obj.field_19(a0),d0
-	move.w	obj.xpos(a0),d3
+	move.b	sprhsize(a0),d0
+	move.w	xposi(a0),d3
 	sub.w	scra_h_posit.w,d3
 	move.w	d3,d1
 	add.w	d0,d1
@@ -3696,8 +3701,8 @@ actionsub:
 	sub.w	d0,d1
 	cmpi.w	#320,d1
 	bge.s	locret_203220
-	move.b	obj.height(a0),d0
-	move.w	obj.ypos(a0),d3
+	move.b	sprvsize(a0),d0
+	move.w	yposi(a0),d3
 	sub.w	scra_v_posit.w,d3
 	move.w	d3,d1
 	add.w	d0,d1
@@ -3708,7 +3713,7 @@ actionsub:
 	bge.s	locret_203220
 loc_203204:
 	lea	spr_list.w,a1
-	move.w	obj.priority(a0),d0
+	move.w	sprpri(a0),d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
 	adda.w	d0,a1
@@ -3721,7 +3726,7 @@ locret_203220:
 	rts
 
 	lea	spr_list.w,a2
-	move.w	obj.priority(a1),d0
+	move.w	sprpri(a1),d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
 	adda.w	d0,a2
@@ -3736,7 +3741,7 @@ locret_20323E:
 frameout:
 	movea.l	a0,a1
 	moveq	#0,d1
-	moveq	#obj.len/4-1,d0
+	moveq	#actfree/4-1,d0
 loc_203246:
 	move.l	d1,(a1)+
 	dbf	d0,loc_203246
@@ -3762,29 +3767,29 @@ loc_203272:
 	movea.w	(a4,d6.w),a0
 	tst.b	(a0)
 	beq.w	loc_2032FA
-	move.b	obj.render(a0),d0
+	move.b	actflg(a0),d0
 	move.b	d0,d4
 	andi.w	#$C,d0
 	beq.s	loc_2032B0
 	movea.l	patsettbl(pc,d0.w),a1
 	moveq	#0,d0
-	move.b	obj.field_19(a0),d0
-	move.w	obj.xpos(a0),d3
+	move.b	sprhsize(a0),d0
+	move.w	xposi(a0),d3
 	sub.w	(a1),d3
 	addi.w	#128,d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
-	move.w	obj.ypos(a0),d2
+	move.b	sprvsize(a0),d0
+	move.w	yposi(a0),d2
 	sub.w	4(a1),d2
 	addi.w	#128,d2
 	bra.s	loc_2032D2
 
 loc_2032B0:
-	move.w	obj.scrypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	$A(a0),d2
+	move.w	xposi(a0),d3
 	bra.s	loc_2032D2
 
-	move.w	obj.ypos(a0),d2
+	move.w	yposi(a0),d2
 	sub.w	4(a1),d2
 	addi.w	#128,d2
 	cmpi.w	#$60,d2
@@ -3792,11 +3797,11 @@ loc_2032B0:
 	cmpi.w	#$180,d2
 	bhs.s	loc_2032FA
 loc_2032D2:
-	movea.l	obj.mappings(a0),a1
+	movea.l	patbase(a0),a1
 	moveq	#0,d1
 	btst	#5,d4
 	bne.s	loc_2032F0
-	move.b	obj.frame(a0),d1
+	move.b	patno(a0),d1
 	add.w	d1,d1
 	adda.w	(a1,d1.w),a1
 	moveq	#0,d1
@@ -3806,7 +3811,7 @@ loc_2032D2:
 loc_2032F0:
 	bsr.w	spatset
 loc_2032F4:
-	bset	#7,obj.render(a0)
+	bset	#7,actflg(a0)
 loc_2032FA:
 	addq.w	#2,d6
 	subq.w	#2,(a4)
@@ -3826,7 +3831,7 @@ loc_20331C:
 	rts
 
 spatset:
-	movea.w	obj.vram(a0),a3
+	movea.w	sproffset(a0),a3
 	btst	#0,d4
 	bne.s	loc_20336A
 	btst	#1,d4
@@ -3974,12 +3979,12 @@ locret_203450:
 	rts
 
 scronchk:
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	sub.w	scra_h_posit.w,d0
 	bmi.s	loc_203476
 	cmpi.w	#320,d0
 	bge.s	loc_203476
-	move.w	obj.ypos(a0),d1
+	move.w	yposi(a0),d1
 	sub.w	scra_v_posit.w,d1
 	bmi.s	loc_203476
 	cmpi.w	#224,d1
@@ -3993,8 +3998,8 @@ loc_203476:
 
 scronchk2:
 	moveq	#0,d1
-	move.b	obj.field_19(a0),d1
-	move.w	obj.xpos(a0),d0
+	move.b	sprhsize(a0),d1
+	move.w	xposi(a0),d0
 	sub.w	scra_h_posit.w,d0
 	add.w	d1,d0
 	bmi.s	loc_2034AA
@@ -4002,7 +4007,7 @@ scronchk2:
 	sub.w	d1,d0
 	cmpi.w	#320,d0
 	bge.s	loc_2034AA
-	move.w	obj.ypos(a0),d1
+	move.w	yposi(a0),d1
 	sub.w	scra_v_posit.w,d1
 	bmi.s	loc_2034AA
 	cmpi.w	#224,d1
@@ -4070,11 +4075,11 @@ objNull:
 
 bye_chk:
 	lea	byecnt0.w,a1
-	_cmpi.b	#objid_01,obj.id(a0)
+	_cmpi.b	#objid_01,actno(a0)
 	beq.s	loc_203568
 	lea	byecnt1.w,a1
 loc_203568:
-	cmpi.b	#5,obj.ani(a0)
+	cmpi.b	#5,mstno(a0)
 	beq.s	loc_203576
 	move.w	#0,(a1)
 	rts
@@ -4082,19 +4087,19 @@ loc_203568:
 loc_203576:
 	tst.w	(a1)
 	bne.s	loc_203580
-	move.b	#1,obj.render(a1)
+	move.b	#1,actflg(a1)
 loc_203580:
 	cmpi.w	#$2A30,(a1)
 	blo.s	locret_2035AE
 	move.w	#0,(a1)
-	move.b	#$2B,obj.ani(a0)
-	move.w	#-$500,obj.yvel(a0)
-	move.w	#$100,obj.xvel(a0)
-	btst	#0,obj.status(a0)
+	move.b	#$2B,mstno(a0)
+	move.w	#-$500,yspeed(a0)
+	move.w	#$100,xspeed(a0)
+	btst	#0,cddat(a0)
 	beq.s	loc_2035A8
-	neg.w	obj.xvel(a0)
+	neg.w	xspeed(a0)
 loc_2035A8:
-	move.w	#0,obj.inertia(a0)
+	move.w	#0,mspeed(a0)
 locret_2035AE:
 	rts
 
@@ -4112,17 +4117,17 @@ sub_2035B0:
 	lea	byte_FFD040.w,a5
 	lea	actwk.w,a6
 loc_2035DC:
-	_tst.b	obj.id(a6)
+	_tst.b	actno(a6)
 	bne.s	locret_203614
 	andi.b	#$F0,d0
 	beq.s	locret_203614
-	_move.b	d1,obj.id(a6)
-	move.b	obj.status(a5),obj.status(a6)
-	move.l	obj.ypos(a5),obj.ypos(a6)
-	move.l	obj.xpos(a5),obj.xpos(a6)
-	move.w	obj.yvel(a5),obj.yvel(a6)
-	move.w	obj.xvel(a5),obj.xvel(a6)
-	move.w	obj.inertia(a5),obj.inertia(a6)
+	_move.b	d1,actno(a6)
+	move.b	cddat(a5),cddat(a6)
+	move.l	yposi(a5),yposi(a6)
+	move.l	xposi(a5),xposi(a6)
+	move.w	yspeed(a5),yspeed(a6)
+	move.w	xspeed(a5),xspeed(a6)
+	move.w	mspeed(a5),mspeed(a6)
 	move.w	#0,(a4)
 locret_203614:
 	rts
@@ -4144,43 +4149,43 @@ loc_20541A:
 	rts
 
 animateobj:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_205486
 	moveq	#0,d0
-	move.b	obj.ani(a0),d0
-	cmp.b	obj.prevani(a0),d0
+	move.b	mstno(a0),d0
+	cmp.b	act1D(a0),d0
 	beq.s	loc_205446
-	move.b	d0,obj.prevani(a0)
-	move.b	#0,obj.aniframe(a0)
-	move.b	#0,obj.time(a0)
+	move.b	d0,act1D(a0)
+	move.b	#0,patcnt(a0)
+	move.b	#0,pattim(a0)
 loc_205446:
-	subq.b	#1,obj.time(a0)
+	subq.b	#1,pattim(a0)
 	bpl.s	locret_205486
 	add.w	d0,d0
 	adda.w	(a1,d0.w),a1
-	move.b	(a1),obj.time(a0)
+	move.b	(a1),pattim(a0)
 	moveq	#0,d1
-	move.b	obj.aniframe(a0),d1
+	move.b	patcnt(a0),d1
 	move.b	1(a1,d1.w),d0
 	bmi.s	loc_205488
 loc_205462:
 	move.b	d0,d1
 	andi.b	#$1F,d0
-	move.b	d0,obj.frame(a0)
-	move.b	obj.status(a0),d0
+	move.b	d0,patno(a0)
+	move.b	cddat(a0),d0
 	rol.b	#3,d1
 	eor.b	d0,d1
 	andi.b	#3,d1
-	andi.b	#$FC,obj.render(a0)
-	or.b	d1,obj.render(a0)
-	addq.b	#1,obj.aniframe(a0)
+	andi.b	#$FC,actflg(a0)
+	or.b	d1,actflg(a0)
+	addq.b	#1,patcnt(a0)
 locret_205486:
 	rts
 
 loc_205488:
 	addq.b	#1,d0
 	bne.s	loc_205498
-	move.b	#0,obj.aniframe(a0)
+	move.b	#0,patcnt(a0)
 	move.b	1(a1),d0
 	bra.s	loc_205462
 
@@ -4188,7 +4193,7 @@ loc_205498:
 	addq.b	#1,d0
 	bne.s	loc_2054AC
 	move.b	2(a1,d1.w),d0
-	sub.b	d0,obj.aniframe(a0)
+	sub.b	d0,patcnt(a0)
 	sub.b	d0,d1
 	move.b	1(a1,d1.w),d0
 	bra.s	loc_205462
@@ -4196,26 +4201,26 @@ loc_205498:
 loc_2054AC:
 	addq.b	#1,d0
 	bne.s	loc_2054B6
-	move.b	2(a1,d1.w),obj.ani(a0)
+	move.b	2(a1,d1.w),mstno(a0)
 loc_2054B6:
 	addq.b	#1,d0
 	bne.s	loc_2054BE
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 loc_2054BE:
 	addq.b	#1,d0
 	bne.s	loc_2054CC
-	move.b	#0,obj.aniframe(a0)
-	clr.b	obj.routine2(a0)
+	move.b	#0,patcnt(a0)
+	clr.b	r_no1(a0)
 loc_2054CC:
 	addq.b	#1,d0
 	bne.s	locret_2054D4
-	addq.b	#2,obj.routine2(a0)
+	addq.b	#2,r_no1(a0)
 locret_2054D4:
 	rts
 
 obj06:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2054E4(pc,d0.w),d0
 	jmp	off_2054E4(pc,d0.w)
 
@@ -4224,17 +4229,17 @@ off_2054E4:
 	dc.w	loc_20551C-off_2054E4
 
 loc_2054E8:
-	btst	#7,obj.status(a0)
+	btst	#7,cddat(a0)
 	bne.w	frameout
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.l	#obj06_map,obj.mappings(a0)
-	move.w	#$541,obj.vram(a0)
-	move.w	obj.xpos(a0),obj.field_30(a0)
-	move.b	#6,obj.colflag(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.l	#obj06_map,patbase(a0)
+	move.w	#$541,sproffset(a0)
+	move.w	xposi(a0),act30(a0)
+	move.b	#6,colino(a0)
 loc_20551C:
-	move.w	obj.field_30(a0),d0
+	move.w	act30(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -4248,7 +4253,7 @@ loc_20551C:
 
 obj18:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_205558(pc,d0.w),d0
 	jmp	off_205558(pc,d0.w)
 
@@ -4258,31 +4263,31 @@ off_205558:
 	dc.w	loc_205598-off_205558
 
 loc_20555E:
-	addq.b	#2,obj.routine(a0)
-	ori.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.w	#$680,obj.vram(a0)
-	move.l	#obj18_map,obj.mappings(a0)
-	move.b	#0,obj.colflag(a0)
-	move.w	#1,obj.ani(a0)
+	addq.b	#2,r_no0(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.w	#$680,sproffset(a0)
+	move.l	#obj18_map,patbase(a0)
+	move.b	#0,colino(a0)
+	move.w	#1,mstno(a0)
 loc_205588:
 	lea	obj18_ani.l,a1
 	bsr.w	animateobj
 	jmp	actionsub.l
 
 loc_205598:
-	tst.b	obj.routine2(a0)
+	tst.b	r_no1(a0)
 	beq.s	loc_2055A4
 	jmp	frameout.l
 
 loc_2055A4:
-	_move.b	#objid_1F,obj.id(a0)
-	move.b	#0,obj.routine(a0)
+	_move.b	#objid_1F,actno(a0)
+	move.b	#0,r_no0(a0)
 	rts
 
 obj1F:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2055C6(pc,d0.w),d0
 	jsr	off_2055C6(pc,d0.w)
 	jmp	actionsub.l
@@ -4295,45 +4300,45 @@ off_2055C6:
 	dc.w	loc_2056BA-off_2055C6
 
 loc_2055D0:
-	ori.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#0,obj.height(a0)
-	move.w	#$46D6,obj.vram(a0)
-	move.l	#obj1F_map,obj.mappings(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#0,sprvsize(a0)
+	move.w	#$46D6,sproffset(a0)
+	move.l	#obj1F_map,patbase(a0)
 	bsr.w	sub_205666
 	move.b	(a1),d0
-	move.b	#4,obj.routine(a0)
-	move.b	#3,obj.ani(a0)
+	move.b	#4,r_no0(a0)
+	move.b	#3,mstno(a0)
 	btst	#6,d0
 	bne.s	loc_20565C
-	move.w	#2,obj.ani(a0)
-	move.b	#2,obj.routine(a0)
-	move.w	#$6D6,obj.vram(a0)
+	move.w	#2,mstno(a0)
+	move.b	#2,r_no0(a0)
+	move.w	#$6D6,sproffset(a0)
 loc_20561A:
 	jsr	sub_20611C.l
 	tst.w	d1
 	bpl.s	loc_205658
-	add.w	d1,obj.ypos(a0)
+	add.w	d1,yposi(a0)
 	bsr.w	sub_205666
 	lea	dword_FF1880,a2
 	move.b	(a2,d1.w),d0
 	addq.b	#1,(a2,d1.w)
 	bsr.w	sub_20568C
-	move.w	obj.xpos(a0),(a1,d0.w)
-	move.w	obj.ypos(a0),2(a1,d0.w)
-	move.b	#4,obj.routine(a0)
-	move.b	#1,obj.ani(a0)
+	move.w	xposi(a0),(a1,d0.w)
+	move.w	yposi(a0),2(a1,d0.w)
+	move.b	#4,r_no0(a0)
+	move.b	#1,mstno(a0)
 	rts
 
 loc_205658:
-	addq.w	#2,obj.ypos(a0)
+	addq.w	#2,yposi(a0)
 loc_20565C:
 	lea	obj1F_ani.l,a1
 	bra.w	animateobj
 
 sub_205666:
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	move.w	d0,d1
 	add.w	d1,d1
 	add.w	d1,d0
@@ -4358,18 +4363,18 @@ sub_20568C:
 	rts
 
 loc_2056AC:
-	move.w	#$46D6,obj.vram(a0)
-	move.b	#2,obj.ani(a0)
+	move.w	#$46D6,sproffset(a0)
+	move.b	#2,mstno(a0)
 	bra.s	loc_20565C
 
 loc_2056BA:
-	move.b	#3,obj.ani(a0)
-	move.b	#4,obj.routine(a0)
+	move.b	#3,mstno(a0)
+	move.b	#4,r_no0(a0)
 	bra.s	loc_20565C
 
 mizukiri:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2056D6(pc,d0.w),d0
 	jmp	off_2056D6(pc,d0.w)
 
@@ -4379,11 +4384,11 @@ off_2056D6:
 	dc.w	loc_20570A-off_2056D6
 
 loc_2056DC:
-	addq.b	#2,obj.routine(a0)
-	ori.b	#4,obj.render(a0)
-	move.l	#obj0E_map,obj.mappings(a0)
-	move.w	#$31E,obj.vram(a0)
-	move.b	#1,obj.priority(a0)
+	addq.b	#2,r_no0(a0)
+	ori.b	#4,actflg(a0)
+	move.l	#obj0E_map,patbase(a0)
+	move.w	#$31E,sproffset(a0)
+	move.b	#1,sprpri(a0)
 loc_2056FA:
 	lea	obj0E_ani.l,a1
 	bsr.w	animateobj
@@ -4394,7 +4399,7 @@ loc_20570A:
 
 futa:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20572A(pc,d0.w),d0
 	jsr	off_20572A(pc,d0.w)
 	jsr	actionsub.l
@@ -4407,19 +4412,19 @@ off_20572A:
 	dc.w	loc_2057C8-off_20572A
 
 sub_205732:
-	tst.w	obj.yvel(a1)
+	tst.w	yspeed(a1)
 	bpl.s	loc_205774
 	bsr.w	exit2_set
 	beq.s	loc_205774
-	move.b	#4,obj.routine(a0)
-	tst.b	obj.subtype(a0)
+	move.b	#4,r_no0(a0)
+	tst.b	userflag(a0)
 	bne.s	locret_205772
 	jsr	actwkchk.l
 	bne.s	locret_205772
-	_move.b	#objid_0B,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	subq.w	#4,obj.ypos(a1)
+	_move.b	#objid_0B,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	subq.w	#4,yposi(a1)
 	move.w	#$A4,d0
 	jmp	soundset.l
 
@@ -4427,17 +4432,17 @@ locret_205772:
 	rts
 
 loc_205774:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jmp	sub_207F56.l
 
 loc_205782:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj0D_map,obj.mappings(a0)
-	move.b	#1,obj.priority(a0)
-	ori.b	#4,obj.render(a0)
-	move.b	#$2C,obj.field_19(a0)
-	move.b	#8,obj.height(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj0D_map,patbase(a0)
+	move.b	#1,sprpri(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#$2C,sprhsize(a0)
+	move.b	#8,sprvsize(a0)
 	moveq	#$C,d0
 	jsr	sub_20DC4C.l
 loc_2057AE:
@@ -4451,25 +4456,25 @@ loc_2057BE:
 	bra.w	animateobj
 
 loc_2057C8:
-	move.b	#1,obj.prevani(a0)
-	move.b	#0,obj.frame(a0)
-	subq.b	#4,obj.routine(a0)
+	move.b	#1,act1D(a0)
+	move.b	#0,patno(a0)
+	subq.b	#4,r_no0(a0)
 	rts
 
 exit2_set:
-	move.w	obj.xpos(a1),d0
-	sub.w	obj.xpos(a0),d0
+	move.w	xposi(a1),d0
+	sub.w	xposi(a0),d0
 	moveq	#0,d1
-	move.b	obj.field_19(a0),d1
+	move.b	sprhsize(a0),d1
 	add.w	d1,d0
 	bmi.s	loc_20580E
 	add.w	d1,d1
 	cmp.w	d1,d0
 	bhs.s	loc_20580E
-	move.w	obj.ypos(a1),d0
-	sub.w	obj.ypos(a0),d0
+	move.w	yposi(a1),d0
+	sub.w	yposi(a0),d0
 	moveq	#0,d1
-	move.b	obj.height(a0),d1
+	move.b	sprvsize(a0),d1
 	add.w	d1,d0
 	bmi.s	loc_20580E
 	add.w	d1,d1
@@ -4484,7 +4489,7 @@ loc_20580E:
 
 exit2:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_205820(pc,d0.w),d0
 	jmp	off_205820(pc,d0.w)
 
@@ -4494,15 +4499,15 @@ off_205820:
 	dc.w	loc_205872-off_205820
 
 loc_205826:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.l	#obj0B_map,obj.mappings(a0)
-	move.b	obj.subtype(a0),obj.ani(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.l	#obj0B_map,patbase(a0)
+	move.b	userflag(a0),mstno(a0)
 	moveq	#$D,d0
 	jsr	sub_20DC4C.l
 	move.w	#$A2,d0
-	cmpi.b	#2,obj.subtype(a0)
+	cmpi.b	#2,userflag(a0)
 	blo.s	loc_20585C
 	move.w	#$A1,d0
 loc_20585C:
@@ -4517,7 +4522,7 @@ loc_205872:
 
 baria:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_205886(pc,d0.w),d1
 	jmp	off_205886(pc,d1.w)
 
@@ -4528,18 +4533,18 @@ off_205886:
 	dc.w	loc_20592A-off_205886
 
 loc_20588E:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj06_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$544,obj.vram(a0)
-	tst.b	obj.ani(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj06_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$544,sproffset(a0)
+	tst.b	mstno(a0)
 	beq.s	locret_2058C8
-	addq.b	#2,obj.routine(a0)
-	cmpi.b	#5,obj.ani(a0)
+	addq.b	#2,r_no0(a0)
+	cmpi.b	#5,mstno(a0)
 	blo.s	locret_2058C8
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 locret_2058C8:
 	rts
 
@@ -4551,9 +4556,9 @@ loc_2058CA:
 	tst.b	plpower_m
 	bne.s	locret_20590A
 	jsr	sub_2023EA.l
-	move.w	obj.xpos(a6),obj.xpos(a0)
-	move.w	obj.ypos(a6),obj.ypos(a0)
-	move.b	obj.status(a6),obj.status(a0)
+	move.w	xposi(a6),xposi(a0)
+	move.w	yposi(a6),yposi(a0)
+	move.b	cddat(a6),cddat(a0)
 	lea	obj06_ani.l,a1
 	jsr	animateobj.l
 	bra.w	loc_205992
@@ -4581,7 +4586,7 @@ loc_20592A:
 
 loc_205938:
 	move.w	plposiwkadr.w,d0
-	move.b	obj.ani(a0),d1
+	move.b	mstno(a0),d1
 	subq.b	#1,d1
 	cmpi.b	#4,d1
 	blo.s	loc_20594A
@@ -4593,28 +4598,28 @@ loc_20594A:
 	add.b	d2,d1
 	addq.b	#4,d1
 	sub.b	d1,d0
-	move.b	obj.field_30(a0),d1
+	move.b	act30(a0),d1
 	sub.b	d1,d0
 	addq.b	#4,d1
 	cmpi.b	#$18,d1
 	blo.s	loc_205966
 	moveq	#0,d1
 loc_205966:
-	move.b	d1,obj.field_30(a0)
+	move.b	d1,act30(a0)
 	lea	playposiwk.w,a1
 	lea	(a1,d0.w),a1
-	move.w	(a1)+,obj.xpos(a0)
-	move.w	(a1)+,obj.ypos(a0)
+	move.w	(a1)+,xposi(a0)
+	move.w	(a1)+,yposi(a0)
 	jsr	sub_2023EA.l
-	move.b	obj.status(a6),obj.status(a0)
+	move.b	cddat(a6),cddat(a0)
 	lea	obj06_ani.l,a1
 	jsr	animateobj.l
 loc_205992:
 	move.b	byte_FF127B,d0
 	andi.b	#7,d0
-	cmp.b	obj.routine(a0),d0
+	cmp.b	r_no0(a0),d0
 	beq.s	loc_2059B2
-	move.b	obj.routine(a0),byte_FF127B
+	move.b	r_no0(a0),byte_FF127B
 	bset	#7,byte_FF127B
 loc_2059B2:
 	jmp	actionsub.l
@@ -5261,8 +5266,8 @@ byte_205E20:
 
 loc_205E30:
 	move.b	plflag_sb,plflag
-	move.w	plxposi_sb,obj.xpos(a6)
-	move.w	plyposi_sb,obj.ypos(a6)
+	move.w	plxposi_sb,xposi(a6)
+	move.w	plyposi_sb,yposi(a6)
 	move.b	byte_FF125A,byte_FFF742.w
 	move.b	water_flag_sb,water_flag.w
 	move.w	scralim_down_sb,scralim_down.w
@@ -5293,8 +5298,8 @@ playload:
 	cmpi.b	#2,plflag
 	beq.w	loc_205E30
 	move.b	plflag_s,plflag
-	move.w	plxposi_s,obj.xpos(a6)
-	move.w	plyposi_s,obj.ypos(a6)
+	move.w	plxposi_s,xposi(a6)
+	move.w	plyposi_s,yposi(a6)
 	move.w	plring_s,plring
 	move.b	plring_f2_s,plring_f2
 	clr.w	plring
@@ -5329,13 +5334,13 @@ locret_205FDA:
 	rts
 
 sub_205FDC:
-	move.l	obj.xpos(a0),d3
-	move.l	obj.ypos(a0),d2
-	move.w	obj.xvel(a0),d1
+	move.l	xposi(a0),d3
+	move.l	yposi(a0),d2
+	move.w	xspeed(a0),d1
 	ext.l	d1
 	asl.l	#8,d1
 	add.l	d1,d3
-	move.w	obj.yvel(a0),d1
+	move.w	yspeed(a0),d1
 	ext.l	d1
 	asl.l	#8,d1
 	add.l	d1,d2
@@ -5384,13 +5389,13 @@ dircol2:
 	cmpi.b	#$C0,d0
 	beq.w	loc_206156
 loc_20606E:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk.w,a4
@@ -5399,13 +5404,13 @@ loc_20606E:
 	moveq	#$D,d5
 	jsr	scdchk.l
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	lea	dirstk2.w,a4
@@ -5428,8 +5433,8 @@ loc_2060E0:
 locret_2060E8:
 	rts
 
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 
 loc_2060F2:
 	addi.w	#$A,d2
@@ -5448,10 +5453,10 @@ locret_20611A:
 	rts
 
 sub_20611C:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d2
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d2
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
 	lea	dirstk.w,a4
@@ -5468,13 +5473,13 @@ locret_206154:
 	rts
 
 loc_206156:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk.w,a4
@@ -5483,13 +5488,13 @@ loc_206156:
 	moveq	#$E,d5
 	jsr	scdchk_r.l
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk2.w,a4
@@ -5502,8 +5507,8 @@ loc_206156:
 	bra.w	loc_2060D2
 
 sub_2061BE:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 
 loc_2061C6:
 	addi.w	#$A,d3
@@ -5516,8 +5521,8 @@ loc_2061C6:
 	bra.w	loc_20610E
 
 sub_2061E6:
-	add.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d2
+	add.w	xposi(a0),d3
+	move.w	yposi(a0),d2
 	lea	dirstk.w,a4
 	move.b	#0,(a4)
 	movea.w	#$10,a3
@@ -5532,14 +5537,14 @@ locret_206214:
 	rts
 
 dircol_u:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
 	eori.w	#$F,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk.w,a4
@@ -5548,14 +5553,14 @@ dircol_u:
 	moveq	#$E,d5
 	jsr	scdchk.l
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
 	eori.w	#$F,d2
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	lea	dirstk2.w,a4
@@ -5567,8 +5572,8 @@ dircol_u:
 	move.b	#$80,d2
 	bra.w	loc_2060D2
 
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 
 loc_20628E:
 	subi.w	#$A,d2
@@ -5582,10 +5587,10 @@ loc_20628E:
 	bra.w	loc_20610E
 
 sub_2062B2:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
 	eori.w	#$F,d2
@@ -5602,13 +5607,13 @@ locret_2062EA:
 	rts
 
 loc_2062EC:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
@@ -5618,13 +5623,13 @@ loc_2062EC:
 	moveq	#$E,d5
 	jsr	scdchk_r.l
 	move.w	d1,-(sp)
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 	moveq	#0,d0
-	move.b	obj.width(a0),d0
+	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.b	obj.height(a0),d0
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
@@ -5638,8 +5643,8 @@ loc_2062EC:
 	bra.w	loc_2060D2
 
 sub_20635C:
-	move.w	obj.ypos(a0),d2
-	move.w	obj.xpos(a0),d3
+	move.w	yposi(a0),d2
+	move.w	xposi(a0),d3
 
 loc_206364:
 	subi.w	#$A,d3
@@ -5653,8 +5658,8 @@ loc_206364:
 	bra.w	loc_20610E
 
 sub_206388:
-	add.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d2
+	add.w	xposi(a0),d3
+	move.w	yposi(a0),d2
 	lea	dirstk.w,a4
 	move.b	#0,(a4)
 	movea.w	#-$10,a3
@@ -5670,14 +5675,14 @@ locret_2063B6:
 
 pcol:
 	nop
-	move.w	obj.xpos(a0),d2
-	move.w	obj.ypos(a0),d3
+	move.w	xposi(a0),d2
+	move.w	yposi(a0),d3
 	subq.w	#8,d2
 	moveq	#0,d5
-	move.b	obj.height(a0),d5
+	move.b	sprvsize(a0),d5
 	subq.b	#3,d5
 	sub.w	d5,d3
-	cmpi.b	#$39,obj.frame(a0)
+	cmpi.b	#$39,patno(a0)
 	bne.s	.jump0
 	addi.w	#$C,d3
 	moveq	#$A,d5
@@ -5686,16 +5691,16 @@ pcol:
 	move.w	#$10,d4
 	add.w	d5,d5
 	lea	byte_FFD800.w,a1
-	move.w	#(byte_FFD800_end-byte_FFD800)/obj.len-1,d6
+	move.w	#(byte_FFD800_end-byte_FFD800)/actfree-1,d6
 
 .loop:
-	tst.b	obj.render(a1)
+	tst.b	actflg(a1)
 	bpl.s	.jump
-	move.b	obj.colflag(a1),d0
+	move.b	colino(a1),d0
 	bne.s	.jump2
 
 .jump:
-	lea	obj.len(a1),a1
+	lea	actfree(a1),a1
 	dbf	d6,.loop
 	moveq	#0,d0
 	rts
@@ -5744,7 +5749,7 @@ pcol:
 	lea	.colitbl-2(pc,d0.w),a2
 	moveq	#0,d1
 	move.b	(a2)+,d1
-	move.w	obj.xpos(a1),d0
+	move.w	xposi(a1),d0
 	sub.w	d1,d0
 	sub.w	d2,d0
 	bhs.s	.jump3
@@ -5760,7 +5765,7 @@ pcol:
 .jump4:
 	moveq	#0,d1
 	move.b	(a2)+,d1
-	move.w	obj.ypos(a1),d0
+	move.w	yposi(a1),d0
 	sub.w	d1,d0
 	sub.w	d3,d0
 	bhs.s	.jump5
@@ -5774,7 +5779,7 @@ pcol:
 	bhi.w	.jump
 
 .atari:
-	move.b	obj.colflag(a1),d1
+	move.b	colino(a1),d1
 	andi.b	#$C0,d1
 	beq.w	pcolnomal
 	cmpi.b	#$C0,d1
@@ -5783,38 +5788,38 @@ pcol:
 	bmi.w	pcolplay
 
 pcolitem:
-	move.b	obj.colflag(a1),d0
+	move.b	colino(a1),d0
 	andi.b	#$3F,d0
 	cmpi.b	#6,d0
 	beq.s	.item
 
 .ring:
-	cmpi.w	#90,obj.field_30(a0)
+	cmpi.w	#90,act30(a0)
 	bhs.w	.ringe
-	addq.b	#2,obj.routine(a1)
+	addq.b	#2,r_no0(a1)
 
 .ringe:
 	rts
 
 .item:
-	tst.w	obj.yvel(a0)
+	tst.w	yspeed(a0)
 	bpl.s	.item2
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	subi.w	#$10,d0
-	cmp.w	obj.ypos(a1),d0
+	cmp.w	yposi(a1),d0
 	blo.s	.iteme
-	neg.w	obj.yvel(a0)
-	move.w	#-$180,obj.yvel(a1)
-	tst.b	obj.routine2(a1)
+	neg.w	yspeed(a0)
+	move.w	#-$180,yspeed(a1)
+	tst.b	r_no1(a1)
 	bne.s	.iteme
-	addq.b	#4,obj.routine2(a1)
+	addq.b	#4,r_no1(a1)
 	rts
 
 .item2:
-	cmpi.b	#2,obj.ani(a0)
+	cmpi.b	#2,mstno(a0)
 	bne.s	.iteme
-	neg.w	obj.yvel(a0)
-	addq.b	#2,obj.routine(a1)
+	neg.w	yspeed(a0)
+	addq.b	#2,r_no0(a1)
 
 .iteme:
 	rts
@@ -5822,26 +5827,26 @@ pcolitem:
 pcolnomal:
 	tst.b	plpower_m
 	bne.s	.jump
-	cmpi.b	#2,obj.ani(a0)
+	cmpi.b	#2,mstno(a0)
 	bne.w	pcolplay
 
 .jump:
-	tst.b	obj.field_21(a1)
+	tst.b	colicnt(a1)
 	beq.s	.jump0
-	neg.w	obj.xvel(a0)
-	neg.w	obj.yvel(a0)
-	asr.w	obj.xvel(a0)
-	asr.w	obj.yvel(a0)
-	move.b	#0,obj.colflag(a1)
-	subq.b	#1,obj.field_21(a1)
+	neg.w	xspeed(a0)
+	neg.w	yspeed(a0)
+	asr.w	xspeed(a0)
+	asr.w	yspeed(a0)
+	move.b	#0,colino(a1)
+	subq.b	#1,colicnt(a1)
 	bne.s	.jump4
-	bset	#7,obj.status(a1)
+	bset	#7,cddat(a1)
 
 .jump4:
 	rts
 
 .jump0:
-	bset	#7,obj.status(a1)
+	bset	#7,cddat(a1)
 	moveq	#0,d0
 	move.w	emyscorecnt.w,d0
 	addq.w	#2,emyscorecnt.w
@@ -5850,42 +5855,42 @@ pcolnomal:
 	moveq	#6,d0
 
 .jump5:
-	move.w	d0,obj.field_3E(a1)
+	move.w	d0,act3E(a1)
 	move.w	escoretbl(pc,d0.w),d0
 	cmpi.w	#$20,emyscorecnt.w
 	blo.s	.jump6
 	move.w	#1000,d0
-	move.w	#$A,obj.field_3E(a1)
+	move.w	#$A,act3E(a1)
 
 .jump6:
 	bsr.w	scoreup
 	move.w	#$9E,d0
 	jsr	soundset.l
-	_move.b	#objid_18,obj.id(a1)
-	move.b	#0,obj.routine(a1)
+	_move.b	#objid_18,actno(a1)
+	move.b	#0,r_no0(a1)
 
 .jump3:
-	tst.w	obj.yvel(a0)
+	tst.w	yspeed(a0)
 	bmi.s	.jump1
-	move.w	obj.ypos(a0),d0
-	cmp.w	obj.ypos(a1),d0
+	move.w	yposi(a0),d0
+	cmp.w	yposi(a1),d0
 	bhs.s	.jump2
-	neg.w	obj.yvel(a0)
+	neg.w	yspeed(a0)
 	rts
 
 .jump1:
-	addi.w	#$100,obj.yvel(a0)
+	addi.w	#$100,yspeed(a0)
 	rts
 
 .jump2:
-	subi.w	#$100,obj.yvel(a0)
+	subi.w	#$100,yspeed(a0)
 	rts
 
 escoretbl:
 	dc.w	10,20,50,100
 
 pcolplay2:
-	bset	#7,obj.status(a1)
+	bset	#7,cddat(a1)
 
 pcolplay:
 	tst.b	plpower_m
@@ -5897,7 +5902,7 @@ pcolend:
 
 pcole:
 	nop
-	tst.w	obj.field_30(a0)
+	tst.w	act30(a0)
 	bne.s	pcolend
 	movea.l	a1,a2
 
@@ -5908,33 +5913,33 @@ playdamageset:
 	beq.w	.die
 	jsr	actwkchk.l
 	bne.s	.worknai
-	_move.b	#objid_11,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
+	_move.b	#objid_11,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
 
 .damage:
 .worknai:
 	move.b	#0,plpower_b
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 	bsr.w	jumpcolsub
-	bset	#plst_jump,obj.status(a0)
-	move.w	#-$400,obj.yvel(a0)
-	move.w	#-$200,obj.xvel(a0)
-	btst	#plst_water,obj.status(a0)
+	bset	#plst_jump,cddat(a0)
+	move.w	#-$400,yspeed(a0)
+	move.w	#-$200,xspeed(a0)
+	btst	#plst_water,cddat(a0)
 	beq.s	.jump0
-	move.w	#-$200,obj.yvel(a0)
-	move.w	#-$100,obj.xvel(a0)
+	move.w	#-$200,yspeed(a0)
+	move.w	#-$100,xspeed(a0)
 
 .jump0:
-	move.w	obj.xpos(a0),d0
-	cmp.w	obj.xpos(a2),d0
+	move.w	xposi(a0),d0
+	cmp.w	xposi(a2),d0
 	blo.s	.jump
-	neg.w	obj.xvel(a0)
+	neg.w	xspeed(a0)
 
 .jump:
-	move.w	#0,obj.inertia(a0)
-	move.b	#$1A,obj.ani(a0)
-	move.w	#120,obj.field_30(a0)
+	move.w	#0,mspeed(a0)
+	move.b	#$1A,mstno(a0)
+	move.w	#120,act30(a0)
 	moveq	#-1,d0
 	rts
 
@@ -5945,18 +5950,18 @@ playdamageset:
 playdieset:
 	tst.w	editmode
 	bne.s	.end
-	tst.b	obj.field_29(a0)
+	tst.b	act29(a0)
 	beq.w	frameout
 	move.b	#0,plpower_m
-	move.b	#6,obj.routine(a0)
+	move.b	#6,r_no0(a0)
 	bsr.w	jumpcolsub
-	bset	#plst_jump,obj.status(a0)
-	move.w	#-$700,obj.yvel(a0)
-	move.w	#0,obj.xvel(a0)
-	move.w	#0,obj.inertia(a0)
-	move.w	obj.ypos(a0),obj.field_38(a0)
-	move.b	#$18,obj.ani(a0)
-	bset	#7,obj.vram(a0)
+	bset	#plst_jump,cddat(a0)
+	move.w	#-$700,yspeed(a0)
+	move.w	#0,xspeed(a0)
+	move.w	#0,mspeed(a0)
+	move.w	yposi(a0),act38(a0)
+	move.b	#$18,mstno(a0)
+	bset	#7,sproffset(a0)
 	move.w	#$93,d0
 	jsr	soundset.l
 
@@ -5965,7 +5970,7 @@ playdieset:
 	rts
 
 pcolspecial:
-	move.b	obj.colflag(a1),d1
+	move.b	colino(a1),d1
 	andi.b	#$3F,d1
 	cmpi.b	#$1F,d1
 	beq.s	loc_206720
@@ -5986,9 +5991,9 @@ pcolspecial:
 	sub.w	d0,d5
 	cmpi.w	#8,d5
 	bhs.s	.yago4
-	move.w	obj.xpos(a1),d0
+	move.w	xposi(a1),d0
 	subq.w	#4,d0
-	btst	#plst_xflip,obj.status(a1)
+	btst	#plst_xflip,cddat(a1)
 	beq.s	.yago1
 	subi.w	#$10,d0
 
@@ -6010,17 +6015,17 @@ pcolspecial:
 	bra.w	pcolnomal
 
 loc_206720:
-	addq.b	#1,obj.field_21(a1)
+	addq.b	#1,colicnt(a1)
 	cmpa.w	#actwk,a0
 	beq.s	locret_20672E
-	addq.b	#1,obj.field_21(a1)
+	addq.b	#1,colicnt(a1)
 
 locret_20672E:
 	rts
 
 taki:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_206750(pc,d0.w),d0
 	jsr	off_206750(pc,d0.w)
 	lea	obj04_ani.l,a1
@@ -6032,30 +6037,30 @@ off_206750:
 	dc.w	loc_20678C-off_206750
 
 loc_206754:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj04_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$3BA,obj.vram(a0)
-	andi.w	#$FFF0,obj.ypos(a0)
-	move.w	obj.ypos(a0),obj.field_2A(a0)
-	addi.w	#$180,obj.field_2A(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj04_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$3BA,sproffset(a0)
+	andi.w	#$FFF0,yposi(a0)
+	move.w	yposi(a0),act2A(a0)
+	addi.w	#$180,act2A(a0)
 	rts
 
 loc_20678C:
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	addq.w	#4,d0
-	cmp.w	obj.field_2A(a0),d0
+	cmp.w	act2A(a0),d0
 	blo.s	loc_20679E
 	jmp	frameout.l
 
 loc_20679E:
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 	moveq	#2,d3
 	bset	#$D,d3
-	move.w	obj.ypos(a0),d4
-	move.w	obj.xpos(a0),d5
+	move.w	yposi(a0),d4
+	move.w	xposi(a0),d5
 	subi.w	#$60,d5
 	move.w	d4,d6
 	andi.w	#$F,d6
@@ -6070,13 +6075,13 @@ locret_2067CC:
 
 jisin_set:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_206824(pc,d0.w),d0
 	jsr	off_206824(pc,d0.w)
 	lea	obj06_ani.l,a1
 	bsr.w	animateobj
 	jsr	actionsub.l
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -6089,7 +6094,7 @@ jisin_set:
 loc_20680A:
 	lea	flagwork,a2
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	beq.s	loc_20681E
 	bclr	#7,2(a2,d0.w)
 loc_20681E:
@@ -6100,11 +6105,11 @@ off_206824:
 	dc.w	loc_206846-off_206824
 
 loc_206828:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.l	#obj06_map,obj.mappings(a0)
-	move.w	#$541,obj.vram(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.l	#obj06_map,patbase(a0)
+	move.w	#$541,sproffset(a0)
 loc_206846:
 	lea	actwk.w,a1
 	bsr.w	sub_206886
@@ -6113,25 +6118,25 @@ loc_206846:
 	bsr.w	sub_206886
 	bhs.s	locret_206884
 loc_20685A:
-	move.b	#0,obj.routine(a0)
-	_move.b	#objid_05,obj.id(a0)
-	move.w	#$1940,obj.xpos(a0)
-	move.w	#$2D0,obj.ypos(a0)
-	move.b	#9,obj.field_2E(a0)
-	move.b	#$17,obj.field_2C(a0)
-	move.b	#$2B,obj.field_2A(a0)
+	move.b	#0,r_no0(a0)
+	_move.b	#objid_05,actno(a0)
+	move.w	#$1940,xposi(a0)
+	move.w	#$2D0,yposi(a0)
+	move.b	#9,act2E(a0)
+	move.b	#$17,act2C(a0)
+	move.b	#$2B,act2A(a0)
 locret_206884:
 	rts
 
 sub_206886:
 	moveq	#0,d0
-	move.w	obj.xpos(a1),d0
-	sub.w	obj.xpos(a0),d0
+	move.w	xposi(a1),d0
+	sub.w	xposi(a0),d0
 	addi.w	#$10,d0
 	cmpi.w	#$20,d0
 	bhs.s	locret_2068AA
-	move.w	obj.ypos(a1),d0
-	sub.w	obj.ypos(a0),d0
+	move.w	yposi(a1),d0
+	sub.w	yposi(a0),d0
 	addi.w	#$10,d0
 	cmpi.w	#$20,d0
 locret_2068AA:
@@ -6139,7 +6144,7 @@ locret_2068AA:
 
 jisin:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2068BA(pc,d0.w),d0
 	jmp	off_2068BA(pc,d0.w)
 
@@ -6148,26 +6153,26 @@ off_2068BA:
 	dc.w	loc_2068C8-off_2068BA
 
 loc_2068BE:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
 loc_2068C8:
 	move.b	dword_FF120C+3,d0
 	andi.b	#$F,d0
 	bne.s	locret_206930
-	subq.b	#1,obj.field_2E(a0)
+	subq.b	#1,act2E(a0)
 	bne.s	loc_2068E0
 	jmp	frameout.l
 
 loc_2068E0:
 	lea	mapwka.w,a4
-	move.w	obj.ypos(a0),d4
+	move.w	yposi(a0),d4
 	moveq	#0,d0
-	move.b	obj.field_2A(a0),d0
+	move.b	act2A(a0),d0
 loc_2068EE:
 	movem.l	d0/a0,-(sp)
-	move.w	obj.xpos(a0),d5
+	move.w	xposi(a0),d5
 	moveq	#0,d6
-	move.b	obj.field_2C(a0),d6
+	move.b	act2C(a0),d6
 loc_2068FC:
 	movem.l	d4-d5,-(sp)
 	subi.w	#$10,d4
@@ -6238,25 +6243,25 @@ loc_2069BC:
 	move.l	dword_206B16.l,d0
 	btst	#0,swdata1.w
 	beq.s	loc_2069CE
-	sub.l	d0,obj.ypos(a0)
+	sub.l	d0,yposi(a0)
 loc_2069CE:
 	btst	#1,swdata1.w
 	beq.s	loc_2069DA
-	add.l	d0,obj.ypos(a0)
+	add.l	d0,yposi(a0)
 loc_2069DA:
 	btst	#2,swdata1.w
 	beq.s	loc_2069E6
-	sub.l	d0,obj.xpos(a0)
+	sub.l	d0,xposi(a0)
 loc_2069E6:
 	btst	#3,swdata1.w
 	beq.s	loc_2069F2
-	add.l	d0,obj.xpos(a0)
+	add.l	d0,xposi(a0)
 loc_2069F2:
-	move.w	obj.ypos(a0),d2
-	move.b	obj.height(a0),d0
+	move.w	yposi(a0),d2
+	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	move.w	obj.xpos(a0),d3
+	move.w	xposi(a0),d3
 	jsr	scramapad.l
 	move.w	(a1),word_FF1884
 	lea	byte_206B1A.l,a2
@@ -6285,15 +6290,15 @@ loc_206A54:
 	moveq	#0,d1
 	move.b	byte_FF1206,d1
 	mulu.w	#12,d1
-	move.l	4(a2,d1.w),obj.mappings(a0)
-	move.w	8(a2,d1.w),obj.vram(a0)
-	move.b	3(a2,d1.w),obj.priority(a0)
-	move.b	$D(a2,d1.w),obj.frame(a0)
+	move.l	4(a2,d1.w),patbase(a0)
+	move.w	8(a2,d1.w),sproffset(a0)
+	move.b	3(a2,d1.w),sprpri(a0)
+	move.b	$D(a2,d1.w),patno(a0)
 	move.b	$C(a2,d1.w),byte_FF188A
 	move.b	$B(a2,d1.w),d0
 	ori.b	#4,d0
-	move.b	d0,obj.render(a0)
-	move.b	#0,obj.ani(a0)
+	move.b	d0,actflg(a0)
+	move.b	#0,mstno(a0)
 	btst	#5,swdata1+1.w
 	beq.s	loc_206AE0
 	bsr.w	actwkchk
@@ -6301,25 +6306,25 @@ loc_206A54:
 	moveq	#0,d1
 	move.b	byte_FF1206,d1
 	mulu.w	#12,d1
-	_move.b	2(a2,d1.w),obj.id(a1)
-	move.b	$A(a2,d1.w),obj.subtype(a1)
-	move.b	$C(a2,d1.w),obj.field_29(a1)
-	move.b	$D(a2,d1.w),obj.frame(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	move.b	obj.render(a0),d0
+	_move.b	2(a2,d1.w),actno(a1)
+	move.b	$A(a2,d1.w),userflag(a1)
+	move.b	$C(a2,d1.w),act29(a1)
+	move.b	$D(a2,d1.w),patno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	move.b	actflg(a0),d0
 	andi.b	#3,d0
-	move.b	d0,obj.render(a1)
-	move.b	d0,obj.status(a1)
+	move.b	d0,actflg(a1)
+	move.b	d0,cddat(a1)
 loc_206AE0:
 	btst	#4,swdata1+1.w
 	beq.s	loc_206B10
 	move.b	#0,editmode
-	move.l	#player_map,obj.mappings(a0)
-	move.w	#$780,obj.vram(a0)
-	move.b	#2,obj.priority(a0)
-	move.b	#0,obj.frame(a0)
-	move.b	#4,obj.render(a0)
+	move.l	#player_map,patbase(a0)
+	move.w	#$780,sproffset(a0)
+	move.b	#2,sprpri(a0)
+	move.b	#0,patno(a0)
+	move.b	#4,actflg(a0)
 loc_206B10:
 	jmp	actionsub.l
 
@@ -6946,35 +6951,35 @@ loc_206F3E:
 loc_206F44:
 	bsr.w	actwkchk
 	bne.s	locret_206F84
-	move.w	(a0)+,obj.xpos(a1)
+	move.w	(a0)+,xposi(a1)
 	move.w	(a0)+,d0
 	move.w	d0,d1
 	andi.w	#$FFF,d0
-	move.w	d0,obj.ypos(a1)
+	move.w	d0,yposi(a1)
 	rol.w	#2,d1
 	andi.b	#3,d1
-	move.b	d1,obj.render(a1)
-	move.b	d1,obj.status(a1)
+	move.b	d1,actflg(a1)
+	move.b	d1,cddat(a1)
 	move.b	(a0)+,d0
 	bpl.s	loc_206F74
 	andi.b	#$7F,d0
-	move.b	d2,obj.field_23(a1)
+	move.b	d2,cdsts(a1)
 loc_206F74:
-	_move.b	d0,obj.id(a1)
-	move.b	(a0)+,obj.subtype(a1)
+	_move.b	d0,actno(a1)
+	move.b	(a0)+,userflag(a1)
 	move.b	(a0)+,d0
-	move.b	(a0)+,obj.field_29(a1)
+	move.b	(a0)+,act29(a1)
 	moveq	#0,d0
 locret_206F84:
 	rts
 
 actwkchk:
 	lea	byte_FFD800.w,a1
-	move.w	#(byte_FFD800_end-byte_FFD800)/obj.len-1,d0
+	move.w	#(byte_FFD800_end-byte_FFD800)/actfree-1,d0
 loc_206F8E:
-	tst.b	obj.id(a1)
+	tst.b	actno(a1)
 	beq.s	locret_206F9A
-	lea	obj.len(a1),a1
+	lea	actfree(a1),a1
 	dbf	d0,loc_206F8E
 locret_206F9A:
 	rts
@@ -6987,15 +6992,15 @@ actwkchk2:
 	subq.w	#1,d0
 	blo.s	locret_206FB6
 loc_206FAA:
-	tst.b	obj.id(a1)
+	tst.b	actno(a1)
 	beq.s	locret_206FB6
-	lea	obj.len(a1),a1
+	lea	actfree(a1),a1
 	dbf	d0,loc_206FAA
 locret_206FB6:
 	rts
 
 loc_206FB8:
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -7004,7 +7009,7 @@ loc_206FB8:
 	cmpi.w	#$280,d0
 	bls.s	locret_206FFE
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	beq.s	loc_206FF8
 	lea	flagwork,a1
 	move.w	d0,d1
@@ -7036,12 +7041,12 @@ unk_207B34:
 shooter:
 	bsr.w	sub_2023EA
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_207B78(pc,d0.w),d1
 	jsr	off_207B78(pc,d1.w)
-	cmpi.b	#4,obj.routine(a0)
+	cmpi.b	#4,r_no0(a0)
 	bhs.s	locret_207B70
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -7062,46 +7067,46 @@ off_207B78:
 	dc.w	loc_207C52-off_207B78
 
 loc_207B80:
-	move.l	#obj06_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$541,obj.vram(a0)
-	addq.b	#2,obj.routine(a0)
-	move.b	obj.subtype(a0),d0
+	move.l	#obj06_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$541,sproffset(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	userflag(a0),d0
 	add.w	d0,d0
 	andi.w	#$1E,d0
 	lea	off_207D7C(pc),a2
 	adda.w	(a2,d0.w),a2
-	move.w	(a2)+,obj.field_3A(a0)
-	move.l	a2,obj.field_3C(a0)
-	move.w	(a2)+,obj.field_36(a0)
-	move.w	(a2)+,obj.field_38(a0)
+	move.w	(a2)+,act3A(a0)
+	move.l	a2,act3C(a0)
+	move.w	(a2)+,act36(a0)
+	move.w	(a2)+,act38(a0)
 loc_207BC6:
-	move.w	obj.xpos(a6),d0
-	sub.w	obj.xpos(a0),d0
+	move.w	xposi(a6),d0
+	sub.w	xposi(a0),d0
 	addi.w	#$10,d0
 	cmpi.w	#$20,d0
 	bhs.s	locret_207C3C
-	move.w	obj.ypos(a6),d1
-	sub.w	obj.ypos(a0),d1
+	move.w	yposi(a6),d1
+	sub.w	yposi(a0),d1
 	addi.w	#$20,d1
 	cmpi.w	#$40,d1
 	bhs.s	locret_207C3C
-	tst.b	obj.field_2C(a6)
+	tst.b	act2C(a6)
 	bne.s	locret_207C3C
-	addq.b	#2,obj.routine(a0)
-	move.b	#$81,obj.field_2C(a6)
-	move.b	#2,obj.ani(a6)
+	addq.b	#2,r_no0(a0)
+	move.b	#$81,act2C(a6)
+	move.b	#2,mstno(a6)
 	bsr.w	sub_207D5C
-	move.w	#0,obj.xvel(a6)
-	move.w	#0,obj.yvel(a6)
-	bclr	#5,obj.status(a0)
-	bclr	#plst_push,obj.status(a6)
-	bset	#plst_jump,obj.status(a6)
-	move.w	obj.xpos(a0),obj.xpos(a6)
-	move.w	obj.ypos(a0),obj.ypos(a6)
-	clr.b	obj.field_32(a0)
+	move.w	#0,xspeed(a6)
+	move.w	#0,yspeed(a6)
+	bclr	#5,cddat(a0)
+	bclr	#plst_push,cddat(a6)
+	bset	#plst_jump,cddat(a6)
+	move.w	xposi(a0),xposi(a6)
+	move.w	yposi(a0),yposi(a6)
+	clr.b	act32(a0)
 	move.w	#$91,d0
 	jsr	soundset.l
 locret_207C3C:
@@ -7109,67 +7114,67 @@ locret_207C3C:
 
 loc_207C3E:
 	bsr.w	sub_207CCC
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 	move.w	#$91,d0
 	jsr	soundset.l
 	rts
 
 loc_207C52:
 	addq.l	#4,sp
-	subq.b	#1,obj.field_2E(a0)
+	subq.b	#1,act2E(a0)
 	bpl.s	loc_207C90
-	move.w	obj.field_36(a0),obj.xpos(a6)
-	move.w	obj.field_38(a0),obj.ypos(a6)
+	move.w	act36(a0),xposi(a6)
+	move.w	act38(a0),yposi(a6)
 	moveq	#0,d1
-	move.b	obj.field_3A(a0),d1
+	move.b	act3A(a0),d1
 	addq.b	#4,d1
-	cmp.b	obj.field_3B(a0),d1
+	cmp.b	act3B(a0),d1
 	blo.s	loc_207C78
 	moveq	#0,d1
 	bra.s	loc_207CB6
 
 loc_207C78:
-	move.b	d1,obj.field_3A(a0)
-	movea.l	obj.field_3C(a0),a2
-	move.w	(a2,d1.w),obj.field_36(a0)
-	move.w	2(a2,d1.w),obj.field_38(a0)
+	move.b	d1,act3A(a0)
+	movea.l	act3C(a0),a2
+	move.w	(a2,d1.w),act36(a0)
+	move.w	2(a2,d1.w),act38(a0)
 	bra.w	sub_207CCC
 
 loc_207C90:
-	move.l	obj.xpos(a6),d2
-	move.l	obj.ypos(a6),d3
-	move.w	obj.xvel(a6),d0
+	move.l	xposi(a6),d2
+	move.l	yposi(a6),d3
+	move.w	xspeed(a6),d0
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d2
-	move.w	obj.yvel(a6),d0
+	move.w	yspeed(a6),d0
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d3
-	move.l	d2,obj.xpos(a6)
-	move.l	d3,obj.ypos(a6)
+	move.l	d2,xposi(a6)
+	move.l	d3,yposi(a6)
 	rts
 
 loc_207CB6:
-	andi.w	#$7FF,obj.ypos(a6)
-	clr.b	obj.routine(a0)
-	clr.b	obj.field_2C(a6)
-	move.w	#2,obj.routine(a0)
+	andi.w	#$7FF,yposi(a6)
+	clr.b	r_no0(a0)
+	clr.b	act2C(a6)
+	move.w	#2,r_no0(a0)
 	rts
 
 sub_207CCC:
 	moveq	#0,d0
-	move.w	obj.inertia(a6),d2
-	move.w	obj.inertia(a6),d3
-	move.w	obj.field_36(a0),d0
-	sub.w	obj.xpos(a6),d0
+	move.w	mspeed(a6),d2
+	move.w	mspeed(a6),d3
+	move.w	act36(a0),d0
+	sub.w	xposi(a6),d0
 	bge.s	loc_207CE4
 	neg.w	d0
 	neg.w	d2
 loc_207CE4:
 	moveq	#0,d1
-	move.w	obj.field_38(a0),d1
-	sub.w	obj.ypos(a6),d1
+	move.w	act38(a0),d1
+	sub.w	yposi(a6),d1
 	bge.s	loc_207CF4
 	neg.w	d1
 	neg.w	d3
@@ -7177,56 +7182,56 @@ loc_207CF4:
 	cmp.w	d0,d1
 	blo.s	loc_207D2A
 	moveq	#0,d1
-	move.w	obj.field_38(a0),d1
-	sub.w	obj.ypos(a6),d1
+	move.w	act38(a0),d1
+	sub.w	yposi(a6),d1
 	swap	d1
 	divs.w	d3,d1
 	moveq	#0,d0
-	move.w	obj.field_36(a0),d0
-	sub.w	obj.xpos(a6),d0
+	move.w	act36(a0),d0
+	sub.w	xposi(a6),d0
 	beq.s	loc_207D16
 	swap	d0
 	divs.w	d1,d0
 loc_207D16:
-	move.w	d0,obj.xvel(a6)
-	move.w	d3,obj.yvel(a6)
+	move.w	d0,xspeed(a6)
+	move.w	d3,yspeed(a6)
 	tst.w	d1
 	bpl.s	loc_207D24
 	neg.w	d1
 loc_207D24:
-	move.w	d1,obj.field_2E(a0)
+	move.w	d1,act2E(a0)
 	rts
 
 loc_207D2A:
 	moveq	#0,d0
-	move.w	obj.field_36(a0),d0
-	sub.w	obj.xpos(a6),d0
+	move.w	act36(a0),d0
+	sub.w	xposi(a6),d0
 	swap	d0
 	divs.w	d2,d0
 	moveq	#0,d1
-	move.w	obj.field_38(a0),d1
-	sub.w	obj.ypos(a6),d1
+	move.w	act38(a0),d1
+	sub.w	yposi(a6),d1
 	beq.s	loc_207D48
 	swap	d1
 	divs.w	d0,d1
 loc_207D48:
-	move.w	d1,obj.yvel(a6)
-	move.w	d2,obj.xvel(a6)
+	move.w	d1,yspeed(a6)
+	move.w	d2,xspeed(a6)
 	tst.w	d0
 	bpl.s	loc_207D56
 	neg.w	d0
 loc_207D56:
-	move.w	d0,obj.field_2E(a0)
+	move.w	d0,act2E(a0)
 	rts
 
 sub_207D5C:
 	moveq	#0,d0
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	add.w	d0,d0
 	move.w	word_207D74(pc,d0.w),d0
-	cmp.w	obj.inertia(a6),d0
+	cmp.w	mspeed(a6),d0
 	ble.s	locret_207D72
-	move.w	d0,obj.inertia(a6)
+	move.w	d0,mspeed(a6)
 locret_207D72:
 	rts
 
@@ -7530,76 +7535,76 @@ unk_207E5C:
 	dc.b	$78
 
 sub_207EA2:
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	beq.s	locret_207EDA
-	btst	#3,obj.status(a1)
+	btst	#3,cddat(a1)
 	beq.s	locret_207EDA
 	moveq	#0,d0
-	move.b	obj.field_3D(a1),d0
+	move.b	act3D(a1),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
 	bne.s	locret_207EDA
-	clr.b	obj.field_38(a1)
-	bset	#1,obj.status(a1)
-	bclr	#3,obj.status(a1)
-	bclr	#3,obj.status(a0)
+	clr.b	act38(a1)
+	bset	#1,cddat(a1)
+	bclr	#3,cddat(a1)
+	bclr	#3,cddat(a0)
 locret_207EDA:
 	rts
 
 sub_207EDC:
-	clr.b	obj.routine2(a0)
-	clr.b	obj.field_3C(a1)
-	bset	#3,obj.status(a0)
+	clr.b	r_no1(a0)
+	clr.b	act3C(a1)
+	bset	#3,cddat(a0)
 	bne.s	loc_207F0A
-	bclr	#2,obj.status(a1)
+	bclr	#2,cddat(a1)
 	beq.s	loc_207F0A
-	move.b	#pl_height,obj.height(a1)
-	move.b	#pl_width,obj.width(a1)
-	subq.w	#5,obj.ypos(a1)
-	move.b	#0,obj.ani(a1)
+	move.b	#pl_height,sprvsize(a1)
+	move.b	#pl_width,sprhs(a1)
+	subq.w	#5,yposi(a1)
+	move.b	#0,mstno(a1)
 loc_207F0A:
-	bset	#3,obj.status(a1)
+	bset	#3,cddat(a1)
 	beq.s	loc_207F2C
 	moveq	#0,d0
-	move.b	obj.field_3D(a1),d0
+	move.b	act3D(a1),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
 	beq.s	locret_207F54
 	movea.l	d0,a2
-	bclr	#3,obj.status(a2)
+	bclr	#3,cddat(a2)
 loc_207F2C:
 	move.w	a0,d0
 	subi.w	#actwk&$FFFF,d0
 	lsr.w	#6,d0
 	andi.w	#$7F,d0
-	move.b	d0,obj.field_3D(a1)
-	move.b	#0,obj.angle(a1)
-	move.w	#0,obj.yvel(a1)
-	move.w	obj.xvel(a1),obj.inertia(a1)
-	bclr	#1,obj.status(a1)
+	move.b	d0,act3D(a1)
+	move.b	#0,direc(a1)
+	move.w	#0,yspeed(a1)
+	move.w	xspeed(a1),mspeed(a1)
+	bclr	#1,cddat(a1)
 locret_207F54:
 	rts
 
 sub_207F56:
-	cmpi.b	#4,obj.routine(a1)
+	cmpi.b	#4,r_no0(a1)
 	bhs.w	loc_20805C
-	cmpi.b	#$2B,obj.ani(a1)
+	cmpi.b	#$2B,mstno(a1)
 	beq.w	loc_20805C
-	_tst.b	obj.id(a1)
+	_tst.b	actno(a1)
 	beq.w	loc_20805C
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.w	loc_20805C
 	tst.b	editmode
 	bne.w	loc_20805C
 	moveq	#0,d1
 	moveq	#0,d2
-	move.b	obj.height(a0),d2
-	move.b	obj.field_19(a0),d1
+	move.b	sprvsize(a0),d2
+	move.b	sprhsize(a0),d1
 	moveq	#$10,d5
 	add.w	d1,d5
-	move.w	obj.xpos(a1),d0
+	move.w	xposi(a1),d0
 	sub.w	d3,d0
 	add.w	d5,d0
 	bmi.w	loc_20805C
@@ -7608,32 +7613,32 @@ sub_207F56:
 	cmp.w	d5,d0
 	bhs.w	loc_20805C
 	move.w	d0,d5
-	move.w	obj.xpos(a1),d0
+	move.w	xposi(a1),d0
 	sub.w	d3,d0
 	add.w	d1,d0
 	bmi.w	loc_208068
 	add.w	d1,d1
 	cmp.w	d1,d0
 	bhs.w	loc_208068
-	tst.b	obj.routine2(a0)
+	tst.b	r_no1(a0)
 	beq.s	loc_207FD0
-	cmpi.b	#2,obj.ani(a1)
+	cmpi.b	#2,mstno(a1)
 	beq.w	loc_20805C
 loc_207FD0:
-	btst	#1,obj.render(a0)
+	btst	#1,actflg(a0)
 	beq.s	loc_207FE2
-	tst.w	obj.yvel(a1)
+	tst.w	yspeed(a1)
 	bpl.w	loc_20805C
 	bra.s	loc_207FEA
 
 loc_207FE2:
-	tst.w	obj.yvel(a1)
+	tst.w	yspeed(a1)
 	bmi.w	loc_20805C
 loc_207FEA:
-	move.w	obj.ypos(a1),d0
+	move.w	yposi(a1),d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
-	btst	#1,obj.render(a0)
+	move.b	sprvsize(a1),d1
+	btst	#1,actflg(a0)
 	beq.s	loc_208000
 	sub.w	d1,d0
 	bra.s	loc_208002
@@ -7648,100 +7653,100 @@ loc_208002:
 	add.w	d2,d2
 	cmp.w	d2,d0
 	bhs.s	loc_20805C
-	move.w	d4,obj.ypos(a1)
+	move.w	d4,yposi(a1)
 	lsr.w	#1,d2
 	add.w	d1,d2
 	subq.w	#2,d2
-	btst	#1,obj.render(a0)
+	btst	#1,actflg(a0)
 	beq.s	loc_208028
-	add.w	d2,obj.ypos(a1)
+	add.w	d2,yposi(a1)
 	bra.s	loc_20802C
 
 loc_208028:
-	sub.w	d2,obj.ypos(a1)
+	sub.w	d2,yposi(a1)
 loc_20802C:
 	moveq	#0,d1
-	move.w	obj.xvel(a0),d1
+	move.w	xspeed(a0),d1
 	ext.l	d1
 	asl.l	#8,d1
-	move.l	obj.xpos(a1),d0
+	move.l	xposi(a1),d0
 	add.l	d1,d0
-	move.l	d0,obj.xpos(a1)
+	move.l	d0,xposi(a1)
 	moveq	#0,d1
-	move.w	obj.yvel(a0),d1
+	move.w	yspeed(a0),d1
 	ext.l	d1
 	asl.l	#8,d1
-	move.l	obj.ypos(a1),d0
+	move.l	yposi(a1),d0
 	add.l	d1,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 	bsr.w	sub_207EDC
 	moveq	#1,d0
 	rts
 
 loc_20805C:
 	bsr.w	sub_207EA2
-	clr.b	obj.routine2(a0)
+	clr.b	r_no1(a0)
 	moveq	#0,d0
 	rts
 
 loc_208068:
 	bsr.w	sub_207EA2
-	btst	#1,obj.status(a1)
+	btst	#1,cddat(a1)
 	bne.s	loc_2080DA
 	subq.w	#2,d2
-	move.w	obj.ypos(a1),d0
-	add.b	obj.height(a1),d0
+	move.w	yposi(a1),d0
+	add.b	sprvsize(a1),d0
 	sub.w	d4,d0
 	add.w	d2,d0
 	bmi.s	loc_2080DA
-	add.b	obj.height(a1),d2
+	add.b	sprvsize(a1),d2
 	add.w	d2,d2
 	cmp.w	d2,d0
 	bhs.s	loc_2080DA
-	move.w	obj.xpos(a1),d0
+	move.w	xposi(a1),d0
 	cmp.w	d3,d0
 	bhs.s	loc_20809E
-	tst.w	obj.xvel(a1)
+	tst.w	xspeed(a1)
 	bpl.s	loc_2080B2
 	bra.s	loc_2080A4
 
 loc_20809E:
-	tst.w	obj.xvel(a1)
+	tst.w	xspeed(a1)
 	bmi.s	loc_2080B2
 loc_2080A4:
-	bclr	#5,obj.status(a1)
-	bclr	#5,obj.status(a0)
+	bclr	#5,cddat(a1)
+	bclr	#5,cddat(a0)
 	bra.s	loc_2080BE
 
 loc_2080B2:
-	bset	#5,obj.status(a1)
-	bset	#5,obj.status(a0)
+	bset	#5,cddat(a1)
+	bset	#5,cddat(a0)
 loc_2080BE:
 	cmp.w	d5,d6
 	bhs.s	loc_2080C6
 	add.w	d6,d6
 	sub.w	d6,d5
 loc_2080C6:
-	sub.w	d5,obj.xpos(a1)
-	move.w	#0,obj.inertia(a1)
-	move.w	#0,obj.xvel(a1)
+	sub.w	d5,xposi(a1)
+	move.w	#0,mspeed(a1)
+	move.w	#0,xspeed(a1)
 	moveq	#0,d0
 	rts
 
 loc_2080DA:
-	bclr	#5,obj.status(a1)
-	bclr	#5,obj.status(a0)
+	bclr	#5,cddat(a1)
+	bclr	#5,cddat(a0)
 	moveq	#0,d0
 	rts
 
 sub_2080EA:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jmp	sub_207F56.l
 
 dai_k:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_208124(pc,d0.w),d0
 	jsr	off_208124(pc,d0.w)
 	tst.w	word_FF1278
@@ -7757,16 +7762,16 @@ off_208124:
 	dc.w	loc_208152-off_208124
 
 loc_208128:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#4,obj.priority(a0)
-	move.l	#obj09_map,obj.mappings(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#4,sprpri(a0)
+	move.l	#obj09_map,patbase(a0)
 	moveq	#6,d0
 	jsr	sub_20DC4C(pc)
-	move.b	#$10,obj.field_19(a0)
-	move.b	#8,obj.height(a0)
+	move.b	#$10,sprhsize(a0)
+	move.b	#8,sprvsize(a0)
 loc_208152:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.w	locret_2081BC
 	lea	actwk.w,a1
 	bsr.s	sub_2080EA
@@ -7784,54 +7789,54 @@ loc_208168:
 sub_208172:
 	tst.w	word_FF1278
 	bne.s	locret_2081BC
-	bset	#0,obj.field_2C(a1)
+	bset	#0,act2C(a1)
 	bne.s	loc_2081A4
-	move.b	#$2D,obj.ani(a1)
+	move.b	#$2D,mstno(a1)
 	moveq	#0,d0
-	move.b	d0,obj.field_2B(a1)
-	move.w	obj.xpos(a1),d0
-	sub.w	obj.xpos(a0),d0
+	move.b	d0,act2B(a1)
+	move.w	xposi(a1),d0
+	sub.w	xposi(a0),d0
 	bhs.s	loc_2081A0
 	neg.w	d0
-	move.b	#$80,obj.field_2B(a1)
+	move.b	#$80,act2B(a1)
 loc_2081A0:
-	move.b	d0,obj.field_39(a1)
+	move.b	d0,act39(a1)
 loc_2081A4:
 	bra.s	loc_2081BE
 
 sub_2081A6:
 	moveq	#0,d0
-	move.b	obj.field_3D(a1),d0
+	move.b	act3D(a1),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
 	bne.s	locret_2081BC
-	clr.b	obj.field_2C(a1)
+	clr.b	act2C(a1)
 locret_2081BC:
 	rts
 
 loc_2081BE:
-	addq.b	#8,obj.field_2B(a1)
-	move.b	obj.field_2B(a1),d0
+	addq.b	#8,act2B(a1)
+	move.b	act2B(a1),d0
 	jsr	sinset.l
 	moveq	#0,d0
-	move.b	obj.field_39(a1),d0
+	move.b	act39(a1),d0
 	muls.w	d1,d0
 	lsr.l	#8,d0
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	add.w	d0,obj.xpos(a1)
+	move.w	xposi(a0),xposi(a1)
+	add.w	d0,xposi(a1)
 	moveq	#0,d0
-	move.b	obj.field_2B(a1),d0
+	move.b	act2B(a1),d0
 	move.b	d0,d1
 	andi.b	#$F0,d0
 	lsr.b	#4,d0
-	move.b	byte_20821C(pc,d0.w),obj.aniframe(a1)
+	move.b	byte_20821C(pc,d0.w),patcnt(a1)
 	andi.b	#$3F,d1
 	bne.s	loc_2081FE
-	addq.b	#1,obj.field_39(a1)
+	addq.b	#1,act39(a1)
 loc_2081FE:
 	move.w	swdata1.w,swdata.w
-	_cmpi.b	#objid_01,obj.id(a1)
+	_cmpi.b	#objid_01,actno(a1)
 	beq.s	loc_208212
 	move.w	swdata2.w,swdata.w
 loc_208212:
@@ -7859,34 +7864,34 @@ byte_20821C:
 	even
 
 sub_20822C:
-	move.w	obj.xpos(a1),d0
-	sub.w	obj.xpos(a0),d0
+	move.w	xposi(a1),d0
+	sub.w	xposi(a0),d0
 	bhs.s	loc_20825A
 	btst	#2,swdata.w
 	beq.s	loc_208244
-	addq.b	#1,obj.field_39(a1)
+	addq.b	#1,act39(a1)
 	bra.s	locret_20827C
 
 loc_208244:
 	btst	#3,swdata.w
 	beq.s	locret_20827C
-	subq.b	#1,obj.field_39(a1)
+	subq.b	#1,act39(a1)
 	bhs.s	locret_20827C
-	move.b	#0,obj.field_39(a1)
+	move.b	#0,act39(a1)
 	bra.s	locret_20827C
 
 loc_20825A:
 	btst	#3,swdata.w
 	beq.s	loc_208268
-	addq.b	#1,obj.field_39(a1)
+	addq.b	#1,act39(a1)
 	bra.s	locret_20827C
 
 loc_208268:
 	btst	#2,swdata.w
 	beq.s	locret_20827C
-	subq.b	#1,obj.field_39(a1)
+	subq.b	#1,act39(a1)
 	bhs.s	locret_20827C
-	move.b	#0,obj.field_39(a1)
+	move.b	#0,act39(a1)
 locret_20827C:
 	rts
 
@@ -7895,56 +7900,56 @@ loc_20827E:
 	andi.b	#$70,d0
 	beq.w	locret_208332
 	move.w	#$680,d2
-	btst	#plst_water,obj.status(a0)
+	btst	#plst_water,cddat(a0)
 	beq.s	loc_20829A
 	move.w	#$380,d2
 loc_20829A:
 	moveq	#0,d0
-	move.b	obj.angle(a1),d0
+	move.b	direc(a1),d0
 	subi.b	#$40,d0
 	jsr	sinset.l
 	muls.w	d2,d1
 	asr.l	#8,d1
-	add.w	d1,obj.xvel(a1)
+	add.w	d1,xspeed(a1)
 	muls.w	d2,d0
 	asr.l	#8,d0
-	add.w	d0,obj.yvel(a1)
-	bset	#plst_jump,obj.status(a1)
-	bclr	#plst_push,obj.status(a1)
-	move.b	#1,obj.field_3C(a1)
-	clr.b	obj.field_38(a1)
+	add.w	d0,yspeed(a1)
+	bset	#plst_jump,cddat(a1)
+	bclr	#plst_push,cddat(a1)
+	move.b	#1,act3C(a1)
+	clr.b	act38(a1)
 	move.w	#$A0,d0
 	jsr	soundset.l
 	tst.b	chibi_flag.w
 	beq.s	loc_2082EE
-	move.b	#chibiheight,obj.height(a1)
-	move.b	#chibiwidth,obj.width(a1)
+	move.b	#chibiheight,sprvsize(a1)
+	move.b	#chibiwidth,sprhs(a1)
 	bra.s	loc_2082FA
 
 loc_2082EE:
-	move.b	#pl_height,obj.height(a1)
-	move.b	#pl_width,obj.width(a1)
+	move.b	#pl_height,sprvsize(a1)
+	move.b	#pl_width,sprhs(a1)
 loc_2082FA:
-	btst	#plst_ball,obj.status(a1)
+	btst	#plst_ball,cddat(a1)
 	bne.s	loc_208334
 	tst.b	chibi_flag.w
 	beq.s	loc_208316
-	move.b	#chibiheight,obj.height(a1)
-	move.b	#chibiwidth,obj.width(a1)
+	move.b	#chibiheight,sprvsize(a1)
+	move.b	#chibiwidth,sprhs(a1)
 	bra.s	loc_208326
 
 loc_208316:
-	move.b	#rollheight,obj.height(a1)
-	move.b	#rollwidth,obj.width(a1)
-	addq.w	#5,obj.ypos(a1)
+	move.b	#rollheight,sprvsize(a1)
+	move.b	#rollwidth,sprhs(a1)
+	addq.w	#5,yposi(a1)
 loc_208326:
-	bset	#plst_ball,obj.status(a1)
-	move.b	#2,obj.ani(a1)
+	bset	#plst_ball,cddat(a1)
+	move.b	#2,mstno(a1)
 locret_208332:
 	rts
 
 loc_208334:
-	bset	#plst_ballj,obj.status(a1)
+	bset	#plst_ballj,cddat(a1)
 	rts
 
 obj09_ani:
@@ -7976,7 +7981,7 @@ byte_208362:
 
 obj1B:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_208382(pc,d0.w),d0
 	jsr	off_208382(pc,d0.w)
 	jsr	actionsub.l
@@ -7987,25 +7992,25 @@ off_208382:
 	dc.w	loc_2083B8-off_208382
 
 loc_208386:
-	addq.b	#2,obj.routine(a0)
-	ori.b	#4,obj.render(a0)
-	move.b	#4,obj.priority(a0)
-	move.l	#obj1B_map,obj.mappings(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.b	#$10,obj.height(a0)
-	move.b	#0,obj.frame(a0)
+	addq.b	#2,r_no0(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#4,sprpri(a0)
+	move.l	#obj1B_map,patbase(a0)
+	move.b	#$10,sprhsize(a0)
+	move.b	#$10,sprvsize(a0)
+	move.b	#0,patno(a0)
 	moveq	#$B,d0
 	jsr	sub_20DC4C.l
 loc_2083B8:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_2083D8
 	lea	actwk.w,a1
 	bsr.w	sub_2083CA
 	lea	byte_FFD040.w,a1
 
 sub_2083CA:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jmp	sub_207F56.l
 
 locret_2083D8:
@@ -8022,10 +8027,10 @@ byte_2083DC:
 
 koma:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_208416(pc,d0.w),d0
 	jsr	off_208416(pc,d0.w)
-	move.w	obj.field_36(a0),d0
+	move.w	act36(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -8041,14 +8046,14 @@ off_208416:
 	dc.w	loc_2084AA-off_208416
 
 loc_20841C:
-	addq.b	#2,obj.routine(a0)
-	ori.b	#4,obj.render(a0)
-	move.b	#4,obj.priority(a0)
-	move.l	#obj0F_map,obj.mappings(a0)
-	move.b	#8,obj.field_19(a0)
-	move.b	#8,obj.height(a0)
-	move.w	obj.xpos(a0),obj.field_36(a0)
-	move.w	#$180,obj.xvel(a0)
+	addq.b	#2,r_no0(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#4,sprpri(a0)
+	move.l	#obj0F_map,patbase(a0)
+	move.b	#8,sprhsize(a0)
+	move.b	#8,sprvsize(a0)
+	move.w	xposi(a0),act36(a0)
+	move.w	#$180,xspeed(a0)
 	moveq	#$E,d0
 	jsr	sub_20DC4C.l
 	jsr	actwkchk.l
@@ -8056,36 +8061,36 @@ loc_20841C:
 	jmp	frameout.l
 
 loc_208462:
-	_move.b	#objid_0A,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	subi.w	#$10,obj.ypos(a1)
-	move.b	#$F0,obj.field_39(a1)
-	move.w	a0,obj.field_34(a1)
-	move.b	obj.subtype(a0),obj.subtype(a1)
+	_move.b	#objid_0A,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	subi.w	#$10,yposi(a1)
+	move.b	#$F0,act39(a1)
+	move.w	a0,act34(a1)
+	move.b	userflag(a0),userflag(a1)
 loc_20848A:
 	jsr	sub_20611C.l
 	tst.w	d1
 	bpl.s	loc_2084A4
-	add.w	d1,obj.ypos(a0)
-	move.w	obj.ypos(a0),obj.field_32(a0)
-	addq.b	#2,obj.routine(a0)
+	add.w	d1,yposi(a0)
+	move.w	yposi(a0),act32(a0)
+	addq.b	#2,r_no0(a0)
 	rts
 
 loc_2084A4:
-	addq.w	#1,obj.ypos(a0)
+	addq.w	#1,yposi(a0)
 	rts
 
 loc_2084AA:
 	tst.w	word_FF1278
 	bne.s	loc_2084E0
 	jsr	sub_20611C.l
-	add.w	d1,obj.ypos(a0)
-	move.w	obj.field_32(a0),d0
-	sub.w	obj.ypos(a0),d0
+	add.w	d1,yposi(a0)
+	move.w	act32(a0),d0
+	sub.w	yposi(a0),d0
 	cmpi.w	#$C,d0
 	blo.s	loc_2084CE
-	neg.w	obj.xvel(a0)
+	neg.w	xspeed(a0)
 loc_2084CE:
 	jsr	speedset2.l
 	lea	off_2089C0.l,a1
@@ -8095,9 +8100,9 @@ loc_2084E0:
 
 spring:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	beq.s	loc_2084F4
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_2084FC
 loc_2084F4:
 	move.w	off_20854E(pc,d0.w),d1
@@ -8105,19 +8110,19 @@ loc_2084F4:
 loc_2084FC:
 	bsr.w	actionsub
 	move.l	#$FFFF0000,d1
-	move.w	obj.field_34(a0),d1
+	move.w	act34(a0),d1
 	beq.s	loc_20852E
 	movea.l	d1,a1
-	move.w	obj.xpos(a1),obj.xpos(a0)
-	move.w	obj.ypos(a1),obj.ypos(a0)
-	move.b	obj.field_38(a0),d0
+	move.w	xposi(a1),xposi(a0)
+	move.w	yposi(a1),yposi(a0)
+	move.b	act38(a0),d0
 	ext.w	d0
-	add.w	d0,obj.xpos(a0)
-	move.b	obj.field_39(a0),d0
+	add.w	d0,xposi(a0)
+	move.b	act39(a0),d0
 	ext.w	d0
-	add.w	d0,obj.ypos(a0)
+	add.w	d0,yposi(a0)
 loc_20852E:
-	move.w	obj.field_36(a0),d0
+	move.w	act36(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -8143,29 +8148,29 @@ off_20854E:
 	dc.w	loc_2088A0-off_20854E
 
 loc_208568:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj0A_map,obj.mappings(a0)
-	move.w	#$520,obj.vram(a0)
-	ori.b	#4,obj.render(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.b	#8,obj.height(a0)
-	move.w	obj.xpos(a0),obj.field_36(a0)
-	move.b	#4,obj.priority(a0)
-	move.b	obj.subtype(a0),d0
+	addq.b	#2,r_no0(a0)
+	move.l	#obj0A_map,patbase(a0)
+	move.w	#$520,sproffset(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#$10,sprhsize(a0)
+	move.b	#8,sprvsize(a0)
+	move.w	xposi(a0),act36(a0)
+	move.b	#4,sprpri(a0)
+	move.b	userflag(a0),d0
 	btst	#2,d0
 	beq.s	loc_2085BE
-	move.b	#8,obj.routine(a0)
-	move.b	#8,obj.field_19(a0)
-	move.b	#$10,obj.height(a0)
-	move.l	#obj0A_map_2,obj.mappings(a0)
+	move.b	#8,r_no0(a0)
+	move.b	#8,sprhsize(a0)
+	move.b	#$10,sprvsize(a0)
+	move.l	#obj0A_map_2,patbase(a0)
 	bra.s	loc_2085FA
 
 loc_2085BE:
 	btst	#3,d0
 	beq.s	loc_2085E6
-	move.b	#$14,obj.routine(a0)
-	move.b	#$10,obj.height(a0)
-	move.l	#obj0A_map_3,obj.mappings(a0)
+	move.b	#$14,r_no0(a0)
+	move.b	#$10,sprvsize(a0)
+	move.l	#obj0A_map_3,patbase(a0)
 	move.l	d0,-(sp)
 	moveq	#$F,d0
 	jsr	sub_20DC4C.l
@@ -8173,17 +8178,17 @@ loc_2085BE:
 	bra.s	loc_2085FA
 
 loc_2085E6:
-	btst	#1,obj.render(a0)
+	btst	#1,actflg(a0)
 	beq.s	loc_2085FA
-	move.b	#$E,obj.routine(a0)
-	bset	#1,obj.status(a0)
+	move.b	#$E,r_no0(a0)
+	bset	#1,cddat(a0)
 loc_2085FA:
 	btst	#1,d0
 	beq.s	loc_208606
-	bset	#5,obj.vram(a0)
+	bset	#5,sproffset(a0)
 loc_208606:
 	andi.w	#2,d0
-	move.w	word_208612(pc,d0.w),obj.field_30(a0)
+	move.w	word_208612(pc,d0.w),act30(a0)
 	rts
 
 word_208612:
@@ -8191,12 +8196,12 @@ word_208612:
 	dc.w	$F600
 
 sub_208616:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jmp	sub_207F56.l
 
 loc_208624:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_20863C
 	lea	actwk.w,a1
 	bsr.s	sub_208616
@@ -8210,13 +8215,13 @@ locret_20863C:
 	rts
 
 sub_20863E:
-	move.b	#4,obj.routine(a0)
-	addq.w	#8,obj.ypos(a1)
-	move.w	obj.field_30(a0),obj.yvel(a1)
-	bset	#1,obj.status(a1)
-	bclr	#3,obj.status(a1)
-	move.b	#$10,obj.ani(a1)
-	bclr	#3,obj.status(a0)
+	move.b	#4,r_no0(a0)
+	addq.w	#8,yposi(a1)
+	move.w	act30(a0),yspeed(a1)
+	bset	#1,cddat(a1)
+	bclr	#3,cddat(a1)
+	move.b	#$10,mstno(a1)
+	bclr	#3,cddat(a0)
 	move.w	#$98,d0
 	jmp	soundset.l
 
@@ -8229,53 +8234,53 @@ loc_208670:
 	bra.w	animateobj
 
 loc_208686:
-	bclr	#3,obj.status(a0)
-	move.b	#1,obj.prevani(a0)
-	subq.b	#4,obj.routine(a0)
-	move.b	#0,obj.frame(a0)
+	bclr	#3,cddat(a0)
+	move.b	#1,act1D(a0)
+	subq.b	#4,r_no0(a0)
+	move.b	#0,patno(a0)
 	rts
 
 sub_20869E:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jmp	sub_207F56.l
 
 loc_2086AC:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_2086D0
 	lea	actwk.w,a1
 	bsr.s	sub_20869E
-	btst	#5,obj.status(a0)
+	btst	#5,cddat(a0)
 	beq.s	loc_2086C2
 	bsr.s	sub_2086D2
 loc_2086C2:
 	lea	byte_FFD040.w,a1
 	bsr.s	sub_20869E
-	btst	#5,obj.status(a0)
+	btst	#5,cddat(a0)
 	bne.s	sub_2086D2
 locret_2086D0:
 	rts
 
 sub_2086D2:
-	move.b	#$A,obj.routine(a0)
-	move.w	obj.field_30(a0),obj.xvel(a1)
-	addq.w	#8,obj.xpos(a1)
-	bset	#0,obj.status(a1)
-	btst	#0,obj.status(a0)
+	move.b	#$A,r_no0(a0)
+	move.w	act30(a0),xspeed(a1)
+	addq.w	#8,xposi(a1)
+	bset	#0,cddat(a1)
+	btst	#0,cddat(a0)
 	bne.s	loc_208700
-	subi.w	#$10,obj.xpos(a1)
-	neg.w	obj.xvel(a1)
-	bclr	#0,obj.status(a1)
+	subi.w	#$10,xposi(a1)
+	neg.w	xspeed(a1)
+	bclr	#0,cddat(a1)
 loc_208700:
-	move.w	#$F,obj.field_3E(a1)
-	move.w	obj.xvel(a1),obj.inertia(a1)
-	btst	#2,obj.status(a1)
+	move.w	#$F,act3E(a1)
+	move.w	xspeed(a1),mspeed(a1)
+	btst	#2,cddat(a1)
 	bne.s	loc_20871A
-	move.b	#0,obj.ani(a1)
+	move.b	#0,mstno(a1)
 loc_20871A:
-	clr.b	obj.angle(a1)
-	bclr	#5,obj.status(a0)
-	bclr	#5,obj.status(a1)
+	clr.b	direc(a1)
+	bclr	#5,cddat(a0)
+	bclr	#5,cddat(a1)
 	move.w	#$98,d0
 	jmp	soundset.l
 
@@ -8288,18 +8293,18 @@ loc_208734:
 	bra.w	animateobj
 
 loc_20874E:
-	move.b	#1,obj.prevani(a0)
-	subq.b	#4,obj.routine(a0)
-	move.b	#0,obj.frame(a0)
+	move.b	#1,act1D(a0)
+	subq.b	#4,r_no0(a0)
+	move.b	#0,patno(a0)
 	rts
 
 sub_208760:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jmp	sub_207F56.l
 
 loc_20876E:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_208786
 	lea	actwk.w,a1
 	bsr.s	sub_208760
@@ -8313,13 +8318,13 @@ locret_208786:
 	rts
 
 sub_208788:
-	move.b	#$10,obj.routine(a0)
-	subq.w	#8,obj.ypos(a1)
-	move.w	obj.field_30(a0),obj.yvel(a1)
-	neg.w	obj.yvel(a1)
-	bset	#1,obj.status(a1)
-	bclr	#3,obj.status(a1)
-	bclr	#3,obj.status(a0)
+	move.b	#$10,r_no0(a0)
+	subq.w	#8,yposi(a1)
+	move.w	act30(a0),yspeed(a1)
+	neg.w	yspeed(a1)
+	bset	#1,cddat(a1)
+	bclr	#3,cddat(a1)
+	bclr	#3,cddat(a0)
 	move.w	#$98,d0
 	jsr	soundset.l
 loc_2087B8:
@@ -8331,18 +8336,18 @@ loc_2087B8:
 	bra.w	animateobj
 
 loc_2087CE:
-	move.b	#1,obj.prevani(a0)
-	subq.b	#4,obj.routine(a0)
-	move.b	#0,obj.frame(a0)
+	move.b	#1,act1D(a0)
+	subq.b	#4,r_no0(a0)
+	move.b	#0,patno(a0)
 	rts
 
 loc_2087E0:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_20880C
 	lea	actwk.w,a1
 	bsr.w	sub_208760
 	bne.s	loc_2087F8
-	btst	#5,obj.status(a0)
+	btst	#5,cddat(a0)
 	beq.s	loc_2087FA
 loc_2087F8:
 	bsr.s	sub_20880E
@@ -8350,43 +8355,43 @@ loc_2087FA:
 	lea	byte_FFD040.w,a1
 	bsr.w	sub_208760
 	bne.s	sub_20880E
-	btst	#5,obj.status(a0)
+	btst	#5,cddat(a0)
 	bne.s	sub_20880E
 locret_20880C:
 	rts
 
 sub_20880E:
-	move.b	#$16,obj.routine(a0)
+	move.b	#$16,r_no0(a0)
 	moveq	#0,d0
 	move.b	#$D0,d0
 	jsr	sinset.l
-	move.w	obj.field_30(a0),d2
+	move.w	act30(a0),d2
 	neg.w	d2
 	mulu.w	d2,d0
 	mulu.w	d2,d1
 	lsr.l	#8,d0
 	lsr.l	#8,d1
-	move.w	d0,obj.yvel(a1)
-	move.w	d1,obj.xvel(a1)
-	addq.w	#8,obj.ypos(a1)
-	btst	#1,obj.render(a0)
+	move.w	d0,yspeed(a1)
+	move.w	d1,xspeed(a1)
+	addq.w	#8,yposi(a1)
+	btst	#1,actflg(a0)
 	beq.s	loc_20884C
-	subi.w	#$10,obj.ypos(a1)
-	neg.w	obj.yvel(a1)
+	subi.w	#$10,yposi(a1)
+	neg.w	yspeed(a1)
 loc_20884C:
-	bclr	#0,obj.status(a1)
-	subq.w	#8,obj.xpos(a1)
-	btst	#0,obj.status(a0)
+	bclr	#0,cddat(a1)
+	subq.w	#8,xposi(a1)
+	btst	#0,cddat(a0)
 	beq.s	loc_20886E
-	addi.w	#$10,obj.xpos(a1)
-	bset	#0,obj.status(a1)
-	neg.w	obj.xvel(a1)
+	addi.w	#$10,xposi(a1)
+	bset	#0,cddat(a1)
+	neg.w	xspeed(a1)
 loc_20886E:
-	bset	#1,obj.status(a1)
-	bclr	#3,obj.status(a1)
-	bclr	#5,obj.status(a1)
-	bclr	#3,obj.status(a0)
-	bclr	#5,obj.status(a0)
+	bset	#1,cddat(a1)
+	bclr	#3,cddat(a1)
+	bclr	#5,cddat(a1)
+	bclr	#3,cddat(a0)
+	bclr	#5,cddat(a0)
 	move.w	#$98,d0
 	jsr	soundset.l
 loc_208896:
@@ -8394,9 +8399,9 @@ loc_208896:
 	bra.w	animateobj
 
 loc_2088A0:
-	move.b	#1,obj.prevani(a0)
-	subq.b	#4,obj.routine(a0)
-	move.b	#0,obj.frame(a0)
+	move.b	#1,act1D(a0)
+	subq.b	#4,r_no0(a0)
+	move.b	#0,patno(a0)
 	rts
 
 off_2088B2:
@@ -8648,10 +8653,10 @@ byte_208EAB:
 
 block:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_208EEE(pc,d0.w),d0
 	jsr	off_208EEE(pc,d0.w)
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -8671,42 +8676,42 @@ off_208EEE:
 	dc.w	loc_208FFA-off_208EEE
 
 loc_208EFC:
-	addq.b	#2,obj.routine(a0)
-	ori.b	#4,obj.render(a0)
-	move.l	#obj12_map,obj.mappings(a0)
+	addq.b	#2,r_no0(a0)
+	ori.b	#4,actflg(a0)
+	move.l	#obj12_map,patbase(a0)
 	moveq	#5,d0
 	jsr	sub_20DC4C.l
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.b	#4,obj.height(a0)
-	move.b	#5,obj.frame(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.b	#4,sprvsize(a0)
+	move.b	#5,patno(a0)
 loc_208F2E:
 	bsr.w	sub_209002
 	tst.b	time_flag
 	beq.s	loc_208F68
 	cmpi.b	#2,time_flag
 	bne.s	loc_208F4E
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	bne.s	loc_208F6E
 	bra.s	loc_208F68
 
 loc_208F4E:
-	move.b	#0,obj.frame(a0)
-	btst	#3,obj.status(a0)
+	move.b	#0,patno(a0)
+	btst	#3,cddat(a0)
 	beq.s	loc_208F68
-	move.b	#6,obj.routine(a0)
-	move.b	#1,obj.ani(a0)
+	move.b	#6,r_no0(a0)
+	move.b	#1,mstno(a0)
 loc_208F68:
 	jmp	actionsub.l
 
 loc_208F6E:
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 loc_208F72:
 	bsr.w	sub_209002
-	addq.w	#2,obj.ypos(a0)
+	addq.w	#2,yposi(a0)
 	move.w	scra_v_posit.w,d0
 	addi.w	#224,d0
-	cmp.w	obj.ypos(a0),d0
+	cmp.w	yposi(a0),d0
 	bhs.s	loc_208F8E
 	jmp	frameout.l
 
@@ -8715,9 +8720,9 @@ loc_208F8E:
 
 loc_208F94:
 	bsr.w	sub_209002
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	bne.s	loc_208FA8
-	move.b	#2,obj.routine(a0)
+	move.b	#2,r_no0(a0)
 	rts
 
 loc_208FA8:
@@ -8726,12 +8731,12 @@ loc_208FA8:
 	jmp	actionsub.l
 
 loc_208FB8:
-	move.b	#0,obj.ani(a0)
+	move.b	#0,mstno(a0)
 	bsr.w	sub_209002
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	bne.s	loc_208FD6
-	addq.b	#2,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#2,mstno(a0)
 	rts
 
 loc_208FD6:
@@ -8746,7 +8751,7 @@ loc_208FE6:
 	jmp	actionsub.l
 
 loc_208FFA:
-	move.b	#2,obj.routine(a0)
+	move.b	#2,r_no0(a0)
 	rts
 
 sub_209002:
@@ -8755,8 +8760,8 @@ sub_209002:
 	lea	byte_FFD040.w,a1
 
 sub_20900E:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	subq.w	#8,d4
 	jmp	sub_207F56.l
 
@@ -8823,7 +8828,7 @@ loc_209088:
 
 loc_209096:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2090B0(pc,d0.w),d0
 	jsr	off_2090B0(pc,d0.w)
 	jsr	actionsub.l
@@ -8836,63 +8841,63 @@ off_2090B0:
 	dc.w	locret_20917A-off_2090B0
 
 loc_2090B8:
-	addq.b	#2,obj.routine(a0)
-	move.b	#$E,obj.height(a0)
-	move.b	#$E,obj.width(a0)
-	move.l	#monitor_map,obj.mappings(a0)
-	move.w	#$5A8,obj.vram(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#3,obj.priority(a0)
-	move.b	#$F,obj.field_19(a0)
-	move.b	obj.subtype(a0),obj.ani(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#$E,sprvsize(a0)
+	move.b	#$E,sprhs(a0)
+	move.l	#monitor_map,patbase(a0)
+	move.w	#$5A8,sproffset(a0)
+	move.b	#4,actflg(a0)
+	move.b	#3,sprpri(a0)
+	move.b	#$F,sprhsize(a0)
+	move.b	userflag(a0),mstno(a0)
 	bsr.w	sub_20917C
 	bclr	#7,2(a2,d0.w)
-	move.b	#$A,obj.frame(a0)
-	cmpi.b	#8,obj.subtype(a0)
+	move.b	#$A,patno(a0)
+	cmpi.b	#8,userflag(a0)
 	beq.s	loc_20910A
-	addq.b	#2,obj.frame(a0)
+	addq.b	#2,patno(a0)
 loc_20910A:
 	btst	#0,2(a2,d0.w)
 	beq.s	loc_20911E
-	addq.b	#1,obj.frame(a0)
-	move.b	#6,obj.routine(a0)
+	addq.b	#1,patno(a0)
+	move.b	#6,r_no0(a0)
 	rts
 
 loc_20911E:
-	move.b	#$DF,obj.colflag(a0)
+	move.b	#$DF,colino(a0)
 loc_209124:
-	tst.b	obj.field_21(a0)
+	tst.b	colicnt(a0)
 	beq.s	locret_209152
-	move.b	#$3C,obj.field_2A(a0)
-	addq.b	#2,obj.routine(a0)
+	move.b	#$3C,act2A(a0)
+	addq.b	#2,r_no0(a0)
 	bsr.w	sub_20917C
 	bset	#0,2(a2,d0.w)
 	move.b	#$FF,time_item.w
-	cmpi.b	#8,obj.subtype(a0)
+	cmpi.b	#8,userflag(a0)
 	beq.s	locret_209152
 	move.b	#1,time_item.w
 locret_209152:
 	rts
 
 loc_209154:
-	subq.b	#1,obj.field_2A(a0)
+	subq.b	#1,act2A(a0)
 	beq.s	loc_209164
 	lea	monitor_ani.l,a1
 	bra.w	animateobj
 
 loc_209164:
-	addq.b	#2,obj.routine(a0)
-	move.b	#$B,obj.frame(a0)
-	cmpi.b	#8,obj.subtype(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#$B,patno(a0)
+	cmpi.b	#8,userflag(a0)
 	beq.s	locret_20917A
-	addq.b	#2,obj.frame(a0)
+	addq.b	#2,patno(a0)
 locret_20917A:
 	rts
 
 sub_20917C:
 	lea	flagwork,a2
 	moveq	#0,d0
-	move.b	obj.field_23(a0),d0
+	move.b	cdsts(a0),d0
 	move.w	d0,d1
 	add.w	d1,d1
 	add.w	d1,d0
@@ -8902,16 +8907,16 @@ sub_20917C:
 	rts
 
 sub_20919A:
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
-	move.b	#1,obj.routine2(a0)
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
+	move.b	#1,r_no1(a0)
 	jmp	sub_207F56.l
 
 obj19:
-	cmpi.b	#8,obj.subtype(a0)
+	cmpi.b	#8,userflag(a0)
 	bhs.w	loc_209088
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2091C6(pc,d0.w),d1
 	jmp	off_2091C6(pc,d1.w)
 
@@ -8923,41 +8928,41 @@ off_2091C6:
 	dc.w	loc_209282-off_2091C6
 
 loc_2091D0:
-	addq.b	#2,obj.routine(a0)
-	move.b	#$E,obj.height(a0)
-	move.b	#$E,obj.width(a0)
-	move.l	#monitor_map,obj.mappings(a0)
-	move.w	#$5A8,obj.vram(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#3,obj.priority(a0)
-	move.b	#$F,obj.field_19(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#$E,sprvsize(a0)
+	move.b	#$E,sprhs(a0)
+	move.l	#monitor_map,patbase(a0)
+	move.w	#$5A8,sproffset(a0)
+	move.b	#4,actflg(a0)
+	move.b	#3,sprpri(a0)
+	move.b	#$F,sprhsize(a0)
 	bsr.w	sub_20917C
 	bclr	#7,2(a2,d0.w)
 	btst	#0,2(a2,d0.w)
 	beq.s	loc_209220
-	move.b	#8,obj.routine(a0)
-	move.b	#$11,obj.frame(a0)
+	move.b	#8,r_no0(a0)
+	move.b	#$11,patno(a0)
 	rts
 
 loc_209220:
-	move.b	#$46,obj.colflag(a0)
-	move.b	obj.subtype(a0),obj.ani(a0)
+	move.b	#$46,colino(a0)
+	move.b	userflag(a0),mstno(a0)
 loc_20922C:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.w	loc_209282
-	move.b	obj.routine2(a0),d0
+	move.b	r_no1(a0),d0
 	beq.s	loc_20925A
 	bsr.w	speedset
 	jsr	sub_20611C.l
 	tst.w	d1
 	bpl.w	loc_209270
-	add.w	d1,obj.ypos(a0)
-	clr.w	obj.yvel(a0)
-	clr.b	obj.routine2(a0)
+	add.w	d1,yposi(a0)
+	clr.w	yspeed(a0)
+	clr.b	r_no1(a0)
 	bra.w	loc_209270
 
 loc_20925A:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_209270
 	lea	actwk.w,a1
 	bsr.w	sub_20919A
@@ -8975,30 +8980,30 @@ loc_209282:
 loc_20928C:
 	move.w	#$96,d0
 	jsr	soundset.l
-	addq.b	#4,obj.routine(a0)
-	move.b	#0,obj.colflag(a0)
+	addq.b	#4,r_no0(a0)
+	move.b	#0,colino(a0)
 	bsr.w	actwkchk
 	bne.s	loc_2092BE
-	_move.b	#objid_1A,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	move.b	obj.ani(a0),obj.ani(a1)
+	_move.b	#objid_1A,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	move.b	mstno(a0),mstno(a1)
 loc_2092BE:
 	bsr.w	actwkchk
 	bne.s	loc_2092DC
-	_move.b	#objid_18,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	move.b	#1,obj.routine2(a1)
+	_move.b	#objid_18,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	move.b	#1,r_no1(a1)
 loc_2092DC:
 	bsr.w	sub_20917C
 	bset	#0,2(a2,d0.w)
-	move.b	#$11,obj.frame(a0)
+	move.b	#$11,patno(a0)
 	bra.w	actionsub
 
 obj1A:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_209302(pc,d0.w),d1
 	jsr	off_209302(pc,d1.w)
 	bra.w	actionsub
@@ -9009,32 +9014,32 @@ off_209302:
 	dc.w	loc_2094A2-off_209302
 
 loc_209308:
-	addq.b	#2,obj.routine(a0)
-	move.w	#$5A8,obj.vram(a0)
-	move.b	#$24,obj.render(a0)
-	move.b	#3,obj.priority(a0)
-	move.b	#8,obj.field_19(a0)
-	move.w	#-$300,obj.yvel(a0)
+	addq.b	#2,r_no0(a0)
+	move.w	#$5A8,sproffset(a0)
+	move.b	#$24,actflg(a0)
+	move.b	#3,sprpri(a0)
+	move.b	#8,sprhsize(a0)
+	move.w	#-$300,yspeed(a0)
 	moveq	#0,d0
-	move.b	obj.ani(a0),d0
-	move.b	d0,obj.frame(a0)
+	move.b	mstno(a0),d0
+	move.b	d0,patno(a0)
 	movea.l	#monitor_map,a1
 	add.b	d0,d0
 	adda.w	(a1,d0.w),a1
 	addq.w	#1,a1
-	move.l	a1,obj.mappings(a0)
+	move.l	a1,patbase(a0)
 loc_209346:
-	tst.w	obj.yvel(a0)
+	tst.w	yspeed(a0)
 	bpl.w	loc_20935A
 	bsr.w	speedset2
-	addi.w	#$18,obj.yvel(a0)
+	addi.w	#$18,yspeed(a0)
 	rts
 
 loc_20935A:
-	addq.b	#2,obj.routine(a0)
-	move.w	#29,obj.time(a0)
+	addq.b	#2,r_no0(a0)
+	move.w	#29,pattim(a0)
 	jsr	sub_2023EA.l
-	move.b	obj.ani(a0),d0
+	move.b	mstno(a0),d0
 	bne.s	loc_209386
 loc_209370:
 	addq.b	#1,pl_suu
@@ -9075,15 +9080,15 @@ loc_2093F0:
 
 sub_2093F6:
 	move.b	#1,plpower_m
-	move.w	#1200,obj.field_32(a6)
+	move.w	#1200,act32(a6)
 	move.b	#3,byte_FFD200.w
-	move.b	#1,byte_FFD200+obj.ani.w
+	move.b	#1,byte_FFD200+mstno.w
 	move.b	#3,byte_FFD240.w
-	move.b	#2,byte_FFD240+obj.ani.w
+	move.b	#2,byte_FFD240+mstno.w
 	move.b	#3,byte_FFD280.w
-	move.b	#3,byte_FFD280+obj.ani.w
+	move.b	#3,byte_FFD280+mstno.w
 	move.b	#3,byte_FFD2C0.w
-	move.b	#4,byte_FFD2C0+obj.ani.w
+	move.b	#4,byte_FFD2C0+mstno.w
 	tst.b	bossstart.w
 	bne.s	locret_20944E
 	cmpi.w	#$C,pl_air
@@ -9099,7 +9104,7 @@ loc_209450:
 	bne.s	loc_209480
 loc_209456:
 	move.b	#1,plpower_s
-	move.w	#1200,obj.field_34(a6)
+	move.w	#1200,act34(a6)
 	move.w	#$C00,plmaxspdwk.w
 	move.w	#$18,pladdspdwk.w
 	move.w	#$80,plretspdwk.w
@@ -9122,7 +9127,7 @@ loc_209498:
 	bra.s	loc_209456
 
 loc_2094A2:
-	subq.w	#1,obj.time(a0)
+	subq.w	#1,pattim(a0)
 	bmi.w	frameout
 	rts
 
@@ -9330,7 +9335,7 @@ byte_2096E0:
 
 obj1C:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_2096F4(pc,d0.w),d0
 	jmp	off_2096F4(pc,d0.w)
 
@@ -9339,27 +9344,27 @@ off_2096F4:
 	dc.w	loc_20973C-off_2096F4
 
 loc_2096F8:
-	addq.b	#2,obj.routine(a0)
-	move.l	#hud_map,obj.mappings(a0)
-	move.w	#$8568,obj.vram(a0)
-	move.w	#$90,obj.xpos(a0)
-	move.w	#$88,obj.scrypos(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#hud_map,patbase(a0)
+	move.w	#$8568,sproffset(a0)
+	move.w	#$90,xposi(a0)
+	move.w	#$88,$A(a0)
 	tst.w	debugflag
 	beq.s	loc_209724
-	move.b	#2,obj.frame(a0)
+	move.b	#2,patno(a0)
 loc_209724:
-	tst.b	obj.subtype(a0)
+	tst.b	userflag(a0)
 	beq.s	loc_20973C
-	move.w	#$90,obj.xpos(a0)
-	move.w	#$148,obj.scrypos(a0)
-	move.b	#1,obj.frame(a0)
+	move.w	#$90,xposi(a0)
+	move.w	#$148,$A(a0)
+	move.b	#1,patno(a0)
 loc_20973C:
-	tst.b	obj.subtype(a0)
+	tst.b	userflag(a0)
 	bne.s	loc_209756
-	move.b	#0,obj.frame(a0)
+	move.b	#0,patno(a0)
 	tst.w	debugflag
 	beq.s	loc_209756
-	move.b	#2,obj.frame(a0)
+	move.b	#2,patno(a0)
 loc_209756:
 	jmp	actionsub.l
 
@@ -9556,10 +9561,10 @@ unk_2099BC:
 sub_2099C0:
 	move.l	#$70E00002,d0
 	moveq	#0,d1
-	move.w	actwk+obj.xpos.w,d1
+	move.w	actwk+xposi.w,d1
 	bsr.w	sub_209ACA
 	move.l	#$72200002,d0
-	move.w	actwk+obj.ypos.w,d1
+	move.w	actwk+yposi.w,d1
 	bra.w	sub_209ACA
 
 sub_2099DE:
@@ -9738,32 +9743,32 @@ loc_209B24:
 	rts
 
 marker:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	bmi.w	loc_209DD4
 	bra.w	loc_209C32
 
 obj14:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	bmi.w	loc_209F7C
 	bra.w	loc_20A18E
 
 obj15:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	bmi.w	loc_20A51E
 	bra.w	loc_20A3A0
 
 obj16:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	bmi.w	loc_20A814
 	bra.w	loc_20A702
 
 obj22:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	bmi.w	loc_20AC58
 	bra.w	loc_20A926
 
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_209BA4(pc,d0.w),d0
 	jmp	off_209BA4(pc,d0.w)
 
@@ -9772,31 +9777,31 @@ off_209BA4:
 	dc.w	loc_209BFC-off_209BA4
 
 loc_209BA8:
-	addq.b	#2,obj.routine(a0)
-	move.l	#off_20B4C8,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$400,obj.vram(a0)
-	move.w	#$C00,obj.vram(a0)
-	move.w	#$1400,obj.vram(a0)
-	move.w	#$24FC,obj.vram(a0)
-	move.l	actwk+obj.xpos.w,d0
+	addq.b	#2,r_no0(a0)
+	move.l	#off_20B4C8,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$400,sproffset(a0)
+	move.w	#$C00,sproffset(a0)
+	move.w	#$1400,sproffset(a0)
+	move.w	#$24FC,sproffset(a0)
+	move.l	actwk+xposi.w,d0
 	addi.l	#$A0000,d0
-	move.l	d0,obj.xpos(a0)
-	move.l	actwk+obj.ypos.w,d0
+	move.l	d0,xposi(a0)
+	move.l	actwk+yposi.w,d0
 	subi.l	#$320000,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	rts
 
 loc_209BFC:
-	move.l	actwk+obj.xpos.w,d0
+	move.l	actwk+xposi.w,d0
 	addi.l	#$A0000,d0
-	move.l	d0,obj.xpos(a0)
-	move.l	actwk+obj.ypos.w,d0
+	move.l	d0,xposi(a0)
+	move.l	actwk+yposi.w,d0
 	subi.l	#$320000,d0
-	move.l	d0,obj.ypos(a0)
-	move.b	#0,obj.ani(a0)
+	move.l	d0,yposi(a0)
+	move.b	#0,mstno(a0)
 	lea	off_20B4B6.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
@@ -9804,9 +9809,9 @@ loc_209BFC:
 
 loc_209C32:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	beq.s	loc_209C4C
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bmi.s	loc_209C4C
 	jsr	actionsub.l
 	jmp	loc_206FB8.l
@@ -9825,32 +9830,32 @@ off_209C5A:
 	dc.w	loc_209DC0-off_209C5A
 
 loc_209C66:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj13_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj13_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#0,d0
 	jsr	sub_20DC4C.l
-	move.b	#1,obj.ani(a0)
-	move.l	obj.xpos(a0),d0
-	move.l	d0,obj.field_2C(a0)
+	move.b	#1,mstno(a0)
+	move.l	xposi(a0),d0
+	move.l	d0,act2C(a0)
 	rts
 
 loc_209CA2:
 	bra.w	loc_209CEA
 
-	move.w	#$2C00,obj.vram(a0)
-	move.l	obj.xpos(a0),d0
+	move.w	#$2C00,sproffset(a0)
+	move.l	xposi(a0),d0
 	addi.l	#$10000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.xpos(a0),d0
-	move.w	obj.field_2C(a0),d1
+	move.l	d0,xposi(a0)
+	move.w	xposi(a0),d0
+	move.w	act2C(a0),d1
 	addi.w	#$6E,d1
 	cmp.w	d0,d1
 	bpl.w	loc_209CD2
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 loc_209CD2:
 	bsr.w	loc_209D2A
 	lea	obj13_ani.l,a1
@@ -9861,11 +9866,11 @@ loc_209CD2:
 loc_209CEA:
 	moveq	#0,d0
 	jsr	sub_20DC4C.l
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	subi.l	#$10000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.xpos(a0),d0
-	move.w	obj.field_2C(a0),d1
+	move.l	d0,xposi(a0)
+	move.w	xposi(a0),d0
+	move.w	act2C(a0),d1
 	subi.w	#$6E,d1
 	cmp.w	d0,d1
 	bmi.w	loc_209D12
@@ -9877,8 +9882,8 @@ loc_209D12:
 	rts
 
 loc_209D2A:
-	move.w	actwk+obj.xpos.w,d1
-	move.w	obj.xpos(a0),d0
+	move.w	actwk+xposi.w,d1
+	move.w	xposi(a0),d0
 	move.w	d1,d2
 	addi.w	#$32,d1
 	subi.w	#$32,d2
@@ -9886,19 +9891,19 @@ loc_209D2A:
 	bpl.w	locret_209D5A
 	cmp.w	d2,d0
 	bmi.w	locret_209D5A
-	move.b	#6,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
-	move.w	#$32,obj.field_2A(a0)
+	move.b	#6,r_no0(a0)
+	move.b	#2,mstno(a0)
+	move.w	#$32,act2A(a0)
 locret_209D5A:
 	rts
 
 loc_209D5C:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	subq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	bne.w	loc_209D76
-	move.b	#8,obj.routine(a0)
-	move.b	#3,obj.ani(a0)
+	move.b	#8,r_no0(a0)
+	move.b	#3,mstno(a0)
 loc_209D76:
 	lea	obj13_ani.l,a1
 	jsr	animateobj.l
@@ -9906,9 +9911,9 @@ loc_209D76:
 	rts
 
 loc_209D8A:
-	move.l	obj.ypos(a0),d0
+	move.l	yposi(a0),d0
 	addi.l	#$60000,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	bmi.w	loc_209DB8
@@ -9918,7 +9923,7 @@ loc_209D8A:
 	rts
 
 loc_209DB8:
-	move.b	#$A,obj.routine(a0)
+	move.b	#$A,r_no0(a0)
 	rts
 
 loc_209DC0:
@@ -9929,9 +9934,9 @@ loc_209DC0:
 
 loc_209DD4:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	beq.s	loc_209DEE
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bmi.s	loc_209DEE
 	jsr	actionsub.l
 	jmp	loc_206FB8.l
@@ -9950,33 +9955,33 @@ off_209DFC:
 	dc.w	loc_209F68-off_209DFC
 
 loc_209E08:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj13b_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$400,obj.vram(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj13b_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$400,sproffset(a0)
 	moveq	#0,d0
 	jsr	sub_20DC4C.l
-	move.b	#1,obj.ani(a0)
-	move.l	obj.xpos(a0),d0
-	move.l	d0,obj.field_2C(a0)
+	move.b	#1,mstno(a0)
+	move.l	xposi(a0),d0
+	move.l	d0,act2C(a0)
 	rts
 
 loc_209E4A:
 	bra.w	loc_209E92
 
-	move.w	#$2C00,obj.vram(a0)
-	move.l	obj.xpos(a0),d0
+	move.w	#$2C00,sproffset(a0)
+	move.l	xposi(a0),d0
 	addi.l	#$10000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.xpos(a0),d0
-	move.w	obj.field_2C(a0),d1
+	move.l	d0,xposi(a0)
+	move.w	xposi(a0),d0
+	move.w	act2C(a0),d1
 	addi.w	#$6E,d1
 	cmp.w	d0,d1
 	bpl.w	loc_209E7A
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 loc_209E7A:
 	bsr.w	sub_209ED2
 	lea	obj13b_ani.l,a1
@@ -9987,11 +9992,11 @@ loc_209E7A:
 loc_209E92:
 	moveq	#0,d0
 	jsr	sub_20DC4C.l
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	subi.l	#$10000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.xpos(a0),d0
-	move.w	obj.field_2C(a0),d1
+	move.l	d0,xposi(a0)
+	move.w	xposi(a0),d0
+	move.w	act2C(a0),d1
 	subi.w	#$6E,d1
 	cmp.w	d0,d1
 	bmi.w	loc_209EBA
@@ -10003,8 +10008,8 @@ loc_209EBA:
 	rts
 
 sub_209ED2:
-	move.w	actwk+obj.xpos.w,d1
-	move.w	obj.xpos(a0),d0
+	move.w	actwk+xposi.w,d1
+	move.w	xposi(a0),d0
 	move.w	d1,d2
 	addi.w	#$32,d1
 	subi.w	#$32,d2
@@ -10012,19 +10017,19 @@ sub_209ED2:
 	bpl.w	locret_209F02
 	cmp.w	d2,d0
 	bmi.w	locret_209F02
-	move.b	#6,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
-	move.w	#$3C,obj.field_2A(a0)
+	move.b	#6,r_no0(a0)
+	move.b	#2,mstno(a0)
+	move.w	#$3C,act2A(a0)
 locret_209F02:
 	rts
 
 loc_209F04:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	subq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	bne.w	loc_209F1E
-	move.b	#8,obj.routine(a0)
-	move.b	#3,obj.ani(a0)
+	move.b	#8,r_no0(a0)
+	move.b	#3,mstno(a0)
 loc_209F1E:
 	lea	obj13b_ani.l,a1
 	jsr	animateobj.l
@@ -10032,9 +10037,9 @@ loc_209F1E:
 	rts
 
 loc_209F32:
-	move.l	obj.ypos(a0),d0
+	move.l	yposi(a0),d0
 	addi.l	#$60000,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	bmi.w	loc_209F60
@@ -10044,7 +10049,7 @@ loc_209F32:
 	rts
 
 loc_209F60:
-	move.b	#$A,obj.routine(a0)
+	move.b	#$A,r_no0(a0)
 	rts
 
 loc_209F68:
@@ -10055,7 +10060,7 @@ loc_209F68:
 
 loc_209F7C:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_209F90(pc,d0.w),d0
 	jsr	off_209F90(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -10068,52 +10073,52 @@ off_209F90:
 	dc.w	loc_20A11C-off_209F90
 
 loc_209F9A:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj14_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj14_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#1,d0
 	jsr	sub_20DC4C.l
-	move.w	#0,obj.field_30(a0)
-	move.w	#0,obj.field_2A(a0)
-	bclr	#0,obj.status(a0)
-	bclr	#0,obj.render(a0)
-	move.l	obj.ypos(a0),d0
-	move.l	d0,obj.field_2C(a0)
+	move.w	#0,act30(a0)
+	move.w	#0,act2A(a0)
+	bclr	#0,cddat(a0)
+	bclr	#0,actflg(a0)
+	move.l	yposi(a0),d0
+	move.l	d0,act2C(a0)
 	rts
 
 loc_209FE8:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_20A06C
-	move.b	#0,obj.ani(a0)
+	move.b	#0,mstno(a0)
 	moveq	#1,d0
 	jsr	sub_20DC4C.l
-	bclr	#0,obj.status(a0)
-	bclr	#0,obj.render(a0)
+	bclr	#0,cddat(a0)
+	bclr	#0,actflg(a0)
 	bsr.w	sub_20A0FA
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	subi.l	#$8000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.field_30(a0),d0
+	move.l	d0,xposi(a0)
+	move.w	act30(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_30(a0)
+	move.w	d0,act30(a0)
 	cmpi.w	#$FA,d0
 	bne.w	loc_20A040
-	move.w	#0,obj.field_30(a0)
-	move.b	#$60,obj.field_32(a0)
-	move.b	#4,obj.routine(a0)
+	move.w	#0,act30(a0)
+	move.b	#$60,act32(a0)
+	move.b	#4,r_no0(a0)
 	rts
 
 loc_20A040:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	cmpi.w	#$300,d0
 	bne.w	loc_20A060
-	move.w	#0,obj.field_2A(a0)
-	move.b	#6,obj.routine(a0)
+	move.w	#0,act2A(a0)
+	move.b	#6,r_no0(a0)
 	rts
 
 loc_20A060:
@@ -10123,33 +10128,33 @@ loc_20A06C:
 	jmp	actionsub.l
 
 loc_20A072:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_20A06C
-	move.b	#1,obj.ani(a0)
+	move.b	#1,mstno(a0)
 	moveq	#1,d0
 	jsr	sub_20DC4C.l
 	bsr.w	sub_20A0FA
-	bset	#0,obj.status(a0)
-	bset	#0,obj.render(a0)
-	move.l	obj.xpos(a0),d0
+	bset	#0,cddat(a0)
+	bset	#0,actflg(a0)
+	move.l	xposi(a0),d0
 	addi.l	#$8000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.field_30(a0),d0
+	move.l	d0,xposi(a0)
+	move.w	act30(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_30(a0)
+	move.w	d0,act30(a0)
 	cmpi.w	#$FA,d0
 	bne.w	loc_20A0C8
-	move.w	#0,obj.field_30(a0)
-	move.b	#$60,obj.field_32(a0)
-	move.b	#8,obj.routine(a0)
+	move.w	#0,act30(a0)
+	move.b	#$60,act32(a0)
+	move.b	#8,r_no0(a0)
 loc_20A0C8:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	cmpi.w	#$300,d0
 	bne.w	loc_20A0E6
-	move.w	#0,obj.field_2A(a0)
-	move.b	#2,obj.routine(a0)
+	move.w	#0,act2A(a0)
+	move.b	#2,r_no0(a0)
 loc_20A0E6:
 	lea	obj14_ani.l,a1
 	jsr	animateobj.l
@@ -10157,22 +10162,22 @@ loc_20A0E6:
 	rts
 
 sub_20A0FA:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	mulu.w	#256,d0
 	divu.w	#128,d0
 	jsr	sinset.l
 	muls.w	#$1C00,d0
-	move.l	obj.field_2C(a0),d1
+	move.l	act2C(a0),d1
 	add.l	d0,d1
-	move.l	d1,obj.ypos(a0)
+	move.l	d1,yposi(a0)
 	rts
 
 loc_20A11C:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.w	loc_20A06C
-	move.b	obj.field_32(a0),d0
+	move.b	act32(a0),d0
 	subq.w	#1,d0
-	move.b	d0,obj.field_32(a0)
+	move.b	d0,act32(a0)
 	beq.w	loc_20A168
 	move.l	#$4000,d1
 	addi.b	#$30,d0
@@ -10181,32 +10186,32 @@ loc_20A11C:
 	bpl.w	loc_20A14A
 	neg.l	d1
 loc_20A14A:
-	move.l	obj.ypos(a0),d2
+	move.l	yposi(a0),d2
 	add.l	d1,d2
-	move.l	d2,obj.ypos(a0)
+	move.l	d2,yposi(a0)
 	lea	obj14_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20A168:
-	move.w	#0,obj.field_30(a0)
-	move.b	obj.routine(a0),d0
+	move.w	#0,act30(a0)
+	move.b	r_no0(a0),d0
 	cmpi.b	#4,d0
 	beq.w	loc_20A17E
 	bra.w	loc_20A186
 
 loc_20A17E:
-	move.b	#2,obj.routine(a0)
+	move.b	#2,r_no0(a0)
 	rts
 
 loc_20A186:
-	move.b	#6,obj.routine(a0)
+	move.b	#6,r_no0(a0)
 	rts
 
 loc_20A18E:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20A1A2(pc,d0.w),d0
 	jsr	off_20A1A2(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -10219,52 +10224,52 @@ off_20A1A2:
 	dc.w	loc_20A32E-off_20A1A2
 
 loc_20A1AC:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj14_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj14_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#1,d0
 	jsr	sub_20DC4C.l
-	move.w	#0,obj.field_30(a0)
-	move.w	#0,obj.field_2A(a0)
-	bclr	#0,obj.status(a0)
-	bclr	#0,obj.render(a0)
-	move.l	obj.ypos(a0),d0
-	move.l	d0,obj.field_2C(a0)
+	move.w	#0,act30(a0)
+	move.w	#0,act2A(a0)
+	bclr	#0,cddat(a0)
+	bclr	#0,actflg(a0)
+	move.l	yposi(a0),d0
+	move.l	d0,act2C(a0)
 	rts
 
 loc_20A1FA:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.w	loc_20A280
-	move.b	#0,obj.ani(a0)
+	move.b	#0,mstno(a0)
 	moveq	#1,d0
 	jsr	sub_20DC4C.l
 	bsr.w	sub_20A30C
-	bclr	#0,obj.status(a0)
-	bclr	#0,obj.render(a0)
-	move.l	obj.xpos(a0),d0
+	bclr	#0,cddat(a0)
+	bclr	#0,actflg(a0)
+	move.l	xposi(a0),d0
 	subi.l	#$8000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.field_30(a0),d0
+	move.l	d0,xposi(a0)
+	move.w	act30(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_30(a0)
+	move.w	d0,act30(a0)
 	cmpi.w	#$1F4,d0
 	bne.w	loc_20A254
-	move.w	#0,obj.field_30(a0)
-	move.b	#$60,obj.field_32(a0)
-	move.b	#4,obj.routine(a0)
+	move.w	#0,act30(a0)
+	move.b	#$60,act32(a0)
+	move.b	#4,r_no0(a0)
 	rts
 
 loc_20A254:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	cmpi.w	#$300,d0
 	bne.w	loc_20A274
-	move.w	#0,obj.field_2A(a0)
-	move.b	#6,obj.routine(a0)
+	move.w	#0,act2A(a0)
+	move.b	#6,r_no0(a0)
 	rts
 
 loc_20A274:
@@ -10274,55 +10279,55 @@ loc_20A280:
 	jmp	actionsub.l
 
 loc_20A286:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_20A280
-	move.b	#1,obj.ani(a0)
+	move.b	#1,mstno(a0)
 	moveq	#1,d0
 	jsr	sub_20DC4C.l
 	bsr.w	sub_20A30C
-	bset	#0,obj.status(a0)
-	bset	#0,obj.render(a0)
-	move.l	obj.xpos(a0),d0
+	bset	#0,cddat(a0)
+	bset	#0,actflg(a0)
+	move.l	xposi(a0),d0
 	addi.l	#$8000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	obj.field_30(a0),d0
+	move.l	d0,xposi(a0)
+	move.w	act30(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_30(a0)
+	move.w	d0,act30(a0)
 	cmpi.w	#$1F4,d0
 	bne.w	loc_20A2DC
-	move.w	#0,obj.field_30(a0)
-	move.b	#$60,obj.field_32(a0)
-	move.b	#8,obj.routine(a0)
+	move.w	#0,act30(a0)
+	move.b	#$60,act32(a0)
+	move.b	#8,r_no0(a0)
 loc_20A2DC:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	cmpi.w	#$300,d0
 	bne.w	loc_20A2FA
-	move.w	#0,obj.field_2A(a0)
-	move.b	#2,obj.routine(a0)
+	move.w	#0,act2A(a0)
+	move.b	#2,r_no0(a0)
 loc_20A2FA:
 	lea	obj14b_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 
 sub_20A30C:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	mulu.w	#256,d0
 	divu.w	#128,d0
 	jsr	sinset.l
 	muls.w	#$3800,d0
-	move.l	obj.field_2C(a0),d1
+	move.l	act2C(a0),d1
 	add.l	d0,d1
-	move.l	d1,obj.ypos(a0)
+	move.l	d1,yposi(a0)
 	rts
 
 loc_20A32E:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bne.w	loc_20A280
-	move.b	obj.field_32(a0),d0
+	move.b	act32(a0),d0
 	subq.w	#1,d0
-	move.b	d0,obj.field_32(a0)
+	move.b	d0,act32(a0)
 	beq.w	loc_20A37A
 	move.l	#$4000,d1
 	addi.b	#$30,d0
@@ -10331,34 +10336,34 @@ loc_20A32E:
 	bpl.w	loc_20A35C
 	neg.l	d1
 loc_20A35C:
-	move.l	obj.ypos(a0),d2
+	move.l	yposi(a0),d2
 	add.l	d1,d2
-	move.l	d2,obj.ypos(a0)
+	move.l	d2,yposi(a0)
 	lea	obj14b_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20A37A:
-	move.w	#0,obj.field_30(a0)
-	move.b	obj.routine(a0),d0
+	move.w	#0,act30(a0)
+	move.b	r_no0(a0),d0
 	cmpi.b	#4,d0
 	beq.w	loc_20A390
 	bra.w	loc_20A398
 
 loc_20A390:
-	move.b	#2,obj.routine(a0)
+	move.b	#2,r_no0(a0)
 	rts
 
 loc_20A398:
-	move.b	#6,obj.routine(a0)
+	move.b	#6,r_no0(a0)
 	rts
 
 loc_20A3A0:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	beq.s	loc_20A3BA
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bmi.s	loc_20A3BA
 	jsr	actionsub.l
 	jmp	loc_206FB8.l
@@ -10375,22 +10380,22 @@ off_20A3C8:
 	dc.w	loc_20A4AE-off_20A3C8
 
 loc_20A3D0:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj15_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj15_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#2,d0
 	jsr	sub_20DC4C.l
-	move.b	#0,obj.ani(a0)
+	move.b	#0,mstno(a0)
 	rts
 
 loc_20A404:
-	move.l	obj.ypos(a0),d0
+	move.l	yposi(a0),d0
 	addi.l	#$20000,d0
-	move.l	d0,obj.ypos(a0)
-	move.b	#$12,obj.height(a0)
+	move.l	d0,yposi(a0)
+	move.b	#$12,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	bmi.w	loc_20A436
@@ -10399,12 +10404,12 @@ loc_20A404:
 	jmp	actionsub.l
 
 loc_20A436:
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 	rts
 
 loc_20A43E:
-	move.b	#$12,obj.height(a0)
-	subi.l	#$10000,obj.xpos(a0)
+	move.b	#$12,sprvsize(a0)
+	subi.l	#$10000,xposi(a0)
 	moveq	#8,d3
 	jsr	sub_206388.l
 	tst.b	d1
@@ -10419,9 +10424,9 @@ loc_20A45E:
 	bpl.w	loc_20A498
 	cmpi.w	#-8,d1
 	bmi.w	loc_20A498
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20A484:
 	lea	off_20B11C.l,a1
 	jsr	animateobj.l
@@ -10429,15 +10434,15 @@ loc_20A484:
 	rts
 
 loc_20A498:
-	move.b	#6,obj.routine(a0)
-	bset	#0,obj.status(a0)
-	bset	#0,obj.render(a0)
+	move.b	#6,r_no0(a0)
+	bset	#0,cddat(a0)
+	bset	#0,actflg(a0)
 	rts
 	rts
 
 loc_20A4AE:
-	move.b	#$12,obj.height(a0)
-	addi.l	#$10000,obj.xpos(a0)
+	move.b	#$12,sprvsize(a0)
+	addi.l	#$10000,xposi(a0)
 	moveq	#8,d3
 	jsr	sub_2061E6.l
 	tst.b	d1
@@ -10452,9 +10457,9 @@ loc_20A4CE:
 	bpl.w	loc_20A508
 	cmpi.w	#-8,d1
 	bmi.w	loc_20A508
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20A4F4:
 	lea	off_20B11C.l,a1
 	jsr	animateobj.l
@@ -10462,17 +10467,17 @@ loc_20A4F4:
 	rts
 
 loc_20A508:
-	move.b	#4,obj.routine(a0)
-	bclr	#0,obj.status(a0)
-	bclr	#0,obj.render(a0)
+	move.b	#4,r_no0(a0)
+	bclr	#0,cddat(a0)
+	bclr	#0,actflg(a0)
 	rts
 	rts
 
 loc_20A51E:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	beq.s	loc_20A538
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bmi.s	loc_20A538
 	jsr	actionsub.l
 	jmp	loc_206FB8.l
@@ -10491,23 +10496,23 @@ off_20A546:
 	dc.w	loc_20A664-off_20A546
 
 loc_20A552:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj15_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj15_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#2,d0
 	jsr	sub_20DC4C.l
-	move.b	#1,obj.ani(a0)
-	move.w	#0,obj.field_3E(a0)
+	move.b	#1,mstno(a0)
+	move.w	#0,act3E(a0)
 	rts
 
 loc_20A58C:
-	move.l	obj.ypos(a0),d0
+	move.l	yposi(a0),d0
 	addi.l	#$10000,d0
-	move.l	d0,obj.ypos(a0)
-	move.b	#$12,obj.height(a0)
+	move.l	d0,yposi(a0)
+	move.b	#$12,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	bmi.w	loc_20A5BE
@@ -10516,17 +10521,17 @@ loc_20A58C:
 	jmp	actionsub.l
 
 loc_20A5BE:
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 	rts
 
 loc_20A5C6:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$F0,d0
 	beq.w	loc_20A634
-	move.b	#$12,obj.height(a0)
-	subi.l	#$C000,obj.xpos(a0)
+	move.b	#$12,sprvsize(a0)
+	subi.l	#$C000,xposi(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20A60C
@@ -10534,9 +10539,9 @@ loc_20A5C6:
 	bpl.w	loc_20A620
 	cmpi.w	#-7,d1
 	bmi.w	loc_20A620
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20A60C:
 	lea	off_20B11C.l,a1
 	jsr	animateobj.l
@@ -10544,50 +10549,50 @@ loc_20A60C:
 	rts
 
 loc_20A620:
-	move.b	#8,obj.routine(a0)
-	bset	#0,obj.status(a0)
-	bset	#0,obj.render(a0)
+	move.b	#8,r_no0(a0)
+	bset	#0,cddat(a0)
+	bset	#0,actflg(a0)
 	rts
 
 loc_20A634:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#6,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#6,r_no0(a0)
 	bra.s	loc_20A60C
 
 loc_20A642:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$3C,d0
 	beq.w	loc_20A656
 	bra.s	loc_20A60C
 
 loc_20A656:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#4,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#4,r_no0(a0)
 	bra.s	loc_20A60C
 
 loc_20A664:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$3C,d0
 	beq.w	loc_20A678
 	bra.s	loc_20A60C
 
 loc_20A678:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#8,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#8,r_no0(a0)
 	bra.s	loc_20A60C
 
 loc_20A686:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$F0,d0
 	beq.w	loc_20A6F4
-	move.b	#$12,obj.height(a0)
-	addi.l	#$C000,obj.xpos(a0)
+	move.b	#$12,sprvsize(a0)
+	addi.l	#$C000,xposi(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20A6CC
@@ -10595,9 +10600,9 @@ loc_20A686:
 	bpl.w	loc_20A6E0
 	cmpi.w	#-7,d1
 	bmi.w	loc_20A6E0
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20A6CC:
 	lea	off_20B11C.l,a1
 	jsr	animateobj.l
@@ -10605,19 +10610,19 @@ loc_20A6CC:
 	rts
 
 loc_20A6E0:
-	move.b	#4,obj.routine(a0)
-	bclr	#0,obj.status(a0)
-	bclr	#0,obj.render(a0)
+	move.b	#4,r_no0(a0)
+	bclr	#0,cddat(a0)
+	bclr	#0,actflg(a0)
 	rts
 
 loc_20A6F4:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#$A,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#$A,r_no0(a0)
 	bra.s	loc_20A6CC
 
 loc_20A702:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20A716(pc,d0.w),d0
 	jsr	off_20A716(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -10629,24 +10634,24 @@ off_20A716:
 	dc.w	loc_20A802-off_20A716
 
 loc_20A71E:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj16_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj16_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#3,d0
 	jsr	sub_20DC4C.l
-	move.l	#$FFFC0000,obj.field_2A(a0)
-	move.b	#0,obj.ani(a0)
+	move.l	#$FFFC0000,act2A(a0)
+	move.b	#0,mstno(a0)
 	rts
 
 loc_20A75A:
-	addi.l	#$1000,obj.field_2A(a0)
-	move.l	obj.ypos(a0),d0
-	move.l	obj.field_2A(a0),d1
+	addi.l	#$1000,act2A(a0)
+	move.l	yposi(a0),d0
+	move.l	act2A(a0),d1
 	add.l	d1,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	tst.l	d1
 	bpl.w	loc_20A79C
 	cmpi.l	#$FFFFA000,d1
@@ -10658,20 +10663,20 @@ loc_20A780:
 	rts
 
 loc_20A794:
-	move.b	#2,obj.ani(a0)
+	move.b	#2,mstno(a0)
 	bra.s	loc_20A780
 
 loc_20A79C:
-	move.b	#4,obj.routine(a0)
-	move.b	#3,obj.ani(a0)
+	move.b	#4,r_no0(a0)
+	move.b	#3,mstno(a0)
 	bra.s	loc_20A780
 
 loc_20A7AA:
-	addi.l	#$1000,obj.field_2A(a0)
-	move.l	obj.ypos(a0),d0
-	move.l	obj.field_2A(a0),d1
+	addi.l	#$1000,act2A(a0)
+	move.l	yposi(a0),d0
+	move.l	act2A(a0),d1
 	add.l	d1,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	move.l	#-$40000,d2
 	neg.l	d2
 	cmp.l	d2,d1
@@ -10685,26 +10690,26 @@ loc_20A7D8:
 	rts
 
 loc_20A7EC:
-	move.b	#6,obj.routine(a0)
-	move.w	#$C8,obj.field_2E(a0)
+	move.b	#6,r_no0(a0)
+	move.w	#$C8,act2E(a0)
 	rts
 
 loc_20A7FA:
-	move.b	#1,obj.ani(a0)
+	move.b	#1,mstno(a0)
 	bra.s	loc_20A7D8
 
 loc_20A802:
-	subq.w	#1,obj.field_2E(a0)
+	subq.w	#1,act2E(a0)
 	beq.w	loc_20A80C
 	rts
 
 loc_20A80C:
-	move.b	#0,obj.routine(a0)
+	move.b	#0,r_no0(a0)
 	rts
 
 loc_20A814:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20A828(pc,d0.w),d0
 	jsr	off_20A828(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -10716,24 +10721,24 @@ off_20A828:
 	dc.w	loc_20A914-off_20A828
 
 loc_20A830:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj16_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj16_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#3,d0
 	jsr	sub_20DC4C.l
-	move.l	#$FFFA0000,obj.field_2A(a0)
-	move.b	#4,obj.ani(a0)
+	move.l	#$FFFA0000,act2A(a0)
+	move.b	#4,mstno(a0)
 	rts
 
 loc_20A86C:
-	addi.l	#$2000,obj.field_2A(a0)
-	move.l	obj.ypos(a0),d0
-	move.l	obj.field_2A(a0),d1
+	addi.l	#$2000,act2A(a0)
+	move.l	yposi(a0),d0
+	move.l	act2A(a0),d1
 	add.l	d1,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	tst.l	d1
 	bpl.w	loc_20A8AE
 	cmpi.l	#$FFFF0000,d1
@@ -10745,20 +10750,20 @@ loc_20A892:
 	rts
 
 loc_20A8A6:
-	move.b	#6,obj.ani(a0)
+	move.b	#6,mstno(a0)
 	bra.s	loc_20A892
 
 loc_20A8AE:
-	move.b	#4,obj.routine(a0)
-	move.b	#7,obj.ani(a0)
+	move.b	#4,r_no0(a0)
+	move.b	#7,mstno(a0)
 	bra.s	loc_20A892
 
 loc_20A8BC:
-	addi.l	#$2000,obj.field_2A(a0)
-	move.l	obj.ypos(a0),d0
-	move.l	obj.field_2A(a0),d1
+	addi.l	#$2000,act2A(a0)
+	move.l	yposi(a0),d0
+	move.l	act2A(a0),d1
 	add.l	d1,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	move.l	#-$60000,d2
 	neg.l	d2
 	cmp.l	d2,d1
@@ -10772,26 +10777,26 @@ loc_20A8EA:
 	rts
 
 loc_20A8FE:
-	move.b	#6,obj.routine(a0)
-	move.w	#$C8,obj.field_2E(a0)
+	move.b	#6,r_no0(a0)
+	move.w	#$C8,act2E(a0)
 	rts
 
 loc_20A90C:
-	move.b	#5,obj.ani(a0)
+	move.b	#5,mstno(a0)
 	bra.s	loc_20A8EA
 
 loc_20A914:
-	subq.w	#1,obj.field_2E(a0)
+	subq.w	#1,act2E(a0)
 	beq.w	loc_20A91E
 	rts
 
 loc_20A91E:
-	move.b	#0,obj.routine(a0)
+	move.b	#0,r_no0(a0)
 	rts
 
 loc_20A926:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20A93A(pc,d0.w),d0
 	jsr	off_20A93A(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -10805,27 +10810,27 @@ off_20A93A:
 	dc.w	loc_20AB36-off_20A93A
 
 loc_20A946:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj22_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$400,obj.vram(a0)
-	move.w	#$C00,obj.vram(a0)
-	move.w	#$1400,obj.vram(a0)
-	move.w	#$24C1,obj.vram(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj22_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$400,sproffset(a0)
+	move.w	#$C00,sproffset(a0)
+	move.w	#$1400,sproffset(a0)
+	move.w	#$24C1,sproffset(a0)
 	moveq	#4,d0
 	jsr	sub_20DC4C.l
-	move.w	#0,obj.field_3E(a0)
+	move.w	#0,act3E(a0)
 	rts
 
 loc_20A992:
-	move.b	#1,obj.ani(a0)
-	move.l	obj.ypos(a0),d0
+	move.b	#1,mstno(a0)
+	move.l	yposi(a0),d0
 	addi.l	#$10000,d0
-	move.l	d0,obj.ypos(a0)
-	move.b	#$E,obj.height(a0)
+	move.l	d0,yposi(a0)
+	move.b	#$E,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20A9D0
@@ -10836,22 +10841,22 @@ loc_20A992:
 	rts
 
 loc_20A9D0:
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20A9EA:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$120,d0
 	beq.w	loc_20AA5C
-	bclr	#0,obj.render(a0)
-	bclr	#0,obj.status(a0)
-	move.b	#1,obj.ani(a0)
-	move.b	#$E,obj.height(a0)
+	bclr	#0,actflg(a0)
+	bclr	#0,cddat(a0)
+	move.b	#1,mstno(a0)
+	move.b	#$E,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20AA3A
@@ -10859,40 +10864,40 @@ loc_20A9EA:
 	bpl.w	loc_20AA5C
 	cmpi.w	#-7,d1
 	bmi.w	loc_20AA5C
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20AA3A:
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	subi.l	#$C000,d0
-	move.l	d0,obj.xpos(a0)
+	move.l	d0,xposi(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AA5C:
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	addi.l	#$C000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	#0,obj.field_3E(a0)
-	move.b	#$A,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
+	move.l	d0,xposi(a0)
+	move.w	#0,act3E(a0)
+	move.b	#$A,r_no0(a0)
+	move.b	#2,mstno(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AA90:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$120,d0
 	beq.w	loc_20AB02
-	bset	#0,obj.render(a0)
-	bset	#0,obj.status(a0)
-	move.b	#1,obj.ani(a0)
-	move.b	#$E,obj.height(a0)
+	bset	#0,actflg(a0)
+	bset	#0,cddat(a0)
+	move.b	#1,mstno(a0)
+	move.b	#$E,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20AAE0
@@ -10900,34 +10905,34 @@ loc_20AA90:
 	bpl.w	loc_20AB02
 	cmpi.w	#-7,d1
 	bmi.w	loc_20AB02
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20AAE0:
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	addi.l	#$C000,d0
-	move.l	d0,obj.xpos(a0)
+	move.l	d0,xposi(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AB02:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#8,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
-	move.l	obj.xpos(a0),d0
+	move.w	#0,act3E(a0)
+	move.b	#8,r_no0(a0)
+	move.b	#2,mstno(a0)
+	move.l	xposi(a0),d0
 	subi.l	#$C000,d0
-	move.l	d0,obj.xpos(a0)
+	move.l	d0,xposi(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AB36:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$46,d0
 	beq.w	loc_20AB82
 	cmpi.w	#$5A,d0
@@ -10943,18 +10948,18 @@ loc_20AB60:
 	rts
 
 loc_20AB74:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#6,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#6,r_no0(a0)
 	bra.s	loc_20AB60
 
 loc_20AB82:
-	move.b	#3,obj.ani(a0)
+	move.b	#3,mstno(a0)
 	bra.s	loc_20AB60
 
 loc_20AB8A:
-	move.b	#2,obj.ani(a0)
-	bset	#0,obj.render(a0)
-	bset	#0,obj.status(a0)
+	move.b	#2,mstno(a0)
+	bset	#0,actflg(a0)
+	bset	#0,cddat(a0)
 	bra.s	loc_20AB60
 
 loc_20AB9E:
@@ -10962,9 +10967,9 @@ loc_20AB9E:
 	bra.s	loc_20AB60
 
 loc_20ABA4:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$46,d0
 	beq.w	loc_20ABF0
 	cmpi.w	#$5A,d0
@@ -10980,18 +10985,18 @@ loc_20ABCE:
 	rts
 
 loc_20ABE2:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#4,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#4,r_no0(a0)
 	bra.s	loc_20ABCE
 
 loc_20ABF0:
-	move.b	#3,obj.ani(a0)
+	move.b	#3,mstno(a0)
 	bra.s	loc_20ABCE
 
 loc_20ABF8:
-	move.b	#2,obj.ani(a0)
-	bclr	#0,obj.render(a0)
-	bclr	#0,obj.status(a0)
+	move.b	#2,mstno(a0)
+	bclr	#0,actflg(a0)
+	bclr	#0,cddat(a0)
 	bra.s	loc_20ABCE
 
 loc_20AC0C:
@@ -11009,20 +11014,20 @@ sub_20AC24:
 	jsr	sub_20B4D8.l
 	tst.b	d0
 	beq.w	locret_20AC56
-	move.b	d6,obj.subtype(a2)
-	_move.b	#objid_23,obj.id(a2)
-	move.l	obj.xpos(a0),d1
+	move.b	d6,userflag(a2)
+	_move.b	#objid_23,actno(a2)
+	move.l	xposi(a0),d1
 	addi.l	#0,d1
-	move.l	d1,obj.xpos(a2)
-	move.l	obj.ypos(a0),d1
+	move.l	d1,xposi(a2)
+	move.l	yposi(a0),d1
 	addi.l	#$FFF00000,d1
-	move.l	d1,obj.ypos(a2)
+	move.l	d1,yposi(a2)
 locret_20AC56:
 	rts
 
 loc_20AC58:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20AC6C(pc,d0.w),d0
 	jsr	off_20AC6C(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -11036,27 +11041,27 @@ off_20AC6C:
 	dc.w	loc_20AE68-off_20AC6C
 
 loc_20AC78:
-	move.b	#6,obj.colflag(a0)
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj22_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$400,obj.vram(a0)
-	move.w	#$C00,obj.vram(a0)
-	move.w	#$1400,obj.vram(a0)
-	move.w	#$24C1,obj.vram(a0)
+	move.b	#6,colino(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj22_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$400,sproffset(a0)
+	move.w	#$C00,sproffset(a0)
+	move.w	#$1400,sproffset(a0)
+	move.w	#$24C1,sproffset(a0)
 	moveq	#4,d0
 	jsr	sub_20DC4C.l
-	move.w	#0,obj.field_3E(a0)
+	move.w	#0,act3E(a0)
 	rts
 
 loc_20ACC4:
-	move.b	#4,obj.ani(a0)
-	move.l	obj.ypos(a0),d0
+	move.b	#4,mstno(a0)
+	move.l	yposi(a0),d0
 	addi.l	#$10000,d0
-	move.l	d0,obj.ypos(a0)
-	move.b	#$E,obj.height(a0)
+	move.l	d0,yposi(a0)
+	move.b	#$E,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20AD02
@@ -11067,22 +11072,22 @@ loc_20ACC4:
 	rts
 
 loc_20AD02:
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AD1C:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$1B0,d0
 	beq.w	loc_20AD8E
-	bclr	#0,obj.render(a0)
-	bclr	#0,obj.status(a0)
-	move.b	#4,obj.ani(a0)
-	move.b	#$E,obj.height(a0)
+	bclr	#0,actflg(a0)
+	bclr	#0,cddat(a0)
+	move.b	#4,mstno(a0)
+	move.b	#$E,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20AD6C
@@ -11090,40 +11095,40 @@ loc_20AD1C:
 	bpl.w	loc_20AD8E
 	cmpi.w	#-7,d1
 	bmi.w	loc_20AD8E
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20AD6C:
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	subi.l	#$5000,d0
-	move.l	d0,obj.xpos(a0)
+	move.l	d0,xposi(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AD8E:
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	addi.l	#$5000,d0
-	move.l	d0,obj.xpos(a0)
-	move.w	#0,obj.field_3E(a0)
-	move.b	#$A,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
+	move.l	d0,xposi(a0)
+	move.w	#0,act3E(a0)
+	move.b	#$A,r_no0(a0)
+	move.b	#2,mstno(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20ADC2:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$1B0,d0
 	beq.w	loc_20AE34
-	bset	#0,obj.render(a0)
-	bset	#0,obj.status(a0)
-	move.b	#4,obj.ani(a0)
-	move.b	#$E,obj.height(a0)
+	bset	#0,actflg(a0)
+	bset	#0,cddat(a0)
+	move.b	#4,mstno(a0)
+	move.b	#$E,sprvsize(a0)
 	jsr	sub_20611C.l
 	tst.w	d1
 	beq.w	loc_20AE12
@@ -11131,34 +11136,34 @@ loc_20ADC2:
 	bpl.w	loc_20AE34
 	cmpi.w	#-7,d1
 	bmi.w	loc_20AE34
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20AE12:
-	move.l	obj.xpos(a0),d0
+	move.l	xposi(a0),d0
 	addi.l	#$5000,d0
-	move.l	d0,obj.xpos(a0)
+	move.l	d0,xposi(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AE34:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#8,obj.routine(a0)
-	move.b	#2,obj.ani(a0)
-	move.l	obj.xpos(a0),d0
+	move.w	#0,act3E(a0)
+	move.b	#8,r_no0(a0)
+	move.b	#2,mstno(a0)
+	move.l	xposi(a0),d0
 	subi.l	#$5000,d0
-	move.l	d0,obj.xpos(a0)
+	move.l	d0,xposi(a0)
 	lea	obj22_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 	rts
 
 loc_20AE68:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$50,d0
 	beq.w	loc_20AEB4
 	cmpi.w	#$96,d0
@@ -11174,18 +11179,18 @@ loc_20AE92:
 	rts
 
 loc_20AEA6:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#6,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#6,r_no0(a0)
 	bra.s	loc_20AE92
 
 loc_20AEB4:
-	move.b	#3,obj.ani(a0)
+	move.b	#3,mstno(a0)
 	bra.s	loc_20AE92
 
 loc_20AEBC:
-	move.b	#2,obj.ani(a0)
-	bset	#0,obj.render(a0)
-	bset	#0,obj.status(a0)
+	move.b	#2,mstno(a0)
+	bset	#0,actflg(a0)
+	bset	#0,cddat(a0)
 	bra.s	loc_20AE92
 
 loc_20AED0:
@@ -11193,9 +11198,9 @@ loc_20AED0:
 	bra.s	loc_20AE92
 
 loc_20AED6:
-	move.w	obj.field_3E(a0),d0
+	move.w	act3E(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_3E(a0)
+	move.w	d0,act3E(a0)
 	cmpi.w	#$50,d0
 	beq.w	loc_20AF22
 	cmpi.w	#$96,d0
@@ -11211,18 +11216,18 @@ loc_20AF00:
 	rts
 
 loc_20AF14:
-	move.w	#0,obj.field_3E(a0)
-	move.b	#4,obj.routine(a0)
+	move.w	#0,act3E(a0)
+	move.b	#4,r_no0(a0)
 	bra.s	loc_20AF00
 
 loc_20AF22:
-	move.b	#3,obj.ani(a0)
+	move.b	#3,mstno(a0)
 	bra.s	loc_20AF00
 
 loc_20AF2A:
-	move.b	#2,obj.ani(a0)
-	bclr	#0,obj.render(a0)
-	bclr	#0,obj.status(a0)
+	move.b	#2,mstno(a0)
+	bclr	#0,actflg(a0)
+	bclr	#0,cddat(a0)
 	bra.s	loc_20AF00
 
 loc_20AF3E:
@@ -11240,14 +11245,14 @@ sub_20AF56:
 	jsr	sub_20B4D8.l
 	tst.b	d0
 	beq.w	locret_20AF88
-	move.b	d6,obj.subtype(a2)
-	_move.b	#objid_23,obj.id(a2)
-	move.l	obj.xpos(a0),d1
+	move.b	d6,userflag(a2)
+	_move.b	#objid_23,actno(a2)
+	move.l	xposi(a0),d1
 	addi.l	#0,d1
-	move.l	d1,obj.xpos(a2)
-	move.l	obj.ypos(a0),d1
+	move.l	d1,xposi(a2)
+	move.l	yposi(a0),d1
 	addi.l	#$FFF00000,d1
-	move.l	d1,obj.ypos(a2)
+	move.l	d1,yposi(a2)
 locret_20AF88:
 	rts
 
@@ -11915,10 +11920,10 @@ sub_20B4D8:
 	lea	unk_FFD400.w,a2
 	moveq	#0,d0
 loc_20B4DE:
-	_move.b	obj.id(a2),d1
+	_move.b	actno(a2),d1
 	beq.w	loc_20B4F6
 	addq.w	#1,d0
-	lea	obj.len(a2),a2
+	lea	actfree(a2),a2
 	cmpi.w	#$3C,d0
 	bne.s	loc_20B4DE
 	moveq	#0,d0
@@ -11930,7 +11935,7 @@ loc_20B4F6:
 
 obj23:
 	moveq	#0,d0
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	andi.w	#$7F,d0
 	add.w	d0,d0
 	move.w	off_20B510(pc,d0.w),d0
@@ -11954,7 +11959,7 @@ locret_20B524:
 
 loc_20B526:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20B534(pc,d0.w),d0
 	jmp	off_20B534(pc,d0.w)
 
@@ -11963,23 +11968,23 @@ off_20B534:
 	dc.w	loc_20B578-off_20B534
 
 loc_20B538:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#4,obj.width(a0)
-	move.b	#4,obj.height(a0)
-	move.w	#$2400,obj.vram(a0)
-	move.l	#obj23_map,obj.mappings(a0)
-	move.l	#$10000,obj.field_2A(a0)
-	move.b	obj.field_3F(a0),d0
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#4,sprhs(a0)
+	move.b	#4,sprvsize(a0)
+	move.w	#$2400,sproffset(a0)
+	move.l	#obj23_map,patbase(a0)
+	move.l	#$10000,act2A(a0)
+	move.b	act3F(a0),d0
 	bpl.w	locret_20B576
-	neg.l	obj.field_2A(a0)
+	neg.l	act2A(a0)
 locret_20B576:
 	rts
 
 loc_20B578:
-	move.l	obj.field_2A(a0),d0
-	add.l	d0,obj.xpos(a0)
+	move.l	act2A(a0),d0
+	add.l	d0,xposi(a0)
 	lea	obj23_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
@@ -12012,7 +12017,7 @@ byte_20B5B3:
 	even
 
 	movea.l	a0,a1
-	moveq	#obj.len-1,d0
+	moveq	#actfree-1,d0
 	moveq	#0,d1
 loc_20B5CE:
 	move.b	d1,(a1)+
@@ -12039,7 +12044,7 @@ loc_20B5E4:
 	rts
 
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20B60E(pc,d0.w),d0
 	jmp	off_20B60E(pc,d0.w)
 
@@ -12048,27 +12053,27 @@ off_20B60E:
 	dc.w	loc_20B654-off_20B60E
 
 loc_20B612:
-	addq.b	#2,obj.routine(a0)
-	move.l	#off_20CF16,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.w	#$47A,obj.vram(a0)
-	move.l	actwk+obj.xpos.w,d0
+	addq.b	#2,r_no0(a0)
+	move.l	#off_20CF16,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
+	move.w	#$47A,sproffset(a0)
+	move.l	actwk+xposi.w,d0
 	addi.l	#$32,d0
-	move.l	d0,obj.xpos(a0)
-	move.l	actwk+obj.ypos.w,d0
+	move.l	d0,xposi(a0)
+	move.l	actwk+yposi.w,d0
 	addi.l	#$320000,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	rts
 
 loc_20B654:
-	move.l	actwk+obj.xpos.w,d0
+	move.l	actwk+xposi.w,d0
 	addi.l	#$320000,d0
-	move.l	d0,obj.xpos(a0)
-	move.l	actwk+obj.ypos.w,d0
+	move.l	d0,xposi(a0)
+	move.l	actwk+yposi.w,d0
 	subi.l	#$320000,d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,yposi(a0)
 	lea	obj26_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
@@ -12076,43 +12081,43 @@ loc_20B654:
 
 sub_20B684:
 	lea	actwk.w,a1
-	move.w	obj.yvel(a1),d1
+	move.w	yspeed(a1),d1
 	bmi.w	loc_20B694
 	bra.w	loc_20B6EC
 
 loc_20B694:
 	moveq	#0,d1
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a0)
 	rts
 
 	lea	actwk.w,a1
-	move.w	obj.yvel(a1),d1
+	move.w	yspeed(a1),d1
 	bpl.w	loc_20B6AE
 	bra.w	loc_20B6EC
 
 loc_20B6AE:
 	moveq	#0,d1
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a0)
 	rts
 
 	lea	actwk.w,a1
-	move.w	obj.xvel(a1),d1
+	move.w	xspeed(a1),d1
 	bmi.w	loc_20B6C8
 	bra.w	loc_20B6EC
 
 loc_20B6C8:
 	moveq	#0,d1
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a0)
 	rts
 
 	lea	actwk.w,a1
-	move.w	obj.xvel(a1),d1
+	move.w	xspeed(a1),d1
 	bpl.w	loc_20B6E2
 	bra.w	loc_20B6EC
 
 loc_20B6E2:
 	moveq	#0,d1
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a0)
 	rts
 
 loc_20B6EC:
@@ -12136,9 +12141,9 @@ loc_20B722:
 	asl.w	#2,d0
 	lea	(a2,d0.w),a2
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d0
-	move.w	obj.xpos(a1),d1
-	move.b	obj.width(a1),d3
+	move.w	xposi(a0),d0
+	move.w	xposi(a1),d1
+	move.b	sprhs(a1),d3
 	ext.w	d3
 	_move.b	0(a2),d2
 	ext.w	d2
@@ -12157,9 +12162,9 @@ loc_20B722:
 	add.w	d3,d5
 	cmp.w	d5,d4
 	bpl.w	loc_20B7AC
-	move.w	obj.ypos(a0),d0
-	move.w	obj.ypos(a1),d1
-	move.b	obj.height(a1),d3
+	move.w	yposi(a0),d0
+	move.w	yposi(a1),d1
+	move.b	sprvsize(a1),d3
 	ext.w	d3
 	move.b	2(a2),d2
 	ext.w	d2
@@ -12179,12 +12184,12 @@ loc_20B722:
 	cmp.w	d5,d4
 	bpl.w	loc_20B7AC
 	moveq	#-1,d1
-	bset	#3,obj.status(a0)
+	bset	#3,cddat(a0)
 	rts
 
 loc_20B7AC:
 	moveq	#0,d1
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a0)
 	rts
 
 byte_20B7B6:
@@ -12217,7 +12222,7 @@ byte_20B80E:
 
 obj28:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20B826(pc,d0.w),d0
 	jsr	off_20B826(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -12232,24 +12237,24 @@ off_20B826:
 	dc.w	loc_20B950-off_20B826
 
 loc_20B834:
-	move.l	#obj28_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.l	#obj28_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#7,d0
 	jsr	sub_20DC4C(pc)
-	move.b	#$18,obj.width(a0)
-	move.b	#4,obj.height(a0)
-	move.b	obj.subtype(a0),d0
+	move.b	#$18,sprhs(a0)
+	move.b	#4,sprvsize(a0)
+	move.b	userflag(a0),d0
 	cmpi.b	#1,d0
 	beq.w	loc_20B87A
-	move.b	#3,obj.ani(a0)
-	move.b	#2,obj.routine(a0)
+	move.b	#3,mstno(a0)
+	move.b	#2,r_no0(a0)
 	rts
 
 loc_20B87A:
-	move.b	#4,obj.ani(a0)
-	move.b	#4,obj.routine(a0)
+	move.b	#4,mstno(a0)
+	move.b	#4,r_no0(a0)
 	rts
 
 loc_20B888:
@@ -12258,14 +12263,14 @@ loc_20B888:
 	tst.b	d1
 	beq.w	loc_20B8B6
 	lea	actwk.w,a1
-	move.l	obj.ypos(a0),d0
+	move.l	yposi(a0),d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	swap	d1
 	sub.l	d1,d0
-	move.l	d0,obj.ypos(a1)
-	move.b	#$A,obj.routine(a0)
-	move.b	#3,obj.ani(a0)
+	move.l	d0,yposi(a1)
+	move.b	#$A,r_no0(a0)
+	move.b	#3,mstno(a0)
 loc_20B8B6:
 	lea	obj28_ani.l,a1
 	jsr	animateobj.l
@@ -12277,14 +12282,14 @@ loc_20B8C8:
 	tst.b	d1
 	beq.w	loc_20B8F6
 	lea	actwk.w,a1
-	move.l	obj.ypos(a0),d0
+	move.l	yposi(a0),d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	swap	d1
 	sub.l	d1,d0
-	move.l	d0,obj.ypos(a1)
-	move.b	#$C,obj.routine(a0)
-	move.b	#4,obj.ani(a0)
+	move.l	d0,yposi(a1)
+	move.b	#$C,r_no0(a0)
+	move.b	#4,mstno(a0)
 loc_20B8F6:
 	lea	obj28_ani.l,a1
 	jsr	animateobj.l
@@ -12301,40 +12306,40 @@ loc_20B908:
 
 loc_20B926:
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
-	move.b	#4,obj.routine(a0)
-	btst	#1,obj.status(a1)
+	bclr	#3,cddat(a1)
+	move.b	#4,r_no0(a0)
+	btst	#1,cddat(a1)
 	bne.w	loc_20B942
 	rts
 
 loc_20B942:
-	move.w	#$64,obj.field_2A(a0)
-	move.b	#$C,obj.routine(a0)
+	move.w	#$64,act2A(a0)
+	move.b	#$C,r_no0(a0)
 	rts
 
 loc_20B950:
-	move.b	#2,obj.ani(a0)
+	move.b	#2,mstno(a0)
 	moveq	#4,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B986
 	lea	actwk.w,a1
-	move.w	obj.yvel(a1),d0
+	move.w	yspeed(a1),d0
 	addi.w	#$100,d0
 	cmpi.w	#$A00,d0
 	bmi.w	loc_20B97A
 	move.w	#$A00,d0
 loc_20B97A:
 	neg.w	d0
-	move.w	d0,obj.yvel(a1)
-	move.w	#$64,obj.field_2A(a0)
+	move.w	d0,yspeed(a1)
+	move.w	#$64,act2A(a0)
 loc_20B986:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	subq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	bne.w	loc_20B9A2
-	move.b	#4,obj.routine(a0)
-	move.b	#4,obj.ani(a0)
+	move.b	#4,r_no0(a0)
+	move.b	#4,mstno(a0)
 	rts
 
 loc_20B9A2:
@@ -12353,40 +12358,40 @@ loc_20B9B4:
 
 loc_20B9D2:
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
-	move.b	#2,obj.routine(a0)
-	btst	#1,obj.status(a1)
+	bclr	#3,cddat(a1)
+	move.b	#2,r_no0(a0)
+	btst	#1,cddat(a1)
 	bne.w	loc_20B9EE
 	rts
 
 loc_20B9EE:
-	move.w	#$64,obj.field_2A(a0)
-	move.b	#$A,obj.routine(a0)
+	move.w	#$64,act2A(a0)
+	move.b	#$A,r_no0(a0)
 	rts
 
 loc_20B9FC:
-	move.b	#1,obj.ani(a0)
+	move.b	#1,mstno(a0)
 	moveq	#6,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BA32
 	lea	actwk.w,a1
-	move.w	obj.yvel(a1),d0
+	move.w	yspeed(a1),d0
 	addi.w	#$100,d0
 	cmpi.w	#$A00,d0
 	bmi.w	loc_20BA26
 	move.w	#$A00,d0
 loc_20BA26:
 	neg.w	d0
-	move.w	d0,obj.yvel(a1)
-	move.w	#$64,obj.field_2A(a0)
+	move.w	d0,yspeed(a1)
+	move.w	#$64,act2A(a0)
 loc_20BA32:
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	subq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	bne.w	loc_20BA4E
-	move.b	#2,obj.routine(a0)
-	move.b	#3,obj.ani(a0)
+	move.b	#2,r_no0(a0)
+	move.b	#3,mstno(a0)
 	rts
 
 loc_20BA4E:
@@ -12396,7 +12401,7 @@ loc_20BA4E:
 
 obj27:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20BA74(pc,d0.w),d0
 	jsr	off_20BA74(pc,d0.w)
 	jmp	loc_206FB8.l
@@ -12408,27 +12413,27 @@ off_20BA74:
 	dc.w	loc_20BBA8-off_20BA74
 
 loc_20BA7C:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj27_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj27_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#8,d0
 	jsr	sub_20DC4C(pc)
 	rts
 
 loc_20BAA2:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.w	loc_20BADE
 	moveq	#9,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BAD2
 	lea	actwk.w,a1
-	bclr	#1,obj.status(a1)
-	bset	#3,obj.status(a1)
-	move.b	#4,obj.routine(a0)
-	move.w	#0,obj.field_2A(a0)
+	bclr	#1,cddat(a1)
+	bset	#3,cddat(a1)
+	move.b	#4,r_no0(a0)
+	move.w	#0,act2A(a0)
 loc_20BAD2:
 	lea	obj27_ani.l,a1
 	jsr	animateobj.l
@@ -12436,21 +12441,21 @@ loc_20BADE:
 	jmp	actionsub.l
 
 loc_20BAE4:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	loc_20BADE
 	moveq	#7,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	bne.w	loc_20BB0C
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
-	move.b	#6,obj.routine(a0)
-	move.w	#0,obj.field_2A(a0)
+	bclr	#3,cddat(a1)
+	move.b	#6,r_no0(a0)
+	move.w	#0,act2A(a0)
 loc_20BB0C:
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d2
-	move.w	obj.xpos(a1),d3
-	move.w	obj.xvel(a1),d4
+	move.w	xposi(a0),d2
+	move.w	xposi(a1),d3
+	move.w	xspeed(a1),d4
 	beq.w	loc_20BB3C
 	bmi.w	loc_20BB28
 	bpl.w	loc_20BB32
@@ -12465,18 +12470,18 @@ loc_20BB32:
 	bra.w	loc_20BB3C
 
 loc_20BB3C:
-	move.l	obj.ypos(a1),d0
+	move.l	yposi(a1),d0
 	addi.l	#$8000,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 loc_20BB4A:
 	moveq	#0,d0
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	lea	loc_20BC80.l,a3
 	lea	unk_20BC1E.l,a2
-	move.w	obj.xpos(a0),d2
-	move.w	obj.xpos(a1),d3
+	move.w	xposi(a0),d2
+	move.w	xposi(a1),d3
 	cmp.w	d2,d3
 	bmi.w	loc_20BB7C
 	lea	unk_20BC34.l,a2
@@ -12484,41 +12489,41 @@ loc_20BB4A:
 loc_20BB7C:
 	divu.w	#2,d0
 	move.b	(a2,d0.w),d1
-	move.b	d1,obj.ani(a0)
+	move.b	d1,mstno(a0)
 	cmpi.b	#6,d1
 	bne.w	loc_20BB96
-	bclr	#3,obj.status(a1)
+	bclr	#3,cddat(a1)
 loc_20BB96:
 	lea	obj27_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 
 loc_20BBA8:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bne.w	loc_20BADE
 	moveq	#9,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BBD8
 	lea	actwk.w,a1
-	bclr	#1,obj.status(a1)
-	bset	#3,obj.status(a1)
-	move.b	#4,obj.routine(a0)
-	move.w	#0,obj.field_2A(a0)
+	bclr	#1,cddat(a1)
+	bset	#3,cddat(a1)
+	move.b	#4,r_no0(a0)
+	move.w	#0,act2A(a0)
 loc_20BBD8:
 	lea	unk_20BC4A.l,a2
-	move.w	obj.field_2A(a0),d0
+	move.w	act2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_2A(a0)
+	move.w	d0,act2A(a0)
 	move.b	(a2,d0.w),d1
 	bmi.w	loc_20BC06
-	move.b	d1,obj.ani(a0)
+	move.b	d1,mstno(a0)
 	lea	obj27_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
 
 loc_20BC06:
-	move.b	#2,obj.routine(a0)
+	move.b	#2,r_no0(a0)
 	lea	obj27_ani.l,a1
 	jsr	animateobj.l
 	jmp	actionsub.l
@@ -12626,7 +12631,7 @@ unk_20BC4A:
 	even
 
 loc_20BC80:
-	move.w	obj.xpos(a0),d0
+	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -12640,7 +12645,7 @@ locret_20BCA2:
 	rts
 
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20BCB2(pc,d0.w),d0
 	jmp	off_20BCB2(pc,d0.w)
 
@@ -12664,97 +12669,97 @@ off_20BCB2:
 	dc.w	loc_20C5D4-off_20BCB2
 
 loc_20BCD4:
-	move.b	#$C,obj.routine(a0)
-	move.l	#off_20CEE2,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#$C,r_no0(a0)
+	move.l	#off_20CEE2,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#9,d0
 	jsr	sub_20DC4C(pc)
-	move.b	#1,obj.ani(a0)
-	move.b	#0,obj.field_30(a0)
-	move.b	#0,obj.field_31(a0)
+	move.b	#1,mstno(a0)
+	move.b	#0,act30(a0)
+	move.b	#0,act31(a0)
 	moveq	#0,d7
 loc_20BD0E:
 	jsr	actwkchk.l
 	bne.w	loc_20BDB6
-	_move.b	#objid_25,obj.id(a1)
-	move.b	#2,obj.routine(a1)
-	move.w	a0,obj.field_3E(a1)
-	move.b	d7,obj.field_3C(a1)
+	_move.b	#objid_25,actno(a1)
+	move.b	#2,r_no0(a1)
+	move.w	a0,act3E(a1)
+	move.b	d7,act3C(a1)
 	addq.w	#1,d7
 	cmpi.w	#8,d7
 	bne.s	loc_20BD0E
 	jsr	actwkchk.l
 	bne.w	loc_20BDB6
-	_move.b	#objid_25,obj.id(a1)
-	move.b	#4,obj.routine(a1)
-	move.w	a0,obj.field_3E(a1)
-	move.b	#$FF,obj.field_3C(a1)
-	move.b	#2,obj.ani(a1)
-	move.l	obj.xpos(a0),d0
+	_move.b	#objid_25,actno(a1)
+	move.b	#4,r_no0(a1)
+	move.w	a0,act3E(a1)
+	move.b	#$FF,act3C(a1)
+	move.b	#2,mstno(a1)
+	move.l	xposi(a0),d0
 	subi.l	#$100000,d0
-	move.l	d0,obj.xpos(a1)
-	move.l	obj.ypos(a0),d0
+	move.l	d0,xposi(a1)
+	move.l	yposi(a0),d0
 	subi.l	#$100000,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 	bsr.w	actwkchk
 	bne.w	loc_20BDB6
-	_move.b	#objid_25,obj.id(a1)
-	move.b	#4,obj.routine(a1)
-	move.w	a0,obj.field_3E(a1)
-	move.b	#$FE,obj.field_3C(a1)
-	move.b	#2,obj.ani(a1)
-	move.l	obj.xpos(a0),d0
+	_move.b	#objid_25,actno(a1)
+	move.b	#4,r_no0(a1)
+	move.w	a0,act3E(a1)
+	move.b	#$FE,act3C(a1)
+	move.b	#2,mstno(a1)
+	move.l	xposi(a0),d0
 	addi.l	#$800000,d0
-	move.l	d0,obj.xpos(a1)
-	move.l	obj.ypos(a0),d0
+	move.l	d0,xposi(a1)
+	move.l	yposi(a0),d0
 	subi.l	#$100000,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 loc_20BDB6:
-	tst.b	obj.subtype(a0)
+	tst.b	userflag(a0)
 	beq.w	locret_20BDC4
-	move.b	#$1C,obj.routine(a0)
+	move.b	#$1C,r_no0(a0)
 locret_20BDC4:
 	rts
 
 sub_20BDC6:
-	move.b	#6,obj.routine(a0)
-	move.l	#off_20CEE2,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#6,r_no0(a0)
+	move.l	#off_20CEE2,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#9,d0
 	jsr	sub_20DC4C(pc)
-	move.b	#1,obj.ani(a0)
-	movea.w	obj.field_3E(a0),a2
-	tst.b	obj.subtype(a2)
+	move.b	#1,mstno(a0)
+	movea.w	act3E(a0),a2
+	tst.b	userflag(a2)
 	beq.w	loc_20BE04
-	move.b	#$1A,obj.routine(a0)
+	move.b	#$1A,r_no0(a0)
 loc_20BE04:
-	movea.w	obj.field_3E(a0),a1
+	movea.w	act3E(a0),a1
 	moveq	#0,d1
-	move.b	obj.field_3C(a0),d1
+	move.b	act3C(a0),d1
 	mulu.w	#$10,d1
 	swap	d1
-	move.l	obj.xpos(a1),d0
+	move.l	xposi(a1),d0
 	add.l	d1,d0
-	move.l	d0,obj.xpos(a0)
-	move.l	obj.ypos(a1),d0
-	move.l	d0,obj.ypos(a0)
+	move.l	d0,xposi(a0)
+	move.l	yposi(a1),d0
+	move.l	d0,yposi(a0)
 	swap	d0
-	move.w	d0,obj.field_38(a0)
-	move.w	d0,obj.field_34(a0)
+	move.w	d0,act38(a0)
+	move.w	d0,act34(a0)
 	moveq	#0,d1
-	move.b	obj.field_3C(a0),d1
+	move.b	act3C(a0),d1
 	mulu.w	#8,d1
 	sub.w	d1,d0
 	addi.w	#$60,d0
-	move.w	d0,obj.field_36(a0)
-	movea.w	obj.field_3E(a0),a2
+	move.w	d0,act36(a0)
+	movea.w	act3E(a0),a2
 	moveq	#0,d1
-	move.w	obj.xpos(a2),d0
-	move.w	obj.xpos(a0),d1
+	move.w	xposi(a2),d0
+	move.w	xposi(a0),d1
 	move.w	#$58,d2
 	sub.w	d0,d1
 	sub.w	d2,d1
@@ -12762,43 +12767,43 @@ loc_20BE04:
 	mulu.w	#10,d1
 	muls.w	d2,d2
 	divu.w	d2,d1
-	move.w	d1,obj.field_3A(a0)
+	move.w	d1,act3A(a0)
 	rts
 
 loc_20BE6A:
-	move.b	#8,obj.routine(a0)
-	move.l	#off_20CEE2,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	move.b	#8,r_no0(a0)
+	move.l	#off_20CEE2,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#9,d0
 	jsr	sub_20DC4C(pc)
-	movea.w	obj.field_3E(a0),a2
-	tst.b	obj.subtype(a2)
+	movea.w	act3E(a0),a2
+	tst.b	userflag(a2)
 	beq.w	loc_20BEC0
-	move.b	#$1E,obj.routine(a0)
-	move.b	obj.field_3C(a0),d0
+	move.b	#$1E,r_no0(a0)
+	move.b	act3C(a0),d0
 	cmpi.b	#$FE,d0
 	beq.w	loc_20BEC0
-	move.w	obj.ypos(a0),d1
+	move.w	yposi(a0),d1
 	addi.w	#$70,d1
-	move.w	d1,obj.ypos(a0)
-	ori.w	#$800,obj.vram(a0)
+	move.w	d1,yposi(a0)
+	ori.w	#$800,sproffset(a0)
 loc_20BEC0:
-	move.w	obj.ypos(a0),d0
-	move.w	d0,obj.field_38(a0)
-	move.w	d0,obj.field_34(a0)
+	move.w	yposi(a0),d0
+	move.w	d0,act38(a0)
+	move.w	d0,act34(a0)
 	moveq	#0,d1
 	addi.w	#$60,d0
-	move.w	d0,obj.field_36(a0)
+	move.w	d0,act36(a0)
 	rts
 
 loc_20BED8:
-	movea.w	obj.field_3E(a0),a2
-	move.b	obj.routine(a2),d0
+	movea.w	act3E(a0),a2
+	move.b	r_no0(a2),d0
 	cmpi.b	#$18,d0
 	bne.w	loc_20BEEE
-	move.b	#$E,obj.routine(a0)
+	move.b	#$E,r_no0(a0)
 loc_20BEEE:
 	moveq	#$13,d0
 	bsr.w	loc_20B6EC
@@ -12808,21 +12813,21 @@ loc_20BEEE:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BF42
-	movea.w	obj.field_3E(a0),a2
-	move.b	obj.field_3C(a0),d0
+	movea.w	act3E(a0),a2
+	move.b	act3C(a0),d0
 	addq.w	#1,d0
-	move.b	d0,obj.field_31(a2)
+	move.b	d0,act31(a2)
 	lea	actwk.w,a1
-	bset	#3,obj.status(a1)
-	bset	#3,obj.status(a0)
-	bclr	#1,obj.status(a1)
-	move.l	obj.ypos(a0),d0
+	bset	#3,cddat(a1)
+	bset	#3,cddat(a0)
+	bclr	#1,cddat(a1)
+	move.l	yposi(a0),d0
 	subi.l	#$80000,d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	swap	d1
 	sub.l	d1,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 loc_20BF42:
 	bsr.w	sub_20C042
 	bsr.w	sub_20BFCE
@@ -12832,18 +12837,18 @@ loc_20BF42:
 	rts
 
 	moveq	#0,d2
-	movea.w	obj.field_3E(a0),a2
-	move.b	obj.field_3D(a2),d2
+	movea.w	act3E(a0),a2
+	move.b	act3D(a2),d2
 	lea	unk_20BF8E.l,a3
 	andi.w	#$3F,d2
 	move.b	(a3,d2.w),d2
-	move.w	obj.field_38(a0),d0
-	move.w	obj.field_3A(a0),d1
+	move.w	act38(a0),d0
+	move.w	act3A(a0),d1
 	muls.w	d2,d1
 	divs.w	#10,d1
 	sub.w	d2,d1
 	sub.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 	rts
 
 unk_20BF8E:
@@ -12916,18 +12921,18 @@ unk_20BF8E:
 sub_20BFCE:
 	lea	actwk.w,a1
 	lea	unk_20C04E.l,a3
-	movea.w	obj.field_3E(a0),a2
-	move.w	obj.xpos(a2),d0
+	movea.w	act3E(a0),a2
+	move.w	xposi(a2),d0
 	subi.w	#$10,d0
-	move.w	obj.xpos(a1),d1
+	move.w	xposi(a1),d1
 	sub.w	d0,d1
-	move.b	obj.field_30(a2),d0
+	move.b	act30(a2),d0
 	bne.w	loc_20C014
 	bra.w	loc_20C038
 
-	move.w	obj.xpos(a2),d0
+	move.w	xposi(a2),d0
 	subi.w	#$10,d0
-	move.w	obj.xpos(a1),d1
+	move.w	xposi(a1),d1
 	sub.w	d0,d1
 	bpl.w	loc_20C00A
 	moveq	#0,d1
@@ -12940,18 +12945,18 @@ loc_20C014:
 	mulu.w	#8,d1
 	lea	(a3,d1.w),a3
 	moveq	#0,d0
-	move.b	obj.field_3C(a0),d0
+	move.b	act3C(a0),d0
 	moveq	#0,d2
 	move.b	(a3,d0.w),d2
 	asr.b	#1,d2
-	move.w	obj.field_38(a0),d3
+	move.w	act38(a0),d3
 	add.w	d2,d3
-	move.w	d3,obj.ypos(a0)
+	move.w	d3,yposi(a0)
 	rts
 
 loc_20C038:
-	move.w	obj.field_38(a0),d3
-	move.w	d3,obj.ypos(a0)
+	move.w	act38(a0),d3
+	move.w	d3,yposi(a0)
 	rts
 
 sub_20C042:
@@ -13140,18 +13145,18 @@ unk_20C04E:
 	even
 
 loc_20C0FE:
-	move.b	obj.field_31(a0),obj.field_30(a0)
-	move.b	#0,obj.field_31(a0)
+	move.b	act31(a0),act30(a0)
+	move.b	#0,act31(a0)
 	btst	#0,byte_FFF7DC.w
 	beq.w	loc_20C11A
-	move.b	#$18,obj.routine(a0)
+	move.b	#$18,r_no0(a0)
 loc_20C11A:
-	move.b	obj.field_3D(a0),d0
+	move.b	act3D(a0),d0
 	addq.w	#1,d0
-	move.b	d0,obj.field_3D(a0)
+	move.b	d0,act3D(a0)
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d0
-	move.w	obj.xpos(a1),d1
+	move.w	xposi(a0),d0
+	move.w	xposi(a1),d1
 	move.w	d0,d2
 	addi.w	#$80,d2
 	subi.w	#$10,d0
@@ -13165,18 +13170,18 @@ locret_20C14A:
 	rts
 
 loc_20C14C:
-	movea.w	obj.field_3E(a0),a2
-	move.b	obj.routine(a2),d0
+	movea.w	act3E(a0),a2
+	move.b	r_no0(a2),d0
 	cmpi.b	#$18,d0
 	bne.w	loc_20C162
-	move.b	#$16,obj.routine(a0)
+	move.b	#$16,r_no0(a0)
 loc_20C162:
 	moveq	#$F,d0
 	bsr.w	loc_20B6EC
 	tst.b	d1
 	beq.w	loc_20C178
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
+	bclr	#3,cddat(a1)
 loc_20C178:
 	lea	off_20CED0.l,a1
 	jsr	animateobj.l
@@ -13189,20 +13194,20 @@ loc_20C18C:
 	jmp	actionsub.l
 
 loc_20C19E:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$64,d0
 	bne.w	loc_20C1B8
 	nop
-	move.b	#$12,obj.routine(a0)
+	move.b	#$12,r_no0(a0)
 loc_20C1B8:
-	move.b	obj.field_3D(a0),d0
+	move.b	act3D(a0),d0
 	addq.w	#1,d0
-	move.b	d0,obj.field_3D(a0)
+	move.b	d0,act3D(a0)
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d0
-	move.w	obj.xpos(a1),d1
+	move.w	xposi(a0),d0
+	move.w	xposi(a1),d1
 	move.w	d0,d2
 	addi.w	#$C0,d2
 	subi.w	#$10,d0
@@ -13210,44 +13215,44 @@ loc_20C1B8:
 	bmi.w	loc_20C1FA
 	cmp.w	d2,d1
 	bpl.w	loc_20C1FA
-	bset	#3,obj.status(a1)
-	bset	#3,obj.status(a0)
-	move.b	#0,obj.angle(a1)
+	bset	#3,cddat(a1)
+	bset	#3,cddat(a0)
+	move.b	#0,direc(a1)
 	bra.w	locret_20C210
 
 loc_20C1FA:
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	beq.w	locret_20C14A
-	bclr	#3,obj.status(a1)
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a1)
+	bclr	#3,cddat(a0)
 locret_20C210:
 	rts
 
 loc_20C212:
-	movea.w	obj.field_3E(a0),a2
-	move.b	obj.routine(a2),d0
+	movea.w	act3E(a0),a2
+	move.b	r_no0(a2),d0
 	cmpi.b	#$18,d0
 	beq.w	loc_20C228
-	move.b	#$14,obj.routine(a0)
+	move.b	#$14,r_no0(a0)
 loc_20C228:
-	move.b	obj.field_3C(a0),d0
+	move.b	act3C(a0),d0
 	cmpi.b	#$FE,d0
 	beq.w	loc_20C24E
-	move.w	obj.field_32(a2),d0
+	move.w	act32(a2),d0
 	move.w	#$64,d1
 	move.w	#$60,d2
 	mulu.w	d2,d0
 	divu.w	d1,d0
-	move.w	obj.field_34(a0),d1
+	move.w	act34(a0),d1
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 loc_20C24E:
 	moveq	#$F,d0
 	bsr.w	loc_20B6EC
 	tst.b	d1
 	beq.w	loc_20C264
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
+	bclr	#3,cddat(a1)
 loc_20C264:
 	lea	off_20CED0.l,a1
 	jsr	animateobj.l
@@ -13260,7 +13265,7 @@ loc_20C278:
 	tst.b	d1
 	beq.w	loc_20C28E
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
+	bclr	#3,cddat(a1)
 loc_20C28E:
 	lea	off_20CED0.l,a1
 	jsr	animateobj.l
@@ -13268,45 +13273,45 @@ loc_20C28E:
 	rts
 
 loc_20C2A2:
-	movea.w	obj.field_3E(a0),a2
-	move.b	obj.routine(a2),d0
+	movea.w	act3E(a0),a2
+	move.b	r_no0(a2),d0
 	cmpi.b	#$18,d0
 	beq.w	loc_20C2C2
-	move.b	#$10,obj.routine(a0)
-	move.w	obj.field_36(a0),obj.field_38(a0)
+	move.b	#$10,r_no0(a0)
+	move.w	act36(a0),act38(a0)
 	bra.w	loc_20C32E
 
 loc_20C2C2:
-	move.w	obj.field_36(a0),d2
-	move.w	obj.field_34(a0),d3
+	move.w	act36(a0),d2
+	move.w	act34(a0),d3
 	sub.w	d3,d2
-	move.w	obj.field_32(a2),d0
+	move.w	act32(a2),d0
 	move.w	#$64,d1
 	mulu.w	d2,d0
 	divu.w	d1,d0
-	move.w	obj.field_34(a0),d1
+	move.w	act34(a0),d1
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
-	move.w	obj.field_32(a2),d1
-	add.b	obj.field_3C(a0),d1
+	move.w	d0,yposi(a0)
+	move.w	act32(a2),d1
+	add.b	act3C(a0),d1
 	andi.w	#1,d1
 	add.w	d1,d0
-	move.w	d0,obj.ypos(a0)
+	move.w	d0,yposi(a0)
 	moveq	#$B,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20C32E
 	lea	actwk.w,a1
-	bset	#3,obj.status(a1)
-	bset	#3,obj.status(a0)
-	bclr	#1,obj.status(a1)
-	move.l	obj.ypos(a0),d0
+	bset	#3,cddat(a1)
+	bset	#3,cddat(a0)
+	bclr	#1,cddat(a1)
+	move.l	yposi(a0),d0
 	subi.l	#$80000,d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	swap	d1
 	sub.l	d1,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 loc_20C32E:
 	bsr.w	sub_20C042
 	lea	off_20CED0.l,a1
@@ -13317,24 +13322,24 @@ loc_20C32E:
 loc_20C346:
 	btst	#1,byte_FFF7DC.w
 	beq.w	loc_20C35A
-	move.b	obj.field_3C(a0),d0
-	move.b	#$1A,obj.routine(a0)
+	move.b	act3C(a0),d0
+	move.b	#$1A,r_no0(a0)
 loc_20C35A:
 	moveq	#$B,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20C394
 	lea	actwk.w,a1
-	bset	#3,obj.status(a1)
-	bset	#3,obj.status(a0)
-	bclr	#1,obj.status(a1)
-	move.l	obj.ypos(a0),d0
+	bset	#3,cddat(a1)
+	bset	#3,cddat(a0)
+	bclr	#1,cddat(a1)
+	move.l	yposi(a0),d0
 	subi.l	#$80000,d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	swap	d1
 	sub.l	d1,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 loc_20C394:
 	bsr.w	sub_20C042
 	bsr.w	sub_20BFCE
@@ -13344,12 +13349,12 @@ loc_20C394:
 	rts
 
 loc_20C3B0:
-	move.b	obj.field_3D(a0),d0
+	move.b	act3D(a0),d0
 	addq.w	#1,d0
-	move.b	d0,obj.field_3D(a0)
+	move.b	d0,act3D(a0)
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d0
-	move.w	obj.xpos(a1),d1
+	move.w	xposi(a0),d0
+	move.w	xposi(a1),d1
 	move.w	d0,d2
 	addi.w	#$C0,d2
 	subi.w	#$10,d0
@@ -13357,16 +13362,16 @@ loc_20C3B0:
 	bmi.w	locret_20C14A
 	cmp.w	d2,d1
 	bpl.w	loc_20C3F2
-	bset	#3,obj.status(a1)
-	bset	#3,obj.status(a0)
-	move.b	#0,obj.angle(a1)
+	bset	#3,cddat(a1)
+	bset	#3,cddat(a0)
+	move.b	#0,direc(a1)
 	bra.w	locret_20C408
 
 loc_20C3F2:
-	btst	#3,obj.status(a0)
+	btst	#3,cddat(a0)
 	beq.w	locret_20C14A
-	bclr	#3,obj.status(a1)
-	bclr	#3,obj.status(a0)
+	bclr	#3,cddat(a1)
+	bclr	#3,cddat(a0)
 locret_20C408:
 	rts
 
@@ -13377,16 +13382,16 @@ loc_20C40A:
 	tst.b	d1
 	beq.w	loc_20C448
 	lea	actwk.w,a1
-	bset	#3,obj.status(a1)
-	bset	#3,obj.status(a0)
-	bclr	#1,obj.status(a1)
-	move.l	obj.ypos(a0),d0
+	bset	#3,cddat(a1)
+	bset	#3,cddat(a0)
+	bclr	#1,cddat(a1)
+	move.l	yposi(a0),d0
 	subi.l	#$80000,d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	swap	d1
 	sub.l	d1,d0
-	move.l	d0,obj.ypos(a1)
+	move.l	d0,yposi(a1)
 loc_20C448:
 	lea	off_20CED0.l,a1
 	jsr	animateobj.l
@@ -13394,7 +13399,7 @@ loc_20C448:
 	rts
 
 sub_20C45C:
-	move.b	obj.field_3C(a0),d0
+	move.b	act3C(a0),d0
 	cmpi.b	#7,d0
 	bpl.w	loc_20C4FC
 	cmpi.b	#5,d0
@@ -13404,11 +13409,11 @@ sub_20C45C:
 	dc.b	$12,$34,$56,$78
 
 loc_20C478:
-	movea.w	obj.field_3E(a0),a2
+	movea.w	act3E(a0),a2
 	lea	unk_20C5FE.l,a3
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	moveq	#0,d1
-	move.b	obj.field_3C(a0),d1
+	move.b	act3C(a0),d1
 	move.w	#$E,d2
 	asl.w	#1,d1
 	lsr.w	#1,d0
@@ -13419,40 +13424,40 @@ loc_20C478:
 	move.b	(a3,d2.w),d6
 	move.b	1(a3,d2.w),d3
 	ext.w	d3
-	move.w	obj.xpos(a2),d4
-	move.w	obj.ypos(a2),d5
+	move.w	xposi(a2),d4
+	move.w	yposi(a2),d5
 	add.w	d6,d4
 	add.w	d3,d5
 	addi.w	#$60,d5
-	move.w	d4,obj.xpos(a0)
-	move.w	d5,obj.ypos(a0)
-	move.w	obj.field_32(a0),d0
+	move.w	d4,xposi(a0)
+	move.w	d5,yposi(a0)
+	move.w	act32(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$26,d0
 	bne.w	locret_20C4DA
-	move.b	#$20,obj.routine(a0)
+	move.b	#$20,r_no0(a0)
 	bsr.w	sub_20C4DC
 locret_20C4DA:
 	rts
 
 sub_20C4DC:
-	move.b	obj.field_3C(a0),d0
-	move.w	obj.ypos(a2),d1
-	move.w	obj.xpos(a2),d2
+	move.b	act3C(a0),d0
+	move.w	yposi(a2),d1
+	move.w	xposi(a2),d2
 	mulu.w	#$10,d0
 	add.w	d0,d1
 	addi.w	#$60,d1
-	move.w	d1,obj.ypos(a0)
-	move.w	d2,obj.xpos(a0)
+	move.w	d1,yposi(a0)
+	move.w	d2,xposi(a0)
 	rts
 
 loc_20C4FC:
-	movea.w	obj.field_3E(a0),a2
+	movea.w	act3E(a0),a2
 	lea	unk_20C708.l,a3
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	moveq	#0,d1
-	move.b	obj.field_3C(a0),d1
+	move.b	act3C(a0),d1
 	move.w	#$E,d2
 	subq.b	#6,d1
 	asl.w	#1,d1
@@ -13463,58 +13468,58 @@ loc_20C4FC:
 	moveq	#0,d3
 	move.b	(a3,d2.w),d6
 	move.b	1(a3,d2.w),d3
-	move.w	obj.xpos(a2),d4
-	move.w	obj.ypos(a2),d5
+	move.w	xposi(a2),d4
+	move.w	yposi(a2),d5
 	sub.w	d6,d4
 	add.w	d3,d5
 	addi.w	#$B0,d4
-	move.w	d4,obj.xpos(a0)
-	move.w	d5,obj.ypos(a0)
-	move.w	obj.field_32(a0),d0
+	move.w	d4,xposi(a0)
+	move.w	d5,yposi(a0)
+	move.w	act32(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$26,d0
 	bne.w	locret_20C55E
-	move.b	#$20,obj.routine(a0)
+	move.b	#$20,r_no0(a0)
 	bsr.w	sub_20C560
 locret_20C55E:
 	rts
 
 sub_20C560:
-	move.b	obj.field_3C(a0),d0
-	move.w	obj.ypos(a2),d1
-	move.w	obj.xpos(a2),d2
+	move.b	act3C(a0),d0
+	move.w	yposi(a2),d1
+	move.w	xposi(a2),d2
 	subq.w	#6,d0
 	mulu.w	#$10,d0
 	add.w	d0,d1
 	addi.w	#$B0,d2
-	move.w	d1,obj.ypos(a0)
-	move.w	d2,obj.xpos(a0)
+	move.w	d1,yposi(a0)
+	move.w	d2,xposi(a0)
 	rts
 
 loc_20C582:
-	movea.w	obj.field_3E(a0),a2
-	move.w	obj.field_32(a0),d0
+	movea.w	act3E(a0),a2
+	move.w	act32(a0),d0
 	mulu.w	#$C,d0
-	move.w	obj.ypos(a2),d1
+	move.w	yposi(a2),d1
 	add.w	d0,d1
 	addi.w	#$28,d1
-	move.w	d1,obj.ypos(a0)
-	move.w	obj.field_32(a0),d0
-	move.w	obj.xpos(a0),d1
-	move.b	obj.field_3C(a0),d2
+	move.w	d1,yposi(a0)
+	move.w	act32(a0),d0
+	move.w	xposi(a0),d1
+	move.b	act3C(a0),d2
 	cmpi.b	#6,d2
 	beq.w	loc_20C5B2
 	neg.w	d0
 loc_20C5B2:
 	add.w	d0,d1
-	move.w	d1,obj.xpos(a0)
-	move.w	obj.field_32(a0),d0
+	move.w	d1,xposi(a0)
+	move.w	act32(a0),d0
 	addq.w	#1,d0
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$26,d0
 	bne.w	locret_20C5D2
-	move.b	#$20,obj.routine(a0)
+	move.b	#$20,r_no0(a0)
 	bsr.s	sub_20C560
 locret_20C5D2:
 	rts
@@ -14072,7 +14077,7 @@ unk_20C708:
 
 obj26:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20C820(pc,d0.w),d0
 	jmp	off_20C820(pc,d0.w)
 
@@ -14081,34 +14086,34 @@ off_20C820:
 	dc.w	loc_20C88A-off_20C820
 
 loc_20C824:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj26_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj26_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
 	moveq	#$A,d0
 	jsr	sub_20DC4C(pc)
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	andi.b	#7,d0
-	move.b	d0,obj.ani(a0)
-	move.b	#$86,obj.colflag(a0)
-	move.b	#$10,obj.field_19(a0)
-	move.b	#$C,obj.height(a0)
+	move.b	d0,mstno(a0)
+	move.b	#$86,colino(a0)
+	move.b	#$10,sprhsize(a0)
+	move.b	#$C,sprvsize(a0)
 	cmpi.b	#3,d0
 	bne.w	loc_20C874
-	move.b	#2,obj.field_19(a0)
-	move.b	#$C,obj.height(a0)
+	move.b	#2,sprhsize(a0)
+	move.b	#$C,sprvsize(a0)
 loc_20C874:
 	cmpi.b	#4,d0
 	bmi.w	locret_20C888
-	move.b	#$10,obj.field_19(a0)
-	move.b	#3,obj.height(a0)
+	move.b	#$10,sprhsize(a0)
+	move.b	#3,sprvsize(a0)
 locret_20C888:
 	rts
 
 loc_20C88A:
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	jsr	sub_207F56.l
 	lea	obj26_ani.l,a1
 	jsr	animateobj.l
@@ -14117,7 +14122,7 @@ loc_20C88A:
 
 obj29:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20C8C2(pc,d0.w),d0
 	jmp	off_20C8C2(pc,d0.w)
 
@@ -14128,28 +14133,28 @@ off_20C8C2:
 	dc.w	loc_20CC02-off_20C8C2
 
 loc_20C8CA:
-	addq.b	#2,obj.routine(a0)
-	move.l	#obj29_map,obj.mappings(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#$10,obj.field_19(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#obj29_map,patbase(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#$10,sprhsize(a0)
 	moveq	#$11,d0
 	jsr	sub_20DC4C.l
-	move.b	obj.field_3D(a0),d0
+	move.b	act3D(a0),d0
 	bne.s	loc_20C92E
-	move.b	obj.subtype(a0),d6
+	move.b	userflag(a0),d6
 	andi.w	#$F,d6
 	jsr	sub_20C93C(pc)
-	move.b	obj.field_3D(a1),d0
+	move.b	act3D(a1),d0
 	ori.b	#$80,d0
-	move.b	d0,obj.field_3D(a1)
+	move.b	d0,act3D(a1)
 	movea.w	a2,a4
 	subq.w	#1,d6
 loc_20C912:
 	jsr	sub_20C93C(pc)
 	subq.w	#1,d6
 	bne.s	loc_20C912
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	andi.b	#$70,d0
 	cmpi.b	#$70,d0
 	bne.s	locret_20C92C
@@ -14158,32 +14163,32 @@ locret_20C92C:
 	rts
 
 loc_20C92E:
-	move.b	obj.field_3D(a0),d0
+	move.b	act3D(a0),d0
 	bpl.s	locret_20C93A
-	move.b	#4,obj.routine(a0)
+	move.b	#4,r_no0(a0)
 locret_20C93A:
 	rts
 
 sub_20C93C:
 	jsr	actwkchk.l
 	bne.s	locret_20C964
-	move.b	obj.subtype(a0),obj.subtype(a1)
-	_move.b	#objid_29,obj.id(a1)
-	move.w	a0,obj.field_3E(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	move.b	d6,obj.field_3D(a1)
+	move.b	userflag(a0),userflag(a1)
+	_move.b	#objid_29,actno(a1)
+	move.w	a0,act3E(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	move.b	d6,act3D(a1)
 locret_20C964:
 	rts
 
 sub_20C966:
 	jsr	actwkchk.l
 	bne.s	locret_20C964
-	_move.b	#objid_13,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	move.w	a4,obj.field_3E(a1)
-	move.b	#1,obj.field_3D(a1)
+	_move.b	#objid_13,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	move.w	a4,act3E(a1)
+	move.b	#1,act3D(a1)
 	rts
 
 unk_20C98C:
@@ -14223,10 +14228,10 @@ unk_20C98C:
 
 loc_20C9AC:
 	moveq	#0,d0
-	move.b	obj.field_3D(a0),d0
+	move.b	act3D(a0),d0
 	lea	unk_20C98C.l,a3
 	move.b	(a3,d0.w),d2
-	move.b	d2,obj.ani(a0)
+	move.b	d2,mstno(a0)
 	tst.b	d0
 	beq.s	loc_20C9DA
 	jsr	sub_20CB40(pc)
@@ -14236,7 +14241,7 @@ loc_20C9AC:
 
 loc_20C9DA:
 	moveq	#0,d0
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	andi.w	#$F0,d0
 	asr.w	#2,d0
 	lea	off_20CA06.l,a3
@@ -14258,171 +14263,171 @@ off_20CA06:
 	dc.l	loc_20CA32
 
 loc_20CA26:
-	move.b	obj.field_3C(a0),d0
+	move.b	act3C(a0),d0
 	addq.w	#1,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CA32:
-	move.b	obj.field_3C(a0),d0
+	move.b	act3C(a0),d0
 	subq.w	#1,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CA3E:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	addq.w	#1,d0
 	andi.w	#$FF,d0
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$80,d0
 	bpl.w	loc_20CA58
 	bmi.w	loc_20CA62
 loc_20CA58:
 	addi.w	#$40,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CA62:
 	not.w	d0
 	addi.w	#$40,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CA6E:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	addq.w	#1,d0
 	andi.w	#$FF,d0
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$80,d0
 	bpl.w	loc_20CA88
 	bmi.w	loc_20CA92
 loc_20CA88:
 	addi.w	#$C0,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CA92:
 	not.w	d0
 	addi.w	#$C0,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CA9E:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	addq.w	#1,d0
 	cmpi.w	#$300,d0
 	bmi.w	loc_20CAAE
 	moveq	#0,d0
 loc_20CAAE:
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$180,d0
 	bpl.w	loc_20CABE
 	bmi.w	loc_20CAC8
 loc_20CABE:
 	addi.w	#$C0,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CAC8:
 	not.w	d0
 	addi.w	#$C0,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CAD4:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	addq.w	#1,d0
 	cmpi.w	#$200,d0
 	bmi.w	loc_20CAE4
 	moveq	#0,d0
 loc_20CAE4:
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$100,d0
 	bpl.w	loc_20CAF4
 	bmi.w	loc_20CAFE
 loc_20CAF4:
 	addi.w	#$80,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CAFE:
 	addi.w	#$80,d0
 	not.w	d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CB0A:
-	move.w	obj.field_32(a0),d0
+	move.w	act32(a0),d0
 	addq.w	#1,d0
 	cmpi.w	#$80,d0
 	bmi.w	loc_20CB1A
 	moveq	#0,d0
 loc_20CB1A:
-	move.w	d0,obj.field_32(a0)
+	move.w	d0,act32(a0)
 	cmpi.w	#$40,d0
 	bpl.w	loc_20CB2A
 	bmi.w	loc_20CB34
 loc_20CB2A:
 	addi.w	#$A0,d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 loc_20CB34:
 	addi.w	#$E0,d0
 	not.w	d0
-	move.b	d0,obj.field_3C(a0)
+	move.b	d0,act3C(a0)
 	rts
 
 sub_20CB40:
-	move.l	obj.xpos(a0),obj.field_38(a0)
-	move.l	obj.ypos(a0),obj.field_34(a0)
-	movea.w	obj.field_3E(a0),a2
+	move.l	xposi(a0),act38(a0)
+	move.l	yposi(a0),act34(a0)
+	movea.w	act3E(a0),a2
 	moveq	#0,d0
-	move.b	obj.field_3C(a2),d0
+	move.b	act3C(a2),d0
 	jsr	sinset.l
 	moveq	#0,d3
-	move.b	obj.field_3D(a0),d3
+	move.b	act3D(a0),d3
 	andi.w	#$F,d3
 	mulu.w	#$100,d3
 	muls.w	d3,d0
 	asl.l	#4,d0
 	move.l	d0,d4
-	move.l	obj.xpos(a2),d2
+	move.l	xposi(a2),d2
 	add.l	d0,d2
-	move.l	d2,obj.xpos(a0)
+	move.l	d2,xposi(a0)
 	muls.w	d3,d1
 	asl.l	#4,d1
 	move.l	d1,d5
-	move.l	obj.ypos(a2),d2
+	move.l	yposi(a2),d2
 	add.l	d1,d2
-	move.l	d2,obj.ypos(a0)
+	move.l	d2,yposi(a0)
 	asr.l	#8,d4
 	asr.l	#8,d5
-	move.w	d4,obj.xvel(a2)
-	move.w	d5,obj.yvel(a2)
+	move.w	d4,xspeed(a2)
+	move.w	d5,yspeed(a2)
 	rts
 
 loc_20CB98:
-	move.b	#3,obj.ani(a0)
+	move.b	#3,mstno(a0)
 	bsr.s	sub_20CB40
-	move.b	#$18,obj.field_19(a0)
-	move.b	#8,obj.height(a0)
-	move.b	#8,obj.height(a0)
+	move.b	#$18,sprhsize(a0)
+	move.b	#8,sprvsize(a0)
+	move.b	#8,sprvsize(a0)
 	lea	actwk.w,a1
 	bsr.w	sub_20B684
 	beq.w	loc_20CBEE
 	bsr.w	sub_20CC4C
 	bne.w	loc_20CBEE
-	move.w	obj.ypos(a0),d0
+	move.w	yposi(a0),d0
 	moveq	#0,d1
-	move.b	obj.height(a1),d1
+	move.b	sprvsize(a1),d1
 	sub.w	d1,d0
-	move.b	obj.height(a0),d1
+	move.b	sprvsize(a0),d1
 	sub.w	d1,d0
-	move.w	d0,obj.ypos(a1)
-	bset	#3,obj.status(a1)
-	bclr	#1,obj.status(a1)
-	move.b	#6,obj.routine(a0)
+	move.w	d0,yposi(a1)
+	bset	#3,cddat(a1)
+	bclr	#1,cddat(a1)
+	move.b	#6,r_no0(a0)
 loc_20CBEE:
 	lea	obj29_ani.l,a1
 	jsr	animateobj.l
@@ -14430,36 +14435,36 @@ loc_20CBEE:
 	rts
 
 loc_20CC02:
-	move.b	#3,obj.ani(a0)
+	move.b	#3,mstno(a0)
 	bsr.w	sub_20CB40
 	lea	actwk.w,a1
 	moveq	#$10,d0
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20CC3E
-	move.l	obj.xpos(a0),d0
-	sub.l	obj.field_38(a0),d0
-	add.l	obj.xpos(a1),d0
-	move.l	d0,obj.xpos(a1)
-	move.l	obj.ypos(a0),d0
-	sub.l	obj.field_34(a0),d0
-	add.l	obj.ypos(a1),d0
-	move.l	d0,obj.ypos(a1)
+	move.l	xposi(a0),d0
+	sub.l	act38(a0),d0
+	add.l	xposi(a1),d0
+	move.l	d0,xposi(a1)
+	move.l	yposi(a0),d0
+	sub.l	act34(a0),d0
+	add.l	yposi(a1),d0
+	move.l	d0,yposi(a1)
 	bra.s	loc_20CBEE
 
 loc_20CC3E:
-	bclr	#3,obj.status(a1)
-	move.b	#4,obj.routine(a0)
+	bclr	#3,cddat(a1)
+	move.b	#4,r_no0(a0)
 	bra.s	loc_20CBEE
 
 sub_20CC4C:
 	lea	actwk.w,a1
 	moveq	#0,d2
 	moveq	#0,d3
-	move.b	obj.height(a0),d2
-	move.b	obj.height(a1),d3
-	move.w	obj.ypos(a0),d0
-	move.w	obj.ypos(a1),d1
+	move.b	sprvsize(a0),d2
+	move.b	sprvsize(a1),d3
+	move.w	yposi(a0),d0
+	move.w	yposi(a1),d1
 	add.w	d2,d0
 	add.w	d3,d1
 	cmp.w	d0,d1
@@ -14968,7 +14973,7 @@ byte_20D010:
 
 obj20:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20D030(pc,d0.w),d0
 	jsr	off_20D030(pc,d0.w)
 	jmp	actionsub.l
@@ -14980,31 +14985,31 @@ off_20D030:
 	dc.w	loc_20D136-off_20D030
 
 loc_20D038:
-	addq.b	#2,obj.routine(a0)
-	ori.b	#4,obj.render(a0)
-	move.b	#3,obj.priority(a0)
-	move.w	#$4000,obj.vram(a0)
+	addq.b	#2,r_no0(a0)
+	ori.b	#4,actflg(a0)
+	move.b	#3,sprpri(a0)
+	move.w	#$4000,sproffset(a0)
 	lea	off_20D34C(pc),a1
 	lea	off_20D3C2(pc),a2
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	bpl.w	loc_20D066
 	lea	off_20D418(pc),a1
 	lea	off_20D5B0(pc),a2
 loc_20D066:
-	move.l	a1,obj.mappings(a0)
+	move.l	a1,patbase(a0)
 	btst	#4,d0
 	beq.w	loc_20D07E
-	bset	#0,obj.render(a0)
-	bset	#0,obj.status(a0)
+	bset	#0,actflg(a0)
+	bset	#0,cddat(a0)
 loc_20D07E:
 	andi.w	#$F,d0
-	move.b	d0,obj.frame(a0)
+	move.b	d0,patno(a0)
 	add.w	d0,d0
 	move.w	(a2,d0.w),d0
 	move.b	(a2,d0.w),d1
 	addq.b	#1,d1
 	asl.b	#3,d1
-	move.b	d1,obj.field_19(a0)
+	move.b	d1,sprhsize(a0)
 	move.b	1(a2,d0.w),d1
 	bpl.w	loc_20D0A2
 	neg.b	d1
@@ -15012,12 +15017,12 @@ loc_20D0A2:
 	addq.b	#1,d1
 	asl.b	#3,d1
 	addq.b	#2,d1
-	move.b	d1,obj.height(a0)
+	move.b	d1,sprvsize(a0)
 loc_20D0AC:
-	tst.b	obj.render(a0)
+	tst.b	actflg(a0)
 	bpl.s	locret_20D0E0
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	lea	actwk.w,a3
 	lea	byte_FFD040.w,a1
 	move.b	byte_FF1219,d0
@@ -15032,21 +15037,21 @@ locret_20D0E0:
 	rts
 
 loc_20D0E2:
-	addq.b	#2,obj.routine(a0)
-	move.b	obj.subtype(a0),d0
+	addq.b	#2,r_no0(a0)
+	move.b	userflag(a0),d0
 	bpl.w	loc_20D170
 	bra.w	loc_20D262
 
 loc_20D0F2:
-	lea	obj.field_2A(a0),a3
+	lea	act2A(a0),a3
 	addi.w	#-1,(a3)
 	bne.w	loc_20D102
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 loc_20D102:
-	move.b	obj.field_3E(a0),d0
+	move.b	act3E(a0),d0
 	beq.w	locret_20D134
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	lea	actwk.w,a1
 	bsr.w	sub_20D11E
 	lea	byte_FFD040.w,a1
@@ -15056,21 +15061,21 @@ sub_20D11E:
 	beq.w	locret_20D134
 	tst.w	(a3)
 	bne.w	locret_20D134
-	bclr	#3,obj.status(a1)
+	bclr	#3,cddat(a1)
 locret_20D134:
 	rts
 
 loc_20D136:
-	move.l	obj.field_2C(a0),d0
-	add.l	d0,obj.ypos(a0)
-	addi.l	#$4000,obj.field_2C(a0)
-	move.w	obj.ypos(a0),d0
+	move.l	act2C(a0),d0
+	add.l	d0,yposi(a0)
+	addi.l	#$4000,act2C(a0)
+	move.w	yposi(a0),d0
 	lea	actwk.w,a1
 	move.b	byte_FF1219,d1
 	beq.w	loc_20D15C
 	lea	byte_FFD040.w,a1
 loc_20D15C:
-	sub.w	obj.ypos(a1),d0
+	sub.w	yposi(a1),d0
 	cmpi.w	#$200,d0
 	bgt.w	loc_20D16A
 	rts
@@ -15079,7 +15084,7 @@ loc_20D16A:
 	jmp	frameout.l
 
 loc_20D170:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	suba.l	a4,a4
 	btst	#4,d0
 	beq.w	loc_20D182
@@ -15100,17 +15105,17 @@ loc_20D182:
 	neg.w	d0
 	neg.w	d1
 loc_20D1AC:
-	add.w	obj.xpos(a0),d0
+	add.w	xposi(a0),d0
 	movea.w	d0,a2
 	movea.w	d1,a3
 	moveq	#0,d6
 	move.b	(a6)+,d6
 	move.w	d6,d4
 	asl.w	#3,d4
-	add.w	obj.ypos(a0),d4
+	add.w	yposi(a0),d4
 	move.w	#9,d2
-	_move.b	obj.id(a0),obj.field_3F(a0)
-	_clr.b	obj.id(a0)
+	_move.b	actno(a0),act3F(a0)
+	_clr.b	actno(a0)
 loc_20D1CE:
 	move.w	a5,d5
 	move.w	a2,d3
@@ -15120,28 +15125,28 @@ loc_20D1D4:
 	bne.w	locret_20D260
 	move.b	(a6)+,d0
 	bmi.w	loc_20D24C
-	move.b	d0,obj.frame(a1)
-	ori.b	#4,obj.render(a1)
-	move.b	#3,obj.priority(a1)
-	move.w	#$4000,obj.vram(a1)
-	move.l	#obj20_map,obj.mappings(a1)
-	move.l	#$20000,obj.field_2C(a1)
-	_move.b	obj.field_3F(a0),obj.id(a1)
-	move.b	obj.routine(a0),obj.routine(a1)
+	move.b	d0,patno(a1)
+	ori.b	#4,actflg(a1)
+	move.b	#3,sprpri(a1)
+	move.w	#$4000,sproffset(a1)
+	move.l	#obj20_map,patbase(a1)
+	move.l	#$20000,act2C(a1)
+	_move.b	act3F(a0),actno(a1)
+	move.b	r_no0(a0),r_no0(a1)
 	cmpa.w	#0,a4
 	beq.w	loc_20D22A
-	bset	#0,obj.render(a1)
-	bset	#0,obj.status(a1)
+	bset	#0,actflg(a1)
+	bset	#0,cddat(a1)
 loc_20D22A:
 	tst.w	d6
 	bne.w	loc_20D240
-	st	obj.field_3E(a1)
-	move.b	#8,obj.field_19(a1)
-	move.b	#9,obj.height(a1)
+	st	act3E(a1)
+	move.b	#8,sprhsize(a1)
+	move.b	#9,sprvsize(a1)
 loc_20D240:
-	move.w	d4,obj.ypos(a1)
-	move.w	d3,obj.xpos(a1)
-	move.w	d1,obj.field_2A(a1)
+	move.w	d4,yposi(a1)
+	move.w	d3,xposi(a1)
+	move.w	d1,act2A(a1)
 loc_20D24C:
 	add.w	a3,d3
 	addi.w	#$C,d1
@@ -15153,7 +15158,7 @@ locret_20D260:
 	rts
 
 loc_20D262:
-	move.b	obj.subtype(a0),d2
+	move.b	userflag(a0),d2
 	lea	off_20D5B0(pc),a6
 	move.b	d2,d0
 	andi.w	#$1F,d0
@@ -15182,7 +15187,7 @@ loc_20D2A2:
 	beq.w	loc_20D2B4
 	lea	byte_FFD040.w,a1
 loc_20D2B4:
-	move.w	obj.xvel(a1),d0
+	move.w	xspeed(a1),d0
 	btst	#5,d2
 	beq.w	loc_20D2C2
 	neg.w	d0
@@ -15195,29 +15200,29 @@ loc_20D2C4:
 	neg.w	d3
 	neg.w	d6
 loc_20D2D2:
-	add.w	obj.xpos(a0),d4
+	add.w	xposi(a0),d4
 	move.w	#9,d2
-	_move.b	obj.id(a0),obj.field_3F(a0)
-	_clr.b	obj.id(a0)
+	_move.b	actno(a0),act3F(a0)
+	_clr.b	actno(a0)
 loc_20D2E4:
 	jsr	actwkchk2.l
 	bne.w	locret_20D34A
-	move.b	#3,obj.priority(a1)
-	move.w	#$4000,obj.vram(a1)
-	ori.b	#4,obj.render(a1)
-	move.l	#obj20b_map,obj.mappings(a1)
-	move.l	#$20000,obj.field_2C(a1)
-	_move.b	obj.field_3F(a0),obj.id(a1)
-	move.b	obj.routine(a0),obj.routine(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	st	obj.field_3E(a1)
-	move.b	#8,obj.field_19(a1)
-	move.b	d1,obj.height(a1)
-	move.b	(a6),obj.frame(a1)
+	move.b	#3,sprpri(a1)
+	move.w	#$4000,sproffset(a1)
+	ori.b	#4,actflg(a1)
+	move.l	#obj20b_map,patbase(a1)
+	move.l	#$20000,act2C(a1)
+	_move.b	act3F(a0),actno(a1)
+	move.b	r_no0(a0),r_no0(a1)
+	move.w	yposi(a0),yposi(a1)
+	st	act3E(a1)
+	move.b	#8,sprhsize(a1)
+	move.b	d1,sprvsize(a1)
+	move.b	(a6),patno(a1)
 	lea	(a6,d6.w),a6
-	move.w	d4,obj.xpos(a1)
+	move.w	d4,xposi(a1)
 	add.w	d3,d4
-	move.w	d2,obj.field_2A(a1)
+	move.w	d2,act2A(a1)
 	addi.w	#$C,d2
 	dbf	d5,loc_20D2E4
 locret_20D34A:
@@ -15517,7 +15522,7 @@ byte_20D65C:
 
 obj21:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20D68C(pc,d0.w),d0
 	jsr	off_20D68C(pc,d0.w)
 	jsr	actionsub.l
@@ -15529,18 +15534,18 @@ off_20D68C:
 
 sub_20D690:
 	lea	actwk.w,a1
-	move.w	obj.xpos(a0),d3
-	move.w	obj.ypos(a0),d4
+	move.w	xposi(a0),d3
+	move.w	yposi(a0),d4
 	subq.w	#4,d4
 	jmp	sub_207F56.l
 
 loc_20D6A4:
-	ori.b	#4,obj.render(a0)
-	move.w	#$4000,obj.vram(a0)
-	move.b	#3,obj.priority(a0)
-	move.w	obj.xpos(a0),obj.field_38(a0)
-	move.w	obj.ypos(a0),obj.field_3A(a0)
-	move.w	obj.ypos(a0),obj.field_36(a0)
+	ori.b	#4,actflg(a0)
+	move.w	#$4000,sproffset(a0)
+	move.b	#3,sprpri(a0)
+	move.w	xposi(a0),act38(a0)
+	move.w	yposi(a0),act3A(a0)
+	move.w	yposi(a0),act36(a0)
 	move.l	#obj21_map,d0
 	cmpi.w	#zoneact(zoneid_SPZ,actid_1),stageno
 	beq.s	loc_20D6EE
@@ -15549,38 +15554,38 @@ loc_20D6A4:
 	beq.s	loc_20D6EE
 	move.l	#obj21b_map,d0
 loc_20D6EE:
-	move.l	d0,obj.mappings(a0)
-	move.b	obj.subtype(a0),d0
+	move.l	d0,patbase(a0)
+	move.b	userflag(a0),d0
 	move.b	d0,d1
 	andi.w	#3,d0
-	move.b	d0,obj.frame(a0)
-	move.b	byte_20D76E(pc,d0.w),obj.field_19(a0)
-	move.b	#4,obj.height(a0)
+	move.b	d0,patno(a0)
+	move.b	byte_20D76E(pc,d0.w),sprhsize(a0)
+	move.b	#4,sprvsize(a0)
 	lsr.b	#2,d1
 	andi.w	#3,d1
-	move.b	byte_20D772(pc,d1.w),obj.field_2D(a0)
-	move.b	obj.field_29(a0),d0
+	move.b	byte_20D772(pc,d1.w),act2D(a0)
+	move.b	act29(a0),d0
 	beq.s	loc_20D768
 	jsr	actwkchk.l
 	beq.s	loc_20D72C
 	jmp	frameout.l
 
 loc_20D72C:
-	_move.b	#objid_0A,obj.id(a1)
-	move.w	obj.xpos(a0),obj.xpos(a1)
-	move.w	obj.ypos(a0),obj.ypos(a1)
-	subi.w	#$10,obj.ypos(a1)
-	move.b	#$F0,obj.field_39(a1)
-	move.w	a0,obj.field_34(a1)
-	move.b	obj.field_29(a0),d0
+	_move.b	#objid_0A,actno(a1)
+	move.w	xposi(a0),xposi(a1)
+	move.w	yposi(a0),yposi(a1)
+	subi.w	#$10,yposi(a1)
+	move.b	#$F0,act39(a1)
+	move.w	a0,act34(a1)
+	move.b	act29(a0),d0
 	move.b	d0,d1
 	andi.b	#2,d1
-	move.b	d1,obj.subtype(a1)
+	move.b	d1,userflag(a1)
 	andi.b	#$F8,d0
-	move.b	d0,obj.field_38(a1)
-	add.w	d0,obj.xpos(a1)
+	move.b	d0,act38(a1)
+	add.w	d0,xposi(a1)
 loc_20D768:
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 	rts
 
 byte_20D76E:
@@ -15603,13 +15608,13 @@ loc_20D776:
 	bra.w	sub_20D690
 
 loc_20D782:
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	lsr.b	#4,d0
 	andi.w	#$F,d0
 	add.w	d0,d0
 	move.w	off_20D7BA(pc,d0.w),d0
 	jsr	off_20D7BA(pc,d0.w)
-	move.w	obj.field_38(a0),d0
+	move.w	act38(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit.w,d1
 	subi.w	#$80,d1
@@ -15635,118 +15640,118 @@ off_20D7BA:
 	dc.w	loc_20DA3E-off_20D7BA
 
 loc_20D7CE:
-	addq.b	#1,obj.field_2A(a0)
+	addq.b	#1,act2A(a0)
 	jsr	sub_20DAB6(pc)
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 	jmp	sub_20D690.l
 
 loc_20D7E4:
-	move.l	obj.xpos(a0),-(sp)
+	move.l	xposi(a0),-(sp)
 	jsr	sub_20DAB6(pc)
-	add.w	obj.field_38(a0),d0
-	move.w	d0,obj.xpos(a0)
-	addq.b	#1,obj.field_2A(a0)
+	add.w	act38(a0),d0
+	move.w	d0,xposi(a0)
+	addq.b	#1,act2A(a0)
 	moveq	#0,d0
-	move.b	obj.field_2C(a0),d0
+	move.b	act2C(a0),d0
 	asr.b	#1,d0
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 loc_20D808:
 	move.l	(sp)+,d0
-	move.l	obj.xpos(a0),d1
+	move.l	xposi(a0),d1
 	sub.l	d0,d1
 	asr.l	#8,d1
-	move.w	d1,obj.xvel(a0)
+	move.w	d1,xspeed(a0)
 loc_20D816:
 	jsr	sub_20D690(pc)
 	beq.s	loc_20D82E
-	move.b	obj.field_2C(a0),d0
+	move.b	act2C(a0),d0
 	cmpi.b	#8,d0
 	bhs.s	loc_20D82A
-	addq.b	#1,obj.field_2C(a0)
+	addq.b	#1,act2C(a0)
 loc_20D82A:
 	moveq	#1,d0
 	rts
 
 loc_20D82E:
 	moveq	#0,d0
-	move.b	obj.field_2C(a0),d0
+	move.b	act2C(a0),d0
 	beq.s	loc_20D83A
-	subq.b	#1,obj.field_2C(a0)
+	subq.b	#1,act2C(a0)
 loc_20D83A:
 	moveq	#0,d0
 	rts
 
 loc_20D83E:
-	move.l	obj.xpos(a0),-(sp)
-	addq.b	#1,obj.field_2A(a0)
+	move.l	xposi(a0),-(sp)
+	addq.b	#1,act2A(a0)
 	jsr	sub_20DAB6(pc)
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 	jsr	sub_20DAB6(pc)
-	add.w	obj.field_38(a0),d0
-	move.w	d0,obj.xpos(a0)
+	add.w	act38(a0),d0
+	move.w	d0,xposi(a0)
 	bra.w	loc_20D808
 
 loc_20D862:
-	move.l	obj.xpos(a0),-(sp)
-	addq.b	#1,obj.field_2A(a0)
+	move.l	xposi(a0),-(sp)
+	addq.b	#1,act2A(a0)
 	jsr	sub_20DAB6(pc)
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 	jsr	sub_20DAB6(pc)
 	neg.w	d0
-	add.w	obj.field_38(a0),d0
-	move.w	d0,obj.xpos(a0)
+	add.w	act38(a0),d0
+	move.w	d0,xposi(a0)
 	bra.w	loc_20D808
 
 sub_20D888:
 	moveq	#0,d0
-	move.b	obj.field_2C(a0),d0
+	move.b	act2C(a0),d0
 	asr.b	#1,d0
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 	bra.w	loc_20D816
 
 loc_20D89C:
-	move.b	obj.field_2B(a0),d0
+	move.b	act2B(a0),d0
 	bne.s	loc_20D8B4
 	jsr	sub_20D888(pc)
 	bne.s	loc_20D8AA
 	rts
 
 loc_20D8AA:
-	move.b	#$1E,obj.field_2E(a0)
-	addq.b	#2,obj.field_2B(a0)
+	move.b	#$1E,act2E(a0)
+	addq.b	#2,act2B(a0)
 loc_20D8B4:
-	move.b	obj.field_2E(a0),d0
+	move.b	act2E(a0),d0
 	beq.s	loc_20D8C2
-	subq.b	#1,obj.field_2E(a0)
+	subq.b	#1,act2E(a0)
 	bra.w	sub_20D888
 
 loc_20D8C2:
 	jsr	sub_20D690(pc)
-	move.l	obj.ypos(a0),d1
-	move.w	obj.yvel(a0),d0
+	move.l	yposi(a0),d1
+	move.w	yspeed(a0),d0
 	ext.l	d0
 	asl.l	#8,d0
 	add.l	d0,d1
-	move.l	d1,obj.ypos(a0)
-	move.w	obj.yvel(a0),d0
+	move.l	d1,yposi(a0)
+	move.w	yspeed(a0),d0
 	cmpi.w	#$400,d0
 	bhs.s	loc_20D8E8
-	addi.w	#$40,obj.yvel(a0)
+	addi.w	#$40,yspeed(a0)
 loc_20D8E8:
 	jsr	sub_20611C.l
 	tst.w	d1
 	bpl.s	loc_20D8FC
 	lea	actwk.w,a1
-	bclr	#3,obj.status(a1)
+	bclr	#3,cddat(a1)
 loc_20D8FC:
 	move.w	scra_v_posit.w,d0
 	addi.w	#224,d0
-	cmp.w	obj.ypos(a0),d0
+	cmp.w	yposi(a0),d0
 	bhs.s	locret_20D910
 	jmp	frameout.l
 
@@ -15754,7 +15759,7 @@ locret_20D910:
 	rts
 
 loc_20D912:
-	move.b	obj.field_2B(a0),d0
+	move.b	act2B(a0),d0
 	andi.w	#$FF,d0
 	move.w	off_20D922(pc,d0.w),d0
 	jmp	off_20D922(pc,d0.w)
@@ -15770,26 +15775,26 @@ loc_20D928:
 	rts
 
 loc_20D930:
-	addq.b	#2,obj.field_2B(a0)
+	addq.b	#2,act2B(a0)
 loc_20D934:
-	move.b	obj.field_2A(a0),d0
+	move.b	act2A(a0),d0
 	cmpi.b	#$40,d0
 	bhs.w	loc_20D958
 	jsr	sub_20DAB6(pc)
 	neg.w	d0
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
-	addq.b	#2,obj.field_2A(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
+	addq.b	#2,act2A(a0)
 	jmp	sub_20D690.l
 
 loc_20D958:
-	move.w	obj.ypos(a0),obj.field_3A(a0)
-	addq.b	#2,obj.field_2B(a0)
+	move.w	yposi(a0),act3A(a0)
+	addq.b	#2,act2B(a0)
 loc_20D962:
 	bra.w	sub_20D888
 
 loc_20D966:
-	move.b	obj.field_2B(a0),d0
+	move.b	act2B(a0),d0
 	andi.w	#$FF,d0
 	move.w	off_20D976(pc,d0.w),d0
 	jmp	off_20D976(pc,d0.w)
@@ -15805,31 +15810,31 @@ loc_20D97C:
 	rts
 
 loc_20D984:
-	addq.b	#2,obj.field_2B(a0)
-	move.b	#$3C,obj.field_2E(a0)
+	addq.b	#2,act2B(a0)
+	move.b	#$3C,act2E(a0)
 loc_20D98E:
-	move.b	obj.field_2E(a0),d0
+	move.b	act2E(a0),d0
 	beq.s	loc_20D99C
-	subq.b	#1,obj.field_2E(a0)
+	subq.b	#1,act2E(a0)
 	bra.w	sub_20D888
 
 loc_20D99C:
 	jsr	speedset2.l
-	subq.w	#8,obj.yvel(a0)
+	subq.w	#8,yspeed(a0)
 	jsr	sub_2062B2.l
 	tst.w	d1
 	bmi.s	loc_20D9B4
 	bra.w	loc_20D816
 
 loc_20D9B4:
-	sub.w	d1,obj.ypos(a0)
-	move.w	obj.ypos(a0),obj.field_3A(a0)
-	addq.b	#2,obj.field_2B(a0)
+	sub.w	d1,yposi(a0)
+	move.w	yposi(a0),act3A(a0)
+	addq.b	#2,act2B(a0)
 loc_20D9C2:
 	bra.w	sub_20D888
 
 loc_20D9C6:
-	move.b	obj.field_2B(a0),d0
+	move.b	act2B(a0),d0
 	andi.w	#$FF,d0
 	move.w	off_20D9D6(pc,d0.w),d0
 	jmp	off_20D9D6(pc,d0.w)
@@ -15845,38 +15850,38 @@ loc_20D9DC:
 	rts
 
 loc_20D9E4:
-	addq.b	#2,obj.field_2B(a0)
-	move.b	#$3C,obj.field_2E(a0)
+	addq.b	#2,act2B(a0)
+	move.b	#$3C,act2E(a0)
 loc_20D9EE:
-	move.b	obj.field_2E(a0),d0
+	move.b	act2E(a0),d0
 	beq.s	loc_20D9FC
-	subq.b	#1,obj.field_2E(a0)
+	subq.b	#1,act2E(a0)
 	bra.w	sub_20D888
 
 loc_20D9FC:
-	move.b	obj.field_2A(a0),d0
+	move.b	act2A(a0),d0
 	cmpi.b	#$40,d0
 	bhs.w	loc_20DA30
-	move.l	obj.xpos(a0),-(sp)
+	move.l	xposi(a0),-(sp)
 	jsr	sub_20DAB6(pc)
-	add.w	obj.field_38(a0),d0
-	move.w	d0,obj.xpos(a0)
-	addq.b	#1,obj.field_2A(a0)
+	add.w	act38(a0),d0
+	move.w	d0,xposi(a0)
+	addq.b	#1,act2A(a0)
 	moveq	#0,d0
-	move.b	obj.field_2C(a0),d0
+	move.b	act2C(a0),d0
 	asr.b	#1,d0
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 	bra.w	loc_20D808
 
 loc_20DA30:
-	move.w	obj.xpos(a0),obj.field_38(a0)
-	addq.b	#2,obj.field_2B(a0)
+	move.w	xposi(a0),act38(a0)
+	addq.b	#2,act2B(a0)
 loc_20DA3A:
 	bra.w	sub_20D888
 
 loc_20DA3E:
-	move.b	obj.field_2B(a0),d0
+	move.b	act2B(a0),d0
 	andi.w	#$FF,d0
 	move.w	off_20DA4E(pc,d0.w),d0
 	jmp	off_20DA4E(pc,d0.w)
@@ -15892,43 +15897,43 @@ loc_20DA54:
 	rts
 
 loc_20DA5C:
-	addq.b	#2,obj.field_2B(a0)
-	move.b	#$3C,obj.field_2E(a0)
+	addq.b	#2,act2B(a0)
+	move.b	#$3C,act2E(a0)
 loc_20DA66:
-	move.b	obj.field_2E(a0),d0
+	move.b	act2E(a0),d0
 	beq.s	loc_20DA74
-	subq.b	#1,obj.field_2E(a0)
+	subq.b	#1,act2E(a0)
 	bra.w	sub_20D888
 
 loc_20DA74:
-	move.b	obj.field_2A(a0),d0
+	move.b	act2A(a0),d0
 	cmpi.b	#$40,d0
 	bhs.s	loc_20DAA8
-	move.l	obj.xpos(a0),-(sp)
+	move.l	xposi(a0),-(sp)
 	jsr	sub_20DAB6(pc)
 	neg.w	d0
-	add.w	obj.field_38(a0),d0
-	move.w	d0,obj.xpos(a0)
-	addq.b	#1,obj.field_2A(a0)
+	add.w	act38(a0),d0
+	move.w	d0,xposi(a0)
+	addq.b	#1,act2A(a0)
 	moveq	#0,d0
-	move.b	obj.field_2C(a0),d0
+	move.b	act2C(a0),d0
 	asr.b	#1,d0
-	add.w	obj.field_3A(a0),d0
-	move.w	d0,obj.ypos(a0)
+	add.w	act3A(a0),d0
+	move.w	d0,yposi(a0)
 	bra.w	loc_20D808
 
 loc_20DAA8:
-	move.w	obj.xpos(a0),obj.field_38(a0)
-	addq.b	#2,obj.field_2B(a0)
+	move.w	xposi(a0),act38(a0)
+	addq.b	#2,act2B(a0)
 loc_20DAB2:
 	bra.w	sub_20D888
 
 sub_20DAB6:
 	moveq	#0,d0
-	move.b	obj.field_2A(a0),d0
+	move.b	act2A(a0),d0
 	jsr	sinset.l
 	moveq	#0,d2
-	move.b	obj.field_2D(a0),d2
+	move.b	act2D(a0),d2
 	muls.w	d2,d0
 	lsr.l	#8,d0
 	rts
@@ -16076,10 +16081,10 @@ sub_20DC4C:
 	move.w	off_20DC6E(pc,d0.w),d4
 	lea	off_20DC6E(pc,d4.w),a2
 	moveq	#0,d1
-	move.b	obj.field_29(a0),d1
+	move.b	act29(a0),d1
 	add.w	d1,d1
 	move.w	(a2,d1.w),d5
-	move.w	d5,obj.vram(a0)
+	move.w	d5,sproffset(a0)
 	rts
 
 off_20DC6E:
@@ -16122,7 +16127,7 @@ word_20DCB4:	dc.w	0
 
 obj24:
 	moveq	#0,d0
-	move.b	obj.subtype(a0),d0
+	move.b	userflag(a0),d0
 	add.w	d0,d0
 	move.w	off_20DCCC(pc,d0.w),d0
 	jsr	off_20DCCC(pc,d0.w)
@@ -16134,7 +16139,7 @@ off_20DCCC:
 
 loc_20DCD0:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20DCDE(pc,d0.w),d0
 	jmp	off_20DCDE(pc,d0.w)
 
@@ -16144,32 +16149,32 @@ off_20DCDE:
 	dc.w	loc_20DD72-off_20DCDE
 
 loc_20DCE4:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#8,obj.width(a0)
-	move.b	#8,obj.height(a0)
-	move.w	#$3CF,obj.vram(a0)
-	move.l	#obj24_map,obj.mappings(a0)
-	move.l	obj.xpos(a0),obj.field_2A(a0)
-	move.l	obj.ypos(a0),obj.field_2E(a0)
-	move.b	#1,obj.field_32(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#8,sprhs(a0)
+	move.b	#8,sprvsize(a0)
+	move.w	#$3CF,sproffset(a0)
+	move.l	#obj24_map,patbase(a0)
+	move.l	xposi(a0),act2A(a0)
+	move.l	yposi(a0),act2E(a0)
+	move.b	#1,act32(a0)
 	rts
 
 loc_20DD22:
-	move.b	obj.field_32(a0),d0
+	move.b	act32(a0),d0
 	jsr	sinset.l
 	swap	d1
 	swap	d0
 	asr.l	#1,d1
 	asr.l	#1,d0
-	add.l	obj.field_2A(a0),d1
-	add.l	obj.field_2E(a0),d0
-	move.l	d1,obj.xpos(a0)
-	move.l	d0,obj.ypos(a0)
-	move.w	#$BCF,obj.vram(a0)
-	addq.b	#1,obj.field_32(a0)
-	cmpi.b	#$7F,obj.field_32(a0)
+	add.l	act2A(a0),d1
+	add.l	act2E(a0),d0
+	move.l	d1,xposi(a0)
+	move.l	d0,yposi(a0)
+	move.w	#$BCF,sproffset(a0)
+	addq.b	#1,act32(a0)
+	cmpi.b	#$7F,act32(a0)
 	bpl.w	loc_20DD6C
 loc_20DD58:
 	lea	obj24_ani.l,a1
@@ -16178,28 +16183,28 @@ loc_20DD58:
 	rts
 
 loc_20DD6C:
-	addq.b	#2,obj.routine(a0)
+	addq.b	#2,r_no0(a0)
 	bra.s	loc_20DD58
 
 loc_20DD72:
-	move.b	obj.field_32(a0),d0
+	move.b	act32(a0),d0
 	jsr	sinset.l
 	swap	d1
 	swap	d0
 	asr.l	#1,d1
 	asr.l	#1,d0
-	add.l	obj.field_2A(a0),d1
-	add.l	obj.field_2E(a0),d0
-	move.l	d1,obj.xpos(a0)
-	move.l	d0,obj.ypos(a0)
-	move.w	#$3CF,obj.vram(a0)
-	addi.b	#-1,obj.field_32(a0)
-	cmpi.b	#1,obj.field_32(a0)
+	add.l	act2A(a0),d1
+	add.l	act2E(a0),d0
+	move.l	d1,xposi(a0)
+	move.l	d0,yposi(a0)
+	move.w	#$3CF,sproffset(a0)
+	addi.b	#-1,act32(a0)
+	cmpi.b	#1,act32(a0)
 	bmi.w	loc_20DDAC
 	bra.s	loc_20DD58
 
 loc_20DDAC:
-	addi.b	#-2,obj.routine(a0)
+	addi.b	#-2,r_no0(a0)
 	bra.s	loc_20DD58
 
 obj24_ani:
@@ -16224,7 +16229,7 @@ byte_20DDC4:
 
 loc_20DDCA:
 	moveq	#0,d0
-	move.b	obj.routine(a0),d0
+	move.b	r_no0(a0),d0
 	move.w	off_20DDD8(pc,d0.w),d0
 	jmp	off_20DDD8(pc,d0.w)
 
@@ -16234,25 +16239,25 @@ off_20DDD8:
 	dc.w	loc_20DE6E-off_20DDD8
 
 loc_20DDDE:
-	addq.b	#2,obj.routine(a0)
-	move.b	#4,obj.render(a0)
-	move.b	#1,obj.priority(a0)
-	move.b	#8,obj.width(a0)
-	move.b	#8,obj.height(a0)
-	move.w	#$3CF,obj.vram(a0)
-	move.l	#obj24b_map,obj.mappings(a0)
-	move.l	#$FFFC0000,obj.field_2A(a0)
+	addq.b	#2,r_no0(a0)
+	move.b	#4,actflg(a0)
+	move.b	#1,sprpri(a0)
+	move.b	#8,sprhs(a0)
+	move.b	#8,sprvsize(a0)
+	move.w	#$3CF,sproffset(a0)
+	move.l	#obj24b_map,patbase(a0)
+	move.l	#$FFFC0000,act2A(a0)
 	rts
 
 loc_20DE12:
-	move.w	#$3CF,obj.vram(a0)
-	addi.l	#$10000,obj.xpos(a0)
-	move.l	obj.field_2A(a0),d0
-	add.l	d0,obj.ypos(a0)
-	move.b	#0,obj.ani(a0)
-	addi.l	#$2000,obj.field_2A(a0)
+	move.w	#$3CF,sproffset(a0)
+	addi.l	#$10000,xposi(a0)
+	move.l	act2A(a0),d0
+	add.l	d0,yposi(a0)
+	move.b	#0,mstno(a0)
+	addi.l	#$2000,act2A(a0)
 	bmi.w	loc_20DE40
-	move.b	#1,obj.ani(a0)
+	move.b	#1,mstno(a0)
 loc_20DE40:
 	jsr	sub_20611C.l
 	tst.w	d1
@@ -16264,19 +16269,19 @@ loc_20DE4C:
 	rts
 
 loc_20DE60:
-	addq.b	#2,obj.routine(a0)
-	move.l	#$FFFC0000,obj.field_2A(a0)
+	addq.b	#2,r_no0(a0)
+	move.l	#$FFFC0000,act2A(a0)
 	bra.s	loc_20DE4C
 
 loc_20DE6E:
-	move.w	#$BCF,obj.vram(a0)
-	addi.l	#$FFFF0000,obj.xpos(a0)
-	move.l	obj.field_2A(a0),d0
-	add.l	d0,obj.ypos(a0)
-	move.b	#0,obj.ani(a0)
-	addi.l	#$2000,obj.field_2A(a0)
+	move.w	#$BCF,sproffset(a0)
+	addi.l	#$FFFF0000,xposi(a0)
+	move.l	act2A(a0),d0
+	add.l	d0,yposi(a0)
+	move.b	#0,mstno(a0)
+	addi.l	#$2000,act2A(a0)
 	bmi.w	loc_20DE9C
-	move.b	#1,obj.ani(a0)
+	move.b	#1,mstno(a0)
 loc_20DE9C:
 	jsr	sub_20611C.l
 	tst.w	d1
@@ -16284,8 +16289,8 @@ loc_20DE9C:
 	bra.s	loc_20DE4C
 
 loc_20DEAA:
-	addi.b	#-2,obj.routine(a0)
-	move.l	#$FFFC0000,obj.field_2A(a0)
+	addi.b	#-2,r_no0(a0)
+	move.l	#$FFFC0000,act2A(a0)
 	bra.s	loc_20DE4C
 
 obj24b_ani:
