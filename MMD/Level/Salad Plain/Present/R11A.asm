@@ -15914,10 +15914,12 @@ loc_20DE12:
 	addi.l	#$2000,act2A(a0)
 	bmi.w	loc_20DE40
 	move.b	#1,mstno(a0)
+
 loc_20DE40:
 	jsr	emycol_d.l
 	tst.w	d1
 	bmi.w	loc_20DE60
+
 loc_20DE4C:
 	lea	obj24b_ani.l,a1
 	jsr	patchg.l
@@ -15938,6 +15940,7 @@ loc_20DE6E:
 	addi.l	#$2000,act2A(a0)
 	bmi.w	loc_20DE9C
 	move.b	#1,mstno(a0)
+
 loc_20DE9C:
 	jsr	emycol_d.l
 	tst.w	d1
