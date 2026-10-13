@@ -74,15 +74,15 @@ __LABEL__:	label	*-gamemode_index
 	bra.w	gmmode
 	endm
 
-gmmodeid_lvl:	gmmode_ptr	level
+gmmodeid_lvl:	gmmode_ptr	game
 
 clrchgctr:
 	lea	spz_pal_cycle.l,a0
-	subq.b	#1,byte_FFF65C.w
+	subq.b	#1,clchgtim.w
 	bpl.s	loc_2001B6
-	move.b	#7,byte_FFF65C.w
+	move.b	#7,clchgtim.w
 	moveq	#0,d0
-	move.b	byte_FFF632.w,d0
+	move.b	clchgcnt.w,d0
 	cmpi.b	#2,d0
 	bne.s	loc_2001A2
 	moveq	#0,d0
@@ -92,7 +92,7 @@ loc_2001A2:
 	addq.b	#1,d0
 
 loc_2001A4:
-	move.b	d0,byte_FFF632.w
+	move.b	d0,clchgcnt.w
 	lsl.w	#3,d0
 	lea	palette+$6A.w,a1
 	move.l	(a0,d0.w),(a1)+
@@ -100,11 +100,11 @@ loc_2001A4:
 
 loc_2001B6:
 	adda.w	#spz_pal_cycle2-spz_pal_cycle,a0
-	subq.b	#1,byte_FFF65D.w
+	subq.b	#1,clchgtim+1.w
 	bpl.s	locret_2001EE
-	move.b	#5,byte_FFF65D.w
+	move.b	#5,clchgtim+1.w
 	moveq	#0,d0
-	move.b	byte_FFF633.w,d0
+	move.b	clchgcnt+1.w,d0
 	cmpi.b	#2,d0
 	bne.s	loc_2001D6
 	moveq	#0,d0
@@ -114,7 +114,7 @@ loc_2001D6:
 	addq.b	#1,d0
 
 loc_2001D8:
-	move.b	d0,byte_FFF633.w
+	move.b	d0,clchgcnt+1.w
 	andi.w	#3,d0
 	lsl.w	#3,d0
 	lea	palette+$58.w,a1
@@ -214,7 +214,7 @@ loc_2002BE:
 	addq.w	#2,a0
 	rts
 
-sub_2002C2:
+fadeout:
 	move.w	#$3F,startcolor.w
 	move.w	#22-1,d4
 
@@ -276,7 +276,7 @@ loc_20033C:
 	addq.w	#2,a0
 	rts
 
-sub_200340:
+flashin:
 	move.w	#$3F,startcolor.w
 	moveq	#0,d0
 	lea	palette.w,a0
@@ -359,7 +359,7 @@ loc_2003EA:
 	addq.w	#2,a0
 	rts
 
-sub_2003EE:
+flashout:
 	move.w	#$3F,startcolor.w
 	move.w	#22-1,d4
 
@@ -424,8 +424,8 @@ loc_200478:
 	addq.w	#2,a0
 	rts
 
-palload_fade:
-	lea	pal_index.l,a1
+colorset:
+	lea	colortbl.l,a1
 	lsl.w	#3,d0
 	adda.w	d0,a1
 	movea.l	(a1)+,a2
@@ -438,8 +438,8 @@ palload_fade:
 	dbf	d7,.loop
 	rts
 
-palload:
-	lea	pal_index.l,a1
+colorset2:
+	lea	colortbl.l,a1
 	lsl.w	#3,d0
 	adda.w	d0,a1
 	movea.l	(a1)+,a2
@@ -451,10 +451,10 @@ palload:
 	dbf	d7,.loop
 	rts
 
-pal_index:
+colortbl:
 
 pal_ptr	macro	ptr,line,size,{INTLABEL}
-__LABEL__:	label	(*-pal_index)/8
+__LABEL__:	label	(*-colortbl)/8
 	dc.l	ptr
 	dc.w	palette+line*$10
 	dc.w	size/2-1
@@ -990,7 +990,7 @@ scramapad:
 	lsr.w	#8,d1
 	andi.w	#$7F,d1
 	add.w	d1,d0
-	move.l	#chunkwk,d1
+	move.l	#mapwk,d1
 	lea	mapwka.w,a1
 	move.b	(a1,d0.w),d1
 	beq.s	loc_200E4A
@@ -1036,7 +1036,7 @@ loc_200E66:
 
 scdchk:
 	bsr.w	scramapad
-	cmpi.l	#chunkwk,d1
+	cmpi.l	#mapwk,d1
 	beq.s	loc_200E9C
 	move.w	(a1),d0
 	move.w	d0,d4
@@ -1121,7 +1121,7 @@ loc_200F34:
 
 scdchk2:
 	bsr.w	scramapad
-	cmpi.l	#chunkwk,d1
+	cmpi.l	#mapwk,d1
 	beq.s	loc_200F5C
 	move.w	(a1),d0
 	move.w	d0,d4
@@ -1199,7 +1199,7 @@ loc_200FE2:
 
 scdchk_r:
 	bsr.w	scramapad
-	cmpi.l	#chunkwk,d1
+	cmpi.l	#mapwk,d1
 	beq.s	loc_20100C
 	move.w	(a1),d0
 	move.w	d0,d4
@@ -1275,7 +1275,7 @@ loc_201094:
 
 scdchk2_r:
 	bsr.w	scramapad
-	cmpi.l	#chunkwk,d1
+	cmpi.l	#mapwk,d1
 	beq.s	loc_2010BC
 	move.w	(a1),d0
 	move.w	d0,d4
@@ -1424,7 +1424,7 @@ loc_2011CC:
 	dc.b	musid_FZ
 	even
 
-level:
+game:
 	bset	#0,byte_FF122A
 	bne.s	loc_2011FE
 	move.b	#3,pl_suu
@@ -1437,7 +1437,7 @@ loc_2011FE:
 	bsr.w	sub_20208C
 	btst	#7,time_flag
 	beq.s	loc_20122C
-	bsr.w	sub_2003EE
+	bsr.w	flashout
 	clr.b	time_item.w
 	tst.w	gameflag
 	beq.s	loc_201256
@@ -1445,7 +1445,7 @@ loc_2011FE:
 	rts
 
 loc_20122C:
-	bsr.w	sub_2002C2
+	bsr.w	fadeout
 	cmpi.w	#2,gameflag
 	bne.s	loc_201244
 	move.w	#0,gameflag
@@ -1514,9 +1514,9 @@ loc_2012A8:
 	move.w	#30,pl_air
 	move.w	#$2300,sr
 	moveq	#palid_player,d0
-	bsr.w	palload
+	bsr.w	colorset2
 	moveq	#palid_player,d0
-	bsr.w	palload_fade
+	bsr.w	colorset
 	move.w	word_FFF60C.w,d0
 	ori.b	#$40,d0
 	move.w	d0,vdpctrl
@@ -1577,7 +1577,7 @@ loc_2013A8:
 	move.w	#$202F,startcolor.w
 	bclr	#7,time_flag
 	beq.s	loc_201414
-	bsr.w	sub_200340
+	bsr.w	flashin
 	bra.s	loc_201418
 
 loc_201414:
@@ -1593,7 +1593,7 @@ loc_20141E:
 	jsr	sub_206DB0.l
 	jsr	sub_2030F2.l
 	tst.w	gameflag
-	bne.w	level
+	bne.w	game
 	tst.w	editmode
 	bne.s	loc_201454
 	cmpi.b	#6,actwk+r_no0.w
@@ -3246,7 +3246,7 @@ mapadrset2:
 	lsr.w	#5,d0
 	andi.w	#$7F,d0
 	add.w	d3,d0
-	move.l	#chunkwk,d3
+	move.l	#mapwk,d3
 	move.b	(a4,d0.w),d3
 	beq.s	locret_202D98
 	subq.b	#1,d3
@@ -3274,7 +3274,7 @@ locret_202D98:
 	lsr.w	#5,d0
 	andi.w	#$7F,d0
 	add.w	d3,d0
-	move.l	#chunkwk,d3
+	move.l	#mapwk,d3
 	move.b	(a4,d0.w),d3
 	subq.b	#1,d3
 	andi.w	#$7F,d3
@@ -3465,13 +3465,13 @@ mapinit:
 	lea	blkwk.w,a4
 	bsr.w	bitdevwkr
 	movea.l	(a2)+,a0
-	lea	chunkwk.l,a1
+	lea	mapwk.l,a1
 	bsr.w	unlze
 	bsr.w	layoutload
 	move.w	(a2)+,d0
 	move.w	(a2),d0
 	andi.w	#$FF,d0
-	bsr.w	palload_fade
+	bsr.w	colorset
 	movea.l	(sp)+,a2
 	addq.w	#4,a2
 	btst	#7,time_flag
@@ -4674,72 +4674,17 @@ unk_205A34:
 	even
 unk_205A4E:
 	dc.b	0
-	dc.b	4
-	dc.b	4
-	dc.b	0
-	dc.b	4
-	dc.b	0
-	dc.b	0
-	dc.b	5
-	dc.b	5
-	dc.b	0
-	dc.b	5
-	dc.b	0
-	dc.b	0
-	dc.b	6
-	dc.b	6
-	dc.b	0
-	dc.b	6
-	dc.b	0
-	dc.b	0
-	dc.b	7
-	dc.b	7
-	dc.b	0
-	dc.b	7
-	dc.b	0
-	dc.b	0
+	dc.b	4,4,0,4,0,0,5,5,0,5,0,0,6,6,0,6,0,0,7,7,0,7,0,0
 	dc.b	$FF
 	even
 unk_205A68:
 	dc.b	0
-	dc.b	4
-	dc.b	0
-	dc.b	0
-	dc.b	4
-	dc.b	0
-	dc.b	0
-	dc.b	5
-	dc.b	0
-	dc.b	0
-	dc.b	5
-	dc.b	0
-	dc.b	0
-	dc.b	6
-	dc.b	0
-	dc.b	0
-	dc.b	6
-	dc.b	0
-	dc.b	0
-	dc.b	7
-	dc.b	0
-	dc.b	0
-	dc.b	7
-	dc.b	0
-	dc.b	0
+	dc.b	4,0,0,4,0,0,5,0,0,5,0,0,6,0,0,6,0,0,7,0,0,7,0,0
 	dc.b	$FF
 	even
 unk_205A82:
 	dc.b	0
-	dc.b	8
-	dc.b	9
-	dc.b	$A
-	dc.b	$B
-	dc.b	$C
-	dc.b	$B
-	dc.b	$A
-	dc.b	9
-	dc.b	8
-	dc.b	0
+	dc.b	8,9,$A,$B,$C,$B,$A,9,8,0
 	dc.b	$FF
 	even
 unk_205A8E:
@@ -16589,7 +16534,7 @@ ddev_unused_2_end:
 	incbin	"Leftovers/R11A__.MMD"
 	even
 
-chunkwk:
+mapwk:
 	incbin	"Leftovers/Chunks.unc"
 	even
 

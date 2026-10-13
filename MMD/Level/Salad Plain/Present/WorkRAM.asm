@@ -202,8 +202,7 @@ int_flg:		ds.b	1
 	ds.b	1
 linkdata:		ds.b	1
 	ds.b	5
-byte_FFF632:		ds.b	1
-byte_FFF633:		ds.b	1
+clchgcnt:		ds.w	1
 	ds.b	2
 ranum:			ds.l	1
 pauseflag:		ds.w	1
@@ -218,8 +217,7 @@ water_flag:		ds.b	1
 waterflag:		ds.b	1
 waterflag2:		ds.b	1
 	ds.b	$C
-byte_FFF65C:		ds.b	1
-byte_FFF65D:		ds.b	1
+clchgtim:		ds.w	1
 	ds.b	$22
 dword_FFF680:		ds.l	1
 word_FFF684:		ds.w	1

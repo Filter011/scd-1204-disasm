@@ -157,7 +157,7 @@ sub_203800:
 	lsr.w	#8,d1
 	andi.w	#$7F,d1
 	add.w	d1,d0
-	move.l	#chunkwk,d1
+	move.l	#mapwk,d1
 	lea	mapwka.w,a1
 	move.b	(a1,d0.w),d1
 	andi.b	#$7F,d1
