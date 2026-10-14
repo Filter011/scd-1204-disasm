@@ -2284,6 +2284,7 @@ loc_201EB4:
 loc_201EC8:
 	jmp	Z80BUSSTART.l
 
+copy_map_vram:
 	lea	vdpdata,a6
 	move.l	#$800000,d4
 

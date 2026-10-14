@@ -29,7 +29,7 @@ loc_2021EC:
 	lsr.w	#1,d2
 
 loc_202206:
-	bsr.w	sub_20233A
+	bsr.w	prepare_next_entry
 	andi.w	#$F,d2
 	lsr.w	#4,d1
 	add.w	d1,d1
@@ -47,7 +47,7 @@ loc_202220:
 	bra.s	loc_2021EC
 
 loc_202228:
-	bsr.w	loc_20228A
+	bsr.w	get_inline_copy
 
 loc_20222C:
 	move.w	d1,(a1)+
@@ -55,7 +55,7 @@ loc_20222C:
 	bra.s	loc_2021EC
 
 loc_202234:
-	bsr.w	loc_20228A
+	bsr.w	get_inline_copy
 
 loc_202238:
 	move.w	d1,(a1)+
@@ -64,7 +64,7 @@ loc_202238:
 	bra.s	loc_2021EC
 
 loc_202242:
-	bsr.w	loc_20228A
+	bsr.w	get_inline_copy
 
 loc_202246:
 	move.w	d1,(a1)+
@@ -77,7 +77,7 @@ loc_202250:
 	beq.s	loc_202272
 
 loc_202256:
-	bsr.w	loc_20228A
+	bsr.w	get_inline_copy
 	move.w	d1,(a1)+
 	dbf	d2,loc_202256
 	bra.s	loc_2021EC
@@ -108,7 +108,7 @@ loc_202284:
 	movem.l (sp)+,d0-d7/a1-a5
 	rts
 
-loc_20228A:
+get_inline_copy:
 	move.w	a3,d3
 	move.b	d4,d1
 	add.b	d1,d1
@@ -183,7 +183,7 @@ loc_202304:
 	and.w	word_20231A-2(pc,d0.w),d1
 	add.w	d3,d1
 	move.w	a5,d0
-	bra.s	sub_20233A
+	bra.s	prepare_next_entry
 
 loc_202316:
 	moveq	#$10,d6
@@ -195,7 +195,7 @@ word_20231A:
 	dc.w	$1FF,$3FF,$7FF,$FFF
 	dc.w	$1FFF,$3FFF,$7FFF,$FFFF
 
-sub_20233A:
+prepare_next_entry:
 	sub.w	d0,d6
 	cmpi.w	#9,d6
 	bhs.s	locret_202348
