@@ -4270,7 +4270,7 @@ loc_2054AC:
 loc_2054B6:
 	addq.b	#1,d0
 	bne.s	loc_2054BE
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 
 loc_2054BE:
 	addq.b	#1,d0
@@ -4281,7 +4281,7 @@ loc_2054BE:
 loc_2054CC:
 	addq.b	#1,d0
 	bne.s	locret_2054D4
-	addq.b	#2,r_no1(a0)
+	addq.b	#word,r_no1(a0)
 
 locret_2054D4:
 	rts
@@ -4299,7 +4299,7 @@ off_2054E4:
 loc_2054E8:
 	btst	#7,cddat(a0)
 	bne.w	frameout
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#bariapat,patbase(a0)
@@ -4332,7 +4332,7 @@ off_205558:
 	dc.w	loc_205598-off_205558
 
 loc_20555E:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.w	#$680,sproffset(a0)
@@ -4456,7 +4456,7 @@ off_2056D6:
 	dc.w	loc_20570A-off_2056D6
 
 loc_2056DC:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.l	#obj0E_map,patbase(a0)
 	move.w	#$31E,sproffset(a0)
@@ -4510,7 +4510,7 @@ loc_205774:
 	jmp	ridechk.l
 
 loc_205782:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj0D_map,patbase(a0)
 	move.b	#1,sprpri(a0)
 	ori.b	#4,actflg(a0)
@@ -4573,7 +4573,7 @@ off_205820:
 	dc.w	loc_205872-off_205820
 
 loc_205826:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#obj0B_map,patbase(a0)
@@ -4940,7 +4940,7 @@ off_206750:
 	dc.w	taki_move-off_206750
 
 taki_init:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#shibukipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -5011,7 +5011,7 @@ off_206824:
 	dc.w	loc_206846-off_206824
 
 loc_206828:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#bariapat,patbase(a0)
@@ -5063,7 +5063,7 @@ off_2068BA:
 	dc.w	loc_2068C8-off_2068BA
 
 loc_2068BE:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 
 loc_2068C8:
@@ -6225,7 +6225,7 @@ off_208382:
 	dc.w	loc_2083B8-off_208382
 
 loc_208386:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#obj1B_map,patbase(a0)
@@ -6280,7 +6280,7 @@ off_208416:
 	dc.w	loc_2084AA-off_208416
 
 loc_20841C:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#obj0F_map,patbase(a0)
@@ -6309,7 +6309,7 @@ loc_20848A:
 	bpl.s	loc_2084A4
 	add.w	d1,yposi(a0)
 	move.w	yposi(a0),act32(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	rts
 
 loc_2084A4:
@@ -6388,7 +6388,7 @@ off_20854E:
 	dc.w	loc_2088A0-off_20854E
 
 loc_208568:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj0A_map,patbase(a0)
 	move.w	#$520,sproffset(a0)
 	ori.b	#4,actflg(a0)
@@ -6948,7 +6948,7 @@ off_209BA4:
 	dc.w	loc_209BFC-off_209BA4
 
 loc_209BA8:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#off_20B4C8,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7002,7 +7002,7 @@ off_209C5A:
 
 loc_209C66:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj13_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7131,7 +7131,7 @@ off_209DFC:
 
 loc_209E08:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj13b_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7253,7 +7253,7 @@ off_209F90:
 
 loc_209F9A:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj14_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7408,7 +7408,7 @@ off_20A1A2:
 
 loc_20A1AC:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj14_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7568,7 +7568,7 @@ off_20A3C8:
 
 loc_20A3D0:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj15_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7686,7 +7686,7 @@ off_20A546:
 
 loc_20A552:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj15_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7826,7 +7826,7 @@ off_20A716:
 
 loc_20A71E:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj16_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -7915,7 +7915,7 @@ off_20A828:
 
 loc_20A830:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj16_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -8006,7 +8006,7 @@ off_20A93A:
 
 loc_20A946:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj22_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -8242,7 +8242,7 @@ off_20AC6C:
 
 loc_20AC78:
 	move.b	#6,colino(a0)
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj22_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -9152,7 +9152,7 @@ off_20B534:
 	dc.w	loc_20B578-off_20B534
 
 loc_20B538:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#4,sprhs(a0)
@@ -9240,7 +9240,7 @@ off_20B60E:
 	dc.w	loc_20B654-off_20B60E
 
 loc_20B612:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#off_20CF16,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -9609,7 +9609,7 @@ off_20BA74:
 	dc.w	loc_20BBA8-off_20BA74
 
 loc_20BA7C:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj27_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -11318,7 +11318,7 @@ off_20C820:
 	dc.w	loc_20C88A-off_20C820
 
 loc_20C824:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj26_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -11367,7 +11367,7 @@ off_20C8C2:
 	dc.w	loc_20CC02-off_20C8C2
 
 loc_20C8CA:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#obj29_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
@@ -12233,7 +12233,7 @@ off_20D030:
 	dc.w	loc_20D136-off_20D030
 
 loc_20D038:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#3,sprpri(a0)
 	move.w	#$4000,sproffset(a0)
@@ -12291,7 +12291,7 @@ locret_20D0E0:
 	rts
 
 loc_20D0E2:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	userflag(a0),d0
 	bpl.w	loc_20D170
 	bra.w	loc_20D262
@@ -12300,7 +12300,7 @@ loc_20D0F2:
 	lea	act2A(a0),a3
 	addi.w	#-1,(a3)
 	bne.w	loc_20D102
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 
 loc_20D102:
 	move.b	act3E(a0),d0
@@ -12858,7 +12858,7 @@ loc_20D72C:
 	move.b	d0,act38(a1)
 	add.w	d0,xposi(a1)
 loc_20D768:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	rts
 
 byte_20D76E:
@@ -13439,7 +13439,7 @@ off_20DCDE:
 	dc.w	loc_20DD72-off_20DCDE
 
 loc_20DCE4:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#8,sprhs(a0)
@@ -13474,7 +13474,7 @@ loc_20DD58:
 	rts
 
 loc_20DD6C:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	bra.s	loc_20DD58
 
 loc_20DD72:
@@ -13495,7 +13495,7 @@ loc_20DD72:
 	bra.s	loc_20DD58
 
 loc_20DDAC:
-	addi.b	#-2,r_no0(a0)
+	addi.b	#-word,r_no0(a0)
 	bra.s	loc_20DD58
 
 obj24_ani:
@@ -13530,7 +13530,7 @@ off_20DDD8:
 	dc.w	loc_20DE6E-off_20DDD8
 
 loc_20DDDE:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#8,sprhs(a0)
@@ -13562,7 +13562,7 @@ loc_20DE4C:
 	rts
 
 loc_20DE60:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.l	#$FFFC0000,act2A(a0)
 	bra.s	loc_20DE4C
 
@@ -13583,7 +13583,7 @@ loc_20DE9C:
 	bra.s	loc_20DE4C
 
 loc_20DEAA:
-	addi.b	#-2,r_no0(a0)
+	addi.b	#-word,r_no0(a0)
 	move.l	#$FFFC0000,act2A(a0)
 	bra.s	loc_20DE4C
 

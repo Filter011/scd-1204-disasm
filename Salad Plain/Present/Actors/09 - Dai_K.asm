@@ -22,7 +22,7 @@ dai_k_move_tbl:
 	dc.w	dai_k_move-dai_k_move_tbl
 
 dai_k_init:
-	addq.b	#2,r_no0(a0)
+	addq.b	#word,r_no0(a0)
 	move.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#k_daipat,patbase(a0)
