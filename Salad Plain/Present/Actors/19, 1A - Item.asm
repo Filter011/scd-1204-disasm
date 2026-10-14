@@ -90,7 +90,7 @@ sub_20919A:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	move.b	#1,r_no1(a0)
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 item:
 	cmpi.b	#8,userflag(a0)

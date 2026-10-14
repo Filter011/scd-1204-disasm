@@ -113,7 +113,7 @@ ride_on_chk_b:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	subq.w	#8,d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 blockchg:
 	dc.w	blockchg0-blockchg

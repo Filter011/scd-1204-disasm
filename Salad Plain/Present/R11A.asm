@@ -4473,26 +4473,26 @@ byte_205DA4:
 	even
 
 flowchg:
-	dc.w	unk_205DC2-flowchg
-	dc.w	unk_205DC6-flowchg
-	dc.w	unk_205DCC-flowchg
-	dc.w	unk_205DD2-flowchg
-unk_205DC2:
+	dc.w	flowchg0-flowchg
+	dc.w	flowchg1-flowchg
+	dc.w	flowchg2-flowchg
+	dc.w	flowchg3-flowchg
+flowchg0:
 	dc.b	3
 	dc.b	0,1
 	dc.b	$FF
 	even
-unk_205DC6:
+flowchg1:
 	dc.b	3
 	dc.b	2,3,2,3
 	dc.b	$FC
 	even
-unk_205DCC:
+flowchg2:
 	dc.b	1
 	dc.b	5,5,4,6
 	dc.b	$FC
 	even
-unk_205DD2:
+flowchg3:
 	dc.b	$13
 	dc.b	6,7
 	dc.b	$FF
@@ -4677,7 +4677,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$1B
 	dc.b	1
-	dc.l	obj1B_map
+	dc.l	iwapat
 	dc.w	$326
 	dc.b	0
 	dc.b	0
@@ -5458,7 +5458,7 @@ loc_207F2C:
 locret_207F54:
 	rts
 
-ridechk:
+ride_on_chk:
 	cmpi.b	#4,r_no0(a1)
 	bhs.w	loc_20805C
 	cmpi.b	#$2B,mstno(a1)
@@ -5622,27 +5622,27 @@ loc_2080DA:
 iwa:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_208382(pc,d0.w),d0
-	jsr	off_208382(pc,d0.w)
+	move.w	iwa_move_tbl(pc,d0.w),d0
+	jsr	iwa_move_tbl(pc,d0.w)
 	jsr	actionsub.l
 	jmp	frameout_s.l
 
-off_208382:
-	dc.w	loc_208386-off_208382
-	dc.w	loc_2083B8-off_208382
+iwa_move_tbl:
+	dc.w	iwa_init-iwa_move_tbl
+	dc.w	iwa_move-iwa_move_tbl
 
-loc_208386:
+iwa_init:
 	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
-	move.l	#obj1B_map,patbase(a0)
+	move.l	#iwapat,patbase(a0)
 	move.b	#$10,sprhsize(a0)
 	move.b	#$10,sprvsize(a0)
 	move.b	#0,patno(a0)
 	moveq	#$B,d0
 	jsr	pa_set.l
 
-loc_2083B8:
+iwa_move:
 	tst.b	actflg(a0)
 	bpl.s	locret_2083D8
 	lea	playerwk.w,a1
@@ -5652,13 +5652,13 @@ loc_2083B8:
 sub_2083CA:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 locret_2083D8:
 	rts
 
-obj1B_map:
-	dc.w	byte_2083DC-obj1B_map
+iwapat:
+	dc.w	byte_2083DC-iwapat
 
 byte_2083DC:
 	dc.b	2
@@ -5847,7 +5847,7 @@ word_208612:
 sub_208616:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 loc_208624:
 	tst.b	actflg(a0)
@@ -5894,7 +5894,7 @@ loc_208686:
 sub_20869E:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 loc_2086AC:
 	tst.b	actflg(a0)
@@ -5956,7 +5956,7 @@ loc_20874E:
 sub_208760:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 loc_20876E:
 	tst.b	actflg(a0)
@@ -10755,7 +10755,7 @@ loc_20C88A:
 	lea	playerwk.w,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jsr	ridechk.l
+	jsr	ride_on_chk.l
 	lea	obj26_ani.l,a1
 	jsr	patchg.l
 	jsr	actionsub.l
@@ -11689,9 +11689,9 @@ loc_20D0AC:
 	exg.l	a1,a3
 
 loc_20D0CE:
-	jsr	ridechk.l
+	jsr	ride_on_chk.l
 	exg.l	a1,a3
-	jsr	ridechk.l
+	jsr	ride_on_chk.l
 	bne.w	loc_20D0E2
 
 locret_20D0E0:
@@ -11719,7 +11719,7 @@ loc_20D102:
 	lea	byte_FFD040.w,a1
 
 sub_20D11E:
-	jsr	ridechk.l
+	jsr	ride_on_chk.l
 	beq.w	locret_20D134
 	tst.w	(a3)
 	bne.w	locret_20D134
@@ -12216,7 +12216,7 @@ sub_20D690:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	subq.w	#4,d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 loc_20D6A4:
 	ori.b	#4,actflg(a0)

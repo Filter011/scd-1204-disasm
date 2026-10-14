@@ -35,7 +35,7 @@ locret_205772:
 loc_205774:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 futa_init:
 	addq.b	#word,r_no0(a0)

@@ -1,7 +1,7 @@
 sub_2080EA:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	jmp	ridechk.l
+	jmp	ride_on_chk.l
 
 dai_k:
 	moveq	#0,d0
