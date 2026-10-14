@@ -263,7 +263,7 @@ cd_xflip:	equ	0
 cd_walk:	equ	1
 cd_jump:	equ	1
 cd_ball:	equ	2
-cd_fcol:	equ	3
+cd_ride:	equ	3
 cd_ballj:	equ	4
 cd_push:	equ	5
 cd_water:	equ	6

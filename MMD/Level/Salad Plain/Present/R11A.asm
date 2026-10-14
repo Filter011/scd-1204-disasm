@@ -7234,7 +7234,7 @@ unk_207E5C:
 sub_207EA2:
 	btst	#3,cddat(a0)
 	beq.s	locret_207EDA
-	btst	#cd_fcol,cddat(a1)
+	btst	#cd_ride,cddat(a1)
 	beq.s	locret_207EDA
 	moveq	#0,d0
 	move.b	act3D(a1),d0
@@ -7244,7 +7244,7 @@ sub_207EA2:
 	bne.s	locret_207EDA
 	clr.b	convexflag(a1)
 	bset	#cd_walk,cddat(a1)
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	bclr	#3,cddat(a0)
 
 locret_207EDA:
@@ -7263,7 +7263,7 @@ sub_207EDC:
 	move.b	#0,mstno(a1)
 
 loc_207F0A:
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	beq.s	loc_207F2C
 	moveq	#0,d0
 	move.b	act3D(a1),d0
@@ -7950,8 +7950,8 @@ sub_20863E:
 	move.b	#4,r_no0(a0)
 	addq.w	#8,yposi(a1)
 	move.w	act30(a0),yspeed(a1)
-	bset	#1,cddat(a1)
-	bclr	#3,cddat(a1)
+	bset	#cd_walk,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	move.b	#$10,mstno(a1)
 	bclr	#3,cddat(a0)
 	move.w	#$98,d0
@@ -7999,24 +7999,24 @@ sub_2086D2:
 	move.b	#$A,r_no0(a0)
 	move.w	act30(a0),xspeed(a1)
 	addq.w	#8,xposi(a1)
-	bset	#0,cddat(a1)
+	bset	#cd_xflip,cddat(a1)
 	btst	#0,cddat(a0)
 	bne.s	loc_208700
 	subi.w	#$10,xposi(a1)
 	neg.w	xspeed(a1)
-	bclr	#0,cddat(a1)
+	bclr	#cd_xflip,cddat(a1)
 
 loc_208700:
 	move.w	#$F,act3E(a1)
 	move.w	xspeed(a1),mspeed(a1)
-	btst	#2,cddat(a1)
+	btst	#cd_ball,cddat(a1)
 	bne.s	loc_20871A
 	move.b	#0,mstno(a1)
 
 loc_20871A:
 	clr.b	direc(a1)
 	bclr	#5,cddat(a0)
-	bclr	#5,cddat(a1)
+	bclr	#cd_push,cddat(a1)
 	move.w	#$98,d0
 	jmp	soundset.l
 
@@ -8060,8 +8060,8 @@ sub_208788:
 	subq.w	#8,yposi(a1)
 	move.w	act30(a0),yspeed(a1)
 	neg.w	yspeed(a1)
-	bset	#1,cddat(a1)
-	bclr	#3,cddat(a1)
+	bset	#cd_walk,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	bclr	#3,cddat(a0)
 	move.w	#$98,d0
 	jsr	soundset.l
@@ -8122,18 +8122,18 @@ sub_20880E:
 	neg.w	yspeed(a1)
 
 loc_20884C:
-	bclr	#0,cddat(a1)
+	bclr	#cd_xflip,cddat(a1)
 	subq.w	#8,xposi(a1)
 	btst	#0,cddat(a0)
 	beq.s	loc_20886E
 	addi.w	#$10,xposi(a1)
-	bset	#0,cddat(a1)
+	bset	#cd_xflip,cddat(a1)
 	neg.w	xspeed(a1)
 
 loc_20886E:
-	bset	#1,cddat(a1)
-	bclr	#3,cddat(a1)
-	bclr	#5,cddat(a1)
+	bset	#cd_walk,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
+	bclr	#cd_push,cddat(a1)
 	bclr	#3,cddat(a0)
 	bclr	#5,cddat(a0)
 	move.w	#$98,d0
@@ -10986,7 +10986,7 @@ loc_20B908:
 
 loc_20B926:
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
 	btst	#cd_walk,cddat(a1)
 	bne.w	loc_20B942
@@ -11040,7 +11040,7 @@ loc_20B9B4:
 
 loc_20B9D2:
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	move.b	#2,r_no0(a0)
 	btst	#cd_walk,cddat(a1)
 	bne.w	loc_20B9EE
@@ -11115,7 +11115,7 @@ loc_20BAA2:
 	beq.w	loc_20BAD2
 	lea	playerwk.w,a1
 	bclr	#cd_walk,cddat(a1)
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
 	move.w	#0,act2A(a0)
 
@@ -11134,7 +11134,7 @@ loc_20BAE4:
 	tst.b	d1
 	bne.w	loc_20BB0C
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	move.b	#6,r_no0(a0)
 	move.w	#0,act2A(a0)
 
@@ -11182,7 +11182,7 @@ loc_20BB7C:
 	move.b	d1,mstno(a0)
 	cmpi.b	#6,d1
 	bne.w	loc_20BB96
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 
 loc_20BB96:
 	lea	obj27_ani.l,a1
@@ -11198,7 +11198,7 @@ loc_20BBA8:
 	beq.w	loc_20BBD8
 	lea	playerwk.w,a1
 	bclr	#cd_walk,cddat(a1)
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
 	move.w	#0,act2A(a0)
 
@@ -11516,7 +11516,7 @@ loc_20BEEE:
 	addq.w	#1,d0
 	move.b	d0,act31(a2)
 	lea	playerwk.w,a1
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	bset	#3,cddat(a0)
 	bclr	#cd_walk,cddat(a1)
 	move.l	yposi(a0),d0
@@ -11885,7 +11885,7 @@ loc_20C162:
 	tst.b	d1
 	beq.w	loc_20C178
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 
 loc_20C178:
 	lea	off_20CED0.l,a1
@@ -11921,7 +11921,7 @@ loc_20C1B8:
 	bmi.w	loc_20C1FA
 	cmp.w	d2,d1
 	bpl.w	loc_20C1FA
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	bset	#3,cddat(a0)
 	move.b	#0,direc(a1)
 	bra.w	locret_20C210
@@ -11929,7 +11929,7 @@ loc_20C1B8:
 loc_20C1FA:
 	btst	#3,cddat(a0)
 	beq.w	locret_20C14A
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	bclr	#3,cddat(a0)
 
 locret_20C210:
@@ -11961,7 +11961,7 @@ loc_20C24E:
 	tst.b	d1
 	beq.w	loc_20C264
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 
 loc_20C264:
 	lea	off_20CED0.l,a1
@@ -11975,7 +11975,7 @@ loc_20C278:
 	tst.b	d1
 	beq.w	loc_20C28E
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 
 loc_20C28E:
 	lea	off_20CED0.l,a1
@@ -12013,7 +12013,7 @@ loc_20C2C2:
 	tst.b	d1
 	beq.w	loc_20C32E
 	lea	playerwk.w,a1
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	bset	#3,cddat(a0)
 	bclr	#cd_walk,cddat(a1)
 	move.l	yposi(a0),d0
@@ -12076,7 +12076,7 @@ loc_20C3B0:
 	bmi.w	locret_20C14A
 	cmp.w	d2,d1
 	bpl.w	loc_20C3F2
-	bset	#cd_fcol,cddat(a1)
+	bset	#cd_ride,cddat(a1)
 	bset	#3,cddat(a0)
 	move.b	#0,direc(a1)
 	bra.w	locret_20C408
@@ -12084,7 +12084,7 @@ loc_20C3B0:
 loc_20C3F2:
 	btst	#3,cddat(a0)
 	beq.w	locret_20C14A
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 	bclr	#3,cddat(a0)
 
 locret_20C408:
@@ -14514,7 +14514,7 @@ loc_20D8E8:
 	tst.w	d1
 	bpl.s	loc_20D8FC
 	lea	playerwk.w,a1
-	bclr	#cd_fcol,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 
 loc_20D8FC:
 	move.w	scra_v_posit.w,d0

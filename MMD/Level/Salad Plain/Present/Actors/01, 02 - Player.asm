@@ -1035,7 +1035,7 @@ loc_2040CE:
 loc_2040EC:
 	bclr	#cd_push,cddat(a0)
 	move.b	#5,mstno(a0)
-	btst	#cd_fcol,cddat(a0)
+	btst	#cd_ride,cddat(a0)
 	beq.s	loc_204148
 	moveq	#0,d0
 	move.b	act3D(a0),d0
@@ -1780,7 +1780,7 @@ loc_204888:
 	move.b	swdata+1.w,d0
 	andi.b	#$70,d0
 	beq.w	locret_204964
-	btst	#cd_fcol,cddat(a0)
+	btst	#cd_ride,cddat(a0)
 	beq.s	loc_2048A4
 	jsr	frip_spd.l
 	beq.s	loc_2048D4
