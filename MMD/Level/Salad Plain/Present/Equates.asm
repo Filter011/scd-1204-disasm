@@ -259,7 +259,7 @@ jumpflag:	equ	act3C
 hlocktimer:	equ	act3E
 
 ; Player Bit Equates
-cd_xflip:	equ	0
+cd_left:	equ	0
 cd_walk:	equ	1
 cd_jump:	equ	1
 cd_ball:	equ	2

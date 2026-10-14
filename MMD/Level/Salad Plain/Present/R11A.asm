@@ -5629,7 +5629,7 @@ pcolspecial:
 	bhs.s	.yago4
 	move.w	xposi(a1),d0
 	subq.w	#4,d0
-	btst	#cd_xflip,cddat(a1)
+	btst	#cd_left,cddat(a1)
 	beq.s	.yago1
 	subi.w	#$10,d0
 
@@ -7999,12 +7999,12 @@ sub_2086D2:
 	move.b	#$A,r_no0(a0)
 	move.w	act30(a0),xspeed(a1)
 	addq.w	#8,xposi(a1)
-	bset	#cd_xflip,cddat(a1)
+	bset	#cd_left,cddat(a1)
 	btst	#0,cddat(a0)
 	bne.s	loc_208700
 	subi.w	#$10,xposi(a1)
 	neg.w	xspeed(a1)
-	bclr	#cd_xflip,cddat(a1)
+	bclr	#cd_left,cddat(a1)
 
 loc_208700:
 	move.w	#$F,act3E(a1)
@@ -8122,12 +8122,12 @@ sub_20880E:
 	neg.w	yspeed(a1)
 
 loc_20884C:
-	bclr	#cd_xflip,cddat(a1)
+	bclr	#cd_left,cddat(a1)
 	subq.w	#8,xposi(a1)
 	btst	#0,cddat(a0)
 	beq.s	loc_20886E
 	addi.w	#$10,xposi(a1)
-	bset	#cd_xflip,cddat(a1)
+	bset	#cd_left,cddat(a1)
 	neg.w	xspeed(a1)
 
 loc_20886E:
