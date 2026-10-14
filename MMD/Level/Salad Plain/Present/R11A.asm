@@ -1778,8 +1778,8 @@ loc_2016A4:
 	jsr	sound.l
 
 loc_2016AA:
-	bsr.w	sub_201C66
-	bsr.w	sub_201C4C
+	bsr.w	bye_cnt
+	bsr.w	back_to_cnt
 	addq.l	#1,systemtimer
 	movem.l	(sp)+,d0-a6
 	rte
@@ -2037,7 +2037,7 @@ loc_201C3A:
 	movem.l	(sp)+,d0-a6
 	rte
 
-sub_201C4C:
+back_to_cnt:
 	tst.w	backto_cnt.w
 	beq.s	loc_201C56
 	addq.w	#1,backto_cnt.w
@@ -2050,7 +2050,7 @@ loc_201C56:
 locret_201C64:
 	rts
 
-sub_201C66:
+bye_cnt:
 	tst.w	byecnt0.w
 	beq.s	loc_201C70
 	addq.w	#1,byecnt0.w
