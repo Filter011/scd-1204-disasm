@@ -1,7 +1,3 @@
-; ===========================================================================
-; Segment type: Regular
-; segment "RAM"
-
 	include	"s1.sounddriver.ram.asm"
 
 	phase	$FF0000
