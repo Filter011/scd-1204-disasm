@@ -63,7 +63,7 @@ goal_move3:
 	move.b	#1,time_flag
 	move.b	stageact,d0
 	addq.b	#1,d0
-	cmpi.b	#actid_3,d0
+	cmpi.b	#act_3,d0
 	bne.s	loc_20DFBA
 	moveq	#0,d0
 	move.b	#0,pl_suu

@@ -272,13 +272,13 @@ cd_underwater:	equ	6
 mapsize:	equ	(16*2)*16	; (width*2) * height
 
 ; Stage Equates
-stageid_SPZ:	equ	0
+stage_SPZ:	equ	0
 
 ; Act Equates
-actid_1:	equ	0
-actid_2:	equ	1
-actid_3:	equ	2
-actid_4:	equ	3
+act_1:		equ	0
+act_2:		equ	1
+act_3:		equ	2
+act_4:		equ	3
 
 ; Sonic The Hedgehog (Mega Drive) Leftover Equates
 
@@ -287,15 +287,15 @@ gamemd_S1:	equ	$C
 spgamemd:	equ	$10
 
 ; Stage Equates
-stageid_LZ:	equ	1
-stageid_MZ:	equ	2
-stageid_SLZ:	equ	3
+stage_LZ:	equ	1
+stage_MZ:	equ	2
+stage_SLZ:	equ	3
 
-; Music ID Equates
-musid_GHZ:	equ	$81
-musid_LZ:	equ	$82
-musid_MZ:	equ	$83
-musid_SLZ:	equ	$84
-musid_SYZ:	equ	$85
-musid_SBZ:	equ	$86
-musid_FZ:	equ	$8D
+; BGM Equates
+bgm_GHZ:	equ	$81
+bgm_LZ:		equ	$82
+bgm_MZ:		equ	$83
+bgm_SLZ:	equ	$84
+bgm_SYZ:	equ	$85
+bgm_SBZ:	equ	$86
+bgm_FZ:		equ	$8D

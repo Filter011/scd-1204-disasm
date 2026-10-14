@@ -177,7 +177,7 @@ sub_203800:
 	rts
 
 sub_203826:
-	cmpi.b	#stageid_MZ,stageno
+	cmpi.b	#stage_MZ,stageno
 	beq.s	loc_203832
 	rts
 
@@ -733,12 +733,12 @@ off_203D52:
 	dc.w	ball00jump-off_203D52
 
 unk_203D5A:
-	dc.b	musid_GHZ
-	dc.b	musid_LZ
-	dc.b	musid_MZ
-	dc.b	musid_SLZ
-	dc.b	musid_SYZ
-	dc.b	musid_SBZ
+	dc.b	bgm_GHZ
+	dc.b	bgm_LZ
+	dc.b	bgm_MZ
+	dc.b	bgm_SLZ
+	dc.b	bgm_SYZ
+	dc.b	bgm_SBZ
 	even
 
 playpowercnt:
@@ -772,7 +772,7 @@ loc_203D8C:
 	blo.s	loc_203DD4
 	moveq	#0,d0
 	move.b	stageno,d0
-	cmpi.w	#zoneact(stageid_LZ,actid_4),stageno
+	cmpi.w	#zoneact(stage_LZ,act_4),stageno
 	bne.s	loc_203DC4
 	moveq	#5,d0
 
@@ -2301,7 +2301,7 @@ locret_204E16:
 	rts
 
 loopchk:
-	cmpi.b	#stageid_SLZ,stageno
+	cmpi.b	#stage_SLZ,stageno
 	beq.s	loc_204E2C
 	tst.b	stageno
 	bne.w	locret_204EE2
