@@ -1285,7 +1285,7 @@ loc_2043B6:
 	move.b	direc(a0),d0
 	add.b	d1,d0
 	move.w	d0,-(sp)
-	bsr.w	sub_205FDC
+	bsr.w	dircol
 	move.w	(sp)+,d0
 	tst.w	d1
 	bpl.s	locret_20440E
@@ -2004,21 +2004,21 @@ jumpcolchk:
 	beq.w	loc_204BD2
 	cmpi.b	#$C0,d0
 	beq.w	loc_204C2E
-	bsr.w	sub_20635C
+	bsr.w	dircol_l2
 	tst.w	d1
 	bpl.s	loc_204ADE
 	sub.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
 
 loc_204ADE:
-	bsr.w	sub_2061BE
+	bsr.w	dircol_r2
 	tst.w	d1
 	bpl.s	loc_204AF0
 	add.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
 
 loc_204AF0:
-	bsr.w	loc_20606E
+	bsr.w	dircol_d
 	move.b	d1,debugwork4
 	tst.w	d1
 	bpl.s	locret_204B6E
@@ -2067,7 +2067,7 @@ locret_204B6E:
 	rts
 
 loc_204B70:
-	bsr.w	sub_20635C
+	bsr.w	dircol_l2
 	tst.w	d1
 	bpl.s	loc_204B8A
 	sub.w	d1,xposi(a0)
@@ -2090,7 +2090,7 @@ locret_204BA2:
 loc_204BA4:
 	tst.w	yspeed(a0)
 	bmi.s	locret_204BD0
-	bsr.w	loc_20606E
+	bsr.w	dircol_d
 	tst.w	d1
 	bpl.s	locret_204BD0
 	add.w	d1,yposi(a0)
@@ -2104,14 +2104,14 @@ locret_204BD0:
 	rts
 
 loc_204BD2:
-	bsr.w	sub_20635C
+	bsr.w	dircol_l2
 	tst.w	d1
 	bpl.s	loc_204BE4
 	sub.w	d1,xposi(a0)
 	move.w	#0,xspeed(a0)
 
 loc_204BE4:
-	bsr.w	sub_2061BE
+	bsr.w	dircol_r2
 	tst.w	d1
 	bpl.s	loc_204BF6
 	add.w	d1,xposi(a0)
@@ -2141,7 +2141,7 @@ locret_204C2C:
 	rts
 
 loc_204C2E:
-	bsr.w	sub_2061BE
+	bsr.w	dircol_r2
 	tst.w	d1
 	bpl.s	loc_204C48
 	add.w	d1,xposi(a0)
@@ -2164,7 +2164,7 @@ locret_204C60:
 loc_204C62:
 	tst.w	yspeed(a0)
 	bmi.s	locret_204C8E
-	bsr.w	loc_20606E
+	bsr.w	dircol_d
 	tst.w	d1
 	bpl.s	locret_204C8E
 	add.w	d1,yposi(a0)
