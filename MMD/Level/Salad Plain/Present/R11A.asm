@@ -1496,7 +1496,7 @@ loc_201298:
 
 	lea	scra_h_posit.w,a1
 	moveq	#0,d0
-	move.w	#(byte_FFF800-scra_h_posit)/4-1,d1
+	move.w	#(sprtbl-scra_h_posit)/4-1,d1
 
 loc_2012A8:
 	move.l	d0,(a1)+
@@ -1881,7 +1881,7 @@ loc_2017EA:
 loc_20180E:
 	move.w	hintposi.w,(a5)
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
-	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
+	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
@@ -1942,7 +1942,7 @@ loc_201962:
 loc_201986:
 	move.w	hintposi.w,(a5)
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
-	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
+	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
@@ -1976,7 +1976,7 @@ vint16:
 	jsr	Z80BUSSTOP.l
 	bsr.w	read_sw
 	DMA68K	palette,$80,$C,0
-	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
+	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	jsr	Z80BUSSTART.l
 	lea	playerwk.w,a0
@@ -2006,7 +2006,7 @@ loc_201B50:
 	DMA68K	palette_water,$80,$C,0
 
 loc_201B74:
-	DMA68K	byte_FFF800,(byte_FFF800_end-byte_FFF800),4,sprtbl_vram
+	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	jmp	Z80BUSSTART.l
 
@@ -2159,9 +2159,9 @@ loc_201DC6:
 	clr.l	vscroll.w
 	clr.l	hscroll.w
 
-	lea	byte_FFF800.w,a1
+	lea	sprtbl.w,a1
 	moveq	#0,d0
-	move.w	#(byte_FFF800_end-byte_FFF800)/4,d1
+	move.w	#(sprtbl_end-sprtbl)/4,d1
 
 loc_201DE4:
 	move.l	d0,(a1)+
@@ -3794,7 +3794,7 @@ patsettbl:
 	dc.l	scrz_h_posit&$FFFFFF
 
 patset:
-	lea	byte_FFF800.w,a2
+	lea	sprtbl.w,a2
 	moveq	#0,d5
 	lea	pbuffer.w,a4
 	moveq	#8-1,d7

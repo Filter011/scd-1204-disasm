@@ -329,9 +329,9 @@ waterdirec:		ds.w	1	; unused
 statusr:		ds.w	1
 byte_FFF7DC:		ds.b	1
 	ds.b	$23
-byte_FFF800:		ds.b	$280
-byte_FFF800_end:
-palette_water_fade:	equ	byte_FFF800_end-$80
+sprtbl:		ds.b	$280
+sprtbl_end:
+palette_water_fade:	equ	sprtbl_end-$80
 palette_water:		ds.b	$80
 palette:		ds.b	$80
 palette_fade:		ds.b	$80
