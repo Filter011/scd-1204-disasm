@@ -266,7 +266,7 @@ cd_ball:	equ	2
 cd_ride:	equ	3
 cd_ballj:	equ	4
 cd_push:	equ	5
-cd_water:	equ	6
+cd_underwater:	equ	6
 
 ; Chunk Equates
 mapsize:	equ	(16*2)*16	; (width*2) * height

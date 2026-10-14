@@ -5561,7 +5561,7 @@ playdamageset:
 	bset	#cd_jump,cddat(a0)
 	move.w	#-$400,yspeed(a0)
 	move.w	#-$200,xspeed(a0)
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	.jump0
 	move.w	#-$200,yspeed(a0)
 	move.w	#-$100,xspeed(a0)
@@ -7617,7 +7617,7 @@ jumpchk_d:
 	andi.b	#$70,d0
 	beq.w	locret_208332
 	move.w	#$680,d2
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	loc_20829A
 	move.w	#$380,d2
 

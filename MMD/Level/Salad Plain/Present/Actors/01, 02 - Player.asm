@@ -970,7 +970,7 @@ play00jump:
 	bsr.w	jumpmove
 	bsr.w	limitchk
 	jsr	speedset.l
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	loc_20403E
 	subi.w	#$28,yspeed(a0)
 
@@ -996,7 +996,7 @@ ball00jump:
 	bsr.w	jumpmove
 	bsr.w	limitchk
 	jsr	speedset.l
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	loc_204090
 	subi.w	#$28,yspeed(a0)
 
@@ -1793,7 +1793,7 @@ loc_2048A4:
 	cmpi.w	#6,d1
 	blt.w	locret_204964
 	move.w	#$680,d2
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	loc_2048CA
 	move.w	#$380,d2
 
@@ -1856,7 +1856,7 @@ jumpchk2:
 	tst.b	jumpflag(a0)
 	beq.s	loc_2049A0
 	move.w	#-$400,d1
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	loc_204984
 	move.w	#-$200,d1
 
@@ -2211,7 +2211,7 @@ loc_204CE4:
 play00damage:
 	jsr	speedset2.l
 	addi.w	#$30,yspeed(a0)
-	btst	#cd_water,cddat(a0)
+	btst	#cd_underwater,cddat(a0)
 	beq.s	loc_204D0C
 	subi.w	#$20,yspeed(a0)
 
