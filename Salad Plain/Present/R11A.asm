@@ -13883,14 +13883,14 @@ mapwk:
 	even
 
 playcg:
-	incbin	"Art/Uncompressed/Sonic.unc"
+	incbin	"Art/Uncompressed/Player.unc"
 	even
 
 playpat:
-	include	"Mappings/Sonic.asm"
+	include	"Mappings/Player.asm"
 
 playwrtpat:
-	include	"Mappings/Sonic DPLCs.asm"
+	include	"Mappings/Player DPLCs.asm"
 
 unk_22E3AC:
 	incbin	"Sound/Z80_3.bin"
