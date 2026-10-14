@@ -271,8 +271,8 @@ cd_underwater:	equ	6
 ; Chunk Equates
 mapsize:	equ	(16*2)*16	; (width*2) * height
 
-; Zone Equates
-zoneid_SPZ:	equ	0
+; Stage Equates
+stageid_SPZ:	equ	0
 
 ; Act Equates
 actid_1:	equ	0
@@ -286,10 +286,10 @@ actid_4:	equ	3
 gamemd_S1:	equ	$C
 spgamemd:	equ	$10
 
-; Zone Equates
-zoneid_LZ:	equ	1
-zoneid_MZ:	equ	2
-zoneid_SLZ:	equ	3
+; Stage Equates
+stageid_LZ:	equ	1
+stageid_MZ:	equ	2
+stageid_SLZ:	equ	3
 
 ; Music ID Equates
 musid_GHZ:	equ	$81

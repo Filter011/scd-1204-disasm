@@ -169,7 +169,7 @@ loc_200268:
 	bsr.s	sub_200296
 	dbf	d0,loc_200268
 
-	cmpi.b	#zoneid_LZ,stageno
+	cmpi.b	#stageid_LZ,stageno
 	bne.s	locret_200294
 	moveq	#0,d0
 	lea	palette_water.w,a0
@@ -312,7 +312,7 @@ loc_200390:
 	bsr.s	sub_2003BE
 	dbf	d0,loc_200390
 
-	cmpi.b	#zoneid_LZ,stageno
+	cmpi.b	#stageid_LZ,stageno
 	bne.s	locret_2003BC
 	moveq	#0,d0
 	lea	palette_water.w,a0
@@ -1812,7 +1812,7 @@ vint00:
 	bne.w	loc_2016A4
 
 loc_2016EA:
-	cmpi.b	#zoneid_LZ,stageno
+	cmpi.b	#stageid_LZ,stageno
 	bne.w	loc_2016A4
 	move.w	vdpctrl,d0
 	btst	#6,mdstatus
@@ -4898,7 +4898,7 @@ playloadb:
 	move.w	scrc_v_posit_sb,scrc_v_posit.w
 	move.w	scrz_h_posit_sb,scrz_h_posit.w
 	move.w	scrz_v_posit_sb,scrz_v_posit.w
-	cmpi.b	#zoneid_LZ,stageno
+	cmpi.b	#stageid_LZ,stageno
 	bne.s	loc_205ECC
 	move.w	waterposi_m_sb,waterposi_m.w
 	move.b	water_flag_sb,water_flag.w
@@ -4939,7 +4939,7 @@ playload:
 	move.w	scrc_v_posit_s,scrc_v_posit.w
 	move.w	scrz_h_posit_s,scrz_h_posit.w
 	move.w	scrz_v_posit_s,scrz_v_posit.w
-	cmpi.b	#zoneid_LZ,stageno
+	cmpi.b	#stageid_LZ,stageno
 	bne.s	loc_205FC4
 	move.w	waterposi_m_s,waterposi_m.w
 	move.b	water_flag_s,water_flag.w
@@ -13606,10 +13606,10 @@ loc_20D6A4:
 	move.w	yposi(a0),act3A(a0)
 	move.w	yposi(a0),act36(a0)
 	move.l	#obj21_map,d0
-	cmpi.w	#zoneact(zoneid_SPZ,actid_1),stageno
+	cmpi.w	#zoneact(stageid_SPZ,actid_1),stageno
 	beq.s	loc_20D6EE
 	move.l	#obj21b_map,d0
-	cmpi.w	#zoneact(zoneid_SPZ,actid_2),stageno
+	cmpi.w	#zoneact(stageid_SPZ,actid_2),stageno
 	beq.s	loc_20D6EE
 	move.l	#obj21b_map,d0
 

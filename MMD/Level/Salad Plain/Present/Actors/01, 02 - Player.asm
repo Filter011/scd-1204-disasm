@@ -177,7 +177,7 @@ sub_203800:
 	rts
 
 sub_203826:
-	cmpi.b	#zoneid_MZ,stageno
+	cmpi.b	#stageid_MZ,stageno
 	beq.s	loc_203832
 	rts
 
@@ -772,7 +772,7 @@ loc_203D8C:
 	blo.s	loc_203DD4
 	moveq	#0,d0
 	move.b	stageno,d0
-	cmpi.w	#zoneact(zoneid_LZ,actid_4),stageno
+	cmpi.w	#zoneact(stageid_LZ,actid_4),stageno
 	bne.s	loc_203DC4
 	moveq	#5,d0
 
@@ -2301,7 +2301,7 @@ locret_204E16:
 	rts
 
 loopchk:
-	cmpi.b	#zoneid_SLZ,stageno
+	cmpi.b	#stageid_SLZ,stageno
 	beq.s	loc_204E2C
 	tst.b	stageno
 	bne.w	locret_204EE2
