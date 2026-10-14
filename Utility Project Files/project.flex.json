@@ -4,26 +4,26 @@
     "objects": [
         {
             "format": "Sonic 1.js",
-            "name": "Sonic",
+            "name": "Player",
             "palettes": [
                 {
-                    "path": "../Salad Plain/Present/Palettes/Sonic.bin",
+                    "path": "../Salad Plain/Present/Palettes/Player.bin",
                     "length": 1
                 }
             ],
             "art": {
-                "path": "../Salad Plain/Present/Art/Uncompressed/Sonic.unc",
+                "path": "../Salad Plain/Present/Art/Uncompressed/Player.unc",
                 "compression": "Uncompressed",
                 "offset": 0,
                 "extra": []
             },
             "mappings": {
-                "path": "../Salad Plain/Present/Mappings/Sonic.asm",
+                "path": "../Salad Plain/Present/Mappings/Player.asm",
                 "label": ""
             },
             "dplcs": {
                 "enabled": true,
-                "path": "../Salad Plain/Present/Mappings/Sonic DPLCs.asm",
+                "path": "../Salad Plain/Present/Mappings/Player DPLCs.asm",
                 "label": ""
             },
             "config": {

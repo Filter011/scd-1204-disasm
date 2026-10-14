@@ -460,29 +460,29 @@ __LABEL__:	label	(*-colortbl)/8
 	dc.w	size/2-1
 	endm
 
-palid_segabg:	pal_ptr	pal_segabg,0,64
-palid_title:	pal_ptr	pal_title,0,64
-palid_levelsel:	pal_ptr	pal_levelsel,0,64
-palid_player:	pal_ptr	pal_player,0,16
-palid_spz:	pal_ptr	pal_spz,2,48
+colorlogo:	pal_ptr	logocolor,0,64
+coloradva:	pal_ptr	advacolor,0,64
+coloradva2:	pal_ptr	advacolor2,0,64
+colorgame:	pal_ptr	gamecolor,0,16
+colorzone1:	pal_ptr	zone1color,2,48
 
-pal_segabg:
-;	incbin	"Palettes/Sega Background (Sonic 1).bin"
+logocolor:
+;	incbin	"Leftovers/Palettes/Sega Background (Sonic 1).bin"
 ;	even
 
-pal_title:
-	incbin	"Palettes/Title Screen (Sonic 1).bin"
+advacolor:
+	incbin	"Leftovers/Palettes/Title Screen (Sonic 1).bin"
 	even
 
-pal_levelsel:
-	incbin	"Palettes/Level Select (Sonic 1).bin"
+advacolor2:
+	incbin	"Leftovers/Palettes/Level Select (Sonic 1).bin"
 	even
 
-pal_player:
-	incbin	"Palettes/Sonic.bin"
+gamecolor:
+	incbin	"Palettes/Player.bin"
 	even
 
-pal_spz:
+zone1color:
 	incbin	"Palettes/SPZ.bin"
 	even
 
@@ -1516,9 +1516,9 @@ loc_2012A8:
 	move.w	hintposi.w,(a6)
 	move.w	#30,pl_air
 	move.w	#$2300,sr
-	moveq	#palid_player,d0
+	moveq	#colorgame,d0
 	bsr.w	colorset2
-	moveq	#palid_player,d0
+	moveq	#colorgame,d0
 	bsr.w	colorset
 	move.w	word_FFF60C.w,d0
 	ori.b	#$40,d0
@@ -13623,7 +13623,7 @@ mapinittbl:
 	dc.l	ddevid_02<<24+spz_16x16
 	dc.l	spz_256x256
 	dc.w	bgm_GHZ
-	dc.b	palid_spz,palid_spz
+	dc.b	colorzone1,colorzone1
 	even
 
 ddev_header:	macro	{INTLABEL}
