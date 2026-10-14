@@ -1529,7 +1529,7 @@ loc_204610:
 loc_20462A:
 	move.b	#pl_height,sprvsize(a0)
 	move.b	#pl_width,sprhs(a0)
-	subq.w	#5,yposi(a0)
+	subq.w	#pl_height-rollheight,yposi(a0)
 
 loc_20463A:
 	move.b	#5,mstno(a0)
@@ -1746,7 +1746,7 @@ loc_20480E:
 loc_204828:
 	move.b	#rollheight,sprvsize(a0)
 	move.b	#rollwidth,sprhs(a0)
-	addq.w	#5,yposi(a0)
+	addq.w	#pl_height-rollheight,yposi(a0)
 
 loc_204838:
 	move.b	#2,mstno(a0)
@@ -1839,7 +1839,7 @@ loc_20492C:
 loc_204948:
 	move.b	#rollheight,sprvsize(a0)
 	move.b	#rollwidth,sprhs(a0)
-	addq.w	#5,yposi(a0)
+	addq.w	#pl_height-rollheight,yposi(a0)
 
 loc_204958:
 	bset	#cd_ball,cddat(a0)
@@ -2198,7 +2198,7 @@ loc_204C9A:
 loc_204CCE:
 	move.b	#pl_height,sprvsize(a0)
 	move.b	#pl_width,sprhs(a0)
-	subq.w	#5,yposi(a0)
+	subq.w	#pl_height-rollheight,yposi(a0)
 
 loc_204CDE:
 	move.b	#0,mstno(a0)

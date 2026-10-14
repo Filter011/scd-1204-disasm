@@ -211,7 +211,7 @@ loc_2082FA:
 loc_208316:
 	move.b	#rollheight,sprvsize(a1)
 	move.b	#rollwidth,sprhs(a1)
-	addq.w	#5,yposi(a1)
+	addq.w	#pl_height-rollheight,yposi(a1)
 
 loc_208326:
 	bset	#cd_ball,cddat(a1)
