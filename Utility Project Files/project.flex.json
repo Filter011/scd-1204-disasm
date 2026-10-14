@@ -7,23 +7,23 @@
             "name": "Sonic",
             "palettes": [
                 {
-                    "path": "../MMD/Level/Salad Plain/Present/Palettes/Sonic.bin",
+                    "path": "../Level/Salad Plain/Present/Palettes/Sonic.bin",
                     "length": 1
                 }
             ],
             "art": {
-                "path": "../MMD/Level/Salad Plain/Present/Art/Uncompressed/Sonic.unc",
+                "path": "../Level/Salad Plain/Present/Art/Uncompressed/Sonic.unc",
                 "compression": "Uncompressed",
                 "offset": 0,
                 "extra": []
             },
             "mappings": {
-                "path": "../MMD/Level/Salad Plain/Present/Mappings/Sonic.asm",
+                "path": "../Level/Salad Plain/Present/Mappings/Sonic.asm",
                 "label": ""
             },
             "dplcs": {
                 "enabled": true,
-                "path": "../MMD/Level/Salad Plain/Present/Mappings/Sonic DPLCs.asm",
+                "path": "../Level/Salad Plain/Present/Mappings/Sonic DPLCs.asm",
                 "label": ""
             },
             "config": {
