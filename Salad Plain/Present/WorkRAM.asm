@@ -141,8 +141,8 @@ mapwka_end:
 linework:		ds.b	$200
 bitdevwk:		ds.b	$200
 pbuffer:		ds.b	$400
-blockwk:		ds.b	$1800
-playwrtwk:		ds.b	$2E0
+blockwk:		ds.b	$300*8
+playwrtwk:		ds.b	tile_size*$17
 playwrtwk_end:
 	ds.b	$20
 playposiwk:		ds.b	$100
@@ -213,7 +213,7 @@ waterflag2:		ds.b	1
 	ds.b	$C
 clchgtim:		ds.w	1
 	ds.b	$22
-dword_FFF680:		ds.l	1
+divdevwk:		ds.l	1
 word_FFF684:		ds.w	1
 	ds.b	$5A
 bitdev_a3:		ds.l	1

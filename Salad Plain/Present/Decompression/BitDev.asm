@@ -174,7 +174,7 @@ divdevset:
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
-	lea	dword_FFF680.w,a2
+	lea	divdevwk.w,a2
 
 loc_202046:
 	tst.l	(a2)
@@ -202,7 +202,7 @@ loc_202060:
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
 	bsr.s	sub_20208C
-	lea	dword_FFF680.w,a2
+	lea	divdevwk.w,a2
 	move.w	(a1)+,d0
 	bmi.s	loc_202086
 
@@ -216,7 +216,7 @@ loc_202086:
 	rts
 
 sub_20208C:
-	lea	dword_FFF680.w,a2
+	lea	divdevwk.w,a2
 	moveq	#$80/4-1,d0
 
 loc_202092:
@@ -225,11 +225,11 @@ loc_202092:
 	rts
 
 sub_20209A:
-	tst.l	dword_FFF680.w
+	tst.l	divdevwk.w
 	beq.s	locret_2020EE
 	tst.w	word_FFF6F8.w
 	bne.s	locret_2020EE
-	movea.l dword_FFF680.w,a0
+	movea.l divdevwk.w,a0
 	lea	write_pixels.l,a3
 	lea	bitdevwk.w,a1
 	move.w	(a0)+,d2
@@ -245,7 +245,7 @@ loc_2020BC:
 	move.b	(a0)+,d5
 	moveq	#$10,d6
 	moveq	#0,d0
-	move.l	a0,dword_FFF680.w
+	move.l	a0,divdevwk.w
 	move.l	a3,bitdev_a3.w
 	move.l	d0,bitdev_d0.w
 	move.l	d0,bitdev_d1.w
@@ -281,7 +281,7 @@ loc_202124:
 	swap	d0
 	move.l	d0,(a4)
 	subq.w	#4,a4
-	movea.l dword_FFF680.w,a0
+	movea.l divdevwk.w,a0
 	movea.l bitdev_a3.w,a3
 	move.l	bitdev_d0.w,d0
 	move.l	bitdev_d1.w,d1
@@ -297,7 +297,7 @@ loc_202158:
 	beq.s	loc_20218A
 	subq.w	#1,word_FFF6FA.w
 	bne.s	loc_202158
-	move.l	a0,dword_FFF680.w
+	move.l	a0,divdevwk.w
 	move.l	a3,bitdev_a3.w
 	move.l	d0,bitdev_d0.w
 	move.l	d1,bitdev_d1.w
@@ -309,7 +309,7 @@ locret_202188:
 	rts
 
 loc_20218A:
-	lea	dword_FFF680.w,a0
+	lea	divdevwk.w,a0
 	moveq	#$58/4-1,d0
 
 loc_202190:

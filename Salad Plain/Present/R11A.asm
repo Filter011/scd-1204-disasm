@@ -1488,7 +1488,7 @@ loc_201288:
 
 	lea	intcnt.w,a1
 	moveq	#0,d0
-	move.w	#(dword_FFF680-intcnt)/4-1,d1
+	move.w	#(divdevwk-intcnt)/4-1,d1
 
 loc_201298:
 	move.l	d0,(a1)+
@@ -1529,7 +1529,7 @@ loc_201308:
 	bsr.w	sync
 	bsr.w	sub_20209A
 	bne.s	loc_201308
-	tst.l	dword_FFF680.w
+	tst.l	divdevwk.w
 	bne.s	loc_201308
 	bsr.w	scr_set
 	bsr.w	scroll
@@ -1544,7 +1544,7 @@ loc_20133E:
 	bsr.w	sync
 	bsr.w	sub_20209A
 	bne.s	loc_20133E
-	tst.l	dword_FFF680.w
+	tst.l	divdevwk.w
 	bne.s	loc_20133E
 	bsr.w	play_act_set
 	move.b	#score_act,scorewk.w
@@ -1771,8 +1771,8 @@ loc_201688:
 	move.b	#vintid_00,int_flg.w
 	move.w	#1,hintflag.w
 	andi.w	#$3E,d0
-	move.w	vint_index(pc,d0.w),d0
-	jsr	vint_index(pc,d0.w)
+	move.w	vint_tbl(pc,d0.w),d0
+	jsr	vint_tbl(pc,d0.w)
 
 loc_2016A4:
 	jsr	sound.l
@@ -1784,11 +1784,11 @@ loc_2016AA:
 	movem.l	(sp)+,d0-a6
 	rte
 
-vint_index:
+vint_tbl:
 
 vint_ptr	macro	ptr,{INTLABEL}
-__LABEL__:	label	*-vint_index
-	dc.w	ptr-vint_index
+__LABEL__:	label	*-vint_tbl
+	dc.w	ptr-vint_tbl
 	endm
 
 vintid_00:	vint_ptr	vint00
@@ -7679,42 +7679,9 @@ obj22_ani:
 	dc.w	unk_20B442-obj22_ani
 unk_20B3F8:
 	dc.b	$13
-	dc.b	0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
-	dc.b	1
-	dc.b	5
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	7
-	dc.b	1
-	dc.b	5
-	dc.b	0
-	dc.b	1
-	dc.b	2
-	dc.b	3
-	dc.b	4
-	dc.b	5
-	dc.b	6
-	dc.b	7
+	dc.b	0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,5
+	dc.b	7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,5
+	dc.b	0,1,2,3,4,5,6,7
 	dc.b	$FF
 	even
 unk_20B434:
