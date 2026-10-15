@@ -5622,11 +5622,11 @@ loc_2080DA:
 	include	"Actors/0A, 0F - Spring, Koma.asm"
 	include	"Actors/10, 11 - Rings.asm"
 
-off_208D7A:
-	dc.w	byte_208D82-off_208D7A
-	dc.w	byte_208DB5-off_208D7A
-	dc.w	byte_208DDE-off_208D7A
-	dc.w	byte_208DF3-off_208D7A
+bigringpat:
+	dc.w	byte_208D82-bigringpat
+	dc.w	byte_208DB5-bigringpat
+	dc.w	byte_208DDE-bigringpat
+	dc.w	byte_208DF3-bigringpat
 byte_208D82:
 	dc.b	10
 	dc.b	$E0,8,0,0,$E8
