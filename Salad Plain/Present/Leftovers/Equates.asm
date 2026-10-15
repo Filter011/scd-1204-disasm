@@ -10,10 +10,12 @@ stage_MZ:	equ	2
 stage_SLZ:	equ	3
 
 ; BGM Equates
-bgm_GHZ:	equ	$81
-bgm_LZ:		equ	$82
-bgm_MZ:		equ	$83
-bgm_SLZ:	equ	$84
-bgm_SYZ:	equ	$85
-bgm_SBZ:	equ	$86
+bgm_zone1:	equ	$81
+bgm_zone2:	equ	$82
+bgm_zone3:	equ	$83
+bgm_zone4:	equ	$84
+bgm_zone5:	equ	$85
+bgm_zone6:	equ	$86
+bgm_muteki:	equ	$87
+bgm_oneup:	equ	$88
 bgm_FZ:		equ	$8D

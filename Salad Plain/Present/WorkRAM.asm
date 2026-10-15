@@ -1,10 +1,11 @@
 	include	"Sound/ver11/mdeq11.lib"
 
-	phase	$FF0000
+	phase	$FFFF0000
 	ds.b	$580
-byte_FF0580:		ds.b	1
-byte_FF0580_ext:	equ	byte_FF0580+$FF<<24
+ta_flag:		ds.b	1
 	ds.b	$A7F
+	dephase
+	phase	$FF1000
 stackwk:		ds.b	$200
 stackwk_end:
 	ds.b	2
@@ -132,8 +133,6 @@ powerupwrtwk_end:
 powerupwrtwk_dma_end:
 	ds.b	$6280
 	dephase
-	!org 0
-
 	phase	$FFFF8000
 	ds.b	$2400
 mapwka:			ds.b	$400
@@ -155,15 +154,15 @@ actwk:
 playerwk:		ds.b	actfree
 byte_FFD040:		ds.b	actfree
 scorewk:		ds.b	actfree
-byte_FFD0C0:		ds.b	actfree
-byte_FFD100:		ds.b	actfree
-byte_FFD140:		ds.b	actfree
-byte_FFD180:		ds.b	actfree
-byte_FFD1C0:		ds.b	actfree
-byte_FFD200:		ds.b	actfree
-byte_FFD240:		ds.b	actfree
-byte_FFD280:		ds.b	actfree
-byte_FFD2C0:		ds.b	actfree
+score2wk:		ds.b	actfree
+	ds.b	actfree
+	ds.b	actfree
+bariawk:		ds.b	actfree
+	ds.b	actfree
+mutekiwk:		ds.b	actfree
+muteki2wk:		ds.b	actfree
+muteki3wk:		ds.b	actfree
+muteki4wk:		ds.b	actfree
 byte_FFD300:		ds.b	actfree
 byte_FFD340:		ds.b	actfree
 byte_FFD380:		ds.b	actfree

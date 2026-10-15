@@ -1,23 +1,23 @@
-loc_209088:
-	tst.b	byte_FF0580_ext
+t_item:
+	tst.b	ta_flag
 	beq.s	loc_209096
 	jmp	frameout.l
 
 loc_209096:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2090B0(pc,d0.w),d0
-	jsr	off_2090B0(pc,d0.w)
+	move.w	t_item_move_tbl(pc,d0.w),d0
+	jsr	t_item_move_tbl(pc,d0.w)
 	jsr	actionsub.l
 	jmp	frameout_s.l
 
-off_2090B0:
-	dc.w	loc_2090B8-off_2090B0
-	dc.w	loc_209124-off_2090B0
-	dc.w	loc_209154-off_2090B0
-	dc.w	locret_20917A-off_2090B0
+t_item_move_tbl:
+	dc.w	t_item_init-t_item_move_tbl
+	dc.w	t_item_move0-t_item_move_tbl
+	dc.w	t_item_move1-t_item_move_tbl
+	dc.w	t_item_move2-t_item_move_tbl
 
-loc_2090B8:
+t_item_init:
 	addq.b	#word,r_no0(a0)
 	move.b	#$E,sprvsize(a0)
 	move.b	#$E,sprhs(a0)
@@ -43,14 +43,14 @@ loc_20910A:
 loc_20911E:
 	move.b	#$DF,colino(a0)
 
-loc_209124:
+t_item_move0:
 	tst.b	colicnt(a0)
 	beq.s	locret_209152
 	move.b	#$3C,act2A(a0)
 	addq.b	#word,r_no0(a0)
 	bsr.w	flagwkadr
 	bset	#0,2(a2,d0.w)
-	move.b	#$FF,time_item.w
+	move.b	#-1,time_item.w
 	cmpi.b	#8,userflag(a0)
 	beq.s	locret_209152
 	move.b	#1,time_item.w
@@ -58,7 +58,7 @@ loc_209124:
 locret_209152:
 	rts
 
-loc_209154:
+t_item_move1:
 	subq.b	#1,act2A(a0)
 	beq.s	loc_209164
 	lea	itemchg.l,a1
@@ -68,10 +68,10 @@ loc_209164:
 	addq.b	#word,r_no0(a0)
 	move.b	#$B,patno(a0)
 	cmpi.b	#8,userflag(a0)
-	beq.s	locret_20917A
+	beq.s	t_item_move2
 	addq.b	#2,patno(a0)
 
-locret_20917A:
+t_item_move2:
 	rts
 
 flagwkadr:
@@ -86,7 +86,7 @@ flagwkadr:
 	add.w	d1,d0
 	rts
 
-sub_20919A:
+ride_on_chk_i:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	move.b	#1,r_no1(a0)
@@ -94,18 +94,18 @@ sub_20919A:
 
 item:
 	cmpi.b	#8,userflag(a0)
-	bhs.w	loc_209088
+	bhs.w	t_item
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2091C6(pc,d0.w),d1
-	jmp	off_2091C6(pc,d1.w)
+	move.w	item_move_tbl(pc,d0.w),d1
+	jmp	item_move_tbl(pc,d1.w)
 
-off_2091C6:
-	dc.w	iteminit-off_2091C6
-	dc.w	itemmove-off_2091C6
-	dc.w	itemget-off_2091C6
-	dc.w	itemmove2-off_2091C6
-	dc.w	itemmove3-off_2091C6
+item_move_tbl:
+	dc.w	iteminit-item_move_tbl
+	dc.w	itemmove-item_move_tbl
+	dc.w	itemget-item_move_tbl
+	dc.w	itemmove2-item_move_tbl
+	dc.w	itemmove3-item_move_tbl
 
 iteminit:
 	addq.b	#word,r_no0(a0)
@@ -146,9 +146,9 @@ loc_20925A:
 	tst.b	actflg(a0)
 	bpl.s	itemmove2
 	lea	playerwk.w,a1
-	bsr.w	sub_20919A
+	bsr.w	ride_on_chk_i
 	lea	byte_FFD040.w,a1
-	bsr.w	sub_20919A
+	bsr.w	ride_on_chk_i
 
 itemmove2:
 	tst.w	time_stop
@@ -166,21 +166,21 @@ itemget:
 	addq.b	#4,r_no0(a0)
 	move.b	#0,colino(a0)
 	bsr.w	actwkchk
-	bne.s	loc_2092BE
+	bne.s	.worknai
 	_move.b	#item2_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	move.b	mstno(a0),mstno(a1)
 
-loc_2092BE:
+.worknai:
 	bsr.w	actwkchk
-	bne.s	loc_2092DC
+	bne.s	.worknai1
 	_move.b	#bakuha_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	move.b	#1,r_no1(a1)
 
-loc_2092DC:
+.worknai1:
 	bsr.w	flagwkadr
 	bset	#0,2(a2,d0.w)
 	move.b	#$11,patno(a0)
@@ -189,14 +189,14 @@ loc_2092DC:
 item2:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_209302(pc,d0.w),d1
-	jsr	off_209302(pc,d1.w)
+	move.w	item2_move_tbl(pc,d0.w),d1
+	jsr	item2_move_tbl(pc,d1.w)
 	bra.w	actionsub
 
-off_209302:
-	dc.w	item2init-off_209302
-	dc.w	item2move-off_209302
-	dc.w	item2die-off_209302
+item2_move_tbl:
+	dc.w	item2init-item2_move_tbl
+	dc.w	item2move-item2_move_tbl
+	dc.w	item2die-item2_move_tbl
 
 item2init:
 	addq.b	#word,r_no0(a0)
@@ -216,80 +216,80 @@ item2init:
 
 item2move:
 	tst.w	yspeed(a0)
-	bpl.w	loc_20935A
+	bpl.w	item2move_sub
 	bsr.w	speedset2
 	addi.w	#$18,yspeed(a0)
 	rts
 
-loc_20935A:
+item2move_sub:
 	addq.b	#word,r_no0(a0)
 	move.w	#29,pattim(a0)
 	jsr	main_chk.l
 	move.b	mstno(a0),d0
-	bne.s	loc_209386
+	bne.s	item2_01
 
-loc_209370:
+item2_00:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
-	move.w	#$88,d0
+	move.w	#bgm_oneup,d0
 	jmp	bgmset.l
 
-loc_209386:
+item2_01:
 	cmpi.b	#1,d0
-	bne.s	loc_2093D2
+	bne.s	item2_02
 	addi.w	#10,plring
 	ori.b	#1,plring_f
 	cmpi.w	#100,plring
-	blo.s	loc_2093C8
+	blo.s	.jump
 	bset	#1,plring_f2
-	beq.w	loc_209370
+	beq.w	item2_00
 	cmpi.w	#200,plring
-	blo.s	loc_2093C8
+	blo.s	.jump
 	bset	#2,plring_f2
-	beq.w	loc_209370
+	beq.w	item2_00
 
-loc_2093C8:
+.jump:
 	move.w	#$B5,d0
 	jmp	bgmset.l
 
-loc_2093D2:
+item2_02:
 	cmpi.b	#2,d0
-	bne.s	loc_2093F0
+	bne.s	item2_03
 
 sub_2093D8:
 	move.b	#1,plpower_b
-	move.b	#baria_act,byte_FFD180.w
+	move.b	#baria_act,bariawk.w
 	move.w	#$AF,d0
 	jmp	bgmset.l
 
-loc_2093F0:
+item2_03:
 	cmpi.b	#3,d0
-	bne.s	loc_209450
+	bne.s	item2_04
 
 sub_2093F6:
 	move.b	#1,plpower_m
 	move.w	#1200,mutekitimer(a6)
-	move.b	#baria_act,byte_FFD200.w
-	move.b	#1,byte_FFD200+mstno.w
-	move.b	#baria_act,byte_FFD240.w
-	move.b	#2,byte_FFD240+mstno.w
-	move.b	#baria_act,byte_FFD280.w
-	move.b	#3,byte_FFD280+mstno.w
-	move.b	#baria_act,byte_FFD2C0.w
-	move.b	#4,byte_FFD2C0+mstno.w
+	move.b	#baria_act,mutekiwk.w
+	move.b	#1,mutekiwk+mstno.w
+	move.b	#baria_act,muteki2wk.w
+	move.b	#2,muteki2wk+mstno.w
+	move.b	#baria_act,muteki3wk.w
+	move.b	#3,muteki3wk+mstno.w
+	move.b	#baria_act,muteki4wk.w
+	move.b	#4,muteki4wk+mstno.w
 	tst.b	bossstart.w
 	bne.s	locret_20944E
 	cmpi.w	#$C,pl_air
 	bls.s	locret_20944E
-	move.w	#$87,d0
+	move.w	#bgm_muteki,d0
 	jmp	bgmset.l
 
 locret_20944E:
 	rts
 
-loc_209450:
+item2_04:
 	cmpi.b	#4,d0
-	bne.s	loc_209480
+	bne.s	item2_05
 
 loc_209456:
 	move.b	#1,plpower_s
@@ -300,18 +300,18 @@ loc_209456:
 	move.w	#$E2,d0
 	jmp	bgmset.l
 
-loc_209480:
+item2_05:
 	cmpi.b	#5,d0
-	bne.s	loc_209490
+	bne.s	item2_06
 	move.w	#300,time_stop
 	rts
 
-loc_209490:
+item2_06:
 	cmpi.b	#6,d0
-	bne.s	loc_209498
+	bne.s	item2_07
 	nop
 
-loc_209498:
+item2_07:
 	bsr.w	sub_2093D8
 	bsr.w	sub_2093F6
 	bra.s	loc_209456
@@ -322,203 +322,203 @@ item2die:
 	rts
 
 itemchg:
-	dc.w	unk_2094C0-itemchg
-	dc.w	unk_2094CC-itemchg
-	dc.w	unk_2094D8-itemchg
-	dc.w	unk_2094E4-itemchg
-	dc.w	unk_2094F0-itemchg
-	dc.w	unk_2094FC-itemchg
-	dc.w	unk_209508-itemchg
-	dc.w	unk_209514-itemchg
-	dc.w	unk_209520-itemchg
-	dc.w	unk_20952A-itemchg
-unk_2094C0:
+	dc.w	itemchg0-itemchg
+	dc.w	itemchg1-itemchg
+	dc.w	itemchg2-itemchg
+	dc.w	itemchg3-itemchg
+	dc.w	itemchg4-itemchg
+	dc.w	itemchg5-itemchg
+	dc.w	itemchg6-itemchg
+	dc.w	itemchg7-itemchg
+	dc.w	itemchg8-itemchg
+	dc.w	itemchg9-itemchg
+itemchg0:
 	dc.b	1
 	dc.b	$10,0,0,8,0,0,9,0,0
 	dc.b	$FF
 	even
-unk_2094CC:
+itemchg1:
 	dc.b	1
 	dc.b	$10,1,1,8,1,1,9,1,1
 	dc.b	$FF
 	even
-unk_2094D8:
+itemchg2:
 	dc.b	1
 	dc.b	$10,2,2,8,2,2,9,2,2
 	dc.b	$FF
 	even
-unk_2094E4:
+itemchg3:
 	dc.b	1
 	dc.b	$10,3,3,8,3,3,9,3,3
 	dc.b	$FF
 	even
-unk_2094F0:
+itemchg4:
 	dc.b	1
 	dc.b	$10,4,4,8,4,4,9,4,4
 	dc.b	$FF
 	even
-unk_2094FC:
+itemchg5:
 	dc.b	1
 	dc.b	$10,5,5,8,5,5,9,5,5
 	dc.b	$FF
 	even
-unk_209508:
+itemchg6:
 	dc.b	1
 	dc.b	$10,6,6,8,6,6,9,6,6
 	dc.b	$FF
 	even
-unk_209514:
+itemchg7:
 	dc.b	1
 	dc.b	$10,7,7,8,7,7,9,7,7
 	dc.b	$FF
 	even
-unk_209520:
+itemchg8:
 	dc.b	1
 	dc.b	$A,$E,$F,$E,$B,$E,$F,$E
 	dc.b	$FF
 	even
-unk_20952A:
+itemchg9:
 	dc.b	1
 	dc.b	$C,$E,$F,$E,$D,$E,$F,$E
 	dc.b	$FF
 	even
 
 itempat:
-	dc.w	byte_209558-itempat
-	dc.w	byte_20956E-itempat
-	dc.w	byte_209584-itempat
-	dc.w	byte_20959A-itempat
-	dc.w	byte_2095B0-itempat
-	dc.w	byte_2095C6-itempat
-	dc.w	byte_2095DC-itempat
-	dc.w	byte_2095F2-itempat
-	dc.w	byte_209608-itempat
-	dc.w	byte_20961E-itempat
-	dc.w	byte_209634-itempat
-	dc.w	byte_20964E-itempat
-	dc.w	byte_209668-itempat
-	dc.w	byte_209682-itempat
-	dc.w	byte_20969C-itempat
-	dc.w	byte_2096B6-itempat
-	dc.w	byte_2096D0-itempat
-	dc.w	byte_2096E0-itempat
-byte_209558:
+	dc.w	itemsp00-itempat
+	dc.w	itemsp01-itempat
+	dc.w	itemsp02-itempat
+	dc.w	itemsp03-itempat
+	dc.w	itemsp04-itempat
+	dc.w	itemsp05-itempat
+	dc.w	itemsp06-itempat
+	dc.w	itemsp07-itempat
+	dc.w	itemsp08-itempat
+	dc.w	itemsp09-itempat
+	dc.w	itemsp10-itempat
+	dc.w	itemsp11-itempat
+	dc.w	itemsp12-itempat
+	dc.w	itemsp13-itempat
+	dc.w	itemsp14-itempat
+	dc.w	itemsp15-itempat
+	dc.w	itemsp16-itempat
+	dc.w	itemsp17-itempat
+itemsp00:
 	dc.b	4
 	dc.b	$F6,5,0,$12,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_20956E:
+itemsp01:
 	dc.b	4
 	dc.b	$F6,5,0,$16,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_209584:
+itemsp02:
 	dc.b	4
 	dc.b	$F6,5,0,$1A,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_20959A:
+itemsp03:
 	dc.b	4
 	dc.b	$F6,5,0,$1E,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_2095B0:
+itemsp04:
 	dc.b	4
 	dc.b	$F6,5,0,$22,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_2095C6:
+itemsp05:
 	dc.b	4
 	dc.b	$F6,5,0,$26,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_2095DC:
+itemsp06:
 	dc.b	4
 	dc.b	$F6,5,0,$2A,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_2095F2:
+itemsp07:
 	dc.b	4
 	dc.b	$F6,5,0,$2E,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_209608:
+itemsp08:
 	dc.b	4
 	dc.b	$F6,5,0,$48,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_20961E:
+itemsp09:
 	dc.b	4
 	dc.b	$F6,5,8,$48,-8
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
 	even
-byte_209634:
+itemsp10:
 	dc.b	5
 	dc.b	$D8,$D,0,$32,$F0
 	dc.b	$E8,3,0,$4C,-8
 	dc.b	$E8,3,8,$4C,0
 	dc.b	8,1,0,$50,-8
 	dc.b	8,1,8,$50,0
-byte_20964E:
+itemsp11:
 	dc.b	5
 	dc.b	$D8,$D,8,$32,$F0
 	dc.b	$E8,3,0,$4C,-8
 	dc.b	$E8,3,8,$4C,0
 	dc.b	8,1,0,$50,-8
 	dc.b	8,1,8,$50,0
-byte_209668:
+itemsp12:
 	dc.b	5
 	dc.b	$D8,$D,0,$3A,$F0
 	dc.b	$E8,3,0,$4C,-8
 	dc.b	$E8,3,8,$4C,0
 	dc.b	8,1,0,$50,-8
 	dc.b	8,1,8,$50,0
-byte_209682:
+itemsp13:
 	dc.b	5
 	dc.b	$D8,$D,8,$3A,$F0
 	dc.b	$E8,3,0,$4C,-8
 	dc.b	$E8,3,8,$4C,0
 	dc.b	8,1,0,$50,-8
 	dc.b	8,1,8,$50,0
-byte_20969C:
+itemsp14:
 	dc.b	5
 	dc.b	$D8,5,0,$42,-8
 	dc.b	$E8,3,0,$4C,-8
 	dc.b	$E8,3,8,$4C,0
 	dc.b	8,1,0,$50,-8
 	dc.b	8,1,8,$50,0
-byte_2096B6:
+itemsp15:
 	dc.b	5
 	dc.b	$D8,1,0,$46,$FC
 	dc.b	$E8,3,0,$4C,-8
 	dc.b	$E8,3,8,$4C,0
 	dc.b	8,1,0,$50,-8
 	dc.b	8,1,8,$50,0
-byte_2096D0:
+itemsp16:
 	dc.b	3
 	dc.b	$F0,6,0,0,$F0
 	dc.b	$F0,6,8,0,0
 	dc.b	8,$C,0,6,$F0
-byte_2096E0:
+itemsp17:
 	dc.b	1
 	dc.b	0,$D,0,$A,$F0

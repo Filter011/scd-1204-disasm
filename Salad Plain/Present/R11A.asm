@@ -1418,12 +1418,12 @@ loc_2011CC:
 	rts
 
 bgm_tbl:
-	dc.b	bgm_GHZ
-	dc.b	bgm_LZ
-	dc.b	bgm_MZ
-	dc.b	bgm_SLZ
-	dc.b	bgm_SYZ
-	dc.b	bgm_SBZ
+	dc.b	bgm_zone1
+	dc.b	bgm_zone2
+	dc.b	bgm_zone3
+	dc.b	bgm_zone4
+	dc.b	bgm_zone5
+	dc.b	bgm_zone6
 	dc.b	bgm_FZ
 	even
 
@@ -1431,7 +1431,7 @@ game:
 	bset	#0,byte_FF122A
 	bne.s	loc_2011FE
 	move.b	#3,pl_suu
-	tst.b	byte_FF0580_ext
+	tst.b	ta_flag
 	beq.s	loc_2011FE
 	move.b	#1,pl_suu
 
@@ -1548,8 +1548,8 @@ loc_20133E:
 	bne.s	loc_20133E
 	bsr.w	play_act_set
 	move.b	#score_act,scorewk.w
-	move.b	#score_act,byte_FFD0C0.w
-	move.b	#1,byte_FFD0C0+userflag.w
+	move.b	#score_act,score2wk.w
+	move.b	#1,score2wk+userflag.w
 	bsr.w	sub_2015E8
 	move.w	#0,swdata.w
 	move.w	#0,swdata1.w
@@ -12336,7 +12336,7 @@ mapinittbl:
 	dc.l	ddevid_03<<24+zone1cg
 	dc.l	ddevid_02<<24+zone1blk
 	dc.l	zone1map
-	dc.w	bgm_GHZ
+	dc.w	bgm_zone1
 	dc.b	colorzone1,colorzone1
 	even
 

@@ -35,7 +35,7 @@ play00_move_tbl:
 	tst.b	act29(a0)
 	beq.s	locret_203674
 	move.b	#1,plpower_b
-	move.b	#3,byte_FFD180.w
+	move.b	#baria_act,bariawk.w
 
 locret_203674:
 	rts
@@ -733,12 +733,12 @@ off_203D52:
 	dc.w	ball00jump-off_203D52
 
 unk_203D5A:
-	dc.b	bgm_GHZ
-	dc.b	bgm_LZ
-	dc.b	bgm_MZ
-	dc.b	bgm_SLZ
-	dc.b	bgm_SYZ
-	dc.b	bgm_SBZ
+	dc.b	bgm_zone1
+	dc.b	bgm_zone2
+	dc.b	bgm_zone3
+	dc.b	bgm_zone4
+	dc.b	bgm_zone5
+	dc.b	bgm_zone6
 	even
 
 playpowercnt:
