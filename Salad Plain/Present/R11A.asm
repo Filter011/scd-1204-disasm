@@ -4199,14 +4199,14 @@ loc_205400:
 sub_sync:
 	move.w	d0,scpu_commcmd0
 
-loc_20540A:
+.loop:
 	tst.w	scpu_commstats
-	beq.s	loc_20540A
+	beq.s	.loop
 	move.w	#0,scpu_commcmd0
 
-loc_20541A:
+.loop0:
 	tst.w	scpu_commstats
-	bne.s	loc_20541A
+	bne.s	.loop0
 	rts
 
 patchg:
