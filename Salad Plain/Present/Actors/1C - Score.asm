@@ -37,10 +37,10 @@ loc_209756:
 	jmp	actionsub.l
 
 scorepat:
-	dc.w	scorepat0-scorepat
-	dc.w	scorepat1-scorepat
-	dc.w	scorepat2-scorepat
-scorepat0:
+	dc.w	scoresp00-scorepat
+	dc.w	scoresp01-scorepat
+	dc.w	scoresp02-scorepat
+scoresp00:
 	dc.b	17
 	dc.b	0,1,0,0,0
 	dc.b	0,5,0,2,8
@@ -60,13 +60,13 @@ scorepat0:
 	dc.b	$20,1,0,0,$20
 	dc.b	$20,9,0,$31,$30
 	even
-scorepat1:
+scoresp01:
 	dc.b	3
 	dc.b	0,5,0,$37,0
 	dc.b	8,0,0,$1A,$10
 	dc.b	0,1,0,$3B,$18
 	even
-scorepat2:
+scoresp02:
 	dc.b	14
 	dc.b	0,1,0,0,0
 	dc.b	0,5,0,2,8

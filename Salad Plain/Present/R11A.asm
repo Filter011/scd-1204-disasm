@@ -1594,7 +1594,7 @@ loc_20141E:
 	bsr.w	sync
 	addq.w	#1,gametimer
 	jsr	actsetchk.l
-	jsr	sub_2030F2.l
+	jsr	action.l
 	tst.w	gameflag
 	bne.w	game
 	tst.w	editmode
@@ -3555,8 +3555,8 @@ scrchk:
 	moveq	#0,d0
 	move.b	stageno,d0
 	add.w	d0,d0
-	move.w	off_20309A(pc,d0.w),d0
-	jsr	off_20309A(pc,d0.w)
+	move.w	zonechktbl(pc,d0.w),d0
+	jsr	zonechktbl(pc,d0.w)
 	moveq	#4,d1
 	move.w	scralim_n_down.w,d0
 	sub.w	scralim_down.w,d0
@@ -3591,27 +3591,27 @@ loc_20308E:
 	move.b	#1,limmoveflag.w
 	rts
 
-off_20309A:
-	dc.w	zone1chk-off_20309A
-	dc.w	zone1chk-off_20309A
-	dc.w	zone3chk-off_20309A
-	dc.w	zone4chk-off_20309A
-	dc.w	zone4chk-off_20309A
-	dc.w	zone4chk-off_20309A
-	dc.w	zone4chk-off_20309A
-	dc.w	zone4chk-off_20309A
+zonechktbl:
+	dc.w	zone1chk-zonechktbl
+	dc.w	zone1chk-zonechktbl
+	dc.w	zone3chk-zonechktbl
+	dc.w	zone4chk-zonechktbl
+	dc.w	zone4chk-zonechktbl
+	dc.w	zone4chk-zonechktbl
+	dc.w	zone4chk-zonechktbl
+	dc.w	zone4chk-zonechktbl
 
 zone1chk:
 	moveq	#0,d0
 	move.b	stageact,d0
 	add.w	d0,d0
-	move.w	off_2030BC(pc,d0.w),d0
-	jmp	off_2030BC(pc,d0.w)
+	move.w	zone1chktbl(pc,d0.w),d0
+	jmp	zone1chktbl(pc,d0.w)
 
-off_2030BC:
-	dc.w	zone11chk-off_2030BC
-	dc.w	zone11chk-off_2030BC
-	dc.w	zone11chk-off_2030BC
+zone1chktbl:
+	dc.w	zone11chk-zone1chktbl
+	dc.w	zone11chk-zone1chktbl
+	dc.w	zone11chk-zone1chktbl
 
 zone11chk:
 	move.w	#$310,scralim_n_down.w
@@ -3621,13 +3621,13 @@ zone3chk:
 	moveq	#0,d0
 	move.b	stageact,d0
 	add.w	d0,d0
-	move.w	off_2030DC(pc,d0.w),d0
-	jmp	off_2030DC(pc,d0.w)
+	move.w	zone3chktbl(pc,d0.w),d0
+	jmp	zone3chktbl(pc,d0.w)
 
-off_2030DC:
-	dc.w	zone31chk-off_2030DC
-	dc.w	zone31chk-off_2030DC
-	dc.w	zone31chk-off_2030DC
+zone3chktbl:
+	dc.w	zone31chk-zone3chktbl
+	dc.w	zone31chk-zone3chktbl
+	dc.w	zone31chk-zone3chktbl
 
 zone31chk:
 	move.w	#$510,scralim_n_down.w
@@ -3637,14 +3637,14 @@ zone4chk:
 	move.w	#$710,scralim_n_down.w
 	rts
 
-sub_2030F2:
+action:
 	lea	actwk.w,a0
-	moveq	#(byte_FFD800_end-actwk)/actfree-1,d7
+	moveq	#(actwk_end-actwk)/actfree-1,d7
 	moveq	#0,d0
 
-loc_2030FA:
+action0:
 	move.b	actno(a0),d0
-	beq.s	loc_203110
+	beq.s	.jump
 	add.w	d0,d0
 	add.w	d0,d0
 	lea	act_tbl.l,a1
@@ -3652,24 +3652,24 @@ loc_2030FA:
 	jsr	(a1)
 	moveq	#0,d0
 
-loc_203110:
+.jump:
 	lea	actfree(a0),a0
-	dbf	d7,loc_2030FA
+	dbf	d7,action0
 	rts
 
 	moveq	#(byte_FFD800-actwk)/actfree-1,d7
-	bsr.s	loc_2030FA
-	moveq	#$1800/actfree-1,d7
+	bsr.s	action0
+	moveq	#(byte_FFD800_end-byte_FFD800)/actfree-1,d7
 
 loc_203120:
 	moveq	#0,d0
 	move.b	actno(a0),d0
-	beq.s	loc_203130
+	beq.s	.jump
 	tst.b	actflg(a0)
-	bpl.s	loc_203130
+	bpl.s	.jump
 	bsr.w	actionsub
 
-loc_203130:
+.jump:
 	lea	actfree(a0),a0
 	dbf	d7,loc_203120
 	rts

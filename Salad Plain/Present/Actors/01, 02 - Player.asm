@@ -22,15 +22,15 @@ loc_20362C:
 loc_203648:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_203656(pc,d0.w),d1
-	jmp	off_203656(pc,d1.w)
+	move.w	play00_move_tbl(pc,d0.w),d1
+	jmp	play00_move_tbl(pc,d1.w)
 
-off_203656:
-	dc.w	play00init-off_203656
-	dc.w	play00move-off_203656
-	dc.w	play00damage-off_203656
-	dc.w	play00die-off_203656
-	dc.w	play00erase-off_203656
+play00_move_tbl:
+	dc.w	play00init-play00_move_tbl
+	dc.w	play00move-play00_move_tbl
+	dc.w	play00damage-play00_move_tbl
+	dc.w	play00die-play00_move_tbl
+	dc.w	play00erase-play00_move_tbl
 
 	tst.b	act29(a0)
 	beq.s	locret_203674

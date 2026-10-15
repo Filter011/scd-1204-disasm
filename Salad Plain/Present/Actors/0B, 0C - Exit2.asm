@@ -27,13 +27,13 @@ loc_20580E:
 exit2:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_205820(pc,d0.w),d0
-	jmp	off_205820(pc,d0.w)
+	move.w	exit2_move_tbl(pc,d0.w),d0
+	jmp	exit2_move_tbl(pc,d0.w)
 
-off_205820:
-	dc.w	exit2_init-off_205820
-	dc.w	exit2_move-off_205820
-	dc.w	exit2_erase-off_205820
+exit2_move_tbl:
+	dc.w	exit2_init-exit2_move_tbl
+	dc.w	exit2_move-exit2_move_tbl
+	dc.w	exit2_erase-exit2_move_tbl
 
 exit2_init:
 	addq.b	#word,r_no0(a0)

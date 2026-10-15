@@ -37,9 +37,9 @@ locret_2083D8:
 	rts
 
 iwapat:
-	dc.w	byte_2083DC-iwapat
+	dc.w	iwasp00-iwapat
 
-byte_2083DC:
+iwasp00:
 	dc.b	2
 	dc.b	-8,2,0,0,$EC
 	dc.b	$F0,$F,0,3,$F4
