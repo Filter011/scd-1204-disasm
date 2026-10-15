@@ -1496,7 +1496,7 @@ loc_201298:
 
 	lea	scra_h_posit.w,a1
 	moveq	#0,d0
-	move.w	#(sprtbl-scra_h_posit)/4-1,d1
+	move.w	#(sprdat-scra_h_posit)/4-1,d1
 
 loc_2012A8:
 	move.l	d0,(a1)+
@@ -1508,7 +1508,7 @@ loc_2012A8:
 	move.w	#$8B00+%0011,(a6)
 	move.w	#$8200+plane_a>>10,(a6)
 	move.w	#$8400+plane_b>>13,(a6)
-	move.w	#$8500+sprtbl_vram>>9,(a6)
+	move.w	#$8500+sprdat_vram>>9,(a6)
 	move.w	#$9001,(a6)
 	move.w	#$8000+%0100,(a6)
 	move.w	#$8720,(a6)
@@ -1881,7 +1881,7 @@ loc_2017EA:
 loc_20180E:
 	move.w	hintposi.w,(a5)
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
-	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
+	DMA68K	sprdat,(sprdat_end-sprdat),4,sprdat_vram
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
@@ -1942,7 +1942,7 @@ loc_201962:
 loc_201986:
 	move.w	hintposi.w,(a5)
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
-	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
+	DMA68K	sprdat,(sprdat_end-sprdat),4,sprdat_vram
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
@@ -1976,7 +1976,7 @@ vint16:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
 	DMA68K	palette,$80,$C,0
-	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
+	DMA68K	sprdat,(sprdat_end-sprdat),4,sprdat_vram
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	jsr	z80bus_off.l
 	lea	playerwk.w,a0
@@ -2006,7 +2006,7 @@ loc_201B50:
 	DMA68K	palette_water,$80,$C,0
 
 loc_201B74:
-	DMA68K	sprtbl,(sprtbl_end-sprtbl),4,sprtbl_vram
+	DMA68K	sprdat,(sprdat_end-sprdat),4,sprdat_vram
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	jmp	z80bus_off.l
 
@@ -2113,7 +2113,7 @@ word_201D50:
 	dc.w	$8200+plane_a>>10
 	dc.w	$8300+plane_w>>10
 	dc.w	$8400+plane_b>>13
-	dc.w	$8500+sprtbl_vram>>9
+	dc.w	$8500+sprdat_vram>>9
 	dc.w	$8600
 	dc.w	$8700
 	dc.w	$8800
@@ -2159,9 +2159,9 @@ loc_201DC6:
 	clr.l	vscroll.w
 	clr.l	hscroll.w
 
-	lea	sprtbl.w,a1
+	lea	sprdat.w,a1
 	moveq	#0,d0
-	move.w	#(sprtbl_end-sprtbl)/4,d1
+	move.w	#(sprdat_end-sprdat)/4,d1
 
 loc_201DE4:
 	move.l	d0,(a1)+
@@ -3795,7 +3795,7 @@ patsettbl:
 	dc.l	scrz_h_posit&$FFFFFF
 
 patset:
-	lea	sprtbl.w,a2
+	lea	sprdat.w,a2
 	moveq	#0,d5
 	lea	pbuffer.w,a4
 	moveq	#8-1,d7
@@ -4238,7 +4238,7 @@ loc_205462:
 	move.b	cddat(a0),d0
 	rol.b	#3,d1
 	eor.b	d0,d1
-	andi.b	#3,d1
+	andi.b	#%0011,d1
 	andi.b	#%11111100,actflg(a0)
 	or.b	d1,actflg(a0)
 	addq.b	#1,patcnt(a0)

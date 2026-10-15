@@ -2,7 +2,7 @@
 plane_w:	equ	$A000
 plane_a:	equ	$C000
 plane_b:	equ	$E000
-sprtbl_vram:	equ	$F800
+sprdat_vram:	equ	$F800
 hscroll_vram:	equ	$FC00
 
 ; Z80 Equates
