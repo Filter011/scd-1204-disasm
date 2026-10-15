@@ -18,12 +18,12 @@
                 "extra": []
             },
             "mappings": {
-                "path": "../Salad Plain/Present/Mappings/Player.asm",
+                "path": "../Salad Plain/Present/Patterns/Player.asm",
                 "label": ""
             },
             "dplcs": {
                 "enabled": true,
-                "path": "../Salad Plain/Present/Mappings/Player DPLCs.asm",
+                "path": "../Salad Plain/Present/Patterns/Wrt/Player.asm",
                 "label": ""
             },
             "config": {

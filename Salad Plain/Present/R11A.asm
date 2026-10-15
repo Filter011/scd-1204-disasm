@@ -43,7 +43,7 @@ init:
 	btst	#6,cont_3
 	beq.s	.stack
 	cmpi.l	#"init",init_flag
-	beq.w	.passedinit
+	beq.w	.jump
 
 .stack:
 	lea	stackwk,a6
@@ -59,7 +59,7 @@ init:
 	move.b	d0,mdstatus
 	move.l	#"init",init_flag
 
-.passedinit:
+.jump:
 	bsr.w	vdpinit
 	bsr.w	sw_init
 	move.b	#gamemd,gmmode.w
@@ -4111,7 +4111,7 @@ score_act:	act_ptr	score
 objid_1D:	act_ptr	noact
 objid_1E:	act_ptr	noact
 flower_act:	act_ptr	flower
-objid_20:	act_ptr	obj20
+kuzure_act:	act_ptr	kuzureru_tikei
 objid_21:	act_ptr	obj21
 objid_22:	act_ptr	obj22
 objid_23:	act_ptr	obj23
@@ -5621,105 +5621,6 @@ loc_2080DA:
 	include	"Actors/1B - Iwa.asm"
 	include	"Actors/0A, 0F - Spring, Koma.asm"
 	include	"Actors/10, 11 - Rings.asm"
-
-bigringpat:
-	dc.w	byte_208D82-bigringpat
-	dc.w	byte_208DB5-bigringpat
-	dc.w	byte_208DDE-bigringpat
-	dc.w	byte_208DF3-bigringpat
-byte_208D82:
-	dc.b	10
-	dc.b	$E0,8,0,0,$E8
-	dc.b	$E0,8,0,3,0
-	dc.b	$E8,$C,0,6,$E0
-	dc.b	$E8,$C,0,$A,0
-	dc.b	$F0,7,0,$E,$E0
-	dc.b	$F0,7,0,$16,$10
-	dc.b	$10,$C,0,$1E,$E0
-	dc.b	$10,$C,0,$22,0
-	dc.b	$18,8,0,$26,$E8
-	dc.b	$18,8,0,$29,0
-byte_208DB5:
-	dc.b	8
-	dc.b	$E0,$C,0,$2C,$F0
-	dc.b	$E8,8,0,$30,$E8
-	dc.b	$E8,9,0,$33,0
-	dc.b	$F0,7,0,$39,$E8
-	dc.b	-8,5,0,$41,8
-	dc.b	8,9,0,$45,0
-	dc.b	$10,8,0,$4B,$E8
-	dc.b	$18,$C,0,$4E,$F0
-byte_208DDE:
-	dc.b	4
-	dc.b	$E0,7,0,$52,$F4
-	dc.b	$E0,3,8,$52,4
-	dc.b	0,7,0,$5A,$F4
-	dc.b	0,3,8,$5A,4
-byte_208DF3:
-	dc.b	8
-	dc.b	$E0,$C,8,$2C,$F0
-	dc.b	$E8,8,8,$30,0
-	dc.b	$E8,9,8,$33,$E8
-	dc.b	$F0,7,8,$39,8
-	dc.b	-8,5,8,$41,$E8
-	dc.b	8,9,8,$45,$E8
-	dc.b	$10,8,8,$4B,0
-	dc.b	$18,$C,8,$4E,$F0
-
-off_208E1C:
-	dc.w	byte_208E2C-off_208E1C
-	dc.w	byte_208E37-off_208E1C
-	dc.w	byte_208E4C-off_208E1C
-	dc.w	byte_208E61-off_208E1C
-	dc.w	byte_208E76-off_208E1C
-	dc.w	byte_208E8B-off_208E1C
-	dc.w	byte_208EA0-off_208E1C
-	dc.w	byte_208EAB-off_208E1C
-byte_208E2C:
-	dc.b	2
-	dc.b	$E0,$F,0,0,0
-	dc.b	0,$F,$10,0,0
-byte_208E37:
-	dc.b	4
-	dc.b	$E0,$F,0,$10,$F0
-	dc.b	$E0,7,0,$20,$10
-	dc.b	0,$F,$10,$10,$F0
-	dc.b	0,7,$10,$20,$10
-byte_208E4C:
-	dc.b	4
-	dc.b	$E0,$F,0,$28,$E8
-	dc.b	$E0,$B,0,$38,8
-	dc.b	0,$F,$10,$28,$E8
-	dc.b	0,$B,$10,$38,8
-byte_208E61:
-	dc.b	4
-	dc.b	$E0,$F,8,$34,$E0
-	dc.b	$E0,$F,0,$34,0
-	dc.b	0,$F,$18,$34,$E0
-	dc.b	0,$F,$10,$34,0
-byte_208E76:
-	dc.b	4
-	dc.b	$E0,$B,8,$38,$E0
-	dc.b	$E0,$F,8,$28,-8
-	dc.b	0,$B,$18,$38,$E0
-	dc.b	0,$F,$18,$28,-8
-byte_208E8B:
-	dc.b	4
-	dc.b	$E0,7,8,$20,$E0
-	dc.b	$E0,$F,8,$10,$F0
-	dc.b	0,7,$18,$20,$E0
-	dc.b	0,$F,$18,$10,$F0
-byte_208EA0:
-	dc.b	2
-	dc.b	$E0,$F,8,0,$E0
-	dc.b	0,$F,$18,0,$E0
-byte_208EAB:
-	dc.b	4
-	dc.b	$E0,$F,0,$44,$E0
-	dc.b	$E0,$F,8,$44,0
-	dc.b	0,$F,$10,$44,$E0
-	dc.b	0,$F,$18,$44,0
-
 	include	"Actors/12 - Block.asm"
 	include	"Actors/19, 1A - Item.asm"
 	include	"Actors/1C - Score.asm"
@@ -11031,7 +10932,7 @@ byte_20D010:
 	dc.b	-8,9,8,8,0
 	even
 
-obj20:
+kuzureru_tikei:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
 	move.w	off_20D030(pc,d0.w),d0
@@ -11039,12 +10940,12 @@ obj20:
 	jmp	actionsub.l
 
 off_20D030:
-	dc.w	loc_20D038-off_20D030
-	dc.w	loc_20D0AC-off_20D030
-	dc.w	loc_20D0F2-off_20D030
-	dc.w	loc_20D136-off_20D030
+	dc.w	acta_init-off_20D030
+	dc.w	acta_check-off_20D030
+	dc.w	actb_wait-off_20D030
+	dc.w	actb_down-off_20D030
 
-loc_20D038:
+acta_init:
 	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#3,sprpri(a0)
@@ -11082,7 +10983,7 @@ loc_20D0A2:
 	addq.b	#2,d1
 	move.b	d1,sprvsize(a0)
 
-loc_20D0AC:
+acta_check:
 	tst.b	actflg(a0)
 	bpl.s	locret_20D0E0
 	move.w	xposi(a0),d3
@@ -11108,7 +11009,7 @@ loc_20D0E2:
 	bpl.w	loc_20D170
 	bra.w	loc_20D262
 
-loc_20D0F2:
+actb_wait:
 	lea	act2A(a0),a3
 	addi.w	#-1,(a3)
 	bne.w	loc_20D102
@@ -11133,7 +11034,7 @@ sub_20D11E:
 locret_20D134:
 	rts
 
-loc_20D136:
+actb_down:
 	move.l	act2C(a0),d0
 	add.l	d0,yposi(a0)
 	addi.l	#$4000,act2C(a0)
@@ -12431,9 +12332,9 @@ sub_20DFF4:
 	jmp	sub_2059B8.l
 
 mapinittbl:
-	dc.l	ddevid_03<<24+spz_8x8
-	dc.l	ddevid_02<<24+spz_16x16
-	dc.l	spz_256x256
+	dc.l	ddevid_03<<24+zone1cg
+	dc.l	ddevid_02<<24+zone1blk
+	dc.l	zone1map
 	dc.w	bgm_GHZ
 	dc.b	colorzone1,colorzone1
 	even
@@ -12473,7 +12374,7 @@ ddevid_0E:	ddev_ptr	ddev_0E
 ddevid_0F:	ddev_ptr	ddev_0F
 
 ddev_00:	ddev_header
-	ddev_entry	spz_8x8,0
+	ddev_entry	zone1cg,0
 ddev_00_end:
 
 ddev_01:	ddev_header
@@ -12686,7 +12587,7 @@ ddev_unused_2_end:
 	even
 
 mapwk:
-	incbin	"Leftovers/Chunks.unc"
+	incbin	"Leftovers/Chunks/Chunks.unc"
 	even
 
 	align	$210000+mapsize*$6C
@@ -12699,10 +12600,10 @@ playcg:
 	even
 
 playpat:
-	include	"Mappings/Player.asm"
+	include	"Patterns/Player.asm"
 
 playwrtpat:
-	include	"Mappings/Player DPLCs.asm"
+	include	"Patterns/Wrt/Player.asm"
 
 unk_22E3AC:
 	incbin	"Sound/Z80_3.bin"
@@ -12904,31 +12805,31 @@ zone1_1b:
 zone1_1z:
 	dc.l 0
 zone1_2a:
-	incbin	"Layout/GHZ2 Foreground (Sonic 1).bin"
+	incbin	"Leftovers/Layout/GHZ2 Foreground (Sonic 1).bin"
 	even
 zone1_2z:
 	dc.l 0
 zone1_3a:
-	incbin	"Layout/GHZ3 Foreground (Sonic 1).bin"
+	incbin	"Leftovers/Layout/GHZ3 Foreground (Sonic 1).bin"
 	even
 zone1_3b:
 	dc.l 0
 zone1_4:
 	dc.l 0
 
-spz_16x16:
+zone1blk:
 	incbin	"Blocks/Blocks.nem"
 	even
 
-spz_8x8:
+zone1cg:
 	incbin	"Art/BitDev/8x8 - SPZ.nem"
 	even
 
-spz_256x256:
+zone1map:
 	incbin	"Chunks/Chunks.kos"
 	even
 
-	incbin	"Leftovers/Chunks.kos"
+	incbin	"Leftovers/Chunks/Chunks.kos"
 	even
 
 	incbin	"Unknown/Unk2.kos"

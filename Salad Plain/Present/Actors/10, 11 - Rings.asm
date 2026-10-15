@@ -346,3 +346,101 @@ ringsp7:
 ringsp8:
 	dc.b	0
 	even
+
+bigringpat:
+	dc.w	byte_208D82-bigringpat
+	dc.w	byte_208DB5-bigringpat
+	dc.w	byte_208DDE-bigringpat
+	dc.w	byte_208DF3-bigringpat
+byte_208D82:
+	dc.b	10
+	dc.b	$E0,8,0,0,$E8
+	dc.b	$E0,8,0,3,0
+	dc.b	$E8,$C,0,6,$E0
+	dc.b	$E8,$C,0,$A,0
+	dc.b	$F0,7,0,$E,$E0
+	dc.b	$F0,7,0,$16,$10
+	dc.b	$10,$C,0,$1E,$E0
+	dc.b	$10,$C,0,$22,0
+	dc.b	$18,8,0,$26,$E8
+	dc.b	$18,8,0,$29,0
+byte_208DB5:
+	dc.b	8
+	dc.b	$E0,$C,0,$2C,$F0
+	dc.b	$E8,8,0,$30,$E8
+	dc.b	$E8,9,0,$33,0
+	dc.b	$F0,7,0,$39,$E8
+	dc.b	-8,5,0,$41,8
+	dc.b	8,9,0,$45,0
+	dc.b	$10,8,0,$4B,$E8
+	dc.b	$18,$C,0,$4E,$F0
+byte_208DDE:
+	dc.b	4
+	dc.b	$E0,7,0,$52,$F4
+	dc.b	$E0,3,8,$52,4
+	dc.b	0,7,0,$5A,$F4
+	dc.b	0,3,8,$5A,4
+byte_208DF3:
+	dc.b	8
+	dc.b	$E0,$C,8,$2C,$F0
+	dc.b	$E8,8,8,$30,0
+	dc.b	$E8,9,8,$33,$E8
+	dc.b	$F0,7,8,$39,8
+	dc.b	-8,5,8,$41,$E8
+	dc.b	8,9,8,$45,$E8
+	dc.b	$10,8,8,$4B,0
+	dc.b	$18,$C,8,$4E,$F0
+
+off_208E1C:
+	dc.w	byte_208E2C-off_208E1C
+	dc.w	byte_208E37-off_208E1C
+	dc.w	byte_208E4C-off_208E1C
+	dc.w	byte_208E61-off_208E1C
+	dc.w	byte_208E76-off_208E1C
+	dc.w	byte_208E8B-off_208E1C
+	dc.w	byte_208EA0-off_208E1C
+	dc.w	byte_208EAB-off_208E1C
+byte_208E2C:
+	dc.b	2
+	dc.b	$E0,$F,0,0,0
+	dc.b	0,$F,$10,0,0
+byte_208E37:
+	dc.b	4
+	dc.b	$E0,$F,0,$10,$F0
+	dc.b	$E0,7,0,$20,$10
+	dc.b	0,$F,$10,$10,$F0
+	dc.b	0,7,$10,$20,$10
+byte_208E4C:
+	dc.b	4
+	dc.b	$E0,$F,0,$28,$E8
+	dc.b	$E0,$B,0,$38,8
+	dc.b	0,$F,$10,$28,$E8
+	dc.b	0,$B,$10,$38,8
+byte_208E61:
+	dc.b	4
+	dc.b	$E0,$F,8,$34,$E0
+	dc.b	$E0,$F,0,$34,0
+	dc.b	0,$F,$18,$34,$E0
+	dc.b	0,$F,$10,$34,0
+byte_208E76:
+	dc.b	4
+	dc.b	$E0,$B,8,$38,$E0
+	dc.b	$E0,$F,8,$28,-8
+	dc.b	0,$B,$18,$38,$E0
+	dc.b	0,$F,$18,$28,-8
+byte_208E8B:
+	dc.b	4
+	dc.b	$E0,7,8,$20,$E0
+	dc.b	$E0,$F,8,$10,$F0
+	dc.b	0,7,$18,$20,$E0
+	dc.b	0,$F,$18,$10,$F0
+byte_208EA0:
+	dc.b	2
+	dc.b	$E0,$F,8,0,$E0
+	dc.b	0,$F,$18,0,$E0
+byte_208EAB:
+	dc.b	4
+	dc.b	$E0,$F,0,$44,$E0
+	dc.b	$E0,$F,8,$44,0
+	dc.b	0,$F,$10,$44,$E0
+	dc.b	0,$F,$18,$44,0

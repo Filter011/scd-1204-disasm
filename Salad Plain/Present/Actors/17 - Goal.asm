@@ -85,4 +85,4 @@ goalchg0:
 	even
 
 goalpat:
-	include	"Mappings/Goal.asm"
+	include	"Patterns/Goal.asm"
