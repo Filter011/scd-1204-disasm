@@ -1,5 +1,5 @@
 shooter:
-	bsr.w	sub_2023EA
+	bsr.w	main_chk
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
 	move.w	off_207B78(pc,d0.w),d1

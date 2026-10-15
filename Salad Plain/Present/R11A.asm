@@ -1547,7 +1547,7 @@ loc_20133E:
 	tst.l	dword_FFF680.w
 	bne.s	loc_20133E
 	bsr.w	play_act_set
-	move.b	#score_act,byte_FFD080.w
+	move.b	#score_act,scorewk.w
 	move.b	#score_act,byte_FFD0C0.w
 	move.b	#1,byte_FFD0C0+userflag.w
 	bsr.w	sub_2015E8
@@ -1620,7 +1620,7 @@ loc_20146A:
 play_act_set:
 	lea	playerwk.w,a1
 	moveq	#play00_act,d0
-	tst.b	byte_FF1219
+	tst.b	main_play
 	beq.s	loc_201490
 	lea	byte_FFD040.w,a1
 	moveq	#objid_02,d0
@@ -2270,9 +2270,9 @@ loc_201EE0:
 	include	"Decompression/MapDev.asm"
 	include	"Decompression/UnLZE.asm"
 
-sub_2023EA:
+main_chk:
 	lea	playerwk.w,a6
-	tst.b	byte_FF1219
+	tst.b	main_play
 	beq.s	locret_2023FA
 	lea	byte_FFD040.w,a6
 
@@ -2280,7 +2280,7 @@ locret_2023FA:
 	rts
 
 scr_set:
-	bsr.s	sub_2023EA
+	bsr.s	main_chk
 	moveq	#0,d0
 	move.b	d0,scrh_flag.w
 	move.b	d0,scrv_flag.w
@@ -2415,7 +2415,7 @@ scrbinit:
 	rts
 
 scroll:
-	bsr.w	sub_2023EA
+	bsr.w	main_chk
 	tst.b	scroll_start.w
 	beq.s	loc_20255C
 	rts
@@ -3492,8 +3492,9 @@ mapinit:
 	movea.l	(a2)+,a0
 	lea	mapwk.l,a1
 	bsr.w	unlze
-	bsr.w	layoutload
+	bsr.w	mapset
 	move.w	(a2)+,d0
+;	bsr.w	bgmset
 	move.w	(a2),d0
 	andi.w	#$FF,d0
 	bsr.w	colorset
@@ -3501,7 +3502,7 @@ mapinit:
 	addq.w	#4,a2
 	btst	#7,time_flag
 	beq.s	loc_202FD6
-	jmp	loc_20DBD6.l
+	jmp	enecginit.l
 
 loc_202FD6:
 	moveq	#0,d0
@@ -3512,14 +3513,14 @@ loc_202FD6:
 locret_202FE0:
 	rts
 
-layoutload:
+mapset:
 	lea	mapwka.w,a3
 	move.w	#(mapwka_end-mapwka)/2-1,d1
 	moveq	#0,d0
 
-loc_202FEC:
+.loop:
 	move.l	d0,(a3)+
-	dbf	d1,loc_202FEC
+	dbf	d1,.loop
 
 	lea	mapwka.w,a3
 	moveq	#0,d1
@@ -3551,7 +3552,7 @@ loc_203020:
 	rts
 
 scrchk:
-	bsr.w	sub_2023EA
+	bsr.w	main_chk
 	moveq	#0,d0
 	move.b	stageno,d0
 	add.w	d0,d0
@@ -4166,7 +4167,7 @@ sub_2035B0:
 	lea	byecnt1.w,a4
 	lea	actwk.w,a5
 	lea	byte_FFD040.w,a6
-	tst.b	byte_FF1219
+	tst.b	main_play
 	beq.s	loc_2035DC
 	move.w	swdata1.w,d0
 	moveq	#1,d1
@@ -10990,7 +10991,7 @@ acta_check:
 	move.w	yposi(a0),d4
 	lea	playerwk.w,a3
 	lea	byte_FFD040.w,a1
-	move.b	byte_FF1219,d0
+	move.b	main_play,d0
 	beq.w	loc_20D0CE
 	exg.l	a1,a3
 
@@ -11040,7 +11041,7 @@ actb_down:
 	addi.l	#$4000,act2C(a0)
 	move.w	yposi(a0),d0
 	lea	playerwk.w,a1
-	move.b	byte_FF1219,d1
+	move.b	main_play,d1
 	beq.w	loc_20D15C
 	lea	byte_FFD040.w,a1
 
@@ -11161,7 +11162,7 @@ loc_20D262:
 
 loc_20D2A2:
 	lea	playerwk.w,a1
-	move.b	byte_FF1219,d0
+	move.b	main_play,d0
 	beq.w	loc_20D2B4
 	lea	byte_FFD040.w,a1
 
@@ -12015,7 +12016,7 @@ byte_20DB98:
 	dc.b	0,5,8,$35,$20
 	even
 
-loc_20DBD6:
+enecginit:
 	lea	word_20DC28(pc),a1
 	moveq	#0,d0
 	moveq	#0,d1

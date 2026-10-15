@@ -15,7 +15,7 @@ loc_20362C:
 	moveq	#0,d0
 	_move.b	actno(a0),d0
 	subq.b	#1,d0
-	cmp.b	byte_FF1219,d0
+	cmp.b	main_play,d0
 	bne.s	loc_203648
 	move.b	#1,act29(a0)
 
@@ -2284,7 +2284,7 @@ loc_204DDE:
 	_tst.b	actno(a5)
 	beq.w	loc_204DFA
 	move.w	#0,gameflag
-	eori.b	#1,byte_FF1219
+	eori.b	#1,main_play
 	bra.w	frameout
 
 loc_204DFA:

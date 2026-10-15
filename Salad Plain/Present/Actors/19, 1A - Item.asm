@@ -224,7 +224,7 @@ item2move:
 loc_20935A:
 	addq.b	#word,r_no0(a0)
 	move.w	#29,pattim(a0)
-	jsr	sub_2023EA.l
+	jsr	main_chk.l
 	move.b	mstno(a0),d0
 	bne.s	loc_209386
 

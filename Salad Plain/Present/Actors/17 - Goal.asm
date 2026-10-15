@@ -20,7 +20,7 @@ goal_init:
 	move.l	#goalpat,patbase(a0)
 
 goal_move0:
-	jsr	sub_2023EA.l
+	jsr	main_chk.l
 	move.w	xposi(a0),d0
 	cmp.w	xposi(a6),d0
 	bhs.s	locret_20DF3E

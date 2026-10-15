@@ -21,7 +21,7 @@ pl_suu:			ds.b	1
 	ds.b	1
 pl_air:			ds.w	1
 	ds.b	3
-byte_FF1219:		ds.b	1
+main_play:		ds.b	1
 pltimeover_f:		ds.b	1
 plring_f2:		ds.b	1
 pl_suu_f:		ds.b	1
@@ -154,7 +154,7 @@ hscrollwork_end_padded:
 actwk:
 playerwk:		ds.b	actfree
 byte_FFD040:		ds.b	actfree
-byte_FFD080:		ds.b	actfree
+scorewk:		ds.b	actfree
 byte_FFD0C0:		ds.b	actfree
 byte_FFD100:		ds.b	actfree
 byte_FFD140:		ds.b	actfree

@@ -34,7 +34,7 @@ bariamove:
 	bne.s	locret_20590A
 	tst.b	plpower_m
 	bne.s	locret_20590A
-	jsr	sub_2023EA.l
+	jsr	main_chk.l
 	move.w	xposi(a6),xposi(a0)
 	move.w	yposi(a6),yposi(a0)
 	move.b	cddat(a6),cddat(a0)
@@ -91,7 +91,7 @@ loc_205966:
 	lea	(a1,d0.w),a1
 	move.w	(a1)+,xposi(a0)
 	move.w	(a1)+,yposi(a0)
-	jsr	sub_2023EA.l
+	jsr	main_chk.l
 	move.b	cddat(a6),cddat(a0)
 	lea	bariachg.l,a1
 	jsr	patchg.l
