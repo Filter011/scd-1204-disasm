@@ -4749,7 +4749,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$F
 	dc.b	4
-	dc.l	obj0F_map
+	dc.l	komapat
 	dc.w	$4D4
 	dc.b	0
 	dc.b	0
@@ -4757,7 +4757,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$F
 	dc.b	4
-	dc.l	obj0F_map
+	dc.l	komapat
 	dc.w	$493
 	dc.b	0
 	dc.b	0
@@ -4765,7 +4765,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map
+	dc.l	springpat
 	dc.w	$520
 	dc.b	0
 	dc.b	0
@@ -4773,7 +4773,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map
+	dc.l	springpat
 	dc.w	$520
 	dc.b	0
 	dc.b	2
@@ -4781,7 +4781,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_2
+	dc.l	spring90pat
 	dc.w	$520
 	dc.b	4
 	dc.b	0
@@ -4789,7 +4789,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_2
+	dc.l	spring90pat
 	dc.w	$520
 	dc.b	4
 	dc.b	1
@@ -4797,7 +4797,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$3A1
 	dc.b	8
 	dc.b	0
@@ -4805,7 +4805,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$3A1
 	dc.b	8
 	dc.b	2
@@ -4813,7 +4813,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$3A1
 	dc.b	8
 	dc.b	1
@@ -4821,7 +4821,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$3A1
 	dc.b	8
 	dc.b	3
@@ -4829,7 +4829,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map
+	dc.l	springpat
 	dc.w	$2520
 	dc.b	2
 	dc.b	0
@@ -4837,7 +4837,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map
+	dc.l	springpat
 	dc.w	$2520
 	dc.b	2
 	dc.b	2
@@ -4845,23 +4845,23 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_2
-	dc.w	$2520
-	dc.b	6
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	$A
-	dc.b	1
-	dc.l	obj0A_map_2
+	dc.l	spring90pat
 	dc.w	$2520
 	dc.b	6
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	$A
+	dc.b	1
+	dc.l	spring90pat
+	dc.w	$2520
+	dc.b	6
 	dc.b	1
 	dc.b	0
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$23A1
 	dc.b	$A
 	dc.b	0
@@ -4869,7 +4869,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$23A1
 	dc.b	$A
 	dc.b	2
@@ -4877,7 +4877,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$23A1
 	dc.b	$A
 	dc.b	1
@@ -4885,7 +4885,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$A
 	dc.b	1
-	dc.l	obj0A_map_3
+	dc.l	spring45pat
 	dc.w	$23A1
 	dc.b	$A
 	dc.b	3
@@ -5618,603 +5618,8 @@ loc_2080DA:
 	rts
 
 	include	"Actors/09 - Dai_K.asm"
-
-iwa:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	move.w	iwa_move_tbl(pc,d0.w),d0
-	jsr	iwa_move_tbl(pc,d0.w)
-	jsr	actionsub.l
-	jmp	frameout_s.l
-
-iwa_move_tbl:
-	dc.w	iwa_init-iwa_move_tbl
-	dc.w	iwa_move-iwa_move_tbl
-
-iwa_init:
-	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
-	move.b	#4,sprpri(a0)
-	move.l	#iwapat,patbase(a0)
-	move.b	#$10,sprhsize(a0)
-	move.b	#$10,sprvsize(a0)
-	move.b	#0,patno(a0)
-	moveq	#$B,d0
-	jsr	pa_set.l
-
-iwa_move:
-	tst.b	actflg(a0)
-	bpl.s	locret_2083D8
-	lea	playerwk.w,a1
-	bsr.w	sub_2083CA
-	lea	byte_FFD040.w,a1
-
-sub_2083CA:
-	move.w	xposi(a0),d3
-	move.w	yposi(a0),d4
-	jmp	ride_on_chk.l
-
-locret_2083D8:
-	rts
-
-iwapat:
-	dc.w	byte_2083DC-iwapat
-
-byte_2083DC:
-	dc.b	2
-	dc.b	-8,2,0,0,$EC
-	dc.b	$F0,$F,0,3,$F4
-	even
-
-koma:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	move.w	off_208416(pc,d0.w),d0
-	jsr	off_208416(pc,d0.w)
-	move.w	act36(a0),d0
-	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
-	subi.w	#$80,d1
-	andi.w	#$FF80,d1
-	sub.w	d1,d0
-	cmpi.w	#$280,d0
-	bhi.w	frameout
-	rts
-
-off_208416:
-	dc.w	loc_20841C-off_208416
-	dc.w	loc_20848A-off_208416
-	dc.w	loc_2084AA-off_208416
-
-loc_20841C:
-	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
-	move.b	#4,sprpri(a0)
-	move.l	#obj0F_map,patbase(a0)
-	move.b	#8,sprhsize(a0)
-	move.b	#8,sprvsize(a0)
-	move.w	xposi(a0),act36(a0)
-	move.w	#$180,xspeed(a0)
-	moveq	#$E,d0
-	jsr	pa_set.l
-	jsr	actwkchk.l
-	beq.s	loc_208462
-	jmp	frameout.l
-
-loc_208462:
-	_move.b	#spring_act,actno(a1)
-	move.w	xposi(a0),xposi(a1)
-	move.w	yposi(a0),yposi(a1)
-	subi.w	#$10,yposi(a1)
-	move.b	#$F0,act39(a1)
-	move.w	a0,act34(a1)
-	move.b	userflag(a0),userflag(a1)
-
-loc_20848A:
-	jsr	emycol_d.l
-	tst.w	d1
-	bpl.s	loc_2084A4
-	add.w	d1,yposi(a0)
-	move.w	yposi(a0),act32(a0)
-	addq.b	#word,r_no0(a0)
-	rts
-
-loc_2084A4:
-	addq.w	#1,yposi(a0)
-	rts
-
-loc_2084AA:
-	tst.w	time_stop
-	bne.s	loc_2084E0
-	jsr	emycol_d.l
-	add.w	d1,yposi(a0)
-	move.w	act32(a0),d0
-	sub.w	yposi(a0),d0
-	cmpi.w	#$C,d0
-	blo.s	loc_2084CE
-	neg.w	xspeed(a0)
-
-loc_2084CE:
-	jsr	speedset2.l
-	lea	off_2089C0.l,a1
-	jsr	patchg.l
-
-loc_2084E0:
-	jmp	actionsub.l
-
-spring:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	beq.s	loc_2084F4
-	tst.b	actflg(a0)
-	bpl.s	loc_2084FC
-
-loc_2084F4:
-	move.w	off_20854E(pc,d0.w),d1
-	jsr	off_20854E(pc,d1.w)
-
-loc_2084FC:
-	bsr.w	actionsub
-	move.l	#$FFFF0000,d1
-	move.w	act34(a0),d1
-	beq.s	loc_20852E
-	movea.l	d1,a1
-	move.w	xposi(a1),xposi(a0)
-	move.w	yposi(a1),yposi(a0)
-	move.b	act38(a0),d0
-	ext.w	d0
-	add.w	d0,xposi(a0)
-	move.b	act39(a0),d0
-	ext.w	d0
-	add.w	d0,yposi(a0)
-
-loc_20852E:
-	move.w	act36(a0),d0
-	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
-	subi.w	#$80,d1
-	andi.w	#$FF80,d1
-	sub.w	d1,d0
-	cmpi.w	#$280,d0
-	bhi.w	frameout
-	rts
-
-off_20854E:
-	dc.w	loc_208568-off_20854E
-	dc.w	loc_208624-off_20854E
-	dc.w	loc_208670-off_20854E
-	dc.w	loc_208686-off_20854E
-	dc.w	loc_2086AC-off_20854E
-	dc.w	loc_208734-off_20854E
-	dc.w	loc_20874E-off_20854E
-	dc.w	loc_20876E-off_20854E
-	dc.w	loc_2087B8-off_20854E
-	dc.w	loc_2087CE-off_20854E
-	dc.w	loc_2087E0-off_20854E
-	dc.w	loc_208896-off_20854E
-	dc.w	loc_2088A0-off_20854E
-
-loc_208568:
-	addq.b	#word,r_no0(a0)
-	move.l	#obj0A_map,patbase(a0)
-	move.w	#$520,sproffset(a0)
-	ori.b	#4,actflg(a0)
-	move.b	#$10,sprhsize(a0)
-	move.b	#8,sprvsize(a0)
-	move.w	xposi(a0),act36(a0)
-	move.b	#4,sprpri(a0)
-	move.b	userflag(a0),d0
-	btst	#2,d0
-	beq.s	loc_2085BE
-	move.b	#8,r_no0(a0)
-	move.b	#8,sprhsize(a0)
-	move.b	#$10,sprvsize(a0)
-	move.l	#obj0A_map_2,patbase(a0)
-	bra.s	loc_2085FA
-
-loc_2085BE:
-	btst	#3,d0
-	beq.s	loc_2085E6
-	move.b	#$14,r_no0(a0)
-	move.b	#$10,sprvsize(a0)
-	move.l	#obj0A_map_3,patbase(a0)
-	move.l	d0,-(sp)
-	moveq	#$F,d0
-	jsr	pa_set.l
-	move.l	(sp)+,d0
-	bra.s	loc_2085FA
-
-loc_2085E6:
-	btst	#1,actflg(a0)
-	beq.s	loc_2085FA
-	move.b	#$E,r_no0(a0)
-	bset	#1,cddat(a0)
-
-loc_2085FA:
-	btst	#1,d0
-	beq.s	loc_208606
-	bset	#5,sproffset(a0)
-
-loc_208606:
-	andi.w	#2,d0
-	move.w	word_208612(pc,d0.w),act30(a0)
-	rts
-
-word_208612:
-	dc.w	$F000
-	dc.w	$F600
-
-sub_208616:
-	move.w	xposi(a0),d3
-	move.w	yposi(a0),d4
-	jmp	ride_on_chk.l
-
-loc_208624:
-	tst.b	actflg(a0)
-	bpl.s	locret_20863C
-	lea	playerwk.w,a1
-	bsr.s	sub_208616
-	beq.s	loc_208634
-	bsr.s	sub_20863E
-
-loc_208634:
-	lea	byte_FFD040.w,a1
-	bsr.s	sub_208616
-	bne.s	sub_20863E
-
-locret_20863C:
-	rts
-
-sub_20863E:
-	move.b	#4,r_no0(a0)
-	addq.w	#8,yposi(a1)
-	move.w	act30(a0),yspeed(a1)
-	bset	#cd_walk,cddat(a1)
-	bclr	#cd_ride,cddat(a1)
-	move.b	#$10,mstno(a1)
-	bclr	#3,cddat(a0)
-	move.w	#$98,d0
-	jmp	soundset.l
-
-loc_208670:
-	lea	playerwk.w,a1
-	bsr.s	sub_208616
-	lea	byte_FFD040.w,a1
-	bsr.s	sub_208616
-	lea	off_20891C.l,a1
-	bra.w	patchg
-
-loc_208686:
-	bclr	#3,cddat(a0)
-	move.b	#1,mstrestart(a0)
-	subq.b	#4,r_no0(a0)
-	move.b	#0,patno(a0)
-	rts
-
-sub_20869E:
-	move.w	xposi(a0),d3
-	move.w	yposi(a0),d4
-	jmp	ride_on_chk.l
-
-loc_2086AC:
-	tst.b	actflg(a0)
-	bpl.s	locret_2086D0
-	lea	playerwk.w,a1
-	bsr.s	sub_20869E
-	btst	#5,cddat(a0)
-	beq.s	loc_2086C2
-	bsr.s	sub_2086D2
-
-loc_2086C2:
-	lea	byte_FFD040.w,a1
-	bsr.s	sub_20869E
-	btst	#5,cddat(a0)
-	bne.s	sub_2086D2
-
-locret_2086D0:
-	rts
-
-sub_2086D2:
-	move.b	#$A,r_no0(a0)
-	move.w	act30(a0),xspeed(a1)
-	addq.w	#8,xposi(a1)
-	bset	#cd_left,cddat(a1)
-	btst	#0,cddat(a0)
-	bne.s	loc_208700
-	subi.w	#$10,xposi(a1)
-	neg.w	xspeed(a1)
-	bclr	#cd_left,cddat(a1)
-
-loc_208700:
-	move.w	#$F,act3E(a1)
-	move.w	xspeed(a1),mspeed(a1)
-	btst	#cd_ball,cddat(a1)
-	bne.s	loc_20871A
-	move.b	#0,mstno(a1)
-
-loc_20871A:
-	clr.b	direc(a1)
-	bclr	#5,cddat(a0)
-	bclr	#cd_push,cddat(a1)
-	move.w	#$98,d0
-	jmp	soundset.l
-
-loc_208734:
-	lea	playerwk.w,a1
-	bsr.w	sub_20869E
-	lea	byte_FFD040.w,a1
-	bsr.w	sub_20869E
-	lea	off_20891C.l,a1
-	bra.w	patchg
-
-loc_20874E:
-	move.b	#1,mstrestart(a0)
-	subq.b	#4,r_no0(a0)
-	move.b	#0,patno(a0)
-	rts
-
-sub_208760:
-	move.w	xposi(a0),d3
-	move.w	yposi(a0),d4
-	jmp	ride_on_chk.l
-
-loc_20876E:
-	tst.b	actflg(a0)
-	bpl.s	locret_208786
-	lea	playerwk.w,a1
-	bsr.s	sub_208760
-	beq.s	loc_20877E
-	bsr.s	sub_208788
-
-loc_20877E:
-	lea	byte_FFD040.w,a1
-	bsr.s	sub_208760
-	bne.s	sub_208788
-
-locret_208786:
-	rts
-
-sub_208788:
-	move.b	#$10,r_no0(a0)
-	subq.w	#8,yposi(a1)
-	move.w	act30(a0),yspeed(a1)
-	neg.w	yspeed(a1)
-	bset	#cd_walk,cddat(a1)
-	bclr	#cd_ride,cddat(a1)
-	bclr	#3,cddat(a0)
-	move.w	#$98,d0
-	jsr	soundset.l
-
-loc_2087B8:
-	lea	playerwk.w,a1
-	bsr.s	sub_208760
-	lea	byte_FFD040.w,a1
-	bsr.s	sub_208760
-	lea	off_20891C.l,a1
-	bra.w	patchg
-
-loc_2087CE:
-	move.b	#1,mstrestart(a0)
-	subq.b	#4,r_no0(a0)
-	move.b	#0,patno(a0)
-	rts
-
-loc_2087E0:
-	tst.b	actflg(a0)
-	bpl.s	locret_20880C
-	lea	playerwk.w,a1
-	bsr.w	sub_208760
-	bne.s	loc_2087F8
-	btst	#5,cddat(a0)
-	beq.s	loc_2087FA
-
-loc_2087F8:
-	bsr.s	sub_20880E
-
-loc_2087FA:
-	lea	byte_FFD040.w,a1
-	bsr.w	sub_208760
-	bne.s	sub_20880E
-	btst	#5,cddat(a0)
-	bne.s	sub_20880E
-
-locret_20880C:
-	rts
-
-sub_20880E:
-	move.b	#$16,r_no0(a0)
-	moveq	#0,d0
-	move.b	#$D0,d0
-	jsr	sinset.l
-	move.w	act30(a0),d2
-	neg.w	d2
-	mulu.w	d2,d0
-	mulu.w	d2,d1
-	lsr.l	#8,d0
-	lsr.l	#8,d1
-	move.w	d0,yspeed(a1)
-	move.w	d1,xspeed(a1)
-	addq.w	#8,yposi(a1)
-	btst	#1,actflg(a0)
-	beq.s	loc_20884C
-	subi.w	#$10,yposi(a1)
-	neg.w	yspeed(a1)
-
-loc_20884C:
-	bclr	#cd_left,cddat(a1)
-	subq.w	#8,xposi(a1)
-	btst	#0,cddat(a0)
-	beq.s	loc_20886E
-	addi.w	#$10,xposi(a1)
-	bset	#cd_left,cddat(a1)
-	neg.w	xspeed(a1)
-
-loc_20886E:
-	bset	#cd_walk,cddat(a1)
-	bclr	#cd_ride,cddat(a1)
-	bclr	#cd_push,cddat(a1)
-	bclr	#3,cddat(a0)
-	bclr	#5,cddat(a0)
-	move.w	#$98,d0
-	jsr	soundset.l
-
-loc_208896:
-	lea	off_20891C.l,a1
-	bra.w	patchg
-
-loc_2088A0:
-	move.b	#1,mstrestart(a0)
-	subq.b	#4,r_no0(a0)
-	move.b	#0,patno(a0)
-	rts
-
-off_2088B2:
-	dc.w	unk_2088B6-off_2088B2
-	dc.w	unk_2088C2-off_2088B2
-
-unk_2088B6:
-	dc.b	0
-	dc.b	0,0,0,2,2,2,2,2,2,0
-	dc.b	$FC
-	even
-unk_2088C2:
-	dc.b	0
-	dc.b	4,3,3,5,5,5,5,5,5,3
-	dc.b	$FC
-	even
-
-off_2088CE:
-	dc.w	byte_2088DA-off_2088CE
-	dc.w	byte_2088E5-off_2088CE
-	dc.w	byte_2088EB-off_2088CE
-	dc.w	byte_2088FB-off_2088CE
-	dc.w	byte_208901-off_2088CE
-	dc.w	byte_208907-off_2088CE
-
-byte_2088DA:
-	dc.b	2
-	dc.b	-8,$C,0,0,$F0
-	dc.b	0,$C,0,4,$F0
-byte_2088E5:
-	dc.b	1
-	dc.b	0,$C,0,0,$F0
-byte_2088EB:
-	dc.b	3
-	dc.b	$E8,$C,0,0,$F0
-	dc.b	$F0,5,0,8,-8
-	dc.b	0,$C,0,$C,$F0
-byte_2088FB:
-	dc.b	1
-	dc.b	$F0,7,0,0,-8
-byte_208901:
-	dc.b	1
-	dc.b	$F0,3,0,4,-8
-byte_208907:
-	dc.b	4
-	dc.b	$F0,3,0,4,$10
-	dc.b	-8,9,0,8,-8
-	dc.b	$F0,0,0,0,-8
-	dc.b	8,0,0,3,-8
-
-off_20891C:
-	dc.w	unk_20891E-off_20891C
-
-unk_20891E:
-	dc.b	0
-	dc.b	0,1,1,2,2,2,2,2,2,1
-	dc.b	$FC
-	even
-
-obj0A_map:
-	dc.w	byte_208936-obj0A_map
-	dc.w	byte_208942-obj0A_map
-	dc.w	byte_208948-obj0A_map
-
-obj0A_map_2:
-	dc.w	byte_208958-obj0A_map_2
-	dc.w	byte_208964-obj0A_map_2
-	dc.w	byte_20896A-obj0A_map_2
-
-byte_208936:
-	dc.b	2
-	dc.b	-8,$C,0,0,$F0
-	dc.b	0,$C,0,4,$F0
-	even
-byte_208942:
-	dc.b	1
-	dc.b	0,$C,0,0,$F0
-	even
-byte_208948:
-	dc.b	3
-	dc.b	$E0,$C,0,0,$F0
-	dc.b	$E8,6,0,8,-8
-	dc.b	0,$C,0,$E,$F0
-	even
-byte_208958:
-	dc.b	2
-	dc.b	$F0,3,0,$12,0
-	dc.b	$F0,3,0,$16,-8
-	even
-byte_208964:
-	dc.b	1
-	dc.b	$F0,3,0,$12,-8
-	even
-byte_20896A:
-	dc.b	3
-	dc.b	$F0,3,0,$12,$18
-	dc.b	-8,9,0,$1A,0
-	dc.b	$F0,3,0,$20,-8
-	even
-
-obj0A_map_3:
-	dc.w	byte_208980-obj0A_map_3
-	dc.w	byte_208990-obj0A_map_3
-	dc.w	byte_2089A6-obj0A_map_3
-
-byte_208980:
-	dc.b	3
-	dc.b	$F0,8,0,0,$F0
-	dc.b	-8,$D,0,3,$F0
-	dc.b	8,8,0,$B,-8
-	even
-byte_208990:
-	dc.b	4
-	dc.b	$F0,5,0,$E,$F0
-	dc.b	-8,0,0,$12,0
-	dc.b	0,0,0,$13,$F0
-	dc.b	0,9,0,$14,-8
-	even
-byte_2089A6:
-	dc.b	5
-	dc.b	$E0,8,0,0,0
-	dc.b	$E8,$E,0,$1A,0
-	dc.b	$F0,1,0,$26,-8
-	dc.b	-8,1,0,$28,$F0
-	dc.b	0,5,0,$2A,-8
-	even
-
-off_2089C0:
-	dc.w	unk_2089C2-off_2089C0
-
-unk_2089C2:
-	dc.b	8
-	dc.b	0,1
-	dc.b	$FF
-	even
-
-obj0F_map:
-	dc.w	byte_2089CA-obj0F_map
-	dc.w	byte_2089D0-obj0F_map
-
-byte_2089CA:
-	dc.b	1
-	dc.b	-8,5,0,0,-8
-	even
-byte_2089D0:
-	dc.b	1
-	dc.b	-8,5,0,4,-8
-	even
-
+	include	"Actors/1B - Iwa.asm"
+	include	"Actors/0A, 0F - Spring, Koma.asm"
 	include	"Actors/10, 11 - Rings.asm"
 
 off_208D7A:
