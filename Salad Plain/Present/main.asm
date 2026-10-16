@@ -4127,7 +4127,7 @@ kuzure_act:	act_ptr	kuzureru_tikei
 objid_21:	act_ptr	obj21
 objid_22:	act_ptr	obj22
 objid_23:	act_ptr	obj23
-objid_24:	act_ptr	obj24
+friend_act:	act_ptr	friend
 objid_25:	act_ptr	noact
 objid_26:	act_ptr	obj26
 objid_27:	act_ptr	obj27
@@ -4905,7 +4905,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$24
 	dc.b	1
-	dc.l	obj24_map
+	dc.l	pat_friend0
 	dc.w	$3C7
 	dc.b	0
 	dc.b	0
@@ -4913,7 +4913,7 @@ byte_206B1A:
 	dc.b	0
 	dc.b	$24
 	dc.b	1
-	dc.l	obj24b_map
+	dc.l	pat_friend1
 	dc.w	$3C7
 	dc.b	1
 	dc.b	0
@@ -12088,223 +12088,44 @@ off_20DC6E:
 	dc.w	word_20DCB0-off_20DC6E
 	dc.w	word_20DCB2-off_20DC6E
 	dc.w	word_20DCB4-off_20DC6E
-word_20DC92:	dc.w	$23E7
-word_20DC94:	dc.w	$24DC
-word_20DC96:	dc.w	$245F
-word_20DC98:	dc.w	$2431
-word_20DC9A:	dc.w	$23E7
-word_20DC9C:	dc.w	$4363
-word_20DC9E:	dc.w	$33A
-word_20DCA0:	dc.w	$342
-word_20DCA2:	dc.w	$431E
-word_20DCA4:	dc.w	$4495
-word_20DCA6:	dc.w	$375
-word_20DCA8:	dc.w	$326
-word_20DCAA:	dc.w	$8357
-word_20DCAC:	dc.w	$475
-word_20DCAE:	dc.w	$384
-word_20DCB0:	dc.w	$3A1
-word_20DCB2:	dc.w	$422
-word_20DCB4:	dc.w	0
+word_20DC92:
+	dc.w	$23E7
+word_20DC94:
+	dc.w	$24DC
+word_20DC96:
+	dc.w	$245F
+word_20DC98:
+	dc.w	$2431
+word_20DC9A:
+	dc.w	$23E7
+word_20DC9C:
+	dc.w	$4363
+word_20DC9E:
+	dc.w	$33A
+word_20DCA0:
+	dc.w	$342
+word_20DCA2:
+	dc.w	$431E
+word_20DCA4:
+	dc.w	$4495
+word_20DCA6:
+	dc.w	$375
+word_20DCA8:
+	dc.w	$326
+word_20DCAA:
+	dc.w	$8357
+word_20DCAC:
+	dc.w	$475
+word_20DCAE:
+	dc.w	$384
+word_20DCB0:
+	dc.w	$3A1
+word_20DCB2:
+	dc.w	$422
+word_20DCB4:
+	dc.w	0
 
-obj24:
-	moveq	#0,d0
-	move.b	userflag(a0),d0
-	add.w	d0,d0
-	move.w	off_20DCCC(pc,d0.w),d0
-	jsr	off_20DCCC(pc,d0.w)
-	jmp	frameout_s.l
-
-off_20DCCC:
-	dc.w	loc_20DCD0-off_20DCCC
-	dc.w	loc_20DDCA-off_20DCCC
-
-loc_20DCD0:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	move.w	off_20DCDE(pc,d0.w),d0
-	jmp	off_20DCDE(pc,d0.w)
-
-off_20DCDE:
-	dc.w	loc_20DCE4-off_20DCDE
-	dc.w	loc_20DD22-off_20DCDE
-	dc.w	loc_20DD72-off_20DCDE
-
-loc_20DCE4:
-	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
-	move.b	#1,sprpri(a0)
-	move.b	#8,sprhs(a0)
-	move.b	#8,sprvsize(a0)
-	move.w	#$3CF,sproffset(a0)
-	move.l	#obj24_map,patbase(a0)
-	move.l	xposi(a0),act2A(a0)
-	move.l	yposi(a0),act2E(a0)
-	move.b	#1,act32(a0)
-	rts
-
-loc_20DD22:
-	move.b	act32(a0),d0
-	jsr	sinset.l
-	swap	d1
-	swap	d0
-	asr.l	#1,d1
-	asr.l	#1,d0
-	add.l	act2A(a0),d1
-	add.l	act2E(a0),d0
-	move.l	d1,xposi(a0)
-	move.l	d0,yposi(a0)
-	move.w	#$BCF,sproffset(a0)
-	addq.b	#1,act32(a0)
-	cmpi.b	#$7F,act32(a0)
-	bpl.w	loc_20DD6C
-
-loc_20DD58:
-	lea	obj24_ani.l,a1
-	jsr	patchg.l
-	jmp	actionsub.l
-	rts
-
-loc_20DD6C:
-	addq.b	#word,r_no0(a0)
-	bra.s	loc_20DD58
-
-loc_20DD72:
-	move.b	act32(a0),d0
-	jsr	sinset.l
-	swap	d1
-	swap	d0
-	asr.l	#1,d1
-	asr.l	#1,d0
-	add.l	act2A(a0),d1
-	add.l	act2E(a0),d0
-	move.l	d1,xposi(a0)
-	move.l	d0,yposi(a0)
-	move.w	#$3CF,sproffset(a0)
-	addi.b	#-1,act32(a0)
-	cmpi.b	#1,act32(a0)
-	bmi.w	loc_20DDAC
-	bra.s	loc_20DD58
-
-loc_20DDAC:
-	addi.b	#-word,r_no0(a0)
-	bra.s	loc_20DD58
-
-obj24_ani:
-	dc.w	unk_20DDB6-obj24_ani
-unk_20DDB6:
-	dc.b	19
-	dc.b	0,1
-	dc.b	$FF
-	even
-
-obj24_map:
-	dc.w	byte_20DDBE-obj24_map
-	dc.w	byte_20DDC4-obj24_map
-byte_20DDBE:
-	dc.b	1
-	dc.b	-8,5,0,0,-8
-	even
-byte_20DDC4:
-	dc.b	1
-	dc.b	-8,5,0,4,-8
-	even
-
-loc_20DDCA:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	move.w	off_20DDD8(pc,d0.w),d0
-	jmp	off_20DDD8(pc,d0.w)
-
-off_20DDD8:
-	dc.w	loc_20DDDE-off_20DDD8
-	dc.w	loc_20DE12-off_20DDD8
-	dc.w	loc_20DE6E-off_20DDD8
-
-loc_20DDDE:
-	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
-	move.b	#1,sprpri(a0)
-	move.b	#8,sprhs(a0)
-	move.b	#8,sprvsize(a0)
-	move.w	#$3CF,sproffset(a0)
-	move.l	#obj24b_map,patbase(a0)
-	move.l	#-$40000,act2A(a0)
-	rts
-
-loc_20DE12:
-	move.w	#$3CF,sproffset(a0)
-	addi.l	#$10000,xposi(a0)
-	move.l	act2A(a0),d0
-	add.l	d0,yposi(a0)
-	move.b	#0,mstno(a0)
-	addi.l	#$2000,act2A(a0)
-	bmi.w	loc_20DE40
-	move.b	#1,mstno(a0)
-
-loc_20DE40:
-	jsr	emycol_d.l
-	tst.w	d1
-	bmi.w	loc_20DE60
-
-loc_20DE4C:
-	lea	obj24b_ani.l,a1
-	jsr	patchg.l
-	jmp	actionsub.l
-	rts
-
-loc_20DE60:
-	addq.b	#word,r_no0(a0)
-	move.l	#-$40000,act2A(a0)
-	bra.s	loc_20DE4C
-
-loc_20DE6E:
-	move.w	#$BCF,sproffset(a0)
-	addi.l	#-$10000,xposi(a0)
-	move.l	act2A(a0),d0
-	add.l	d0,yposi(a0)
-	move.b	#0,mstno(a0)
-	addi.l	#$2000,act2A(a0)
-	bmi.w	loc_20DE9C
-	move.b	#1,mstno(a0)
-
-loc_20DE9C:
-	jsr	emycol_d.l
-	tst.w	d1
-	bmi.w	loc_20DEAA
-	bra.s	loc_20DE4C
-
-loc_20DEAA:
-	addi.b	#-word,r_no0(a0)
-	move.l	#-$40000,act2A(a0)
-	bra.s	loc_20DE4C
-
-obj24b_ani:
-	dc.w	unk_20DEBE-obj24b_ani
-	dc.w	unk_20DEC2-obj24b_ani
-unk_20DEBE:
-	dc.b	19
-	dc.b	1
-	dc.b	$FF
-	even
-unk_20DEC2:
-	dc.b	19
-	dc.b	0
-	dc.b	$FF
-	even
-
-obj24b_map:
-	dc.w	byte_20DECA-obj24b_map
-	dc.w	byte_20DED0-obj24b_map
-byte_20DECA:
-	dc.b	1
-	dc.b	-8,9,0,8,-$C
-	even
-byte_20DED0:
-	dc.b	1
-	dc.b	-8,9,0,$E,-$C
-	even
-
+	include	"Actors/24 - Friend.asm"
 	include	"Actors/17 - Goal.asm"
 
 sub_20DFF4:
