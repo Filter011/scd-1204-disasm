@@ -148,15 +148,15 @@ loc_200232:
 
 	move.w	#22-1,d4
 
-loc_20023C:
+fadein0_new:
 	move.b	#vintid_12,int_flg.w
 	bsr.w	sync
-	bsr.s	sub_200252
+	bsr.s	fadein1
 	bsr.w	sub_20209A
-	dbf	d4,loc_20023C
+	dbf	d4,fadein0_new
 	rts
 
-sub_200252:
+fadein1:
 	moveq	#0,d0
 	lea	palette.w,a0
 	lea	palette_fade.w,a1
@@ -166,7 +166,7 @@ sub_200252:
 	move.b	colorcnt.w,d0
 
 loc_200268:
-	bsr.s	sub_200296
+	bsr.s	fadein2
 	dbf	d0,loc_200268
 
 	cmpi.b	#stage_LZ,stageno
@@ -180,13 +180,13 @@ loc_200268:
 	move.b	colorcnt.w,d0
 
 loc_20028E:
-	bsr.s	sub_200296
+	bsr.s	fadein2
 	dbf	d0,loc_20028E
 
 locret_200294:
 	rts
 
-sub_200296:
+fadein2:
 	move.w	(a1)+,d2
 	move.w	(a0),d3
 	cmp.w	d2,d3
@@ -218,15 +218,15 @@ fadeout:
 	move.w	#$3F,startcolor.w
 	move.w	#22-1,d4
 
-loc_2002CC:
+fadeout_new:
 	move.b	#vintid_12,int_flg.w
 	bsr.w	sync
-	bsr.s	sub_2002E2
+	bsr.s	fadeout1
 	bsr.w	sub_20209A
-	dbf	d4,loc_2002CC
+	dbf	d4,fadeout_new
 	rts
 
-sub_2002E2:
+fadeout1:
 	moveq	#0,d0
 	lea	palette.w,a0
 	move.b	startcolor.w,d0
@@ -234,7 +234,7 @@ sub_2002E2:
 	move.b	colorcnt.w,d0
 
 loc_2002F2:
-	bsr.s	sub_200310
+	bsr.s	fadeout2
 	dbf	d0,loc_2002F2
 
 	moveq	#0,d0
@@ -244,12 +244,12 @@ loc_2002F2:
 	move.b	colorcnt.w,d0
 
 loc_200308:
-	bsr.s	sub_200310
+	bsr.s	fadeout2
 	dbf	d0,loc_200308
 
 	rts
 
-sub_200310:
+fadeout2:
 	move.w	(a0),d2
 	beq.s	loc_20033C
 	move.w	d2,d1
@@ -291,15 +291,15 @@ loc_20035A:
 
 	move.w	#22-1,d4
 
-loc_200364:
+flashin_new:
 	move.b	#vintid_12,int_flg.w
 	bsr.w	sync
-	bsr.s	sub_20037A
+	bsr.s	flashin1
 	bsr.w	sub_20209A
-	dbf	d4,loc_200364
+	dbf	d4,flashin_new
 	rts
 
-sub_20037A:
+flashin1:
 	moveq	#0,d0
 	lea	palette.w,a0
 	lea	palette_fade.w,a1
@@ -309,7 +309,7 @@ sub_20037A:
 	move.b	colorcnt.w,d0
 
 loc_200390:
-	bsr.s	sub_2003BE
+	bsr.s	flashin2
 	dbf	d0,loc_200390
 
 	cmpi.b	#stage_LZ,stageno
@@ -323,13 +323,13 @@ loc_200390:
 	move.b	colorcnt.w,d0
 
 loc_2003B6:
-	bsr.s	sub_2003BE
+	bsr.s	flashin2
 	dbf	d0,loc_2003B6
 
 locret_2003BC:
 	rts
 
-sub_2003BE:
+flashin2:
 	move.w	(a1)+,d2
 	move.w	(a0),d3
 	cmp.w	d2,d3
@@ -363,15 +363,15 @@ flashout:
 	move.w	#$3F,startcolor.w
 	move.w	#22-1,d4
 
-loc_2003F8:
+flashout_new:
 	move.b	#vintid_12,int_flg.w
 	bsr.w	sync
-	bsr.s	sub_20040E
+	bsr.s	flashout1
 	bsr.w	sub_20209A
-	dbf	d4,loc_2003F8
+	dbf	d4,flashout_new
 	rts
 
-sub_20040E:
+flashout1:
 	moveq	#0,d0
 	lea	palette.w,a0
 	move.b	startcolor.w,d0
@@ -379,7 +379,7 @@ sub_20040E:
 	move.b	colorcnt.w,d0
 
 loc_20041E:
-	bsr.s	sub_20043C
+	bsr.s	flashout2
 	dbf	d0,loc_20041E
 
 	moveq	#0,d0
@@ -389,11 +389,11 @@ loc_20041E:
 	move.b	colorcnt.w,d0
 
 loc_200434:
-	bsr.s	sub_20043C
+	bsr.s	flashout2
 	dbf	d0,loc_200434
 	rts
 
-sub_20043C:
+flashout2:
 	move.w	(a0),d2
 	cmpi.w	#$EEE,d2
 	beq.s	loc_200478
