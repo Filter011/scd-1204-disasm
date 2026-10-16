@@ -1,1 +1,0 @@
-zoneact	function	zone,act,(zone<<8)+act

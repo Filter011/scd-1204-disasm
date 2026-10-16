@@ -775,7 +775,7 @@ loc_203D8C:
 	blo.s	loc_203DD4
 	moveq	#0,d0
 	move.b	stageno,d0
-	cmpi.w	#zoneact(stage_LZ,act_4),stageno
+	cmpi.w	#(stage_LZ<<8)+act_4,stageno
 	bne.s	loc_203DC4
 	moveq	#5,d0
 

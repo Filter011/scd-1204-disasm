@@ -25,10 +25,10 @@ dodai_init:
 	move.w	yposi(a0),act3A(a0)
 	move.w	yposi(a0),act36(a0)
 	move.l	#dai11a_pattbl,d0
-	cmpi.w	#zoneact(stage_SPZ,act_1),stageno
+	cmpi.w	#(stage_SPZ<<8)+act_1,stageno
 	beq.s	loc_20D6EE
 	move.l	#dai12a_pattbl,d0
-	cmpi.w	#zoneact(stage_SPZ,act_2),stageno
+	cmpi.w	#(stage_SPZ<<8)+act_2,stageno
 	beq.s	loc_20D6EE
 	move.l	#dai12a_pattbl,d0
 

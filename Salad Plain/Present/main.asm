@@ -9,7 +9,6 @@ ZeroOffsetOptimization = 0
 	include	"Equates.asm"
 	include	"WorkRAM.asm"
 	include	"Macros.asm"
-	include	"Functions.asm"
 
 	phase	wkram	; set section to use workram
 
@@ -1438,7 +1437,7 @@ bgm_tbl:
 	dc.b	bgm_zone4
 	dc.b	bgm_zone5
 	dc.b	bgm_zone6
-	dc.b	bgm_FZ
+	dc.b	bgm_final
 	even
 
 game:

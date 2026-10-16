@@ -18,4 +18,4 @@ bgm_zone5:	equ	$85
 bgm_zone6:	equ	$86
 bgm_muteki:	equ	$87
 bgm_suu:	equ	$88
-bgm_FZ:		equ	$8D
+bgm_final:	equ	$8D
