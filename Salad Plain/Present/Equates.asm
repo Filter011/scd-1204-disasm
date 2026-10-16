@@ -52,12 +52,12 @@ scpu_unk5:		ds.b	1	; $0B
 scpu_unk6:		ds.b	1	; $0C
 scpu_unk7:		ds.b	1	; $0D
 scpu_fadeCDA:		ds.b	1	; $0E Fade out CDDA music
-scpu_r11aMUS:		ds.b	1	; $0F Track 2 (Salad Plain Present)
-scpu_timeattackMUS:	ds.b	1	; $10 Track 3 (Collision Chaos Present)
-scpu_titleMUS:		ds.b	1	; $11 Track 4 (You Can Do Anything)
-scpu_r11dMUS:		ds.b	1	; $12 Track 5 (Salad Plain Good Future)
-scpu_r11cMUS:		ds.b	1	; $13 Track 6 (Salad Plain Bad Future)
-scpu_r11bMUS:		ds.b	1	; $14 Track 7 (Salad Plain Past)
+scpu_r11aBGM:		ds.b	1	; $0F Track 2 (Salad Plain Present)
+scpu_timeattackBGM:	ds.b	1	; $10 Track 3 (Collision Chaos Present)
+scpu_titleBGM:		ds.b	1	; $11 Track 4 (You Can Do Anything)
+scpu_r11dBGM:		ds.b	1	; $12 Track 5 (Salad Plain Good Future)
+scpu_r11cBGM:		ds.b	1	; $13 Track 6 (Salad Plain Bad Future)
+scpu_r11bBGM:		ds.b	1	; $14 Track 7 (Salad Plain Past)
 	dephase
 
 ; Actor Equates

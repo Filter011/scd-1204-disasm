@@ -134,7 +134,10 @@ clst1_1a1:
 	dc.w	$EA8,$E86,$C60,$ECA
 	dc.w	$E86,$ECA,$C60,$EA8
 
-fadein:
+;fadein:
+;	move.w	#$003F,startcolor.w
+
+fadein0:
 	moveq	#0,d0
 	lea	lpcolorwk.w,a0
 	move.b	startcolor.w,d0
@@ -216,7 +219,7 @@ fadein2:
 	rts
 
 fadeout:
-	move.w	#$3F,startcolor.w
+	move.w	#$003F,startcolor.w
 	move.w	#22-1,d4
 
 fadeout_new:
@@ -279,7 +282,7 @@ fadeout2:
 	rts
 
 flashin:
-	move.w	#$3F,startcolor.w
+	move.w	#$003F,startcolor.w
 	moveq	#0,d0
 	lea	lpcolorwk.w,a0
 	move.b	startcolor.w,d0
@@ -363,7 +366,7 @@ flashin2:
 	rts
 
 flashout:
-	move.w	#$3F,startcolor.w
+	move.w	#$003F,startcolor.w
 	move.w	#22-1,d4
 
 flashout_new:
@@ -1595,7 +1598,7 @@ loc_2013A8:
 	bra.s	loc_201418
 
 loc_201414:
-	bsr.w	fadein
+	bsr.w	fadein0
 
 loc_201418:
 	bclr	#7,gmmode.w
@@ -1640,6 +1643,7 @@ loc_201490:
 	_move.b	d0,actno(a1)
 	rts
 
+flow_act_set:
 	lea	flowerwk,a1
 	moveq	#0,d0
 	move.b	time_flag,d0
@@ -1650,7 +1654,7 @@ loc_201490:
 	lea	byte_FFD800.w,a2
 	moveq	#0,d1
 
-loc_2014B6:
+.loop:
 	_move.b	#flower_act,actno(a2)
 	move.w	d1,d2
 	add.w	d2,d2
@@ -1665,7 +1669,7 @@ loc_2014B6:
 	move.w	2(a3,d2.w),yposi(a2)
 	adda.w	#actfree,a2
 	addq.b	#1,d1
-	dbf	d0,loc_2014B6
+	dbf	d0,.loop
 
 locret_2014EE:
 	rts
@@ -1689,30 +1693,30 @@ scdtbl:
 
 syspatchg:
 	subq.b	#1,sys_pattim
-	bpl.s	loc_201540
+	bpl.s	.end
 	move.b	#11,sys_pattim
 	subq.b	#1,sys_patno
 	andi.b	#7,sys_patno
 
-loc_201540:
+.end:
 	subq.b	#1,sys_pattim2
-	bpl.s	loc_20155E
+	bpl.s	.end1
 	move.b	#7,sys_pattim2
 	addq.b	#1,sys_patno2
 	andi.b	#3,sys_patno2
 
-loc_20155E:
+.end1:
 	subq.b	#1,sys_pattim3
-	bpl.s	loc_201586
+	bpl.s	.end2
 	move.b	#7,sys_pattim3
 	addq.b	#1,sys_patno3
 	cmpi.b	#6,sys_patno3
-	blo.s	loc_201586
+	blo.s	.end2
 	move.b	#0,sys_patno3
 
-loc_201586:
+.end2:
 	tst.b	sys_pattim4
-	beq.s	locret_2015B4
+	beq.s	.end3
 	moveq	#0,d0
 	move.b	sys_pattim4,d0
 	add.w	sys_ringtimer,d0
@@ -1722,7 +1726,7 @@ loc_201586:
 	move.b	d0,sys_patno4
 	subq.b	#1,sys_pattim4
 
-locret_2015B4:
+.end3:
 	rts
 
 da_set:
@@ -1739,13 +1743,13 @@ loc_2015CE:
 	jmp	sub_sync.l
 
 da_tbl:
-	dc.b	scpu_r11bMUS
-	dc.b	scpu_r11aMUS
-	dc.b	scpu_r11cMUS
-	dc.b	scpu_r11dMUS
+	dc.b	scpu_r11bBGM
+	dc.b	scpu_r11aBGM
+	dc.b	scpu_r11cBGM
+	dc.b	scpu_r11dBGM
 	even
 
-	move.w	#scpu_r11aMUS,d0
+	move.w	#scpu_r11aBGM,d0
 	jsr	sub_sync.l
 
 sub_2015E8:
@@ -7345,6 +7349,7 @@ loc_20B5CE:
 	dbf	d0,loc_20B5CE
 	rts
 
+random:
 	move.l	d1,-(sp)
 	move.l	ranum.w,d1
 	bne.s	loc_20B5E4
