@@ -110,9 +110,9 @@ debugwork:		ds.b	1
 debugwork2:		ds.b	1
 debugwork3:		ds.b	1
 debugwork4:		ds.b	1
-word_FF13F0:		ds.w	1
+demoflag:		ds.w	1
 	ds.b	2
-word_FF13F4:		ds.w	1
+enddemono:		ds.w	1
 	ds.b	2
 mdstatus:		ds.b	1
 	ds.b	1

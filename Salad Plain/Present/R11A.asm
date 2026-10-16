@@ -2332,9 +2332,9 @@ playposiset:
 
 loc_202498:
 	lea	playpositbl.l,a1
-	tst.w	word_FF13F0
+	tst.w	demoflag
 	bpl.s	loc_2024BA
-	move.w	word_FF13F4,d0
+	move.w	enddemono,d0
 	subq.w	#1,d0
 	lsl.w	#2,d0
 	lea	word_20245C.l,a1
@@ -2342,7 +2342,7 @@ loc_202498:
 	bra.s	loc_2024C4
 
 loc_2024BA:
-	move.w	word_FF13F0,d0
+	move.w	demoflag,d0
 	lsl.w	#2,d0
 	adda.w	d0,a1
 
