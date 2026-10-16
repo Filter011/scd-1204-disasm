@@ -1428,7 +1428,7 @@ bgm_tbl:
 	even
 
 game:
-	bset	#0,byte_FF122A
+	bset	#0,play_start
 	bne.s	loc_2011FE
 	move.b	#3,pl_suu
 	tst.b	ta_flag
@@ -1457,7 +1457,7 @@ loc_20122C:
 loc_201244:
 	tst.b	pl_suu
 	bne.s	loc_201256
-	bclr	#0,byte_FF122A
+	bclr	#0,play_start
 	rts
 
 loc_201256:

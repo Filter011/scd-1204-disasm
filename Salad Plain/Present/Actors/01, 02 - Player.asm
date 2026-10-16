@@ -32,19 +32,20 @@ play00_move_tbl:
 	dc.w	play00die-play00_move_tbl
 	dc.w	play00erase-play00_move_tbl
 
+baria_set:
 	tst.b	act29(a0)
-	beq.s	locret_203674
+	beq.s	.end
 	move.b	#1,plpower_b
 	move.b	#baria_act,bariawk.w
 
-locret_203674:
+.end:
 	rts
 
 muteki_set:
 	tst.b	mutekiawk.w
-	bne.s	locret_2036BA
+	bne.s	.end
 	tst.b	act29(a0)
-	beq.s	locret_2036BA
+	beq.s	.end
 	move.b	#1,plpower_a
 	move.b	#baria_act,mutekiawk.w
 	move.b	#5,mutekiawk+mstno.w
@@ -55,7 +56,7 @@ muteki_set:
 	move.b	#baria_act,mutekia4wk.w
 	move.b	#8,mutekia4wk+mstno.w
 
-locret_2036BA:
+.end:
 	rts
 
 test_mapwrt:

@@ -67,7 +67,7 @@ goal_move3:
 	bne.s	loc_20DFBA
 	moveq	#0,d0
 	move.b	#0,pl_suu
-	bclr	#0,byte_FF122A
+	bclr	#0,play_start
 
 loc_20DFBA:
 	move.b	d0,stageact

@@ -32,7 +32,7 @@ plscore_f:		ds.b	1
 plring:			ds.w	1
 pltime:			ds.l	1
 plscore:		ds.l	1
-byte_FF122A:		ds.b	1
+play_start:		ds.b	1
 	ds.b	1
 plpower_b:		ds.b	1
 plpower_m:		ds.b	1
