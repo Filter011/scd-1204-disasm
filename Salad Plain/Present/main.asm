@@ -4105,7 +4105,7 @@ spring_act:	act_ptr	spring
 exit2_act:	act_ptr	exit2
 exit2_set_act:	act_ptr	exit2_set
 futa_act:	act_ptr	futa
-mizukiri_act:	act_ptr	mizukiri
+mizuki_act:	act_ptr	mizukiri
 koma_act:	act_ptr	koma
 ring_act:	act_ptr	ring
 flyring_act:	act_ptr	flyring

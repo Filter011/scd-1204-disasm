@@ -105,7 +105,7 @@ mizuki_set:
 	beq.s	locret_203786
 	jsr	actwkchk.l
 	bne.s	locret_203786
-	_move.b	#mizukiri_act,actno(a1)
+	_move.b	#mizuki_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	moveq	#1,d0
