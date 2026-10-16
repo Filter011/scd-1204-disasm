@@ -1347,15 +1347,15 @@ scdcnv:
 	rts
 	lea	scdtblwk.l,a1
 	lea	scdtblwk.l,a2
-	move.w	#$100-1,d3
+	move.w	#256-1,d3
 
 .loop:
-	moveq	#$10,d5
-	move.w	#$10-1,d2
+	moveq	#16,d5
+	move.w	#16-1,d2
 
 .loop1:
 	moveq	#0,d4
-	move.w	#$10-1,d1
+	move.w	#16-1,d1
 
 .loop2:
 	move.w	(a1)+,d0
@@ -1364,11 +1364,11 @@ scdcnv:
 	dbf	d1,.loop2
 
 	move.w	d4,(a2)+
-	suba.w	#$20,a1
+	suba.w	#32,a1
 	subq.w	#1,d5
 	dbf	d2,.loop1
 
-	adda.w	#$20,a1
+	adda.w	#32,a1
 	dbf	d3,.loop
 
 	lea	scdtblwk.l,a1
@@ -1378,11 +1378,11 @@ scdcnv:
 	lea	scdtblwk.l,a2
 
 .jump:
-	move.w	#$1000-1,d3
+	move.w	#4096-1,d3
 
 .loop3:
 	moveq	#0,d2
-	move.w	#$10-1,d1
+	move.w	#16-1,d1
 	move.w	(a1)+,d0
 	beq.s	.jump5
 	bmi.s	.jump2
@@ -1398,7 +1398,7 @@ scdcnv:
 	bra.s	.jump6
 
 .jump2:
-	cmpi.w	#$FFFF,d0
+	cmpi.w	#-1,d0
 	beq.s	.jump4
 
 .loop5:
@@ -1412,7 +1412,7 @@ scdcnv:
 	bra.s	.jump6
 
 .jump4:
-	move.w	#$10,d0
+	move.w	#16,d0
 
 .jump5:
 	move.w	d0,d2
