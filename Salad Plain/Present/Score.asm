@@ -61,7 +61,7 @@ scoreset:
 	tst.w	pauseflag.w
 	bne.s	.jump4
 	lea	pltime,a1
-	cmpi.l	#hudmscs(9,59,59),(a1)+
+	cmpi.l	#(9<<16)+(59<<8)+59,(a1)+
 ;	beq.s	.timeover
 	addq.b	#1,-(a1)
 	cmpi.b	#60,(a1)

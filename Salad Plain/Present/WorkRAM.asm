@@ -215,9 +215,8 @@ waterflag2:		ds.b	1
 	ds.b	$C
 clchgtim:		ds.w	1
 	ds.b	$22
-divdevwk:		ds.l	1
-word_FFF684:		ds.w	1
-	ds.b	$5A
+divdevwk:		ds.b	6*16
+divdevwk_end:
 bitdev_a3:		ds.l	1
 bitdev_d0:		ds.l	1
 bitdev_d1:		ds.l	1

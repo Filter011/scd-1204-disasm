@@ -25,7 +25,7 @@ loc_201F18:
 	move.b	(a0)+,d5
 	asl.w	#8,d5
 	move.b	(a0)+,d5
-	move.w	#$10,d6
+	move.w	#16,d6
 	bsr.s	sub_201F38
 	movem.l (sp)+,d0-a1/a3-a5
 	rts
@@ -70,6 +70,7 @@ sub_201F7A:
 
 loc_201F7E:
 	dbf	d0,loc_201F70
+
 	bra.s	sub_201F38
 
 process_inline_data:
@@ -116,6 +117,7 @@ loc_201FC6:
 	bne.s	sub_201F7A
 	rts
 
+loc_201FD0:
 	eor.l	d4,d2
 	move.l	d2,(a4)+
 	subq.w	#1,a5
@@ -162,10 +164,11 @@ loc_202016:
 	lsl.w	d1,d5
 	subq.w	#1,d5
 
-loc_202022:
+.loop:
 	move.w	d7,(a1,d0.w)
 	addq.w	#2,d0
-	dbf	d5,loc_202022
+	dbf	d5,.loop
+
 	bra.s	loc_201FE8
 
 divdevset:
@@ -176,26 +179,26 @@ divdevset:
 	lea	(a1,d0.w),a1
 	lea	divdevwk.w,a2
 
-loc_202046:
+.jump:
 	tst.l	(a2)
-	beq.s	loc_20204E
+	beq.s	.jump1
 	addq.w	#6,a2
-	bra.s	loc_202046
+	bra.s	.jump
 
-loc_20204E:
+.jump1:
 	move.w	(a1)+,d0
-	bmi.s	loc_20205A
+	bmi.s	.end
 
-loc_202052:
+.loop:
 	move.l	(a1)+,(a2)+
 	move.w	(a1)+,(a2)+
-	dbf	d0,loc_202052
+	dbf	d0,.loop
 
-loc_20205A:
+.end:
 	movem.l (sp)+,a1-a2
 	rts
 
-loc_202060:
+divdevset2:
 	movem.l a1-a2,-(sp)
 	lea	divdevtbl.l,a1
 	add.w	d0,d0
@@ -204,14 +207,14 @@ loc_202060:
 	bsr.s	sub_20208C
 	lea	divdevwk.w,a2
 	move.w	(a1)+,d0
-	bmi.s	loc_202086
+	bmi.s	.end
 
-loc_20207E:
+.loop:
 	move.l	(a1)+,(a2)+
 	move.w	(a1)+,(a2)+
-	dbf	d0,loc_20207E
+	dbf	d0,.loop
 
-loc_202086:
+.end:
 	movem.l (sp)+,a1-a2
 	rts
 
@@ -219,9 +222,10 @@ sub_20208C:
 	lea	divdevwk.w,a2
 	moveq	#$80/4-1,d0
 
-loc_202092:
+.loop:
 	clr.l	(a2)+
-	dbf	d0,loc_202092
+	dbf	d0,.loop
+
 	rts
 
 sub_20209A:
@@ -243,7 +247,7 @@ loc_2020BC:
 	move.b	(a0)+,d5
 	asl.w	#8,d5
 	move.b	(a0)+,d5
-	moveq	#$10,d6
+	moveq	#16,d6
 	moveq	#0,d0
 	move.l	a0,divdevwk.w
 	move.l	a3,bitdev_a3.w
@@ -261,8 +265,8 @@ sub_2020F0:
 	beq.w	locret_202188
 	move.w	#9,word_FFF6FA.w
 	moveq	#0,d0
-	move.w	word_FFF684.w,d0
-	addi.w	#$120,word_FFF684.w
+	move.w	divdevwk+4.w,d0
+	addi.w	#$120,divdevwk+4.w
 	bra.s	loc_202124
 
 sub_20210C:
@@ -270,8 +274,8 @@ sub_20210C:
 	beq.s	locret_202188
 	move.w	#3,word_FFF6FA.w
 	moveq	#0,d0
-	move.w	word_FFF684.w,d0
-	addi.w	#$60,word_FFF684.w
+	move.w	divdevwk+4.w,d0
+	addi.w	#$60,divdevwk+4.w
 
 loc_202124:
 	lea	vdpctrl,a4
@@ -310,20 +314,21 @@ locret_202188:
 
 loc_20218A:
 	lea	divdevwk.w,a0
-	moveq	#$58/4-1,d0
+	moveq	#(divdevwk_end-divdevwk-6)/4-1,d0
 
-loc_202190:
+.loop:
 	move.l	6(a0),(a0)+
-	dbf	d0,loc_202190
+	dbf	d0,.loop
 	rts
 
+loc_20219A:
 	lea	divdevtbl.l,a1
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
 	lea	(a1,d0.w),a1
 	move.w	(a1)+,d1
 
-loc_2021AC:
+.loop:
 	movea.l (a1)+,a0
 	moveq	#0,d0
 	move.w	(a1)+,d0
@@ -333,5 +338,6 @@ loc_2021AC:
 	swap	d0
 	move.l	d0,vdpctrl
 	bsr.w	bitdevr
-	dbf	d1,loc_2021AC
+	dbf	d1,.loop
+
 	rts

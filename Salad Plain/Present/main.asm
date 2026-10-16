@@ -142,9 +142,9 @@ fadein:
 	moveq	#$000,d1
 	move.b	colorcnt.w,d0
 
-loc_200232:
+.loop:
 	move.w	d1,(a0)+
-	dbf	d0,loc_200232
+	dbf	d0,.loop
 
 	move.w	#22-1,d4
 
@@ -154,6 +154,7 @@ fadein0_new:
 	bsr.s	fadein1
 	bsr.w	sub_20209A
 	dbf	d4,fadein0_new
+
 	rts
 
 fadein1:
@@ -165,12 +166,12 @@ fadein1:
 	adda.w	d0,a1
 	move.b	colorcnt.w,d0
 
-loc_200268:
+.loop:
 	bsr.s	fadein2
-	dbf	d0,loc_200268
+	dbf	d0,.loop
 
 	cmpi.b	#stage_LZ,stageno
-	bne.s	locret_200294
+	bne.s	.jump
 	moveq	#0,d0
 	lea	lpcolorwk3.w,a0
 	lea	lpcolorwk4.w,a1
@@ -179,38 +180,38 @@ loc_200268:
 	adda.w	d0,a1
 	move.b	colorcnt.w,d0
 
-loc_20028E:
+.loop1:
 	bsr.s	fadein2
-	dbf	d0,loc_20028E
+	dbf	d0,.loop1
 
-locret_200294:
+.jump:
 	rts
 
 fadein2:
 	move.w	(a1)+,d2
 	move.w	(a0),d3
 	cmp.w	d2,d3
-	beq.s	loc_2002BE
+	beq.s	.jump2
 	move.w	d3,d1
 	addi.w	#$200,d1
 	cmp.w	d2,d1
-	bhi.s	loc_2002AC
+	bhi.s	.jump
 	move.w	d1,(a0)+
 	rts
 
-loc_2002AC:
+.jump:
 	move.w	d3,d1
 	addi.w	#$20,d1
 	cmp.w	d2,d1
-	bhi.s	loc_2002BA
+	bhi.s	.jump1
 	move.w	d1,(a0)+
 	rts
 
-loc_2002BA:
+.jump1:
 	addq.w	#2,(a0)+
 	rts
 
-loc_2002BE:
+.jump2:
 	addq.w	#2,a0
 	rts
 
@@ -224,6 +225,7 @@ fadeout_new:
 	bsr.s	fadeout1
 	bsr.w	sub_20209A
 	dbf	d4,fadeout_new
+
 	rts
 
 fadeout1:
@@ -233,9 +235,9 @@ fadeout1:
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
 
-loc_2002F2:
+.loop:
 	bsr.s	fadeout2
-	dbf	d0,loc_2002F2
+	dbf	d0,.loop
 
 	moveq	#0,d0
 	lea	lpcolorwk3.w,a0
@@ -243,36 +245,36 @@ loc_2002F2:
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
 
-loc_200308:
+.loop1:
 	bsr.s	fadeout2
-	dbf	d0,loc_200308
+	dbf	d0,.loop1
 
 	rts
 
 fadeout2:
 	move.w	(a0),d2
-	beq.s	loc_20033C
+	beq.s	.jump2
 	move.w	d2,d1
 	andi.w	#$E,d1
-	beq.s	loc_200320
+	beq.s	.jump
 	subq.w	#2,(a0)+
 	rts
 
-loc_200320:
+.jump:
 	move.w	d2,d1
 	andi.w	#$E0,d1
-	beq.s	loc_20032E
+	beq.s	.jump1
 	subi.w	#$20,(a0)+
 	rts
 
-loc_20032E:
+.jump1:
 	move.w	d2,d1
 	andi.w	#$E00,d1
-	beq.s	loc_20033C
+	beq.s	.jump2
 	subi.w	#$200,(a0)+
 	rts
 
-loc_20033C:
+.jump2:
 	addq.w	#2,a0
 	rts
 
@@ -285,9 +287,9 @@ flashin:
 	move.w	#$EEE,d1
 	move.b	colorcnt.w,d0
 
-loc_20035A:
+.loop:
 	move.w	d1,(a0)+
-	dbf	d0,loc_20035A
+	dbf	d0,.loop
 
 	move.w	#22-1,d4
 
@@ -297,6 +299,7 @@ flashin_new:
 	bsr.s	flashin1
 	bsr.w	sub_20209A
 	dbf	d4,flashin_new
+
 	rts
 
 flashin1:
@@ -308,12 +311,12 @@ flashin1:
 	adda.w	d0,a1
 	move.b	colorcnt.w,d0
 
-loc_200390:
+.loop:
 	bsr.s	flashin2
-	dbf	d0,loc_200390
+	dbf	d0,.loop
 
 	cmpi.b	#stage_LZ,stageno
-	bne.s	locret_2003BC
+	bne.s	.jump
 	moveq	#0,d0
 	lea	lpcolorwk3.w,a0
 	lea	lpcolorwk4.w,a1
@@ -322,40 +325,40 @@ loc_200390:
 	adda.w	d0,a1
 	move.b	colorcnt.w,d0
 
-loc_2003B6:
+.loop1:
 	bsr.s	flashin2
-	dbf	d0,loc_2003B6
+	dbf	d0,.loop1
 
-locret_2003BC:
+.jump:
 	rts
 
 flashin2:
 	move.w	(a1)+,d2
 	move.w	(a0),d3
 	cmp.w	d2,d3
-	beq.s	loc_2003EA
+	beq.s	.jump2
 	move.w	d3,d1
 	subi.w	#$200,d1
-	blo.s	loc_2003D6
+	blo.s	.jump
 	cmp.w	d2,d1
-	blo.s	loc_2003D6
+	blo.s	.jump
 	move.w	d1,(a0)+
 	rts
 
-loc_2003D6:
+.jump:
 	move.w	d3,d1
 	subi.w	#$20,d1
-	blo.s	loc_2003E6
+	blo.s	.jump1
 	cmp.w	d2,d1
-	blo.s	loc_2003E6
+	blo.s	.jump1
 	move.w	d1,(a0)+
 	rts
 
-loc_2003E6:
+.jump1:
 	subq.w	#2,(a0)+
 	rts
 
-loc_2003EA:
+.jump2:
 	addq.w	#2,a0
 	rts
 
@@ -369,6 +372,7 @@ flashout_new:
 	bsr.s	flashout1
 	bsr.w	sub_20209A
 	dbf	d4,flashout_new
+
 	rts
 
 flashout1:
@@ -378,9 +382,9 @@ flashout1:
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
 
-loc_20041E:
+.loop:
 	bsr.s	flashout2
-	dbf	d0,loc_20041E
+	dbf	d0,.loop
 
 	moveq	#0,d0
 	lea	lpcolorwk3.w,a0
@@ -388,39 +392,40 @@ loc_20041E:
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
 
-loc_200434:
+.loop1:
 	bsr.s	flashout2
-	dbf	d0,loc_200434
+	dbf	d0,.loop1
+
 	rts
 
 flashout2:
 	move.w	(a0),d2
 	cmpi.w	#$EEE,d2
-	beq.s	loc_200478
+	beq.s	.jump2
 	move.w	d2,d1
 	andi.w	#$E,d1
 	cmpi.w	#$E,d1
-	beq.s	loc_200454
+	beq.s	.jump
 	addq.w	#2,(a0)+
 	rts
 
-loc_200454:
+.jump:
 	move.w	d2,d1
 	andi.w	#$E0,d1
 	cmpi.w	#$E0,d1
-	beq.s	loc_200466
+	beq.s	.jump1
 	addi.w	#$20,(a0)+
 	rts
 
-loc_200466:
+.jump1:
 	move.w	d2,d1
 	andi.w	#$E00,d1
 	cmpi.w	#$E00,d1
-	beq.s	loc_200478
+	beq.s	.jump2
 	addi.w	#$200,(a0)+
 	rts
 
-loc_200478:
+.jump2:
 	addq.w	#2,a0
 	rts
 
@@ -494,17 +499,17 @@ frameoutchk:
 	andi.w	#-$80,d1
 	sub.w	d1,d0
 	cmpi.w	#$280,d0
-	bhi.w	loc_20067A
+	bhi.w	.jump
 	bra.w	actionsub
 
-loc_20067A:
+.jump:
 	lea	flagwork,a2
 	moveq	#0,d0
 	move.b	cdsts(a0),d0
-	beq.s	.delete
+	beq.s	.jump1
 	bclr	#7,2(a2,d0.w)
 
-.delete:
+.jump1:
 	bra.w	frameout
 
 sync:
@@ -518,9 +523,9 @@ sync:
 sinset:
 	andi.w	#$FF,d0
 	add.w	d0,d0
-	addi.w	#$80,d0
+	addi.w	#128,d0
 	move.w	sintable(pc,d0.w),d1
-	subi.w	#$80,d0
+	subi.w	#128,d0
 	move.w	sintable(pc,d0.w),d0
 	rts
 
@@ -573,49 +578,49 @@ atan:
 	move.w	d1,d3
 	move.w	d2,d4
 	or.w	d3,d4
-	beq.s	loc_200992
+	beq.s	.jump6
 	move.w	d2,d4
 	tst.w	d3
-	bpl.w	loc_200950
+	bpl.w	.jump
 	neg.w	d3
 
-loc_200950:
+.jump:
 	tst.w	d4
-	bpl.w	loc_200958
+	bpl.w	.jump1
 	neg.w	d4
 
-loc_200958:
+.jump1:
 	cmp.w	d3,d4
-	bhs.w	loc_20096A
+	bhs.w	.jump2
 	lsl.l	#8,d4
 	divu.w	d3,d4
 	moveq	#0,d0
 	move.b	atantbl(pc,d4.w),d0
-	bra.s	loc_200974
+	bra.s	.jump3
 
-loc_20096A:
+.jump2:
 	lsl.l	#8,d3
 	divu.w	d4,d3
 	moveq	#$40,d0
 	sub.b	atantbl(pc,d3.w),d0
 
-loc_200974:
+.jump3:
 	tst.w	d1
-	bpl.w	loc_200980
+	bpl.w	.jump4
 	neg.w	d0
 	addi.w	#$80,d0
 
-loc_200980:
+.jump4:
 	tst.w	d2
-	bpl.w	loc_20098C
+	bpl.w	.jump5
 	neg.w	d0
 	addi.w	#$100,d0
 
-loc_20098C:
+.jump5:
 	movem.l	(sp)+,d3-d4
 	rts
 
-loc_200992:
+.jump6:
 	move.w	#$40,d0
 	movem.l	(sp)+,d3-d4
 	rts
@@ -12026,7 +12031,7 @@ loc_20DC0E:
 loc_20DC18:
 	move.b	d1,word_FF12F4
 	move.w	word_20DC34(pc,d1.w),d0
-	jmp	loc_202060.l
+	jmp	divdevset2.l
 
 word_20DC28:
 	dc.w	$D00
