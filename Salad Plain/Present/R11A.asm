@@ -1349,72 +1349,78 @@ scdcnv:
 	lea	scdtblwk.l,a2
 	move.w	#$100-1,d3
 
-loc_201154:
+.loop:
 	moveq	#$10,d5
 	move.w	#$10-1,d2
 
-loc_20115A:
+.loop1:
 	moveq	#0,d4
 	move.w	#$10-1,d1
 
-loc_201160:
+.loop2:
 	move.w	(a1)+,d0
 	lsr.l	d5,d0
 	addx.w	d4,d4
-	dbf	d1,loc_201160
+	dbf	d1,.loop2
+
 	move.w	d4,(a2)+
 	suba.w	#$20,a1
 	subq.w	#1,d5
-	dbf	d2,loc_20115A
+	dbf	d2,.loop1
+
 	adda.w	#$20,a1
-	dbf	d3,loc_201154
+	dbf	d3,.loop
+
 	lea	scdtblwk.l,a1
 	lea	scdtblwk2.l,a2
-	bsr.s	sub_201198
+	bsr.s	.jump
 	lea	scdtblwk.l,a1
 	lea	scdtblwk.l,a2
 
-sub_201198:
+.jump:
 	move.w	#$1000-1,d3
 
-loc_20119C:
+.loop3:
 	moveq	#0,d2
 	move.w	#$10-1,d1
 	move.w	(a1)+,d0
-	beq.s	loc_2011CA
-	bmi.s	loc_2011B4
+	beq.s	.jump5
+	bmi.s	.jump2
 
-loc_2011A8:
+.loop4:
 	lsr.w	#1,d0
-	bhs.s	loc_2011AE
+	bhs.s	.jump1
 	addq.b	#1,d2
 
-loc_2011AE:
-	dbf	d1,loc_2011A8
-	bra.s	loc_2011CC
+.jump1:
+	dbf	d1,.loop4
 
-loc_2011B4:
+	bra.s	.jump6
+
+.jump2:
 	cmpi.w	#$FFFF,d0
-	beq.s	loc_2011C6
+	beq.s	.jump4
 
-loc_2011BA:
+.loop5:
 	lsl.w	#1,d0
-	bhs.s	loc_2011C0
+	bhs.s	.jump3
 	subq.b	#1,d2
 
-loc_2011C0:
-	dbf	d1,loc_2011BA
-	bra.s	loc_2011CC
+.jump3:
+	dbf	d1,.loop5
 
-loc_2011C6:
+	bra.s	.jump6
+
+.jump4:
 	move.w	#$10,d0
 
-loc_2011CA:
+.jump5:
 	move.w	d0,d2
 
-loc_2011CC:
+.jump6:
 	move.b	d2,(a2)+
-	dbf	d3,loc_20119C
+	dbf	d3,.loop3
+
 	rts
 
 bgm_tbl:
