@@ -1,13 +1,13 @@
 ; Sonic The Hedgehog (Mega Drive) Leftover Equates
 
 ; Game Mode Equates
-gamemd_S1:	equ	$C
+gamemd_s1:	equ	$C
 spgamemd:	equ	$10
 
 ; Stage Equates
-stage_LZ:	equ	1
-stage_MZ:	equ	2
-stage_SLZ:	equ	3
+stage_lz:	equ	1
+stage_mz:	equ	2
+stage_slz:	equ	3
 
 ; BGM Equates
 bgm_zone1:	equ	$81

@@ -180,7 +180,7 @@ mapno_chk:
 	rts
 
 sub_203826:
-	cmpi.b	#stage_MZ,stageno
+	cmpi.b	#stage_mz,stageno
 	beq.s	loc_203832
 	rts
 
@@ -775,7 +775,7 @@ loc_203D8C:
 	blo.s	loc_203DD4
 	moveq	#0,d0
 	move.b	stageno,d0
-	cmpi.w	#(stage_LZ<<8)+act_4,stageno
+	cmpi.w	#(stage_lz<<8)+act_4,stageno
 	bne.s	loc_203DC4
 	moveq	#5,d0
 
@@ -2304,7 +2304,7 @@ locret_204E16:
 	rts
 
 loopchk:
-	cmpi.b	#stage_SLZ,stageno
+	cmpi.b	#stage_slz,stageno
 	beq.s	loc_204E2C
 	tst.b	stageno
 	bne.w	locret_204EE2

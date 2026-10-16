@@ -172,7 +172,7 @@ fadein1:
 	bsr.s	fadein2
 	dbf	d0,.loop
 
-	cmpi.b	#stage_LZ,stageno
+	cmpi.b	#stage_lz,stageno
 	bne.s	.jump
 	moveq	#0,d0
 	lea	lpcolorwk3.w,a0
@@ -317,7 +317,7 @@ flashin1:
 	bsr.s	flashin2
 	dbf	d0,.loop
 
-	cmpi.b	#stage_LZ,stageno
+	cmpi.b	#stage_lz,stageno
 	bne.s	.jump
 	moveq	#0,d0
 	lea	lpcolorwk3.w,a0
@@ -1820,13 +1820,13 @@ vintid_16:	vint_ptr	vint16
 vintid_18:	vint_ptr	vint0C
 
 vint00:
-	cmpi.b	#gamemd_S1+$80,gmmode.w
+	cmpi.b	#gamemd_s1+$80,gmmode.w
 	beq.s	loc_2016EA
-	cmpi.b	#gamemd_S1,gmmode.w
+	cmpi.b	#gamemd_s1,gmmode.w
 	bne.w	loc_2016A4
 
 loc_2016EA:
-	cmpi.b	#stage_LZ,stageno
+	cmpi.b	#stage_lz,stageno
 	bne.w	loc_2016A4
 	move.w	vdpctrl,d0
 	btst	#6,mdstatus

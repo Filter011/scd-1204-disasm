@@ -276,7 +276,7 @@ cd_underwater:	equ	6
 mapsize:	equ	(16*2)*16	; (width*2) * height
 
 ; Stage Equates
-stage_SPZ:	equ	0
+stage_spz:	equ	0
 
 ; Act Equates
 act_1:		equ	0

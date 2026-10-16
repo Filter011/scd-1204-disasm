@@ -14,7 +14,7 @@ playloadb:
 	move.w	scrc_v_posit_sb,scrc_v_posit.w
 	move.w	scrz_h_posit_sb,scrz_h_posit.w
 	move.w	scrz_v_posit_sb,scrz_v_posit.w
-	cmpi.b	#stage_LZ,stageno
+	cmpi.b	#stage_lz,stageno
 	bne.s	loc_205ECC
 	move.w	waterposi_m_sb,waterposi_m.w
 	move.b	water_flag_sb,water_flag.w
@@ -55,7 +55,7 @@ playload:
 	move.w	scrc_v_posit_s,scrc_v_posit.w
 	move.w	scrz_h_posit_s,scrz_h_posit.w
 	move.w	scrz_v_posit_s,scrz_v_posit.w
-	cmpi.b	#stage_LZ,stageno
+	cmpi.b	#stage_lz,stageno
 	bne.s	loc_205FC4
 	move.w	waterposi_m_s,waterposi_m.w
 	move.b	water_flag_s,water_flag.w
