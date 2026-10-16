@@ -127,16 +127,16 @@ dcblw	macro	p1,p2,p3,p4,p5,p6,p7,p8
 
 edit_tbl:
 	dc.b	55,0
-	dcblw	objid_25,1,off_20CEE2,$31E,0,0,0,0
+	dcblw	objid_25,1,act25pat,$31E,0,0,0,0
 	dcblw	iwa_act,1,iwapat,$326,0,0,0,0
-	dcblw	objid_26,1,obj26_map,$33A,0,0,0,0
-	dcblw	objid_28,1,obj28_map,$342,0,0,0,0
-	dcblw	objid_28,1,obj28_map,$342,1,1,0,0
+	dcblw	objid_26,1,act26pat,$33A,0,0,0,0
+	dcblw	objid_28,1,act28pat,$342,0,0,0,0
+	dcblw	objid_28,1,act28pat,$342,1,1,0,0
 	dcblw	futa_act,1,futapat,$357,0,0,0,0
-	dcblw	objid_27,1,obj27_map,$49B,0,0,0,0
+	dcblw	objid_27,1,act27pat,$49B,0,0,0,0
 	dcblw	dai_k_act,1,k_daipat,$4D2,0,0,0,0
 	dcblw	dai_k_act,1,k_daipat,$47C,0,0,1,0
-	dcblw	objid_21,1,obj21_map,$4000,1,0,0,0
+	dcblw	dodai_act,1,dai11a_pattbl,$4000,1,0,0,0
 	dcblw	koma_act,4,komapat,$4D4,0,0,0,0
 	dcblw	koma_act,4,komapat,$493,0,0,1,0
 	dcblw	spring_act,1,springpat,$520,0,0,0,0

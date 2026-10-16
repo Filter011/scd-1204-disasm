@@ -4124,7 +4124,7 @@ objid_1D:	act_ptr	noact
 objid_1E:	act_ptr	noact
 flower_act:	act_ptr	flower
 kuzure_act:	act_ptr	kuzureru_tikei
-objid_21:	act_ptr	obj21
+dodai_act:	act_ptr	dodai
 objid_22:	act_ptr	obj22
 objid_23:	act_ptr	obj23
 friend_act:	act_ptr	friend
@@ -7562,7 +7562,7 @@ off_20B826:
 	dc.w	loc_20B950-off_20B826
 
 loc_20B834:
-	move.l	#obj28_map,patbase(a0)
+	move.l	#act28pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -7745,7 +7745,7 @@ off_20BA74:
 
 loc_20BA7C:
 	addq.b	#word,r_no0(a0)
-	move.l	#obj27_map,patbase(a0)
+	move.l	#act27pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -7983,6 +7983,7 @@ loc_20BC80:
 locret_20BCA2:
 	rts
 
+actor25:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
 	move.w	off_20BCB2(pc,d0.w),d0
@@ -8009,7 +8010,7 @@ off_20BCB2:
 
 loc_20BCD4:
 	move.b	#$C,r_no0(a0)
-	move.l	#off_20CEE2,patbase(a0)
+	move.l	#act25pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -8067,7 +8068,7 @@ locret_20BDC4:
 
 sub_20BDC6:
 	move.b	#6,r_no0(a0)
-	move.l	#off_20CEE2,patbase(a0)
+	move.l	#act25pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -8115,7 +8116,7 @@ loc_20BE04:
 
 loc_20BE6A:
 	move.b	#8,r_no0(a0)
-	move.l	#off_20CEE2,patbase(a0)
+	move.l	#act25pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -9454,7 +9455,7 @@ off_20C820:
 
 loc_20C824:
 	addq.b	#word,r_no0(a0)
-	move.l	#obj26_map,patbase(a0)
+	move.l	#act26pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	moveq	#$A,d0
@@ -9924,13 +9925,13 @@ unk_20CCE8:
 	dc.b	$FF
 	even
 
-obj28_map:
-	dc.w	byte_20CCF8-obj28_map
-	dc.w	byte_20CD04-obj28_map
-	dc.w	byte_20CD10-obj28_map
-	dc.w	byte_20CD1C-obj28_map
-	dc.w	byte_20CD28-obj28_map
-	dc.w	byte_20CD34-obj28_map
+act28pat:
+	dc.w	byte_20CCF8-act28pat
+	dc.w	byte_20CD04-act28pat
+	dc.w	byte_20CD10-act28pat
+	dc.w	byte_20CD1C-act28pat
+	dc.w	byte_20CD28-act28pat
+	dc.w	byte_20CD34-act28pat
 byte_20CCF8:
 	dc.b	2
 	dc.b	$FC,1,0,0,-8
@@ -10048,20 +10049,20 @@ unk_20CD9C:
 	dc.b	$FF
 	even
 
-obj27_map:
-	dc.w	byte_20CDBA-obj27_map
-	dc.w	byte_20CDCA-obj27_map
-	dc.w	byte_20CDE4-obj27_map
-	dc.w	byte_20CDF4-obj27_map
-	dc.w	byte_20CE18-obj27_map
-	dc.w	byte_20CE32-obj27_map
-	dc.w	byte_20CE42-obj27_map
-	dc.w	byte_20CE52-obj27_map
-	dc.w	byte_20CE6C-obj27_map
-	dc.w	byte_20CE7C-obj27_map
-	dc.w	byte_20CEA0-obj27_map
-	dc.w	byte_20CEBA-obj27_map
-	dc.w	byte_20CECA-obj27_map
+act27pat:
+	dc.w	byte_20CDBA-act27pat
+	dc.w	byte_20CDCA-act27pat
+	dc.w	byte_20CDE4-act27pat
+	dc.w	byte_20CDF4-act27pat
+	dc.w	byte_20CE18-act27pat
+	dc.w	byte_20CE32-act27pat
+	dc.w	byte_20CE42-act27pat
+	dc.w	byte_20CE52-act27pat
+	dc.w	byte_20CE6C-act27pat
+	dc.w	byte_20CE7C-act27pat
+	dc.w	byte_20CEA0-act27pat
+	dc.w	byte_20CEBA-act27pat
+	dc.w	byte_20CECA-act27pat
 byte_20CDBA:
 	dc.b	3
 	dc.b	$F0,$C,0,0,0
@@ -10174,9 +10175,9 @@ unk_20CEDE:
 	dc.b	$FF
 	even
 
-off_20CEE2:
-	dc.w	byte_20CEE6-off_20CEE2
-	dc.w	byte_20CEEC-off_20CEE2
+act25pat:
+	dc.w	byte_20CEE6-act25pat
+	dc.w	byte_20CEEC-act25pat
 byte_20CEE6:
 	dc.b	1
 	dc.b	-8,5,0,0,-8
@@ -10273,13 +10274,13 @@ byte_20CF85:
 	dc.b	$F0,3,0,0,4
 	even
 
-obj26_map:
-	dc.w	byte_20CF9C-obj26_map
-	dc.w	byte_20CFA7-obj26_map
-	dc.w	byte_20CFBC-obj26_map
-	dc.w	byte_20CFD1-obj26_map
-	dc.w	byte_20CFD8-obj26_map
-	dc.w	byte_20CFDE-obj26_map
+act26pat:
+	dc.w	byte_20CF9C-act26pat
+	dc.w	byte_20CFA7-act26pat
+	dc.w	byte_20CFBC-act26pat
+	dc.w	byte_20CFD1-act26pat
+	dc.w	byte_20CFD8-act26pat
+	dc.w	byte_20CFDE-act26pat
 byte_20CF9C:
 	dc.b	2
 	dc.b	$F0,7,0,0,$F0
@@ -10927,515 +10928,7 @@ byte_20D65C:
 	dc.b	$10,5,0,$19,-8
 	even
 
-obj21:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	move.w	off_20D68C(pc,d0.w),d0
-	jsr	off_20D68C(pc,d0.w)
-	jsr	actionsub.l
-	rts
-
-off_20D68C:
-	dc.w	loc_20D6A4-off_20D68C
-	dc.w	loc_20D776-off_20D68C
-
-sub_20D690:
-	lea	playerwk.w,a1
-	move.w	xposi(a0),d3
-	move.w	yposi(a0),d4
-	subq.w	#4,d4
-	jmp	ride_on_chk.l
-
-loc_20D6A4:
-	ori.b	#4,actflg(a0)
-	move.w	#$4000,sproffset(a0)
-	move.b	#3,sprpri(a0)
-	move.w	xposi(a0),act38(a0)
-	move.w	yposi(a0),act3A(a0)
-	move.w	yposi(a0),act36(a0)
-	move.l	#obj21_map,d0
-	cmpi.w	#zoneact(stage_SPZ,act_1),stageno
-	beq.s	loc_20D6EE
-	move.l	#obj21b_map,d0
-	cmpi.w	#zoneact(stage_SPZ,act_2),stageno
-	beq.s	loc_20D6EE
-	move.l	#obj21b_map,d0
-
-loc_20D6EE:
-	move.l	d0,patbase(a0)
-	move.b	userflag(a0),d0
-	move.b	d0,d1
-	andi.w	#3,d0
-	move.b	d0,patno(a0)
-	move.b	byte_20D76E(pc,d0.w),sprhsize(a0)
-	move.b	#4,sprvsize(a0)
-	lsr.b	#2,d1
-	andi.w	#3,d1
-	move.b	byte_20D772(pc,d1.w),act2D(a0)
-	move.b	act29(a0),d0
-	beq.s	loc_20D768
-	jsr	actwkchk.l
-	beq.s	loc_20D72C
-	jmp	frameout.l
-
-loc_20D72C:
-	_move.b	#spring_act,actno(a1)
-	move.w	xposi(a0),xposi(a1)
-	move.w	yposi(a0),yposi(a1)
-	subi.w	#$10,yposi(a1)
-	move.b	#$F0,act39(a1)
-	move.w	a0,act34(a1)
-	move.b	act29(a0),d0
-	move.b	d0,d1
-	andi.b	#2,d1
-	move.b	d1,userflag(a1)
-	andi.b	#$F8,d0
-	move.b	d0,act38(a1)
-	add.w	d0,xposi(a1)
-loc_20D768:
-	addq.b	#word,r_no0(a0)
-	rts
-
-byte_20D76E:
-	dc.b	$10
-	dc.b	$20
-	dc.b	$30
-	dc.b	0
-	even
-
-byte_20D772:
-	dc.b	$20
-	dc.b	$30
-	dc.b	$40
-	dc.b	$60
-	even
-
-loc_20D776:
-	tst.w	time_stop
-	beq.s	loc_20D782
-	bra.w	sub_20D690
-
-loc_20D782:
-	move.b	userflag(a0),d0
-	lsr.b	#4,d0
-	andi.w	#$F,d0
-	add.w	d0,d0
-	move.w	off_20D7BA(pc,d0.w),d0
-	jsr	off_20D7BA(pc,d0.w)
-	move.w	act38(a0),d0
-	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
-	subi.w	#$80,d1
-	andi.w	#$FF80,d1
-	sub.w	d1,d0
-	cmpi.w	#$280,d0
-	bls.s	locret_20D7B8
-	jmp	frameout.l
-
-locret_20D7B8:
-	rts
-
-off_20D7BA:
-	dc.w	loc_20D7CE-off_20D7BA
-	dc.w	loc_20D7E4-off_20D7BA
-	dc.w	loc_20D83E-off_20D7BA
-	dc.w	loc_20D862-off_20D7BA
-	dc.w	sub_20D888-off_20D7BA
-	dc.w	loc_20D89C-off_20D7BA
-	dc.w	loc_20D912-off_20D7BA
-	dc.w	loc_20D966-off_20D7BA
-	dc.w	loc_20D9C6-off_20D7BA
-	dc.w	loc_20DA3E-off_20D7BA
-
-loc_20D7CE:
-	addq.b	#1,act2A(a0)
-	jsr	sub_20DAB6(pc)
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	jmp	sub_20D690.l
-
-loc_20D7E4:
-	move.l	xposi(a0),-(sp)
-	jsr	sub_20DAB6(pc)
-	add.w	act38(a0),d0
-	move.w	d0,xposi(a0)
-	addq.b	#1,act2A(a0)
-	moveq	#0,d0
-	move.b	act2C(a0),d0
-	asr.b	#1,d0
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-
-loc_20D808:
-	move.l	(sp)+,d0
-	move.l	xposi(a0),d1
-	sub.l	d0,d1
-	asr.l	#8,d1
-	move.w	d1,xspeed(a0)
-
-loc_20D816:
-	jsr	sub_20D690(pc)
-	beq.s	loc_20D82E
-	move.b	act2C(a0),d0
-	cmpi.b	#8,d0
-	bhs.s	loc_20D82A
-	addq.b	#1,act2C(a0)
-
-loc_20D82A:
-	moveq	#1,d0
-	rts
-
-loc_20D82E:
-	moveq	#0,d0
-	move.b	act2C(a0),d0
-	beq.s	loc_20D83A
-	subq.b	#1,act2C(a0)
-
-loc_20D83A:
-	moveq	#0,d0
-	rts
-
-loc_20D83E:
-	move.l	xposi(a0),-(sp)
-	addq.b	#1,act2A(a0)
-	jsr	sub_20DAB6(pc)
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	jsr	sub_20DAB6(pc)
-	add.w	act38(a0),d0
-	move.w	d0,xposi(a0)
-	bra.w	loc_20D808
-
-loc_20D862:
-	move.l	xposi(a0),-(sp)
-	addq.b	#1,act2A(a0)
-	jsr	sub_20DAB6(pc)
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	jsr	sub_20DAB6(pc)
-	neg.w	d0
-	add.w	act38(a0),d0
-	move.w	d0,xposi(a0)
-	bra.w	loc_20D808
-
-sub_20D888:
-	moveq	#0,d0
-	move.b	act2C(a0),d0
-	asr.b	#1,d0
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	bra.w	loc_20D816
-
-loc_20D89C:
-	move.b	act2B(a0),d0
-	bne.s	loc_20D8B4
-	jsr	sub_20D888(pc)
-	bne.s	loc_20D8AA
-	rts
-
-loc_20D8AA:
-	move.b	#$1E,act2E(a0)
-	addq.b	#2,act2B(a0)
-
-loc_20D8B4:
-	move.b	act2E(a0),d0
-	beq.s	loc_20D8C2
-	subq.b	#1,act2E(a0)
-	bra.w	sub_20D888
-
-loc_20D8C2:
-	jsr	sub_20D690(pc)
-	move.l	yposi(a0),d1
-	move.w	yspeed(a0),d0
-	ext.l	d0
-	asl.l	#8,d0
-	add.l	d0,d1
-	move.l	d1,yposi(a0)
-	move.w	yspeed(a0),d0
-	cmpi.w	#$400,d0
-	bhs.s	loc_20D8E8
-	addi.w	#$40,yspeed(a0)
-
-loc_20D8E8:
-	jsr	emycol_d.l
-	tst.w	d1
-	bpl.s	loc_20D8FC
-	lea	playerwk.w,a1
-	bclr	#cd_ride,cddat(a1)
-
-loc_20D8FC:
-	move.w	scra_v_posit.w,d0
-	addi.w	#224,d0
-	cmp.w	yposi(a0),d0
-	bhs.s	locret_20D910
-	jmp	frameout.l
-
-locret_20D910:
-	rts
-
-loc_20D912:
-	move.b	act2B(a0),d0
-	andi.w	#$FF,d0
-	move.w	off_20D922(pc,d0.w),d0
-	jmp	off_20D922(pc,d0.w)
-
-off_20D922:
-	dc.w	loc_20D928-off_20D922
-	dc.w	loc_20D934-off_20D922
-	dc.w	loc_20D962-off_20D922
-
-loc_20D928:
-	jsr	sub_20D888(pc)
-	bne.s	loc_20D930
-	rts
-
-loc_20D930:
-	addq.b	#2,act2B(a0)
-
-loc_20D934:
-	move.b	act2A(a0),d0
-	cmpi.b	#$40,d0
-	bhs.w	loc_20D958
-	jsr	sub_20DAB6(pc)
-	neg.w	d0
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	addq.b	#2,act2A(a0)
-	jmp	sub_20D690.l
-
-loc_20D958:
-	move.w	yposi(a0),act3A(a0)
-	addq.b	#2,act2B(a0)
-
-loc_20D962:
-	bra.w	sub_20D888
-
-loc_20D966:
-	move.b	act2B(a0),d0
-	andi.w	#$FF,d0
-	move.w	off_20D976(pc,d0.w),d0
-	jmp	off_20D976(pc,d0.w)
-
-off_20D976:
-	dc.w	loc_20D97C-off_20D976
-	dc.w	loc_20D98E-off_20D976
-	dc.w	loc_20D9C2-off_20D976
-
-loc_20D97C:
-	jsr	sub_20D888(pc)
-	bne.s	loc_20D984
-	rts
-
-loc_20D984:
-	addq.b	#2,act2B(a0)
-	move.b	#$3C,act2E(a0)
-
-loc_20D98E:
-	move.b	act2E(a0),d0
-	beq.s	loc_20D99C
-	subq.b	#1,act2E(a0)
-	bra.w	sub_20D888
-
-loc_20D99C:
-	jsr	speedset2.l
-	subq.w	#8,yspeed(a0)
-	jsr	emycol_u.l
-	tst.w	d1
-	bmi.s	loc_20D9B4
-	bra.w	loc_20D816
-
-loc_20D9B4:
-	sub.w	d1,yposi(a0)
-	move.w	yposi(a0),act3A(a0)
-	addq.b	#2,act2B(a0)
-
-loc_20D9C2:
-	bra.w	sub_20D888
-
-loc_20D9C6:
-	move.b	act2B(a0),d0
-	andi.w	#$FF,d0
-	move.w	off_20D9D6(pc,d0.w),d0
-	jmp	off_20D9D6(pc,d0.w)
-
-off_20D9D6:
-	dc.w	loc_20D9DC-off_20D9D6
-	dc.w	loc_20D9EE-off_20D9D6
-	dc.w	loc_20DA3A-off_20D9D6
-
-loc_20D9DC:
-	jsr	sub_20D888(pc)
-	bne.s	loc_20D9E4
-	rts
-
-loc_20D9E4:
-	addq.b	#2,act2B(a0)
-	move.b	#$3C,act2E(a0)
-
-loc_20D9EE:
-	move.b	act2E(a0),d0
-	beq.s	loc_20D9FC
-	subq.b	#1,act2E(a0)
-	bra.w	sub_20D888
-
-loc_20D9FC:
-	move.b	act2A(a0),d0
-	cmpi.b	#$40,d0
-	bhs.w	loc_20DA30
-	move.l	xposi(a0),-(sp)
-	jsr	sub_20DAB6(pc)
-	add.w	act38(a0),d0
-	move.w	d0,xposi(a0)
-	addq.b	#1,act2A(a0)
-	moveq	#0,d0
-	move.b	act2C(a0),d0
-	asr.b	#1,d0
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	bra.w	loc_20D808
-
-loc_20DA30:
-	move.w	xposi(a0),act38(a0)
-	addq.b	#2,act2B(a0)
-
-loc_20DA3A:
-	bra.w	sub_20D888
-
-loc_20DA3E:
-	move.b	act2B(a0),d0
-	andi.w	#$FF,d0
-	move.w	off_20DA4E(pc,d0.w),d0
-	jmp	off_20DA4E(pc,d0.w)
-
-off_20DA4E:
-	dc.w	loc_20DA54-off_20DA4E
-	dc.w	loc_20DA66-off_20DA4E
-	dc.w	loc_20DAB2-off_20DA4E
-
-loc_20DA54:
-	jsr	sub_20D888(pc)
-	bne.s	loc_20DA5C
-	rts
-
-loc_20DA5C:
-	addq.b	#2,act2B(a0)
-	move.b	#$3C,act2E(a0)
-
-loc_20DA66:
-	move.b	act2E(a0),d0
-	beq.s	loc_20DA74
-	subq.b	#1,act2E(a0)
-	bra.w	sub_20D888
-
-loc_20DA74:
-	move.b	act2A(a0),d0
-	cmpi.b	#$40,d0
-	bhs.s	loc_20DAA8
-	move.l	xposi(a0),-(sp)
-	jsr	sub_20DAB6(pc)
-	neg.w	d0
-	add.w	act38(a0),d0
-	move.w	d0,xposi(a0)
-	addq.b	#1,act2A(a0)
-	moveq	#0,d0
-	move.b	act2C(a0),d0
-	asr.b	#1,d0
-	add.w	act3A(a0),d0
-	move.w	d0,yposi(a0)
-	bra.w	loc_20D808
-
-loc_20DAA8:
-	move.w	xposi(a0),act38(a0)
-	addq.b	#2,act2B(a0)
-
-loc_20DAB2:
-	bra.w	sub_20D888
-
-sub_20DAB6:
-	moveq	#0,d0
-	move.b	act2A(a0),d0
-	jsr	sinset.l
-	moveq	#0,d2
-	move.b	act2D(a0),d2
-	muls.w	d2,d0
-	lsr.l	#8,d0
-	rts
-
-obj21_map:
-	dc.w	byte_20DAD4-obj21_map
-	dc.w	byte_20DAEA-obj21_map
-	dc.w	byte_20DB14-obj21_map
-byte_20DAD4:
-	dc.b	4
-	dc.b	$F0,5,0,1,$F0
-	dc.b	$F0,5,8,1,0
-	dc.b	0,5,0,5,$F0
-	dc.b	0,5,8,5,0
-	even
-byte_20DAEA:
-	dc.b	8
-	dc.b	$F0,5,0,1,$E0
-	dc.b	$F0,5,0,1,$F0
-	dc.b	$F0,5,0,1,0
-	dc.b	$F0,5,0,1,$10
-	dc.b	0,5,0,5,$E0
-	dc.b	0,5,0,9,$F0
-	dc.b	0,5,0,9,0
-	dc.b	0,5,8,5,$10
-	even
-byte_20DB14:
-	dc.b	12
-	dc.b	$F0,5,0,1,$D0
-	dc.b	$F0,5,0,1,$E0
-	dc.b	$F0,5,0,1,$F0
-	dc.b	$F0,5,0,1,0
-	dc.b	$F0,5,0,1,$10
-	dc.b	$F0,5,0,1,$20
-	dc.b	0,5,0,5,$D0
-	dc.b	0,5,0,9,$E0
-	dc.b	0,5,0,9,$F0
-	dc.b	0,5,0,9,0
-	dc.b	0,5,0,9,$10
-	dc.b	0,5,8,5,$20
-	even
-
-obj21b_map:
-	dc.w	byte_20DB58-obj21b_map
-	dc.w	byte_20DB6E-obj21b_map
-	dc.w	byte_20DB98-obj21b_map
-byte_20DB58:
-	dc.b	4
-	dc.b	$F0,5,0,$31,$F0
-	dc.b	$F0,5,8,$31,0
-	dc.b	0,5,0,$35,$F0
-	dc.b	0,5,8,$35,0
-	even
-byte_20DB6E:
-	dc.b	8
-	dc.b	$F0,5,0,$31,$E0
-	dc.b	$F0,5,8,$31,$F0
-	dc.b	0,5,0,$35,$E0
-	dc.b	0,5,8,$35,$F0
-	dc.b	$F0,5,0,$31,0
-	dc.b	$F0,5,8,$31,$10
-	dc.b	0,5,0,$35,0
-	dc.b	0,5,8,$35,$10
-	even
-byte_20DB98:
-	dc.b	12
-	dc.b	$F0,5,0,$31,$D0
-	dc.b	$F0,5,8,$31,$E0
-	dc.b	0,5,0,$35,$D0
-	dc.b	0,5,8,$35,$E0
-	dc.b	$F0,5,0,$31,$F0
-	dc.b	$F0,5,8,$31,0
-	dc.b	0,5,0,$35,$F0
-	dc.b	0,5,8,$35,0
-	dc.b	$F0,5,0,$31,$10
-	dc.b	$F0,5,8,$31,$20
-	dc.b	0,5,0,$35,$10
-	dc.b	0,5,8,$35,$20
-	even
+	include	"Actors/21 - DoDai.asm"
 
 enecginit:
 	lea	word_20DC28(pc),a1
