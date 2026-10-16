@@ -231,7 +231,7 @@ item2move_sub:
 item2_00:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
-	move.w	#bgm_oneup,d0
+	move.w	#bgm_suu,d0
 	jmp	bgmset.l
 
 item2_01:

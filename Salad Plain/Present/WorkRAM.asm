@@ -105,13 +105,15 @@ scrflagaw:		ds.w	1
 scrflagbw:		ds.w	1
 scrflagcw:		ds.w	1
 scrflagzw:		ds.w	1
-	ds.b	$B4
+	ds.b	$88
+extrascore:		ds.l	1	; unused
+	ds.b	$28
 debugwork:		ds.b	1
 debugwork2:		ds.b	1
 debugwork3:		ds.b	1
 debugwork4:		ds.b	1
 demoflag:		ds.w	1
-	ds.b	2
+demono:			ds.w	1	; unused
 enddemono:		ds.w	1
 	ds.b	2
 mdstatus:		ds.b	1
