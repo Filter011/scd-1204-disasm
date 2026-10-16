@@ -94,7 +94,7 @@ clrchgctr:
 .jump1:
 	move.b	d0,clchgcnt.w
 	lsl.w	#3,d0
-	lea	palette+$6A.w,a1
+	lea	lpcolorwk+$6A.w,a1
 	move.l	(a0,d0.w),(a1)+
 	move.l	4(a0,d0.w),(a1)
 
@@ -117,7 +117,7 @@ clrchgctr:
 	move.b	d0,clchgcnt+1.w
 	andi.w	#3,d0
 	lsl.w	#3,d0
-	lea	palette+$58.w,a1
+	lea	lpcolorwk+$58.w,a1
 	move.l	(a0,d0.w),(a1)+
 	move.l	4(a0,d0.w),(a1)
 
@@ -136,7 +136,7 @@ clst1_1a1:
 
 fadein:
 	moveq	#0,d0
-	lea	palette.w,a0
+	lea	lpcolorwk.w,a0
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	moveq	#$000,d1
@@ -158,8 +158,8 @@ fadein0_new:
 
 fadein1:
 	moveq	#0,d0
-	lea	palette.w,a0
-	lea	palette_fade.w,a1
+	lea	lpcolorwk.w,a0
+	lea	lpcolorwk2.w,a1
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
@@ -172,8 +172,8 @@ loc_200268:
 	cmpi.b	#stage_LZ,stageno
 	bne.s	locret_200294
 	moveq	#0,d0
-	lea	palette_water.w,a0
-	lea	palette_water_fade.w,a1
+	lea	lpcolorwk3.w,a0
+	lea	lpcolorwk4.w,a1
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
@@ -228,7 +228,7 @@ fadeout_new:
 
 fadeout1:
 	moveq	#0,d0
-	lea	palette.w,a0
+	lea	lpcolorwk.w,a0
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
@@ -238,7 +238,7 @@ loc_2002F2:
 	dbf	d0,loc_2002F2
 
 	moveq	#0,d0
-	lea	palette_water.w,a0
+	lea	lpcolorwk3.w,a0
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
@@ -279,7 +279,7 @@ loc_20033C:
 flashin:
 	move.w	#$3F,startcolor.w
 	moveq	#0,d0
-	lea	palette.w,a0
+	lea	lpcolorwk.w,a0
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	move.w	#$EEE,d1
@@ -301,8 +301,8 @@ flashin_new:
 
 flashin1:
 	moveq	#0,d0
-	lea	palette.w,a0
-	lea	palette_fade.w,a1
+	lea	lpcolorwk.w,a0
+	lea	lpcolorwk2.w,a1
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
@@ -315,8 +315,8 @@ loc_200390:
 	cmpi.b	#stage_LZ,stageno
 	bne.s	locret_2003BC
 	moveq	#0,d0
-	lea	palette_water.w,a0
-	lea	palette_water_fade.w,a1
+	lea	lpcolorwk3.w,a0
+	lea	lpcolorwk4.w,a1
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
@@ -373,7 +373,7 @@ flashout_new:
 
 flashout1:
 	moveq	#0,d0
-	lea	palette.w,a0
+	lea	lpcolorwk.w,a0
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
@@ -383,7 +383,7 @@ loc_20041E:
 	dbf	d0,loc_20041E
 
 	moveq	#0,d0
-	lea	palette_water.w,a0
+	lea	lpcolorwk3.w,a0
 	move.b	startcolor.w,d0
 	adda.w	d0,a0
 	move.b	colorcnt.w,d0
@@ -430,7 +430,7 @@ colorset:
 	adda.w	d0,a1
 	movea.l	(a1)+,a2
 	movea.w	(a1)+,a3
-	adda.w	#palette_fade-palette,a3
+	adda.w	#lpcolorwk2-lpcolorwk,a3
 	move.w	(a1)+,d7
 
 .loop:
@@ -456,7 +456,7 @@ colortbl:
 pal_ptr	macro	ptr,line,size,{INTLABEL}
 __LABEL__:	label	(*-colortbl)/8
 	dc.l	ptr
-	dc.w	palette+line*$10
+	dc.w	lpcolorwk+line*$10
 	dc.w	size/2-1
 	endm
 
@@ -1827,11 +1827,11 @@ loc_20170E:
 	jsr	z80bus_on.l
 	tst.b	waterflag.w
 	bne.s	loc_201746
-	DMA68K	palette,$80,$C,0
+	DMA68K	lpcolorwk,$80,$C,0
 	bra.s	loc_20176A
 
 loc_201746:
-	DMA68K	palette_water,$80,$C,0
+	DMA68K	lpcolorwk3,$80,$C,0
 
 loc_20176A:
 	move.w	hintposi.w,(a5)
@@ -1872,11 +1872,11 @@ vint08:
 	bsr.w	read_sw
 	tst.b	waterflag.w
 	bne.s	loc_2017EA
-	DMA68K	palette,$80,$C,0
+	DMA68K	lpcolorwk,$80,$C,0
 	bra.s	loc_20180E
 
 loc_2017EA:
-	DMA68K	palette_water,$80,$C,0
+	DMA68K	lpcolorwk3,$80,$C,0
 
 loc_20180E:
 	move.w	hintposi.w,(a5)
@@ -1933,11 +1933,11 @@ vint0C:
 	bsr.w	read_sw
 	tst.b	waterflag.w
 	bne.s	loc_201962
-	DMA68K	palette,$80,$C,0
+	DMA68K	lpcolorwk,$80,$C,0
 	bra.s	loc_201986
 
 loc_201962:
-	DMA68K	palette_water,$80,$C,0
+	DMA68K	lpcolorwk3,$80,$C,0
 
 loc_201986:
 	move.w	hintposi.w,(a5)
@@ -1975,7 +1975,7 @@ vint12:
 vint16:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
-	DMA68K	palette,$80,$C,0
+	DMA68K	lpcolorwk,$80,$C,0
 	DMA68K	sprdat,(sprdat_end-sprdat),4,sprdat_vram
 	DMA68K	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
 	jsr	z80bus_off.l
@@ -1999,11 +1999,11 @@ sub_201B1A:
 	bsr.w	read_sw
 	tst.b	waterflag.w
 	bne.s	loc_201B50
-	DMA68K	palette,$80,$C,0
+	DMA68K	lpcolorwk,$80,$C,0
 	bra.s	loc_201B74
 
 loc_201B50:
-	DMA68K	palette_water,$80,$C,0
+	DMA68K	lpcolorwk3,$80,$C,0
 
 loc_201B74:
 	DMA68K	sprdat,(sprdat_end-sprdat),4,sprdat_vram
@@ -2017,7 +2017,7 @@ hint:
 	move.w	#0,hintflag.w
 	movem.l	a0-a1,-(sp)
 	lea	vdpdata,a1
-	lea	palette_water.w,a0
+	lea	lpcolorwk3.w,a0
 	move.l	#$C0000000,4(a1)
 	rept	32
 	move.l	(a0)+,(a1)

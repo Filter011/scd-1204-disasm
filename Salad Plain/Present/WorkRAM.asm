@@ -330,10 +330,10 @@ byte_FFF7DC:		ds.b	1
 	ds.b	$23
 sprdat:			ds.b	$280
 sprdat_end:
-palette_water_fade:	equ	sprdat_end-$80
-palette_water:		ds.b	$80
-palette:		ds.b	$80
-palette_fade:		ds.b	$80
+lpcolorwk4:		equ	sprdat_end-$80
+lpcolorwk3:		ds.b	$80
+lpcolorwk:		ds.b	$80
+lpcolorwk2:		ds.b	$80
 	ds.b	$400
 	dephase
 	!org 0
