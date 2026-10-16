@@ -2310,7 +2310,7 @@ scr_dir_tbl:
 	dc.w	0,$310
 	dc.w	$60
 
-word_20245C:
+endplpositbl:
 	dc.w	$50,$3B0
 	dc.w	$EA0,$46C
 	dc.w	$1750,$BD
@@ -2337,7 +2337,7 @@ loc_202498:
 	move.w	enddemono,d0
 	subq.w	#1,d0
 	lsl.w	#2,d0
-	lea	word_20245C.l,a1
+	lea	endplpositbl.l,a1
 	adda.w	d0,a1
 	bra.s	loc_2024C4
 
