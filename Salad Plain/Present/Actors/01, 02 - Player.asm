@@ -64,8 +64,8 @@ test_mapwrt:
 
 play00init:
 	addq.b	#word,r_no0(a0)
-	move.b	#pl_height,sprvsize(a0)
-	move.b	#pl_width,sprhs(a0)
+	move.b	#walkheight,sprvsize(a0)
+	move.b	#walkwidth,sprhs(a0)
 	tst.b	chibi_flag.w
 	beq.s	loc_2036E0
 	move.b	#chibiheight,sprvsize(a0)
@@ -1530,9 +1530,9 @@ loc_204610:
 	bra.s	loc_20463A
 
 loc_20462A:
-	move.b	#pl_height,sprvsize(a0)
-	move.b	#pl_width,sprhs(a0)
-	subq.w	#pl_height-rollheight,yposi(a0)
+	move.b	#walkheight,sprvsize(a0)
+	move.b	#walkwidth,sprhs(a0)
+	subq.w	#walkheight-rollheight,yposi(a0)
 
 loc_20463A:
 	move.b	#5,mstno(a0)
@@ -1749,7 +1749,7 @@ loc_20480E:
 loc_204828:
 	move.b	#rollheight,sprvsize(a0)
 	move.b	#rollwidth,sprhs(a0)
-	addq.w	#pl_height-rollheight,yposi(a0)
+	addq.w	#walkheight-rollheight,yposi(a0)
 
 loc_204838:
 	move.b	#2,mstno(a0)
@@ -1827,8 +1827,8 @@ loc_2048D4:
 	bra.s	loc_20492C
 
 loc_204920:
-	move.b	#pl_height,sprvsize(a0)
-	move.b	#pl_width,sprhs(a0)
+	move.b	#walkheight,sprvsize(a0)
+	move.b	#walkwidth,sprhs(a0)
 
 loc_20492C:
 	btst	#cd_ball,cddat(a0)
@@ -1842,7 +1842,7 @@ loc_20492C:
 loc_204948:
 	move.b	#rollheight,sprvsize(a0)
 	move.b	#rollwidth,sprhs(a0)
-	addq.w	#pl_height-rollheight,yposi(a0)
+	addq.w	#walkheight-rollheight,yposi(a0)
 
 loc_204958:
 	bset	#cd_ball,cddat(a0)
@@ -2199,9 +2199,9 @@ loc_204C9A:
 	bra.s	loc_204CDE
 
 loc_204CCE:
-	move.b	#pl_height,sprvsize(a0)
-	move.b	#pl_width,sprhs(a0)
-	subq.w	#pl_height-rollheight,yposi(a0)
+	move.b	#walkheight,sprvsize(a0)
+	move.b	#walkwidth,sprhs(a0)
+	subq.w	#walkheight-rollheight,yposi(a0)
 
 loc_204CDE:
 	move.b	#0,mstno(a0)

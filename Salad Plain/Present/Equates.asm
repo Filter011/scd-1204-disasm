@@ -248,8 +248,8 @@ chibiroll2:	ds.b	1
 	endstruct
 
 ; Player Equates
-pl_height:	equ	19
-pl_width:	equ	9
+walkheight:	equ	19
+walkwidth:	equ	9
 rollheight:	equ	14
 rollwidth:	equ	7
 chibiheight:	equ	10

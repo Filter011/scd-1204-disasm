@@ -196,8 +196,8 @@ loc_20829A:
 	bra.s	loc_2082FA
 
 loc_2082EE:
-	move.b	#pl_height,sprvsize(a1)
-	move.b	#pl_width,sprhs(a1)
+	move.b	#walkheight,sprvsize(a1)
+	move.b	#walkwidth,sprhs(a1)
 
 loc_2082FA:
 	btst	#cd_ball,cddat(a1)
@@ -211,7 +211,7 @@ loc_2082FA:
 loc_208316:
 	move.b	#rollheight,sprvsize(a1)
 	move.b	#rollwidth,sprhs(a1)
-	addq.w	#pl_height-rollheight,yposi(a1)
+	addq.w	#walkheight-rollheight,yposi(a1)
 
 loc_208326:
 	bset	#cd_ball,cddat(a1)

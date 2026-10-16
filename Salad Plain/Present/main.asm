@@ -2689,7 +2689,7 @@ scroll_v:
 	sub.w	scra_v_posit.w,d0
 	btst	#cd_ball,cddat(a6)
 	beq.s	loc_2027CC
-	subq.w	#pl_height-rollheight,d0
+	subq.w	#walkheight-rollheight,d0
 
 loc_2027CC:
 	btst	#cd_jump,cddat(a6)
@@ -4885,9 +4885,9 @@ sub_207EDC:
 	bne.s	loc_207F0A
 	bclr	#cd_ball,cddat(a1)
 	beq.s	loc_207F0A
-	move.b	#pl_height,sprvsize(a1)
-	move.b	#pl_width,sprhs(a1)
-	subq.w	#pl_height-rollheight,yposi(a1)
+	move.b	#walkheight,sprvsize(a1)
+	move.b	#walkwidth,sprhs(a1)
+	subq.w	#walkheight-rollheight,yposi(a1)
 	move.b	#0,mstno(a1)
 
 loc_207F0A:
