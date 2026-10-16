@@ -163,10 +163,10 @@ mutekiwk:		ds.b	actfree
 muteki2wk:		ds.b	actfree
 muteki3wk:		ds.b	actfree
 muteki4wk:		ds.b	actfree
-byte_FFD300:		ds.b	actfree
-byte_FFD340:		ds.b	actfree
-byte_FFD380:		ds.b	actfree
-byte_FFD3C0:		ds.b	actfree
+mutekiawk:		ds.b	actfree
+mutekia2wk:		ds.b	actfree
+mutekia3wk:		ds.b	actfree
+mutekia4wk:		ds.b	actfree
 unk_FFD400:		ds.b	$400
 byte_FFD800:		ds.b	$1800
 byte_FFD800_end:

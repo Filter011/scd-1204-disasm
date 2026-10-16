@@ -77,43 +77,43 @@ __LABEL__:	label	*-gmmodetbl
 gamemd:	gmmode_ptr	game
 
 clrchgctr:
-	lea	spz_pal_cycle.l,a0
+	lea	clst1_1a0.l,a0
 	subq.b	#1,clchgtim.w
-	bpl.s	loc_2001B6
+	bpl.s	.jump2
 	move.b	#7,clchgtim.w
 	moveq	#0,d0
 	move.b	clchgcnt.w,d0
 	cmpi.b	#2,d0
-	bne.s	loc_2001A2
+	bne.s	.jump
 	moveq	#0,d0
-	bra.s	loc_2001A4
+	bra.s	.jump1
 
-loc_2001A2:
+.jump:
 	addq.b	#1,d0
 
-loc_2001A4:
+.jump1:
 	move.b	d0,clchgcnt.w
 	lsl.w	#3,d0
 	lea	palette+$6A.w,a1
 	move.l	(a0,d0.w),(a1)+
 	move.l	4(a0,d0.w),(a1)
 
-loc_2001B6:
-	adda.w	#spz_pal_cycle2-spz_pal_cycle,a0
+.jump2:
+	adda.w	#clst1_1a1-clst1_1a0,a0
 	subq.b	#1,clchgtim+1.w
-	bpl.s	locret_2001EE
+	bpl.s	.end
 	move.b	#5,clchgtim+1.w
 	moveq	#0,d0
 	move.b	clchgcnt+1.w,d0
 	cmpi.b	#2,d0
-	bne.s	loc_2001D6
+	bne.s	.jump3
 	moveq	#0,d0
-	bra.s	loc_2001D8
+	bra.s	.jump4
 
-loc_2001D6:
+.jump3:
 	addq.b	#1,d0
 
-loc_2001D8:
+.jump4:
 	move.b	d0,clchgcnt+1.w
 	andi.w	#3,d0
 	lsl.w	#3,d0
@@ -121,15 +121,15 @@ loc_2001D8:
 	move.l	(a0,d0.w),(a1)+
 	move.l	4(a0,d0.w),(a1)
 
-locret_2001EE:
+.end:
 	rts
 
-spz_pal_cycle:
+clst1_1a0:
 	dc.w	$ECC,$ECA,$EEE,$EA8
 	dc.w	$EA8,$ECC,$ECC,$ECA
 	dc.w	$ECA,$EA8,$ECA,$ECC
 
-spz_pal_cycle2:
+clst1_1a1:
 	dc.w	$ECA,$EA8,$C60,$E86
 	dc.w	$EA8,$E86,$C60,$ECA
 	dc.w	$E86,$ECA,$C60,$EA8

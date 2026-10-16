@@ -40,23 +40,25 @@ play00_move_tbl:
 locret_203674:
 	rts
 
-loc_203676:
-	tst.b	byte_FFD300.w
+muteki_set:
+	tst.b	mutekiawk.w
 	bne.s	locret_2036BA
 	tst.b	act29(a0)
 	beq.s	locret_2036BA
 	move.b	#1,plpower_a
-	move.b	#baria_act,byte_FFD300.w
-	move.b	#5,byte_FFD300+mstno.w
-	move.b	#baria_act,byte_FFD340.w
-	move.b	#6,byte_FFD340+mstno.w
-	move.b	#baria_act,byte_FFD380.w
-	move.b	#7,byte_FFD380+mstno.w
-	move.b	#baria_act,byte_FFD3C0.w
-	move.b	#8,byte_FFD3C0+mstno.w
+	move.b	#baria_act,mutekiawk.w
+	move.b	#5,mutekiawk+mstno.w
+	move.b	#baria_act,mutekia2wk.w
+	move.b	#6,mutekia2wk+mstno.w
+	move.b	#baria_act,mutekia3wk.w
+	move.b	#7,mutekia3wk+mstno.w
+	move.b	#baria_act,mutekia4wk.w
+	move.b	#8,mutekia4wk+mstno.w
 
 locret_2036BA:
 	rts
+
+test_mapwrt:
 	rts
 
 play00init:
@@ -93,7 +95,7 @@ mizuki_set:
 	ext.w	d2
 	add.w	yposi(a0),d2
 	move.w	xposi(a0),d3
-	bsr.w	sub_203800
+	bsr.w	mapno_chk
 	cmpi.b	#$2F,d1
 	bne.s	locret_203788
 	cmpi.w	#$15C0,xposi(a0)
@@ -162,7 +164,7 @@ loc_2037F6:
 	move.w	#$A1,d0
 	jmp	soundset.l
 
-sub_203800:
+mapno_chk:
 	move.w	d2,d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
@@ -910,7 +912,7 @@ loc_203F86:
 	cmpi.w	#$5A,d1
 	bhs.s	loc_203F9E
 	cmp.w	d2,d0
-	bhs.w	loc_203676
+	bhs.w	muteki_set
 	clr.w	backto_cnt.w
 	clr.b	plpower_a
 	rts
