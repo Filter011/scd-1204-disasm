@@ -3538,11 +3538,11 @@ mapset:
 
 	lea	mapwka.w,a3
 	moveq	#0,d1
-	bsr.w	sub_203002
+	bsr.w	mapset_sub
 	lea	mapwkb.w,a3
 	moveq	#2,d1
 
-sub_203002:
+mapset_sub:
 	moveq	#0,d0
 	add.w	d1,d0
 	lea	zonemaptbl.l,a1
@@ -3553,16 +3553,17 @@ sub_203002:
 	move.b	(a1)+,d1
 	move.b	(a1)+,d2
 
-loc_20301C:
+.loop:
 	move.w	d1,d0
 	movea.l	a3,a0
 
-loc_203020:
+.loop1:
 	move.b	(a1)+,(a0)+
-	dbf	d0,loc_203020
+	dbf	d0,.loop1
 
 	lea	$80(a3),a3
-	dbf	d2,loc_20301C
+	dbf	d2,.loop
+
 	rts
 
 	include	"ScrChk.asm"
