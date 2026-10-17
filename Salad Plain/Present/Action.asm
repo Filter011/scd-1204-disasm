@@ -474,7 +474,7 @@ iwa_act:	act_ptr	iwa
 score_act:	act_ptr	score
 objid_1D:	act_ptr	noact
 objid_1E:	act_ptr	noact
-flower_act:	act_ptr	flower
+flow_act:	act_ptr	flower
 kuzure_act:	act_ptr	kuzureru_tikei
 dodai_act:	act_ptr	dodai
 objid_22:	act_ptr	obj22

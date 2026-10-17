@@ -125,7 +125,7 @@ debugflag:		ds.w	1
 init_flag:		ds.l	1
 flagwork:		ds.b	$180
 flagwork_end:
-flowerwk:		ds.b	$300
+flowwk:			ds.b	$300
 flowercnt:		ds.l	1
 word_FF1884:		ds.w	1
 byte_FF1886:		ds.b	1

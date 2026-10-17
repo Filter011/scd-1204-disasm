@@ -29,7 +29,7 @@ baku_die:
 	jmp	frameout.l
 
 loc_2055A4:
-	_move.b	#flower_act,actno(a0)
+	_move.b	#flow_act,actno(a0)
 	move.b	#0,r_no0(a0)
 	rts
 
@@ -109,7 +109,7 @@ flow_sub1:
 	bclr	#7,d1
 	lsl.w	#8,d1
 	add.w	d1,d0
-	lea	flowerwk,a1
+	lea	flowwk,a1
 	rts
 
 flow_move2:

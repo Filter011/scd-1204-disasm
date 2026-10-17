@@ -222,7 +222,7 @@ flow_act_set:
 	moveq	#0,d1
 
 .loop:
-	_move.b	#flower_act,actno(a2)
+	_move.b	#flow_act,actno(a2)
 	move.w	d1,d2
 	add.w	d2,d2
 	add.w	d2,d2
@@ -231,7 +231,7 @@ flow_act_set:
 	bclr	#7,d3
 	lsl.w	#8,d3
 	add.w	d3,d2
-	lea	flowerwk,a3
+	lea	flowwk,a3
 	move.w	(a3,d2.w),xposi(a2)
 	move.w	2(a3,d2.w),yposi(a2)
 	adda.w	#actfree,a2
