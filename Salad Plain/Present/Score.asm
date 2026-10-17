@@ -283,7 +283,7 @@ scorewrt2:
 	tst.w	d4
 	beq.s	.jump5
 	lsl.w	#6,d2
-	move.l	d0,4(a6)
+	move.l	d0,vdpctrl-vdpdata(a6)
 	lea	(a1,d2.w),a3
 	rept	16
 	move.l	(a3)+,(a6)
@@ -390,7 +390,7 @@ timewrt0:
 
 .jump4:
 	lsl.w	#6,d2
-	move.l	d0,4(a6)
+	move.l	d0,vdpctrl-vdpdata(a6)
 	lea	(a1,d2.w),a3
 	rept	16
 	move.l	(a3)+,(a6)
