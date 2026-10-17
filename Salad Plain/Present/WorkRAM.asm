@@ -305,7 +305,8 @@ demo_adr:		ds.l	1	; unused
 demo_cnt:		ds.w	1	; unused
 	ds.b	1
 swbufcnt:		ds.w	1
-	ds.b	4
+	ds.b	2
+fintimer:		ds.w	1	; unused
 scdadr:			ds.l	1
 	ds.b	$E
 plposiwkadr:		ds.w	1
