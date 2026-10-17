@@ -4796,24 +4796,6 @@ byte_20B4D2:
 	dc.b	-8,5,0,4,-8
 	even
 
-sub_20B4D8:
-	lea	unk_FFD400.w,a2
-	moveq	#0,d0
-
-loc_20B4DE:
-	_move.b	actno(a2),d1
-	beq.w	loc_20B4F6
-	addq.w	#1,d0
-	lea	actfree(a2),a2
-	cmpi.w	#$3C,d0
-	bne.s	loc_20B4DE
-	moveq	#0,d0
-	rts
-
-loc_20B4F6:
-	moveq	#-1,d0
-	rts
-
 	include	"Actors/23.asm"
 
 	movea.l	a0,a1

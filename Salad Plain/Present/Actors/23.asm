@@ -1,3 +1,21 @@
+sub_20B4D8:
+	lea	unk_FFD400.w,a2
+	moveq	#0,d0
+
+loc_20B4DE:
+	_move.b	actno(a2),d1
+	beq.w	loc_20B4F6
+	addq.w	#1,d0
+	lea	actfree(a2),a2
+	cmpi.w	#60,d0
+	bne.s	loc_20B4DE
+	moveq	#0,d0
+	rts
+
+loc_20B4F6:
+	moveq	#-1,d0
+	rts
+
 obj23:
 	moveq	#0,d0
 	move.b	userflag(a0),d0
