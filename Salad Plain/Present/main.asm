@@ -2326,37 +2326,6 @@ loc_2035A8:
 locret_2035AE:
 	rts
 
-sub_2035B0:
-	move.w	swdata2.w,d0
-	moveq	#objid_02,d1
-	lea	byecnt1.w,a4
-	lea	actwk.w,a5
-	lea	byte_FFD040.w,a6
-	tst.b	main_play
-	beq.s	loc_2035DC
-	move.w	swdata1.w,d0
-	moveq	#play00_act,d1
-	lea	byecnt0.w,a4
-	lea	byte_FFD040.w,a5
-	lea	actwk.w,a6
-
-loc_2035DC:
-	_tst.b	actno(a6)
-	bne.s	locret_203614
-	andi.b	#$F0,d0
-	beq.s	locret_203614
-	_move.b	d1,actno(a6)
-	move.b	cddat(a5),cddat(a6)
-	move.l	yposi(a5),yposi(a6)
-	move.l	xposi(a5),xposi(a6)
-	move.w	yspeed(a5),yspeed(a6)
-	move.w	xspeed(a5),xspeed(a6)
-	move.w	mspeed(a5),mspeed(a6)
-	move.w	#0,(a4)
-
-locret_203614:
-	rts
-
 	include	"Actors/01, 02 - Player.asm"
 
 loc_205400:
