@@ -39,11 +39,13 @@ loc_202216:
 	move.w	a2,(a1)+
 	addq.w	#1,a2
 	dbf	d2,loc_202216
+
 	bra.s	loc_2021EC
 
 loc_202220:
 	move.w	a4,(a1)+
 	dbf	d2,loc_202220
+
 	bra.s	loc_2021EC
 
 loc_202228:
@@ -52,6 +54,7 @@ loc_202228:
 loc_20222C:
 	move.w	d1,(a1)+
 	dbf	d2,loc_20222C
+
 	bra.s	loc_2021EC
 
 loc_202234:
@@ -61,6 +64,7 @@ loc_202238:
 	move.w	d1,(a1)+
 	addq.w	#1,d1
 	dbf	d2,loc_202238
+
 	bra.s	loc_2021EC
 
 loc_202242:
@@ -70,6 +74,7 @@ loc_202246:
 	move.w	d1,(a1)+
 	subq.w	#1,d1
 	dbf	d2,loc_202246
+
 	bra.s	loc_2021EC
 
 loc_202250:
@@ -80,6 +85,7 @@ loc_202256:
 	bsr.w	get_inline_copy
 	move.w	d1,(a1)+
 	dbf	d2,loc_202256
+
 	bra.s	loc_2021EC
 
 loc_202262:

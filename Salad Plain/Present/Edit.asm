@@ -172,13 +172,13 @@ edit_tbl:
 	dcblw	item_act,4,itempat,$5A8,7,0,0,7
 	dcblw	taki_act,1,shibukipat,$3BA,0,0,0,0
 	dcblw	mizuki_act,1,mizukipat,$31E,0,0,0,0
-	dcblw	kuzure_act,3,off_20D34C,$4000,$10,1,0,0
-	dcblw	kuzure_act,3,off_20D34C,$4000,0,0,0,0
-	dcblw	kuzure_act,3,off_20D418,$4000,$80,0,0,0
-	dcblw	kuzure_act,3,off_20D418,$4000,$81,0,0,1
-	dcblw	kuzure_act,3,off_20D418,$4000,$82,0,0,2
-	dcblw	kuzure_act,3,off_20D418,$4000,$83,0,0,3
-	dcblw	kuzure_act,3,off_20D418,$4000,$84,0,0,4
-	dcblw	kuzure_act,3,off_20D418,$4000,$85,0,0,5
+	dcblw	kuzure_act,3,patbase_kuzure_a,$4000,$10,1,0,0
+	dcblw	kuzure_act,3,patbase_kuzure_a,$4000,0,0,0,0
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$80,0,0,0
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$81,0,0,1
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$82,0,0,2
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$83,0,0,3
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$84,0,0,4
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$85,0,0,5
 	dcblw	item_act,4,itempat,$5A8,8,0,0,$A
 	dcblw	item_act,4,itempat,$5A8,9,0,0,$C

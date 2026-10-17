@@ -286,6 +286,7 @@ loc_2026C2:
 	add.l	d2,d3
 	swap	d3
 	dbf	d1,loc_2026C2
+
 	rts
 
 sub_2026D4:
@@ -298,15 +299,11 @@ loc_2026E0:
 	move.w	(a2)+,d0
 
 loc_2026E2:
+	rept	8
 	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
+	endr
 	dbf	d1,loc_2026E0
+
 	rts
 
 	neg.w	d0
@@ -315,15 +312,11 @@ loc_2026E2:
 	neg.w	d0
 
 loc_202700:
+	rept	8
 	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
-	move.l	d0,(a1)+
+	endr
 	dbf	d1,loc_2026E0
+
 	rts
 
 scroll_h:
@@ -860,6 +853,7 @@ loc_202C0E:
 loc_202C38:
 	addi.w	#16,d4
 	dbf	d6,loc_202C0E
+
 	clr.b	(a2)
 	rts
 
@@ -886,6 +880,7 @@ loc_202C52:
 	movem.l	(sp)+,d4-d5
 	addi.w	#16,d5
 	dbf	d6,loc_202C52
+
 	rts
 
 hblockwrt1:
@@ -902,6 +897,7 @@ loc_202C7C:
 	movem.l	(sp)+,d4-d5
 	addi.w	#16,d5
 	dbf	d6,loc_202C7C
+
 	rts
 
 vblockwrt:
@@ -919,6 +915,7 @@ loc_202CA8:
 	movem.l	(sp)+,d4-d5
 	addi.w	#16,d4
 	dbf	d6,loc_202CA8
+
 	rts
 
 blockwrt:
@@ -1151,6 +1148,7 @@ mapwrt3:
 	movem.l	(sp)+,d4-d6
 	addi.w	#16,d4
 	dbf	d6,mapwrt3
+
 	rts
 
 mapwrt_z81a:
@@ -1168,6 +1166,7 @@ loc_202EFC:
 	movem.l	(sp)+,d4-d6/a0
 	addi.w	#16,d4
 	dbf	d6,loc_202EFC
+
 	rts
 
 z81awrttbl:

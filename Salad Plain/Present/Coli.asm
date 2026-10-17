@@ -27,6 +27,7 @@ pcol:
 .jump:
 	lea	actfree(a1),a1
 	dbf	d6,.loop
+
 	moveq	#0,d0
 	rts
 

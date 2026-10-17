@@ -3112,7 +3112,7 @@ loc_20533E:
 	lea	playwrtwk.w,a3
 	move.b	#1,playwrtflag.w
 
-loc_205368:
+.loop:
 	moveq	#0,d2
 	move.b	(a2)+,d2
 	move.w	d2,d0
@@ -3123,12 +3123,13 @@ loc_205368:
 	lea	playcg.l,a1
 	adda.l	d2,a1
 
-loc_20537E:
+.loop1:
 	movem.l	(a1)+,d2-d6/a4-a6
 	movem.l	d2-d6/a4-a6,(a3)
 	lea	tile_size(a3),a3
-	dbf	d0,loc_20537E
-	dbf	d1,loc_205368
+	dbf	d0,.loop1
+
+	dbf	d1,.loop
 
 locret_205392:
 	rts

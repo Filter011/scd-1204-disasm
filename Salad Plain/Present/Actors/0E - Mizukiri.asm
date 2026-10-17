@@ -1,13 +1,13 @@
 mizukiri:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2056D6(pc,d0.w),d0
-	jmp	off_2056D6(pc,d0.w)
+	move.w	mizuki_move_tbl(pc,d0.w),d0
+	jmp	mizuki_move_tbl(pc,d0.w)
 
-off_2056D6:
-	dc.w	mizuki_init-off_2056D6
-	dc.w	mizuki_move-off_2056D6
-	dc.w	mizuki_move2-off_2056D6
+mizuki_move_tbl:
+	dc.w	mizuki_init-mizuki_move_tbl
+	dc.w	mizuki_move-mizuki_move_tbl
+	dc.w	mizuki_move2-mizuki_move_tbl
 
 mizuki_init:
 	addq.b	#word,r_no0(a0)

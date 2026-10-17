@@ -76,6 +76,7 @@ loc_2023CA:
 	move.b	(a1,d2.w),d0
 	move.b	d0,(a1)+
 	dbf	d3,loc_2023CA
+
 	bra.s	loc_202356
 
 loc_2023D6:

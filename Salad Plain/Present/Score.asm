@@ -195,12 +195,14 @@ scoreinitsub:
 
 .jump:
 	dbf	d2,.loop
+
 	rts
 
 .spaceset:
 .loop2:
 	move.l	#0,(a6)
 	dbf	d1,.loop2
+
 	bra.s	.jump
 
 scoreinittbl:
@@ -248,6 +250,7 @@ posiwrt:
 ;.jump5:
 ;	swap	d1
 ;	dbf	d6,.loop
+
 ;	rts
 
 ringwrt:
@@ -292,6 +295,7 @@ scorewrt2:
 .jump5:
 	addi.l	#$400000,d0
 	dbf	d6,.loop
+
 	rts
 
 contwrt:
@@ -320,6 +324,7 @@ contwrt:
 	move.l	(a3)+,(a6)
 	endr
 	dbf	d6,.loop
+
 	rts
 
 subtbl:
@@ -397,6 +402,7 @@ timewrt0:
 	endr
 	addi.l	#$400000,d0
 	dbf	d6,.loop
+
 	rts
 
 ;bonuswrt:
@@ -432,6 +438,7 @@ timewrt0:
 
 ;.jump5:
 ;	dbf	d6,.loop
+
 ;	rts
 
 ;.jump7:
@@ -440,4 +447,5 @@ timewrt0:
 ;.loop2:
 ;	move.l	#0,(a6)
 ;	dbf	d5,.loop2
+
 ;	bra.s	.jump5

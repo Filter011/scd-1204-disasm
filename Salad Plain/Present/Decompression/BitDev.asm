@@ -319,6 +319,7 @@ loc_20218A:
 .loop:
 	move.l	6(a0),(a0)+
 	dbf	d0,.loop
+
 	rts
 
 loc_20219A:

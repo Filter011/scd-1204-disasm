@@ -70,6 +70,7 @@ loc_208A70:
 	lsr.b	d1,d4
 	blo.s	loc_208AEA
 	dbf	d0,loc_208A70
+
 	bclr	#7,(a2)
 	bra.s	loc_208AA2
 
@@ -84,6 +85,7 @@ loc_208A8E:
 	lsr.b	d1,d4
 	blo.s	loc_208AEA
 	dbf	d0,loc_208A8E
+
 	bclr	#7,(a2)
 	bsr.w	actwkchk
 	bne.s	loc_208AF6

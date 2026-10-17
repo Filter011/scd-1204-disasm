@@ -16,6 +16,7 @@ action0:
 .jump:
 	lea	actfree(a0),a0
 	dbf	d7,action0
+
 	rts
 
 	moveq	#(byte_FFD800-actwk)/actfree-1,d7
@@ -33,6 +34,7 @@ loc_203120:
 .jump:
 	lea	actfree(a0),a0
 	dbf	d7,loc_203120
+
 	rts
 
 speedset:
@@ -147,6 +149,7 @@ frameout:
 .loop:
 	move.l	d1,(a1)+
 	dbf	d0,.loop
+
 	rts
 
 patsettbl:

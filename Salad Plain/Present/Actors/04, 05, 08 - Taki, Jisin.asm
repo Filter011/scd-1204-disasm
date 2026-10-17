@@ -174,6 +174,7 @@ loc_206912:
 	jsr	block_wrt.l
 	addi.w	#$10,d5
 	dbf	d6,loc_2068FC
+
 	movem.l	(sp)+,d0/a0
 	subi.w	#$10,d4
 	dbf	d0,loc_2068EE
