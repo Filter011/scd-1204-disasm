@@ -9,33 +9,6 @@ dma68k:	macro	src,len,ram,type
 	endm
 
 ; ---------------------------------------------------------------------------
-; Set a VRAM address via the VDP control port.
-; input: 16-bit VRAM address, control port (default is vdpctrl)
-; ---------------------------------------------------------------------------
-
-writeVRAM:	macro loc,controlport=vdpctrl
-	move.l	#($40000000+(((loc)&$3FFF)<<16)+(((loc)&$C000)>>14)),controlport
-	endm
-
-; ---------------------------------------------------------------------------
-; Set a CRAM address via the VDP control port.
-; input: 16-bit VRAM address, control port (default is vdpctrl)
-; ---------------------------------------------------------------------------
-
-writeCRAM:	macro loc=0,controlport=vdpctrl
-	move.l	#$C0000000+(loc<<16),controlport
-	endm
-
-; ---------------------------------------------------------------------------
-; Set a VSRAM address via the VDP control port.
-; input: 16-bit VRAM address, control port (default is vdpctrl)
-; ---------------------------------------------------------------------------
-
-writeVSRAM:	macro loc=0,controlport=vdpctrl
-	move.l	#$40000010+(loc<<16),controlport
-	endm
-
-; ---------------------------------------------------------------------------
 ; incbin compatibility macro for AS
 ; ---------------------------------------------------------------------------
 

@@ -1754,7 +1754,7 @@ da_tbl:
 	jsr	sub_sync.l
 
 sub_2015E8:
-	writeVRAM	$59F*tile_size,d0
+	move.l	#$73E00002,d0
 	moveq	#0,d2
 	move.b	time_flag,d2
 	bclr	#7,d2
