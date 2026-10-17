@@ -1,5 +1,5 @@
 fcol:
-	btst	#3,cddat(a0)
+	btst	#cd_ride,cddat(a0)
 	beq.s	loc_200AB2
 	moveq	#0,d0
 	move.b	d0,dirstk.w
@@ -90,10 +90,10 @@ loc_200B76:
 	rts
 
 loc_200B7C:
-	tst.b	act38(a0)
+	tst.b	convexflag(a0)
 	bne.s	loc_200B76
-	bset	#1,cddat(a0)
-	bclr	#5,cddat(a0)
+	bset	#cd_walk,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
 	rts
 
@@ -214,10 +214,10 @@ loc_200CA8:
 	rts
 
 loc_200CAE:
-	tst.b	act38(a0)
+	tst.b	convexflag(a0)
 	bne.s	loc_200CA8
-	bset	#1,cddat(a0)
-	bclr	#5,cddat(a0)
+	bset	#cd_walk,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
 	rts
 
@@ -274,10 +274,10 @@ loc_200D4A:
 	rts
 
 loc_200D50:
-	tst.b	act38(a0)
+	tst.b	convexflag(a0)
 	bne.s	loc_200D4A
-	bset	#1,cddat(a0)
-	bclr	#5,cddat(a0)
+	bset	#cd_walk,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
 	rts
 
@@ -334,10 +334,10 @@ loc_200DEC:
 	rts
 
 loc_200DF2:
-	tst.b	act38(a0)
+	tst.b	convexflag(a0)
 	bne.s	loc_200DEC
-	bset	#1,cddat(a0)
-	bclr	#5,cddat(a0)
+	bset	#cd_walk,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
 	rts
 
