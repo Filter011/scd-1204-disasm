@@ -1,3 +1,37 @@
+bye_chk:
+	lea	byecnt0.w,a1
+	_cmpi.b	#play00_act,actno(a0)
+	beq.s	loc_203568
+	lea	byecnt1.w,a1
+
+loc_203568:
+	cmpi.b	#5,mstno(a0)
+	beq.s	loc_203576
+	move.w	#0,(a1)
+	rts
+
+loc_203576:
+	tst.w	(a1)
+	bne.s	loc_203580
+	move.b	#1,actflg(a1)
+
+loc_203580:
+	cmpi.w	#$2A30,(a1)
+	blo.s	locret_2035AE
+	move.w	#0,(a1)
+	move.b	#$2B,mstno(a0)
+	move.w	#-$500,yspeed(a0)
+	move.w	#$100,xspeed(a0)
+	btst	#0,cddat(a0)
+	beq.s	loc_2035A8
+	neg.w	xspeed(a0)
+
+loc_2035A8:
+	move.w	#0,mspeed(a0)
+
+locret_2035AE:
+	rts
+
 sub_2035B0:
 	move.w	swdata2.w,d0
 	moveq	#objid_02,d1
