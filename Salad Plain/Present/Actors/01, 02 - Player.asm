@@ -2,7 +2,7 @@ sub_2035B0:
 	move.w	swdata2.w,d0
 	moveq	#objid_02,d1
 	lea	byecnt1.w,a4
-	lea	actwk.w,a5
+	lea	playerwk.w,a5
 	lea	byte_FFD040.w,a6
 	tst.b	main_play
 	beq.s	loc_2035DC
@@ -10,7 +10,7 @@ sub_2035B0:
 	moveq	#play00_act,d1
 	lea	byecnt0.w,a4
 	lea	byte_FFD040.w,a5
-	lea	actwk.w,a6
+	lea	playerwk.w,a6
 
 loc_2035DC:
 	_tst.b	actno(a6)
