@@ -217,14 +217,14 @@ clchgtim:		ds.w	1
 	ds.b	$22
 divdevwk:		ds.b	6*16
 divdevwk_end:
-bitdev_a3:		ds.l	1
+bitdevadr:		ds.l	1
 bitdev_d0:		ds.l	1
 bitdev_d1:		ds.l	1
 bitdev_d2:		ds.l	1
 bitdev_d5:		ds.l	1
 bitdev_d6:		ds.l	1
-word_FFF6F8:		ds.w	1
-word_FFF6FA:		ds.w	1
+bitdevcnt:		ds.w	1
+bitdevcnt2:		ds.w	1
 	ds.b	4
 scra_h_posit:		ds.l	1
 scra_v_posit:		ds.l	1

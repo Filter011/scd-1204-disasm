@@ -231,7 +231,7 @@ sub_20208C:
 sub_20209A:
 	tst.l	divdevwk.w
 	beq.s	locret_2020EE
-	tst.w	word_FFF6F8.w
+	tst.w	bitdevcnt.w
 	bne.s	locret_2020EE
 	movea.l divdevwk.w,a0
 	lea	write_pixels.l,a3
@@ -242,7 +242,7 @@ sub_20209A:
 
 loc_2020BC:
 	andi.w	#$7FFF,d2
-	move.w	d2,word_FFF6F8.w
+	move.w	d2,bitdevcnt.w
 	bsr.w	build_codetable
 	move.b	(a0)+,d5
 	asl.w	#8,d5
@@ -250,7 +250,7 @@ loc_2020BC:
 	moveq	#16,d6
 	moveq	#0,d0
 	move.l	a0,divdevwk.w
-	move.l	a3,bitdev_a3.w
+	move.l	a3,bitdevadr.w
 	move.l	d0,bitdev_d0.w
 	move.l	d0,bitdev_d1.w
 	move.l	d0,bitdev_d2.w
@@ -261,18 +261,18 @@ locret_2020EE:
 	rts
 
 sub_2020F0:
-	tst.w	word_FFF6F8.w
+	tst.w	bitdevcnt.w
 	beq.w	locret_202188
-	move.w	#9,word_FFF6FA.w
+	move.w	#9,bitdevcnt2.w
 	moveq	#0,d0
 	move.w	divdevwk+4.w,d0
 	addi.w	#$120,divdevwk+4.w
 	bra.s	loc_202124
 
 sub_20210C:
-	tst.w	word_FFF6F8.w
+	tst.w	bitdevcnt.w
 	beq.s	locret_202188
-	move.w	#3,word_FFF6FA.w
+	move.w	#3,bitdevcnt2.w
 	moveq	#0,d0
 	move.w	divdevwk+4.w,d0
 	addi.w	#$60,divdevwk+4.w
@@ -286,7 +286,7 @@ loc_202124:
 	move.l	d0,(a4)
 	subq.w	#4,a4
 	movea.l divdevwk.w,a0
-	movea.l bitdev_a3.w,a3
+	movea.l bitdevadr.w,a3
 	move.l	bitdev_d0.w,d0
 	move.l	bitdev_d1.w,d1
 	move.l	bitdev_d2.w,d2
@@ -297,12 +297,12 @@ loc_202124:
 loc_202158:
 	movea.w #8,a5
 	bsr.w	sub_201F7A
-	subq.w	#1,word_FFF6F8.w
+	subq.w	#1,bitdevcnt.w
 	beq.s	loc_20218A
-	subq.w	#1,word_FFF6FA.w
+	subq.w	#1,bitdevcnt2.w
 	bne.s	loc_202158
 	move.l	a0,divdevwk.w
-	move.l	a3,bitdev_a3.w
+	move.l	a3,bitdevadr.w
 	move.l	d0,bitdev_d0.w
 	move.l	d1,bitdev_d1.w
 	move.l	d2,bitdev_d2.w
