@@ -254,7 +254,7 @@ rollheight:	equ	14
 rollwidth:	equ	7
 chibiheight:	equ	10
 chibiwidth:	equ	5
-play2flag:	equ	act29
+mainplayflag:	equ	act29
 invulnerabilitytimer:	equ	act30
 mutekitimer:	equ	act32
 speeduptimer:	equ	act34
