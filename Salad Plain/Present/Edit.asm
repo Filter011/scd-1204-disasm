@@ -127,58 +127,58 @@ dcblw	macro	p1,p2,p3,p4,p5,p6,p7,p8
 
 edit_tbl:
 	dc.b	55,0
-	dcblw	objid_25,1,act25pat,$31E,0,0,0,0
-	dcblw	iwa_act,1,iwapat,$326,0,0,0,0
-	dcblw	objid_26,1,act26pat,$33A,0,0,0,0
-	dcblw	objid_28,1,act28pat,$342,0,0,0,0
-	dcblw	objid_28,1,act28pat,$342,1,1,0,0
-	dcblw	futa_act,1,futapat,$357,0,0,0,0
-	dcblw	objid_27,1,act27pat,$49B,0,0,0,0
-	dcblw	dai_k_act,1,k_daipat,$4D2,0,0,0,0
-	dcblw	dai_k_act,1,k_daipat,$47C,0,0,1,0
-	dcblw	dodai_act,1,dai11a_pattbl,$4000,1,0,0,0
-	dcblw	koma_act,4,komapat,$4D4,0,0,0,0
-	dcblw	koma_act,4,komapat,$493,0,0,1,0
-	dcblw	spring_act,1,springpat,$520,0,0,0,0
-	dcblw	spring_act,1,springpat,$520,0,2,0,0
-	dcblw	spring_act,1,spring90pat,$520,4,0,0,0
-	dcblw	spring_act,1,spring90pat,$520,4,1,0,0
-	dcblw	spring_act,1,spring45pat,$3A1,8,0,0,0
-	dcblw	spring_act,1,spring45pat,$3A1,8,2,0,0
-	dcblw	spring_act,1,spring45pat,$3A1,8,1,0,0
-	dcblw	spring_act,1,spring45pat,$3A1,8,3,0,0
-	dcblw	spring_act,1,springpat,$2520,2,0,0,0
-	dcblw	spring_act,1,springpat,$2520,2,2,0,0
-	dcblw	spring_act,1,spring90pat,$2520,6,0,0,0
-	dcblw	spring_act,1,spring90pat,$2520,6,1,0,0
-	dcblw	spring_act,1,spring45pat,$23A1,$A,0,0,0
-	dcblw	spring_act,1,spring45pat,$23A1,$A,2,0,0
-	dcblw	spring_act,1,spring45pat,$23A1,$A,1,0,0
-	dcblw	spring_act,1,spring45pat,$23A1,$A,3,0,0
-	dcblw	friend_act,1,pat_friend0,$3C7,0,0,0,0
-	dcblw	friend_act,1,pat_friend1,$3C7,1,0,0,0
-	dcblw	marker_act,4,obj13_map,$23DF,0,0,0,0
-	dcblw	objid_14,4,obj14_map,$23DF,0,0,0,0
-	dcblw	objid_15,4,obj15_map,$2456,0,0,0,0
-	dcblw	objid_16,4,obj16_map,$2428,0,0,0,0
-	dcblw	objid_22,4,obj22_map,$2413,0,0,0,0
-	dcblw	item_act,4,itempat,$5A8,0,0,0,0
-	dcblw	item_act,4,itempat,$5A8,1,0,0,1
-	dcblw	item_act,4,itempat,$5A8,2,0,0,2
-	dcblw	item_act,4,itempat,$5A8,3,0,0,3
-	dcblw	item_act,4,itempat,$5A8,4,0,0,4
-	dcblw	item_act,4,itempat,$5A8,5,0,0,5
-	dcblw	item_act,4,itempat,$5A8,6,0,0,6
-	dcblw	item_act,4,itempat,$5A8,7,0,0,7
-	dcblw	taki_act,1,shibukipat,$3BA,0,0,0,0
-	dcblw	mizuki_act,1,mizukipat,$31E,0,0,0,0
-	dcblw	kuzure_act,3,patbase_kuzure_a,$4000,$10,1,0,0
-	dcblw	kuzure_act,3,patbase_kuzure_a,$4000,0,0,0,0
-	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$80,0,0,0
-	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$81,0,0,1
-	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$82,0,0,2
-	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$83,0,0,3
-	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$84,0,0,4
-	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$85,0,0,5
-	dcblw	item_act,4,itempat,$5A8,8,0,0,$A
-	dcblw	item_act,4,itempat,$5A8,9,0,0,$C
+	dcblw	objid_25,1,act25pat,$31E,0,0,0,0		;1:
+	dcblw	iwa_act,1,iwapat,$326,0,0,0,0			;2:
+	dcblw	objid_26,1,act26pat,$33A,0,0,0,0		;3:
+	dcblw	objid_28,1,act28pat,$342,0,0,0,0		;4:
+	dcblw	objid_28,1,act28pat,$342,1,1,0,0		;5:
+	dcblw	futa_act,1,futapat,$357,0,0,0,0			;6:
+	dcblw	objid_27,1,act27pat,$49B,0,0,0,0		;7:
+	dcblw	dai_k_act,1,k_daipat,$4D2,0,0,0,0		;8:
+	dcblw	dai_k_act,1,k_daipat,$47C,0,0,1,0		;9:
+	dcblw	dodai_act,1,dai11a_pattbl,$4000,1,0,0,0		;10:
+	dcblw	koma_act,4,komapat,$4D4,0,0,0,0			;11:
+	dcblw	koma_act,4,komapat,$493,0,0,1,0			;12:
+	dcblw	spring_act,1,springpat,$520,0,0,0,0		;13:
+	dcblw	spring_act,1,springpat,$520,0,2,0,0		;14:
+	dcblw	spring_act,1,spring90pat,$520,4,0,0,0		;15:
+	dcblw	spring_act,1,spring90pat,$520,4,1,0,0		;16:
+	dcblw	spring_act,1,spring45pat,$3A1,8,0,0,0		;17:
+	dcblw	spring_act,1,spring45pat,$3A1,8,2,0,0		;18:
+	dcblw	spring_act,1,spring45pat,$3A1,8,1,0,0		;19:
+	dcblw	spring_act,1,spring45pat,$3A1,8,3,0,0		;20:
+	dcblw	spring_act,1,springpat,$2520,2,0,0,0		;21:
+	dcblw	spring_act,1,springpat,$2520,2,2,0,0		;22:
+	dcblw	spring_act,1,spring90pat,$2520,6,0,0,0		;23:
+	dcblw	spring_act,1,spring90pat,$2520,6,1,0,0		;24:
+	dcblw	spring_act,1,spring45pat,$23A1,$A,0,0,0		;25:
+	dcblw	spring_act,1,spring45pat,$23A1,$A,2,0,0		;26:
+	dcblw	spring_act,1,spring45pat,$23A1,$A,1,0,0		;27:
+	dcblw	spring_act,1,spring45pat,$23A1,$A,3,0,0		;28:
+	dcblw	friend_act,1,pat_friend0,$3C7,0,0,0,0		;29:
+	dcblw	friend_act,1,pat_friend1,$3C7,1,0,0,0		;30:
+	dcblw	marker_act,4,obj13_map,$23DF,0,0,0,0		;31:
+	dcblw	objid_14,4,obj14_map,$23DF,0,0,0,0		;32:
+	dcblw	objid_15,4,obj15_map,$2456,0,0,0,0		;33:
+	dcblw	objid_16,4,obj16_map,$2428,0,0,0,0		;34:
+	dcblw	objid_22,4,obj22_map,$2413,0,0,0,0		;35:
+	dcblw	item_act,4,itempat,$5A8,0,0,0,0			;36:
+	dcblw	item_act,4,itempat,$5A8,1,0,0,1			;37:
+	dcblw	item_act,4,itempat,$5A8,2,0,0,2			;38:
+	dcblw	item_act,4,itempat,$5A8,3,0,0,3			;39:
+	dcblw	item_act,4,itempat,$5A8,4,0,0,4			;40:
+	dcblw	item_act,4,itempat,$5A8,5,0,0,5			;41:
+	dcblw	item_act,4,itempat,$5A8,6,0,0,6			;42:
+	dcblw	item_act,4,itempat,$5A8,7,0,0,7			;43:
+	dcblw	taki_act,1,shibukipat,$3BA,0,0,0,0		;44:
+	dcblw	mizuki_act,1,mizukipat,$31E,0,0,0,0		;45:
+	dcblw	kuzure_act,3,patbase_kuzure_a,$4000,$10,1,0,0	;46:
+	dcblw	kuzure_act,3,patbase_kuzure_a,$4000,0,0,0,0	;47:
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$80,0,0,0	;48:
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$81,0,0,1	;49:
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$82,0,0,2	;50:
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$83,0,0,3	;51:
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$84,0,0,4	;52:
+	dcblw	kuzure_act,3,patbase_kuzure_b,$4000,$85,0,0,5	;53:
+	dcblw	item_act,4,itempat,$5A8,8,0,0,$A		;54:
+	dcblw	item_act,4,itempat,$5A8,9,0,0,$C		;55:
