@@ -122,7 +122,7 @@ loc_2059DC:
 	move.l	(a1)+,(a2)+
 	dbf	d0,loc_2059DC
 
-	DMA68K	powerupwrtwk,(powerupwrtwk_dma_end-powerupwrtwk),4,$544*tile_size
+	dma68k	powerupwrtwk,(powerupwrtwk_dma_end-powerupwrtwk),4,$544*tile_size
 
 locret_205A06:
 	rts
