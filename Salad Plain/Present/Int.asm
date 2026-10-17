@@ -89,9 +89,9 @@ vint02:
 	bsr.w	sub_201B1A
 
 vint14:
-	tst.w	generictimer.w
+	tst.w	waittimer.w
 	beq.w	locret_201788
-	subq.w	#1,generictimer.w
+	subq.w	#1,waittimer.w
 
 locret_201788:
 	rts
@@ -100,9 +100,9 @@ vint04:
 	bsr.w	sub_201B1A
 	bsr.w	scrollwrtadva
 	bsr.w	sub_2020F0
-	tst.w	generictimer.w
+	tst.w	waittimer.w
 	beq.w	locret_2017A2
-	subq.w	#1,generictimer.w
+	subq.w	#1,waittimer.w
 
 locret_2017A2:
 	rts
@@ -165,9 +165,9 @@ doupdates:
 	bsr.w	scrollwrt
 	bsr.w	sub_20210C
 	jsr	scoreset.l
-	tst.w	generictimer.w
+	tst.w	waittimer.w
 	beq.w	locret_201928
-	subq.w	#1,generictimer.w
+	subq.w	#1,waittimer.w
 
 locret_201928:
 	rts
@@ -234,9 +234,9 @@ vint16:
 	move.b	#0,playwrtflag.w
 
 loc_201B0C:
-	tst.w	generictimer.w
+	tst.w	waittimer.w
 	beq.w	locret_201B18
-	subq.w	#1,generictimer.w
+	subq.w	#1,waittimer.w
 
 locret_201B18:
 	rts

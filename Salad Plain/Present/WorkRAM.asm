@@ -187,7 +187,7 @@ swdata2:		ds.w	1
 	ds.b	4
 word_FFF60C:		ds.w	1
 	ds.b	6
-generictimer:		ds.w	1
+waittimer:		ds.w	1
 vscroll:		ds.l	1
 hscroll:		ds.l	1
 	ds.b	6
