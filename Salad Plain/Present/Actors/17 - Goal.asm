@@ -58,8 +58,8 @@ goal_move3:
 	bne.s	locret_20DFC6
 	move.w	#2,gameflag
 	move.b	#0,plflag
-	clr.w	word_FF12F4
-	clr.l	flowerwk
+	clr.w	enecgpnt
+	clr.l	flowercnt
 	move.b	#1,time_flag
 	move.b	stageact,d0
 	addq.b	#1,d0

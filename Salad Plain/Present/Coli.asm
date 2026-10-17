@@ -122,7 +122,7 @@ pcolitem:
 .ring:
 	cmpi.w	#90,invulnerabilitytimer(a0)
 	bhs.w	.ringe
-	addq.b	#2,r_no0(a1)
+	addq.b	#word,r_no0(a1)
 
 .ringe:
 	rts
@@ -145,7 +145,7 @@ pcolitem:
 	cmpi.b	#2,mstno(a0)
 	bne.s	.iteme
 	neg.w	yspeed(a0)
-	addq.b	#2,r_no0(a1)
+	addq.b	#word,r_no0(a1)
 
 .iteme:
 	rts
@@ -276,7 +276,7 @@ playdamageset:
 playdieset:
 	tst.w	editmode
 	bne.s	.end
-	tst.b	act29(a0)
+	tst.b	mainplayflag(a0)
 	beq.w	frameout
 	move.b	#0,plpower_m
 	move.b	#6,r_no0(a0)

@@ -93,7 +93,8 @@ sys_ringtimer:		ds.w	1
 	ds.b	$26
 editstack:		ds.w	1	; unused
 editstack2:		ds.w	1	; unused
-word_FF12F4:		ds.w	1
+enecgpnt:		ds.b	1
+enecgflg:		ds.b	1
 	ds.b	$1A
 scra_h_posiw:		ds.l	1
 scra_v_posiw:		ds.l	1	; unused
@@ -124,8 +125,8 @@ debugflag:		ds.w	1
 init_flag:		ds.l	1
 flagwork:		ds.b	$180
 flagwork_end:
-flowercnt:		ds.b	$300
-flowerwk:		ds.l	1
+flowerwk:		ds.b	$300
+flowercnt:		ds.l	1
 word_FF1884:		ds.w	1
 byte_FF1886:		ds.b	1
 	ds.b	3

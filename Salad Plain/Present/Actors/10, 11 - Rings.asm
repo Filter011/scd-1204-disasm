@@ -306,11 +306,11 @@ ringchg0:
 	include	"Patterns/Ring.asm"
 
 bigringpat:
-	dc.w	byte_208D82-bigringpat
-	dc.w	byte_208DB5-bigringpat
-	dc.w	byte_208DDE-bigringpat
-	dc.w	byte_208DF3-bigringpat
-byte_208D82:
+	dc.w	bigringsp0-bigringpat
+	dc.w	bigringsp1-bigringpat
+	dc.w	bigringsp2-bigringpat
+	dc.w	bigringsp3-bigringpat
+bigringsp0:
 	dc.b	10
 	dc.b	$E0,8,0,0,$E8
 	dc.b	$E0,8,0,3,0
@@ -322,7 +322,7 @@ byte_208D82:
 	dc.b	$10,$C,0,$22,0
 	dc.b	$18,8,0,$26,$E8
 	dc.b	$18,8,0,$29,0
-byte_208DB5:
+bigringsp1:
 	dc.b	8
 	dc.b	$E0,$C,0,$2C,$F0
 	dc.b	$E8,8,0,$30,$E8
@@ -332,13 +332,13 @@ byte_208DB5:
 	dc.b	8,9,0,$45,0
 	dc.b	$10,8,0,$4B,$E8
 	dc.b	$18,$C,0,$4E,$F0
-byte_208DDE:
+bigringsp2:
 	dc.b	4
 	dc.b	$E0,7,0,$52,$F4
 	dc.b	$E0,3,8,$52,4
 	dc.b	0,7,0,$5A,$F4
 	dc.b	0,3,8,$5A,4
-byte_208DF3:
+bigringsp3:
 	dc.b	8
 	dc.b	$E0,$C,8,$2C,$F0
 	dc.b	$E8,8,8,$30,0

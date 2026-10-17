@@ -2356,11 +2356,11 @@ loc_204DDE:
 	bra.w	frameout
 
 loc_204DFA:
-	clr.l	flowerwk
+	clr.l	flowercnt
 	move.w	#scpu_fadeCDA,d0
 	tst.b	pl_suu
 	beq.s	loc_204E12
-	clr.w	word_FF12F4
+	clr.w	enecgpnt
 
 loc_204E12:
 	bra.w	sub_sync

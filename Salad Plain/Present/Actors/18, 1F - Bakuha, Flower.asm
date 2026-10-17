@@ -1,13 +1,13 @@
 bakuha:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_205558(pc,d0.w),d0
-	jmp	off_205558(pc,d0.w)
+	move.w	baku_move_tbl(pc,d0.w),d0
+	jmp	baku_move_tbl(pc,d0.w)
 
-off_205558:
-	dc.w	baku_init-off_205558
-	dc.w	baku_move-off_205558
-	dc.w	baku_die-off_205558
+baku_move_tbl:
+	dc.w	baku_init-baku_move_tbl
+	dc.w	baku_move-baku_move_tbl
+	dc.w	baku_die-baku_move_tbl
 
 baku_init:
 	addq.b	#word,r_no0(a0)
@@ -36,16 +36,16 @@ loc_2055A4:
 flower:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2055C6(pc,d0.w),d0
-	jsr	off_2055C6(pc,d0.w)
+	move.w	flow_move_tbl(pc,d0.w),d0
+	jsr	flow_move_tbl(pc,d0.w)
 	jmp	actionsub.l
 
-off_2055C6:
-	dc.w	flow_init-off_2055C6
-	dc.w	flow_move0-off_2055C6
-	dc.w	flow_move1-off_2055C6
-	dc.w	flow_move2-off_2055C6
-	dc.w	flow_move3-off_2055C6
+flow_move_tbl:
+	dc.w	flow_init-flow_move_tbl
+	dc.w	flow_move0-flow_move_tbl
+	dc.w	flow_move1-flow_move_tbl
+	dc.w	flow_move2-flow_move_tbl
+	dc.w	flow_move3-flow_move_tbl
 
 flow_init:
 	ori.b	#4,actflg(a0)
@@ -69,7 +69,7 @@ flow_move0:
 	bpl.s	loc_205658
 	add.w	d1,yposi(a0)
 	bsr.w	flow_sub
-	lea	flowerwk,a2
+	lea	flowercnt,a2
 	move.b	(a2,d1.w),d0
 	addq.b	#1,(a2,d1.w)
 	bsr.w	flow_sub1
@@ -109,7 +109,7 @@ flow_sub1:
 	bclr	#7,d1
 	lsl.w	#8,d1
 	add.w	d1,d0
-	lea	flowercnt,a1
+	lea	flowerwk,a1
 	rts
 
 flow_move2:
