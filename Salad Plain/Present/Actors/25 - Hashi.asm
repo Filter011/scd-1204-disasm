@@ -214,70 +214,8 @@ loc_20BF42:
 	rts
 
 unk_20BF8E:
-	dc.b	0
-	dc.b	0
-	dc.b	1
-	dc.b	1
-	dc.b	2
-	dc.b	2
-	dc.b	3
-	dc.b	3
-	dc.b	4
-	dc.b	4
-	dc.b	5
-	dc.b	5
-	dc.b	6
-	dc.b	6
-	dc.b	7
-	dc.b	7
-	dc.b	8
-	dc.b	8
-	dc.b	7
-	dc.b	7
-	dc.b	6
-	dc.b	6
-	dc.b	5
-	dc.b	5
-	dc.b	4
-	dc.b	4
-	dc.b	3
-	dc.b	3
-	dc.b	2
-	dc.b	2
-	dc.b	1
-	dc.b	1
-	dc.b	0
-	dc.b	1
-	dc.b	2
-	dc.b	3
-	dc.b	4
-	dc.b	5
-	dc.b	6
-	dc.b	7
-	dc.b	8
-	dc.b	9
-	dc.b	$A
-	dc.b	$B
-	dc.b	$C
-	dc.b	$D
-	dc.b	$E
-	dc.b	$F
-	dc.b	$10
-	dc.b	$F
-	dc.b	$E
-	dc.b	$D
-	dc.b	$C
-	dc.b	$B
-	dc.b	$A
-	dc.b	9
-	dc.b	8
-	dc.b	7
-	dc.b	6
-	dc.b	5
-	dc.b	4
-	dc.b	3
-	dc.b	2
-	dc.b	1
+	dc.b	0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,7,7,6,6,5,5,4,4,3,3,2,2,1,1
+	dc.b	0,1,2,3,4,5,6,7,8,9,$A,$B,$C,$D,$E,$F,$10,$F,$E,$D,$C,$B,$A,9,8,7,6,5,4,3,2,1
 	even
 
 sub_20BFCE:
@@ -963,50 +901,3 @@ unk_20C708:
 	dc.b	0,0,0,$11,0,$23,1,$35,1,$47,1,$59,2,$6B
 	dc.b	0,0,0,$11,0,$23,0,$35,0,$47,1,$59,1,$6B
 	even
-
-obj26:
-	moveq	#0,d0
-	move.b	r_no0(a0),d0
-	move.w	off_20C820(pc,d0.w),d0
-	jmp	off_20C820(pc,d0.w)
-
-off_20C820:
-	dc.w	loc_20C824-off_20C820
-	dc.w	loc_20C88A-off_20C820
-
-loc_20C824:
-	addq.b	#word,r_no0(a0)
-	move.l	#act26pat,patbase(a0)
-	move.b	#4,actflg(a0)
-	move.b	#1,sprpri(a0)
-	moveq	#$A,d0
-	jsr	pa_set(pc)
-	move.b	userflag(a0),d0
-	andi.b	#7,d0
-	move.b	d0,mstno(a0)
-	move.b	#$86,colino(a0)
-	move.b	#$10,sprhsize(a0)
-	move.b	#$C,sprvsize(a0)
-	cmpi.b	#3,d0
-	bne.w	loc_20C874
-	move.b	#2,sprhsize(a0)
-	move.b	#$C,sprvsize(a0)
-
-loc_20C874:
-	cmpi.b	#4,d0
-	bmi.w	locret_20C888
-	move.b	#$10,sprhsize(a0)
-	move.b	#3,sprvsize(a0)
-
-locret_20C888:
-	rts
-
-loc_20C88A:
-	lea	playerwk.w,a1
-	move.w	xposi(a0),d3
-	move.w	yposi(a0),d4
-	jsr	ride_on_chk.l
-	lea	obj26_ani.l,a1
-	jsr	patchg.l
-	jsr	actionsub.l
-	jmp	frameout_s.l

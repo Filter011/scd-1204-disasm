@@ -5842,7 +5842,8 @@ loc_20BC80:
 locret_20BCA2:
 	rts
 
-	include	"Actors/25, 26.asm"
+	include	"Actors/25 - Hashi.asm"
+	include	"Actors/26.asm"
 
 obj29:
 	moveq	#0,d0
