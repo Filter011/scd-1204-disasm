@@ -2269,15 +2269,15 @@ copy_map_vram:
 	lea	vdpdata,a6
 	move.l	#$800000,d4
 
-loc_201EDA:
+.loop:
 	move.l	d0,vdpctrl-vdpdata(a6)
 	move.w	d1,d3
 
-loc_201EE0:
+.loop1:
 	move.w	(a1)+,(a6)
-	dbf	d3,loc_201EE0
+	dbf	d3,.loop1
 	add.l	d4,d0
-	dbf	d2,loc_201EDA
+	dbf	d2,.loop
 	rts
 
 	include	"Decompression/BitDev.asm"
@@ -2323,14 +2323,14 @@ locret_2035AE:
 
 sub_2035B0:
 	move.w	swdata2.w,d0
-	moveq	#2,d1
+	moveq	#objid_02,d1
 	lea	byecnt1.w,a4
 	lea	actwk.w,a5
 	lea	byte_FFD040.w,a6
 	tst.b	main_play
 	beq.s	loc_2035DC
 	move.w	swdata1.w,d0
-	moveq	#1,d1
+	moveq	#play00_act,d1
 	lea	byecnt0.w,a4
 	lea	byte_FFD040.w,a5
 	lea	actwk.w,a6
