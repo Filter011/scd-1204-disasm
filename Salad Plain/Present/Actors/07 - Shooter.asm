@@ -2,8 +2,8 @@ shooter:
 	bsr.w	main_chk
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_207B78(pc,d0.w),d1
-	jsr	off_207B78(pc,d1.w)
+	move.w	shooter_move_tbl(pc,d0.w),d1
+	jsr	shooter_move_tbl(pc,d1.w)
 	cmpi.b	#4,r_no0(a0)
 	bhs.s	locret_207B70
 	move.w	xposi(a0),d0
@@ -21,11 +21,11 @@ locret_207B70:
 loc_207B72:
 	jmp	frameout.l
 
-off_207B78:
-	dc.w	shooterinit-off_207B78
-	dc.w	shootermove-off_207B78
-	dc.w	shootermove2-off_207B78
-	dc.w	shootermove3-off_207B78
+shooter_move_tbl:
+	dc.w	shooterinit-shooter_move_tbl
+	dc.w	shootermove-shooter_move_tbl
+	dc.w	shootermove2-shooter_move_tbl
+	dc.w	shootermove3-shooter_move_tbl
 
 shooterinit:
 	move.l	#bariapat,patbase(a0)

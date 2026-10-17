@@ -193,7 +193,7 @@ loc_20BEEE:
 loc_20BF42:
 	bsr.w	sub_20C042
 	bsr.w	sub_20BFCE
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -335,7 +335,7 @@ loc_20C162:
 	bclr	#cd_ride,cddat(a1)
 
 loc_20C178:
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -411,7 +411,7 @@ loc_20C24E:
 	bclr	#cd_ride,cddat(a1)
 
 loc_20C264:
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -425,7 +425,7 @@ loc_20C278:
 	bclr	#cd_ride,cddat(a1)
 
 loc_20C28E:
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -473,7 +473,7 @@ loc_20C2C2:
 
 loc_20C32E:
 	bsr.w	sub_20C042
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -504,7 +504,7 @@ loc_20C35A:
 loc_20C394:
 	bsr.w	sub_20C042
 	bsr.w	sub_20BFCE
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -556,7 +556,7 @@ loc_20C40A:
 	move.l	d0,yposi(a1)
 
 loc_20C448:
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -692,13 +692,13 @@ locret_20C5D2:
 	rts
 
 loc_20C5D4:
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
 
 loc_20C5E8:
-	lea	off_20CED0.l,a1
+	lea	hashichg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -747,4 +747,3 @@ unk_20C708:
 	dc.b	0,0,0,$11,1,$23,1,$35,2,$47,3,$59,3,$6B
 	dc.b	0,0,0,$11,0,$23,1,$35,1,$47,1,$59,2,$6B
 	dc.b	0,0,0,$11,0,$23,0,$35,0,$47,1,$59,1,$6B
-	even

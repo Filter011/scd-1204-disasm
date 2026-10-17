@@ -1,12 +1,12 @@
 test_act:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_2054E4(pc,d0.w),d0
-	jmp	off_2054E4(pc,d0.w)
+	move.w	test_move_tbl(pc,d0.w),d0
+	jmp	test_move_tbl(pc,d0.w)
 
-off_2054E4:
-	dc.w	test_init-off_2054E4
-	dc.w	test_move-off_2054E4
+test_move_tbl:
+	dc.w	test_init-test_move_tbl
+	dc.w	test_move-test_move_tbl
 
 test_init:
 	btst	#7,cddat(a0)

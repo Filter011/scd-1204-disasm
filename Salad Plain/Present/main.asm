@@ -6511,10 +6511,10 @@ byte_20CECA:
 	dc.b	-4,0,$C0,$2E,-4
 	even
 
-off_20CED0:
-	dc.w	unk_20CED6-off_20CED0
-	dc.w	unk_20CEDA-off_20CED0
-	dc.w	unk_20CEDE-off_20CED0
+hashichg:
+	dc.w	unk_20CED6-hashichg
+	dc.w	unk_20CEDA-hashichg
+	dc.w	unk_20CEDE-hashichg
 unk_20CED6:
 	dc.b	$1D
 	dc.b	0,1

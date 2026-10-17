@@ -11,13 +11,13 @@ loc_203628:
 
 loc_20362C:
 	bsr.s	sub_2035B0
-	clr.b	act29(a0)
+	clr.b	play2flag(a0)
 	moveq	#0,d0
 	_move.b	actno(a0),d0
 	subq.b	#1,d0
 	cmp.b	main_play,d0
 	bne.s	loc_203648
-	move.b	#1,act29(a0)
+	move.b	#1,play2flag(a0)
 
 loc_203648:
 	moveq	#0,d0
@@ -33,7 +33,7 @@ play00_move_tbl:
 	dc.w	play00erase-play00_move_tbl
 
 baria_set:
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.s	.end
 	move.b	#1,plpower_b
 	move.b	#baria_act,bariawk.w
@@ -44,7 +44,7 @@ baria_set:
 muteki_set:
 	tst.b	mutekiawk.w
 	bne.s	.end
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.s	.end
 	move.b	#1,plpower_a
 	move.b	#baria_act,mutekiawk.w
@@ -705,7 +705,7 @@ loc_203CF0:
 
 loc_203D0E:
 	bsr.s	playpowercnt
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.s	loc_203D1A
 	bsr.w	playposiwkset
 
@@ -754,7 +754,7 @@ playpowercnt:
 	bhs.s	loc_203D8C
 
 loc_203D76:
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	bne.s	loc_203D86
 	btst	#0,systemtimer+3
 	beq.s	loc_203D8C
@@ -805,7 +805,7 @@ locret_203E14:
 	rts
 
 sub_203E16:
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	bne.s	locret_203E58
 	move.w	scra_h_posit.w,d0
 	subi.w	#$80,d0
@@ -1089,7 +1089,7 @@ loc_204172:
 	bra.w	loc_204330
 
 loc_20417C:
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.w	loc_2041E4
 	move.b	scr_cnt.w,d0
 	andi.b	#$F,d0
@@ -1143,14 +1143,14 @@ loc_204220:
 	bra.w	loc_204354
 
 loc_204224:
-	cmpi.b	#$3C,act2A(a0)
+	cmpi.b	#60,act2A(a0)
 	beq.s	loc_20423A
 	move.b	#0,act2A(a0)
 	move.w	#0,mspeed(a0)
 	bra.s	loc_20428C
 
 loc_20423A:
-	move.b	#$3D,act2A(a0)
+	move.b	#61,act2A(a0)
 	move.w	plmaxspdwk.w,d6
 	move.w	pladdspdwk.w,d5
 	move.w	plretspdwk.w,d4
@@ -1167,7 +1167,7 @@ loc_204264:
 	btst	#0,swdata.w
 	beq.s	loc_20428C
 	move.b	#7,mstno(a0)
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.w	loc_20430E
 	cmpi.w	#200,scra_vline.w
 	beq.w	loc_204354
@@ -1175,7 +1175,7 @@ loc_204264:
 	bra.w	loc_204354
 
 loc_20428C:
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.s	loc_2042C8
 	btst	#6,scr_cnt.w
 	bne.w	loc_20430E
@@ -1219,7 +1219,7 @@ loc_20430E:
 	btst	#1,swdata.w
 	beq.s	loc_204330
 	move.b	#8,mstno(a0)
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.s	loc_204354
 	cmpi.w	#8,scra_vline.w
 	beq.s	loc_204354
@@ -1329,7 +1329,7 @@ plwalk_l:
 loc_204418:
 	tst.b	act2A(a0)
 	beq.s	loc_204434
-	cmpi.b	#$3D,act2A(a0)
+	cmpi.b	#61,act2A(a0)
 	bne.s	locret_204496
 	bset	#2,swdata.w
 	lsl.w	#7,d5
@@ -1380,7 +1380,7 @@ plwalk_r:
 	bmi.s	loc_2044E2
 	tst.b	act2A(a0)
 	beq.s	loc_2044BA
-	cmpi.b	#$3D,act2A(a0)
+	cmpi.b	#61,act2A(a0)
 	bne.s	locret_204518
 	bset	#3,swdata.w
 	lsl.w	#7,d5
@@ -1480,7 +1480,7 @@ loc_204594:
 	bra.w	loc_204610
 
 loc_2045BA:
-	cmpi.b	#$3C,act2A(a0)
+	cmpi.b	#60,act2A(a0)
 	bne.s	loc_204594
 	move.b	#0,act2A(a0)
 	move.w	#$91,d0
@@ -1623,7 +1623,7 @@ loc_204702:
 	move.w	d0,xspeed(a0)
 
 loc_204706:
-	tst.b	act29(a0)
+	tst.b	play2flag(a0)
 	beq.s	loc_20471E
 	cmpi.w	#$60,scra_vline.w
 	beq.s	loc_20471E

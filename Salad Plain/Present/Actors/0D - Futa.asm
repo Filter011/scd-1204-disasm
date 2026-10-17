@@ -1,27 +1,27 @@
 futa:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20572A(pc,d0.w),d0
-	jsr	off_20572A(pc,d0.w)
+	move.w	futa_move_tbl(pc,d0.w),d0
+	jsr	futa_move_tbl(pc,d0.w)
 	jsr	actionsub.l
 	jmp	frameout_s.l
 
-off_20572A:
-	dc.w	futa_init-off_20572A
-	dc.w	futa_move-off_20572A
-	dc.w	futa_move2-off_20572A
-	dc.w	futa_move3-off_20572A
+futa_move_tbl:
+	dc.w	futa_init-futa_move_tbl
+	dc.w	futa_move-futa_move_tbl
+	dc.w	futa_move2-futa_move_tbl
+	dc.w	futa_move3-futa_move_tbl
 
 ride_on_chk_f:
 	tst.w	yspeed(a1)
-	bpl.s	loc_205774
+	bpl.s	.jump
 	bsr.w	exit2_set
-	beq.s	loc_205774
+	beq.s	.jump
 	move.b	#4,r_no0(a0)
 	tst.b	userflag(a0)
-	bne.s	locret_205772
+	bne.s	.end
 	jsr	actwkchk.l
-	bne.s	locret_205772
+	bne.s	.worknai
 	_move.b	#exit2_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
@@ -29,10 +29,11 @@ ride_on_chk_f:
 	move.w	#$A4,d0
 	jmp	soundset.l
 
-locret_205772:
+.worknai:
+.end:
 	rts
 
-loc_205774:
+.jump:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jmp	ride_on_chk.l
