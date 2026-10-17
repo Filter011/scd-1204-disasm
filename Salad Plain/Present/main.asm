@@ -45,9 +45,9 @@ init:
 	beq.w	.jump
 
 .stack:
-	lea	stackwk,a6
+	lea	stacksave,a6
 	moveq	#0,d7
-	move.w	#(stackwk_end-stackwk)/4-1,d6
+	move.w	#(stacksave_end-stacksave)/4-1,d6
 
 .loop:
 	move.l	d7,(a6)+

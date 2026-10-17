@@ -6,15 +6,15 @@ ta_flag:		ds.b	1
 	ds.b	$A7F
 	dephase
 	phase	$FF1000
-stackwk:		ds.b	$200
-stackwk_end:
+stacksave:		ds.b	$200
+stacksave_end:
 	ds.b	2
 gameflag:		ds.w	1
 gametimer:		ds.w	1
 editno:			ds.b	1
 	ds.b	1
 editmode:		ds.w	1
-	ds.b	2
+edittimer:		ds.w	1	; unused
 systemtimer:		ds.l	1
 stageno:		ds.b	1
 stageact:		ds.b	1
@@ -90,7 +90,9 @@ sys_patno3:		ds.b	1
 sys_pattim4:		ds.b	1
 sys_patno4:		ds.b	1
 sys_ringtimer:		ds.w	1
-	ds.b	$2A
+	ds.b	$26
+editstack:		ds.w	1	; unused
+editstack2:		ds.w	1	; unused
 word_FF12F4:		ds.w	1
 	ds.b	$1A
 scra_h_posiw:		ds.l	1
