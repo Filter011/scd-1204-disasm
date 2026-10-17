@@ -127,7 +127,7 @@ dcblw	macro	p1,p2,p3,p4,p5,p6,p7,p8
 
 edit_tbl:
 	dc.b	55,0
-	dcblw	objid_25,1,act25pat,$31E,0,0,0,0		;1:
+	dcblw	hashi_act,1,hashipat,$31E,0,0,0,0		;1:
 	dcblw	iwa_act,1,iwapat,$326,0,0,0,0			;2:
 	dcblw	objid_26,1,act26pat,$33A,0,0,0,0		;3:
 	dcblw	objid_28,1,act28pat,$342,0,0,0,0		;4:

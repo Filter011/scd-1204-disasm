@@ -1,31 +1,31 @@
-actor25:
+hashi:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20BCB2(pc,d0.w),d0
-	jmp	off_20BCB2(pc,d0.w)
+	move.w	hashi_move_tbl(pc,d0.w),d0
+	jmp	hashi_move_tbl(pc,d0.w)
 
-off_20BCB2:
-	dc.w	loc_20BCD4-off_20BCB2
-	dc.w	sub_20BDC6-off_20BCB2
-	dc.w	loc_20BE6A-off_20BCB2
-	dc.w	loc_20BED8-off_20BCB2
-	dc.w	loc_20C14C-off_20BCB2
-	dc.w	loc_20C18C-off_20BCB2
-	dc.w	loc_20C0FE-off_20BCB2
-	dc.w	loc_20C2A2-off_20BCB2
-	dc.w	loc_20C346-off_20BCB2
-	dc.w	loc_20C3B0-off_20BCB2
-	dc.w	loc_20C278-off_20BCB2
-	dc.w	loc_20C212-off_20BCB2
-	dc.w	loc_20C19E-off_20BCB2
-	dc.w	loc_20C40A-off_20BCB2
-	dc.w	locret_20C5FC-off_20BCB2
-	dc.w	loc_20C5E8-off_20BCB2
-	dc.w	loc_20C5D4-off_20BCB2
+hashi_move_tbl:
+	dc.w	hashi_init-hashi_move_tbl
+	dc.w	sub_20BDC6-hashi_move_tbl
+	dc.w	loc_20BE6A-hashi_move_tbl
+	dc.w	loc_20BED8-hashi_move_tbl
+	dc.w	loc_20C14C-hashi_move_tbl
+	dc.w	loc_20C18C-hashi_move_tbl
+	dc.w	loc_20C0FE-hashi_move_tbl
+	dc.w	loc_20C2A2-hashi_move_tbl
+	dc.w	loc_20C346-hashi_move_tbl
+	dc.w	loc_20C3B0-hashi_move_tbl
+	dc.w	loc_20C278-hashi_move_tbl
+	dc.w	loc_20C212-hashi_move_tbl
+	dc.w	loc_20C19E-hashi_move_tbl
+	dc.w	loc_20C40A-hashi_move_tbl
+	dc.w	locret_20C5FC-hashi_move_tbl
+	dc.w	loc_20C5E8-hashi_move_tbl
+	dc.w	loc_20C5D4-hashi_move_tbl
 
-loc_20BCD4:
+hashi_init:
 	move.b	#$C,r_no0(a0)
-	move.l	#act25pat,patbase(a0)
+	move.l	#hashipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -39,7 +39,7 @@ loc_20BCD4:
 loc_20BD0E:
 	jsr	actwkchk.l
 	bne.w	loc_20BDB6
-	_move.b	#objid_25,actno(a1)
+	_move.b	#hashi_act,actno(a1)
 	move.b	#2,r_no0(a1)
 	move.w	a0,act3E(a1)
 	move.b	d7,act3C(a1)
@@ -48,7 +48,7 @@ loc_20BD0E:
 	bne.s	loc_20BD0E
 	jsr	actwkchk.l
 	bne.w	loc_20BDB6
-	_move.b	#objid_25,actno(a1)
+	_move.b	#hashi_act,actno(a1)
 	move.b	#4,r_no0(a1)
 	move.w	a0,act3E(a1)
 	move.b	#$FF,act3C(a1)
@@ -61,7 +61,7 @@ loc_20BD0E:
 	move.l	d0,yposi(a1)
 	bsr.w	actwkchk
 	bne.w	loc_20BDB6
-	_move.b	#objid_25,actno(a1)
+	_move.b	#hashi_act,actno(a1)
 	move.b	#4,r_no0(a1)
 	move.w	a0,act3E(a1)
 	move.b	#$FE,act3C(a1)
@@ -83,7 +83,7 @@ locret_20BDC4:
 
 sub_20BDC6:
 	move.b	#6,r_no0(a0)
-	move.l	#act25pat,patbase(a0)
+	move.l	#hashipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)
@@ -131,7 +131,7 @@ loc_20BE04:
 
 loc_20BE6A:
 	move.b	#8,r_no0(a0)
-	move.l	#act25pat,patbase(a0)
+	move.l	#hashipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#$10,sprhsize(a0)

@@ -2611,7 +2611,8 @@ byte_205D52:
 	dc.b	0,5,0,$18,$F0
 	dc.b	0,5,$18,$10,0
 	even
-byte_205D68:	dc.b	4
+byte_205D68:
+	dc.b	4
 	dc.b	$E8,$A,0,$1C,$E8
 	dc.b	$E8,$A,8,$1C,0
 	dc.b	0,$A,$10,$1C,$E8
@@ -6528,9 +6529,9 @@ unk_20CEDE:
 	dc.b	$FF
 	even
 
-act25pat:
-	dc.w	byte_20CEE6-act25pat
-	dc.w	byte_20CEEC-act25pat
+hashipat:
+	dc.w	byte_20CEE6-hashipat
+	dc.w	byte_20CEEC-hashipat
 byte_20CEE6:
 	dc.b	1
 	dc.b	-8,5,0,0,-8

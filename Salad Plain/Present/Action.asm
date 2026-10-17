@@ -480,7 +480,7 @@ dodai_act:	act_ptr	dodai
 objid_22:	act_ptr	obj22
 objid_23:	act_ptr	obj23
 friend_act:	act_ptr	friend
-objid_25:	act_ptr	noact
+hashi_act:	act_ptr	noact
 objid_26:	act_ptr	obj26
 objid_27:	act_ptr	obj27
 objid_28:	act_ptr	obj28
