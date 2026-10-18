@@ -25,10 +25,10 @@ iwa_move:
 	tst.b	actflg(a0)
 	bpl.s	locret_2083D8
 	lea	playerwk.w,a1
-	bsr.w	sub_2083CA
+	bsr.w	ride_on_chk_iwa
 	lea	byte_FFD040.w,a1
 
-sub_2083CA:
+ride_on_chk_iwa:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jmp	ride_on_chk.l
