@@ -3933,7 +3933,6 @@ mapinittbl:
 	dc.l	zone1map
 	dc.w	bgm_zone1
 	dc.b	colorzone1,colorzone1
-	even
 
 ddev_header:	macro	{INTLABEL}
 __LABEL__:	label	*
@@ -4180,7 +4179,8 @@ ddev_unused_2:	ddev_header
 ddev_unused_2_end:
 
 	save
-	include	"Leftovers/R11A.asm"
+	include	"Leftovers/R11A (A).asm"
+	include	"Leftovers/R11A (B).asm"
 	restore
 
 mapwk:
