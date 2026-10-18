@@ -237,8 +237,8 @@ loc_20FF36:
 	bhs.s	locret_20FF62
 	move.w	scralim_right.w,scralim_left.w
 	move.b	#60,act2A(a0)
-	move.b	#$B4,act2B(a0)
-	move.b	#$F0,act2B(a0)
+	move.b	#180,act2B(a0)
+	move.b	#240,act2B(a0)
 	addq.b	#word,r_no0(a0)
 
 locret_20FF62:

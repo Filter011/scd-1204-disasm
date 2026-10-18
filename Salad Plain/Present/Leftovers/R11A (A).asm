@@ -2034,7 +2034,7 @@ off_20F94A:
 
 loc_20F950:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,1(a0)
+	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#8,sprhs(a0)
 	move.b	#8,sprvsize(a0)
@@ -2096,8 +2096,7 @@ off_20FA20:
 	dc.w	unk_20FA22-off_20FA20
 unk_20FA22:
 	dc.b	$13
-	dc.b	0
-	dc.b	1
+	dc.b	0,1
 	dc.b	$FF
 	even
 
@@ -2110,6 +2109,7 @@ byte_20FA2A:
 byte_20FA30:
 	dc.b	1
 	dc.b	-8,5,0,4,-8
+	even
 
 loc_20FA36:
 	moveq	#0,d0
@@ -2203,6 +2203,7 @@ byte_20FB36:
 byte_20FB3C:
 	dc.b	1
 	dc.b	-8,9,0,$E,$F4
+	even
 
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
@@ -2229,8 +2230,8 @@ loc_20FB6C:
 	bhs.s	locret_20FB98
 	move.w	scralim_right.w,scralim_left.w
 	move.b	#60,act2A(a0)
-	move.b	#$B4,act2B(a0)
-	move.b	#$F0,act2B(a0)
+	move.b	#180,act2B(a0)
+	move.b	#240,act2B(a0)
 	addq.b	#word,r_no0(a0)
 
 locret_20FB98:
