@@ -2624,10 +2624,10 @@ off_20FFB0:
 	dc.w	word_20FFC8-off_20FFB0
 	dc.w	word_20FFFA-off_20FFB0
 	dc.w	word_20FFC0-off_20FFB0
-	dc.w	$A0
-	dc.w	$AE
-	dc.w	$B6
-	dc.w	$C4
+	dc.w	$210050-off_20FFB0
+	dc.w	$21005E-off_20FFB0
+	dc.w	$210066-off_20FFB0
+	dc.w	$210074-off_20FFB0
 word_20FFC0:
 	dc.w	0
 	dc.l	$237DBA
