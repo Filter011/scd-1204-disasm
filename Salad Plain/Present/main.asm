@@ -4179,14 +4179,13 @@ ddev_unused_2:	ddev_header
 	ddev_entry	cg_tamabboh,$462
 ddev_unused_2_end:
 
-	incbin	"Leftovers/R11A__.MMD"
-	even
+	save
+	include	"Leftovers/R11A.asm"
+	restore
 
 mapwk:
 	incbin	"Leftovers/Chunks/Chunks.unc"
 	even
-
-	align	$210000+mapsize*$6C
 
 	incbin	"Unknown/Unk1.unc"
 	even
