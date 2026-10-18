@@ -33,6 +33,7 @@ t_item_init:
 	cmpi.b	#8,userflag(a0)
 	beq.s	loc_20910A
 	addq.b	#2,patno(a0)
+
 loc_20910A:
 	btst	#0,2(a2,d0.w)
 	beq.s	loc_20911E

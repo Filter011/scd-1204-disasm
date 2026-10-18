@@ -1690,7 +1690,7 @@ loc_204702:
 loc_204706:
 	tst.b	mainplayflag(a0)
 	beq.s	loc_20471E
-	cmpi.w	#$60,scra_vline.w
+	cmpi.w	#96,scra_vline.w
 	beq.s	loc_20471E
 	bhs.s	loc_20471A
 	addq.w	#4,scra_vline.w
@@ -2346,7 +2346,7 @@ play00erase:
 	lea	byte_FFD040.w,a5
 	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_204DDE
-	lea	actwk.w,a5
+	lea	playerwk.w,a5
 
 loc_204DDE:
 	_tst.b	actno(a5)

@@ -1,14 +1,14 @@
 baria:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_205886(pc,d0.w),d1
-	jmp	off_205886(pc,d1.w)
+	move.w	baria_move_tbl(pc,d0.w),d1
+	jmp	baria_move_tbl(pc,d1.w)
 
-off_205886:
-	dc.w	bariainit-off_205886
-	dc.w	bariamove-off_205886
-	dc.w	mutekimove-off_205886
-	dc.w	backtomove-off_205886
+baria_move_tbl:
+	dc.w	bariainit-baria_move_tbl
+	dc.w	bariamove-baria_move_tbl
+	dc.w	mutekimove-baria_move_tbl
+	dc.w	backtomove-baria_move_tbl
 
 bariainit:
 	addq.b	#word,r_no0(a0)

@@ -126,7 +126,8 @@ init_flag:		ds.l	1
 flagwork:		ds.b	$180
 flagwork_end:
 flowwk:			ds.b	$300
-flowercnt:		ds.l	1
+flowercnt:		ds.b	3
+tv_flag:		ds.b	1
 word_FF1884:		ds.w	1
 byte_FF1886:		ds.b	1
 	ds.b	3
