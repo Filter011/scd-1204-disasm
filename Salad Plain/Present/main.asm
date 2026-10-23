@@ -83,7 +83,7 @@ gamemd:	gmmode_ptr	game
 	include	"IO.asm"
 
 z80bus_on:
-	move.w	sr,statusr.w
+	move.w	sr,status_r.w
 	move.w	#$2700,sr
 	move.w	#$100,z80busreq
 
@@ -94,35 +94,35 @@ z80bus_on:
 
 z80bus_off:
 	move.w	#0,z80busreq
-	move.w	statusr.w,sr
+	move.w	status_r.w,sr
 	rts
 
-z80snddriverload:
+soundinit:
 	move.w	#$100,z80reset
 	jsr	z80bus_on(pc)
 	lea	z80ram,a1
 	lea	unk_22EB40.l,a2
 	move.w	#(unk_22EB40_end-unk_22EB40)-1,d0
 
-loc_201E42:
+.loop:
 	move.b	(a2)+,(a1)+
-	dbf	d0,loc_201E42
+	dbf	d0,.loop
 
 	lea	z80ram+$B00,a1
 	lea	unk_22E3E4.l,a2
 	move.w	#(unk_22E3E4_end-unk_22E3E4)-1,d0
 
-loc_201E58:
+.loop1:
 	move.b	(a2)+,(a1)+
-	dbf	d0,loc_201E58
+	dbf	d0,.loop1
 
-	lea	z80ram+$1900,a1
+	lea	z80ram+adrtb_bnk_adr,a1
 	lea	unk_22E3AC.l,a2
 	move.w	#(unk_22E3AC_end-unk_22E3AC)-1,d0
 
-loc_201E6E:
+.loop2:
 	move.b	(a2)+,(a1)+
-	dbf	d0,loc_201E6E
+	dbf	d0,.loop2
 
 	move.w	#0,z80reset
 	ror.b	#8,d0
@@ -143,26 +143,26 @@ soundset:
 sound:
 	jsr	z80bus_on.l
 	tst.b	sound_ram+buf2.w
-	beq.s	loc_201EB4
-	move.b	sound_ram+buf2.w,z80ram+$1C09
+	beq.s	.jump
+	move.b	sound_ram+buf2.w,z80ram+KYFLAG0
 	move.b	#0,sound_ram+buf2.w
-	bra.s	loc_201EC8
+	bra.s	.jump1
 
-loc_201EB4:
+.jump:
 	tst.b	sound_ram+buf3.w
-	beq.s	loc_201EC8
-	move.b	sound_ram+buf3.w,z80ram+$1C09
+	beq.s	.jump1
+	move.b	sound_ram+buf3.w,z80ram+KYFLAG0
 	move.b	#0,sound_ram+buf3.w
 
-loc_201EC8:
+.jump1:
 	jmp	z80bus_off.l
 
 copy_map_vram:
-	lea	vdpdata,a6
+	lea	vdp_dat,a6
 	move.l	#$800000,d4
 
 .loop:
-	move.l	d0,vdpctrl-vdpdata(a6)
+	move.l	d0,vdp_cmd-vdp_dat(a6)
 	move.w	d1,d3
 
 .loop1:
@@ -193,9 +193,9 @@ sub_sync:
 	beq.s	.loop
 	move.w	#0,scpu_commcmd0
 
-.loop0:
+.loop1:
 	tst.w	scpu_commstats
-	bne.s	.loop0
+	bne.s	.loop1
 	rts
 
 patchg:
@@ -4178,10 +4178,8 @@ ddev_unused_2:	ddev_header
 	ddev_entry	cg_tamabboh,$462
 ddev_unused_2_end:
 
-	save
 	include	"Leftovers/R11A (A).asm"
 	include	"Leftovers/R11A (B).asm"
-	restore
 
 mapwk:
 	incbin	"Leftovers/Chunks/Chunks.unc"
@@ -4201,18 +4199,32 @@ playwrtpat:
 	include	"Patterns/Wrt/Player.asm"
 
 unk_22E3AC:
-	incbin	"Sound/Z80_3.bin"
-	even
+	save
+	cpu	z80
+	phase	1900H
+	listing	purecode
+	include	"Sound/m5eq11.lib"
+	include	"Sound/m5mcr11.lib"
+	include	"Sound/chktb1.src"
+	dephase
 unk_22E3AC_end:
 
 unk_22E3E4:
-	incbin	"Sound/Z80_2.bin"
+	phase	0B00H
+	include	"Sound/m5se11.s"
 	even
+	dephase
 unk_22E3E4_end:
 
 unk_22EB40:
-	incbin	"Sound/Z80_1.bin"
-	even
+	phase	0
+	include	"Sound/m5int11.src"
+	include	"Sound/m5cnt11.src"
+	include	"Sound/m5fmdr11.src"
+	include	"Sound/m5cmd11.src"
+	restore
+	padding	off
+	dephase
 unk_22EB40_end:
 
 cg_shield:

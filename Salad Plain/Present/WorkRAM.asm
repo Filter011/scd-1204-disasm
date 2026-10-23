@@ -133,10 +133,8 @@ byte_FF1886:		ds.b	1
 	ds.b	3
 byte_FF188A:		ds.b	1
 	ds.b	$75
-powerupwrtwk:		ds.b	$300
+powerupwrtwk:		ds.b	$480
 powerupwrtwk_end:
-	ds.b	$180
-powerupwrtwk_dma_end:
 	ds.b	$6280
 	dephase
 	phase	$FFFF8000
@@ -331,15 +329,19 @@ ringbonus:		ds.w	1	; unused
 bonus_f:		ds.b	1	; unused
 edplayflag:		ds.b	1	; unused
 waterdirec:		ds.w	1	; unused
-statusr:		ds.w	1
+status_r:		ds.w	1
 byte_FFF7DC:		ds.b	1
 	ds.b	$23
 sprdat:			ds.b	$280
 sprdat_end:
 lpcolorwk4:		equ	sprdat_end-$80
+lpcolorwk4_end:
 lpcolorwk3:		ds.b	$80
+lpcolorwk3_end:
 lpcolorwk:		ds.b	$80
+lpcolorwk_end:
 lpcolorwk2:		ds.b	$80
+lpcolorwk2_end:
 	ds.b	$400
 	dephase
 	!org 0

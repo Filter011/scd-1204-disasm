@@ -116,13 +116,13 @@ sub_2059B8:
 	add.w	d0,d0
 	movea.l	off_205A08(pc,d0.w),a1
 	lea	powerupwrtwk.l,a2
-	move.w	#(powerupwrtwk_end-powerupwrtwk)/4-1,d0
+	move.w	#(powerupwrtwk_end-powerupwrtwk-$180)/4-1,d0
 
 loc_2059DC:
 	move.l	(a1)+,(a2)+
 	dbf	d0,loc_2059DC
 
-	dma68k	powerupwrtwk,(powerupwrtwk_dma_end-powerupwrtwk),4,$544*tile_size
+	dma68k	powerupwrtwk,4,$544*tile_size
 
 locret_205A06:
 	rts

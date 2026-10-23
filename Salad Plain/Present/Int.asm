@@ -3,9 +3,9 @@ vint:
 	movem.l	d0-a6,-(sp)
 	tst.b	int_flg.w
 	beq.s	vint00
-	move.w	vdpctrl,d0
-	move.l	#$40000010,vdpctrl
-	move.l	vscroll.w,vdpdata
+	move.w	vdp_cmd,d0
+	move.l	#$40000010,vdp_cmd
+	move.l	vscroll.w,vdp_dat
 	btst	#6,mdstatus
 	beq.s	loc_201688
 	move.w	#$700,d0
@@ -61,7 +61,7 @@ vint00:
 loc_2016EA:
 	cmpi.b	#stage_lz,stageno
 	bne.w	loc_2016A4
-	move.w	vdpctrl,d0
+	move.w	vdp_cmd,d0
 	btst	#6,mdstatus
 	beq.s	loc_20170E
 	move.w	#$700,d0
@@ -74,11 +74,11 @@ loc_20170E:
 	jsr	z80bus_on.l
 	tst.b	waterflag.w
 	bne.s	loc_201746
-	dma68k	lpcolorwk,$80,$C,0
+	dma68k	lpcolorwk,$C,0
 	bra.s	loc_20176A
 
 loc_201746:
-	dma68k	lpcolorwk3,$80,$C,0
+	dma68k	lpcolorwk3,$C,0
 
 loc_20176A:
 	move.w	hintposi.w,(a5)
@@ -119,21 +119,21 @@ vint08:
 	bsr.w	read_sw
 	tst.b	waterflag.w
 	bne.s	loc_2017EA
-	dma68k	lpcolorwk,$80,$C,0
+	dma68k	lpcolorwk,$C,0
 	bra.s	loc_20180E
 
 loc_2017EA:
-	dma68k	lpcolorwk3,$80,$C,0
+	dma68k	lpcolorwk3,$C,0
 
 loc_20180E:
 	move.w	hintposi.w,(a5)
-	dma68k	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
-	dma68k	sprdat,(sprdat_end-sprdat),4,sprdat_vram
+	dma68k	hscrollwork,4,hscroll_vram
+	dma68k	sprdat,4,sprdat_vram
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_201892
-	dma68k	playwrtwk,(playwrtwk_end-playwrtwk),4,$780*tile_size
+	dma68k	playwrtwk,4,$780*tile_size
 	move.b	#0,playwrtflag.w
 
 loc_201892:
@@ -141,7 +141,7 @@ loc_201892:
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_2018CA
-	dma68k	playwrtwk,(playwrtwk_end-playwrtwk),4,$797*tile_size
+	dma68k	playwrtwk,4,$797*tile_size
 	move.b	#0,playwrtflag.w
 
 loc_2018CA:
@@ -180,21 +180,21 @@ vint0C:
 	bsr.w	read_sw
 	tst.b	waterflag.w
 	bne.s	loc_201962
-	dma68k	lpcolorwk,$80,$C,0
+	dma68k	lpcolorwk,$C,0
 	bra.s	loc_201986
 
 loc_201962:
-	dma68k	lpcolorwk3,$80,$C,0
+	dma68k	lpcolorwk3,$C,0
 
 loc_201986:
 	move.w	hintposi.w,(a5)
-	dma68k	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
-	dma68k	sprdat,(sprdat_end-sprdat),4,sprdat_vram
+	dma68k	hscrollwork,4,hscroll_vram
+	dma68k	sprdat,4,sprdat_vram
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_201A0A
-	dma68k	playwrtwk,(playwrtwk_end-playwrtwk),4,$780*tile_size
+	dma68k	playwrtwk,4,$780*tile_size
 	move.b	#0,playwrtflag.w
 
 loc_201A0A:
@@ -222,15 +222,15 @@ vint12:
 vint16:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
-	dma68k	lpcolorwk,$80,$C,0
-	dma68k	sprdat,(sprdat_end-sprdat),4,sprdat_vram
-	dma68k	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
+	dma68k	lpcolorwk,$C,0
+	dma68k	sprdat,4,sprdat_vram
+	dma68k	hscrollwork,4,hscroll_vram
 	jsr	z80bus_off.l
 	lea	playerwk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_201B0C
-	dma68k	playwrtwk,(playwrtwk_end-playwrtwk),4,$780*tile_size
+	dma68k	playwrtwk,4,$780*tile_size
 	move.b	#0,playwrtflag.w
 
 loc_201B0C:
@@ -246,15 +246,15 @@ sub_201B1A:
 	bsr.w	read_sw
 	tst.b	waterflag.w
 	bne.s	loc_201B50
-	dma68k	lpcolorwk,$80,$C,0
+	dma68k	lpcolorwk,$C,0
 	bra.s	loc_201B74
 
 loc_201B50:
-	dma68k	lpcolorwk3,$80,$C,0
+	dma68k	lpcolorwk3,$C,0
 
 loc_201B74:
-	dma68k	sprdat,(sprdat_end-sprdat),4,sprdat_vram
-	dma68k	hscrollwork,(hscrollwork_end-hscrollwork),4,hscroll_vram
+	dma68k	sprdat,4,sprdat_vram
+	dma68k	hscrollwork,4,hscroll_vram
 	jmp	z80bus_off.l
 
 hint:
@@ -263,7 +263,7 @@ hint:
 	beq.s	locret_201C38
 	move.w	#0,hintflag.w
 	movem.l	a0-a1,-(sp)
-	lea	vdpdata,a1
+	lea	vdp_dat,a1
 	lea	lpcolorwk3.w,a0
 	move.l	#$C0000000,4(a1)
 	rept	32

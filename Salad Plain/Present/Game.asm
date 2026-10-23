@@ -85,7 +85,7 @@ loc_2012A8:
 
 	move.w	#$2700,sr
 	bsr.w	scrinit
-	lea	vdpctrl,a6
+	lea	vdp_cmd,a6
 	move.w	#$8B00+%0011,(a6)
 	move.w	#$8200+plane_a>>10,(a6)
 	move.w	#$8400+plane_b>>13,(a6)
@@ -103,7 +103,7 @@ loc_2012A8:
 	bsr.w	colorset
 	move.w	word_FFF60C.w,d0
 	ori.b	#$40,d0
-	move.w	d0,vdpctrl
+	move.w	d0,vdp_cmd
 
 loc_201308:
 	move.b	#vintid_0C,int_flg.w

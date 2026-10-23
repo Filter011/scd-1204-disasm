@@ -1,0 +1,291 @@
+;********************************************************
+;*		$$$FMDR.SRC	( SOUND RYUTHM CONTROL )*
+;*  			ORG. M5FMDR13.SRC              	*
+;*		'SOUND-SORCE'                           *
+;*		 for Mega Drive (Z80)			*
+;*			VER  1.31/1989.12.10		*
+;*				BY        T.Uwabo       *
+;********************************************************
+
+	;----------< rythm >---------------
+rythm:
+	CALL	COUNTCHK
+	call	Z,FNEXTDR		; call is need. for CMEND
+	ret
+
+;===========================;
+; FM & PSG NEXT RYTHM DATA  ;  if lcont =1, then call
+;===========================;
+FNEXTDR1:
+FNEXTDR:			
+	LD	E,(IX+TBPON)		
+	LD	D,(IX+TBPON+1)		; DE=TBLE POINTER
+FNXDR1:
+	LD	A,(DE)			; A = SOUND DATA. DE=TBPON
+	INC	DE			; DE=(TBPON)+1
+	CP	0E0H			; if data>0E0H ( command data)
+	JP	NC,FNCOMDR		; then jump to command set.
+	or	a
+	jp	m,fm_drum_set
+
+	dec	de			; table pointer -1
+	ld	a,(ix+FREQB)		; get rythm data
+;=======================================;
+;   RYTHM dammy headder set to work 	;
+;=======================================;
+;	a = rythm table data
+fm_drum_set:
+;	BIT	2,(IX+FLAG)		; disable flag on
+;	JP	nz,rythm_l_chk		; then jump
+	LD	(IX+FREQB),A
+	CP	80H
+	JP	Z,rythm_l_chk
+	res	7,a
+	;---------------------
+	PUSH	DE			; table pointer push
+	ld	hl,RYTHM_WK
+	bit	2,(hl)
+	jr	nz,rythm_set
+
+	ex	af,af'
+	CALL	KEYOFF_CHK			; key off
+	ex	af,af'
+	;------------< SEND HEADDER TO RAM >-----------
+	LD 	de,rythm_flg_tb
+	ex	de,hl			; DE = rythm_wk
+	ldi
+	ldi
+	ldi
+
+	dec	a
+	LD	HL,DRTB
+;	CALL	SENDTB		; HL = RYTHM HEADDER addr.
+;	rst	sendtb_sub
+	rst	gettbl_sub
+
+	LD	BC,6
+	LDIR
+	CALL	STACK_SET		; HL = next data point
+fmdr_bias:
+	ld	hl,RYTHM_WK+BIAS
+	ld	a,(ix+BIAS)
+	add	a,(hl)
+	ld	(hl),a
+TIMSETR:
+	LD	A,(RYTHM_WK+FTIMB)
+	LD	HL,DRVTB
+;	CALL	SENDTB
+;	rst	sendtb_sub
+	rst	gettbl_sub
+
+	LD	a,(RYTHM_WK+VOLM)
+	ld	e,(IX+VOLM)		; E = VOLM data store
+	push	de
+	add	a,e
+	LD	(IX+VOLM),A
+	CALL	LOADFMDATA		; HL = VOICE TABLE TOP
+	pop	de
+	LD	(IX+VOLM),e		; E = VOLM data recover
+
+	call	OPNINITIAL		; se mode clear
+rythm_set:
+	POP	DE			; table pointer get
+	;-------------<< length set check >------
+rythm_l_chk:
+	ld	a,(de)			; next data get
+	inc	de
+	or	a
+	jp	p,leng_set0
+	dec	de
+	ld	a,(ix+ECSTR)
+	ld	(ix+LCONT),a
+	jp	flg_set
+
+rythm_flg_tb:
+	db	80h,2,1
+;=======================;
+;	FNCOMDR		;  if data> 0DFH then COMMAND DATA 
+;  RETHM COMMAND SET
+;=======================;
+FNCOMDR:
+	LD	HL,FCOMDR1		; HL=return addr.
+	JP	NECOMR		;  jump to command routine
+FCOMDR1:	
+	INC	DE			; return from command
+	JP	FNXDR1			; DE=TBPON
+
+
+	;<<<<<<<<<<<<<<<<< RYTHM DATA TABLE >>>>>>>>>>>>>
+DRTB:
+	dw	unk_77A,unk_79C,unk_7C0,unk_7C9,unk_7D4,unk_7F6
+DRVTB:
+	dw	unk_783,unk_7A7,unk_7DD,unk_7FF
+;******************    DATA    ***********************
+unk_77A:
+	dw	unk_780
+	db	0
+	db	6
+	db	0
+	db	0
+unk_780:
+	db	8Dh
+	db	10h
+	db	0F2h
+unk_783:
+	db	3Ch
+	db	5
+	db	7
+	db	0
+	db	1
+	db	1Fh
+	db	1Fh
+	db	1Fh
+	db	1Fh
+	db	0
+	db	12h
+	db	0Fh
+	db	1Dh
+	db	0
+	db	11h
+	db	6
+	db	10h
+	db	5
+	db	1Ah
+	db	25h
+	db	1Ah
+	db	0Dh
+	db	84h
+	db	0
+	db	80h
+unk_79C:
+	dw	unk_7A2
+	db	0
+	db	0Ch
+	db	1
+	db	1
+unk_7A2:
+	db	0E0h
+	db	80h
+	db	0B6h
+	db	0Ah
+	db	0F2h
+unk_7A7:
+	db	3Eh
+	db	60h
+	db	30h
+	db	30h
+	db	30h
+	db	19h
+	db	1Fh
+	db	1Fh
+	db	1Fh
+	db	15h
+	db	11h
+	db	11h
+	db	0Ch
+	db	10h
+	db	0Ah
+	db	6
+	db	9
+	db	4Fh
+	db	5Fh
+	db	0AFh
+	db	8Fh
+	db	0
+	db	82h
+	db	83h
+	db	80h
+unk_7C0:
+	dw	unk_7C6
+	db	0
+	db	0Ch
+	db	1
+	db	1
+unk_7C6:
+	db	0B3h
+	db	0Ah
+	db	0F2h
+unk_7C9:
+	dw	unk_7CF
+	db	0
+	db	0Ch
+	db	1
+	db	1
+unk_7CF:
+	db	0E0h
+	db	40h
+	db	0B0h
+	db	0Ah
+	db	0F2h
+unk_7D4:
+	dw	unk_7DA
+	db	0
+	db	6
+	db	1
+	db	2
+unk_7DA:
+	db	86h
+	db	8
+	db	0F2h
+unk_7DD:
+	db	3Ch
+	db	3
+	db	0
+	db	0
+	db	0
+	db	1Fh
+	db	1Fh
+	db	1Fh
+	db	1Fh
+	db	0
+	db	16h
+	db	0Fh
+	db	0Fh
+	db	0
+	db	0
+	db	0
+	db	0
+	db	5
+	db	0AAh
+	db	0F5h
+	db	0FAh
+	db	0Bh
+	db	80h
+	db	7
+	db	80h
+unk_7F6:
+	dw	unk_7FC
+	db	0
+	db	8
+	db	0
+	db	3
+unk_7FC:
+	db	0B4h
+	db	10h
+	db	0F2h
+unk_7FF:
+	db	3Ch
+	db	0Fh
+	db	0
+	db	0
+	db	0
+	db	1Fh
+	db	1Ah
+	db	18h
+	db	1Ch
+	db	17h
+	db	11h
+	db	1Ah
+	db	0Eh
+	db	0
+	db	0Fh
+	db	14h
+	db	10h
+	db	1Fh
+	db	0ECh
+	db	0FFh
+	db	0FFh
+	db	7
+	db	80h
+	db	16h
+	db	80h

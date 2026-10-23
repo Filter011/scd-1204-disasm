@@ -1,7 +1,7 @@
 bitdevr:
 	movem.l d0-d7/a0-a1/a3-a5,-(sp)
 	lea	write_pixels.l,a3
-	lea	vdpdata,a4
+	lea	vdp_dat,a4
 	bra.s	loc_201F0A
 
 bitdevr_work:
@@ -278,7 +278,7 @@ sub_20210C:
 	addi.w	#$60,divdevwk+4.w
 
 loc_202124:
-	lea	vdpctrl,a4
+	lea	vdp_cmd,a4
 	lsl.l	#2,d0
 	lsr.w	#2,d0
 	ori.w	#$4000,d0
@@ -337,7 +337,7 @@ loc_20219A:
 	lsr.w	#2,d0
 	ori.w	#$4000,d0
 	swap	d0
-	move.l	d0,vdpctrl
+	move.l	d0,vdp_cmd
 	bsr.w	bitdevr
 	dbf	d1,.loop
 

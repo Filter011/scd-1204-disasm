@@ -35,8 +35,8 @@ read_sw:
 	rts
 
 vdpinit:
-	lea	vdpctrl,a0
-	lea	vdpdata,a1
+	lea	vdp_cmd,a0
+	lea	vdp_dat,a1
 	lea	word_201D50.l,a2
 	moveq	#(word_201D50_end-word_201D50)/2-1,d7
 
@@ -48,7 +48,7 @@ loc_201CE8:
 	move.w	d0,word_FFF60C.w
 	move.w	#$8A00+223,hintposi.w
 	moveq	#0,d0
-	move.l	#$C0000000,vdpctrl
+	move.l	#$C0000000,vdp_cmd
 	move.w	#$80/2-1,d7
 
 loc_201D0E:
@@ -60,12 +60,12 @@ loc_201D0E:
 
 	move.l	d1,-(sp)
 
-	lea	vdpctrl,a5
+	lea	vdp_cmd,a5
 	move.w	#$8F01,(a5)
 	move.l	#$94FF93FF,(a5)
 	move.w	#$9780,(a5)
 	move.l	#$40000080,(a5)
-	move.w	#0,vdpdata
+	move.w	#0,vdp_dat
 
 loc_201D40:
 	move.w	(a5),d1
@@ -99,12 +99,12 @@ word_201D50:
 word_201D50_end:
 
 scrinit:
-	lea	vdpctrl,a5
+	lea	vdp_cmd,a5
 	move.w	#$8F01,(a5)
 	move.l	#$940F93FF,(a5)
 	move.w	#$9780,(a5)
 	move.l	#$40000083,(a5)
-	move.w	#0,vdpdata
+	move.w	#0,vdp_dat
 
 loc_201D98:
 	move.w	(a5),d1
@@ -112,12 +112,12 @@ loc_201D98:
 	bne.s	loc_201D98
 	move.w	#$8F02,(a5)
 
-	lea	vdpctrl,a5
+	lea	vdp_cmd,a5
 	move.w	#$8F01,(a5)
 	move.l	#$940F93FF,(a5)
 	move.w	#$9780,(a5)
 	move.l	#$60000083,(a5)
-	move.w	#0,vdpdata
+	move.w	#0,vdp_dat
 
 loc_201DC6:
 	move.w	(a5),d1

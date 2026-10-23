@@ -690,8 +690,8 @@ locret_202A74:
 	rts
 
 scrollwrtadva:
-	lea	vdpctrl,a5
-	lea	vdpdata,a6
+	lea	vdp_cmd,a5
+	lea	vdp_dat,a6
 	lea	scrflagb.w,a2
 	lea	scrb_h_posit.w,a3
 	lea	mapwkb.w,a4
@@ -702,8 +702,8 @@ scrollwrtadva:
 	bra.w	scrollwrtc
 
 scrollwrt:
-	lea	vdpctrl,a5
-	lea	vdpdata,a6
+	lea	vdp_cmd,a5
+	lea	vdp_dat,a6
 	lea	scrflagbw,a2
 	lea	scrb_h_posiw,a3
 	lea	mapwkb.w,a4
@@ -1035,8 +1035,8 @@ locret_202D98:
 block_wrt:
 	move.l	a0,-(sp)
 	lea	mapwka.w,a4
-	lea	vdpctrl,a5
-	lea	vdpdata,a6
+	lea	vdp_cmd,a5
+	lea	vdp_dat,a6
 	move.w	#$4000,d2
 	move.l	#$800000,d7
 	movem.l	d3-d5,-(sp)
@@ -1121,8 +1121,8 @@ vramadrset0:
 	rts
 
 mapwrt:
-	lea	vdpctrl,a5
-	lea	vdpdata,a6
+	lea	vdp_cmd,a5
+	lea	vdp_dat,a6
 	lea	scra_h_posit.w,a3
 	lea	mapwka.w,a4
 	move.w	#$4000,d2

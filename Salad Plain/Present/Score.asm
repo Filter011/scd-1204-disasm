@@ -105,7 +105,7 @@ scoreset:
 ;	tst.b	bonus_f.w
 ;	beq.s	.jump6
 ;	clr.b	bonus_f.w
-;	move.l	#$6E000002,vdpctrl
+;	move.l	#$6E000002,vdp_cmd
 ;	moveq	#0,d1
 ;	move.w	timebonus.w,d1
 ;	bsr.w	bonuswrt
@@ -154,7 +154,7 @@ scoreset:
 ;	tst.b	bonus_f.w
 ;	beq.s	.jump5
 ;	clr.b	bonus_f.w
-;	move.l	#$6E000002,vdpctrl
+;	move.l	#$6E000002,vdp_cmd
 ;	moveq	#0,d1
 ;	move.w	timebonus.w,d1
 ;	bsr.w	bonuswrt
@@ -166,15 +166,15 @@ scoreset:
 ;	rts
 
 ringinit:
-	move.l	#$73200002,vdpctrl
+	move.l	#$73200002,vdp_cmd
 	lea	ringinittbl(pc),a2
 	move.w	#3-1,d2
 	bra.s	scoreinitsub
 
 scoreinit:
-	lea	vdpdata,a6
+	lea	vdp_dat,a6
 	bsr.w	playsuuwrt
-	move.l	#$5C400003,vdpctrl
+	move.l	#$5C400003,vdp_cmd
 	lea	scoreinittbl(pc),a2
 	move.w	#15-1,d2
 
@@ -214,7 +214,7 @@ ringinittbl:
 	even
 
 posiwrt:
-;	move.l	#$5C400003,vdpctrl
+;	move.l	#$5C400003,vdp_cmd
 	move.l	#$70E00002,d0
 ;	move.w	scra_h_posit.w,d1
 ;	swap	d1
@@ -286,7 +286,7 @@ scorewrt2:
 	tst.w	d4
 	beq.s	.jump5
 	lsl.w	#6,d2
-	move.l	d0,vdpctrl-vdpdata(a6)
+	move.l	d0,vdp_cmd-vdp_dat(a6)
 	lea	(a1,d2.w),a3
 	rept	16
 	move.l	(a3)+,(a6)
@@ -299,8 +299,8 @@ scorewrt2:
 	rts
 
 contwrt:
-	move.l	#$5F800003,vdpctrl
-	lea	vdpdata,a6
+	move.l	#$5F800003,vdp_cmd
+	lea	vdp_dat,a6
 	lea	subtbl2.l,a2
 	moveq	#2-1,d6
 	moveq	#0,d4
@@ -395,7 +395,7 @@ timewrt0:
 
 .jump4:
 	lsl.w	#6,d2
-	move.l	d0,vdpctrl-vdpdata(a6)
+	move.l	d0,vdp_cmd-vdp_dat(a6)
 	lea	(a1,d2.w),a3
 	rept	16
 	move.l	(a3)+,(a6)

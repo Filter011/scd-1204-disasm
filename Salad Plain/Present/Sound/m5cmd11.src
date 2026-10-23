@@ -1,0 +1,687 @@
+;********************************************************
+;*		$$$CMD.SRC	( SOUND COMMAND CONTROL)*
+;*  			ORG. M5CMD13.SRC               	*
+;*		'SOUND-SORCE'                           *
+;*		 for Mega Drive (Z80)			*
+;*			VER  1.31/1989.12.10		*
+;*				BY        T.Uwabo       *
+;********************************************************
+;=======================;
+;  COMMAND SET		;
+;=======================;
+NEXCOM:	
+	LD	HL,NECOM1
+NECOMR:
+	PUSH	HL
+	;
+	SUB	CMNOP
+	LD	HL,NXJTB
+	rst	gettbl_sub
+	ld	a,(de)
+	JP	(HL)
+NECOM1:	
+	INC	DE
+	JP	NEXTD1
+
+NXJTB:
+	;       0E0H 
+	DW	JPAN,JFDT,JSET_TFLG,JTREND,JAUTOPAN,JREPT0,JVADD,JTAB
+	;	0E8H
+	DW	JGATE,JLFO,JTIMER,JTIMER_ADD,JPVADD,JREGSET,JFMWRITE,JFENV
+	;       0F0H
+	DW	JFVR,JPFVR,JEND,JRING,JVIBR,JENV,JJUMP,JREPT,JCALL
+	DW	JRET,JBASE,JBIAS,JPORT,JFREQ,JDT,JEXT
+EXTTB:
+	DW	JINT,JTEMPO_CHG,JKEYSET,JS_PSE,JWRITE_DATA
+	DW	JSNGBASE,JSSG
+
+	;---------<<<  EXT COMMAND >>>-----------
+JEXT:
+	;
+	LD	HL,EXTTB
+	rst	gettbl_sub
+	inc	de
+	ld	a,(de)
+	JP	(HL)
+
+	;;;<<<<<<<<<<<<<< EXT COMMAND >>>>>>>>>>>>>>>>>>>>>>
+;-----------------------;
+;
+;-----------------------;
+JTIMER:
+	ld	(timer_a_dt),a
+	inc	de
+	ld	a,(de)
+	ld	(timer_a_dt+1),a
+	ret
+;-----------------------;
+;
+;-----------------------;
+JTIMER_ADD:
+	ld	a,(t_flg)
+	or	a
+	jp	z,JJUMP
+	inc	de
+	ret
+;-----------------------;
+;
+;-----------------------;
+JPVADD:
+	ld	a,80h
+	ld	(ring_flg),a
+	ret
+;-----------------------;
+;	
+;-----------------------;
+JSSG:
+	ld	(ix+fm_eno),80h			; SSG flag set for JEND
+	ld	(ix+ssg_adr),e
+	ld	(ix+ssg_adr+1),d
+jend_ssg_set:
+	ld	hl,fmreg_ssg_tb		;<cnt>
+	ld	b,4
+jssg_loop:
+	ld	a,(de)			; de = table pointer
+	inc	de			;
+	ld	c,a			; c = ssg data
+	ld	a,(hl)			; a = fm reg data
+	inc	hl
+	rst	fm_wrt
+	djnz	jssg_loop
+	dec	de
+	ret
+;-----------------------;
+;	
+;-----------------------;
+JSNGBASE:
+	exx
+	ld	b,sng_ch_no
+	ld	de,flgvol
+	LD	HL,FLAGS+TB20CH+CBASE
+jsngbias_loop:
+	ld	(hl),a
+	add	hl,de
+	djnz	jsngbias_loop
+	exx
+	ret
+;-----------------------;
+;
+;-----------------------;
+JKEYSET:
+	ld	hl,KYFLAG0
+	ld	(hl),a
+	ret
+;-----------------------;
+;
+;-----------------------;
+JWRITE_DATA:
+	ex	de,hl
+	ld	e,(hl)
+	inc	hl
+	ld	d,(hl)		; de = mem addr
+	inc	hl
+	ld	c,(hl)
+	ld	b,0
+	inc	hl
+	ex	de,hl		; hl = mem addr,/ de = data point
+	ldir
+	dec	de
+	ret
+;----------------------
+;	JFDT			<detune data>
+;--------------------
+JFDT:
+	ld	(ix+dt_frq),a
+	ret
+;-----------------------;
+;
+;-----------------------;
+JSET_TFLG:
+	ld	(t_flg),a
+	ret
+;-----------------------;
+;
+;-----------------------;
+JREGSET:
+	call	get_tb_data
+	rst	fm_wrt
+	ret
+;-----------------------;
+;
+;-----------------------;
+JFMWRITE:
+	call	get_tb_data
+	rst	fm_dwr
+	ret
+	
+get_tb_data:
+	ex	de,hl
+	ld	a,(hl)
+	inc	hl
+	ld	c,(hl)		; a = reg
+	ex	de,hl
+	ret
+JNOP:
+;-----------------------;
+;	FVR		;	 FVR,<DELAY>,<COUNTER>,<ADD DATA>,<LIMIT>
+;-----------------------;
+JFVR:
+	LD	(IX+fvr_str),e
+	LD	(IX+fvr_str+1),d
+	ld	(ix+VIBR),80h
+	inc	de
+	inc	de
+	inc	de
+	RET
+
+;-----------------------;
+;	PFVR		;	db	FVR,< PSG VIBR NO. >,< FM VIBR NO. >
+;-----------------------;
+JPFVR:
+	res	7,(ix+7)
+	dec	de
+	ret
+;-----------------------;
+;	CMTREND		;
+;-----------------------;
+JTREND:
+	
+	CALL	TL_RR_KOFF
+	JP	JEND
+;-----------------------;
+;	GATE		;
+;-----------------------;
+JGATE:
+	call	leng_calc		; cnt.src
+	ld	(ix+gate),a
+	ld	(ix+gate_str),a
+	RET
+;-----------------------;
+;	CMTAB		;
+;-----------------------;
+JAUTOPAN:
+	push	ix
+	pop	hl
+	ld	bc,pan_no
+	add	hl,bc		; hl = ix+pan_no
+	ex	de,hl
+	ld	bc,5
+	ldir
+	ld	a,1
+	LD	(de),a
+	ex	de,hl
+	dec	de
+	RET
+
+;-----------------------;
+;	CMTAB		;
+;-----------------------;
+JTAB:
+	SET	1,(IX+FLAG)
+JTABEND:
+	DEC 	DE
+	RET
+
+;-----------------------;
+;	CMDT		;
+;-----------------------;
+JDT:
+	ld	a,(ix+CHIAN)
+	cp	2
+	jr	nz,jdt_no
+	SET	0,(IX+FLAG)		;
+	exx
+	call	dt_adr_get		; detune freq data set addr get
+	;
+jdt_song:
+	ld	b,4
+jdt_loop:
+	push	bc
+	exx
+	LD	A,(de)			; de = table point
+	inc	de			; a = table data
+	exx
+	ld	hl,dtune_tb
+	add	a,a
+	ld	c,a
+	ld	b,0
+
+	add	hl,bc		; hl = dtune freq data store addr
+	ldi			; de = dtune freq data store addr
+	ldi
+	pop	bc
+	djnz	jdt_loop
+	exx
+	dec	de
+
+	ld	a,semode_dt		; se mode data = 04FH
+jdt_set:
+	ld	(se_mode),a
+	ld	c,a
+	ld	a,27h
+	rst	fm_dwr
+	ret
+jdt_no:
+	inc	de
+	inc	de
+	inc	de
+	ret
+
+
+dtune_tb:
+	DW	000H,0132H,018EH,01E4H
+
+;-----------------------;
+;	FEV		;	db	EV,< FM VOICE NO. >
+;-----------------------;	db	EV,< voice+80h>,<song no >
+JFENV:
+	CALL	rr_off		; rerease off
+	LD	A,(DE)			; LOAD FM ENVELOP NUMBER
+	LD	(IX+FTIMB),A		; STORE FM ENVELOP NUMBER
+	or	a
+	jp	p,jfenv_ram		
+;	push	af
+	inc	de
+	ld	a,(de)
+	ld	(ix+env_s),a
+;	ld	a,(IX+FTIMB)
+;	pop	af
+jfenv_other_song:
+	push	de
+	ld	hl,adrtb_bnk_adr
+	ld	c,bgadr_offset
+	ld	a,(ix+env_s)		; a = song no.
+	sub	81h
+	call	adr_get0		; HL = bgmtb point
+	rst	gettbl_sub		; HL = headder top point
+	rst	get_tb_addr_sub		; HL = voice top point
+	ld	a,(IX+FTIMB)
+	and	7fh
+	ld	b,a
+	call	TIM_AD0
+	jr	jfenv_set
+
+jfenv_ram:
+;	dec	de
+	push	de
+	LD	B,A			; B = FM voice no.
+	CALL	TIMADS		; out : HL = voice table addr
+jfenv_set:
+	CALL	LOADFMDATA
+	POP	DE
+	RET
+
+;-----------------------;
+;	CMPAN		;	db	CMPAN,< pan data >
+;-----------------------;
+JPAN:
+	LD	C,3FH
+JLRMOD:
+	LD	a,(IX+panstr)
+	and	c
+	ex	de,hl
+	or	(hl)		; (hl) = data
+	LD	(IX+panstr),A	
+	LD	C,A
+	LD	A,LRMOD
+	rst	fm_wrt
+	ex	de,hl
+	ret
+
+;-----------------------;
+;	JLFO		;	db	LFO,< ldo data >,<pms,ams data>
+;-----------------------;
+JLFO:
+	LD	C,A		; C = LFO DATA	
+	LD	A,LFOFQ		; A = LFO REG
+	rst	fm_dwr
+
+	inc	de
+	ld	c,0C0H
+	JR	JLRMOD
+
+;===============;
+;  VOLM ADD	;	; only FM / volm add.	
+;===============;
+JVADD:
+	ADD	A,(IX+VOLM)
+	LD	(IX+VOLM),A
+;-----------------------;
+;	CMVOLM		;	db	CMVOLM,< volm data >
+;-----------------------;
+JTIMV:
+	EXX
+	LD	DE,fmreg_tl_tb	; cnt.src
+	LD	L,(IX+TLADR)		; DE = fmreg_tl_tb
+	LD	H,(IX+TLADR+1)		; HL = TL data point
+	ld	b,4		; 4 operater
+jtimv_loop:
+	ld	a,(hl)
+	or	a
+	jp	P,jtimv_0
+	add	a,(ix+VOLM)
+jtimv_0:
+	and	7fh
+	ld	c,a
+	ld	a,(de)		; de = TL reg table point
+	rst	fm_wrt
+	inc	de		; de = TL reg table point
+	inc	hl		; iy = TL data point
+	djnz	jtimv_loop
+	exx
+	ret
+
+;-----------------------;
+;	CMBIAS		;	db	CMBIAS,< bias data >
+;-----------------------;
+JBIAS:
+	ADD	A,(IX+BIAS)		
+	LD	(IX+BIAS),A		; bias set
+	RET
+
+;-----------------------;
+;	CMBASE		;	db	CMBASE,< tempo data >
+;-----------------------;
+JBASE:
+	LD	(IX+CBASE),A		; (base) data set
+	RET
+
+;-----------------------;
+;	CMJUMP		;	db	CMJUMP
+;-----------------------;	DW	< lavel >
+JJUMP:
+	EX	DE,HL		; HL=table pointer addr	
+				; (point at jump addr data)
+	LD	E,(HL)		;
+	INC	HL
+	LD	D,(HL)		; DE=new table point adr
+	DEC	DE
+	RET		;================================================
+
+
+;-----------------------;
+;	CMPORT		;	db	CMPORT,< ON/OFF >
+;-----------------------;
+JPORT:
+	CP	ON		; if 'OFF'
+	JR	NZ,JPORX	; then jump
+	SET	5,(IX+FLAG)	; if port on,portment flag on.
+	RET
+	
+	; <<<<<<< portament "off" >>>>>>>
+JPORX:
+	RES	1,(IX+FLAG)	; if port off,portment flag off.	
+	RES	5,(IX+FLAG)	; if port off,portment flag off.	
+	xor	a
+	ld	(ix+port_frq),a
+	RET
+;=======================;
+;  DIRECT FREQ ON/OFF	;	DB	CMFREQ, on/off
+;=======================;
+JFREQ:
+	CP	ON		; if freq 'OFF'
+	JR	NZ,JFREX	; then jump.
+	SET	3,(IX+FLAG)	; set direqt freq on flag.
+	RET
+
+	; <<<<<<< direct frequency data set "off" >>>>>>>
+JFREX:	RES	3,(IX+FLAG)	; if direqt freq off
+	RET			; then flag off.
+
+;-----------------------;
+;	CMEND		;	db	CMEND
+;-----------------------;
+JEND:
+	res	7,(IX+FLAG)		; chiannel flag clear.
+	ld	A,1fh
+	ld	(ENDFL),a		; end flag set
+
+	;----------<<< s.e check >>------------
+jend_se_chk:
+	;-----------< S.E END >----------
+JEND_SE:
+	LD	C,(IX+CHIAN)
+	CALL	keyoff_ch
+
+	push	ix
+	CALL	get_wk_addr		;HL =song/ix=s.e/iy=back s.e work addr.
+					; chip off
+	ld	a,(seflag)
+	or	a
+	jr	z,jend_ret		; 0 = song then jump
+	XOR	A
+	LD	(sdfl),A		; pliolty clear. (s.e only)
+
+	PUSH	HL
+	LD	HL,(SONG_VOICE)
+	;-------------<<< song or back s.e voice recover >>>-----------
+jend_enable:
+	;	in : HL = voice top addr
+
+	pop	ix		; ix = song or back s.e addr.
+	;
+	res	2,(ix+FLAG)
+	bit	7,(ix+FLAG)		; bit 7 = 0 
+	jr	z,jend_ret		; then ret   --> RYTHM MISS
+	; 
+	;---------<< DT mode recover >>------
+	ld	a,2
+	cp	(ix+CHIAN)
+	jr	nz,jend_fev
+	;
+	ld	a,semode_dt
+	bit	0,(ix+FLAG)		; if se mode using 
+	jr	nz,jend_mode_set		;  then jump
+	and	0fh			; se mode bit clear
+jend_mode_set:
+	call	jdt_set			; dt mode set
+	; -------<< fm voice recover >>----------
+jend_fev:
+	LD	A,(ix+FTIMB)		; B = voice no.
+	or	a
+	jp	p,jend_ram
+	call	jfenv_other_song
+	jr	jend_ssg
+jend_ram:
+	ld	b,a			; B = voice no.
+	CALL	TIM_AD0		; DE = voice table addr
+	CALL	LOADFMDATA		; song voice set
+	;--------<< ssg enve recover >>---------
+	ld	a,(ix+fm_eno)
+	or	a
+	jp	p,jend_ret		; 80h then ssg using
+	ld	e,(ix+ssg_adr)
+	ld	d,(ix+ssg_adr+1)
+jend_ssg:
+	call	jend_ssg_set
+
+jend_ret:
+	POP	ix			; ram addr recover
+	POP	hl			; stack get
+	POP	hl			; stack get
+	ret
+
+;-----------------------;
+;	CMRING		;	db	CMNOIS,< PSG nois mode data >
+;-----------------------;
+JRING:
+	ld	a,(ring_flg)
+	or	a
+	jr	z,loc_A86
+	xor	a
+	ld	(ring_flg),a
+	ld	a,0A8h
+	ld	(KYFLAG),a
+	dec	de
+	ret
+loc_A86:
+	ld	a,80h
+	ld	(ring_flg),a
+	dec	de
+	ret
+
+;-----------------------;
+;	CMCALL		;	DB	CMCALL
+;-----------------------;       DW	'sub table addr'
+JCALL:
+	LD	C,A		; C=sub table addr low
+	INC	DE
+	LD	A,(DE)		; A=sub table addr high
+	LD	B,A		; B=sub table addr high
+	PUSH	BC		; BC=sub table addr
+	PUSH	IX		
+	POP	HL		; HL=using chiannel ram top.
+	DEC	(IX+STAC)
+	LD	C,(IX+STAC)
+	DEC	(IX+STAC)
+	LD	B,0		; BC=sound ram stack pointer.
+	ADD	HL,BC		; HL=return data addr store ram addr. (stack)
+	LD	(HL),D	
+	DEC	HL
+	LD	(HL),E		; store return table addr to sound atack.
+	POP	DE		; DE=sub table addr.(new table pointer)
+	DEC	DE
+	RET			;======================================
+
+;-----------------------;
+;	CMRET		;	DB	CMRET
+;-----------------------;     
+JRET:	PUSH	IX		; 
+	POP	HL		; HL=using chian ram addr top. 
+	LD	C,(IX+STAC)
+	LD	B,0		; BC =stack pointer
+	ADD	HL,BC		; HL=return table addr store addr
+	LD	E,(HL)
+	INC	HL
+	LD	D,(HL)		; DE=return table addr(new tab;e pointer)
+	INC	(IX+STAC)
+	INC	(IX+STAC)	; stack pointer incliment.
+	RET
+
+;-----------------------;
+;	CMREPT		;   DB	CMREPT,'repeat reg no' , 'repeat kaisuu'
+;-----------------------;       DW	'jump addr.'                            	; repeat
+	; 1st byte 	: register #
+	; 2nd byte	: repeat #
+	; 3.4 byte	: repeat table 
+			; top address	
+JREPT:
+	INC	DE
+	ADD	A,REPTR		; A=REPTR(??H)+repeat reg no.
+	LD	C,A
+	LD	B,0
+	PUSH	IX
+	POP	HL		; HL=using chian ram top. 
+	ADD	HL,BC		; HL=repeat counter store addr.
+	LD	A,(HL)		; A=repeat counter data
+	OR	A		; if repeat counter data=NZ,
+	JR	NZ,$+4		; then jump to XXXX
+	;
+	LD	A,(DE)		; if repeat counter=0 ,
+	LD	(HL),A		; then set new repeat counter data. 
+	;
+	INC	DE		; DE=jpoint at jump addr. 
+	DEC	(HL)		; if repeat counter-1=NZ
+	JP	NZ,JJUMP	; then jump to set new table point addr.
+	INC	DE		; for next table data read.
+	RET
+
+;-----------------------;
+;	CMREPT		;   DB	CMREPT,'repeat reg no' , 'repeat kaisuu'
+;-----------------------;       DW	'jump addr.'                            	; repeat
+	; 1st byte 	: register #
+	; 2nd byte	: repeat #
+	; 3.4 byte	: repeat table 
+			; top address	
+JREPT0:
+	INC	DE
+	ADD	A,REPTR		; A=REPTR(??H)+repeat reg no.
+	LD	C,A
+	LD	B,0
+	PUSH	IX
+	POP	HL		; HL=using chian ram top. 
+	ADD	HL,BC		; HL=repeat counter store addr.
+	LD	A,(HL)		; A=repeat counter data
+	DEC	A		; if repeat counter data=Z,
+	JP	Z,JJUMP0	; then jump to set new table point addr.
+	INC	DE		; for next table data read.
+	RET
+
+JJUMP0:
+	xor	a
+	ld	(hl),a
+	jp	JJUMP
+
+;-----------------------;
+;
+;-----------------------;
+JTEMPO_CHG:
+;	ld	hl,cuntst
+;	add	a,(hl)
+;	ld	(hl),a
+;	dec	hl
+;	ld	(hl),a
+;	ret
+
+;-----------------------;
+;
+;-----------------------;
+JS_PSE:
+;	ld	(s_pause_fl),a		; flag store (using pause off)
+;	or	a
+;	jr	z,js_off
+;js_on:
+;	push	ix
+;	push	de
+;	ld	ix,FLAGS+TB20CH
+;	ld	b,10
+;	ld	de,flgvol
+;js_on_loop:
+;	res	7,(ix+FLAG)
+;	call	keyoff_ch
+;	add	ix,de
+;	djnz	js_on_loop
+;	pop	de
+;	pop	ix
+
+;	ret
+	;----------- song pause off ------------
+;js_off:
+;	push	ix
+;	push	de
+;	ld	ix,FLAGS+TB20CH
+;	ld	b,10
+;	ld	de,flgvol
+;js_off_loop:
+;	set	7,(ix+FLAG)
+;	add	ix,de
+;	djnz	js_off_loop
+;	pop	de
+;	pop	ix
+;	ret
+
+;-----------------------;
+;	
+;-----------------------;
+JINT:
+;	ld	(timer_use_flg),a
+;	ret
+;-----------------------;
+;	EV		;	db	EV,< PSG ENV NO. >
+;-----------------------;
+JENV:
+;	BIT	7,(IX+CHIAN)		; if bit 7= 0 then fm (ret)
+;	RET	Z
+
+;	LD	(IX+ENVE),A		; enve no. set
+;	RET
+;-----------------------;
+;	VR		;	db	VR,< VIBR NO. >
+;-----------------------;
+JVIBR:
+;JVIBR0:
+;	LD	(IX+VIBR),A	; set vibrate no.
+	RET
+
+;	END
+;===========================================================================
