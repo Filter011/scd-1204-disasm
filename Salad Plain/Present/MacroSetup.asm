@@ -12,7 +12,7 @@ notZ80 function cpu,(cpu<>128)&&(cpu<>32988)
 
 ; make org safer (impossible to overwrite previously assembled bytes)
 ; and also make it work in Z80 code without creating a new segment
-org macro address
+org	macro address
 	if notZ80(MOMCPU)
 		if address < *
 			error "too much stuff before org $\{address} ($\{(*-address)} bytes)"
@@ -28,10 +28,10 @@ org macro address
 			endm
 		endif
 	endif
-    endm
+	endm
 
 ; define an alternate org that fills the extra space with 0s instead of FFs
-org0 macro address
+org0	macro address
 .diff := address - *
 	if .diff < 0
 		error "too much stuff before org0 $\{address} ($\{(-diff)} bytes)"
@@ -43,34 +43,34 @@ org0 macro address
 		endm
 		dc.b [.diff]0
 	endif
-    endm
+	endm
 
 ; define the cnop pseudo-instruction
-cnop macro offset,alignment
+cnop	macro offset,alignment
 	if notZ80(MOMCPU)
 		org (*-1+(alignment)-((*-1+(-(offset)))#(alignment)))
 	else
 		org ($-1+(alignment)-(($-1+(-(offset)))#(alignment)))
 	endif
-    endm
+	endm
 
 ; define an alternate cnop that fills the extra space with 0s instead of FFs
-cnop0 macro offset,alignment
+cnop0	macro offset,alignment
 	org0 (*-1+(alignment)-((*-1+(-(offset)))#(alignment)))
-    endm
+	endm
 
 ; redefine align in terms of cnop, because the built-in align can be stupid sometimes
-align macro alignment
+align	macro alignment
 	cnop 0,alignment
-    endm
+	endm
 
 ; define an alternate align that fills the extra space with 0s instead of FFs
-align0 macro alignment
+align0	macro alignment
 	cnop0 0,alignment
-    endm
+	endm
 
 ; define the even pseudo-instruction
-even macro
+even	macro
 	if notZ80(MOMCPU)
 		if (*)&1
 			dc.b 0 ;ds.b 1
@@ -80,10 +80,10 @@ even macro
 			db 0
 		endif
 	endif
-    endm
+	endm
 
 ; make ds work in Z80 code without creating a new segment
-ds macro
+ds	macro
 	if notZ80(MOMCPU)
 		!ds.ATTRIBUTE ALLARGS
 	else
@@ -91,16 +91,16 @@ ds macro
 			db 0
 		endm
 	endif
-    endm
+	endm
 
 ; adds easy cross-compatibility with ASM68K
-dcb macro count,value
+dcb	macro count,value
 	dc.ATTRIBUTE	[count]value
-    endm
+	endm
 
 ; define a trace macro
 ; lets you easily check what address a location in this disassembly assembles to
-trace macro optionalMessageWithoutQuotes
+trace	macro optionalMessageWithoutQuotes
 	if MOMPASS=1
 		if ("ALLARGS"<>"")
 			message "#\{tracenum/1.0}: line=\{MOMLINE/1.0} PC=$\{(*)&$FFFFFFFF} msg=ALLARGS"
@@ -109,18 +109,18 @@ trace macro optionalMessageWithoutQuotes
 		endif
 tracenum := (tracenum+1)
 	endif
-    endm
+	endm
 tracenum := 0
 
-    if ZeroOffsetOptimization=0
-    ; disable a space optimization in AS so we can build a bit-perfect ROM
-    ; (the hard way, but it requires no modification of AS itself)
+	if ZeroOffsetOptimization=0
+	; disable a space optimization in AS so we can build a bit-perfect ROM
+	; (the hard way, but it requires no modification of AS itself)
 
 
 chkop function op,ref,(substr(lowstring(op),0,strlen(ref))<>ref)
 
 ; 1-arg instruction that's self-patching to remove 0-offset optimization
-insn1op	 macro oper,x
+insn1op	macro oper,x
 	if (chkop("x","0(") && chkop("x","actno("))
 		!oper	x
 	else
@@ -128,10 +128,10 @@ insn1op	 macro oper,x
 		!org	*-1
 		!dc.b	0
 	endif
-    endm
+	endm
 
 ; 2-arg instruction that's self-patching to remove 0-offset optimization
-insn2op	 macro oper,x,y
+insn2op	macro oper,x,y
 	if (chkop("x","0(") && chkop("x","actno("))
 		if (chkop("y","0(") && chkop("y","actno("))
 			!oper	x,y
@@ -142,27 +142,27 @@ insn2op	 macro oper,x,y
 		endif
 	else
 		if chkop("y","d")
-		  if (chkop("y","0(") && chkop("y","actno("))
+		if (chkop("y","0(") && chkop("y","actno("))
 .start:
 			!oper	1+x,y
 .end:
 			!org	.start+3
 			!dc.b	0
 			!org	.end
-		  else
+		else
 			!oper	1+x,1+y
 			!org	*-3
 			!dc.b	0
 			!org	*+1
 			!dc.b	0
-		  endif
+		endif
 		else
 			!oper	1+x,y
 			!org	*-1
 			!dc.b	0
 		endif
 	endif
-    endm
+	endm
 
 	; instructions that were used with 0(a#) syntax
 	; defined to assemble as they originally did
@@ -213,4 +213,4 @@ _tst	macro
 		!tst.ATTRIBUTE ALLARGS
 	endm
 
-    endif
+	endif
