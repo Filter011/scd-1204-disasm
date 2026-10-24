@@ -145,7 +145,7 @@ loc_2036E0:
 
 loc_2036FC:
 	move.b	#2,sprpri(a0)
-	move.b	#$18,sprhsize(a0)
+	move.b	#24,sprhsize(a0)
 	move.b	#4,actflg(a0)
 	move.w	#$600,plmaxspdwk.w
 	move.w	#$C,pladdspdwk.w
@@ -155,18 +155,18 @@ mizuki_set:
 	tst.b	stageno
 	bne.s	locret_203786
 	move.b	gametimer+1,d0
-	andi.b	#3,d0
+	andi.b	#%0011,d0
 	bne.s	locret_203786
 	move.b	sprvsize(a0),d2
 	ext.w	d2
 	add.w	yposi(a0),d2
 	move.w	xposi(a0),d3
 	bsr.w	mapno_chk
-	cmpi.b	#$2F,d1
+	cmpi.b	#47,d1
 	bne.s	locret_203788
 	cmpi.w	#$15C0,xposi(a0)
 	bhs.s	locret_203786
-	tst.b	act2C(a0)
+	tst.b	lockcd(a0)
 	beq.s	locret_203786
 	jsr	actwkchk.l
 	bne.s	locret_203786
@@ -191,7 +191,7 @@ locret_203788:
 	move.b	sprvsize(a0),d2
 	ext.w	d2
 	add.w	yposi(a0),d2
-	cmpi.b	#$10,d1
+	cmpi.b	#16,d1
 	bne.s	loc_2037A8
 	cmpi.w	#$210,d2
 	bhs.s	locret_203786
@@ -200,7 +200,7 @@ locret_203788:
 	bra.s	loc_2037BA
 
 loc_2037A8:
-	cmpi.b	#$21,d1
+	cmpi.b	#33,d1
 	bne.s	locret_203786
 	cmpi.w	#$2A0,d2
 	bhs.s	locret_203786
@@ -759,7 +759,7 @@ loc_203CD6:
 	move.w	swdata2.w,swdata.w
 
 loc_203CF0:
-	btst	#0,act2C(a0)
+	btst	#0,lockcd(a0)
 	bne.s	loc_203D0E
 	moveq	#0,d0
 	move.b	cddat(a0),d0
@@ -785,7 +785,7 @@ loc_203D1A:
 
 loc_203D38:
 	bsr.w	patchgmain
-	tst.b	act2C(a0)
+	tst.b	lockcd(a0)
 	bmi.s	loc_203D48
 	jsr	pcol.l
 
@@ -810,7 +810,7 @@ unk_203D5A:
 	even
 
 playpowercnt:
-	cmpi.w	#$D2,backto_cnt.w
+	cmpi.w	#210,backto_cnt.w
 	bhs.s	loc_203D8C
 	move.w	invulnerabilitytimer(a0),d0
 	beq.s	loc_203D76
@@ -836,7 +836,7 @@ loc_203D8C:
 	bne.s	loc_203DDC
 	tst.b	bossstart.w
 	bne.s	loc_203DD4
-	cmpi.w	#$C,pl_air
+	cmpi.w	#12,pl_air
 	blo.s	loc_203DD4
 	moveq	#0,d0
 	move.b	stageno,d0
@@ -943,13 +943,13 @@ loc_203F1E:
 
 loc_203F2A:
 	move.w	backto_cnt.w,d1
-	cmpi.w	#$E6,d1
+	cmpi.w	#230,d1
 	blo.s	loc_203F40
 	move.b	#1,gameflag
 	bra.w	loc_205400
 
 loc_203F40:
-	cmpi.w	#$D2,d1
+	cmpi.w	#210,d1
 	blo.s	loc_203F86
 	cmpi.b	#2,plflag
 	beq.s	locret_203F84
@@ -975,7 +975,7 @@ locret_203F84:
 	rts
 
 loc_203F86:
-	cmpi.w	#$5A,d1
+	cmpi.w	#90,d1
 	bhs.s	loc_203F9E
 	cmp.w	d2,d0
 	bhs.w	muteki_set
