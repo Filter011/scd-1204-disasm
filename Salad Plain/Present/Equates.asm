@@ -287,4 +287,7 @@ act_2:		equ	1
 act_3:		equ	2
 act_4:		equ	3
 
+; SE Equates
+se_skid:	equ	$90
+
 	include	"Leftovers/Equates.asm"

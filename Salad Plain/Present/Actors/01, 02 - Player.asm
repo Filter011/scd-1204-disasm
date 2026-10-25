@@ -1434,7 +1434,7 @@ loc_204468:
 	blt.s	locret_204496
 	move.b	#$D,mstno(a0)
 	bclr	#cd_left,cddat(a0)
-	move.w	#$90,d0
+	move.w	#se_skid,d0
 	jsr	soundset.l
 
 locret_204496:
@@ -1483,7 +1483,7 @@ loc_2044EA:
 	bgt.s	locret_204518
 	move.b	#$D,mstno(a0)
 	bset	#cd_left,cddat(a0)
-	move.w	#$90,d0
+	move.w	#se_skid,d0
 	jsr	soundset.l
 
 locret_204518:
