@@ -51,7 +51,7 @@ futa_init:
 futa_move:
 	lea	playerwk.w,a1
 	bsr.w	ride_on_chk_f
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bra.w	ride_on_chk_f
 
 futa_move2:

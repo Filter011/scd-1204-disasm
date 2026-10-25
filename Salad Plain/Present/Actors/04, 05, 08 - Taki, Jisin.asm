@@ -93,7 +93,7 @@ jisin_set_move:
 	lea	playerwk.w,a1
 	bsr.w	sub_206886
 	blo.s	loc_20685A
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.w	sub_206886
 	bhs.s	locret_206884
 

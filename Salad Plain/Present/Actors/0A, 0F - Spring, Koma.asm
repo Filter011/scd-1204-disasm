@@ -190,7 +190,7 @@ sjumpmove:
 	bsr.s	sub_20863E
 
 loc_208634:
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.s	ride_on_chk_s
 	bne.s	sub_20863E
 
@@ -211,7 +211,7 @@ sub_20863E:
 sjumpmove2:
 	lea	playerwk.w,a1
 	bsr.s	ride_on_chk_s
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.s	ride_on_chk_s
 	lea	springchg.l,a1
 	bra.w	patchg
@@ -238,7 +238,7 @@ sdushmove:
 	bsr.s	sub_2086D2
 
 loc_2086C2:
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.s	ride_on_chk_s1
 	btst	#5,cddat(a0)
 	bne.s	sub_2086D2
@@ -274,7 +274,7 @@ loc_20871A:
 sdushmove2:
 	lea	playerwk.w,a1
 	bsr.w	ride_on_chk_s1
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.w	ride_on_chk_s1
 	lea	springchg.l,a1
 	bra.w	patchg
@@ -299,7 +299,7 @@ sjump2move:
 	bsr.s	sub_208788
 
 loc_20877E:
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.s	ride_on_chk_s2
 	bne.s	sub_208788
 
@@ -320,7 +320,7 @@ sub_208788:
 sjump2move2:
 	lea	playerwk.w,a1
 	bsr.s	ride_on_chk_s2
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.s	ride_on_chk_s2
 	lea	springchg.l,a1
 	bra.w	patchg
@@ -344,7 +344,7 @@ loc_2087F8:
 	bsr.s	sub_20880E
 
 loc_2087FA:
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.w	ride_on_chk_s2
 	bne.s	sub_20880E
 	btst	#5,cddat(a0)

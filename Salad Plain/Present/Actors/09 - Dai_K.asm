@@ -44,7 +44,7 @@ loc_208166:
 	bsr.s	sub_2081A6
 
 loc_208168:
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.w	sub_2080EA
 	beq.s	sub_2081A6
 

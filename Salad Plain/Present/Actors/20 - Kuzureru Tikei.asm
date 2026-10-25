@@ -55,7 +55,7 @@ acta_check:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	lea	playerwk.w,a3
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	move.b	main_play,d0
 	beq.w	loc_20D0CE
 	exg.l	a1,a3
@@ -88,7 +88,7 @@ loc_20D102:
 	move.w	yposi(a0),d4
 	lea	playerwk.w,a1
 	bsr.w	sub_20D11E
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 sub_20D11E:
 	jsr	ride_on_chk.l
@@ -108,7 +108,7 @@ actb_down:
 	lea	playerwk.w,a1
 	move.b	main_play,d1
 	beq.w	loc_20D15C
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 loc_20D15C:
 	sub.w	yposi(a1),d0
@@ -230,7 +230,7 @@ loc_20D2A2:
 	lea	playerwk.w,a1
 	move.b	main_play,d0
 	beq.w	loc_20D2B4
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 loc_20D2B4:
 	move.w	xspeed(a1),d0

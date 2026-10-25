@@ -137,7 +137,7 @@ loc_20180E:
 	move.b	#0,playwrtflag.w
 
 loc_201892:
-	lea	byte_FFD040.w,a0
+	lea	player2wk.w,a0
 	bsr.w	playwrt
 	tst.b	playwrtflag.w
 	beq.s	loc_2018CA

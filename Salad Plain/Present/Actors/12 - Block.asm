@@ -107,7 +107,7 @@ block_move6:
 block_ride:
 	lea	playerwk.w,a1
 	bsr.w	ride_on_chk_b
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 ride_on_chk_b:
 	move.w	xposi(a0),d3

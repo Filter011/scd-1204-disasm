@@ -15,8 +15,8 @@ iwa_init:
 	ori.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#iwapat,patbase(a0)
-	move.b	#$10,sprhsize(a0)
-	move.b	#$10,sprvsize(a0)
+	move.b	#16,sprhsize(a0)
+	move.b	#16,sprvsize(a0)
 	move.b	#0,patno(a0)
 	moveq	#$B,d0
 	jsr	pa_set.l
@@ -26,7 +26,7 @@ iwa_move:
 	bpl.s	locret_2083D8
 	lea	playerwk.w,a1
 	bsr.w	ride_on_chk_iwa
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 ride_on_chk_iwa:
 	move.w	xposi(a0),d3

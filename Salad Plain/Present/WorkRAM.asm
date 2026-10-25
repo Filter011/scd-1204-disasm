@@ -156,7 +156,7 @@ hscrollwork_end:
 hscrollwork_end_padded:
 actwk:
 playerwk:		ds.b	actfree
-byte_FFD040:		ds.b	actfree
+player2wk:		ds.b	actfree
 scorewk:		ds.b	actfree
 score2wk:		ds.b	actfree
 	ds.b	actfree

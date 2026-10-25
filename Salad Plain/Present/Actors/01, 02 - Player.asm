@@ -37,13 +37,13 @@ sub_2035B0:
 	moveq	#objid_02,d1
 	lea	byecnt1.w,a4
 	lea	playerwk.w,a5
-	lea	byte_FFD040.w,a6
+	lea	player2wk.w,a6
 	tst.b	main_play
 	beq.s	loc_2035DC
 	move.w	swdata1.w,d0
 	moveq	#play00_act,d1
 	lea	byecnt0.w,a4
-	lea	byte_FFD040.w,a5
+	lea	player2wk.w,a5
 	lea	playerwk.w,a6
 
 loc_2035DC:
@@ -2343,7 +2343,7 @@ play00erase:
 	subq.w	#1,act3A(a0)
 	bne.s	locret_204E16
 	move.w	#1,gameflag
-	lea	byte_FFD040.w,a5
+	lea	player2wk.w,a5
 	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_204DDE
 	lea	playerwk.w,a5

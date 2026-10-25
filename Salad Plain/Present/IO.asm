@@ -37,14 +37,14 @@ read_sw:
 vdpinit:
 	lea	vdp_cmd,a0
 	lea	vdp_dat,a1
-	lea	word_201D50.l,a2
-	moveq	#(word_201D50_end-word_201D50)/2-1,d7
+	lea	vdptbl.l,a2
+	moveq	#(vdptbl_end-vdptbl)/2-1,d7
 
 loc_201CE8:
 	move.w	(a2)+,(a0)
 	dbf	d7,loc_201CE8
 
-	move.w	word_201D50+2.l,d0
+	move.w	vdptbl+2.l,d0
 	move.w	d0,word_FFF60C.w
 	move.w	#$8A00+223,hintposi.w
 	moveq	#0,d0
@@ -76,7 +76,7 @@ loc_201D40:
 	move.l	(sp)+,d1
 	rts
 
-word_201D50:
+vdptbl:
 	dc.w	$8000+%0100
 	dc.w	$8100+%00110100
 	dc.w	$8200+plane_a>>10
@@ -96,7 +96,7 @@ word_201D50:
 	dc.w	$9001
 	dc.w	$9100
 	dc.w	$9200
-word_201D50_end:
+vdptbl_end:
 
 scrinit:
 	lea	vdp_cmd,a5

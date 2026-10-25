@@ -148,7 +148,7 @@ loc_20925A:
 	bpl.s	itemmove2
 	lea	playerwk.w,a1
 	bsr.w	ride_on_chk_i
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	bsr.w	ride_on_chk_i
 
 itemmove2:

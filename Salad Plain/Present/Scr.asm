@@ -2,7 +2,7 @@ main_chk:
 	lea	playerwk.w,a6
 	tst.b	main_play
 	beq.s	locret_2023FA
-	lea	byte_FFD040.w,a6
+	lea	player2wk.w,a6
 
 locret_2023FA:
 	rts

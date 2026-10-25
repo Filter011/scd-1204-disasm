@@ -203,7 +203,7 @@ play_act_set:
 	moveq	#play00_act,d0
 	tst.b	main_play
 	beq.s	loc_201490
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	moveq	#objid_02,d0
 
 loc_201490:

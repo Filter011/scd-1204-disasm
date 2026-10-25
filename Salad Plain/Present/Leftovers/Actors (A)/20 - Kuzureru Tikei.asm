@@ -54,7 +54,7 @@ loc_20EEFA:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	lea	playerwk.w,a3
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 	move.b	main_play,d0
 	beq.w	loc_20EF1C
 	exg.l	a1,a3
@@ -87,7 +87,7 @@ loc_20EF50:
 	move.w	yposi(a0),d4
 	lea	playerwk.w,a1
 	bsr.w	sub_20EF6C
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 sub_20EF6C:
 	jsr	$209E14.l
@@ -107,7 +107,7 @@ loc_20EF84:
 	lea	playerwk.w,a1
 	move.b	main_play,d1
 	beq.w	loc_20EFAA
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 loc_20EFAA:
 	sub.w	yposi(a1),d0
@@ -229,7 +229,7 @@ loc_20F0F0:
 	lea	playerwk.w,a1
 	move.b	main_play,d0
 	beq.w	loc_20F102
-	lea	byte_FFD040.w,a1
+	lea	player2wk.w,a1
 
 loc_20F102:
 	move.w	xspeed(a1),d0
