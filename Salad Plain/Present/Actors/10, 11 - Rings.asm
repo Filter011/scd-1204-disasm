@@ -173,7 +173,7 @@ ringgetsub:
 loc_208BB6:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
-	move.w	#$88,d0
+	move.w	#bgm_suu,d0
 
 loc_208BC6:
 	jmp	soundset.l
