@@ -1883,7 +1883,7 @@ loc_2048D4:
 	addq.l	#4,sp
 	move.b	#1,jumpflag(a0)
 	clr.b	convexflag(a0)
-	move.w	#$92,d0
+	move.w	#se_jump,d0
 	jsr	soundset.l
 	tst.b	chibi_flag.w
 	beq.s	loc_204920
