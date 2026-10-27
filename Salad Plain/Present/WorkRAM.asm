@@ -329,7 +329,7 @@ ringbonus:		ds.w	1	; unused
 bonus_f:		ds.b	1	; unused
 edplayflag:		ds.b	1	; unused
 waterdirec:		ds.w	1	; unused
-status_r:		ds.w	1
+int_sts:		ds.w	1
 byte_FFF7DC:		ds.b	1
 	ds.b	$23
 sprdat:			ds.b	$280

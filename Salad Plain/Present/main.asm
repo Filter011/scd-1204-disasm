@@ -83,7 +83,7 @@ gamemd:	gmmode_ptr	game
 	include	"IO.asm"
 
 z80bus_on:
-	move.w	sr,status_r.w
+	move.w	sr,int_sts.w
 	move.w	#$2700,sr
 	move.w	#$100,z80busreq
 
@@ -94,7 +94,7 @@ z80bus_on:
 
 z80bus_off:
 	move.w	#0,z80busreq
-	move.w	status_r.w,sr
+	move.w	int_sts.w,sr
 	rts
 
 soundinit:
@@ -137,6 +137,7 @@ soundset:
 	move.b	d0,sound_ram+buf2.w
 	rts
 
+backsoundset:
 	move.b	d0,sound_ram+buf3.w
 	rts
 
