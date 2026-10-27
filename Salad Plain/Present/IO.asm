@@ -47,7 +47,7 @@ loc_201CE8:
 	move.w	vdptbl+2.l,d0
 	move.w	d0,word_FFF60C.w
 	move.w	#$8A00+223,hintposi.w
-	moveq	#0,d0
+	moveq	#$000,d0
 	move.l	#$C0000000,vdp_cmd
 	move.w	#$80/2-1,d7
 
@@ -61,7 +61,7 @@ loc_201D0E:
 	move.l	d1,-(sp)
 
 	lea	vdp_cmd,a5
-	move.w	#$8F01,(a5)
+	move.w	#$8F00+%00000001,(a5)
 	move.l	#$94FF93FF,(a5)
 	move.w	#$9780,(a5)
 	move.l	#$40000080,(a5)
@@ -71,36 +71,36 @@ loc_201D40:
 	move.w	(a5),d1
 	btst	#1,d1
 	bne.s	loc_201D40
-	move.w	#$8F02,(a5)
+	move.w	#$8F00+%00000010,(a5)
 
 	move.l	(sp)+,d1
 	rts
 
 vdptbl:
-	dc.w	$8000+%0100
+	dc.w	$8000+%00000100
 	dc.w	$8100+%00110100
-	dc.w	$8200+plane_a>>10
-	dc.w	$8300+plane_w>>10
-	dc.w	$8400+plane_b>>13
+	dc.w	$8200+scroll_a_vram>>10
+	dc.w	$8300+scroll_w_vram>>10
+	dc.w	$8400+scroll_b_vram>>13
 	dc.w	$8500+sprdat_vram>>9
-	dc.w	$8600
-	dc.w	$8700
-	dc.w	$8800
-	dc.w	$8900
-	dc.w	$8A00
-	dc.w	$8B00
-	dc.w	$8C81
+	dc.w	$8600+%00000000
+	dc.w	$8700+%00000000
+	dc.w	$8800+%00000000
+	dc.w	$8900+%00000000
+	dc.w	$8A00+%00000000
+	dc.w	$8B00+%00000000
+	dc.w	$8C00+%10000001
 	dc.w	$8D00+hscroll_vram>>10
-	dc.w	$8E00
-	dc.w	$8F02
-	dc.w	$9001
-	dc.w	$9100
-	dc.w	$9200
+	dc.w	$8E00+%00000000
+	dc.w	$8F00+%00000010
+	dc.w	$9000+%00000001
+	dc.w	$9100+%00000000
+	dc.w	$9200+%00000000
 vdptbl_end:
 
 scrinit:
 	lea	vdp_cmd,a5
-	move.w	#$8F01,(a5)
+	move.w	#$8F00+%00000001,(a5)
 	move.l	#$940F93FF,(a5)
 	move.w	#$9780,(a5)
 	move.l	#$40000083,(a5)
@@ -110,10 +110,10 @@ loc_201D98:
 	move.w	(a5),d1
 	btst	#1,d1
 	bne.s	loc_201D98
-	move.w	#$8F02,(a5)
+	move.w	#$8F00+%00000010,(a5)
 
 	lea	vdp_cmd,a5
-	move.w	#$8F01,(a5)
+	move.w	#$8F00+%00000001,(a5)
 	move.l	#$940F93FF,(a5)
 	move.w	#$9780,(a5)
 	move.l	#$60000083,(a5)
@@ -123,7 +123,7 @@ loc_201DC6:
 	move.w	(a5),d1
 	btst	#1,d1
 	bne.s	loc_201DC6
-	move.w	#$8F02,(a5)
+	move.w	#$8F00+%00000010,(a5)
 
 	clr.l	vscroll.w
 	clr.l	hscroll.w
@@ -132,16 +132,16 @@ loc_201DC6:
 	moveq	#0,d0
 	move.w	#(sprdat_end-sprdat)/4,d1
 
-loc_201DE4:
+.loop:
 	move.l	d0,(a1)+
-	dbf	d1,loc_201DE4
+	dbf	d1,.loop
 
 	lea	hscrollwork.w,a1
 	moveq	#0,d0
 	move.w	#(hscrollwork_end_padded-hscrollwork)/4,d1
 
-loc_201DF4:
+.loop1:
 	move.l	d0,(a1)+
-	dbf	d1,loc_201DF4
+	dbf	d1,.loop1
 
 	rts

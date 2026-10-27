@@ -17,8 +17,8 @@
 word_20FCEA:
 	dc.w	$36B
 
-	include	"Actors (B)/24 - Friend.asm"
-	include	"Actors (B)/17 - Goal.asm"
+	include	"Objects (B)/24 - Friend.asm"
+	include	"Objects (B)/17 - Goal.asm"
 
 	jmp	$20792C.l
 

@@ -1,7 +1,7 @@
 ; VRAM Location Equates
-plane_w:	equ	$A000
-plane_a:	equ	$C000
-plane_b:	equ	$E000
+scroll_w_vram:	equ	$A000
+scroll_a_vram:	equ	$C000
+scroll_b_vram:	equ	$E000
 sprdat_vram:	equ	$F800
 hscroll_vram:	equ	$FC00
 

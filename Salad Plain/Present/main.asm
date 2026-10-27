@@ -181,7 +181,7 @@ copy_map_vram:
 	include	"Scr.asm"
 	include	"ScrChk.asm"
 	include	"Action.asm"
-	include	"Actors/01, 02 - Player.asm"
+	include	"Objects/01, 02 - Player.asm"
 
 loc_205400:
 	move.w	#mcpu_fadeCDA,d0
@@ -276,12 +276,12 @@ loc_2054CC:
 locret_2054D4:
 	rts
 
-	include	"Actors/06 - Test.asm"
-	include	"Actors/18, 1F - Bakuha, Flower.asm"
-	include	"Actors/0E - Mizukiri.asm"
-	include	"Actors/0D - Futa.asm"
-	include	"Actors/0B, 0C - Exit2.asm"
-	include	"Actors/03 - Baria.asm"
+	include	"Objects/06 - Test.asm"
+	include	"Objects/18, 1F - Bakuha, Flower.asm"
+	include	"Objects/0E - Mizukiri.asm"
+	include	"Objects/0D - Futa.asm"
+	include	"Objects/0B, 0C - Exit2.asm"
+	include	"Objects/03 - Baria.asm"
 
 exit2chg:
 	dc.w	exit2chg0-exit2chg
@@ -539,18 +539,18 @@ byte_205E20:
 	include	"Save.asm"
 	include	"DirCol.asm"
 	include	"Coli.asm"
-	include	"Actors/04, 05, 08 - Taki, Jisin.asm"
+	include	"Objects/04, 05, 08 - Taki, Jisin.asm"
 	include	"Edit.asm"
 	include	"ActSet.asm"
-	include	"Actors/07 - Shooter.asm"
+	include	"Objects/07 - Shooter.asm"
 	include	"RideChk.asm"
-	include	"Actors/09 - Dai_K.asm"
-	include	"Actors/1B - Iwa.asm"
-	include	"Actors/0A, 0F - Spring, Koma.asm"
-	include	"Actors/10, 11 - Rings.asm"
-	include	"Actors/12 - Block.asm"
-	include	"Actors/19, 1A - Item.asm"
-	include	"Actors/1C - Score.asm"
+	include	"Objects/09 - Dai_K.asm"
+	include	"Objects/1B - Iwa.asm"
+	include	"Objects/0A, 0F - Spring, Koma.asm"
+	include	"Objects/10, 11 - Rings.asm"
+	include	"Objects/12 - Block.asm"
+	include	"Objects/19, 1A - Item.asm"
+	include	"Objects/1C - Score.asm"
 	include	"Score.asm"
 
 marker:
@@ -2706,7 +2706,7 @@ byte_20B4D2:
 	dc.b	-8,5,0,4,-8
 	even
 
-	include	"Actors/23.asm"
+	include	"Objects/23.asm"
 
 	movea.l	a0,a1
 	moveq	#actfree-1,d0
@@ -2919,10 +2919,10 @@ byte_20B80A:
 byte_20B80E:
 	dc.b	$10,$F0,$10,$F0
 
-	include	"Actors/27, 28.asm"
-	include	"Actors/25 - Hashi.asm"
-	include	"Actors/26.asm"
-	include	"Actors/29.asm"
+	include	"Objects/27, 28.asm"
+	include	"Objects/25 - Hashi.asm"
+	include	"Objects/26.asm"
+	include	"Objects/29.asm"
 
 	dc.b	1
 	dc.b	-8,5,0,0,-8
@@ -3418,8 +3418,8 @@ byte_20D010:
 	dc.b	-8,9,8,8,0
 	even
 
-	include	"Actors/20 - Kuzureru Tikei.asm"
-	include	"Actors/21 - DoDai.asm"
+	include	"Objects/20 - Kuzureru Tikei.asm"
+	include	"Objects/21 - DoDai.asm"
 
 enecginit:
 	lea	word_20DC28(pc),a1
@@ -3552,8 +3552,8 @@ word_20DCB2:
 word_20DCB4:
 	dc.w	0
 
-	include	"Actors/24 - Friend.asm"
-	include	"Actors/17 - Goal.asm"
+	include	"Objects/24 - Friend.asm"
+	include	"Objects/17 - Goal.asm"
 
 sub_20DFF4:
 	jmp	sub_2059B8.l

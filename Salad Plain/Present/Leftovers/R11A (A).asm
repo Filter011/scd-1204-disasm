@@ -1,8 +1,8 @@
 	phase	wkram+$E3FA
 
-	include	"Actors (A)/25 - Hashi.asm"
-	include	"Actors (A)/26.asm"
-	include	"Actors (A)/29.asm"
+	include	"Objects (A)/25 - Hashi.asm"
+	include	"Objects (A)/26.asm"
+	include	"Objects (A)/29.asm"
 
 	dc.b	1
 	dc.b	-8,5,0,0,-8
@@ -506,8 +506,8 @@ byte_20EE5E:
 	dc.b	-8,9,8,8,0
 	even
 
-	include	"Actors (A)/20 - Kuzureru Tikei.asm"
-	include	"Actors (A)/21 - DoDai.asm"
+	include	"Objects (A)/20 - Kuzureru Tikei.asm"
+	include	"Objects (A)/21 - DoDai.asm"
 
 	lea	word_20F8B0(pc),a1
 	moveq	#0,d0
@@ -604,8 +604,8 @@ word_20F91E:
 word_20F920:
 	dc.w	$386
 
-	include	"Actors (A)/24 - Friend.asm"
-	include	"Actors (A)/17 - Goal.asm"
+	include	"Objects (A)/24 - Friend.asm"
+	include	"Objects (A)/17 - Goal.asm"
 
 	jmp	$207908.l
 

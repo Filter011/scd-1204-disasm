@@ -282,7 +282,7 @@ asettbl:
 	dc.w	$FFFF,0,0,0
 
 asettbl10:
-	incbin	"Actor Positions/ActPos.bin"
+	incbin	"Object Positions/ObjPos.bin"
 	even
 
 asettbl10z:

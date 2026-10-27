@@ -86,13 +86,13 @@ loc_2012A8:
 	move.w	#$2700,sr
 	bsr.w	scrinit
 	lea	vdp_cmd,a6
-	move.w	#$8B00+%0011,(a6)
-	move.w	#$8200+plane_a>>10,(a6)
-	move.w	#$8400+plane_b>>13,(a6)
+	move.w	#$8B00+%00000011,(a6)
+	move.w	#$8200+scroll_a_vram>>10,(a6)
+	move.w	#$8400+scroll_b_vram>>13,(a6)
 	move.w	#$8500+sprdat_vram>>9,(a6)
-	move.w	#$9001,(a6)
-	move.w	#$8000+%0100,(a6)
-	move.w	#$8720,(a6)
+	move.w	#$9000+%00000001,(a6)
+	move.w	#$8000+%00000100,(a6)
+	move.w	#$8700+%00100000,(a6)
 	move.w	#$8A00+223,hintposi.w
 	move.w	hintposi.w,(a6)
 	move.w	#30,pl_air
@@ -102,7 +102,7 @@ loc_2012A8:
 	moveq	#colorgame,d0
 	bsr.w	colorset
 	move.w	word_FFF60C.w,d0
-	ori.b	#$40,d0
+	ori.b	#%01000000,d0
 	move.w	d0,vdp_cmd
 
 loc_201308:
