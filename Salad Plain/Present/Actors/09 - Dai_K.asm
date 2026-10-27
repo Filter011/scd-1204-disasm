@@ -28,7 +28,7 @@ dai_k_init:
 	move.l	#k_daipat,patbase(a0)
 	moveq	#6,d0
 	jsr	pa_set(pc)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
 
 dai_k_move:
@@ -51,7 +51,7 @@ loc_208168:
 sub_208172:
 	tst.w	time_stop
 	bne.s	locret_2081BC
-	bset	#0,act2C(a1)
+	bset	#0,lockcd(a1)
 	bne.s	loc_2081A4
 	move.b	#$2D,mstno(a1)
 	moveq	#0,d0

@@ -186,15 +186,15 @@ loc_205400:
 	move.w	#scpu_fadeCDA,d0
 
 sub_sync:
-	move.w	d0,scpu_commcmd0
+	move.w	d0,mcpu_comcmd
 
 .loop:
-	tst.w	scpu_commstats
+	tst.w	mcpu_comsts
 	beq.s	.loop
-	move.w	#0,scpu_commcmd0
+	move.w	#0,mcpu_comcmd
 
 .loop1:
-	tst.w	scpu_commstats
+	tst.w	mcpu_comsts
 	bne.s	.loop1
 	rts
 
@@ -227,7 +227,7 @@ loc_205462:
 	move.b	cddat(a0),d0
 	rol.b	#3,d1
 	eor.b	d0,d1
-	andi.b	#%0011,d1
+	andi.b	#3,d1
 	andi.b	#%11111100,actflg(a0)
 	or.b	d1,actflg(a0)
 	addq.b	#1,patcnt(a0)
@@ -591,7 +591,7 @@ loc_209BA8:
 	move.l	#off_20B4C8,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
 	move.w	#$C00,sproffset(a0)
 	move.w	#$1400,sproffset(a0)
@@ -645,7 +645,7 @@ loc_209C66:
 	move.l	#obj13_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#0,d0
 	jsr	pa_set.l
 	move.b	#1,mstno(a0)
@@ -774,7 +774,7 @@ loc_209E08:
 	move.l	#obj13b_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
 	moveq	#0,d0
 	jsr	pa_set.l
@@ -896,7 +896,7 @@ loc_209F9A:
 	move.l	#obj14_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#1,d0
 	jsr	pa_set.l
 	move.w	#0,act30(a0)
@@ -1051,7 +1051,7 @@ loc_20A1AC:
 	move.l	#obj14_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#1,d0
 	jsr	pa_set.l
 	move.w	#0,act30(a0)
@@ -1211,7 +1211,7 @@ loc_20A3D0:
 	move.l	#obj15_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#2,d0
 	jsr	pa_set.l
 	move.b	#0,mstno(a0)
@@ -1329,7 +1329,7 @@ loc_20A552:
 	move.l	#obj15_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#2,d0
 	jsr	pa_set.l
 	move.b	#1,mstno(a0)
@@ -1469,7 +1469,7 @@ loc_20A71E:
 	move.l	#obj16_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#3,d0
 	jsr	pa_set.l
 	move.l	#-$40000,act2A(a0)
@@ -1558,7 +1558,7 @@ loc_20A830:
 	move.l	#obj16_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#3,d0
 	jsr	pa_set.l
 	move.l	#-$60000,act2A(a0)
@@ -1649,7 +1649,7 @@ loc_20A946:
 	move.l	#obj22_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
 	move.w	#$C00,sproffset(a0)
 	move.w	#$1400,sproffset(a0)
@@ -1885,7 +1885,7 @@ loc_20AC78:
 	move.l	#obj22_map,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
 	move.w	#$C00,sproffset(a0)
 	move.w	#$1400,sproffset(a0)
@@ -2752,7 +2752,7 @@ loc_20B612:
 	move.l	#off_20CF16,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$47A,sproffset(a0)
 	move.l	playerwk+xposi.w,d0
 	addi.l	#$32,d0
@@ -3561,7 +3561,7 @@ mapinittbl:
 	dc.l	ddevid_03<<24+zone1cg
 	dc.l	ddevid_02<<24+zone1blk
 	dc.l	zone1map
-	dc.w	bgm_zone1
+	dc.w	bgm_81
 	dc.b	colorzone1,colorzone1
 
 ddev_header:	macro	{INTLABEL}
@@ -3810,6 +3810,8 @@ ddev_unused_2_end:
 
 	include	"Leftovers/R11A (A).asm"
 	include	"Leftovers/R11A (B).asm"
+
+	align	$8000
 
 mapwk:
 	incbin	"Leftovers/Chunks/Chunks.unc"

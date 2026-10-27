@@ -10,12 +10,21 @@ stage_mz:	equ	2
 stage_slz:	equ	3
 
 ; BGM Equates
-bgm_zone1:	equ	$81
-bgm_zone2:	equ	$82
-bgm_zone3:	equ	$83
-bgm_zone4:	equ	$84
-bgm_zone5:	equ	$85
-bgm_zone6:	equ	$86
-bgm_muteki:	equ	$87
-bgm_suu:	equ	$88
-bgm_final:	equ	$8D
+bgm_81:		equ	$81
+bgm_82:		equ	$82
+bgm_83:		equ	$83
+bgm_84:		equ	$84
+bgm_85:		equ	$85
+bgm_86:		equ	$86
+bgm_87:		equ	$87
+bgm_88:		equ	$88
+bgm_8D:		equ	$8D
+
+; SE Equates
+se_AB:		equ	$AB
+se_AF:		equ	$AF
+se_B5:		equ	$B5
+
+; Utility Equates
+utl_E2:		equ	$E2
+utl_E3:		equ	$E3

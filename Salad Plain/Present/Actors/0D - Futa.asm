@@ -26,7 +26,7 @@ ride_on_chk_f:
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	subq.w	#4,yposi(a1)
-	move.w	#$A4,d0
+	move.w	#se_A4,d0
 	jmp	soundset.l
 
 .worknai:
@@ -43,9 +43,9 @@ futa_init:
 	move.l	#futapat,patbase(a0)
 	move.b	#1,sprpri(a0)
 	ori.b	#4,actflg(a0)
-	move.b	#$2C,sprhsize(a0)
+	move.b	#44,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
-	moveq	#$C,d0
+	moveq	#12,d0
 	jsr	pa_set.l
 
 futa_move:

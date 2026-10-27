@@ -12,22 +12,22 @@ ring_move_tbl:
 	dc.w	ringerase-ring_move_tbl
 
 ringtbl:
-	dc.b	$10,0
-	dc.b	$18,0
-	dc.b	$20,0
-	dc.b	0,$10
-	dc.b	0,$18
-	dc.b	0,$20
-	dc.b	$10,$10
-	dc.b	$18,$18
-	dc.b	$20,$20
-	dc.b	-$10,$10
-	dc.b	-$18,$18
-	dc.b	-$20,$20
-	dc.b	$10,8
-	dc.b	$18,$10
-	dc.b	-$10,8
-	dc.b	-$18,$10
+	dc.b	16,0
+	dc.b	24,0
+	dc.b	32,0
+	dc.b	0,16
+	dc.b	0,24
+	dc.b	0,32
+	dc.b	16,16
+	dc.b	24,24
+	dc.b	32,32
+	dc.b	-16,16
+	dc.b	-24,24
+	dc.b	-32,32
+	dc.b	16,8
+	dc.b	24,16
+	dc.b	-16,8
+	dc.b	-24,16
 
 ringinit_:
 	lea	flagwork,a2
@@ -160,7 +160,7 @@ ringerase:
 ringgetsub:
 	addq.w	#1,plring
 	ori.b	#1,plring_f
-	move.w	#$95,d0
+	move.w	#se_95,d0
 	cmpi.w	#100,plring
 	blo.s	loc_208BC6
 	bset	#1,plring_f2
@@ -173,7 +173,7 @@ ringgetsub:
 loc_208BB6:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
-	move.w	#bgm_suu,d0
+	move.w	#bgm_88,d0
 
 loc_208BC6:
 	jmp	soundset.l
@@ -195,7 +195,7 @@ flyringinit:
 	movea.l	a0,a1
 	moveq	#0,d5
 	move.w	plring,d5
-	moveq	#$20,d0
+	moveq	#32,d0
 	cmp.w	d0,d5
 	blo.s	loc_208BF6
 	move.w	d0,d5
@@ -250,7 +250,7 @@ loc_208C8E:
 	move.w	#0,plring
 	move.b	#$80,plring_f
 	move.b	#0,plring_f2
-	move.w	#$94,d0
+	move.w	#se_94,d0
 	jsr	soundset.l
 
 flyringmove:

@@ -27,7 +27,7 @@ koma_init:
 	move.b	#8,sprvsize(a0)
 	move.w	xposi(a0),act36(a0)
 	move.w	#$180,xspeed(a0)
-	moveq	#$E,d0
+	moveq	#14,d0
 	jsr	pa_set.l
 	jsr	actwkchk.l
 	beq.s	loc_208462
@@ -131,7 +131,7 @@ sjumpinit:
 	move.l	#springpat,patbase(a0)
 	move.w	#$520,sproffset(a0)
 	ori.b	#4,actflg(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
 	move.w	xposi(a0),act36(a0)
 	move.b	#4,sprpri(a0)
@@ -140,7 +140,7 @@ sjumpinit:
 	beq.s	loc_2085BE
 	move.b	#8,r_no0(a0)
 	move.b	#8,sprhsize(a0)
-	move.b	#$10,sprvsize(a0)
+	move.b	#16,sprvsize(a0)
 	move.l	#spring90pat,patbase(a0)
 	bra.s	loc_2085FA
 
@@ -148,10 +148,10 @@ loc_2085BE:
 	btst	#3,d0
 	beq.s	loc_2085E6
 	move.b	#$14,r_no0(a0)
-	move.b	#$10,sprvsize(a0)
+	move.b	#16,sprvsize(a0)
 	move.l	#spring45pat,patbase(a0)
 	move.l	d0,-(sp)
-	moveq	#$F,d0
+	moveq	#15,d0
 	jsr	pa_set.l
 	move.l	(sp)+,d0
 	bra.s	loc_2085FA
@@ -205,7 +205,7 @@ sub_20863E:
 	bclr	#cd_ride,cddat(a1)
 	move.b	#$10,mstno(a1)
 	bclr	#3,cddat(a0)
-	move.w	#$98,d0
+	move.w	#se_98,d0
 	jmp	soundset.l
 
 sjumpmove2:
@@ -268,7 +268,7 @@ loc_20871A:
 	clr.b	direc(a1)
 	bclr	#5,cddat(a0)
 	bclr	#cd_push,cddat(a1)
-	move.w	#$98,d0
+	move.w	#se_98,d0
 	jmp	soundset.l
 
 sdushmove2:
@@ -314,7 +314,7 @@ sub_208788:
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
 	bclr	#3,cddat(a0)
-	move.w	#$98,d0
+	move.w	#se_98,d0
 	jsr	soundset.l
 
 sjump2move2:
@@ -387,7 +387,7 @@ loc_20886E:
 	bclr	#cd_push,cddat(a1)
 	bclr	#3,cddat(a0)
 	bclr	#5,cddat(a0)
-	move.w	#$98,d0
+	move.w	#se_98,d0
 	jsr	soundset.l
 
 sjump3move2:

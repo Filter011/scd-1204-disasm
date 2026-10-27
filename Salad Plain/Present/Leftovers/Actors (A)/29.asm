@@ -14,15 +14,15 @@ loc_20E71A:
 	move.l	#off_20EE4C,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$3FE,sproffset(a0)
 	move.b	act3D(a0),d0
 	bne.s	loc_20E77C
 	move.b	userflag(a0),d6
-	andi.w	#$F,d6
+	andi.w	#%1111,d6
 	jsr	sub_20E78A(pc)
 	move.b	act3D(a1),d0
-	ori.b	#$80,d0
+	ori.b	#%10000000,d0
 	move.b	d0,act3D(a1)
 	movea.w	a2,a4
 	subq.w	#1,d6
@@ -32,8 +32,8 @@ loc_20E760:
 	subq.w	#1,d6
 	bne.s	loc_20E760
 	move.b	userflag(a0),d0
-	andi.b	#$70,d0
-	cmpi.b	#$70,d0
+	andi.b	#%01110000,d0
+	cmpi.b	#%01110000,d0
 	bne.s	locret_20E77A
 	jsr	sub_20E7B4(pc)
 

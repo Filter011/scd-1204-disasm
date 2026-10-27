@@ -95,7 +95,7 @@ sub_20D11E:
 	beq.w	locret_20D134
 	tst.w	(a3)
 	bne.w	locret_20D134
-	bclr	#3,cddat(a1)
+	bclr	#cd_ride,cddat(a1)
 
 locret_20D134:
 	rts

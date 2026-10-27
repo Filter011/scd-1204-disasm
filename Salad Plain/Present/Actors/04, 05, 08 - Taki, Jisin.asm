@@ -16,7 +16,7 @@ taki_init:
 	move.l	#shibukipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$3BA,sproffset(a0)
 	andi.w	#$FFF0,yposi(a0)
 	move.w	yposi(a0),act2A(a0)

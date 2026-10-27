@@ -25,7 +25,7 @@ word_20FCEA:
 	dc.l	3<<24+$237DBA
 	dc.l	2<<24+$236D82
 	dc.l	$23A476
-	dc.w	bgm_zone1
+	dc.w	bgm_81
 	dc.b	4,4
 
 off_20FFB0:

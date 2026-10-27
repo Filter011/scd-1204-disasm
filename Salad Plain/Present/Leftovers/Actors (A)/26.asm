@@ -12,23 +12,23 @@ loc_20E674:
 	move.l	#off_20EDDE,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	moveq	#$A,d0
+	moveq	#10,d0
 	jsr	sub_20F8C0(pc)
 	move.b	userflag(a0),d0
 	andi.b	#7,d0
 	move.b	d0,mstno(a0)
 	move.b	#$86,colino(a0)
-	move.b	#$10,sprhsize(a0)
-	move.b	#$C,sprvsize(a0)
+	move.b	#16,sprhsize(a0)
+	move.b	#12,sprvsize(a0)
 	cmpi.b	#3,d0
 	bne.w	loc_20E6C4
 	move.b	#2,sprhsize(a0)
-	move.b	#$C,sprvsize(a0)
+	move.b	#12,sprvsize(a0)
 
 loc_20E6C4:
 	cmpi.b	#4,d0
 	bmi.w	locret_20E6D8
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.b	#3,sprvsize(a0)
 
 locret_20E6D8:

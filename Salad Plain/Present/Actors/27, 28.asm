@@ -18,10 +18,10 @@ loc_20B834:
 	move.l	#act28pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#7,d0
 	jsr	pa_set(pc)
-	move.b	#$18,sprhs(a0)
+	move.b	#24,sprhs(a0)
 	move.b	#4,sprvsize(a0)
 	move.b	userflag(a0),d0
 	cmpi.b	#1,d0
@@ -201,7 +201,7 @@ loc_20BA7C:
 	move.l	#act27pat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#8,d0
 	jsr	pa_set(pc)
 	rts

@@ -19,8 +19,8 @@ t_item_move_tbl:
 
 t_item_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#$E,sprvsize(a0)
-	move.b	#$E,sprhs(a0)
+	move.b	#14,sprvsize(a0)
+	move.b	#14,sprhs(a0)
 	move.l	#itempat,patbase(a0)
 	move.w	#$5A8,sproffset(a0)
 	move.b	#4,actflg(a0)
@@ -47,7 +47,7 @@ loc_20911E:
 t_item_move0:
 	tst.b	colicnt(a0)
 	beq.s	locret_209152
-	move.b	#$3C,act2A(a0)
+	move.b	#60,act2A(a0)
 	addq.b	#word,r_no0(a0)
 	bsr.w	flagwkadr
 	bset	#0,2(a2,d0.w)
@@ -110,8 +110,8 @@ item_move_tbl:
 
 iteminit:
 	addq.b	#word,r_no0(a0)
-	move.b	#$E,sprvsize(a0)
-	move.b	#$E,sprhs(a0)
+	move.b	#14,sprvsize(a0)
+	move.b	#14,sprhs(a0)
 	move.l	#itempat,patbase(a0)
 	move.w	#$5A8,sproffset(a0)
 	move.b	#4,actflg(a0)
@@ -162,7 +162,7 @@ itemmove3:
 	jmp	frameout_s.l
 
 itemget:
-	move.w	#$96,d0
+	move.w	#se_96,d0
 	jsr	soundset.l
 	addq.b	#4,r_no0(a0)
 	move.b	#0,colino(a0)
@@ -232,7 +232,7 @@ item2move_sub:
 item2_00:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
-	move.w	#bgm_suu,d0
+	move.w	#bgm_88,d0
 	jmp	bgmset.l
 
 item2_01:
@@ -250,7 +250,7 @@ item2_01:
 	beq.w	item2_00
 
 .jump:
-	move.w	#$B5,d0
+	move.w	#se_B5,d0
 	jmp	bgmset.l
 
 item2_02:
@@ -260,7 +260,7 @@ item2_02:
 sub_2093D8:
 	move.b	#1,plpower_b
 	move.b	#baria_act,bariawk.w
-	move.w	#$AF,d0
+	move.w	#se_AF,d0
 	jmp	bgmset.l
 
 item2_03:
@@ -280,9 +280,9 @@ sub_2093F6:
 	move.b	#4,muteki4wk+mstno.w
 	tst.b	bossstart.w
 	bne.s	locret_20944E
-	cmpi.w	#$C,pl_air
+	cmpi.w	#12,pl_air
 	bls.s	locret_20944E
-	move.w	#bgm_muteki,d0
+	move.w	#bgm_87,d0
 	jmp	bgmset.l
 
 locret_20944E:
@@ -298,7 +298,7 @@ loc_209456:
 	move.w	#$C00,plmaxspdwk.w
 	move.w	#$18,pladdspdwk.w
 	move.w	#$80,plretspdwk.w
-	move.w	#$E2,d0
+	move.w	#utl_E2,d0
 	jmp	bgmset.l
 
 item2_05:

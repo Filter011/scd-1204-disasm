@@ -31,7 +31,7 @@ shooterinit:
 	move.l	#bariapat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$541,sproffset(a0)
 	addq.b	#word,r_no0(a0)
 	move.b	userflag(a0),d0
@@ -55,10 +55,10 @@ shootermove:
 	addi.w	#$20,d1
 	cmpi.w	#$40,d1
 	bhs.s	locret_207C3C
-	tst.b	act2C(a6)
+	tst.b	lockcd(a6)
 	bne.s	locret_207C3C
 	addq.b	#word,r_no0(a0)
-	move.b	#$81,act2C(a6)
+	move.b	#$81,lockcd(a6)
 	move.b	#2,mstno(a6)
 	bsr.w	mspd_set
 	move.w	#0,xspeed(a6)
@@ -69,7 +69,7 @@ shootermove:
 	move.w	xposi(a0),xposi(a6)
 	move.w	yposi(a0),yposi(a6)
 	clr.b	act32(a0)
-	move.w	#$91,d0
+	move.w	#se_91,d0
 	jsr	soundset.l
 
 locret_207C3C:
@@ -78,7 +78,7 @@ locret_207C3C:
 shootermove2:
 	bsr.w	shooterspdset
 	addq.b	#word,r_no0(a0)
-	move.w	#$91,d0
+	move.w	#se_91,d0
 	jsr	soundset.l
 	rts
 
@@ -121,7 +121,7 @@ loc_207C90:
 loc_207CB6:
 	andi.w	#$7FF,yposi(a6)
 	clr.b	r_no0(a0)
-	clr.b	act2C(a6)
+	clr.b	lockcd(a6)
 	move.w	#2,r_no0(a0)
 	rts
 

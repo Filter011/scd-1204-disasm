@@ -29,7 +29,7 @@ block_init:
 	moveq	#5,d0
 	jsr	pa_set.l
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.b	#4,sprvsize(a0)
 	move.b	#5,patno(a0)
 

@@ -1,10 +1,10 @@
 main_chk:
 	lea	playerwk.w,a6
 	tst.b	main_play
-	beq.s	locret_2023FA
+	beq.s	.end
 	lea	player2wk.w,a6
 
-locret_2023FA:
+.end:
 	rts
 
 scr_set:
@@ -222,7 +222,7 @@ loc_20263E:
 	move.w	d0,(a1)+
 	dbf	d1,loc_20263E
 
-	move.w	linework+$C.w,d0
+	move.w	linework+12.w,d0
 	add.w	scrz_h_posit.w,d0
 	neg.w	d0
 	move.w	#1-1,d1
@@ -248,14 +248,14 @@ loc_202672:
 	dbf	d1,loc_202672
 
 	lea	hscrollwork.w,a1
-	lea	linework+$10.w,a2
+	lea	linework+16.w,a2
 	move.w	scrb_v_posit.w,d0
 	move.w	d0,d2
 	andi.w	#$1F8,d0
 	lsr.w	#2,d0
 	move.w	d0,d3
 	lsr.w	#1,d3
-	moveq	#$19,d1
+	moveq	#26-1,d1
 	moveq	#$1C,d5
 	sub.w	d3,d1
 	blo.s	loc_2026A2
@@ -798,7 +798,7 @@ loc_202BAE:
 	movem.l	d4-d5,-(sp)
 	bsr.w	vramadrset1
 	movem.l	(sp)+,d4-d5
-	moveq	#$20-1,d6
+	moveq	#32-1,d6
 	bsr.w	hblockwrt1
 	movea.l	(sp)+,a0
 
@@ -1143,7 +1143,7 @@ mapwrt3:
 	bsr.w	vramadrset
 	move.w	d1,d4
 	moveq	#0,d5
-	moveq	#$20-1,d6
+	moveq	#32-1,d6
 	bsr.w	loc_202C4A
 	movem.l	(sp)+,d4-d6
 	addi.w	#16,d4
@@ -1200,7 +1200,7 @@ loc_202F7A:
 	movem.l	d4-d5,-(sp)
 	bsr.w	vramadrset1
 	movem.l	(sp)+,d4-d5
-	moveq	#$20-1,d6
+	moveq	#32-1,d6
 	bsr.w	hblockwrt1
 
 locret_202F8E:

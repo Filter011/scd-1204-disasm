@@ -18,7 +18,7 @@ iwa_init:
 	move.b	#16,sprhsize(a0)
 	move.b	#16,sprvsize(a0)
 	move.b	#0,patno(a0)
-	moveq	#$B,d0
+	moveq	#11,d0
 	jsr	pa_set.l
 
 iwa_move:

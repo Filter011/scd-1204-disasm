@@ -15,19 +15,19 @@ playloadb:
 	move.w	scrz_h_posit_sb,scrz_h_posit.w
 	move.w	scrz_v_posit_sb,scrz_v_posit.w
 	cmpi.b	#stage_lz,stageno
-	bne.s	loc_205ECC
+	bne.s	.jump
 	move.w	waterposi_m_sb,waterposi_m.w
 	move.b	water_flag_sb,water_flag.w
 	move.b	waterflag_sb,waterflag.w
 
-loc_205ECC:
+.jump:
 	tst.b	plflag
-	bpl.s	locret_205EE2
+	bpl.s	.end
 	move.w	plxposi_sb,d0
 	subi.w	#160,d0
 	move.w	d0,scralim_left.w
 
-locret_205EE2:
+.end:
 	rts
 
 playload:
@@ -56,17 +56,17 @@ playload:
 	move.w	scrz_h_posit_s,scrz_h_posit.w
 	move.w	scrz_v_posit_s,scrz_v_posit.w
 	cmpi.b	#stage_lz,stageno
-	bne.s	loc_205FC4
+	bne.s	.jump
 	move.w	waterposi_m_s,waterposi_m.w
 	move.b	water_flag_s,water_flag.w
 	move.b	waterflag_s,waterflag.w
 
-loc_205FC4:
+.jump:
 	tst.b	plflag
-	bpl.s	locret_205FDA
+	bpl.s	.end
 	move.w	plxposi_s,d0
 	subi.w	#160,d0
 	move.w	d0,scralim_left.w
 
-locret_205FDA:
+.end:
 	rts

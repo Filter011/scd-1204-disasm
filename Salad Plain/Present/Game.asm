@@ -1,11 +1,11 @@
 bgm_tbl:
-	dc.b	bgm_zone1
-	dc.b	bgm_zone2
-	dc.b	bgm_zone3
-	dc.b	bgm_zone4
-	dc.b	bgm_zone5
-	dc.b	bgm_zone6
-	dc.b	bgm_final
+	dc.b	bgm_81
+	dc.b	bgm_82
+	dc.b	bgm_83
+	dc.b	bgm_84
+	dc.b	bgm_85
+	dc.b	bgm_86
+	dc.b	bgm_8D
 	even
 
 game:
@@ -106,7 +106,7 @@ loc_2012A8:
 	move.w	d0,vdp_cmd
 
 loc_201308:
-	move.b	#vintid_0C,int_flg.w
+	move.b	#int_0C,int_flg.w
 	bsr.w	sync
 	bsr.w	sub_20209A
 	bne.s	loc_201308
@@ -121,7 +121,7 @@ loc_201308:
 	bsr.w	scdset
 
 loc_20133E:
-	move.b	#vintid_0C,int_flg.w
+	move.b	#int_0C,int_flg.w
 	bsr.w	sync
 	bsr.w	sub_20209A
 	bne.s	loc_20133E
@@ -171,7 +171,7 @@ loc_201418:
 	bclr	#7,gmmode.w
 
 loc_20141E:
-	move.b	#vintid_08,int_flg.w
+	move.b	#int_08,int_flg.w
 	bsr.w	sync
 	addq.w	#1,gametimer
 	jsr	actsetchk.l

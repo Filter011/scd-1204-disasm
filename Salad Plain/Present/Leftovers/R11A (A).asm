@@ -612,7 +612,7 @@ word_20F920:
 	dc.l	3<<24+$238018
 	dc.l	2<<24+$236DEE
 	dc.l	$23AB36
-	dc.w	bgm_zone1
+	dc.w	bgm_81
 	dc.b	4,4
 
 off_20FBE6:

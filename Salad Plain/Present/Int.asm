@@ -1,25 +1,23 @@
 vint:
-	bset	#0,scpu_IRQ2
+	bset	#0,mcpu_int2
 	movem.l	d0-a6,-(sp)
 	tst.b	int_flg.w
-	beq.s	vint00
+	beq.s	int00
 	move.w	vdp_cmd,d0
 	move.l	#$40000010,vdp_cmd
 	move.l	vscroll.w,vdp_dat
 	btst	#6,mdstatus
-	beq.s	loc_201688
+	beq.s	.jump
 	move.w	#$700,d0
+	dbf	d0,*
 
-loc_201684:
-	dbf	d0,loc_201684
-
-loc_201688:
+.jump:
 	move.b	int_flg.w,d0
-	move.b	#vintid_00,int_flg.w
+	move.b	#int_00,int_flg.w
 	move.w	#1,hintflag.w
 	andi.w	#$3E,d0
-	move.w	vint_tbl(pc,d0.w),d0
-	jsr	vint_tbl(pc,d0.w)
+	move.w	int_tbl(pc,d0.w),d0
+	jsr	int_tbl(pc,d0.w)
 
 loc_2016A4:
 	jsr	sound.l
@@ -31,28 +29,28 @@ loc_2016AA:
 	movem.l	(sp)+,d0-a6
 	rte
 
-vint_tbl:
+int_tbl:
 
-vint_ptr	macro	ptr,{INTLABEL}
-__LABEL__:	label	*-vint_tbl
-	dc.w	ptr-vint_tbl
+int_ptr	macro	ptr,{INTLABEL}
+__LABEL__:	label	*-int_tbl
+	dc.w	ptr-int_tbl
 	endm
 
-vintid_00:	vint_ptr	vint00
-vintid_02:	vint_ptr	vint02
-vintid_04:	vint_ptr	vint04
-vintid_06:	vint_ptr	vint06
-vintid_08:	vint_ptr	vint08
-vintid_0A:	vint_ptr	vint0A
-vintid_0C:	vint_ptr	vint0C
-vintid_0E:	vint_ptr	vint0E
-vintid_10:	vint_ptr	vint10
-vintid_12:	vint_ptr	vint12
-vintid_14:	vint_ptr	vint14
-vintid_16:	vint_ptr	vint16
-vintid_18:	vint_ptr	vint0C
+int_00:	int_ptr	int00
+int_02:	int_ptr	int02
+int_04:	int_ptr	int04
+int_06:	int_ptr	int06
+int_08:	int_ptr	int08
+int_0A:	int_ptr	int0A
+int_0C:	int_ptr	int0C
+int_0E:	int_ptr	int0E
+int_10:	int_ptr	int10
+int_12:	int_ptr	int12
+int_14:	int_ptr	int14
+int_16:	int_ptr	int16
+int_18:	int_ptr	int0C
 
-vint00:
+int00:
 	cmpi.b	#gamemd_s1+$80,gmmode.w
 	beq.s	loc_2016EA
 	cmpi.b	#gamemd_s1,gmmode.w
@@ -65,9 +63,7 @@ loc_2016EA:
 	btst	#6,mdstatus
 	beq.s	loc_20170E
 	move.w	#$700,d0
-
-loc_20170A:
-	dbf	d0,loc_20170A
+	dbf	d0,*
 
 loc_20170E:
 	move.w	#1,hintflag.w
@@ -85,36 +81,36 @@ loc_20176A:
 	jsr	z80bus_off.l
 	bra.w	loc_2016A4
 
-vint02:
+int02:
 	bsr.w	sub_201B1A
 
-vint14:
+int14:
 	tst.w	waittimer.w
-	beq.w	locret_201788
+	beq.w	.end
 	subq.w	#1,waittimer.w
 
-locret_201788:
+.end:
 	rts
 
-vint04:
+int04:
 	bsr.w	sub_201B1A
 	bsr.w	scrollwrtadva
 	bsr.w	sub_2020F0
 	tst.w	waittimer.w
-	beq.w	locret_2017A2
+	beq.w	.end
 	subq.w	#1,waittimer.w
 
-locret_2017A2:
+.end:
 	rts
 
-vint06:
+int06:
 	bsr.w	sub_201B1A
 	rts
 
-vint10:
+int10:
 	cmpi.b	#spgamemd,gmmode.w
-	beq.w	vint0A
-vint08:
+	beq.w	int0A
+int08:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
 	tst.b	waterflag.w
@@ -166,16 +162,16 @@ doupdates:
 	bsr.w	sub_20210C
 	jsr	scoreset.l
 	tst.w	waittimer.w
-	beq.w	locret_201928
+	beq.w	.end
 	subq.w	#1,waittimer.w
 
-locret_201928:
+.end:
 	rts
 
-vint0A:
+int0A:
 	rts
 
-vint0C:
+int0C:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
 	tst.b	waterflag.w
@@ -208,18 +204,18 @@ loc_201A0A:
 	jsr	scoreset.l
 	rts
 
-vint0E:
+int0E:
 	bsr.w	sub_201B1A
 	addq.b	#1,intcnt.w
-	move.b	#vintid_0E,int_flg.w
+	move.b	#int_0E,int_flg.w
 	rts
 
-vint12:
+int12:
 	bsr.w	sub_201B1A
 	move.w	hintposi.w,(a5)
 	bra.w	sub_2020F0
 
-vint16:
+int16:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
 	dma68k	lpcolorwk,$C,0
@@ -235,24 +231,24 @@ vint16:
 
 loc_201B0C:
 	tst.w	waittimer.w
-	beq.w	locret_201B18
+	beq.w	.end
 	subq.w	#1,waittimer.w
 
-locret_201B18:
+.end:
 	rts
 
 sub_201B1A:
 	jsr	z80bus_on.l
 	bsr.w	read_sw
 	tst.b	waterflag.w
-	bne.s	loc_201B50
+	bne.s	.jump
 	dma68k	lpcolorwk,$C,0
-	bra.s	loc_201B74
+	bra.s	.jump1
 
-loc_201B50:
+.jump:
 	dma68k	lpcolorwk3,$C,0
 
-loc_201B74:
+.jump1:
 	dma68k	sprdat,4,sprdat_vram
 	dma68k	hscrollwork,4,hscroll_vram
 	jmp	z80bus_off.l
@@ -265,11 +261,11 @@ hint:
 	movem.l	a0-a1,-(sp)
 	lea	vdp_dat,a1
 	lea	lpcolorwk3.w,a0
-	move.l	#$C0000000,4(a1)
+	move.l	#$C0000000,vdp_cmd-vdp_dat(a1)
 	rept	32
 	move.l	(a0)+,(a1)
 	endr
-	move.w	#$8A00+223,4(a1)
+	move.w	#$8A00+223,vdp_cmd-vdp_dat(a1)
 	movem.l	(sp)+,a0-a1
 	tst.b	waterflag2.w
 	bne.s	loc_201C3A

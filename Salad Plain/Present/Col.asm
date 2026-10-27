@@ -74,7 +74,7 @@ fadein0:
 	move.w	#22-1,d4
 
 fadein0_new:
-	move.b	#vintid_12,int_flg.w
+	move.b	#int_12,int_flg.w
 	bsr.w	sync
 	bsr.s	fadein1
 	bsr.w	sub_20209A
@@ -145,7 +145,7 @@ fadeout:
 	move.w	#22-1,d4
 
 fadeout_new:
-	move.b	#vintid_12,int_flg.w
+	move.b	#int_12,int_flg.w
 	bsr.w	sync
 	bsr.s	fadeout1
 	bsr.w	sub_20209A
@@ -219,7 +219,7 @@ flashin:
 	move.w	#22-1,d4
 
 flashin_new:
-	move.b	#vintid_12,int_flg.w
+	move.b	#int_12,int_flg.w
 	bsr.w	sync
 	bsr.s	flashin1
 	bsr.w	sub_20209A
@@ -292,7 +292,7 @@ flashout:
 	move.w	#22-1,d4
 
 flashout_new:
-	move.b	#vintid_12,int_flg.w
+	move.b	#int_12,int_flg.w
 	bsr.w	sync
 	bsr.s	flashout1
 	bsr.w	sub_20209A

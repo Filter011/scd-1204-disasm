@@ -155,7 +155,7 @@ mizuki_set:
 	tst.b	stageno
 	bne.s	locret_203786
 	move.b	gametimer+1,d0
-	andi.b	#%0011,d0
+	andi.b	#3,d0
 	bne.s	locret_203786
 	move.b	sprvsize(a0),d2
 	ext.w	d2
@@ -227,7 +227,7 @@ loc_2037EA:
 	move.b	#2,userflag(a1)
 
 loc_2037F6:
-	move.w	#$A1,d0
+	move.w	#se_A1,d0
 	jmp	soundset.l
 
 mapno_chk:
@@ -801,12 +801,12 @@ off_203D52:
 	dc.w	ball00jump-off_203D52
 
 unk_203D5A:
-	dc.b	bgm_zone1
-	dc.b	bgm_zone2
-	dc.b	bgm_zone3
-	dc.b	bgm_zone4
-	dc.b	bgm_zone5
-	dc.b	bgm_zone6
+	dc.b	bgm_81
+	dc.b	bgm_82
+	dc.b	bgm_83
+	dc.b	bgm_84
+	dc.b	bgm_85
+	dc.b	bgm_86
 	even
 
 playpowercnt:
@@ -863,7 +863,7 @@ loc_203DDC:
 	move.w	#$C,pladdspdwk.w
 	move.w	#$80,plretspdwk.w
 	move.b	#0,plpower_s
-	move.w	#$E3,d0
+	move.w	#utl_E3,d0
 	jmp	bgmset.l
 
 locret_203E14:
@@ -1273,7 +1273,7 @@ loc_2042C8:
 	neg.w	mspeed(a0)
 
 loc_2042FE:
-	move.w	#$9C,d0
+	move.w	#se_9C,d0
 	jsr	soundset.l
 	bsr.w	ballset
 
@@ -1434,7 +1434,7 @@ loc_204468:
 	blt.s	locret_204496
 	move.b	#$D,mstno(a0)
 	bclr	#cd_left,cddat(a0)
-	move.w	#se_skid,d0
+	move.w	#se_90,d0
 	jsr	soundset.l
 
 locret_204496:
@@ -1483,7 +1483,7 @@ loc_2044EA:
 	bgt.s	locret_204518
 	move.b	#$D,mstno(a0)
 	bset	#cd_left,cddat(a0)
-	move.w	#se_skid,d0
+	move.w	#se_90,d0
 	jsr	soundset.l
 
 locret_204518:
@@ -1536,7 +1536,7 @@ loc_20457E:
 	beq.s	locret_2045E6
 
 loc_204594:
-	move.w	#$AB,d0
+	move.w	#se_AB,d0
 	jsr	soundset.l
 	move.b	#0,act2A(a0)
 	move.w	#0,mspeed(a0)
@@ -1548,7 +1548,7 @@ loc_2045BA:
 	cmpi.b	#60,act2A(a0)
 	bne.s	loc_204594
 	move.b	#0,act2A(a0)
-	move.w	#$91,d0
+	move.w	#se_91,d0
 	jsr	soundset.l
 	btst	#cd_left,cddat(a0)
 	bne.s	loc_2045E0
@@ -1883,7 +1883,7 @@ loc_2048D4:
 	addq.l	#4,sp
 	move.b	#1,jumpflag(a0)
 	clr.b	convexflag(a0)
-	move.w	#se_jump,d0
+	move.w	#se_92,d0
 	jsr	soundset.l
 	tst.b	chibi_flag.w
 	beq.s	loc_204920
@@ -2444,7 +2444,7 @@ locret_204EE2:
 	rts
 
 loc_204EE4:
-	move.w	#$9C,d0
+	move.w	#se_9C,d0
 	jsr	soundset.l
 	jmp	ballset.l
 

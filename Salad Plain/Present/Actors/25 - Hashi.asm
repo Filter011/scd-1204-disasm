@@ -28,7 +28,7 @@ hashi_init:
 	move.l	#hashipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#9,d0
 	jsr	pa_set(pc)
 	move.b	#1,mstno(a0)
@@ -86,7 +86,7 @@ sub_20BDC6:
 	move.l	#hashipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#9,d0
 	jsr	pa_set(pc)
 	move.b	#1,mstno(a0)
@@ -99,7 +99,7 @@ loc_20BE04:
 	movea.w	act3E(a0),a1
 	moveq	#0,d1
 	move.b	act3C(a0),d1
-	mulu.w	#$10,d1
+	mulu.w	#16,d1
 	swap	d1
 	move.l	xposi(a1),d0
 	add.l	d1,d0
@@ -134,7 +134,7 @@ loc_20BE6A:
 	move.l	#hashipat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	moveq	#9,d0
 	jsr	pa_set(pc)
 	movea.w	act3E(a0),a2
@@ -394,8 +394,8 @@ loc_20C228:
 	cmpi.b	#$FE,d0
 	beq.w	loc_20C24E
 	move.w	act32(a2),d0
-	move.w	#$64,d1
-	move.w	#$60,d2
+	move.w	#100,d1
+	move.w	#96,d2
 	mulu.w	d2,d0
 	divu.w	d1,d0
 	move.w	act34(a0),d1
@@ -444,7 +444,7 @@ loc_20C2C2:
 	move.w	act34(a0),d3
 	sub.w	d3,d2
 	move.w	act32(a2),d0
-	move.w	#$64,d1
+	move.w	#100,d1
 	mulu.w	d2,d0
 	divu.w	d1,d0
 	move.w	act34(a0),d1
@@ -609,7 +609,7 @@ sub_20C4DC:
 	move.b	act3C(a0),d0
 	move.w	yposi(a2),d1
 	move.w	xposi(a2),d2
-	mulu.w	#$10,d0
+	mulu.w	#16,d0
 	add.w	d0,d1
 	addi.w	#$60,d1
 	move.w	d1,yposi(a0)
@@ -655,7 +655,7 @@ sub_20C560:
 	move.w	yposi(a2),d1
 	move.w	xposi(a2),d2
 	subq.w	#6,d0
-	mulu.w	#$10,d0
+	mulu.w	#16,d0
 	add.w	d0,d1
 	addi.w	#$B0,d2
 	move.w	d1,yposi(a0)
@@ -665,7 +665,7 @@ sub_20C560:
 loc_20C582:
 	movea.w	act3E(a0),a2
 	move.w	act32(a0),d0
-	mulu.w	#$C,d0
+	mulu.w	#12,d0
 	move.w	yposi(a2),d1
 	add.w	d0,d1
 	addi.w	#$28,d1

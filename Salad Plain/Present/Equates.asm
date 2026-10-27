@@ -32,10 +32,10 @@ psg68k:		equ	$C00011
 ; Mega CD Equates
 wkram:		equ	$200000
 
-; Mega CD Sub-CPU Equates
-scpu_IRQ2:	equ	$A12000
-scpu_commcmd0:	equ	$A12010
-scpu_commstats:	equ	$A12020
+; Mega CD Main CPU Equates
+mcpu_int2:	equ	$A12000
+mcpu_comcmd:	equ	$A12010
+mcpu_comsts:	equ	$A12020
 
 ; Mega CD Sub-CPU Commands
 	phase	1
@@ -276,7 +276,7 @@ cd_push:	equ	5
 cd_underwater:	equ	6
 
 ; Chunk Equates
-mapsize:	equ	(16*2)*16	; (width*2) * height
+map_size:	equ	(16*2)*16	; (width*2) * height
 
 ; Stage Equates
 stage_spz:	equ	0
@@ -288,8 +288,32 @@ act_3:		equ	2
 act_4:		equ	3
 
 ; SE Equates
-se_skid:	equ	$90
-se_release:	equ	$91
-se_jump:	equ	$92
+se_90:		equ	$90
+se_91:		equ	$91
+se_92:		equ	$92
+se_93:		equ	$93
+se_94:		equ	$94
+se_95:		equ	$95
+se_96:		equ	$96
+se_97:		equ	$97
+se_98:		equ	$98
+se_99:		equ	$99
+se_9A:		equ	$9A
+se_9B:		equ	$9B
+se_9C:		equ	$9C
+se_9D:		equ	$9D
+se_9E:		equ	$9E
+se_9F:		equ	$9F
+se_A0:		equ	$A0
+se_A1:		equ	$A1
+se_A2:		equ	$A2
+se_A3:		equ	$A3
+se_A4:		equ	$A4
+se_A5:		equ	$A5
+se_A6:		equ	$A6
+se_A7:		equ	$A7
+se_A8:		equ	$A8
+se_A9:		equ	$A9
+se_AA:		equ	$AA
 
 	include	"Leftovers/Equates.asm"

@@ -15,7 +15,7 @@ bariainit:
 	move.l	#bariapat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#$10,sprhsize(a0)
+	move.b	#16,sprhsize(a0)
 	move.w	#$544,sproffset(a0)
 	tst.b	mstno(a0)
 	beq.s	locret_2058C8
@@ -81,7 +81,7 @@ loc_20594A:
 	move.b	act30(a0),d1
 	sub.b	d1,d0
 	addq.b	#4,d1
-	cmpi.b	#$18,d1
+	cmpi.b	#24,d1
 	blo.s	loc_205966
 	moveq	#0,d1
 
@@ -109,7 +109,7 @@ loc_2059B2:
 
 sub_2059B8:
 	bclr	#7,plsubchg_flag
-	beq.s	locret_205A06
+	beq.s	.end
 	moveq	#0,d0
 	move.b	plsubchg_flag,d0
 	subq.b	#2,d0
@@ -118,13 +118,13 @@ sub_2059B8:
 	lea	powerupwrtwk.l,a2
 	move.w	#(powerupwrtwk_end-powerupwrtwk-$180)/4-1,d0
 
-loc_2059DC:
+.loop:
 	move.l	(a1)+,(a2)+
-	dbf	d0,loc_2059DC
+	dbf	d0,.loop
 
 	dma68k	powerupwrtwk,4,$544*tile_size
 
-locret_205A06:
+.end:
 	rts
 
 off_205A08:

@@ -41,12 +41,12 @@ exit2_init:
 	move.b	#1,sprpri(a0)
 	move.l	#exit2pat,patbase(a0)
 	move.b	userflag(a0),mstno(a0)
-	moveq	#$D,d0
+	moveq	#13,d0
 	jsr	pa_set.l
-	move.w	#$A2,d0
+	move.w	#se_A2,d0
 	cmpi.b	#2,userflag(a0)
 	blo.s	loc_20585C
-	move.w	#$A1,d0
+	move.w	#se_A1,d0
 
 loc_20585C:
 	jsr	soundset.l
