@@ -310,13 +310,13 @@ loc_2015CE:
 	jmp	sub_sync.l
 
 da_tbl:
-	dc.b	scpu_r11bBGM
-	dc.b	scpu_r11aBGM
-	dc.b	scpu_r11cBGM
-	dc.b	scpu_r11dBGM
+	dc.b	mcpu_r11bBGM
+	dc.b	mcpu_r11aBGM
+	dc.b	mcpu_r11cBGM
+	dc.b	mcpu_r11dBGM
 	even
 
-	move.w	#scpu_r11aBGM,d0
+	move.w	#mcpu_r11aBGM,d0
 	jsr	sub_sync.l
 
 sub_2015E8:

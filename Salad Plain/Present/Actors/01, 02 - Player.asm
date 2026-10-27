@@ -2357,7 +2357,7 @@ loc_204DDE:
 
 loc_204DFA:
 	clr.l	flowercnt
-	move.w	#scpu_fadeCDA,d0
+	move.w	#mcpu_fadeCDA,d0
 	tst.b	pl_suu
 	beq.s	loc_204E12
 	clr.w	enecgpnt

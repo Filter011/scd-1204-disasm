@@ -183,7 +183,7 @@ copy_map_vram:
 	include	"Actors/01, 02 - Player.asm"
 
 loc_205400:
-	move.w	#scpu_fadeCDA,d0
+	move.w	#mcpu_fadeCDA,d0
 
 sub_sync:
 	move.w	d0,mcpu_comcmd
