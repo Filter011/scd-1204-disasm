@@ -48,4 +48,4 @@ S81:
 	dw	unk_1937
 	db	18h,18h
 unk_1937:
-	db	0F2h
+	db	CMEND

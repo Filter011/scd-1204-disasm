@@ -15,23 +15,23 @@ ZeroOffsetOptimization = 0
 vectors:
 	dc.l	0
 	dc.l	0
-	dc.l	MMD_INIT
-	dc.l	MMD_HINT
-	dc.l	MMD_VINT
+	dc.l	mmd_init
+	dc.l	mmd_hint
+	dc.l	mmd_vint
 
 	align	$100
 
-MMD_INIT:
-	jmp	init
+mmd_init:
+	jmp	init.l
 
-MMD_ERROR:
-	jmp	error
+mmd_error:
+	jmp	error.l
 
-MMD_HINT:
-	jmp	hint
+mmd_hint:
+	jmp	hint.l
 
-MMD_VINT:
-	jmp	vint
+mmd_vint:
+	jmp	vint.l
 
 error:
 	nop
@@ -93,7 +93,7 @@ z80bus_on:
 	rts
 
 z80bus_off:
-	move.w	#0,z80busreq
+	move.w	#$000,z80busreq
 	move.w	int_sts.w,sr
 	rts
 
@@ -101,30 +101,30 @@ soundinit:
 	move.w	#$100,z80reset
 	jsr	z80bus_on(pc)
 	lea	z80ram,a1
-	lea	unk_22EB40.l,a2
-	move.w	#(unk_22EB40_end-unk_22EB40)-1,d0
+	lea	soundcnt.l,a2
+	move.w	#(soundcnt_end-soundcnt)-1,d0
 
 .loop:
 	move.b	(a2)+,(a1)+
 	dbf	d0,.loop
 
-	lea	z80ram+$B00,a1
-	lea	unk_22E3E4.l,a2
-	move.w	#(unk_22E3E4_end-unk_22E3E4)-1,d0
+	lea	z80ram+SETB,a1
+	lea	soundsetb.l,a2
+	move.w	#(soundsetb_end-soundsetb)-1,d0
 
 .loop1:
 	move.b	(a2)+,(a1)+
 	dbf	d0,.loop1
 
 	lea	z80ram+adrtb_bnk_adr,a1
-	lea	unk_22E3AC.l,a2
-	move.w	#(unk_22E3AC_end-unk_22E3AC)-1,d0
+	lea	soundadrtb.l,a2
+	move.w	#(soundadrtb_end-soundadrtb)-1,d0
 
 .loop2:
 	move.b	(a2)+,(a1)+
 	dbf	d0,.loop2
 
-	move.w	#0,z80reset
+	move.w	#$000,z80reset
 	ror.b	#8,d0
 	move.w	#$100,z80reset
 	jmp	z80bus_off(pc)
@@ -3831,7 +3831,7 @@ playpat:
 playwrtpat:
 	include	"Patterns/Wrt/Player.asm"
 
-unk_22E3AC:
+soundadrtb:
 	save
 	cpu	z80
 	phase	1900H
@@ -3840,16 +3840,16 @@ unk_22E3AC:
 	include	"Sound/m5mcr11.lib"
 	include	"Sound/chktb1.src"
 	dephase
-unk_22E3AC_end:
+soundadrtb_end:
 
-unk_22E3E4:
+soundsetb:
 	phase	0B00H
 	include	"Sound/m5se11.s"
 	even
 	dephase
-unk_22E3E4_end:
+soundsetb_end:
 
-unk_22EB40:
+soundcnt:
 	phase	0
 	include	"Sound/m5int11.src"
 	include	"Sound/m5cnt11.src"
@@ -3858,7 +3858,7 @@ unk_22EB40:
 	restore
 	padding	off
 	dephase
-unk_22EB40_end:
+soundcnt_end:
 
 cg_shield:
 	incbin	"Art/Uncompressed/Shield.unc"
