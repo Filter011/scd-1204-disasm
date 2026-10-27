@@ -13,7 +13,7 @@ mapdevr:
 	move.b	(a0)+,d5
 	asl.w	#8,d5
 	move.b	(a0)+,d5
-	moveq	#$10,d6
+	moveq	#16,d6
 
 loc_2021EC:
 	moveq	#7,d0
@@ -21,16 +21,16 @@ loc_2021EC:
 	sub.w	d0,d7
 	move.w	d5,d1
 	lsr.w	d7,d1
-	andi.w	#$7F,d1
+	andi.w	#%01111111,d1
 	move.w	d1,d2
-	cmpi.w	#$40,d1
+	cmpi.w	#%01000000,d1
 	bhs.s	loc_202206
 	moveq	#6,d0
 	lsr.w	#1,d2
 
 loc_202206:
 	bsr.w	prepare_next_entry
-	andi.w	#$F,d2
+	andi.w	#%00001111,d2
 	lsr.w	#4,d1
 	add.w	d1,d1
 	jmp	loc_202262(pc,d1.w)
@@ -100,7 +100,7 @@ loc_202262:
 
 loc_202272:
 	subq.w	#1,a0
-	cmpi.w	#$10,d6
+	cmpi.w	#16,d6
 	bne.s	loc_20227C
 	subq.w	#1,a0
 
@@ -162,7 +162,7 @@ loc_2022D4:
 	sub.w	a5,d7
 	bhs.s	loc_202304
 	move.w	d7,d6
-	addi.w	#$10,d6
+	addi.w	#16,d6
 	neg.w	d7
 	lsl.w	d7,d1
 	move.b	(a0),d5
@@ -192,7 +192,7 @@ loc_202304:
 	bra.s	prepare_next_entry
 
 loc_202316:
-	moveq	#$10,d6
+	moveq	#16,d6
 	bra.s	loc_2022F2
 
 word_20231A:

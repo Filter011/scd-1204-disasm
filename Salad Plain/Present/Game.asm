@@ -170,7 +170,7 @@ loc_201414:
 loc_201418:
 	bclr	#7,gmmode.w
 
-loc_20141E:
+game_loop:
 	move.b	#int_08,int_flg.w
 	bsr.w	sync
 	addq.w	#1,gametimer
@@ -179,24 +179,24 @@ loc_20141E:
 	tst.w	gameflag
 	bne.w	game
 	tst.w	editmode
-	bne.s	loc_201454
+	bne.s	.jump
 	cmpi.b	#6,playerwk+r_no0.w
-	bhs.s	loc_201458
+	bhs.s	.jump1
 
-loc_201454:
+.jump:
 	bsr.w	scroll
 
-loc_201458:
+.jump1:
 	jsr	patset.l
 	tst.w	time_stop
-	bne.s	loc_20146A
+	bne.s	.jump2
 	bsr.w	clrchgctr
 
-loc_20146A:
+.jump2:
 	jsr	sub_20DBFA.l
 	bsr.w	sub_20209A
 	bsr.w	syspatchg
-	bra.w	loc_20141E
+	bra.w	game_loop
 
 play_act_set:
 	lea	playerwk.w,a1
@@ -245,10 +245,10 @@ scdset:
 	moveq	#0,d0
 	move.b	stageno,d0
 	lsl.w	#2,d0
-	move.l	scdtbl(pc,d0.w),scdadr.w
+	move.l	zonescdtbl(pc,d0.w),scdadr.w
 	rts
 
-scdtbl:
+zonescdtbl:
 	dc.l	zone1scd
 	dc.l	zone1scd
 	dc.l	zone1scd
@@ -301,10 +301,10 @@ da_set:
 	move.b	time_flag,d0
 	bclr	#7,d0
 	cmpi.b	#2,d0
-	bne.s	loc_2015CE
+	bne.s	.jump
 	add.b	generate_flag,d0
 
-loc_2015CE:
+.jump:
 	move.b	da_tbl(pc,d0.w),d0
 	ext.w	d0
 	jmp	sub_sync.l

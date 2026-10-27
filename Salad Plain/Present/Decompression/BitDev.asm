@@ -1,14 +1,14 @@
 bitdevr:
-	movem.l d0-d7/a0-a1/a3-a5,-(sp)
+	movem.l d0-a1/a3-a5,-(sp)
 	lea	write_pixels.l,a3
 	lea	vdp_dat,a4
-	bra.s	loc_201F0A
+	bra.s	bitdevr_sub
 
 bitdevr_work:
 	movem.l d0-a1/a3-a5,-(sp)
 	lea	loc_201FC6.l,a3
 
-loc_201F0A:
+bitdevr_sub:
 	lea	bitdevwk.w,a1
 	move.w	(a0)+,d2
 	lsl.w	#1,d2
@@ -35,7 +35,7 @@ sub_201F38:
 	subq.w	#8,d7
 	move.w	d5,d1
 	lsr.w	d7,d1
-	cmpi.b	#$FC,d1
+	cmpi.b	#%11111100,d1
 	bhs.s	process_inline_data
 	andi.w	#$FF,d1
 	add.w	d1,d1
@@ -51,8 +51,8 @@ sub_201F38:
 loc_201F60:
 	move.b	1(a1,d1.w),d1
 	move.w	d1,d0
-	andi.w	#$F,d1
-	andi.w	#$F0,d0
+	andi.w	#%00001111,d1
+	andi.w	#%11110000,d0
 
 loc_201F6E:
 	lsr.w	#4,d0
@@ -86,8 +86,8 @@ loc_201F92:
 	move.w	d5,d1
 	lsr.w	d6,d1
 	move.w	d1,d0
-	andi.w	#$F,d1
-	andi.w	#$70,d0
+	andi.w	#%00001111,d1
+	andi.w	#%01110000,d0
 	cmpi.w	#9,d6
 	bhs.s	loc_201F6E
 	addq.w	#8,d6
@@ -138,13 +138,13 @@ loc_201FE6:
 
 loc_201FE8:
 	move.b	(a0)+,d0
-	cmpi.b	#$80,d0
+	cmpi.b	#%10000000,d0
 	bhs.s	loc_201FDE
 	move.b	d0,d1
-	andi.w	#$F,d7
-	andi.w	#$70,d1
+	andi.w	#%00001111,d7
+	andi.w	#%01110000,d1
 	or.w	d1,d7
-	andi.w	#$F,d0
+	andi.w	#%00001111,d0
 	move.b	d0,d1
 	lsl.w	#8,d1
 	or.w	d1,d7
