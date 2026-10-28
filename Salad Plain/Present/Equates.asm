@@ -15,7 +15,7 @@ port_1:		equ	$A10003		;port A
 port_2:		equ	$A10005		;port B
 port_3:		equ	$A10007		;port C
 cont_1:		equ	$A10009		;cont A
-cont_2:		equ	$A1000b		;cont B  === PCM-IPT conect enable ===
+cont_2:		equ	$A1000B		;cont B  === PCM-IPT conect enable ===
 cont_3:		equ	$A1000D		;cont C
 
 ; Tile Equates
