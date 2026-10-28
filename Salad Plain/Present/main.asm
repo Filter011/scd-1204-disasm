@@ -3819,7 +3819,7 @@ mapwk:
 	incbin	"Leftovers/Chunks/Chunks.unc"
 	even
 
-	incbin	"Unknown/Unk1.unc"
+	incbin	"Leftovers/Unknown/Unk1.unc"
 	even
 
 playcg:
@@ -4059,7 +4059,7 @@ zone1_4:
 	dc.l 0
 
 zone1blk:
-	incbin	"Blocks/Blocks.nem"
+	incbin	"Blocks/Act 1.nem"
 	even
 
 zone1cg:
@@ -4067,16 +4067,19 @@ zone1cg:
 	even
 
 zone1map:
-	incbin	"Chunks/Chunks.kos"
+	incbin	"Chunks/Act 1.kos"
 	even
 
 	incbin	"Leftovers/Chunks/Chunks.kos"
 	even
 
-	incbin	"Unknown/Unk2.kos"
+	incbin	"Leftovers/Unknown/Unk1.kos"
 	even
 
-	incbin	"Unknown/Unk3.unc"
+	incbin	"Leftovers/Unknown/Unk3.kos"
+	even
+
+	incbin	"Leftovers/Unknown/Unk3.unc"
 	even
 
 	dephase
