@@ -946,7 +946,7 @@ loc_203F2A:
 	cmpi.w	#230,d1
 	blo.s	loc_203F40
 	move.b	#1,gameflag
-	bra.w	loc_205400
+	bra.w	fadeout_s
 
 loc_203F40:
 	cmpi.w	#210,d1

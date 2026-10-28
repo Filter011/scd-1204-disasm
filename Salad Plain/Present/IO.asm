@@ -40,9 +40,9 @@ vdpinit:
 	lea	vdptbl.l,a2
 	moveq	#(vdptbl_end-vdptbl)/2-1,d7
 
-loc_201CE8:
+.loop:
 	move.w	(a2)+,(a0)
-	dbf	d7,loc_201CE8
+	dbf	d7,.loop
 
 	move.w	vdptbl+2.l,d0
 	move.w	d0,word_FFF60C.w
@@ -51,9 +51,9 @@ loc_201CE8:
 	move.l	#$C0000000,vdp_cmd
 	move.w	#$80/2-1,d7
 
-loc_201D0E:
+.loop1:
 	move.w	d0,(a1)
-	dbf	d7,loc_201D0E
+	dbf	d7,.loop1
 
 	clr.l	vscroll.w
 	clr.l	hscroll.w

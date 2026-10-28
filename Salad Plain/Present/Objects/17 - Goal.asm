@@ -71,7 +71,7 @@ goal_move3:
 
 loc_20DFBA:
 	move.b	d0,stageact
-	jmp	loc_205400.l
+	jmp	fadeout_s.l
 
 locret_20DFC6:
 	rts

@@ -184,7 +184,7 @@ copy_map_vram:
 	include	"Action.asm"
 	include	"Objects/01, 02 - Player.asm"
 
-loc_205400:
+fadeout_s:
 	move.w	#mcpu_fadeCDA,d0
 
 sub_sync:
