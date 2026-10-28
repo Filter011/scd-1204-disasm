@@ -4043,12 +4043,21 @@ zonemaptbl:
 	dc.w	zone1_3a-zonemaptbl,	zone1_3b-zonemaptbl,	zone1_3b-zonemaptbl
 	dc.w	zone1_4-zonemaptbl,	zone1_4-zonemaptbl,	zone1_4-zonemaptbl
 
+	if act_number=0
 zone1_1a:
-	incbin	"Layout/Foreground.bin"
+	incbin	"Layout/Foreground Act 1.bin"
 	even
 zone1_1b:
-	incbin	"Layout/Background.bin"
+	incbin	"Layout/Background Act 1.bin"
 	even
+	else
+zone1_1a:
+	incbin	"Layout/Foreground Act 2.bin"
+	even
+zone1_1b:
+	incbin	"Layout/Background Act 2.bin"
+	even
+	endif
 zone1_1z:
 	dc.l	0
 zone1_2a:
@@ -4065,41 +4074,47 @@ zone1_4:
 	dc.l	0
 
 	if act_number=0
+
 zone1blk:
 	incbin	"Blocks/Act 1.nem"
 	even
+
+zone1cg:
+	incbin	"Art/BitDev/8x8 - SPZ Act 1.nem"
+	even
+
+zone1map:
+	incbin	"Chunks/Act 1.kos"
+	even
+
 	else
+
 zone1blk:
 	incbin	"Blocks/Act 2.nem"
 	even
 
-	incbin	"Leftovers/Unknown/Unk.nem"
-	even
-	endif
-
 zone1cg:
-	incbin	"Art/BitDev/8x8 - SPZ.nem"
+	incbin	"Art/BitDev/8x8 - SPZ Act 2.nem"
 	even
 
-	if act_number=0
-zone1map:
-	incbin	"Chunks/Act 1.kos"
-	even
-	else
 zone1map:
 	incbin	"Chunks/Act 2.kos"
 	even
+
 	endif
 
 	incbin	"Leftovers/Chunks/Act 2.kos"
 	even
 
 	if act_number=0
+
 	incbin	"Leftovers/Unknown/Unk1.kos"
 	even
+
 	else
 	incbin	"Leftovers/Unknown/Unk2.kos"
 	even
+
 	endif
 
 	incbin	"Leftovers/Unknown/Unk3.kos"
