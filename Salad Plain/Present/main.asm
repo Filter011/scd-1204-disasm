@@ -3,6 +3,9 @@
 
 	cpu	68000
 
+; Act Setting
+act_number:	equ	0
+
 ZeroOffsetOptimization = 0
 
 	include	"MacroSetup.asm"
@@ -3816,7 +3819,7 @@ ddev_unused_2_end:
 	align	$8000
 
 mapwk:
-	incbin	"Leftovers/Chunks/Chunks.unc"
+	incbin	"Leftovers/Chunks/Act 2.unc"
 	even
 
 	incbin	"Leftovers/Unknown/Unk1.unc"
@@ -4044,37 +4047,57 @@ zone1_1b:
 	incbin	"Layout/Background.bin"
 	even
 zone1_1z:
-	dc.l 0
+	dc.l	0
 zone1_2a:
 	incbin	"Leftovers/Layout/GHZ2 Foreground (Sonic 1).bin"
 	even
 zone1_2z:
-	dc.l 0
+	dc.l	0
 zone1_3a:
 	incbin	"Leftovers/Layout/GHZ3 Foreground (Sonic 1).bin"
 	even
 zone1_3b:
-	dc.l 0
+	dc.l	0
 zone1_4:
-	dc.l 0
+	dc.l	0
 
+	if act_number=0
 zone1blk:
 	incbin	"Blocks/Act 1.nem"
 	even
+	else
+zone1blk:
+	incbin	"Blocks/Act 2.nem"
+	even
+
+	incbin	"Leftovers/Unknown/Unk.nem"
+	even
+	endif
 
 zone1cg:
 	incbin	"Art/BitDev/8x8 - SPZ.nem"
 	even
 
+	if act_number=0
 zone1map:
 	incbin	"Chunks/Act 1.kos"
 	even
+	else
+zone1map:
+	incbin	"Chunks/Act 2.kos"
+	even
+	endif
 
-	incbin	"Leftovers/Chunks/Chunks.kos"
+	incbin	"Leftovers/Chunks/Act 2.kos"
 	even
 
+	if act_number=0
 	incbin	"Leftovers/Unknown/Unk1.kos"
 	even
+	else
+	incbin	"Leftovers/Unknown/Unk2.kos"
+	even
+	endif
 
 	incbin	"Leftovers/Unknown/Unk3.kos"
 	even
