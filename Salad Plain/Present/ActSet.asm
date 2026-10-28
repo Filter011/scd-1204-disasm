@@ -223,13 +223,13 @@ actwkchk:
 	lea	byte_FFD800.w,a1
 	move.w	#(byte_FFD800_end-byte_FFD800)/actfree-1,d0
 
-loc_206F8E:
+.loop:
 	tst.b	actno(a1)
-	beq.s	locret_206F9A
+	beq.s	.end
 	lea	actfree(a1),a1
-	dbf	d0,loc_206F8E
+	dbf	d0,.loop
 
-locret_206F9A:
+.end:
 	rts
 
 actwkchk2:
@@ -238,15 +238,15 @@ actwkchk2:
 	sub.w	a0,d0
 	lsr.w	#6,d0
 	subq.w	#1,d0
-	blo.s	locret_206FB6
+	blo.s	.end
 
-loc_206FAA:
+.loop:
 	tst.b	actno(a1)
-	beq.s	locret_206FB6
+	beq.s	.end
 	lea	actfree(a1),a1
-	dbf	d0,loc_206FAA
+	dbf	d0,.loop
 
-locret_206FB6:
+.end:
 	rts
 
 frameout_s:
@@ -282,7 +282,7 @@ asettbl:
 	dc.w	$FFFF,0,0,0
 
 asettbl10:
-	incbin	"Object Positions/ObjPos.bin"
+	incbin	"Object Positions/Act 1.bin"
 	even
 
 asettbl10z:

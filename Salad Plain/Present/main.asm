@@ -13,8 +13,9 @@ ZeroOffsetOptimization = 0
 	phase	wkram	; set section to use workram
 
 vectors:
+	dc.b	0,0
 	dc.l	0
-	dc.l	0
+	dc.w	0
 	dc.l	mmd_init
 	dc.l	mmd_hint
 	dc.l	mmd_vint
@@ -40,11 +41,11 @@ error:
 
 init:
 	btst	#6,cont_3
-	beq.s	.stack
+	beq.s	.jump
 	cmpi.l	#"init",init_flag
-	beq.w	.jump
+	beq.w	.jump1
 
-.stack:
+.jump:
 	lea	stacksave,a6
 	moveq	#0,d7
 	move.w	#(stacksave_end-stacksave)/4-1,d6
@@ -58,7 +59,7 @@ init:
 	move.b	d0,mdstatus
 	move.l	#"init",init_flag
 
-.jump:
+.jump1:
 	bsr.w	vdpinit
 	bsr.w	sw_init
 	move.b	#gamemd,gmmode.w
