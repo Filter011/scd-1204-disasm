@@ -1,3 +1,4 @@
+;*******< port initial  >******;
 sw_init:				;port initial
 	bsr.w	z80bus_on
 	moveq	#$40,d0			;set TH out
@@ -15,13 +16,13 @@ read_sw:
 ;
 .rs_0:
 	move.b	#$0,(a1)		;set TH = 0
-	nop
+	nop				;wait
 	nop
 	move.b	(a1),d0			;input data when TH = 0
 	lsl.b	#2,d0			;chane data when TH = 0 & wait
 	andi.b	#%11000000,d0		;chane data when TH = 0 & wait
 	move.b	#$40,(a1)		;set TH = 1
-	nop
+	nop				;wait
 	nop
 	move.b	(a1),d1			;input data when TH = 1
 	andi.b	#%00111111,d1
