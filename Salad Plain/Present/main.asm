@@ -4044,19 +4044,23 @@ zonemaptbl:
 	dc.w	zone1_4-zonemaptbl,	zone1_4-zonemaptbl,	zone1_4-zonemaptbl
 
 	if act_number=0
+
 zone1_1a:
 	incbin	"Layout/Foreground Act 1.bin"
 	even
 zone1_1b:
 	incbin	"Layout/Background Act 1.bin"
 	even
+
 	else
+
 zone1_1a:
 	incbin	"Layout/Foreground Act 2.bin"
 	even
 zone1_1b:
 	incbin	"Layout/Background Act 2.bin"
 	even
+
 	endif
 zone1_1z:
 	dc.l	0
@@ -4112,6 +4116,7 @@ zone1map:
 	even
 
 	else
+
 	incbin	"Leftovers/Unknown/Unk2.kos"
 	even
 

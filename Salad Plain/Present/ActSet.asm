@@ -281,9 +281,19 @@ asettbl:
 	dc.w	asettbl10z-asettbl
 	dc.w	$FFFF,0,0,0
 
+	if act_number=0
+
 asettbl10:
 	incbin	"Object Positions/Act 1.bin"
 	even
+
+	else
+
+asettbl10:
+	incbin	"Object Positions/Act 2.bin"
+	even
+
+	endif
 
 asettbl10z:
 	dc.w	$FFFF,0,0

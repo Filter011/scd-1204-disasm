@@ -115,9 +115,19 @@ playpositbl:
 	incbin	"Player Positions/Player Positions.bin"
 	even
 
+	if act_number=0
+
 playmapnotbl:
 	dc.b	$8C,$7F,$1E,$1E
 	even
+
+	else
+
+playmapnotbl:
+	dc.b	$91,$B6,$7F,$7F
+	even
+
+	endif
 
 scrbinit:
 	swap	d0
@@ -131,9 +141,18 @@ scrbinit:
 	move.w	d0,scrz_v_posit.w
 	lsr.w	#1,d1
 	move.w	d1,scrb_h_posit.w
+	if act_number=0
 	lsr.w	#1,d1
+	else
+	lsr.w	#2,d1
+	endif
 	move.w	d1,scrc_h_posit.w
 	lsr.w	#1,d1
+	if act_number=1
+	move.w	d1,d2
+	add.w	d2,d2
+	add.w	d2,d1
+	endif
 	move.w	d1,scrz_h_posit.w
 	lea	linework.w,a2
 	clr.l	(a2)+
@@ -165,7 +184,14 @@ loc_20255C:
 	bsr.w	scrollz_h
 	move.w	scra_hz.w,d4
 	ext.l	d4
+	if act_number=0
 	asl.l	#6,d4
+	else
+	asl.l	#4,d4
+	move.l	d4,d3
+	add.l	d3,d3
+	add.l	d3,d4
+	endif
 	moveq	#4,d6
 	bsr.w	scrollc_h
 	lea	linework+$10.w,a1
@@ -1169,12 +1195,25 @@ loc_202EFC:
 
 	rts
 
+	if act_number=0
+
 z81awrttbl:
 	dc.b	0,0,0,0,0,0,0,6,6,6
 	dc.b	4,4,4,4,0,0,0,0,0,0
 	dc.b	0,0,0,0,0,0,0,0,0,0
 	dc.b	0,0,0,0
 	even
+
+	else
+
+z81awrttbl:
+	dc.b	0,0,0,0,0,0,0,0,6,6
+	dc.b	6,6,4,4,4,4,0,0,0,0
+	dc.b	0,0,0,0,0,0,0,0,0,0
+	dc.b	0,0,0,0
+	even
+
+	endif
 
 mapwrt_tbl:
 	dc.l	scrb_h_posit&$FFFFFF
