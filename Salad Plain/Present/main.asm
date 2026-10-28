@@ -3825,6 +3825,9 @@ mapwk:
 	incbin	"Leftovers/Unknown/Unk1.unc"
 	even
 
+	incbin	"Leftovers/Unknown/Unk2.unc"
+	even
+
 playcg:
 	incbin	"Art/Uncompressed/Player.unc"
 	even
