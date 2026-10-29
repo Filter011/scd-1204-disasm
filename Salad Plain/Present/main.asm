@@ -4023,9 +4023,19 @@ scdtblwk2:
 	incbin	"Collision/Collision Array 2.bin"
 	even
 
+	if act_number=0
+
 zone1scd:
-	incbin	"Collision/SPZ.bin"
+	incbin	"Collision/Act 1.bin"
 	even
+
+	else
+
+zone1scd:
+	incbin	"Collision/Act 2.bin"
+	even
+
+	endif
 
 zonemaptbl:
 	dc.w	zone1_1a-zonemaptbl,	zone1_1b-zonemaptbl,	zone1_1z-zonemaptbl
@@ -4091,6 +4101,9 @@ zone1map:
 	incbin	"Chunks/Act 1.kos"
 	even
 
+	incbin	"Leftovers/Chunks/Act 2.kos"
+	even
+
 	else
 
 zone1blk:
@@ -4106,9 +4119,6 @@ zone1map:
 	even
 
 	endif
-
-	incbin	"Leftovers/Chunks/Act 2.kos"
-	even
 
 	if act_number=0
 

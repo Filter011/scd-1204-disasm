@@ -171,10 +171,10 @@ sub_FF0286:
 		bsr.w	sub_FF031C
 		move.l	$200008,d0
 		beq.s	loc_FF030E
-		movea.l d0,a0
+		movea.l	d0,a0
 		move.l	$200002,d0
 		beq.s	loc_FF02B2
-		movea.l d0,a2
+		movea.l	d0,a2
 		lea	$200100,a1
 		move.w	$200006,d7
 
@@ -207,7 +207,7 @@ loc_FF02DC:
 		bset	#1,$A12003
 
 loc_FF030E:
-		movea.l (sp)+,a0
+		movea.l	(sp)+,a0
 		rts
 
 		bset	#0,mcpu_int2
