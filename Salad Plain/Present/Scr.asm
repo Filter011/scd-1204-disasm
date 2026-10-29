@@ -281,10 +281,21 @@ loc_202672:
 	lsr.w	#2,d0
 	move.w	d0,d3
 	lsr.w	#1,d3
+	if act_number=0
 	moveq	#26-1,d1
+	else
+	moveq	#30-1,d1
+	endif
 	moveq	#$1C,d5
 	sub.w	d3,d1
 	blo.s	loc_2026A2
+	if act_number=1
+	cmpi.w	#$1B,d1
+	blo.s	loc_2026AC
+	moveq	#$1B,d1
+
+loc_2026AC:
+	endif
 	sub.w	d1,d5
 	lea	(a2,d0.w),a2
 	bsr.w	sub_2026D4
