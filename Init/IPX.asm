@@ -24,11 +24,11 @@ loc_FF0116:
 		moveq	#6,d0
 		bsr.w	sub_FF0286
 		mulu.w	#6,d0
-		move.w	word_FF0164(pc,d0.w),$FF1210
-		move.b	byte_FF0166(pc,d0.w),$FF123D
-		move.b	byte_FF0167(pc,d0.w),$FF127A
+		move.w	word_FF0164(pc,d0.w),stageno
+		move.b	byte_FF0166(pc,d0.w),time_flag
+		move.b	byte_FF0167(pc,d0.w),generate_flag
 		move.w	word_FF0162(pc,d0.w),d0
-		move.b	#0,$FF0580
+		move.b	#0,ta_flag
 		bsr.w	sub_FF0286
 		bra.w	loc_FF0116
 
@@ -87,10 +87,10 @@ loc_FF01A4:
 		bra.w	loc_FF0116
 
 loc_FF01AE:
-		move.b	#1,$FF123D
+		move.b	#1,time_flag
 		move.b	#0,$FF0580
 		bsr.w	sub_FF01D8
-		tst.b	$FF1212
+		tst.b	pl_suu
 		beq.s	loc_FF01CE
 		bsr.w	sub_FF01E8
 
@@ -101,12 +101,12 @@ loc_FF01CE:
 
 sub_FF01D8:
 		lea	word_FF0244(pc),a0
-		move.w	#0,$FF1210
+		move.w	#0,stageno
 		bra.w	loc_FF01F8
 
 sub_FF01E8:
 		lea	word_FF024C(pc),a0
-		move.w	#1,$FF1210
+		move.w	#1,stageno
 		bra.w	loc_FF01F8
 
 loc_FF01F8:
@@ -114,15 +114,15 @@ loc_FF01F8:
 
 loc_FF01FC:
 		bsr.w	sub_FF0286
-		tst.b	$FF1212
+		tst.b	pl_suu
 		beq.s	locret_FF0242
-		btst	#7,$FF123D
+		btst	#7,time_flag
 		beq.s	locret_FF0242
 
 loc_FF0212:
 		moveq	#$C,d0
 		bsr.w	sub_FF0286
-		move.b	$FF123D,d1
+		move.b	time_flag,d1
 		move.w	2(a0),d0
 		andi.b	#$7F,d1
 		beq.s	loc_FF01FC
@@ -130,7 +130,7 @@ loc_FF0212:
 		subq.b	#1,d1
 		beq.s	loc_FF01FC
 		move.w	6(a0),d0
-		tst.b	$FF127A
+		tst.b	generate_flag
 		beq.s	loc_FF01FC
 		move.w	4(a0),d0
 		bra.s	loc_FF01FC
@@ -156,9 +156,9 @@ loc_FF0254:
 		beq.w	loc_FF0116
 		add.w	d0,d0
 		move.w	loc_FF0280(pc,d0.w),d0
-		move.b	#1,$FF0580
+		move.b	#1,ta_flag
 		bsr.w	sub_FF0286
-		move.l	$FF1222,$FF0590
+		move.l	pltime,$FF0590
 
 loc_FF0280:
 		bra.s	loc_FF0254
@@ -203,23 +203,25 @@ loc_FF02DC:
 		move.l	#$FF021A,$FFFD0E.w
 		move.l	#loc_FF0212,$FFFD08.w
 		move.w	#$8134,$FF0596
-		move.w	#$8134,$C00004
+		move.w	#$8134,vdp_cmd
 		bset	#1,$A12003
 
 loc_FF030E:
 		movea.l (sp)+,a0
 		rts
 
-		bset	#0,$A12000
+		bset	#0,mcpu_int2
 		rte
 
 sub_FF031C:
-		move.w	d0,$A12010
+		move.w	d0,mcpu_comcmd
+
 loc_FF0322:
-		tst.w	$A12020
+		tst.w	mcpu_comsts
 		beq.s	loc_FF0322
-		move.w	#0,$A12010
+		move.w	#0,mcpu_comcmd
+
 loc_FF0332:
-		tst.w	$A12020
+		tst.w	mcpu_comsts
 		bne.s	loc_FF0332
 		rts
