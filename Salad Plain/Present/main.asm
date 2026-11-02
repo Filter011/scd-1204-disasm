@@ -3901,6 +3901,8 @@ ddev_unused_2:	ddev_header
 	ddev_entry	cg_tamabboh,$462
 ddev_unused_2_end:
 
+	include	"Leftovers/R11A (Act 1).asm"
+
 	else
 
 ddev_01:	ddev_header
@@ -4037,24 +4039,17 @@ ddev_0D:	ddev_header
 	ddev_entry	cg_anton,$4EB
 ddev_0D_end:
 
-	endif
-
-	if act_number=0
-
-	include	"Leftovers/R11A (A).asm"
-	include	"Leftovers/R11A (B).asm"
-
-	else
-
-	incbin	"Leftovers/R12A__.MMD"
-	even
+	include	"Leftovers/R12A (A).asm"
+	include	"Leftovers/R11A (Act 2).asm"
 
 	endif
+
+	include	"Leftovers/R12A (B).asm"
 
 	align	$8000
 
 mapwk:
-	incbin	"Leftovers/Chunks/Act 2.unc"
+	incbin	"Leftovers/Act 2/Chunks/Act 2.unc"
 	even
 
 	incbin	"Leftovers/Unknown/Unk1.unc"
@@ -4340,7 +4335,7 @@ zone1map:
 	incbin	"Chunks/Act 1.kos"
 	even
 
-	incbin	"Leftovers/Chunks/Act 2.kos"
+	incbin	"Leftovers/Act 2/Chunks/Act 2.kos"
 	even
 
 	else
