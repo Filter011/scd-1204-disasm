@@ -1,4 +1,4 @@
-; CD Sonic The Hedgehog R11A Disassembly
+; CD Sonic The Hedgehog R11A/R12A Disassembly
 ; Date of R11A: December 4, 1992 21:34:01
 
 	cpu	68000
