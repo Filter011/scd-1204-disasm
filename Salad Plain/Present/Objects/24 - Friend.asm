@@ -27,7 +27,11 @@ t_init:
 	move.b	#1,sprpri(a0)
 	move.b	#8,sprhs(a0)
 	move.b	#8,sprvsize(a0)
+	if act_number=0
 	move.w	#$3CF,sproffset(a0)
+	else
+	move.w	#$45D,sproffset(a0)
+	endif
 	move.l	#pat_friend0,patbase(a0)
 	move.l	xposi(a0),act2A(a0)
 	move.l	yposi(a0),act2E(a0)
@@ -45,7 +49,11 @@ t_move:
 	add.l	act2E(a0),d0
 	move.l	d1,xposi(a0)
 	move.l	d0,yposi(a0)
+	if act_number=0
 	move.w	#$BCF,sproffset(a0)
+	else
+	move.w	#$C5D,sproffset(a0)
+	endif
 	addq.b	#1,act32(a0)
 	cmpi.b	#$7F,act32(a0)
 	bpl.w	loc_20DD6C
@@ -71,7 +79,11 @@ t_movie:
 	add.l	act2E(a0),d0
 	move.l	d1,xposi(a0)
 	move.l	d0,yposi(a0)
+	if act_number=0
 	move.w	#$3CF,sproffset(a0)
+	else
+	move.w	#$45D,sproffset(a0)
+	endif
 	addi.b	#-1,act32(a0)
 	cmpi.b	#1,act32(a0)
 	bmi.w	loc_20DDAC
@@ -118,13 +130,21 @@ p_init:
 	move.b	#1,sprpri(a0)
 	move.b	#8,sprhs(a0)
 	move.b	#8,sprvsize(a0)
+	if act_number=0
 	move.w	#$3CF,sproffset(a0)
+	else
+	move.w	#$45D,sproffset(a0)
+	endif
 	move.l	#pat_friend1,patbase(a0)
 	move.l	#-$40000,act2A(a0)
 	rts
 
 p_move:
+	if act_number=0
 	move.w	#$3CF,sproffset(a0)
+	else
+	move.w	#$45D,sproffset(a0)
+	endif
 	addi.l	#$10000,xposi(a0)
 	move.l	act2A(a0),d0
 	add.l	d0,yposi(a0)
@@ -150,7 +170,11 @@ loc_20DE60:
 	bra.s	loc_20DE4C
 
 p_movie:
+	if act_number=0
 	move.w	#$BCF,sproffset(a0)
+	else
+	move.w	#$C5D,sproffset(a0)
+	endif
 	addi.l	#-$10000,xposi(a0)
 	move.l	act2A(a0),d0
 	add.l	d0,yposi(a0)

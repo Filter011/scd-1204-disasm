@@ -3464,6 +3464,8 @@ loc_20DC18:
 	move.w	word_20DC34(pc,d1.w),d0
 	jmp	divdevset2.l
 
+	if act_number=0
+
 word_20DC28:
 	dc.w	$D00
 	dc.w	$1100
@@ -3471,6 +3473,19 @@ word_20DC28:
 	dc.w	$1A00
 	dc.w	$2000
 	dc.w	$FFFF
+
+	else
+
+word_20DC28:
+	dc.w	$B00
+	dc.w	$1300
+	dc.w	$1800
+	dc.w	$1C00
+	dc.w	$FFFF
+
+	endif
+
+	if act_number=0
 
 word_20DC34:
 	dc.w	ddevid_04
@@ -3487,6 +3502,24 @@ word_20DC40:
 	dc.w	ddevid_0D
 	dc.w	ddevid_0E
 	dc.w	ddevid_0F
+
+	else
+
+word_20DC34:
+	dc.w	ddevid_04
+	dc.w	ddevid_05
+	dc.w	ddevid_06
+	dc.w	ddevid_07
+	dc.w	ddevid_08
+
+word_20DC40:
+	dc.w	ddevid_09
+	dc.w	ddevid_0A
+	dc.w	ddevid_0B
+	dc.w	ddevid_0C
+	dc.w	ddevid_0D
+
+	endif
 
 pa_set:
 	lea	off_20DC6E.l,a1
@@ -3519,6 +3552,9 @@ off_20DC6E:
 	dc.w	word_20DCB0-off_20DC6E
 	dc.w	word_20DCB2-off_20DC6E
 	dc.w	word_20DCB4-off_20DC6E
+
+	if act_number=0
+
 word_20DC92:
 	dc.w	$23E7
 word_20DC94:
@@ -3555,6 +3591,47 @@ word_20DCB2:
 	dc.w	$422
 word_20DCB4:
 	dc.w	0
+
+	else
+
+word_20DC92:
+	dc.w	$2413
+word_20DC94:
+	dc.w	$2413
+word_20DC96:
+	dc.w	$24EB
+word_20DC98:
+	dc.w	$23D8
+word_20DC9A:
+	dc.w	$23D8
+word_20DC9C:
+	dc.w	$43C6
+word_20DC9E:
+	dc.w	$359
+word_20DCA0:
+	dc.w	$361
+word_20DCA2:
+	dc.w	$4406
+word_20DCA4:
+	dc.w	$44B2
+word_20DCA6:
+	dc.w	$475
+word_20DCA8:
+	dc.w	$48A
+word_20DCAA:
+	dc.w	$83BA
+word_20DCAC:
+	dc.w	$48A
+word_20DCAE:
+	dc.w	$3A4
+word_20DCB0:
+	dc.w	$376
+word_20DCB2:
+	dc.w	$503
+word_20DCB4:
+	dc.w	$49E
+
+	endif
 
 	include	"Objects/24 - Friend.asm"
 	include	"Objects/17 - Goal.asm"
@@ -3599,13 +3676,24 @@ ddevid_09:	ddev_ptr	ddev_09
 ddevid_0A:	ddev_ptr	ddev_0A
 ddevid_0B:	ddev_ptr	ddev_0B
 ddevid_0C:	ddev_ptr	ddev_0C
+
+	if act_number=0
+
 ddevid_0D:	ddev_ptr	ddev_0C
 ddevid_0E:	ddev_ptr	ddev_0E
 ddevid_0F:	ddev_ptr	ddev_0F
 
+	else
+
+ddevid_0D:	ddev_ptr	ddev_0D
+
+	endif
+
 ddev_00:	ddev_header
 	ddev_entry	zone1cg,0
 ddev_00_end:
+
+	if act_number=0
 
 ddev_01:	ddev_header
 	ddev_entry	cg_rock,$326
@@ -3813,8 +3901,155 @@ ddev_unused_2:	ddev_header
 	ddev_entry	cg_tamabboh,$462
 ddev_unused_2_end:
 
+	else
+
+ddev_01:	ddev_header
+	ddev_entry	cg_spikes,$359
+	ddev_entry	cg_pole,$361
+	ddev_entry	cg_dspring,$376
+	ddev_entry	cg_wheels,$3A4
+	ddev_entry	cg_flipper,$3BA
+	ddev_entry	cg_platform,$3C6
+	ddev_entry	cg_signpost,$503
+	ddev_entry	cg_spring,$520
+	ddev_entry	cg_hud,$568
+	ddev_entry	cg_monitortimesign,$5A8
+	ddev_entry	cg_explosion,$680
+	ddev_entry	cg_flowers,$6D6
+	ddev_entry	cg_ring,$7AE
+ddev_01_end:
+
+ddev_02:	ddev_header
+	ddev_entry	cg_tamabboh,$3D8
+	ddev_entry	cg_patabata,$413
+	ddev_entry	cg_flickyricky,$45D
+	ddev_entry	cg_spinplatform,$475
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_anton,$4EB
+ddev_02_end:
+
+ddev_04:	ddev_header
+	ddev_entry	cg_patabata,$413
+ddev_04_end:
+
+ddev_05:	ddev_header
+	ddev_entry	cg_mosqui,$413
+	ddev_entry	cg_flickyricky,$45D
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_anton,$4EB
+ddev_05_end:
+
+ddev_06:	ddev_header
+	ddev_entry	cg_splash2,$48A
+ddev_06_end:
+
+ddev_07:	ddev_header
+	ddev_entry	cg_tamabboh,$3D8
+	ddev_entry	cg_mosqui,$413
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_swing,$49E
+	ddev_entry	cg_card,$4B2
+ddev_07_end:
+
+ddev_08:	ddev_header
+	ddev_entry	cg_tagataga,$3D8
+	ddev_entry	cg_bridge,$406
+	ddev_entry	cg_patabata,$413
+	ddev_entry	cg_flickyricky,$45D
+	ddev_entry	cg_signpost,$503
+ddev_08_end:
+
+ddev_09:	ddev_header
+	ddev_entry	cg_spikes,$359
+	ddev_entry	cg_pole,$361
+	ddev_entry	cg_dspring,$376
+	ddev_entry	cg_wheels,$3A4
+	ddev_entry	cg_flipper,$3BA
+	ddev_entry	cg_platform,$3C6
+	ddev_entry	cg_tamabboh,$3D8
+	ddev_entry	cg_patabata,$413
+	ddev_entry	cg_flickyricky,$45D
+	ddev_entry	cg_spinplatform,$475
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_anton,$4EB
+ddev_09_end:
+
+ddev_0A:	ddev_header
+	ddev_entry	cg_spikes,$359
+	ddev_entry	cg_pole,$361
+	ddev_entry	cg_dspring,$376
+	ddev_entry	cg_wheels,$3A4
+	ddev_entry	cg_flipper,$3BA
+	ddev_entry	cg_platform,$3C6
+	ddev_entry	cg_tamabboh,$3D8
+	ddev_entry	cg_mosqui,$413
+	ddev_entry	cg_flickyricky,$45D
+	ddev_entry	cg_spinplatform,$475
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_anton,$4EB
+ddev_0A_end:
+
+ddev_0B:	ddev_header
+	ddev_entry	cg_spikes,$359
+	ddev_entry	cg_pole,$361
+	ddev_entry	cg_dspring,$376
+	ddev_entry	cg_wheels,$3A4
+	ddev_entry	cg_flipper,$3BA
+	ddev_entry	cg_platform,$3C6
+	ddev_entry	cg_tamabboh,$3D8
+	ddev_entry	cg_mosqui,$413
+	ddev_entry	cg_spinplatform,$475
+	ddev_entry	cg_splash2,$48A
+	ddev_entry	cg_anton,$4EB
+ddev_0B_end:
+
+ddev_0C:	ddev_header
+	ddev_entry	cg_spikes,$359
+	ddev_entry	cg_pole,$361
+	ddev_entry	cg_dspring,$376
+	ddev_entry	cg_wheels,$3A4
+	ddev_entry	cg_flipper,$3BA
+	ddev_entry	cg_platform,$3C6
+	ddev_entry	cg_tamabboh,$3D8
+	ddev_entry	cg_mosqui,$413
+	ddev_entry	cg_spinplatform,$475
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_swing,$49E
+	ddev_entry	cg_card,$4B2
+	ddev_entry	cg_anton,$4EB
+ddev_0C_end:
+
+ddev_0D:	ddev_header
+	ddev_entry	cg_spikes,$359
+	ddev_entry	cg_pole,$361
+	ddev_entry	cg_dspring,$376
+	ddev_entry	cg_wheels,$3A4
+	ddev_entry	cg_flipper,$3BA
+	ddev_entry	cg_platform,$3C6
+	ddev_entry	cg_tagataga,$3D8
+	ddev_entry	cg_bridge,$406
+	ddev_entry	cg_patabata,$413
+	ddev_entry	cg_flickyricky,$45D
+	ddev_entry	cg_spinplatform,$475
+	ddev_entry	cg_rock,$48A
+	ddev_entry	cg_swing,$49E
+	ddev_entry	cg_card,$4B2
+	ddev_entry	cg_anton,$4EB
+ddev_0D_end:
+
+	endif
+
+	if act_number=0
+
 	include	"Leftovers/R11A (A).asm"
 	include	"Leftovers/R11A (B).asm"
+
+	else
+
+	incbin	"Leftovers/R12A__.MMD"
+	even
+
+	endif
 
 	align	$8000
 
@@ -3984,6 +4219,10 @@ cg_bridge:
 
 cg_spikes:
 	incbin	"Art/BitDev/Spikes.nem"
+	even
+
+cg_swing:
+	incbin	"Art/BitDev/Swing.nem"
 	even
 
 cg_flickyricky:

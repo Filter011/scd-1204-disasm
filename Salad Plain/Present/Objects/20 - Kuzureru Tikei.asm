@@ -281,6 +281,9 @@ locret_20D34A:
 
 patbase_kuzure_a:
 	dc.w	pata00-patbase_kuzure_a
+
+	if act_number=0
+
 pata00:
 	dc.b	23
 	dc.b	$D0,5,8,$D,$D8
@@ -307,6 +310,37 @@ pata00:
 	dc.b	$10,5,0,$19,8
 	dc.b	$10,5,0,$19,$18
 	even
+
+	else
+
+pata00:
+	dc.b	23
+	dc.b	$D0,5,8,1,$D8
+	dc.b	$D0,5,8,1,$E8
+	dc.b	$D0,5,8,1,-8
+	dc.b	$D0,5,8,1,8
+	dc.b	$D0,5,8,1,$18
+	dc.b	$E0,5,8,5,$D8
+	dc.b	$E0,5,8,5,$E8
+	dc.b	$E0,5,8,5,-8
+	dc.b	$E0,5,8,5,8
+	dc.b	$E0,5,8,5,$18
+	dc.b	$F0,5,0,$11,$D8
+	dc.b	$F0,5,8,9,$E8
+	dc.b	$F0,5,8,9,-8
+	dc.b	$F0,5,8,9,8
+	dc.b	$F0,5,8,9,$18
+	dc.b	0,5,8,$19,$D8
+	dc.b	0,5,0,$15,$E8
+	dc.b	0,5,0,$D,-8
+	dc.b	0,5,0,$D,8
+	dc.b	0,5,8,$15,$18
+	dc.b	$10,5,0,$11,-8
+	dc.b	$10,5,0,$11,8
+	dc.b	$10,5,0,$11,$18
+	even
+
+	endif
 
 tbla:
 	dc.w	tbla00-tbla
@@ -343,6 +377,9 @@ patc:
 	dc.w	patc04-patc
 	dc.w	patc05-patc
 	dc.w	patc06-patc
+
+	if act_number=0
+
 patc00:
 	dc.b	1
 	dc.b	-8,5,0,$19,-8
@@ -372,6 +409,42 @@ patc06:
 	dc.b	$E8,5,8,$D,-8
 	dc.b	-8,5,8,$11,-8
 	even
+
+	else
+
+patc00:
+	dc.b	1
+	dc.b	-8,5,0,$11,-8
+	even
+patc01:
+	dc.b	1
+	dc.b	-8,5,8,$19,-8
+	even
+patc02:
+	dc.b	1
+	dc.b	-8,5,0,$15,-8
+	even
+patc03:
+	dc.b	1
+	dc.b	-8,5,0,$D,-8
+	even
+patc04:
+	dc.b	1
+	dc.b	-8,5,8,$15,-8
+	even
+patc05:
+	dc.b	1
+	dc.b	-8,5,8,9,-8
+	even
+patc06:
+	dc.b	2
+	dc.b	$E8,5,8,1,-8
+	dc.b	-8,5,8,5,-8
+	even
+
+	endif
+
+	if act_number=0
 
 patbase_kuzure_b:
 	dc.w	patb00-patbase_kuzure_b
@@ -472,6 +545,77 @@ patb04:
 	dc.b	$10,5,0,$19,0
 	even
 
+	else
+
+patbase_kuzure_b:
+	dc.w	patb00-patbase_kuzure_b
+	dc.w	patb01-patbase_kuzure_b
+patb00:
+	dc.b	32
+	dc.b	$D8,5,0,1,$C0
+	dc.b	$D8,5,0,1,$D0
+	dc.b	$D8,5,0,1,$E0
+	dc.b	$D8,5,0,1,$F0
+	dc.b	$D8,5,0,1,0
+	dc.b	$D8,5,0,1,$10
+	dc.b	$D8,5,0,1,$20
+	dc.b	$D8,5,0,1,$30
+	dc.b	$E8,5,0,5,$C0
+	dc.b	$E8,5,0,5,$D0
+	dc.b	$E8,5,0,5,$E0
+	dc.b	$E8,5,0,5,$F0
+	dc.b	$E8,5,0,5,0
+	dc.b	$E8,5,0,5,$10
+	dc.b	$E8,5,0,5,$20
+	dc.b	$E8,5,0,5,$30
+	dc.b	-8,5,0,9,$C0
+	dc.b	-8,5,0,9,$D0
+	dc.b	-8,5,0,9,$E0
+	dc.b	-8,5,0,9,$F0
+	dc.b	-8,5,0,9,0
+	dc.b	-8,5,0,9,$10
+	dc.b	-8,5,0,9,$20
+	dc.b	-8,5,0,9,$30
+	dc.b	8,5,0,$D,$C0
+	dc.b	8,5,0,$D,$D0
+	dc.b	8,5,0,$D,$E0
+	dc.b	8,5,0,$D,$F0
+	dc.b	8,5,0,$D,0
+	dc.b	8,5,0,$D,$10
+	dc.b	8,5,0,$D,$20
+	dc.b	8,5,0,$D,$30
+patb01:
+	dc.b	24
+	dc.b	$E0,5,0,1,$C0
+	dc.b	$E0,5,0,1,$D0
+	dc.b	$E0,5,0,1,$E0
+	dc.b	$E0,5,0,1,$F0
+	dc.b	$E0,5,0,1,0
+	dc.b	$E0,5,0,1,$10
+	dc.b	$E0,5,0,1,$20
+	dc.b	$E0,5,0,1,$30
+	dc.b	$F0,5,0,5,$C0
+	dc.b	$F0,5,0,5,$D0
+	dc.b	$F0,5,0,5,$E0
+	dc.b	$F0,5,0,5,$F0
+	dc.b	$F0,5,0,5,0
+	dc.b	$F0,5,0,5,$10
+	dc.b	$F0,5,0,5,$20
+	dc.b	$F0,5,0,5,$30
+	dc.b	0,5,0,9,$C0
+	dc.b	0,5,0,9,$D0
+	dc.b	0,5,0,9,$E0
+	dc.b	0,5,0,9,$F0
+	dc.b	0,5,0,9,0
+	dc.b	0,5,0,9,$10
+	dc.b	0,5,0,9,$20
+	dc.b	0,5,0,9,$30
+	even
+
+	endif
+
+	if act_number=0
+
 tblb:
 	dc.w	tblb00-tblb
 	dc.w	tblb00-tblb
@@ -517,6 +661,40 @@ tblb04:
 	dc.b	5
 	dc.b	4
 	even
+
+	else
+
+tblb:
+	dc.w	tblb00-tblb
+	dc.w	tblb01-tblb
+tblb00:
+	dc.b	7
+	dc.b	2
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	dc.b	0
+	even
+tblb01:
+	dc.b	7
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	dc.b	1
+	even
+
+	endif
+
+	if act_number=0
 
 patd:
 	dc.w	patd00-patd
@@ -571,3 +749,23 @@ patd05:
 	dc.b	0,5,0,$21,-8
 	dc.b	$10,5,0,$19,-8
 	even
+
+	else
+
+patd:
+	dc.w	patd00-patd
+	dc.w	patd01-patd
+patd00:
+	dc.b	4
+	dc.b	$D8,5,0,1,-8
+	dc.b	$E8,5,0,5,-8
+	dc.b	-8,5,0,9,-8
+	dc.b	8,5,0,$D,-8
+patd01:
+	dc.b	3
+	dc.b	$E0,5,0,1,-8
+	dc.b	$F0,5,0,5,-8
+	dc.b	0,5,0,9,-8
+	even
+
+	endif

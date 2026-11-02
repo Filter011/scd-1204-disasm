@@ -111,9 +111,19 @@ loc_2024FC:
 	move.l	(a1),loopmapno.w
 	rts
 
+	if act_number=0
+
 playpositbl:
-	incbin	"Player Positions/Player Positions.bin"
+	incbin	"Player Positions/Act 1.bin"
 	even
+
+	else
+
+playpositbl:
+	incbin	"Player Positions/Act 2.bin"
+	even
+
+	endif
 
 	if act_number=0
 
@@ -143,17 +153,20 @@ scrbinit:
 	move.w	d1,scrb_h_posit.w
 	if act_number=0
 	lsr.w	#1,d1
+	move.w	d1,scrc_h_posit.w
 	else
 	lsr.w	#2,d1
+	move.w	d1,scrz_h_posit.w
 	endif
-	move.w	d1,scrc_h_posit.w
 	lsr.w	#1,d1
-	if act_number=1
+	if act_number=0
+	move.w	d1,scrz_h_posit.w
+	else
 	move.w	d1,d2
 	add.w	d2,d2
 	add.w	d2,d1
+	move.w	d1,scrc_h_posit.w
 	endif
-	move.w	d1,scrz_h_posit.w
 	lea	linework.w,a2
 	clr.l	(a2)+
 	clr.l	(a2)+
@@ -251,13 +264,21 @@ loc_20263E:
 	move.w	linework+12.w,d0
 	add.w	scrz_h_posit.w,d0
 	neg.w	d0
+	if act_number=0
 	move.w	#1-1,d1
+	else
+	move.w	#3-1,d1
+	endif
 
 loc_202652:
 	move.w	d0,(a1)+
 	dbf	d1,loc_202652
 
+	if act_number=0
 	move.w	#6-1,d1
+	else
+	move.w	#8-1,d1
+	endif
 	move.w	scrz_h_posit.w,d0
 	neg.w	d0
 
