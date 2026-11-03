@@ -345,29 +345,17 @@ pata00:
 tbla:
 	dc.w	tbla00-tbla
 tbla00:
-	dc.b	4
-	dc.b	3
-	dc.b	$FF
-	dc.b	$FF
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	1
-	dc.b	2
-	dc.b	3
-	dc.b	3
-	dc.b	4
-	dc.b	0
-	dc.b	5
-	dc.b	5
-	dc.b	5
-	dc.b	5
-	dc.b	6
-	dc.b	6
-	dc.b	6
-	dc.b	6
-	dc.b	6
-	even
+	dc.b	4,3
+	dc.b	-1,-1
+	dc.b	0,0
+	dc.b	0,1
+	dc.b	2,3
+	dc.b	3,4
+	dc.b	0,5
+	dc.b	5,5
+	dc.b	5,6
+	dc.b	6,6
+	dc.b	6,6
 
 patc:
 	dc.w	patc00-patc
@@ -624,43 +612,24 @@ tblb:
 	dc.w	tblb03-tblb
 	dc.w	tblb04-tblb
 tblb00:
-	dc.b	5
-	dc.b	1
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	even
+	dc.b	5,1
+	dc.b	0,0
+	dc.b	0,0
+	dc.b	0,0
 tblb01:
-	dc.b	3
-	dc.b	3
-	dc.b	1
-	dc.b	2
-	dc.b	2
-	dc.b	2
-	even
+	dc.b	3,3
+	dc.b	1,2
+	dc.b	2,2
 tblb02:
-	dc.b	3
-	dc.b	3
-	dc.b	2
-	dc.b	2
-	dc.b	2
-	dc.b	2
-	even
+	dc.b	3,3
+	dc.b	2,2
+	dc.b	2,2
 tblb03:
-	dc.b	1
-	dc.b	3
-	dc.b	3
-	dc.b	5
-	even
+	dc.b	1,3
+	dc.b	3,5
 tblb04:
-	dc.b	1
-	dc.b	3
-	dc.b	5
-	dc.b	4
-	even
+	dc.b	1,3
+	dc.b	5,4
 
 	else
 
@@ -668,29 +637,17 @@ tblb:
 	dc.w	tblb00-tblb
 	dc.w	tblb01-tblb
 tblb00:
-	dc.b	7
-	dc.b	2
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	dc.b	0
-	even
+	dc.b	7,2
+	dc.b	0,0
+	dc.b	0,0
+	dc.b	0,0
+	dc.b	0,0
 tblb01:
-	dc.b	7
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	dc.b	1
-	even
+	dc.b	7,1
+	dc.b	1,1
+	dc.b	1,1
+	dc.b	1,1
+	dc.b	1,1
 
 	endif
 
