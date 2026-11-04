@@ -187,7 +187,7 @@ loc_20829A:
 	bclr	#cd_push,cddat(a1)
 	move.b	#1,jumpflag(a1)
 	clr.b	convexflag(a1)
-	move.w	#$A0,d0
+	move.w	#se_A0,d0
 	jsr	soundset.l
 	tst.b	chibi_flag.w
 	beq.s	loc_2082EE

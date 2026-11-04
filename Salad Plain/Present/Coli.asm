@@ -190,7 +190,7 @@ pcolnomal:
 
 .jump6:
 	bsr.w	scoreup
-	move.w	#$9E,d0
+	move.w	#se_9E,d0
 	jsr	soundset.l
 	_move.b	#bakuha_act,actno(a1)
 	move.b	#0,r_no0(a1)
@@ -288,7 +288,7 @@ playdieset:
 	move.w	yposi(a0),act38(a0)
 	move.b	#$18,mstno(a0)
 	bset	#7,sproffset(a0)
-	move.w	#$93,d0
+	move.w	#se_93,d0
 	jsr	soundset.l
 
 .end:
