@@ -3703,22 +3703,22 @@ ddev_01:	ddev_header
 	ddev_entry	cg_platform,$363
 	ddev_entry	cg_spinplatform,$375
 	ddev_entry	cg_wheels,$384
-	ddev_entry	cg_dspring,$3A1
-	ddev_entry	cg_spring,$520
-	ddev_entry	cg_hud,$568
-	ddev_entry	cg_monitortimesign,$5A8
-	ddev_entry	cg_explosion,$680
-	ddev_entry	cg_flowers,$6D6
-	ddev_entry	cg_ring,$7AE
+	ddev_entry	spring45cg,$3A1
+	ddev_entry	springcg,$520
+	ddev_entry	scorecg,$568
+	ddev_entry	itemcg,$5A8
+	ddev_entry	bakuhacg,$680
+	ddev_entry	flowcg,$6D6
+	ddev_entry	ringcg,$7AE
 ddev_01_end:
 
 ddev_02:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
-	ddev_entry	cg_splash2,$475
+	ddev_entry	exit2cg,$475
 	ddev_entry	cg_patabata,$4DC
 ddev_02_end:
 
@@ -3728,10 +3728,10 @@ ddev_04:	ddev_header
 ddev_04_end:
 
 ddev_05:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_anton,$45F
-	ddev_entry	cg_splash2,$475
+	ddev_entry	exit2cg,$475
 ddev_05_end:
 
 ddev_06:	ddev_header
@@ -3745,20 +3745,20 @@ ddev_07:	ddev_header
 ddev_07_end:
 
 ddev_08:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
-	ddev_entry	cg_signpost,$503
+	ddev_entry	goalcg,$503
 ddev_08_end:
 
 ddev_09:	ddev_header
-	ddev_entry	cg_signpost,$503
+	ddev_entry	goalcg,$503
 ddev_09_end:
 
 ddev_0A:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
 	ddev_entry	cg_pole,$342
@@ -3766,17 +3766,17 @@ ddev_0A:	ddev_header
 	ddev_entry	cg_platform,$363
 	ddev_entry	cg_spinplatform,$375
 	ddev_entry	cg_wheels,$384
-	ddev_entry	cg_dspring,$3A1
+	ddev_entry	spring45cg,$3A1
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
-	ddev_entry	cg_splash2,$475
+	ddev_entry	exit2cg,$475
 	ddev_entry	cg_patabata,$4DC
 ddev_0A_end:
 
 ddev_0B:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
 	ddev_entry	cg_pole,$342
@@ -3784,11 +3784,11 @@ ddev_0B:	ddev_header
 	ddev_entry	cg_platform,$363
 	ddev_entry	cg_spinplatform,$375
 	ddev_entry	cg_wheels,$384
-	ddev_entry	cg_dspring,$3A1
+	ddev_entry	spring45cg,$3A1
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_anton,$45F
-	ddev_entry	cg_splash2,$475
+	ddev_entry	exit2cg,$475
 	ddev_entry	cg_patabata,$4DC
 ddev_0B_end:
 
@@ -3800,7 +3800,7 @@ ddev_0C:	ddev_header
 	ddev_entry	cg_platform,$363
 	ddev_entry	cg_spinplatform,$375
 	ddev_entry	cg_wheels,$384
-	ddev_entry	cg_dspring,$3A1
+	ddev_entry	spring45cg,$3A1
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_splash,$422
@@ -3809,7 +3809,7 @@ ddev_0C:	ddev_header
 ddev_0C_end:
 
 ddev_0E:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
 	ddev_entry	cg_pole,$342
@@ -3817,7 +3817,7 @@ ddev_0E:	ddev_header
 	ddev_entry	cg_platform,$363
 	ddev_entry	cg_spinplatform,$375
 	ddev_entry	cg_wheels,$384
-	ddev_entry	cg_dspring,$3A1
+	ddev_entry	spring45cg,$3A1
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
@@ -3826,7 +3826,7 @@ ddev_0E:	ddev_header
 ddev_0E_end:
 
 ddev_0F:	ddev_header
-	ddev_entry	cg_bridge,$31E
+	ddev_entry	hashicg,$31E
 	ddev_entry	cg_rock,$326
 	ddev_entry	cg_spikes,$33A
 	ddev_entry	cg_pole,$342
@@ -3834,16 +3834,16 @@ ddev_0F:	ddev_header
 	ddev_entry	cg_platform,$363
 	ddev_entry	cg_spinplatform,$375
 	ddev_entry	cg_wheels,$384
-	ddev_entry	cg_dspring,$3A1
+	ddev_entry	spring45cg,$3A1
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
 	ddev_entry	cg_patabata,$4DC
-	ddev_entry	cg_signpost,$503
+	ddev_entry	goalcg,$503
 ddev_0F_end:
 
 ; unused
-	ddev_entry	cg_dspring,$33F
+	ddev_entry	spring45cg,$33F
 	ddev_entry	cg_wheels,$36D
 	ddev_entry	cg_flipper,$375
 	ddev_entry	cg_platform,$381
@@ -3858,7 +3858,7 @@ ddev_0F_end:
 ddev_unused_0:	ddev_header
 	ddev_entry	cg_spikes,$31E
 	ddev_entry	cg_pole,$32A
-	ddev_entry	cg_dspring,$33F
+	ddev_entry	spring45cg,$33F
 	ddev_entry	cg_wheels,$36D
 	ddev_entry	cg_flipper,$375
 	ddev_entry	cg_platform,$381
@@ -3873,7 +3873,7 @@ ddev_unused_0_end:
 ddev_unused_1:	ddev_header
 	ddev_entry	cg_spikes,$31E
 	ddev_entry	cg_pole,$32A
-	ddev_entry	cg_dspring,$33F
+	ddev_entry	spring45cg,$33F
 	ddev_entry	cg_wheels,$36D
 	ddev_entry	cg_flipper,$375
 	ddev_entry	cg_platform,$381
@@ -3889,7 +3889,7 @@ ddev_unused_1_end:
 ddev_unused_2:	ddev_header
 	ddev_entry	cg_spikes,$31E
 	ddev_entry	cg_pole,$32A
-	ddev_entry	cg_dspring,$33F
+	ddev_entry	spring45cg,$33F
 	ddev_entry	cg_wheels,$36D
 	ddev_entry	cg_flipper,$375
 	ddev_entry	cg_platform,$381
@@ -3908,17 +3908,17 @@ ddev_unused_2_end:
 ddev_01:	ddev_header
 	ddev_entry	cg_spikes,$359
 	ddev_entry	cg_pole,$361
-	ddev_entry	cg_dspring,$376
+	ddev_entry	spring45cg,$376
 	ddev_entry	cg_wheels,$3A4
 	ddev_entry	cg_flipper,$3BA
 	ddev_entry	cg_platform,$3C6
-	ddev_entry	cg_signpost,$503
-	ddev_entry	cg_spring,$520
-	ddev_entry	cg_hud,$568
-	ddev_entry	cg_monitortimesign,$5A8
-	ddev_entry	cg_explosion,$680
-	ddev_entry	cg_flowers,$6D6
-	ddev_entry	cg_ring,$7AE
+	ddev_entry	goalcg,$503
+	ddev_entry	springcg,$520
+	ddev_entry	scorecg,$568
+	ddev_entry	itemcg,$5A8
+	ddev_entry	bakuhacg,$680
+	ddev_entry	flowcg,$6D6
+	ddev_entry	ringcg,$7AE
 ddev_01_end:
 
 ddev_02:	ddev_header
@@ -3942,7 +3942,7 @@ ddev_05:	ddev_header
 ddev_05_end:
 
 ddev_06:	ddev_header
-	ddev_entry	cg_splash2,$48A
+	ddev_entry	exit2cg,$48A
 ddev_06_end:
 
 ddev_07:	ddev_header
@@ -3955,16 +3955,16 @@ ddev_07_end:
 
 ddev_08:	ddev_header
 	ddev_entry	cg_tagataga,$3D8
-	ddev_entry	cg_bridge,$406
+	ddev_entry	hashicg,$406
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	cg_signpost,$503
+	ddev_entry	goalcg,$503
 ddev_08_end:
 
 ddev_09:	ddev_header
 	ddev_entry	cg_spikes,$359
 	ddev_entry	cg_pole,$361
-	ddev_entry	cg_dspring,$376
+	ddev_entry	spring45cg,$376
 	ddev_entry	cg_wheels,$3A4
 	ddev_entry	cg_flipper,$3BA
 	ddev_entry	cg_platform,$3C6
@@ -3979,7 +3979,7 @@ ddev_09_end:
 ddev_0A:	ddev_header
 	ddev_entry	cg_spikes,$359
 	ddev_entry	cg_pole,$361
-	ddev_entry	cg_dspring,$376
+	ddev_entry	spring45cg,$376
 	ddev_entry	cg_wheels,$3A4
 	ddev_entry	cg_flipper,$3BA
 	ddev_entry	cg_platform,$3C6
@@ -3994,21 +3994,21 @@ ddev_0A_end:
 ddev_0B:	ddev_header
 	ddev_entry	cg_spikes,$359
 	ddev_entry	cg_pole,$361
-	ddev_entry	cg_dspring,$376
+	ddev_entry	spring45cg,$376
 	ddev_entry	cg_wheels,$3A4
 	ddev_entry	cg_flipper,$3BA
 	ddev_entry	cg_platform,$3C6
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_mosqui,$413
 	ddev_entry	cg_spinplatform,$475
-	ddev_entry	cg_splash2,$48A
+	ddev_entry	exit2cg,$48A
 	ddev_entry	cg_anton,$4EB
 ddev_0B_end:
 
 ddev_0C:	ddev_header
 	ddev_entry	cg_spikes,$359
 	ddev_entry	cg_pole,$361
-	ddev_entry	cg_dspring,$376
+	ddev_entry	spring45cg,$376
 	ddev_entry	cg_wheels,$3A4
 	ddev_entry	cg_flipper,$3BA
 	ddev_entry	cg_platform,$3C6
@@ -4024,12 +4024,12 @@ ddev_0C_end:
 ddev_0D:	ddev_header
 	ddev_entry	cg_spikes,$359
 	ddev_entry	cg_pole,$361
-	ddev_entry	cg_dspring,$376
+	ddev_entry	spring45cg,$376
 	ddev_entry	cg_wheels,$3A4
 	ddev_entry	cg_flipper,$3BA
 	ddev_entry	cg_platform,$3C6
 	ddev_entry	cg_tagataga,$3D8
-	ddev_entry	cg_bridge,$406
+	ddev_entry	hashicg,$406
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
 	ddev_entry	cg_spinplatform,$475
@@ -4097,11 +4097,11 @@ soundcnt:
 	dephase
 soundcnt_end:
 
-cg_shield:
+bariacg:
 	incbin	"Art/Uncompressed/Shield.unc"
 	even
 
-cg_stars:
+mutekicg:
 	incbin	"Art/Uncompressed/Invincibility Stars.unc"
 	even
 
@@ -4109,27 +4109,27 @@ cg_timetravel:
 	incbin	"Art/Uncompressed/Time Travel Sparkles.unc"
 	even
 
-cg_dspring:
+spring45cg:
 	incbin	"Art/BitDev/Diagonal Spring.nem"
 	even
 
-cg_spring:
+springcg:
 	incbin	"Art/BitDev/Spring.nem"
 	even
 
-cg_monitortimesign:
+itemcg:
 	incbin	"Art/BitDev/Monitor and Time Sign.nem"
 	even
 
-cg_explosion:
+bakuhacg:
 	incbin	"Art/BitDev/Explosion.nem"
 	even
 
-cg_ring:
+ringcg:
 	incbin	"Art/BitDev/Ring.nem"
 	even
 
-cg_hudicon:
+playsuucg:
 	incbin	"Art/Uncompressed/HUD Icon.unc"
 	even
 
@@ -4137,15 +4137,15 @@ scorewrtcg:
 	incbin	"Art/Uncompressed/HUD Numbers and Letters.unc"
 	even
 
-cg_hud:
+scorecg:
 	incbin	"Art/BitDev/HUD.nem"
 	even
 
-cg_flowers:
+flowcg:
 	incbin	"Art/BitDev/Flowers.nem"
 	even
 
-cg_signpost:
+goalcg:
 	incbin	"Art/BitDev/Goal.nem"
 	even
 
@@ -4173,7 +4173,7 @@ cg_flipper:
 	incbin	"Art/BitDev/Flipper.nem"
 	even
 
-cg_splash2:
+exit2cg:
 	incbin	"Art/BitDev/Splash 2.nem"
 	even
 
@@ -4205,10 +4205,11 @@ cg_card:
 	incbin	"Art/BitDev/Rotating Card.nem"
 	even
 
-cg_bridge:
+hashicg:
 	incbin	"Art/BitDev/Bridge.nem"
 	even
 
+swichcg:
 	incbin	"Art/BitDev/Switch.nem"
 	even
 

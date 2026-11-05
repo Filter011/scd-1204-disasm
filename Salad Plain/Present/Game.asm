@@ -44,8 +44,6 @@ loc_201244:
 loc_201256:
 	bsr.w	da_set
 	moveq	#0,d0
-;	move.b	stageno,d0
-;	lsl.w	#4,d0
 	lea	mapinittbl.l,a2
 	moveq	#0,d0
 	move.b	(a2),d0
@@ -202,11 +200,11 @@ play_act_set:
 	lea	playerwk,a1
 	moveq	#play00_act,d0
 	tst.b	main_play
-	beq.s	loc_201490
+	beq.s	.jump
 	lea	player2wk,a1
 	moveq	#objid_02,d0
 
-loc_201490:
+.jump:
 	_move.b	d0,actno(a1)
 	rts
 
@@ -216,7 +214,7 @@ flow_act_set:
 	move.b	time_flag,d0
 	bclr	#7,d0
 	move.b	(a1,d0.w),d0
-	beq.s	locret_2014EE
+	beq.s	.end
 	subq.b	#1,d0
 	lea	byte_FFD800,a2
 	moveq	#0,d1
@@ -238,7 +236,7 @@ flow_act_set:
 	addq.b	#1,d1
 	dbf	d0,.loop
 
-locret_2014EE:
+.end:
 	rts
 
 scdset:
@@ -326,7 +324,7 @@ sub_2015E8:
 	bclr	#7,d2
 	lsl.w	#7,d2
 	move.l	d0,4(a6)
-	lea	cg_hudicon.l,a1
+	lea	playsuucg.l,a1
 	lea	(a1,d2.w),a3
 	rept	32
 	move.l	(a3)+,(a6)

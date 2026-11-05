@@ -56,9 +56,6 @@ clst1_1a1:
 	dc.w	$EA8,$E86,$C60,$ECA
 	dc.w	$E86,$ECA,$C60,$EA8
 
-;fadein:
-;	move.w	#$003F,startcolor
-
 fadein0:
 	moveq	#0,d0
 	lea	lpcolorwk,a0
@@ -399,9 +396,6 @@ colorgame:	pal_ptr	gamecolor,0,16
 colorzone1:	pal_ptr	zone1color,2,48
 
 logocolor:
-;	incbin	"Leftovers/Palettes/Sega Background (Sonic 1).bin"
-;	even
-
 advacolor:
 	incbin	"Leftovers/Palettes/Title Screen (Sonic 1).bin"
 	even

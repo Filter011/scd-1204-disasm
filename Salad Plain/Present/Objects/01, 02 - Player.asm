@@ -393,6 +393,7 @@ off_203998:
 	dc.w	word_2039A0-off_203998
 	dc.w	word_2039EA-off_203998
 	dc.w	word_2039C8-off_203998
+
 word_2039A0:
 	dc.w	16-1
 	dc.w	$13C
@@ -415,6 +416,7 @@ word_2039C2:
 	dc.w	2-1
 	dc.w	$145
 	dc.w	$146
+
 word_2039C8:
 	dc.w	16-1
 	dc.w	$13C
@@ -433,6 +435,7 @@ word_2039C8:
 	dc.w	$7D
 	dc.w	$7C
 	dc.w	$82
+
 word_2039EA:
 	dc.w	16-1
 	dc.w	$13C
@@ -555,6 +558,7 @@ sub_203B2C:
 	tst.w	yspeed(a0)
 	bmi.s	loc_203B38
 	neg.w	d0
+
 loc_203B38:
 	move.w	d0,yspeed(a0)
 	bra.s	loc_203B14
@@ -564,6 +568,7 @@ sub_203B3E:
 	tst.w	xspeed(a0)
 	bmi.s	loc_203B4A
 	neg.w	d0
+
 loc_203B4A:
 	move.w	d0,xspeed(a0)
 	bra.s	loc_203B14
@@ -643,6 +648,7 @@ off_203C16:
 	dc.w	unk_203C1C-off_203C16
 	dc.w	unk_203C2C-off_203C16
 	dc.w	unk_203C3C-off_203C16
+
 unk_203C1C:
 	dc.b	1
 	dc.b	1

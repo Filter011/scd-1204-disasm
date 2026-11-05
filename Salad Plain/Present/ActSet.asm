@@ -22,9 +22,9 @@ actsetinit:
 	move.w	#$101,(a2)+
 	move.w	#(flagwork_end-flagwork-2)/4-1,d0
 
-loc_206DF2:
+.loop:
 	clr.l	(a2)+
-	dbf	d0,loc_206DF2
+	dbf	d0,.loop
 
 	lea	flagwork,a2
 	moveq	#0,d2
@@ -194,7 +194,7 @@ loc_206F3E:
 
 loc_206F44:
 	bsr.w	actwkchk
-	bne.s	locret_206F84
+	bne.s	.worknai
 	move.w	(a0)+,xposi(a1)
 	move.w	(a0)+,d0
 	move.w	d0,d1
@@ -205,18 +205,18 @@ loc_206F44:
 	move.b	d1,actflg(a1)
 	move.b	d1,cddat(a1)
 	move.b	(a0)+,d0
-	bpl.s	loc_206F74
+	bpl.s	.jump
 	andi.b	#$7F,d0
 	move.b	d2,cdsts(a1)
 
-loc_206F74:
+.jump:
 	_move.b	d0,actno(a1)
 	move.b	(a0)+,userflag(a1)
 	move.b	(a0)+,d0
 	move.b	(a0)+,act29(a1)
 	moveq	#0,d0
 
-locret_206F84:
+.worknai:
 	rts
 
 actwkchk:
@@ -257,10 +257,10 @@ frameout_s:
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
 	cmpi.w	#$280,d0
-	bls.s	locret_206FFE
+	bls.s	.end
 	moveq	#0,d0
 	move.b	cdsts(a0),d0
-	beq.s	loc_206FF8
+	beq.s	.jump
 	lea	flagwork,a1
 	move.w	d0,d1
 	add.w	d1,d1
@@ -270,10 +270,10 @@ frameout_s:
 	add.w	d1,d0
 	bclr	#7,2(a1,d0.w)
 
-loc_206FF8:
+.jump:
 	jmp	frameout.l
 
-locret_206FFE:
+.end:
 	rts
 
 asettbl:

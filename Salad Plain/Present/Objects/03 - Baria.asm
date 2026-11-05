@@ -128,8 +128,8 @@ sub_2059B8:
 	rts
 
 off_205A08:
-	dc.l	cg_shield
-	dc.l	cg_stars
+	dc.l	bariacg
+	dc.l	mutekicg
 	dc.l	cg_timetravel
 
 bariachg:
