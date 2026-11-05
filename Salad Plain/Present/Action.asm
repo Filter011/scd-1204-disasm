@@ -186,7 +186,7 @@ loc_203272:
 	moveq	#0,d0
 	move.b	sprvsize(a0),d0
 	move.w	yposi(a0),d2
-	sub.w	4(a1),d2
+	sub.w	scra_v_posit-scra_h_posit(a1),d2
 	addi.w	#128,d2
 	bra.s	loc_2032D2
 
@@ -196,11 +196,11 @@ loc_2032B0:
 	bra.s	loc_2032D2
 
 	move.w	yposi(a0),d2
-	sub.w	4(a1),d2
+	sub.w	scra_v_posit-scra_h_posit(a1),d2
 	addi.w	#128,d2
-	cmpi.w	#$60,d2
+	cmpi.w	#128-32,d2
 	blo.s	loc_2032FA
-	cmpi.w	#$180,d2
+	cmpi.w	#128+224+32,d2
 	bhs.s	loc_2032FA
 
 loc_2032D2:
