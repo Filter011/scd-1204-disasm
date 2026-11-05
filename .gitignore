@@ -2,7 +2,27 @@ Utility Project Files/SonLVL INI Files/dllcache
 Utility Project Files/SonLVL INI Files/SonLVL.log
 Utility Project Files/SonPLN.log
 
+Init/IPX.log
+Init/IPX.lst
+Init/scdbuilt.bin
+Init/scdbuilt.prev.bin
+
 Salad Plain/Present/main.log
 Salad Plain/Present/main.lst
 Salad Plain/Present/scdbuilt.bin
 Salad Plain/Present/scdbuilt.prev.bin
+
+Salad Plain/Past/main.log
+Salad Plain/Past/main.lst
+Salad Plain/Past/scdbuilt.bin
+Salad Plain/Past/scdbuilt.prev.bin
+
+Salad Plain/Good Future/main.log
+Salad Plain/Good Future/main.lst
+Salad Plain/Good Future/scdbuilt.bin
+Salad Plain/Good Future/scdbuilt.prev.bin
+
+Salad Plain/Bad Future/main.log
+Salad Plain/Bad Future/main.lst
+Salad Plain/Bad Future/scdbuilt.bin
+Salad Plain/Bad Future/scdbuilt.prev.bin

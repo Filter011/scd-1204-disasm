@@ -1,3 +1,11 @@
+	cpu	68000
+
+ZeroOffsetOptimization = 0
+
+	include	"MacroSetup.asm"
+	include	"Equates.asm"
+	include	"WorkRAM.asm"
+
 	phase	$FF0000
 
 byte_FF0000:
@@ -9,7 +17,7 @@ byte_FF0000:
 
 	align	$100
 
-	move.l	#loc_FF0212,$FFFD08
+	move.l	#loc_FF0212,$FFFFFD08
 	bset	#1,mcpu_memmd
 	moveq	#5,d0
 	bsr.w	sub_FF0286
@@ -30,7 +38,7 @@ loc_FF0116:
 	move.b	byte_FF0166(pc,d0.w),time_flag
 	move.b	byte_FF0167(pc,d0.w),generate_flag
 	move.w	word_FF0162(pc,d0.w),d0
-	move.b	#0,ta_flag
+	move.b	#0,ta_flag&$FFFFFF
 	bsr.w	sub_FF0286
 	bra.w	loc_FF0116
 
@@ -93,7 +101,7 @@ loc_FF01A4:
 
 loc_FF01AE:
 	move.b	#1,time_flag
-	move.b	#0,$FF0580
+	move.b	#0,ta_flag&$FFFFFF
 	bsr.w	sub_FF01D8
 	tst.b	pl_suu
 	beq.s	loc_FF01CE
@@ -115,7 +123,7 @@ sub_FF01E8:
 	bra.w	loc_FF01F8
 
 loc_FF01F8:
-	move.w	0(a0),d0
+	_move.w	0(a0),d0
 
 loc_FF01FC:
 	bsr.w	sub_FF0286
@@ -131,7 +139,7 @@ loc_FF0212:
 	move.w	2(a0),d0
 	andi.b	#$7F,d1
 	beq.s	loc_FF01FC
-	move.w	0(a0),d0
+	_move.w	0(a0),d0
 	subq.b	#1,d1
 	beq.s	loc_FF01FC
 	move.w	6(a0),d0
@@ -162,7 +170,7 @@ loc_FF0254:
 	beq.w	loc_FF0116
 	add.w	d0,d0
 	move.w	word_FF0282-2(pc,d0.w),d0
-	move.b	#1,ta_flag
+	move.b	#1,ta_flag&$FFFFFF
 	bsr.w	sub_FF0286
 	move.l	pltime,$FF0590
 	bra.s	loc_FF0254
@@ -173,7 +181,7 @@ word_FF0282:
 
 sub_FF0286:
 	move.l	a0,-(sp)
-	bsr.w	sub_FF031C
+	bsr.w	sub_sync
 	move.l	wkram+8,d0
 	beq.s	loc_FF030E
 	movea.l	d0,a0
@@ -190,12 +198,12 @@ loc_FF02AC:
 loc_FF02B2:
 	move.l	wkram+$E,d0
 	beq.s	loc_FF02BE
-	move.l	d0,$FFFD0E
+	move.l	d0,$FFFFFD0E
 
 loc_FF02BE:
 	move.l	wkram+$10,d0
 	beq.s	loc_FF02CA
-	move.l	d0,$FFFD08
+	move.l	d0,$FFFFFD08
 
 loc_FF02CA:
 	btst	#6,wkram
@@ -205,8 +213,8 @@ loc_FF02CA:
 loc_FF02DC:
 	jsr	(a0)
 	move.b	#0,$FF0583
-	move.l	#$FF021A,$FFFD0E
-	move.l	#loc_FF0212,$FFFD08
+	move.l	#$FF021A,$FFFFFD0E
+	move.l	#loc_FF0212,$FFFFFD08
 	move.w	#$8100+%00110100,$FF0596
 	move.w	#$8100+%00110100,vdp_cmd
 	bset	#1,mcpu_memmd
