@@ -1,10 +1,10 @@
 clrchgctr:
 	lea	clst1_1a0.l,a0
-	subq.b	#1,clchgtim.w
+	subq.b	#1,clchgtim
 	bpl.s	.jump2
-	move.b	#7,clchgtim.w
+	move.b	#7,clchgtim
 	moveq	#0,d0
-	move.b	clchgcnt.w,d0
+	move.b	clchgcnt,d0
 	cmpi.b	#2,d0
 	bne.s	.jump
 	moveq	#0,d0
@@ -16,17 +16,17 @@ clrchgctr:
 .jump1:
 	move.b	d0,clchgcnt.w
 	lsl.w	#3,d0
-	lea	lpcolorwk+$6A.w,a1
+	lea	lpcolorwk+$6A,a1
 	move.l	(a0,d0.w),(a1)+
 	move.l	4(a0,d0.w),(a1)
 
 .jump2:
 	adda.w	#clst1_1a1-clst1_1a0,a0
-	subq.b	#1,clchgtim+1.w
+	subq.b	#1,clchgtim+1
 	bpl.s	.end
-	move.b	#5,clchgtim+1.w
+	move.b	#5,clchgtim+1
 	moveq	#0,d0
-	move.b	clchgcnt+1.w,d0
+	move.b	clchgcnt+1,d0
 	cmpi.b	#2,d0
 	bne.s	.jump3
 	moveq	#0,d0
@@ -36,10 +36,10 @@ clrchgctr:
 	addq.b	#1,d0
 
 .jump4:
-	move.b	d0,clchgcnt+1.w
+	move.b	d0,clchgcnt+1
 	andi.w	#3,d0
 	lsl.w	#3,d0
-	lea	lpcolorwk+$58.w,a1
+	lea	lpcolorwk+$58,a1
 	move.l	(a0,d0.w),(a1)+
 	move.l	4(a0,d0.w),(a1)
 
@@ -57,15 +57,15 @@ clst1_1a1:
 	dc.w	$E86,$ECA,$C60,$EA8
 
 ;fadein:
-;	move.w	#$003F,startcolor.w
+;	move.w	#$003F,startcolor
 
 fadein0:
 	moveq	#0,d0
-	lea	lpcolorwk.w,a0
-	move.b	startcolor.w,d0
+	lea	lpcolorwk,a0
+	move.b	startcolor,d0
 	adda.w	d0,a0
 	moveq	#$000,d1
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop:
 	move.w	d1,(a0)+
@@ -74,7 +74,7 @@ fadein0:
 	move.w	#22-1,d4
 
 fadein0_new:
-	move.b	#int_12,int_flg.w
+	move.b	#int_12,int_flg
 	bsr.w	sync
 	bsr.s	fadein1
 	bsr.w	sub_20209A
@@ -84,12 +84,12 @@ fadein0_new:
 
 fadein1:
 	moveq	#0,d0
-	lea	lpcolorwk.w,a0
-	lea	lpcolorwk2.w,a1
-	move.b	startcolor.w,d0
+	lea	lpcolorwk,a0
+	lea	lpcolorwk2,a1
+	move.b	startcolor,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop:
 	bsr.s	fadein2
@@ -98,12 +98,12 @@ fadein1:
 	cmpi.b	#stage_lz,stageno
 	bne.s	.jump
 	moveq	#0,d0
-	lea	lpcolorwk3.w,a0
-	lea	lpcolorwk4.w,a1
-	move.b	startcolor.w,d0
+	lea	lpcolorwk3,a0
+	lea	lpcolorwk4,a1
+	move.b	startcolor,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop1:
 	bsr.s	fadein2
@@ -141,11 +141,11 @@ fadein2:
 	rts
 
 fadeout:
-	move.w	#$003F,startcolor.w
+	move.w	#$003F,startcolor
 	move.w	#22-1,d4
 
 fadeout_new:
-	move.b	#int_12,int_flg.w
+	move.b	#int_12,int_flg
 	bsr.w	sync
 	bsr.s	fadeout1
 	bsr.w	sub_20209A
@@ -155,20 +155,20 @@ fadeout_new:
 
 fadeout1:
 	moveq	#0,d0
-	lea	lpcolorwk.w,a0
-	move.b	startcolor.w,d0
+	lea	lpcolorwk,a0
+	move.b	startcolor,d0
 	adda.w	d0,a0
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop:
 	bsr.s	fadeout2
 	dbf	d0,.loop
 
 	moveq	#0,d0
-	lea	lpcolorwk3.w,a0
-	move.b	startcolor.w,d0
+	lea	lpcolorwk3,a0
+	move.b	startcolor,d0
 	adda.w	d0,a0
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop1:
 	bsr.s	fadeout2
@@ -204,13 +204,13 @@ fadeout2:
 	rts
 
 flashin:
-	move.w	#$003F,startcolor.w
+	move.w	#$003F,startcolor
 	moveq	#0,d0
-	lea	lpcolorwk.w,a0
-	move.b	startcolor.w,d0
+	lea	lpcolorwk,a0
+	move.b	startcolor,d0
 	adda.w	d0,a0
 	move.w	#$EEE,d1
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop:
 	move.w	d1,(a0)+
@@ -219,7 +219,7 @@ flashin:
 	move.w	#22-1,d4
 
 flashin_new:
-	move.b	#int_12,int_flg.w
+	move.b	#int_12,int_flg
 	bsr.w	sync
 	bsr.s	flashin1
 	bsr.w	sub_20209A
@@ -229,12 +229,12 @@ flashin_new:
 
 flashin1:
 	moveq	#0,d0
-	lea	lpcolorwk.w,a0
-	lea	lpcolorwk2.w,a1
-	move.b	startcolor.w,d0
+	lea	lpcolorwk,a0
+	lea	lpcolorwk2,a1
+	move.b	startcolor,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop:
 	bsr.s	flashin2
@@ -243,12 +243,12 @@ flashin1:
 	cmpi.b	#stage_lz,stageno
 	bne.s	.jump
 	moveq	#0,d0
-	lea	lpcolorwk3.w,a0
-	lea	lpcolorwk4.w,a1
-	move.b	startcolor.w,d0
+	lea	lpcolorwk3,a0
+	lea	lpcolorwk4,a1
+	move.b	startcolor,d0
 	adda.w	d0,a0
 	adda.w	d0,a1
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop1:
 	bsr.s	flashin2
@@ -288,11 +288,11 @@ flashin2:
 	rts
 
 flashout:
-	move.w	#$003F,startcolor.w
+	move.w	#$003F,startcolor
 	move.w	#22-1,d4
 
 flashout_new:
-	move.b	#int_12,int_flg.w
+	move.b	#int_12,int_flg
 	bsr.w	sync
 	bsr.s	flashout1
 	bsr.w	sub_20209A
@@ -302,20 +302,20 @@ flashout_new:
 
 flashout1:
 	moveq	#0,d0
-	lea	lpcolorwk.w,a0
-	move.b	startcolor.w,d0
+	lea	lpcolorwk,a0
+	move.b	startcolor,d0
 	adda.w	d0,a0
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop:
 	bsr.s	flashout2
 	dbf	d0,.loop
 
 	moveq	#0,d0
-	lea	lpcolorwk3.w,a0
-	move.b	startcolor.w,d0
+	lea	lpcolorwk3,a0
+	move.b	startcolor,d0
 	adda.w	d0,a0
-	move.b	colorcnt.w,d0
+	move.b	colorcnt,d0
 
 .loop1:
 	bsr.s	flashout2

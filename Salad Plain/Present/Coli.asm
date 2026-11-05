@@ -15,7 +15,7 @@ pcol:
 .jump0:
 	move.w	#$10,d4
 	add.w	d5,d5
-	lea	byte_FFD800.w,a1
+	lea	byte_FFD800,a1
 	move.w	#(byte_FFD800_end-byte_FFD800)/actfree-1,d6
 
 .loop:
@@ -174,8 +174,8 @@ pcolnomal:
 .jump0:
 	bset	#7,cddat(a1)
 	moveq	#0,d0
-	move.w	emyscorecnt.w,d0
-	addq.w	#2,emyscorecnt.w
+	move.w	emyscorecnt,d0
+	addq.w	#2,emyscorecnt
 	cmpi.w	#6,d0
 	blo.s	.jump5
 	moveq	#6,d0
@@ -183,7 +183,7 @@ pcolnomal:
 .jump5:
 	move.w	d0,act3E(a1)
 	move.w	escoretbl(pc,d0.w),d0
-	cmpi.w	#$20,emyscorecnt.w
+	cmpi.w	#$20,emyscorecnt
 	blo.s	.jump6
 	move.w	#1000,d0
 	move.w	#$A,act3E(a1)

@@ -40,7 +40,7 @@ loc_20B888:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B8B6
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.l	yposi(a0),d0
 	moveq	#0,d1
 	move.b	sprvsize(a1),d1
@@ -60,7 +60,7 @@ loc_20B8C8:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B8F6
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.l	yposi(a0),d0
 	moveq	#0,d1
 	move.b	sprvsize(a1),d1
@@ -85,7 +85,7 @@ loc_20B908:
 	jmp	actionsub.l
 
 loc_20B926:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
 	btst	#cd_walk,cddat(a1)
@@ -103,7 +103,7 @@ loc_20B950:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B986
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	yspeed(a1),d0
 	addi.w	#$100,d0
 	cmpi.w	#$A00,d0
@@ -139,7 +139,7 @@ loc_20B9B4:
 	jmp	actionsub.l
 
 loc_20B9D2:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_ride,cddat(a1)
 	move.b	#2,r_no0(a0)
 	btst	#cd_walk,cddat(a1)
@@ -157,7 +157,7 @@ loc_20B9FC:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BA32
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	yspeed(a1),d0
 	addi.w	#$100,d0
 	cmpi.w	#$A00,d0
@@ -213,7 +213,7 @@ loc_20BAA2:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BAD2
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_walk,cddat(a1)
 	bset	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
@@ -233,13 +233,13 @@ loc_20BAE4:
 	bsr.w	sub_20B684
 	tst.b	d1
 	bne.w	loc_20BB0C
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_ride,cddat(a1)
 	move.b	#6,r_no0(a0)
 	move.w	#0,act2A(a0)
 
 loc_20BB0C:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xposi(a0),d2
 	move.w	xposi(a1),d3
 	move.w	xspeed(a1),d4
@@ -296,7 +296,7 @@ loc_20BBA8:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20BBD8
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_walk,cddat(a1)
 	bset	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
@@ -425,7 +425,7 @@ unk_20BC4A:
 loc_20BC80:
 	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0

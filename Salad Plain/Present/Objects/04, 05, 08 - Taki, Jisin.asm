@@ -60,7 +60,7 @@ jisin_set:
 	jsr	actionsub.l
 	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -90,10 +90,10 @@ jisin_set_init:
 	move.w	#$541,sproffset(a0)
 
 jisin_set_move:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	sub_206886
 	blo.s	loc_20685A
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.w	sub_206886
 	bhs.s	locret_206884
 
@@ -147,7 +147,7 @@ jisin_move:
 	jmp	frameout.l
 
 loc_2068E0:
-	lea	mapwka.w,a4
+	lea	mapwka,a4
 	move.w	yposi(a0),d4
 	moveq	#0,d0
 	move.b	act2A(a0),d0

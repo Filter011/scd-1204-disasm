@@ -1,6 +1,6 @@
 actsetchk:
 	moveq	#0,d0
-	move.b	actset_rno.w,d0
+	move.b	actset_rno,d0
 	move.w	actset_tbl(pc,d0.w),d0
 	jmp	actset_tbl(pc,d0.w)
 
@@ -9,15 +9,15 @@ actset_tbl:
 	dc.w	actset-actset_tbl
 
 actsetinit:
-	addq.b	#word,actset_rno.w
+	addq.b	#word,actset_rno
 	lea	asettbl.l,a0
 	movea.l	a0,a1
 	adda.w	(a0),a0
-	move.l	a0,asetadr.w
-	move.l	a0,asetadr2.w
+	move.l	a0,asetadr
+	move.l	a0,asetadr2
 	adda.w	2(a1),a1
-	move.l	a1,asetadrz.w
-	move.l	a1,asetadrz2.w
+	move.l	a1,asetadrz
+	move.l	a1,asetadrz2
 	lea	flagwork,a2
 	move.w	#$101,(a2)+
 	move.w	#(flagwork_end-flagwork-2)/4-1,d0
@@ -28,14 +28,14 @@ loc_206DF2:
 
 	lea	flagwork,a2
 	moveq	#0,d2
-	move.w	scra_h_posit.w,d6
+	move.w	scra_h_posit,d6
 	subi.w	#$80,d6
 	bhs.s	loc_206E0C
 	moveq	#0,d6
 
 loc_206E0C:
 	andi.w	#$FF80,d6
-	movea.l	asetadr.w,a0
+	movea.l	asetadr,a0
 
 loc_206E14:
 	cmp.w	(a0),d6
@@ -50,8 +50,8 @@ loc_206E22:
 	bra.s	loc_206E14
 
 loc_206E26:
-	move.l	a0,asetadr.w
-	movea.l	asetadr2.w,a0
+	move.l	a0,asetadr
+	movea.l	asetadr2,a0
 	subi.w	#$80,d6
 	blo.s	loc_206E46
 
@@ -67,19 +67,19 @@ loc_206E42:
 	bra.s	loc_206E34
 
 loc_206E46:
-	move.l	a0,asetadr2.w
-	move.w	#-1,asetposi.w
+	move.l	a0,asetadr2
+	move.w	#-1,asetposi
 
 actset:
 	lea	flagwork,a2
 	moveq	#0,d2
-	move.w	scra_h_posit.w,d6
+	move.w	scra_h_posit,d6
 	andi.w	#$FF80,d6
-	cmp.w	asetposi.w,d6
+	cmp.w	asetposi,d6
 	beq.w	locret_206F0C
 	bge.s	loc_206EC8
-	move.w	d6,asetposi.w
-	movea.l	asetadr2.w,a0
+	move.w	d6,asetposi
+	movea.l	asetadr2,a0
 	subi.w	#$80,d6
 	blo.s	loc_206EA4
 
@@ -107,8 +107,8 @@ loc_206EA2:
 	addq.w	#8,a0
 
 loc_206EA4:
-	move.l	a0,asetadr2.w
-	movea.l	asetadr.w,a0
+	move.l	a0,asetadr2
+	movea.l	asetadr,a0
 	addi.w	#$300,d6
 
 loc_206EB0:
@@ -123,12 +123,12 @@ loc_206EBE:
 	bra.s	loc_206EB0
 
 loc_206EC2:
-	move.l	a0,asetadr.w
+	move.l	a0,asetadr
 	rts
 
 loc_206EC8:
-	move.w	d6,asetposi.w
-	movea.l	asetadr.w,a0
+	move.w	d6,asetposi
+	movea.l	asetadr,a0
 	addi.w	#$280,d6
 
 loc_206ED4:
@@ -144,8 +144,8 @@ loc_206EE2:
 	beq.s	loc_206ED4
 
 loc_206EE8:
-	move.l	a0,asetadr.w
-	movea.l	asetadr2.w,a0
+	move.l	a0,asetadr
+	movea.l	asetadr2,a0
 	subi.w	#$300,d6
 	blo.s	loc_206F08
 
@@ -161,7 +161,7 @@ loc_206F04:
 	bra.s	loc_206EF6
 
 loc_206F08:
-	move.l	a0,asetadr2.w
+	move.l	a0,asetadr2
 
 locret_206F0C:
 	rts
@@ -220,7 +220,7 @@ locret_206F84:
 	rts
 
 actwkchk:
-	lea	byte_FFD800.w,a1
+	lea	byte_FFD800,a1
 	move.w	#(byte_FFD800_end-byte_FFD800)/actfree-1,d0
 
 .loop:
@@ -252,7 +252,7 @@ actwkchk2:
 frameout_s:
 	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0

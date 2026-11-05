@@ -5,7 +5,7 @@ koma:
 	jsr	koma_move_tbl(pc,d0.w)
 	move.w	act36(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -103,7 +103,7 @@ loc_2084FC:
 loc_20852E:
 	move.w	act36(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -184,13 +184,13 @@ ride_on_chk_s:
 sjumpmove:
 	tst.b	actflg(a0)
 	bpl.s	locret_20863C
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.s	ride_on_chk_s
 	beq.s	loc_208634
 	bsr.s	sub_20863E
 
 loc_208634:
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.s	ride_on_chk_s
 	bne.s	sub_20863E
 
@@ -209,9 +209,9 @@ sub_20863E:
 	jmp	soundset.l
 
 sjumpmove2:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.s	ride_on_chk_s
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.s	ride_on_chk_s
 	lea	springchg.l,a1
 	bra.w	patchg
@@ -231,14 +231,14 @@ ride_on_chk_s1:
 sdushmove:
 	tst.b	actflg(a0)
 	bpl.s	locret_2086D0
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.s	ride_on_chk_s1
 	btst	#5,cddat(a0)
 	beq.s	loc_2086C2
 	bsr.s	sub_2086D2
 
 loc_2086C2:
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.s	ride_on_chk_s1
 	btst	#5,cddat(a0)
 	bne.s	sub_2086D2
@@ -272,9 +272,9 @@ loc_20871A:
 	jmp	soundset.l
 
 sdushmove2:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	ride_on_chk_s1
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.w	ride_on_chk_s1
 	lea	springchg.l,a1
 	bra.w	patchg
@@ -293,13 +293,13 @@ ride_on_chk_s2:
 sjump2move:
 	tst.b	actflg(a0)
 	bpl.s	locret_208786
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.s	ride_on_chk_s2
 	beq.s	loc_20877E
 	bsr.s	sub_208788
 
 loc_20877E:
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.s	ride_on_chk_s2
 	bne.s	sub_208788
 
@@ -318,9 +318,9 @@ sub_208788:
 	jsr	soundset.l
 
 sjump2move2:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.s	ride_on_chk_s2
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.s	ride_on_chk_s2
 	lea	springchg.l,a1
 	bra.w	patchg
@@ -334,7 +334,7 @@ sjump2move3:
 sjump3move:
 	tst.b	actflg(a0)
 	bpl.s	locret_20880C
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	ride_on_chk_s2
 	bne.s	loc_2087F8
 	btst	#5,cddat(a0)
@@ -344,7 +344,7 @@ loc_2087F8:
 	bsr.s	sub_20880E
 
 loc_2087FA:
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.w	ride_on_chk_s2
 	bne.s	sub_20880E
 	btst	#5,cddat(a0)

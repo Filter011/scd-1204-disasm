@@ -1,5 +1,5 @@
 sub_20B4D8:
-	lea	unk_FFD400.w,a2
+	lea	unk_FFD400,a2
 	moveq	#0,d0
 
 loc_20B4DE:

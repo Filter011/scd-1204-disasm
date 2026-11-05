@@ -21,7 +21,7 @@ loc_20FB6C:
 	move.w	xposi(a0),d0
 	cmp.w	xposi(a6),d0
 	bhs.s	locret_20FB98
-	move.w	scralim_right.w,scralim_left.w
+	move.w	scralim_right,scralim_left
 	move.b	#60,act2A(a0)
 	move.b	#180,act2B(a0)
 	move.b	#240,act2B(a0)
@@ -38,9 +38,9 @@ loc_20FB9A:
 loc_20FBA4:
 	subq.b	#1,act2B(a0)
 	bne.s	loc_20FBC0
-	bset	#0,plautoflag.w
+	bset	#0,plautoflag
 	move.b	#0,mstno(a0)
-	move.w	#$808,swdata.w
+	move.w	#$808,swdata
 	addq.b	#word,r_no0(a0)
 
 loc_20FBC0:

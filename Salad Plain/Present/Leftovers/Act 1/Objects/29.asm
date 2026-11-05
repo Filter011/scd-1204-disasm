@@ -300,7 +300,7 @@ loc_20E9E6:
 	move.b	#$18,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
 	move.b	#8,sprvsize(a0)
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	$20D4D4
 	beq.w	loc_20EA3C
 	bsr.w	sub_20EA9A
@@ -325,7 +325,7 @@ loc_20EA3C:
 loc_20EA50:
 	move.b	#3,mstno(a0)
 	bsr.w	sub_20E98E
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	moveq	#$10,d0
 	bsr.w	$20D4D4
 	tst.b	d1
@@ -346,7 +346,7 @@ loc_20EA8C:
 	bra.s	loc_20EA3C
 
 sub_20EA9A:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	moveq	#0,d2
 	moveq	#0,d3
 	move.b	sprvsize(a0),d2

@@ -24,7 +24,7 @@ goal_move0:
 	move.w	xposi(a0),d0
 	cmp.w	xposi(a6),d0
 	bhs.s	locret_20DF3E
-	move.w	scralim_right.w,scralim_left.w
+	move.w	scralim_right,scralim_left
 	clr.b	pltime_f
 	move.b	#60,act2A(a0)
 	move.b	#0,patno(a0)
@@ -45,8 +45,8 @@ locret_20DF50:
 goal_move2:
 	subq.b	#1,act2A(a0)
 	bne.s	locret_20DF6E
-	bset	#0,plautoflag.w
-	move.w	#$808,swdata.w
+	bset	#0,plautoflag
+	move.w	#$808,swdata
 	move.b	#60,act2A(a0)
 	addq.b	#word,r_no0(a0)
 

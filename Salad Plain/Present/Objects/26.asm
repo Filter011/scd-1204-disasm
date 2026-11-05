@@ -36,7 +36,7 @@ locret_20C888:
 	rts
 
 loc_20C88A:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jsr	ride_on_chk.l

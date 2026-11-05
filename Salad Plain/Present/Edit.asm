@@ -1,5 +1,5 @@
 edit:
-	move.b	swdata1.w,d0
+	move.b	swdata1,d0
 	andi.b	#$F,d0
 	bne.s	.jump
 	move.l	#$4000,edit_spd.l
@@ -13,22 +13,22 @@ edit:
 
 .jump1:
 	move.l	edit_spd.l,d0
-	btst	#0,swdata1.w
+	btst	#0,swdata1
 	beq.s	.jump2
 	sub.l	d0,yposi(a0)
 
 .jump2:
-	btst	#1,swdata1.w
+	btst	#1,swdata1
 	beq.s	.jump3
 	add.l	d0,yposi(a0)
 
 .jump3:
-	btst	#2,swdata1.w
+	btst	#2,swdata1
 	beq.s	.jump4
 	sub.l	d0,xposi(a0)
 
 .jump4:
-	btst	#3,swdata1.w
+	btst	#3,swdata1
 	beq.s	.jump5
 	add.l	d0,xposi(a0)
 
@@ -41,7 +41,7 @@ edit:
 	jsr	scramapad.l
 	move.w	(a1),word_FF1884
 	lea	edit_tbl.l,a2
-	btst	#6,swdata1+1.w
+	btst	#6,swdata1+1
 	beq.s	.jump77
 	moveq	#0,d1
 	move.b	editno,d1
@@ -54,7 +54,7 @@ edit:
 	move.b	d1,editno
 
 .jump77:
-	btst	#7,swdata1+1.w
+	btst	#7,swdata1+1
 	beq.s	.jump7
 	moveq	#0,d1
 	move.b	editno,d1
@@ -79,7 +79,7 @@ edit:
 	ori.b	#%0100,d0
 	move.b	d0,actflg(a0)
 	move.b	#0,mstno(a0)
-	btst	#5,swdata1+1.w		; c button check
+	btst	#5,swdata1+1		; c button check
 	beq.s	.jump8
 	bsr.w	actwkchk
 	bne.s	.worknai		;z=0:ok	z=1:no
@@ -99,7 +99,7 @@ edit:
 
 .worknai:
 .jump8:
-	btst	#4,swdata1+1.w		; b button check
+	btst	#4,swdata1+1		; b button check
 	beq.s	.jump9
 	move.b	#0,editmode
 	move.l	#playpat,patbase(a0)

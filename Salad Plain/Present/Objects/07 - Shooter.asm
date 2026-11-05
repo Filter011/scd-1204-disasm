@@ -8,7 +8,7 @@ shooter:
 	bhs.s	locret_207B70
 	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0

@@ -54,8 +54,8 @@ acta_check:
 	bpl.s	locret_20D0E0
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	lea	playerwk.w,a3
-	lea	player2wk.w,a1
+	lea	playerwk,a3
+	lea	player2wk,a1
 	move.b	main_play,d0
 	beq.w	loc_20D0CE
 	exg.l	a1,a3
@@ -86,9 +86,9 @@ loc_20D102:
 	beq.w	locret_20D134
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	sub_20D11E
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 sub_20D11E:
 	jsr	ride_on_chk.l
@@ -105,10 +105,10 @@ actb_down:
 	add.l	d0,yposi(a0)
 	addi.l	#$4000,act2C(a0)
 	move.w	yposi(a0),d0
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.b	main_play,d1
 	beq.w	loc_20D15C
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 loc_20D15C:
 	sub.w	yposi(a1),d0
@@ -227,10 +227,10 @@ actb_init_b:
 	bra.w	loc_20D2C4
 
 loc_20D2A2:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.b	main_play,d0
 	beq.w	loc_20D2B4
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 loc_20D2B4:
 	move.w	xspeed(a1),d0

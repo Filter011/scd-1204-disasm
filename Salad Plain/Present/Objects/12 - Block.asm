@@ -5,7 +5,7 @@ block:
 	jsr	block_tbl(pc,d0.w)
 	move.w	xposi(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -59,7 +59,7 @@ loc_208F6E:
 block_move2:
 	bsr.w	block_ride
 	addq.w	#2,yposi(a0)
-	move.w	scra_v_posit.w,d0
+	move.w	scra_v_posit,d0
 	addi.w	#224,d0
 	cmp.w	yposi(a0),d0
 	bhs.s	loc_208F8E
@@ -105,9 +105,9 @@ block_move6:
 	rts
 
 block_ride:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	ride_on_chk_b
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 ride_on_chk_b:
 	move.w	xposi(a0),d3

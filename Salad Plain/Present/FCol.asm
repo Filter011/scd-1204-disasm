@@ -2,14 +2,14 @@ fcol:
 	btst	#cd_ride,cddat(a0)
 	beq.s	loc_200AB2
 	moveq	#0,d0
-	move.b	d0,dirstk.w
-	move.b	d0,dirstk2.w
+	move.b	d0,dirstk
+	move.b	d0,dirstk2
 	rts
 
 loc_200AB2:
 	moveq	#3,d0
-	move.b	d0,dirstk.w
-	move.b	d0,dirstk2.w
+	move.b	d0,dirstk
+	move.b	d0,dirstk2
 	move.b	direc(a0),d0
 	addi.b	#$20,d0
 	bpl.s	loc_200AD4
@@ -48,7 +48,7 @@ fcol_d:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
@@ -64,7 +64,7 @@ fcol_d:
 	ext.w	d0
 	neg.w	d0
 	add.w	d0,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
@@ -143,10 +143,10 @@ locret_200BBA:
 	rts
 
 dirchk:
-	move.b	dirstk2.w,d2
+	move.b	dirstk2,d2
 	cmp.w	d0,d1
 	ble.s	loc_200C0E
-	move.b	dirstk.w,d2
+	move.b	dirstk,d2
 	move.w	d0,d1
 
 loc_200C0E:
@@ -173,7 +173,7 @@ fcol_r:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
@@ -188,7 +188,7 @@ fcol_r:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
@@ -232,7 +232,7 @@ fcol_u:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$D,d5
@@ -248,7 +248,7 @@ fcol_u:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$D,d5
@@ -292,7 +292,7 @@ fcol_l:
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$D,d5
@@ -308,7 +308,7 @@ fcol_l:
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$D,d5
@@ -350,7 +350,7 @@ scramapad:
 	andi.w	#$7F,d1
 	add.w	d1,d0
 	move.l	#mapwk,d1
-	lea	mapwka.w,a1
+	lea	mapwka,a1
 	move.b	(a1,d0.w),d1
 	beq.s	loc_200E4A
 	bmi.s	loc_200E4E
@@ -412,7 +412,7 @@ loc_200E9C:
 	rts
 
 loc_200EAA:
-	movea.l	scdadr.w,a2
+	movea.l	scdadr,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_200E9C
@@ -497,7 +497,7 @@ loc_200F5C:
 	rts
 
 loc_200F6A:
-	movea.l	scdadr.w,a2
+	movea.l	scdadr,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_200F5C
@@ -575,7 +575,7 @@ loc_20100C:
 	rts
 
 loc_20101A:
-	movea.l	scdadr.w,a2
+	movea.l	scdadr,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_20100C
@@ -651,7 +651,7 @@ loc_2010BC:
 	rts
 
 loc_2010CA:
-	movea.l	scdadr.w,a2
+	movea.l	scdadr,a2
 	move.b	(a2,d0.w),d0
 	andi.w	#$FF,d0
 	beq.s	loc_2010BC

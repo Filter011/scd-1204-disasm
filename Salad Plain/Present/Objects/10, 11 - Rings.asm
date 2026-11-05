@@ -119,7 +119,7 @@ loc_208AF6:
 ringmove:
 	move.w	act32(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -274,7 +274,7 @@ flyringmove:
 loc_208CEE:
 	tst.b	sys_pattim4
 	beq.s	flyringerase
-	move.w	scralim_down.w,d0
+	move.w	scralim_down,d0
 	addi.w	#224,d0
 	cmp.w	yposi(a0),d0
 	blo.s	flyringerase

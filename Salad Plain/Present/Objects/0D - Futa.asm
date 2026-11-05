@@ -49,9 +49,9 @@ futa_init:
 	jsr	pa_set.l
 
 futa_move:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	ride_on_chk_f
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bra.w	ride_on_chk_f
 
 futa_move2:

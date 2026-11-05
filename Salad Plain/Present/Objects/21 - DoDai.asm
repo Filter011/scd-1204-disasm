@@ -11,7 +11,7 @@ dodai_acttbl:
 	dc.w	dodai_move-dodai_acttbl
 
 ridechk:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	subq.w	#4,d4
@@ -96,7 +96,7 @@ loc_20D782:
 	jsr	dodai_mtype(pc,d0.w)
 	move.w	act38(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -232,11 +232,11 @@ loc_20D8E8:
 	jsr	emycol_d.l
 	tst.w	d1
 	bpl.s	loc_20D8FC
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_ride,cddat(a1)
 
 loc_20D8FC:
-	move.w	scra_v_posit.w,d0
+	move.w	scra_v_posit,d0
 	addi.w	#224,d0
 	cmp.w	yposi(a0),d0
 	bhs.s	locret_20D910

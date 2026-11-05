@@ -64,7 +64,7 @@ backtomove:
 	jmp	frameout.l
 
 muteki_sub:
-	move.w	plposiwkadr.w,d0
+	move.w	plposiwkadr,d0
 	move.b	mstno(a0),d1
 	subq.b	#1,d1
 	cmpi.b	#4,d1
@@ -87,7 +87,7 @@ loc_20594A:
 
 loc_205966:
 	move.b	d1,act30(a0)
-	lea	playposiwk.w,a1
+	lea	playposiwk,a1
 	lea	(a1,d0.w),a1
 	move.w	(a1)+,xposi(a0)
 	move.w	(a1)+,yposi(a0)
@@ -115,7 +115,7 @@ sub_2059B8:
 	subq.b	#2,d0
 	add.w	d0,d0
 	movea.l	off_205A08(pc,d0.w),a1
-	lea	powerupwrtwk.l,a2
+	lea	powerupwrtwk,a2
 	move.w	#(powerupwrtwk_end-powerupwrtwk-$180)/4-1,d0
 
 .loop:

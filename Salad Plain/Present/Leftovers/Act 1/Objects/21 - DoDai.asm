@@ -10,7 +10,7 @@ off_20F35E:
 	dc.w	loc_20F446-off_20F35E
 
 sub_20F362:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jmp	$209E14.l
@@ -91,7 +91,7 @@ loc_20F452:
 	jsr	off_20F48A(pc,d0.w)
 	move.w	act38(a0),d0
 	andi.w	#$FF80,d0
-	move.w	scra_h_posit.w,d1
+	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
@@ -213,14 +213,14 @@ loc_20F584:
 loc_20F592:
 	jsr	$205124.l
 	addi.w	#$18,yspeed(a0)
-	move.w	scra_v_posit.w,d0
+	move.w	scra_v_posit,d0
 	addi.w	#224,d0
 	cmp.w	yposi(a0),d0
 	bhs.s	loc_20F5B2
 	jmp	$2051FE.l
 
 loc_20F5B2:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bclr	#cd_ride,cddat(a1)
 	rts
 

@@ -24,9 +24,9 @@ iwa_init:
 iwa_move:
 	tst.b	actflg(a0)
 	bpl.s	locret_2083D8
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	ride_on_chk_iwa
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 ride_on_chk_iwa:
 	move.w	xposi(a0),d3

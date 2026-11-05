@@ -54,7 +54,7 @@ t_item_move0:
 	move.b	#-1,time_item.w
 	cmpi.b	#8,userflag(a0)
 	beq.s	locret_209152
-	move.b	#1,time_item.w
+	move.b	#1,time_item
 
 locret_209152:
 	rts
@@ -146,9 +146,9 @@ itemmove:
 loc_20925A:
 	tst.b	actflg(a0)
 	bpl.s	itemmove2
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	ride_on_chk_i
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.w	ride_on_chk_i
 
 itemmove2:
@@ -259,7 +259,7 @@ item2_02:
 
 sub_2093D8:
 	move.b	#1,plpower_b
-	move.b	#baria_act,bariawk.w
+	move.b	#baria_act,bariawk
 	move.w	#se_AF,d0
 	jmp	bgmset.l
 
@@ -270,14 +270,14 @@ item2_03:
 sub_2093F6:
 	move.b	#1,plpower_m
 	move.w	#1200,mutekitimer(a6)
-	move.b	#baria_act,mutekiwk.w
-	move.b	#1,mutekiwk+mstno.w
-	move.b	#baria_act,muteki2wk.w
-	move.b	#2,muteki2wk+mstno.w
-	move.b	#baria_act,muteki3wk.w
-	move.b	#3,muteki3wk+mstno.w
-	move.b	#baria_act,muteki4wk.w
-	move.b	#4,muteki4wk+mstno.w
+	move.b	#baria_act,mutekiwk
+	move.b	#1,mutekiwk+mstno
+	move.b	#baria_act,muteki2wk
+	move.b	#2,muteki2wk+mstno
+	move.b	#baria_act,muteki3wk
+	move.b	#3,muteki3wk+mstno
+	move.b	#baria_act,muteki4wk
+	move.b	#4,muteki4wk+mstno
 	tst.b	bossstart.w
 	bne.s	locret_20944E
 	cmpi.w	#12,pl_air
@@ -295,9 +295,9 @@ item2_04:
 loc_209456:
 	move.b	#1,plpower_s
 	move.w	#1200,speeduptimer(a6)
-	move.w	#$C00,plmaxspdwk.w
-	move.w	#$18,pladdspdwk.w
-	move.w	#$80,plretspdwk.w
+	move.w	#$C00,plmaxspdwk
+	move.w	#$18,pladdspdwk
+	move.w	#$80,plretspdwk
 	move.w	#utl_E2,d0
 	jmp	bgmset.l
 

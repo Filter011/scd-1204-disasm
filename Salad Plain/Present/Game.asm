@@ -17,12 +17,12 @@ game:
 	move.b	#1,pl_suu
 
 loc_2011FE:
-	bset	#7,gmmode.w
+	bset	#7,gmmode
 	bsr.w	sub_20208C
 	btst	#7,time_flag
 	beq.s	loc_20122C
 	bsr.w	flashout
-	clr.b	time_item.w
+	clr.b	time_item
 	tst.w	gameflag
 	beq.s	loc_201256
 	move.w	#0,gameflag
@@ -59,7 +59,7 @@ loc_20126C:
 	clr.b	plsubchg_flag
 	clr.l	flowercnt
 
-	lea	actwk.w,a1
+	lea	actwk,a1
 	moveq	#0,d0
 	move.w	#(actwk_end-actwk)/4-1,d1
 
@@ -67,7 +67,7 @@ loc_201288:
 	move.l	d0,(a1)+
 	dbf	d1,loc_201288
 
-	lea	intcnt.w,a1
+	lea	intcnt,a1
 	moveq	#0,d0
 	move.w	#(divdevwk-intcnt)/4-1,d1
 
@@ -75,7 +75,7 @@ loc_201298:
 	move.l	d0,(a1)+
 	dbf	d1,loc_201298
 
-	lea	scra_h_posit.w,a1
+	lea	scra_h_posit,a1
 	moveq	#0,d0
 	move.w	#(sprdat-scra_h_posit)/4-1,d1
 
@@ -93,50 +93,50 @@ loc_2012A8:
 	move.w	#$9000+%00000001,(a6)
 	move.w	#$8000+%00000100,(a6)
 	move.w	#$8700+%00100000,(a6)
-	move.w	#$8A00+223,hintposi.w
-	move.w	hintposi.w,(a6)
+	move.w	#$8A00+223,hintposi
+	move.w	hintposi,(a6)
 	move.w	#30,pl_air
 	move.w	#$2300,sr
 	moveq	#colorgame,d0
 	bsr.w	colorset2
 	moveq	#colorgame,d0
 	bsr.w	colorset
-	move.w	word_FFF60C.w,d0
+	move.w	word_FFF60C,d0
 	ori.b	#%01000000,d0
 	move.w	d0,vdp_cmd
 
 loc_201308:
-	move.b	#int_0C,int_flg.w
+	move.b	#int_0C,int_flg
 	bsr.w	sync
 	bsr.w	sub_20209A
 	bne.s	loc_201308
-	tst.l	divdevwk.w
+	tst.l	divdevwk
 	bne.s	loc_201308
 	bsr.w	scr_set
 	bsr.w	scroll
-	bset	#2,scrflaga.w
+	bset	#2,scrflaga
 	bsr.w	mapinit
 	bsr.w	mapwrt
 	jsr	scdcnv.l
 	bsr.w	scdset
 
 loc_20133E:
-	move.b	#int_0C,int_flg.w
+	move.b	#int_0C,int_flg
 	bsr.w	sync
 	bsr.w	sub_20209A
 	bne.s	loc_20133E
-	tst.l	divdevwk.w
+	tst.l	divdevwk
 	bne.s	loc_20133E
 	bsr.w	play_act_set
-	move.b	#score_act,scorewk.w
-	move.b	#score_act,score2wk.w
-	move.b	#1,score2wk+userflag.w
+	move.b	#score_act,scorewk
+	move.b	#score_act,score2wk
+	move.b	#1,score2wk+userflag
 	bsr.w	sub_2015E8
-	move.w	#0,swdata.w
-	move.w	#0,swdata1.w
-	move.w	#0,swdata2.w
-	move.w	#0,byecnt0.w
-	move.w	#0,byecnt1.w
+	move.w	#0,swdata
+	move.w	#0,swdata1
+	move.w	#0,swdata2
+	move.w	#0,byecnt0
+	move.w	#0,byecnt1
 	moveq	#0,d0
 	tst.b	plflag
 	bne.s	loc_2013A8
@@ -157,8 +157,8 @@ loc_2013A8:
 	move.b	#1,plring_f
 	move.b	#1,pltime_f
 	move.b	#1,pl_suu_f
-	move.w	#0,swbufcnt.w
-	move.w	#$202F,startcolor.w
+	move.w	#0,swbufcnt
+	move.w	#$202F,startcolor
 	bclr	#7,time_flag
 	beq.s	loc_201414
 	bsr.w	flashin
@@ -168,10 +168,10 @@ loc_201414:
 	bsr.w	fadein0
 
 loc_201418:
-	bclr	#7,gmmode.w
+	bclr	#7,gmmode
 
 game_loop:
-	move.b	#int_08,int_flg.w
+	move.b	#int_08,int_flg
 	bsr.w	sync
 	addq.w	#1,gametimer
 	jsr	actsetchk.l
@@ -180,7 +180,7 @@ game_loop:
 	bne.w	game
 	tst.w	editmode
 	bne.s	.jump
-	cmpi.b	#6,playerwk+r_no0.w
+	cmpi.b	#6,playerwk+r_no0
 	bhs.s	.jump1
 
 .jump:
@@ -199,11 +199,11 @@ game_loop:
 	bra.w	game_loop
 
 play_act_set:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	moveq	#play00_act,d0
 	tst.b	main_play
 	beq.s	loc_201490
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	moveq	#objid_02,d0
 
 loc_201490:
@@ -218,7 +218,7 @@ flow_act_set:
 	move.b	(a1,d0.w),d0
 	beq.s	locret_2014EE
 	subq.b	#1,d0
-	lea	byte_FFD800.w,a2
+	lea	byte_FFD800,a2
 	moveq	#0,d1
 
 .loop:
@@ -245,7 +245,7 @@ scdset:
 	moveq	#0,d0
 	move.b	stageno,d0
 	lsl.w	#2,d0
-	move.l	zonescdtbl(pc,d0.w),scdadr.w
+	move.l	zonescdtbl(pc,d0.w),scdadr
 	rts
 
 zonescdtbl:

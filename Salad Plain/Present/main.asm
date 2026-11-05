@@ -65,8 +65,8 @@ init:
 .jump1:
 	bsr.w	vdpinit
 	bsr.w	sw_init
-	move.b	#gamemd,gmmode.w
-	move.b	gmmode.w,d0
+	move.b	#gamemd,gmmode
+	move.b	gmmode,d0
 	andi.w	#%00011100,d0
 	jmp	gmmodetbl(pc,d0.w)
 
@@ -87,7 +87,7 @@ gamemd:	gmmode_ptr	game
 	include	"IO.asm"
 
 z80bus_on:
-	move.w	sr,int_sts.w
+	move.w	sr,int_sts
 	move.w	#$2700,sr
 	move.w	#$100,z80busreq
 
@@ -98,7 +98,7 @@ z80bus_on:
 
 z80bus_off:
 	move.w	#$000,z80busreq
-	move.w	int_sts.w,sr
+	move.w	int_sts,sr
 	rts
 
 soundinit:
@@ -134,30 +134,30 @@ soundinit:
 	jmp	z80bus_off(pc)
 
 bgmset:
-;	move.b	d0,sound_ram+buf1.w
+;	move.b	d0,sound_ram+buf1
 	rts
 
 soundset:
-	move.b	d0,sound_ram+buf2.w
+	move.b	d0,sound_ram+buf2
 	rts
 
 backsoundset:
-	move.b	d0,sound_ram+buf3.w
+	move.b	d0,sound_ram+buf3
 	rts
 
 sound:
 	jsr	z80bus_on.l
-	tst.b	sound_ram+buf2.w
+	tst.b	sound_ram+buf2
 	beq.s	.jump
-	move.b	sound_ram+buf2.w,z80ram+KYFLAG0
-	move.b	#0,sound_ram+buf2.w
+	move.b	sound_ram+buf2,z80ram+KYFLAG0
+	move.b	#0,sound_ram+buf2
 	bra.s	.jump1
 
 .jump:
-	tst.b	sound_ram+buf3.w
+	tst.b	sound_ram+buf3
 	beq.s	.jump1
-	move.b	sound_ram+buf3.w,z80ram+KYFLAG0
-	move.b	#0,sound_ram+buf3.w
+	move.b	sound_ram+buf3,z80ram+KYFLAG0
+	move.b	#0,sound_ram+buf3
 
 .jump1:
 	jmp	z80bus_off.l
@@ -601,19 +601,19 @@ loc_209BA8:
 	move.w	#$C00,sproffset(a0)
 	move.w	#$1400,sproffset(a0)
 	move.w	#$24FC,sproffset(a0)
-	move.l	playerwk+xposi.w,d0
+	move.l	playerwk+xposi,d0
 	addi.l	#$A0000,d0
 	move.l	d0,xposi(a0)
-	move.l	playerwk+yposi.w,d0
+	move.l	playerwk+yposi,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	rts
 
 loc_209BFC:
-	move.l	playerwk+xposi.w,d0
+	move.l	playerwk+xposi,d0
 	addi.l	#$A0000,d0
 	move.l	d0,xposi(a0)
-	move.l	playerwk+yposi.w,d0
+	move.l	playerwk+yposi,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	move.b	#0,mstno(a0)
@@ -699,7 +699,7 @@ loc_209D12:
 	rts
 
 loc_209D2A:
-	move.w	playerwk+xposi.w,d1
+	move.w	playerwk+xposi,d1
 	move.w	xposi(a0),d0
 	move.w	d1,d2
 	addi.w	#$32,d1
@@ -829,7 +829,7 @@ loc_209EBA:
 	rts
 
 sub_209ED2:
-	move.w	playerwk+xposi.w,d1
+	move.w	playerwk+xposi,d1
 	move.w	xposi(a0),d0
 	move.w	d1,d2
 	addi.w	#$32,d1
@@ -2724,7 +2724,7 @@ loc_20B5CE:
 
 random:
 	move.l	d1,-(sp)
-	move.l	ranum.w,d1
+	move.l	ranum,d1
 	bne.s	.jump
 	move.l	#$2A6D365A,d1
 
@@ -2739,7 +2739,7 @@ random:
 	add.w	d1,d0
 	move.w	d0,d1
 	swap	d1
-	move.l	d1,ranum.w
+	move.l	d1,ranum
 	move.l	(sp)+,d1
 	rts
 
@@ -2759,19 +2759,19 @@ loc_20B612:
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#$47A,sproffset(a0)
-	move.l	playerwk+xposi.w,d0
+	move.l	playerwk+xposi,d0
 	addi.l	#$32,d0
 	move.l	d0,xposi(a0)
-	move.l	playerwk+yposi.w,d0
+	move.l	playerwk+yposi,d0
 	addi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	rts
 
 loc_20B654:
-	move.l	playerwk+xposi.w,d0
+	move.l	playerwk+xposi,d0
 	addi.l	#$320000,d0
 	move.l	d0,xposi(a0)
-	move.l	playerwk+yposi.w,d0
+	move.l	playerwk+yposi,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
 	lea	obj26_ani.l,a1
@@ -2780,7 +2780,7 @@ loc_20B654:
 	rts
 
 sub_20B684:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	yspeed(a1),d1
 	bmi.w	loc_20B694
 	bra.w	loc_20B6EC
@@ -2790,7 +2790,7 @@ loc_20B694:
 	bclr	#3,cddat(a0)
 	rts
 
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	yspeed(a1),d1
 	bpl.w	loc_20B6AE
 	bra.w	loc_20B6EC
@@ -2800,7 +2800,7 @@ loc_20B6AE:
 	bclr	#3,cddat(a0)
 	rts
 
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xspeed(a1),d1
 	bmi.w	loc_20B6C8
 	bra.w	loc_20B6EC
@@ -2810,7 +2810,7 @@ loc_20B6C8:
 	bclr	#3,cddat(a0)
 	rts
 
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xspeed(a1),d1
 	bpl.w	loc_20B6E2
 	bra.w	loc_20B6EC
@@ -2843,7 +2843,7 @@ loc_20B722:
 	andi.w	#$FF,d0
 	asl.w	#2,d0
 	lea	(a2,d0.w),a2
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xposi(a0),d0
 	move.w	xposi(a1),d1
 	move.b	sprhs(a1),d3
@@ -3429,7 +3429,7 @@ enecginit:
 	lea	word_20DC28(pc),a1
 	moveq	#0,d0
 	moveq	#0,d1
-	move.w	scra_h_posit.w,d0
+	move.w	scra_h_posit,d0
 
 loc_20DBE2:
 	cmp.w	(a1)+,d0
@@ -3446,7 +3446,7 @@ sub_20DBFA:
 	lea	word_20DC28(pc),a1
 	moveq	#0,d0
 	moveq	#0,d1
-	move.w	scra_h_posit.w,d0
+	move.w	scra_h_posit,d0
 
 loc_20DC06:
 	cmp.w	(a1)+,d0

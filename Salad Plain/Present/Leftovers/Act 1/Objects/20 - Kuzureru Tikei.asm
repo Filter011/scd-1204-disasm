@@ -53,8 +53,8 @@ loc_20EEFA:
 	bpl.s	locret_20EF2E
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	lea	playerwk.w,a3
-	lea	player2wk.w,a1
+	lea	playerwk,a3
+	lea	player2wk,a1
 	move.b	main_play,d0
 	beq.w	loc_20EF1C
 	exg.l	a1,a3
@@ -85,9 +85,9 @@ loc_20EF50:
 	beq.w	locret_20EF82
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.w	sub_20EF6C
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 sub_20EF6C:
 	jsr	$209E14.l
@@ -104,10 +104,10 @@ loc_20EF84:
 	add.l	d0,yposi(a0)
 	addi.l	#$4000,act2C(a0)
 	move.w	yposi(a0),d0
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.b	main_play,d1
 	beq.w	loc_20EFAA
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 loc_20EFAA:
 	sub.w	yposi(a1),d0
@@ -226,10 +226,10 @@ loc_20F0B0:
 	bra.w	loc_20F112
 
 loc_20F0F0:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.b	main_play,d0
 	beq.w	loc_20F102
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 
 loc_20F102:
 	move.w	xspeed(a1),d0

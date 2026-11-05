@@ -58,7 +58,7 @@ scoreset:
 	bne.w	.jump4
 	tst.b	pltime_f
 	beq.s	.jump4
-	tst.w	pauseflag.w
+	tst.w	pauseflag
 	bne.s	.jump4
 	lea	pltime,a1
 	cmpi.l	#(9<<16)+(59<<8)+59,(a1)+
@@ -102,15 +102,15 @@ scoreset:
 	bsr.w	playsuuwrt
 
 .jump5:
-;	tst.b	bonus_f.w
+;	tst.b	bonus_f
 ;	beq.s	.jump6
-;	clr.b	bonus_f.w
+;	clr.b	bonus_f
 ;	move.l	#$6E000002,vdp_cmd
 ;	moveq	#0,d1
-;	move.w	timebonus.w,d1
+;	move.w	timebonus,d1
 ;	bsr.w	bonuswrt
 ;	moveq	#0,d1
-;	move.w	ringbonus.w,d1
+;	move.w	ringbonus,d1
 ;	bsr.w	bonuswrt
 
 ;.jump6:
@@ -118,7 +118,7 @@ scoreset:
 
 .timeover:
 	clr.b	pltime_f
-	lea	playerwk.w,a0
+	lea	playerwk,a0
 	movea.l	a0,a2
 	bsr.w	playdieset
 	move.b	#1,pltimeover_f
@@ -141,7 +141,7 @@ scoreset:
 ;.jump2:
 ;	move.l	#$5EC00003,d0
 ;	moveq	#0,d1
-;	move.b	linkdata.w,d1
+;	move.b	linkdata,d1
 ;	bsr.w	timewrt
 
 ;.jump3:
@@ -151,15 +151,15 @@ scoreset:
 ;	bsr.w	playsuuwrt
 
 ;.jump4:
-;	tst.b	bonus_f.w
+;	tst.b	bonus_f
 ;	beq.s	.jump5
-;	clr.b	bonus_f.w
+;	clr.b	bonus_f
 ;	move.l	#$6E000002,vdp_cmd
 ;	moveq	#0,d1
-;	move.w	timebonus.w,d1
+;	move.w	timebonus,d1
 ;	bsr.w	bonuswrt
 ;	moveq	#0,d1
-;	move.w	ringbonus.w,d1
+;	move.w	ringbonus,d1
 ;	bsr.w	bonuswrt
 
 ;.jump5:
@@ -216,16 +216,16 @@ ringinittbl:
 posiwrt:
 ;	move.l	#$5C400003,vdp_cmd
 	move.l	#$70E00002,d0
-;	move.w	scra_h_posit.w,d1
+;	move.w	scra_h_posit,d1
 ;	swap	d1
 	moveq	#0,d1
-	move.w	playerwk+xposi.w,d1
+	move.w	playerwk+xposi,d1
 ;	bsr.s	hexwrtw
 	bsr.w	posiwrt0
-;	move.w	scra_v_posit.w,d1
+;	move.w	scra_v_posit,d1
 ;	swap	d1
 	move.l	#$72200002,d0
-	move.w	playerwk+yposi.w,d1
+	move.w	playerwk+yposi,d1
 	bra.w	posiwrt0
 
 ;hexwrtw:

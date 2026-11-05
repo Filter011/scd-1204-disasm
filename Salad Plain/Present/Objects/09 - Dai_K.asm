@@ -34,7 +34,7 @@ dai_k_init:
 dai_k_move:
 	tst.b	actflg(a0)
 	bpl.w	locret_2081BC
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	bsr.s	sub_2080EA
 	beq.s	loc_208166
 	bsr.s	sub_208172
@@ -44,7 +44,7 @@ loc_208166:
 	bsr.s	sub_2081A6
 
 loc_208168:
-	lea	player2wk.w,a1
+	lea	player2wk,a1
 	bsr.w	sub_2080EA
 	beq.s	sub_2081A6
 
@@ -101,10 +101,10 @@ loc_2081BE:
 	addq.b	#1,act39(a1)
 
 loc_2081FE:
-	move.w	swdata1.w,swdata.w
+	move.w	swdata1,swdata
 	_cmpi.b	#play00_act,actno(a1)
 	beq.s	loc_208212
-	move.w	swdata2.w,swdata.w
+	move.w	swdata2,swdata
 
 loc_208212:
 	bsr.w	k_move
@@ -134,13 +134,13 @@ k_move:
 	move.w	xposi(a1),d0
 	sub.w	xposi(a0),d0
 	bhs.s	loc_20825A
-	btst	#2,swdata.w
+	btst	#2,swdata
 	beq.s	loc_208244
 	addq.b	#1,act39(a1)
 	bra.s	locret_20827C
 
 loc_208244:
-	btst	#3,swdata.w
+	btst	#3,swdata
 	beq.s	locret_20827C
 	subq.b	#1,act39(a1)
 	bhs.s	locret_20827C
@@ -148,13 +148,13 @@ loc_208244:
 	bra.s	locret_20827C
 
 loc_20825A:
-	btst	#3,swdata.w
+	btst	#3,swdata
 	beq.s	loc_208268
 	addq.b	#1,act39(a1)
 	bra.s	locret_20827C
 
 loc_208268:
-	btst	#2,swdata.w
+	btst	#2,swdata
 	beq.s	locret_20827C
 	subq.b	#1,act39(a1)
 	bhs.s	locret_20827C
@@ -164,7 +164,7 @@ locret_20827C:
 	rts
 
 jumpchk_d:
-	move.b	swdata+1.w,d0
+	move.b	swdata+1,d0
 	andi.b	#$70,d0
 	beq.w	locret_208332
 	move.w	#$680,d2
@@ -189,7 +189,7 @@ loc_20829A:
 	clr.b	convexflag(a1)
 	move.w	#se_A0,d0
 	jsr	soundset.l
-	tst.b	chibi_flag.w
+	tst.b	chibi_flag
 	beq.s	loc_2082EE
 	move.b	#chibiheight,sprvsize(a1)
 	move.b	#chibiwidth,sprhs(a1)
@@ -202,7 +202,7 @@ loc_2082EE:
 loc_2082FA:
 	btst	#cd_ball,cddat(a1)
 	bne.s	loc_208334
-	tst.b	chibi_flag.w
+	tst.b	chibi_flag
 	beq.s	loc_208316
 	move.b	#chibiheight,sprvsize(a1)
 	move.b	#chibiwidth,sprhs(a1)

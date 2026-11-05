@@ -35,7 +35,7 @@ locret_20E6D8:
 	rts
 
 loc_20E6DA:
-	lea	playerwk.w,a1
+	lea	playerwk,a1
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jsr	$209E14.l

@@ -1,5 +1,5 @@
 action:
-	lea	actwk.w,a0
+	lea	actwk,a0
 	moveq	#(actwk_end-actwk)/actfree-1,d7
 	moveq	#0,d0
 
@@ -93,7 +93,7 @@ actionsub:
 	beq.s	loc_203204
 	move.b	sprhsize(a0),d0
 	move.w	xposi(a0),d3
-	sub.w	scra_h_posit.w,d3
+	sub.w	scra_h_posit,d3
 	move.w	d3,d1
 	add.w	d0,d1
 	bmi.s	locret_203220
@@ -103,7 +103,7 @@ actionsub:
 	bge.s	locret_203220
 	move.b	sprvsize(a0),d0
 	move.w	yposi(a0),d3
-	sub.w	scra_v_posit.w,d3
+	sub.w	scra_v_posit,d3
 	move.w	d3,d1
 	add.w	d0,d1
 	bmi.s	locret_203220
@@ -113,7 +113,7 @@ actionsub:
 	bge.s	locret_203220
 
 loc_203204:
-	lea	pbuffer.w,a1
+	lea	pbuffer,a1
 	move.w	sprpri(a0),d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
@@ -127,7 +127,7 @@ loc_203204:
 locret_203220:
 	rts
 
-	lea	pbuffer.w,a2
+	lea	pbuffer,a2
 	move.w	sprpri(a1),d0
 	lsr.w	#1,d0
 	andi.w	#$380,d0
@@ -159,9 +159,9 @@ patsettbl:
 	dc.l	scrz_h_posit&$FFFFFF
 
 patset:
-	lea	sprdat.w,a2
+	lea	sprdat,a2
 	moveq	#0,d5
-	lea	pbuffer.w,a4
+	lea	pbuffer,a4
 	moveq	#8-1,d7
 
 loc_20326A:
@@ -231,7 +231,7 @@ loc_203302:
 	lea	$80(a4),a4
 	dbf	d7,loc_20326A
 
-	move.b	d5,linkdata.w
+	move.b	d5,linkdata
 	cmpi.b	#80,d5
 	beq.s	loc_20331C
 	move.l	#0,(a2)
@@ -397,12 +397,12 @@ locret_203450:
 
 scronchk:
 	move.w	xposi(a0),d0
-	sub.w	scra_h_posit.w,d0
+	sub.w	scra_h_posit,d0
 	bmi.s	loc_203476
 	cmpi.w	#320,d0
 	bge.s	loc_203476
 	move.w	yposi(a0),d1
-	sub.w	scra_v_posit.w,d1
+	sub.w	scra_v_posit,d1
 	bmi.s	loc_203476
 	cmpi.w	#224,d1
 	bge.s	loc_203476
@@ -417,7 +417,7 @@ scronchk2:
 	moveq	#0,d1
 	move.b	sprhsize(a0),d1
 	move.w	xposi(a0),d0
-	sub.w	scra_h_posit.w,d0
+	sub.w	scra_h_posit,d0
 	add.w	d1,d0
 	bmi.s	loc_2034AA
 	add.w	d1,d1
@@ -425,7 +425,7 @@ scronchk2:
 	cmpi.w	#320,d0
 	bge.s	loc_2034AA
 	move.w	yposi(a0),d1
-	sub.w	scra_v_posit.w,d1
+	sub.w	scra_v_posit,d1
 	bmi.s	loc_2034AA
 	cmpi.w	#224,d1
 	bge.s	loc_2034AA

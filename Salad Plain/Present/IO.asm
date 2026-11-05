@@ -8,7 +8,7 @@ sw_init:				;port initial
 	bra.w	z80bus_off
 
 read_sw:
-	lea	swdata1.w,a0		;switch data store address
+	lea	swdata1,a0		;switch data store address
 	lea	port_1,a1		;port for p1
 	bsr.s	.rs_0
 	addq.w	#2,a1			;a1 = port_2
@@ -46,8 +46,8 @@ vdpinit:
 	dbf	d7,.loop
 
 	move.w	vdptbl+2.l,d0
-	move.w	d0,word_FFF60C.w
-	move.w	#$8A00+223,hintposi.w
+	move.w	d0,word_FFF60C
+	move.w	#$8A00+223,hintposi
 	moveq	#$000,d0
 	move.l	#$C0000000,vdp_cmd
 	move.w	#$80/2-1,d7
@@ -56,8 +56,8 @@ vdpinit:
 	move.w	d0,(a1)
 	dbf	d7,.loop1
 
-	clr.l	vscroll.w
-	clr.l	hscroll.w
+	clr.l	vscroll
+	clr.l	hscroll
 
 	move.l	d1,-(sp)
 
@@ -126,10 +126,10 @@ loc_201DC6:
 	bne.s	loc_201DC6
 	move.w	#$8F00+%00000010,(a5)
 
-	clr.l	vscroll.w
-	clr.l	hscroll.w
+	clr.l	vscroll
+	clr.l	hscroll
 
-	lea	sprdat.w,a1
+	lea	sprdat,a1
 	moveq	#0,d0
 	move.w	#(sprdat_end-sprdat)/4,d1
 
@@ -137,7 +137,7 @@ loc_201DC6:
 	move.l	d0,(a1)+
 	dbf	d1,.loop
 
-	lea	hscrollwork.w,a1
+	lea	hscrollwork,a1
 	moveq	#0,d0
 	move.w	#(hscrollwork_end_padded-hscrollwork)/4,d1
 

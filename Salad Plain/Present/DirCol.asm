@@ -11,8 +11,8 @@ dircol:
 	add.l	d1,d2
 	swap	d2
 	swap	d3
-	move.b	d0,dirstk.w
-	move.b	d0,dirstk2.w
+	move.b	d0,dirstk
+	move.b	d0,dirstk2
 	move.b	d0,d1
 	addi.b	#$20,d0
 	bpl.s	loc_206018
@@ -47,8 +47,8 @@ loc_20603A:
 	bra.w	dircol_r3
 
 dircol2:
-	move.b	d0,dirstk.w
-	move.b	d0,dirstk2.w
+	move.b	d0,dirstk
+	move.b	d0,dirstk2
 	addi.b	#$20,d0
 	andi.b	#$C0,d0
 	cmpi.b	#$40,d0
@@ -68,7 +68,7 @@ dircol_d:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
@@ -83,7 +83,7 @@ dircol_d:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
@@ -92,10 +92,10 @@ dircol_d:
 	move.b	#0,d2
 
 dircolchk:
-	move.b	dirstk2.w,d3
+	move.b	dirstk2,d3
 	cmp.w	d0,d1
 	ble.s	loc_2060E0
-	move.b	dirstk.w,d3
+	move.b	dirstk,d3
 	exg.l	d0,d1
 
 loc_2060E0:
@@ -112,7 +112,7 @@ dircol_d2:
 
 dircol_d3:
 	addi.w	#$A,d2
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
@@ -120,7 +120,7 @@ dircol_d3:
 	move.b	#0,d2
 
 dircolchk1:
-	move.b	dirstk.w,d3
+	move.b	dirstk,d3
 	btst	#0,d3
 	beq.s	locret_20611A
 	move.b	d2,d3
@@ -135,13 +135,13 @@ emycol_d:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d2
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	move.b	#0,(a4)
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	scdchk.l
-	move.b	dirstk.w,d3
+	move.b	dirstk,d3
 	btst	#0,d3
 	beq.s	locret_206154
 	move.b	#0,d3
@@ -159,7 +159,7 @@ dircol_r:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
@@ -174,7 +174,7 @@ dircol_r:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
@@ -189,7 +189,7 @@ dircol_r2:
 
 dircol_r3:
 	addi.w	#$A,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
@@ -200,13 +200,13 @@ dircol_r3:
 emycol_r:
 	add.w	xposi(a0),d3
 	move.w	yposi(a0),d2
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	move.b	#0,(a4)
 	movea.w	#$10,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
-	move.b	dirstk.w,d3
+	move.b	dirstk,d3
 	btst	#0,d3
 	beq.s	locret_206214
 	move.b	#-$40,d3
@@ -225,7 +225,7 @@ dircol_u:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
@@ -241,7 +241,7 @@ dircol_u:
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
@@ -257,7 +257,7 @@ dircol_u2:
 dircol_u3:
 	subi.w	#$A,d2
 	eori.w	#$F,d2
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
@@ -273,12 +273,12 @@ emycol_u:
 	ext.w	d0
 	sub.w	d0,d2
 	eori.w	#$F,d2
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	scdchk.l
-	move.b	dirstk.w,d3
+	move.b	dirstk,d3
 	btst	#0,d3
 	beq.s	locret_2062EA
 	move.b	#$80,d3
@@ -297,7 +297,7 @@ dircol_l:
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
@@ -313,7 +313,7 @@ dircol_l:
 	ext.w	d0
 	sub.w	d0,d3
 	eori.w	#$F,d3
-	lea	dirstk2.w,a4
+	lea	dirstk2,a4
 	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
@@ -329,7 +329,7 @@ dircol_l2:
 dircol_l3:
 	subi.w	#$A,d3
 	eori.w	#$F,d3
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
@@ -340,13 +340,13 @@ dircol_l3:
 emycol_l:
 	add.w	xposi(a0),d3
 	move.w	yposi(a0),d2
-	lea	dirstk.w,a4
+	lea	dirstk,a4
 	move.b	#0,(a4)
 	movea.w	#-$10,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
-	move.b	dirstk.w,d3
+	move.b	dirstk,d3
 	btst	#0,d3
 	beq.s	locret_2063B6
 	move.b	#$40,d3

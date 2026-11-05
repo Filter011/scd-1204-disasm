@@ -512,7 +512,7 @@ byte_20EE5E:
 	lea	word_20F8B0(pc),a1
 	moveq	#0,d0
 	moveq	#0,d1
-	move.w	scra_h_posit.w,d0
+	move.w	scra_h_posit,d0
 
 loc_20F88E:
 	cmp.w	(a1)+,d0
