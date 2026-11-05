@@ -38,7 +38,7 @@ loc_FF0116:
 	move.b	byte_FF0166(pc,d0.w),time_flag
 	move.b	byte_FF0167(pc,d0.w),generate_flag
 	move.w	word_FF0162(pc,d0.w),d0
-	move.b	#0,ta_flag&$FFFFFF
+	move.b	#0,ta_flag
 	bsr.w	sub_FF0286
 	bra.w	loc_FF0116
 
@@ -101,7 +101,7 @@ loc_FF01A4:
 
 loc_FF01AE:
 	move.b	#1,time_flag
-	move.b	#0,ta_flag&$FFFFFF
+	move.b	#0,ta_flag
 	bsr.w	sub_FF01D8
 	tst.b	pl_suu
 	beq.s	loc_FF01CE
@@ -170,7 +170,7 @@ loc_FF0254:
 	beq.w	loc_FF0116
 	add.w	d0,d0
 	move.w	word_FF0282-2(pc,d0.w),d0
-	move.b	#1,ta_flag&$FFFFFF
+	move.b	#1,ta_flag
 	bsr.w	sub_FF0286
 	move.l	pltime,$FF0590
 	bra.s	loc_FF0254

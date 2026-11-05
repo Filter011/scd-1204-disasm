@@ -1,9 +1,7 @@
-	phase	$FFFF0000
+	phase	$FF0000
 	ds.b	$580
 ta_flag:		ds.b	1
 	ds.b	$A7F
-	dephase
-	phase	$FF1000
 stacksave:		ds.b	$200
 stacksave_end:
 	ds.b	2
