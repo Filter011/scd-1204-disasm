@@ -1,11 +1,11 @@
 bitdevr:
-	movem.l d0-a1/a3-a5,-(sp)
+	movem.l	d0-a1/a3-a5,-(sp)
 	lea	write_pixels.l,a3
 	lea	vdp_dat,a4
 	bra.s	bitdevr_sub
 
 bitdevr_work:
-	movem.l d0-a1/a3-a5,-(sp)
+	movem.l	d0-a1/a3-a5,-(sp)
 	lea	loc_201FC6.l,a3
 
 bitdevr_sub:
@@ -17,7 +17,7 @@ bitdevr_sub:
 
 loc_201F18:
 	lsl.w	#2,d2
-	movea.w d2,a5
+	movea.w	d2,a5
 	moveq	#8,d3
 	moveq	#0,d2
 	moveq	#0,d4
@@ -27,7 +27,7 @@ loc_201F18:
 	move.b	(a0)+,d5
 	move.w	#16,d6
 	bsr.s	sub_201F38
-	movem.l (sp)+,d0-a1/a3-a5
+	movem.l	(sp)+,d0-a1/a3-a5
 	rts
 
 sub_201F38:
@@ -172,7 +172,7 @@ loc_202016:
 	bra.s	loc_201FE8
 
 divdevset:
-	movem.l a1-a2,-(sp)
+	movem.l	a1-a2,-(sp)
 	lea	divdevtbl.l,a1
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
@@ -195,11 +195,11 @@ divdevset:
 	dbf	d0,.loop
 
 .end:
-	movem.l (sp)+,a1-a2
+	movem.l	(sp)+,a1-a2
 	rts
 
 divdevset2:
-	movem.l a1-a2,-(sp)
+	movem.l	a1-a2,-(sp)
 	lea	divdevtbl.l,a1
 	add.w	d0,d0
 	move.w	(a1,d0.w),d0
@@ -215,7 +215,7 @@ divdevset2:
 	dbf	d0,.loop
 
 .end:
-	movem.l (sp)+,a1-a2
+	movem.l	(sp)+,a1-a2
 	rts
 
 sub_20208C:
@@ -233,7 +233,7 @@ sub_20209A:
 	beq.s	locret_2020EE
 	tst.w	bitdevcnt
 	bne.s	locret_2020EE
-	movea.l divdevwk,a0
+	movea.l	divdevwk,a0
 	lea	write_pixels.l,a3
 	lea	bitdevwk,a1
 	move.w	(a0)+,d2
@@ -285,8 +285,8 @@ loc_202124:
 	swap	d0
 	move.l	d0,(a4)
 	subq.w	#4,a4
-	movea.l divdevwk,a0
-	movea.l bitdevadr,a3
+	movea.l	divdevwk,a0
+	movea.l	bitdevadr,a3
 	move.l	bitdev_d0,d0
 	move.l	bitdev_d1,d1
 	move.l	bitdev_d2,d2
@@ -295,7 +295,7 @@ loc_202124:
 	lea	bitdevwk,a1
 
 loc_202158:
-	movea.w #8,a5
+	movea.w	#8,a5
 	bsr.w	sub_201F7A
 	subq.w	#1,bitdevcnt
 	beq.s	loc_20218A
@@ -330,7 +330,7 @@ loc_20219A:
 	move.w	(a1)+,d1
 
 .loop:
-	movea.l (a1)+,a0
+	movea.l	(a1)+,a0
 	moveq	#0,d0
 	move.w	(a1)+,d0
 	lsl.l	#2,d0

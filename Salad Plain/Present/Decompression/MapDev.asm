@@ -1,14 +1,14 @@
 mapdevr:
-	movem.l d0-d7/a1-a5,-(sp)
-	movea.w d0,a3
+	movem.l	d0-d7/a1-a5,-(sp)
+	movea.w	d0,a3
 	move.b	(a0)+,d0
 	ext.w	d0
-	movea.w d0,a5
+	movea.w	d0,a5
 	move.b	(a0)+,d4
 	lsl.b	#3,d4
-	movea.w (a0)+,a2
+	movea.w	(a0)+,a2
 	adda.w	a3,a2
-	movea.w (a0)+,a4
+	movea.w	(a0)+,a4
 	adda.w	a3,a4
 	move.b	(a0)+,d5
 	asl.w	#8,d5
@@ -111,7 +111,7 @@ loc_20227C:
 	addq.w	#1,a0
 
 loc_202284:
-	movem.l (sp)+,d0-d7/a1-a5
+	movem.l	(sp)+,d0-d7/a1-a5
 	rts
 
 get_inline_copy:
