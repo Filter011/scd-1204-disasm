@@ -22,7 +22,7 @@ t_item_init:
 	move.b	#14,sprvsize(a0)
 	move.b	#14,sprhs(a0)
 	move.l	#itempat,patbase(a0)
-	move.w	#$5A8,sproffset(a0)
+	move.w	#item_vram,sproffset(a0)
 	move.b	#4,actflg(a0)
 	move.b	#3,sprpri(a0)
 	move.b	#$F,sprhsize(a0)
@@ -113,7 +113,7 @@ iteminit:
 	move.b	#14,sprvsize(a0)
 	move.b	#14,sprhs(a0)
 	move.l	#itempat,patbase(a0)
-	move.w	#$5A8,sproffset(a0)
+	move.w	#item_vram,sproffset(a0)
 	move.b	#4,actflg(a0)
 	move.b	#3,sprpri(a0)
 	move.b	#$F,sprhsize(a0)
@@ -201,7 +201,7 @@ item2_move_tbl:
 
 item2init:
 	addq.b	#word,r_no0(a0)
-	move.w	#$5A8,sproffset(a0)
+	move.w	#item_vram,sproffset(a0)
 	move.b	#$24,actflg(a0)
 	move.b	#3,sprpri(a0)
 	move.b	#8,sprhsize(a0)

@@ -130,7 +130,7 @@ loc_20180E:
 	bsr.w	playwrt
 	tst.b	playwrtflag
 	beq.s	loc_201892
-	dma68k	playwrtwk,4,$780*tile_size
+	dma68k	playwrtwk,4,play00_vram*tile_size
 	move.b	#0,playwrtflag
 
 loc_201892:
@@ -138,7 +138,7 @@ loc_201892:
 	bsr.w	playwrt
 	tst.b	playwrtflag
 	beq.s	loc_2018CA
-	dma68k	playwrtwk,4,$797*tile_size
+	dma68k	playwrtwk,4,play01_vram*tile_size
 	move.b	#0,playwrtflag
 
 loc_2018CA:
@@ -191,7 +191,7 @@ loc_201986:
 	bsr.w	playwrt
 	tst.b	playwrtflag
 	beq.s	loc_201A0A
-	dma68k	playwrtwk,4,$780*tile_size
+	dma68k	playwrtwk,4,play00_vram*tile_size
 	move.b	#0,playwrtflag
 
 loc_201A0A:
@@ -227,7 +227,7 @@ int16:
 	bsr.w	playwrt
 	tst.b	playwrtflag
 	beq.s	loc_201B0C
-	dma68k	playwrtwk,4,$780*tile_size
+	dma68k	playwrtwk,4,play00_vram*tile_size
 	move.b	#0,playwrtflag
 
 loc_201B0C:

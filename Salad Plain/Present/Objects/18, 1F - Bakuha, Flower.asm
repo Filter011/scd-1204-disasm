@@ -13,7 +13,7 @@ baku_init:
 	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.w	#$680,sproffset(a0)
+	move.w	#bakuha_vram,sproffset(a0)
 	move.l	#bakupat,patbase(a0)
 	move.b	#0,colino(a0)
 	move.w	#1,mstno(a0)
@@ -51,7 +51,7 @@ flow_init:
 	ori.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#0,sprvsize(a0)
-	move.w	#$46D6,sproffset(a0)
+	move.w	#flow_vram+$4000,sproffset(a0)
 	move.l	#flow_pat,patbase(a0)
 	bsr.w	flow_sub
 	move.b	(a1),d0
@@ -61,7 +61,7 @@ flow_init:
 	bne.s	flow_move1
 	move.w	#2,mstno(a0)
 	move.b	#2,r_no0(a0)
-	move.w	#$6D6,sproffset(a0)
+	move.w	#flow_vram,sproffset(a0)
 
 flow_move0:
 	jsr	emycol_d.l
@@ -113,7 +113,7 @@ flow_sub1:
 	rts
 
 flow_move2:
-	move.w	#$46D6,sproffset(a0)
+	move.w	#flow_vram+$4000,sproffset(a0)
 	move.b	#2,mstno(a0)
 	bra.s	flow_move1
 

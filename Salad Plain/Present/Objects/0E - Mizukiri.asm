@@ -13,7 +13,7 @@ mizuki_init:
 	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.l	#mizukipat,patbase(a0)
-	move.w	#$31E,sproffset(a0)
+	move.w	#mizuki_vram,sproffset(a0)
 	move.b	#1,sprpri(a0)
 
 mizuki_move:

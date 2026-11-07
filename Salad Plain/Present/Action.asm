@@ -481,7 +481,7 @@ objid_22:	act_ptr	obj22
 objid_23:	act_ptr	obj23
 friend_act:	act_ptr	friend
 hashi_act:	act_ptr	noact
-objid_26:	act_ptr	obj26
+toge_act:	act_ptr	toge
 objid_27:	act_ptr	obj27
 objid_28:	act_ptr	obj28
 objid_29:	act_ptr	obj29

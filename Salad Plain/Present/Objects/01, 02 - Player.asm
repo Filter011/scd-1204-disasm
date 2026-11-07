@@ -138,10 +138,10 @@ play00init:
 
 loc_2036E0:
 	move.l	#playpat,patbase(a0)
-	move.w	#$780,sproffset(a0)
+	move.w	#play00_vram,sproffset(a0)
 	_cmpi.b	#play00_act,actno(a0)
 	beq.s	loc_2036FC
-	move.w	#$797,sproffset(a0)
+	move.w	#play01_vram,sproffset(a0)
 
 loc_2036FC:
 	move.b	#2,sprpri(a0)
@@ -782,7 +782,7 @@ loc_203D0E:
 
 loc_203D1A:
 	move.b	dirstk,footdir(a0)
-	move.b	dirstk2,act37(a0)
+	move.b	dirstk2,footdir2(a0)
 	tst.b	watercoliflag
 	beq.s	loc_203D38
 	tst.b	mstno(a0)
@@ -1149,7 +1149,7 @@ loc_20415C:
 	bra.s	loc_204172
 
 loc_204164:
-	cmpi.b	#3,act37(a0)
+	cmpi.b	#3,footdir2(a0)
 	bne.s	loc_20417C
 
 loc_20416C:
@@ -2334,19 +2334,19 @@ play00die_sub:
 	subq.b	#1,pl_suu
 
 loc_204DA2:
-	move.w	#60,act3A(a0)
+	move.w	#60,overtimer(a0)
 	tst.b	pltimeover_f
 	beq.s	locret_204DB8
-	move.w	#0,act3A(a0)
+	move.w	#0,overtimer(a0)
 	bra.s	loc_204DA2
 
 locret_204DB8:
 	rts
 
 play00erase:
-	tst.w	act3A(a0)
+	tst.w	overtimer(a0)
 	beq.s	locret_204E16
-	subq.w	#1,act3A(a0)
+	subq.w	#1,overtimer(a0)
 	bne.s	locret_204E16
 	move.w	#1,gameflag
 	lea	player2wk,a5

@@ -2774,7 +2774,7 @@ loc_20B654:
 	move.l	playerwk+yposi,d0
 	subi.l	#$320000,d0
 	move.l	d0,yposi(a0)
-	lea	obj26_ani.l,a1
+	lea	togechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
@@ -2925,7 +2925,7 @@ byte_20B80E:
 
 	include	"Objects/27, 28.asm"
 	include	"Objects/25 - Hashi.asm"
-	include	"Objects/26.asm"
+	include	"Objects/26 - Toge.asm"
 	include	"Objects/29.asm"
 
 	dc.b	1
@@ -3254,13 +3254,13 @@ byte_20CEEC:
 	dc.b	-8,5,0,4,-8
 	even
 
-obj26_ani:
-	dc.w	unk_20CEFE-obj26_ani
-	dc.w	unk_20CF02-obj26_ani
-	dc.w	unk_20CF06-obj26_ani
-	dc.w	unk_20CF0A-obj26_ani
-	dc.w	unk_20CF0E-obj26_ani
-	dc.w	unk_20CF12-obj26_ani
+togechg:
+	dc.w	unk_20CEFE-togechg
+	dc.w	unk_20CF02-togechg
+	dc.w	unk_20CF06-togechg
+	dc.w	unk_20CF0A-togechg
+	dc.w	unk_20CF0E-togechg
+	dc.w	unk_20CF12-togechg
 unk_20CEFE:
 	dc.b	$1D
 	dc.b	0
@@ -3341,13 +3341,13 @@ byte_20CF85:
 	dc.b	$F0,3,0,0,4
 	even
 
-act26pat:
-	dc.w	byte_20CF9C-act26pat
-	dc.w	byte_20CFA7-act26pat
-	dc.w	byte_20CFBC-act26pat
-	dc.w	byte_20CFD1-act26pat
-	dc.w	byte_20CFD8-act26pat
-	dc.w	byte_20CFDE-act26pat
+togepat:
+	dc.w	byte_20CF9C-togepat
+	dc.w	byte_20CFA7-togepat
+	dc.w	byte_20CFBC-togepat
+	dc.w	byte_20CFD1-togepat
+	dc.w	byte_20CFD8-togepat
+	dc.w	byte_20CFDE-togepat
 byte_20CF9C:
 	dc.b	2
 	dc.b	$F0,7,0,0,$F0
@@ -3522,10 +3522,10 @@ word_20DC40:
 	endif
 
 pa_set:
-	lea	off_20DC6E.l,a1
+	lea	pa_set_tbl.l,a1
 	add.w	d0,d0
-	move.w	off_20DC6E(pc,d0.w),d4
-	lea	off_20DC6E(pc,d4.w),a2
+	move.w	pa_set_tbl(pc,d0.w),d4
+	lea	pa_set_tbl(pc,d4.w),a2
 	moveq	#0,d1
 	move.b	act29(a0),d1
 	add.w	d1,d1
@@ -3533,102 +3533,102 @@ pa_set:
 	move.w	d5,sproffset(a0)
 	rts
 
-off_20DC6E:
-	dc.w	word_20DC92-off_20DC6E
-	dc.w	word_20DC94-off_20DC6E
-	dc.w	word_20DC96-off_20DC6E
-	dc.w	word_20DC98-off_20DC6E
-	dc.w	word_20DC9A-off_20DC6E
-	dc.w	word_20DC9C-off_20DC6E
-	dc.w	word_20DCA6-off_20DC6E
-	dc.w	word_20DCA0-off_20DC6E
-	dc.w	word_20DCA4-off_20DC6E
-	dc.w	word_20DCA2-off_20DC6E
-	dc.w	word_20DC9E-off_20DC6E
-	dc.w	word_20DCA8-off_20DC6E
-	dc.w	word_20DCAA-off_20DC6E
-	dc.w	word_20DCAC-off_20DC6E
-	dc.w	word_20DCAE-off_20DC6E
-	dc.w	word_20DCB0-off_20DC6E
-	dc.w	word_20DCB2-off_20DC6E
-	dc.w	word_20DCB4-off_20DC6E
+pa_set_tbl:
+	dc.w	pa0-pa_set_tbl
+	dc.w	pa1-pa_set_tbl
+	dc.w	pa2-pa_set_tbl
+	dc.w	pa3-pa_set_tbl
+	dc.w	pa4-pa_set_tbl
+	dc.w	pa5-pa_set_tbl
+	dc.w	pa6-pa_set_tbl
+	dc.w	pa7-pa_set_tbl
+	dc.w	pa8-pa_set_tbl
+	dc.w	pa9-pa_set_tbl
+	dc.w	pa10-pa_set_tbl
+	dc.w	pa11-pa_set_tbl
+	dc.w	pa12-pa_set_tbl
+	dc.w	pa13-pa_set_tbl
+	dc.w	pa14-pa_set_tbl
+	dc.w	pa15-pa_set_tbl
+	dc.w	pa16-pa_set_tbl
+	dc.w	pa17-pa_set_tbl
 
 	if act_number=0
 
-word_20DC92:
-	dc.w	$23E7
-word_20DC94:
-	dc.w	$24DC
-word_20DC96:
-	dc.w	$245F
-word_20DC98:
-	dc.w	$2431
-word_20DC9A:
-	dc.w	$23E7
-word_20DC9C:
-	dc.w	$4363
-word_20DC9E:
-	dc.w	$33A
-word_20DCA0:
+pa0:
+	dc.w	$3E7+$2000
+pa1:
+	dc.w	$4DC+$2000
+pa2:
+	dc.w	$45F+$2000
+pa3:
+	dc.w	$431+$2000
+pa4:
+	dc.w	$3E7+$2000
+pa5:
+	dc.w	block_vram+$4000
+pa10:
+	dc.w	toge_vram
+pa7:
 	dc.w	$342
-word_20DCA2:
-	dc.w	$431E
-word_20DCA4:
-	dc.w	$4495
-word_20DCA6:
-	dc.w	$375
-word_20DCA8:
-	dc.w	$326
-word_20DCAA:
-	dc.w	$8357
-word_20DCAC:
-	dc.w	$475
-word_20DCAE:
-	dc.w	$384
-word_20DCB0:
-	dc.w	$3A1
-word_20DCB2:
+pa9:
+	dc.w	hashi_vram+$4000
+pa8:
+	dc.w	$495+$4000
+pa6:
+	dc.w	dai_k_vram
+pa11:
+	dc.w	iwa_vram
+pa12:
+	dc.w	futa_vram+$8000
+pa13:
+	dc.w	exit2_vram
+pa14:
+	dc.w	koma_vram
+pa15:
+	dc.w	spring45_vram
+pa16:
 	dc.w	$422
-word_20DCB4:
+pa17:
 	dc.w	0
 
 	else
 
-word_20DC92:
-	dc.w	$2413
-word_20DC94:
-	dc.w	$2413
-word_20DC96:
-	dc.w	$24EB
-word_20DC98:
-	dc.w	$23D8
-word_20DC9A:
-	dc.w	$23D8
-word_20DC9C:
-	dc.w	$43C6
-word_20DC9E:
-	dc.w	$359
-word_20DCA0:
+pa0:
+	dc.w	$413+$2000
+pa1:
+	dc.w	$413+$2000
+pa2:
+	dc.w	$4EB+$2000
+pa3:
+	dc.w	$3D8+$2000
+pa4:
+	dc.w	$3D8+$2000
+pa5:
+	dc.w	block_vram+$4000
+pa10:
+	dc.w	toge_vram
+pa7:
 	dc.w	$361
-word_20DCA2:
-	dc.w	$4406
-word_20DCA4:
-	dc.w	$44B2
-word_20DCA6:
-	dc.w	$475
-word_20DCA8:
-	dc.w	$48A
-word_20DCAA:
-	dc.w	$83BA
-word_20DCAC:
-	dc.w	$48A
-word_20DCAE:
-	dc.w	$3A4
-word_20DCB0:
-	dc.w	$376
-word_20DCB2:
+pa9:
+	dc.w	hashi_vram+$4000
+pa8:
+	dc.w	$4B2+$4000
+pa6:
+	dc.w	dai_k_vram
+pa11:
+	dc.w	iwa_vram
+pa12:
+	dc.w	futa_vram+$8000
+pa13:
+	dc.w	exit2_vram
+pa14:
+	dc.w	koma_vram
+pa15:
+	dc.w	spring45_vram
+pa16:
 	dc.w	$503
-word_20DCB4:
+pa17:
 	dc.w	$49E
 
 	endif
@@ -3697,28 +3697,28 @@ ddev_00_end:
 
 ddev_01:	ddev_header
 	ddev_entry	cg_rock,$326
-	ddev_entry	cg_spikes,$33A
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
-	ddev_entry	cg_flipper,$357
-	ddev_entry	cg_platform,$363
-	ddev_entry	cg_spinplatform,$375
-	ddev_entry	cg_wheels,$384
-	ddev_entry	spring45cg,$3A1
-	ddev_entry	springcg,$520
-	ddev_entry	scorecg,$568
-	ddev_entry	itemcg,$5A8
-	ddev_entry	bakuhacg,$680
-	ddev_entry	flowcg,$6D6
-	ddev_entry	ringcg,$7AE
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	daikcg,dai_k_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	springcg,spring_vram
+	ddev_entry	scorecg,score_vram
+	ddev_entry	itemcg,item_vram
+	ddev_entry	bakuhacg,bakuha_vram
+	ddev_entry	flowcg,flow_vram
+	ddev_entry	ringcg,ring_vram
 ddev_01_end:
 
 ddev_02:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
-	ddev_entry	exit2cg,$475
+	ddev_entry	exit2cg,exit2_vram
 	ddev_entry	cg_patabata,$4DC
 ddev_02_end:
 
@@ -3728,10 +3728,10 @@ ddev_04:	ddev_header
 ddev_04_end:
 
 ddev_05:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_anton,$45F
-	ddev_entry	exit2cg,$475
+	ddev_entry	exit2cg,exit2_vram
 ddev_05_end:
 
 ddev_06:	ddev_header
@@ -3745,62 +3745,62 @@ ddev_07:	ddev_header
 ddev_07_end:
 
 ddev_08:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
-	ddev_entry	goalcg,$503
+	ddev_entry	goalcg,goal_vram
 ddev_08_end:
 
 ddev_09:	ddev_header
-	ddev_entry	goalcg,$503
+	ddev_entry	goalcg,goal_vram
 ddev_09_end:
 
 ddev_0A:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_rock,$326
-	ddev_entry	cg_spikes,$33A
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
-	ddev_entry	cg_flipper,$357
-	ddev_entry	cg_platform,$363
-	ddev_entry	cg_spinplatform,$375
-	ddev_entry	cg_wheels,$384
-	ddev_entry	spring45cg,$3A1
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	daikcg,dai_k_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
-	ddev_entry	exit2cg,$475
+	ddev_entry	exit2cg,exit2_vram
 	ddev_entry	cg_patabata,$4DC
 ddev_0A_end:
 
 ddev_0B:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_rock,$326
-	ddev_entry	cg_spikes,$33A
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
-	ddev_entry	cg_flipper,$357
-	ddev_entry	cg_platform,$363
-	ddev_entry	cg_spinplatform,$375
-	ddev_entry	cg_wheels,$384
-	ddev_entry	spring45cg,$3A1
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	daikcg,dai_k_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_anton,$45F
-	ddev_entry	exit2cg,$475
+	ddev_entry	exit2cg,exit2_vram
 	ddev_entry	cg_patabata,$4DC
 ddev_0B_end:
 
 ddev_0C:	ddev_header
 	ddev_entry	cg_rock,$326
-	ddev_entry	cg_spikes,$33A
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
-	ddev_entry	cg_flipper,$357
-	ddev_entry	cg_platform,$363
-	ddev_entry	cg_spinplatform,$375
-	ddev_entry	cg_wheels,$384
-	ddev_entry	spring45cg,$3A1
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	daikcg,dai_k_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_tamabboh,$3E7
 	ddev_entry	cg_splash,$422
@@ -3809,15 +3809,15 @@ ddev_0C:	ddev_header
 ddev_0C_end:
 
 ddev_0E:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_rock,$326
-	ddev_entry	cg_spikes,$33A
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
-	ddev_entry	cg_flipper,$357
-	ddev_entry	cg_platform,$363
-	ddev_entry	cg_spinplatform,$375
-	ddev_entry	cg_wheels,$384
-	ddev_entry	spring45cg,$3A1
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	daikcg,dai_k_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	cg_flickyricky,$3CF
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
@@ -3826,28 +3826,28 @@ ddev_0E:	ddev_header
 ddev_0E_end:
 
 ddev_0F:	ddev_header
-	ddev_entry	hashicg,$31E
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_rock,$326
-	ddev_entry	cg_spikes,$33A
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
-	ddev_entry	cg_flipper,$357
-	ddev_entry	cg_platform,$363
-	ddev_entry	cg_spinplatform,$375
-	ddev_entry	cg_wheels,$384
-	ddev_entry	spring45cg,$3A1
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	daikcg,dai_k_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	cg_mosqui,$3E7
 	ddev_entry	cg_tagataga,$431
 	ddev_entry	cg_anton,$45F
 	ddev_entry	cg_patabata,$4DC
-	ddev_entry	goalcg,$503
+	ddev_entry	goalcg,goal_vram
 ddev_0F_end:
 
 ; unused
 	ddev_entry	spring45cg,$33F
-	ddev_entry	cg_wheels,$36D
-	ddev_entry	cg_flipper,$375
-	ddev_entry	cg_platform,$381
-	ddev_entry	cg_spinplatform,$393
+	ddev_entry	komacg,$36D
+	ddev_entry	futacg,$375
+	ddev_entry	blockcg,$381
+	ddev_entry	daikcg,$393
 	ddev_entry	cg_rock,$3A2
 	ddev_entry	cg_flickyricky,$3B6
 	ddev_entry	cg_anton,$3CE
@@ -3856,13 +3856,13 @@ ddev_0F_end:
 	ddev_entry	cg_tamabboh,$462
 
 ddev_unused_0:	ddev_header
-	ddev_entry	cg_spikes,$31E
+	ddev_entry	togecg,$31E
 	ddev_entry	cg_pole,$32A
 	ddev_entry	spring45cg,$33F
-	ddev_entry	cg_wheels,$36D
-	ddev_entry	cg_flipper,$375
-	ddev_entry	cg_platform,$381
-	ddev_entry	cg_spinplatform,$393
+	ddev_entry	komacg,$36D
+	ddev_entry	futacg,$375
+	ddev_entry	blockcg,$381
+	ddev_entry	daikcg,$393
 	ddev_entry	cg_rock,$3A2
 	ddev_entry	cg_flickyricky,$3B6
 	ddev_entry	cg_anton,$3CE
@@ -3871,13 +3871,13 @@ ddev_unused_0:	ddev_header
 ddev_unused_0_end:
 
 ddev_unused_1:	ddev_header
-	ddev_entry	cg_spikes,$31E
+	ddev_entry	togecg,$31E
 	ddev_entry	cg_pole,$32A
 	ddev_entry	spring45cg,$33F
-	ddev_entry	cg_wheels,$36D
-	ddev_entry	cg_flipper,$375
-	ddev_entry	cg_platform,$381
-	ddev_entry	cg_spinplatform,$393
+	ddev_entry	komacg,$36D
+	ddev_entry	futacg,$375
+	ddev_entry	blockcg,$381
+	ddev_entry	daikcg,$393
 	ddev_entry	cg_rock,$3A2
 	ddev_entry	cg_flickyricky,$3B6
 	ddev_entry	cg_anton,$3CE
@@ -3887,13 +3887,13 @@ ddev_unused_1:	ddev_header
 ddev_unused_1_end:
 
 ddev_unused_2:	ddev_header
-	ddev_entry	cg_spikes,$31E
+	ddev_entry	togecg,$31E
 	ddev_entry	cg_pole,$32A
 	ddev_entry	spring45cg,$33F
-	ddev_entry	cg_wheels,$36D
-	ddev_entry	cg_flipper,$375
-	ddev_entry	cg_platform,$381
-	ddev_entry	cg_spinplatform,$393
+	ddev_entry	komacg,$36D
+	ddev_entry	futacg,$375
+	ddev_entry	blockcg,$381
+	ddev_entry	daikcg,$393
 	ddev_entry	cg_rock,$3A2
 	ddev_entry	cg_anton,$3CE
 	ddev_entry	cg_mosqui,$3E4
@@ -3906,26 +3906,26 @@ ddev_unused_2_end:
 	else
 
 ddev_01:	ddev_header
-	ddev_entry	cg_spikes,$359
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$361
-	ddev_entry	spring45cg,$376
-	ddev_entry	cg_wheels,$3A4
-	ddev_entry	cg_flipper,$3BA
-	ddev_entry	cg_platform,$3C6
-	ddev_entry	goalcg,$503
-	ddev_entry	springcg,$520
-	ddev_entry	scorecg,$568
-	ddev_entry	itemcg,$5A8
-	ddev_entry	bakuhacg,$680
-	ddev_entry	flowcg,$6D6
-	ddev_entry	ringcg,$7AE
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	komacg,koma_vram
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
+	ddev_entry	goalcg,goal_vram
+	ddev_entry	springcg,spring_vram
+	ddev_entry	scorecg,score_vram
+	ddev_entry	itemcg,item_vram
+	ddev_entry	bakuhacg,bakuha_vram
+	ddev_entry	flowcg,flow_vram
+	ddev_entry	ringcg,ring_vram
 ddev_01_end:
 
 ddev_02:	ddev_header
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	cg_spinplatform,$475
+	ddev_entry	daikcg,dai_k_vram
 	ddev_entry	cg_rock,$48A
 	ddev_entry	cg_anton,$4EB
 ddev_02_end:
@@ -3955,66 +3955,66 @@ ddev_07_end:
 
 ddev_08:	ddev_header
 	ddev_entry	cg_tagataga,$3D8
-	ddev_entry	hashicg,$406
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	goalcg,$503
+	ddev_entry	goalcg,goal_vram
 ddev_08_end:
 
 ddev_09:	ddev_header
-	ddev_entry	cg_spikes,$359
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$361
-	ddev_entry	spring45cg,$376
-	ddev_entry	cg_wheels,$3A4
-	ddev_entry	cg_flipper,$3BA
-	ddev_entry	cg_platform,$3C6
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	komacg,$3A4
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	cg_spinplatform,$475
+	ddev_entry	daikcg,dai_k_vram
 	ddev_entry	cg_rock,$48A
 	ddev_entry	cg_anton,$4EB
 ddev_09_end:
 
 ddev_0A:	ddev_header
-	ddev_entry	cg_spikes,$359
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$361
-	ddev_entry	spring45cg,$376
-	ddev_entry	cg_wheels,$3A4
-	ddev_entry	cg_flipper,$3BA
-	ddev_entry	cg_platform,$3C6
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	komacg,$3A4
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_mosqui,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	cg_spinplatform,$475
+	ddev_entry	daikcg,dai_k_vram
 	ddev_entry	cg_rock,$48A
 	ddev_entry	cg_anton,$4EB
 ddev_0A_end:
 
 ddev_0B:	ddev_header
-	ddev_entry	cg_spikes,$359
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$361
-	ddev_entry	spring45cg,$376
-	ddev_entry	cg_wheels,$3A4
-	ddev_entry	cg_flipper,$3BA
-	ddev_entry	cg_platform,$3C6
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	komacg,$3A4
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_mosqui,$413
-	ddev_entry	cg_spinplatform,$475
+	ddev_entry	daikcg,dai_k_vram
 	ddev_entry	exit2cg,$48A
 	ddev_entry	cg_anton,$4EB
 ddev_0B_end:
 
 ddev_0C:	ddev_header
-	ddev_entry	cg_spikes,$359
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$361
-	ddev_entry	spring45cg,$376
-	ddev_entry	cg_wheels,$3A4
-	ddev_entry	cg_flipper,$3BA
-	ddev_entry	cg_platform,$3C6
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	komacg,$3A4
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_mosqui,$413
-	ddev_entry	cg_spinplatform,$475
+	ddev_entry	daikcg,dai_k_vram
 	ddev_entry	cg_rock,$48A
 	ddev_entry	cg_swing,$49E
 	ddev_entry	cg_card,$4B2
@@ -4022,17 +4022,17 @@ ddev_0C:	ddev_header
 ddev_0C_end:
 
 ddev_0D:	ddev_header
-	ddev_entry	cg_spikes,$359
+	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$361
-	ddev_entry	spring45cg,$376
-	ddev_entry	cg_wheels,$3A4
-	ddev_entry	cg_flipper,$3BA
-	ddev_entry	cg_platform,$3C6
+	ddev_entry	spring45cg,spring45_vram
+	ddev_entry	komacg,$3A4
+	ddev_entry	futacg,futa_vram
+	ddev_entry	blockcg,block_vram
 	ddev_entry	cg_tagataga,$3D8
-	ddev_entry	hashicg,$406
+	ddev_entry	hashicg,hashi_vram
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	cg_spinplatform,$475
+	ddev_entry	daikcg,dai_k_vram
 	ddev_entry	cg_rock,$48A
 	ddev_entry	cg_swing,$49E
 	ddev_entry	cg_card,$4B2
@@ -4153,15 +4153,15 @@ cg_rock:
 	incbin	"Art/BitDev/Rock.nem"
 	even
 
-cg_platform:
+blockcg:
 	incbin	"Art/BitDev/Appearing Platform.nem"
 	even
 
-cg_wheels:
+komacg:
 	incbin	"Art/BitDev/Wheels.nem"
 	even
 
-cg_spinplatform:
+daikcg:
 	incbin	"Art/BitDev/Spinning Platform.nem"
 	even
 
@@ -4169,7 +4169,7 @@ cg_splash:
 	incbin	"Art/BitDev/Splash.nem"
 	even
 
-cg_flipper:
+futacg:
 	incbin	"Art/BitDev/Flipper.nem"
 	even
 
@@ -4213,7 +4213,7 @@ swichcg:
 	incbin	"Art/BitDev/Switch.nem"
 	even
 
-cg_spikes:
+togecg:
 	incbin	"Art/BitDev/Spikes.nem"
 	even
 

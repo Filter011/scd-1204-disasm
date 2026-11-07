@@ -1,7 +1,7 @@
 	phase	wkram+$E414
 
 	include	"Act 1/Objects (Act 2)/25 - Hashi.asm"
-	include	"Act 1/Objects/26.asm"
+	include	"Act 1/Objects/26 - Toge.asm"
 	include	"Act 1/Objects/29.asm"
 
 	dc.b	1

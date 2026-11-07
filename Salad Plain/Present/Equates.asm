@@ -261,7 +261,9 @@ invulnerabilitytimer:	equ	act30
 mutekitimer:	equ	act32
 speeduptimer:	equ	act34
 footdir:	equ	act36
+footdir2:	equ	act37
 convexflag:	equ	act38
+overtimer:	equ	act3A
 jumpflag:	equ	act3C
 hlocktimer:	equ	act3E
 
@@ -274,6 +276,58 @@ cd_ride:	equ	3
 cd_ballj:	equ	4
 cd_push:	equ	5
 cd_underwater:	equ	6
+
+; Object VRAM Equates
+play00_vram:	equ	$780
+play01_vram:	equ	$797
+baria_vram:	equ	$544
+taki_vram:	equ	$3BA
+jisin_vram:	equ	$541
+	if act_number=0
+dai_k_vram:	equ	$375
+exit2_vram:	equ	$475
+	else
+dai_k_vram:	equ	$475
+exit2_vram:	equ	$48A
+	endif
+spring_vram:	equ	$520
+	if act_number=0
+spring45_vram:	equ	$3A1
+futa_vram:	equ	$357
+koma_vram:	equ	$384
+	else
+spring45_vram:	equ	$376
+futa_vram:	equ	$3BA
+koma_vram:	equ	$3A4
+	endif
+mizuki_vram:	equ	$31E
+ring_vram:	equ	$7AE
+	if act_number=0
+block_vram:	equ	$363
+	else
+block_vram:	equ	$3C6
+	endif
+goal_vram:	equ	$503
+bakuha_vram:	equ	$680
+item_vram:	equ	$5A8
+	if act_number=0
+iwa_vram:	equ	$326
+	else
+iwa_vram:	equ	$48A
+	endif
+score_vram:	equ	$568
+flow_vram:	equ	$6D6
+	if act_number=0
+friend1_vram:	equ	$3CF
+friend2_vram:	equ	$BCF
+hashi_vram:	equ	$31E
+toge_vram:	equ	$33A
+	else
+friend1_vram:	equ	$45D
+friend2_vram:	equ	$C5D
+hashi_vram:	equ	$406
+toge_vram:	equ	$359
+	endif
 
 ; Chunk Equates
 map_size:	equ	(16*2)*16	; (width*2) * height

@@ -129,7 +129,7 @@ sjump_move_tbl:
 sjumpinit:
 	addq.b	#word,r_no0(a0)
 	move.l	#springpat,patbase(a0)
-	move.w	#$520,sproffset(a0)
+	move.w	#spring_vram,sproffset(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#16,sprhsize(a0)
 	move.b	#8,sprvsize(a0)

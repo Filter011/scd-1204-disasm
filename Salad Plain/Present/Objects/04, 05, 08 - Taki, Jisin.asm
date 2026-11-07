@@ -17,7 +17,7 @@ taki_init:
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
-	move.w	#$3BA,sproffset(a0)
+	move.w	#taki_vram,sproffset(a0)
 	andi.w	#$FFF0,yposi(a0)
 	move.w	yposi(a0),act2A(a0)
 	addi.w	#$180,act2A(a0)
@@ -87,7 +87,7 @@ jisin_set_init:
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#bariapat,patbase(a0)
-	move.w	#$541,sproffset(a0)
+	move.w	#jisin_vram,sproffset(a0)
 
 jisin_set_move:
 	lea	playerwk,a1

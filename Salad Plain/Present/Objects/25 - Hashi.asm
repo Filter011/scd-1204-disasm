@@ -341,7 +341,7 @@ loc_20C178:
 	rts
 
 loc_20C18C:
-	lea	obj26_ani.l,a1
+	lea	togechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 

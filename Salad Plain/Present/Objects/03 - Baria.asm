@@ -16,7 +16,7 @@ bariainit:
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
-	move.w	#$544,sproffset(a0)
+	move.w	#baria_vram,sproffset(a0)
 	tst.b	mstno(a0)
 	beq.s	locret_2058C8
 	addq.b	#word,r_no0(a0)
@@ -122,7 +122,7 @@ sub_2059B8:
 	move.l	(a1)+,(a2)+
 	dbf	d0,.loop
 
-	dma68k	powerupwrtwk,4,$544*tile_size
+	dma68k	powerupwrtwk,4,baria_vram*tile_size
 
 .end:
 	rts

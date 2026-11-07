@@ -11,7 +11,7 @@ score_move_tbl:
 score_init:
 	addq.b	#word,r_no0(a0)
 	move.l	#scorepat,patbase(a0)
-	move.w	#$8568,sproffset(a0)
+	move.w	#score_vram+$8000,sproffset(a0)
 	move.w	#$90,xposi(a0)
 	move.w	#$88,$A(a0)
 	tst.w	debugflag

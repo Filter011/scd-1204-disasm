@@ -1,4 +1,4 @@
-obj26:
+toge:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
 	move.w	off_20C820(pc,d0.w),d0
@@ -10,7 +10,7 @@ off_20C820:
 
 loc_20C824:
 	addq.b	#word,r_no0(a0)
-	move.l	#act26pat,patbase(a0)
+	move.l	#togepat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	moveq	#10,d0
@@ -40,7 +40,7 @@ loc_20C88A:
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
 	jsr	ride_on_chk.l
-	lea	obj26_ani.l,a1
+	lea	togechg.l,a1
 	jsr	patchg.l
 	jsr	actionsub.l
 	jmp	frameout_s.l

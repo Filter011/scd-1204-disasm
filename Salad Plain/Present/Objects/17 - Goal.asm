@@ -16,7 +16,7 @@ goal_init:
 	addq.b	#word,r_no0(a0)
 	ori.b	#4,actflg(a0)
 	move.b	#4,sprpri(a0)
-	move.w	#$503,sproffset(a0)
+	move.w	#goal_vram,sproffset(a0)
 	move.l	#goalpat,patbase(a0)
 
 goal_move0:
