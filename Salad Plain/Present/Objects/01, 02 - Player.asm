@@ -13,10 +13,10 @@ loc_203568:
 loc_203576:
 	tst.w	(a1)
 	bne.s	loc_203580
-	move.b	#1,actflg(a1)
+	move.b	#1,1(a1)
 
 loc_203580:
-	cmpi.w	#$2A30,(a1)
+	cmpi.w	#3*60*60,(a1)
 	blo.s	locret_2035AE
 	move.w	#0,(a1)
 	move.b	#$2B,mstno(a0)
@@ -34,7 +34,7 @@ locret_2035AE:
 
 sub_2035B0:
 	move.w	swdata2,d0
-	moveq	#objid_02,d1
+	moveq	#play01_act,d1
 	lea	byecnt1,a4
 	lea	playerwk,a5
 	lea	player2wk,a6
@@ -64,7 +64,7 @@ locret_203614:
 	rts
 
 play00:
-	move.b	act2A(a0),d0
+	move.b	chargetimer(a0),d0
 	beq.s	loc_20362C
 	addq.b	#1,d0
 	cmpi.b	#60,d0
@@ -72,7 +72,7 @@ play00:
 	move.b	#60,d0
 
 loc_203628:
-	move.b	d0,act2A(a0)
+	move.b	d0,chargetimer(a0)
 
 loc_20362C:
 	bsr.s	sub_2035B0
@@ -132,21 +132,21 @@ play00init:
 	move.b	#walkheight,sprvsize(a0)
 	move.b	#walkwidth,sprhs(a0)
 	tst.b	chibi_flag
-	beq.s	loc_2036E0
+	beq.s	.jump
 	move.b	#chibiheight,sprvsize(a0)
 	move.b	#chibiwidth,sprhs(a0)
 
-loc_2036E0:
+.jump:
 	move.l	#playpat,patbase(a0)
 	move.w	#play00_vram,sproffset(a0)
 	_cmpi.b	#play00_act,actno(a0)
-	beq.s	loc_2036FC
+	beq.s	.jump1
 	move.w	#play01_vram,sproffset(a0)
 
-loc_2036FC:
+.jump1:
 	move.b	#2,sprpri(a0)
 	move.b	#24,sprhsize(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.w	#$600,plmaxspdwk
 	move.w	#$C,pladdspdwk
 	move.w	#$80,plretspdwk
@@ -162,7 +162,7 @@ mizuki_set:
 	add.w	yposi(a0),d2
 	move.w	xposi(a0),d3
 	bsr.w	mapno_chk
-	cmpi.b	#47,d1
+	cmpi.b	#$2F,d1
 	bne.s	locret_203788
 	cmpi.w	#$15C0,xposi(a0)
 	bhs.s	locret_203786
@@ -191,7 +191,7 @@ locret_203788:
 	move.b	sprvsize(a0),d2
 	ext.w	d2
 	add.w	yposi(a0),d2
-	cmpi.b	#16,d1
+	cmpi.b	#$10,d1
 	bne.s	loc_2037A8
 	cmpi.w	#$210,d2
 	bhs.s	locret_203786
@@ -200,7 +200,7 @@ locret_203788:
 	bra.s	loc_2037BA
 
 loc_2037A8:
-	cmpi.b	#33,d1
+	cmpi.b	#$21,d1
 	bne.s	locret_203786
 	cmpi.w	#$2A0,d2
 	bhs.s	locret_203786
@@ -750,23 +750,23 @@ loc_203CAC:
 play00move:
 	bsr.w	mizuki_set
 	tst.w	debugflag
-	beq.s	loc_203CD6
+	beq.s	.jump
 	btst	#4,swdata1+1
-	beq.s	loc_203CD6
+	beq.s	.jump
 	move.b	#1,editmode
 	rts
 
-loc_203CD6:
+.jump:
 	tst.b	plautoflag
-	bne.s	loc_203CF0
+	bne.s	.jump1
 	move.w	swdata1,swdata
 	_cmpi.b	#play00_act,actno(a0)
-	beq.s	loc_203CF0
+	beq.s	.jump1
 	move.w	swdata2,swdata
 
-loc_203CF0:
+.jump1:
 	btst	#0,lockcd(a0)
-	bne.s	loc_203D0E
+	bne.s	.jump2
 	moveq	#0,d0
 	move.b	cddat(a0),d0
 	andi.w	#%0110,d0
@@ -774,28 +774,28 @@ loc_203CF0:
 	jsr	off_203D52(pc,d1.w)
 	bsr.w	sub_203826
 
-loc_203D0E:
+.jump2:
 	bsr.s	playpowercnt
 	tst.b	mainplayflag(a0)
-	beq.s	loc_203D1A
+	beq.s	.jump3
 	bsr.w	playposiwkset
 
-loc_203D1A:
+.jump3:
 	move.b	dirstk,footdir(a0)
 	move.b	dirstk2,footdir2(a0)
 	tst.b	watercoliflag
-	beq.s	loc_203D38
+	beq.s	.jump4
 	tst.b	mstno(a0)
-	bne.s	loc_203D38
+	bne.s	.jump4
 	move.b	mstrestart(a0),mstno(a0)
 
-loc_203D38:
+.jump4:
 	bsr.w	patchgmain
 	tst.b	lockcd(a0)
-	bmi.s	loc_203D48
+	bmi.s	.jump5
 	jsr	pcol.l
 
-loc_203D48:
+.jump5:
 	bsr.w	loopchk
 	bsr.w	sub_203E16
 	rts
@@ -817,54 +817,54 @@ unk_203D5A:
 
 playpowercnt:
 	cmpi.w	#210,backto_cnt
-	bhs.s	loc_203D8C
+	bhs.s	.jump2
 	move.w	invulnerabilitytimer(a0),d0
-	beq.s	loc_203D76
+	beq.s	.jump
 	subq.w	#1,invulnerabilitytimer(a0)
 	lsr.w	#3,d0
-	bhs.s	loc_203D8C
+	bhs.s	.jump2
 
-loc_203D76:
+.jump:
 	tst.b	mainplayflag(a0)
-	bne.s	loc_203D86
+	bne.s	.jump1
 	btst	#0,systemtimer+3
-	beq.s	loc_203D8C
+	beq.s	.jump2
 
-loc_203D86:
+.jump1:
 	jsr	actionsub.l
 
-loc_203D8C:
+.jump2:
 	tst.b	plpower_m
-	beq.s	loc_203DDC
+	beq.s	.jump5
 	tst.w	mutekitimer(a0)
-	beq.s	loc_203DDC
+	beq.s	.jump5
 	subq.w	#1,mutekitimer(a0)
-	bne.s	loc_203DDC
+	bne.s	.jump5
 	tst.b	bossstart
-	bne.s	loc_203DD4
+	bne.s	.jump4
 	cmpi.w	#12,pl_air
-	blo.s	loc_203DD4
+	blo.s	.jump4
 	moveq	#0,d0
 	move.b	stageno,d0
 	cmpi.w	#(stage_lz<<8)+act_4,stageno
-	bne.s	loc_203DC4
+	bne.s	.jump3
 	moveq	#5,d0
 
-loc_203DC4:
+.jump3:
 	lea	unk_203D5A.l,a1
 	move.b	(a1,d0.w),d0
 	jsr	bgmset.l
 
-loc_203DD4:
+.jump4:
 	move.b	#0,plpower_m
 
-loc_203DDC:
+.jump5:
 	tst.b	plpower_s
-	beq.s	locret_203E14
+	beq.s	.end
 	tst.w	speeduptimer(a0)
-	beq.s	locret_203E14
+	beq.s	.end
 	subq.w	#1,speeduptimer(a0)
-	bne.s	locret_203E14
+	bne.s	.end
 	move.w	#$600,plmaxspdwk
 	move.w	#$C,pladdspdwk
 	move.w	#$80,plretspdwk
@@ -872,7 +872,7 @@ loc_203DDC:
 	move.w	#utl_E3,d0
 	jmp	bgmset.l
 
-locret_203E14:
+.end:
 	rts
 
 sub_203E16:
@@ -932,7 +932,7 @@ playsave:
 	rts
 
 backto_chk:
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	bne.w	locret_203FB0
 	tst.b	time_item
 	beq.w	locret_203FB0
@@ -1001,30 +1001,30 @@ locret_203FB0:
 
 play00walk:
 	tst.b	kusya_flag
-	beq.s	loc_203FC4
+	beq.s	.jump
 	cmpi.b	#5,mstno(a0)
-	bne.s	locret_204018
+	bne.s	.end
 	clr.b	kusya_flag
 
-loc_203FC4:
+.jump:
 	bsr.w	bye_chk
-	cmpi.b	#$2B,mstno(a0)
-	bne.s	loc_203FF2
+	cmpi.b	#43,mstno(a0)
+	bne.s	.jump3
 	tst.b	chibi_flag
-	beq.s	loc_203FE0
+	beq.s	.jump1
 	cmpi.b	#playframe.chibihurt,patno(a0)
-	bne.s	locret_204018
-	bra.s	loc_203FE8
+	bne.s	.end
+	bra.s	.jump2
 
-loc_203FE0:
+.jump1:
 	cmpi.b	#playframe.outofhere7,patno(a0)
-	bne.s	locret_204018
+	bne.s	.end
 
-loc_203FE8:
+.jump2:
 	bsr.w	limitchk
 	jmp	speedset.l
 
-loc_203FF2:
+.jump3:
 	bsr.w	backto_chk
 	bsr.w	jumpchk
 	bsr.w	keispd
@@ -1035,7 +1035,7 @@ loc_203FF2:
 	bsr.w	fcol
 	bsr.w	fallchk
 
-locret_204018:
+.end:
 	rts
 
 play00jump:
@@ -1045,10 +1045,10 @@ play00jump:
 	bsr.w	limitchk
 	jsr	speedset.l
 	btst	#cd_underwater,cddat(a0)
-	beq.s	loc_20403E
+	beq.s	.jump
 	subi.w	#$28,yspeed(a0)
 
-loc_20403E:
+.jump:
 	bsr.w	direcchg
 	bsr.w	jumpcolchk
 	rts
@@ -1071,10 +1071,10 @@ ball00jump:
 	bsr.w	limitchk
 	jsr	speedset.l
 	btst	#cd_underwater,cddat(a0)
-	beq.s	loc_204090
+	beq.s	.jump
 	subi.w	#$28,yspeed(a0)
 
-loc_204090:
+.jump:
 	bsr.w	direcchg
 	bsr.w	jumpcolchk
 	rts
@@ -1088,25 +1088,25 @@ levermove:
 	tst.w	hlocktimer(a0)
 	bne.w	loc_204330
 	btst	#2,swdata
-	beq.s	loc_2040C2
+	beq.s	.jump
 	bsr.w	plwalk_l
 
-loc_2040C2:
+.jump:
 	btst	#3,swdata
-	beq.s	loc_2040CE
+	beq.s	.jump1
 	bsr.w	plwalk_r
 
-loc_2040CE:
+.jump1:
 	move.b	direc(a0),d0
 	addi.b	#$20,d0
 	andi.b	#$C0,d0
 	bne.w	loc_204330
 	tst.w	mspeed(a0)
-	beq.s	loc_2040EC
-	tst.b	act2A(a0)
+	beq.s	.jump2
+	tst.b	chargetimer(a0)
 	beq.w	loc_204330
 
-loc_2040EC:
+.jump2:
 	bclr	#cd_push,cddat(a0)
 	move.b	#5,mstno(a0)
 	btst	#cd_ride,cddat(a0)
@@ -1114,7 +1114,7 @@ loc_2040EC:
 	moveq	#0,d0
 	move.b	act3D(a0),d0
 	lsl.w	#6,d0
-	lea	playerwk,a1
+	lea	actwk,a1
 	lea	(a1,d0.w),a1
 	tst.b	cddat(a1)
 	bmi.s	loc_20417C
@@ -1192,7 +1192,7 @@ loc_2041E4:
 	btst	#0,swdata
 	beq.s	loc_204224
 	move.b	#7,mstno(a0)
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	beq.s	loc_204210
 	move.b	#0,mstno(a0)
 	moveq	#$19,d0
@@ -1208,20 +1208,20 @@ loc_204210:
 	move.b	swdata+1,d0
 	andi.b	#$70,d0
 	beq.s	loc_204220
-	move.b	#1,act2A(a0)
+	move.b	#1,chargetimer(a0)
 
 loc_204220:
 	bra.w	loc_204354
 
 loc_204224:
-	cmpi.b	#60,act2A(a0)
+	cmpi.b	#60,chargetimer(a0)
 	beq.s	loc_20423A
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 	move.w	#0,mspeed(a0)
 	bra.s	loc_20428C
 
 loc_20423A:
-	move.b	#61,act2A(a0)
+	move.b	#61,chargetimer(a0)
 	move.w	plmaxspdwk,d6
 	move.w	pladdspdwk,d5
 	move.w	plretspdwk,d4
@@ -1267,12 +1267,12 @@ loc_2042C8:
 	btst	#1,swdata
 	beq.s	loc_204330
 	move.b	#8,mstno(a0)
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	bne.s	loc_20430C
 	move.b	swdata+1,d0
 	andi.b	#$70,d0
 	beq.s	loc_20430C
-	move.b	#1,act2A(a0)
+	move.b	#1,chargetimer(a0)
 	move.w	#$16,mspeed(a0)
 	btst	#cd_left,cddat(a0)
 	beq.s	loc_2042FE
@@ -1398,13 +1398,13 @@ plwalk_l:
 	bpl.s	loc_204460
 
 loc_204418:
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	beq.s	loc_204434
-	cmpi.b	#61,act2A(a0)
+	cmpi.b	#61,chargetimer(a0)
 	bne.s	locret_204496
 	bset	#2,swdata
 	lsl.w	#7,d5
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 
 loc_204434:
 	bset	#cd_left,cddat(a0)
@@ -1449,13 +1449,13 @@ locret_204496:
 plwalk_r:
 	move.w	mspeed(a0),d0
 	bmi.s	loc_2044E2
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	beq.s	loc_2044BA
-	cmpi.b	#61,act2A(a0)
+	cmpi.b	#61,chargetimer(a0)
 	bne.s	locret_204518
 	bset	#3,swdata
 	lsl.w	#7,d5
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 
 loc_2044BA:
 	bclr	#cd_left,cddat(a0)
@@ -1516,7 +1516,7 @@ loc_204546:
 	bsr.w	ballwalk_r
 
 loc_204552:
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	beq.w	loc_2045E8
 	move.w	#$19,d0
 	move.w	plmaxspdwk,d1
@@ -1544,16 +1544,16 @@ loc_20457E:
 loc_204594:
 	move.w	#se_AB,d0
 	jsr	soundset.l
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 	move.w	#0,mspeed(a0)
 	move.w	#0,xspeed(a0)
 	move.w	#0,yspeed(a0)
 	bra.w	loc_204610
 
 loc_2045BA:
-	cmpi.b	#60,act2A(a0)
+	cmpi.b	#60,chargetimer(a0)
 	bne.s	loc_204594
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 	move.w	#se_91,d0
 	jsr	soundset.l
 	btst	#cd_left,cddat(a0)
@@ -1735,16 +1735,16 @@ hedcolchk:
 	move.b	direc(a0),d0
 	addi.b	#$20,d0
 	andi.b	#$C0,d0
-	bne.s	locret_20477C
+	bne.s	.end
 	bsr.w	dircol_u
 	tst.w	d1
-	bpl.s	locret_20477C
+	bpl.s	.end
 	move.w	#0,mspeed(a0)
 	move.w	#0,xspeed(a0)
 	move.w	#0,yspeed(a0)
-	move.b	#$B,mstno(a0)
+	move.b	#11,mstno(a0)
 
-locret_20477C:
+.end:
 	rts
 
 limitchk:
@@ -1832,12 +1832,12 @@ locret_20484A:
 	rts
 
 jumpchk:
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	beq.s	loc_204876
 	move.b	swdata+1,d0
 	andi.b	#$70,d0
 	beq.s	loc_204876
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 	move.w	#0,mspeed(a0)
 	move.w	#0,xspeed(a0)
 	move.w	#0,yspeed(a0)
@@ -1940,7 +1940,7 @@ loc_204984:
 	move.b	swdata,d0
 	andi.b	#$70,d0
 	bne.s	locret_20499E
-	move.b	#0,act2A(a0)
+	move.b	#0,chargetimer(a0)
 	move.w	d1,yspeed(a0)
 
 locret_20499E:
@@ -1955,7 +1955,7 @@ locret_2049AE:
 	rts
 
 keispd:
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	bne.s	locret_2049EA
 	move.b	direc(a0),d0
 	addi.b	#$60,d0
@@ -1982,7 +1982,7 @@ locret_2049EA:
 	rts
 
 keispd2:
-	tst.b	act2A(a0)
+	tst.b	chargetimer(a0)
 	bne.s	locret_204A2C
 	move.b	direc(a0),d0
 	addi.b	#$60,d0
@@ -2286,10 +2286,10 @@ play00damage:
 	jsr	speedset2.l
 	addi.w	#$30,yspeed(a0)
 	btst	#cd_underwater,cddat(a0)
-	beq.s	loc_204D0C
+	beq.s	.jump
 	subi.w	#$20,yspeed(a0)
 
-loc_204D0C:
+.jump:
 	bsr.w	play00damage_sub
 	bsr.w	limitchk
 	bsr.w	playposiwkset
@@ -2310,7 +2310,7 @@ play00damage_sub:
 	move.w	d0,mspeed(a0)
 	move.b	#0,mstno(a0)
 	subq.b	#word,r_no0(a0)
-	move.w	#120,invulnerabilitytimer(a0)
+	move.w	#2*60,invulnerabilitytimer(a0)
 
 locret_204D5C:
 	rts
@@ -2807,7 +2807,7 @@ plchg04:
 	dc.b	$FF
 	even
 plchg05:
-	dc.b	$17
+	dc.b	24-1
 	dc.b	playframe.stand
 	dc.b	playframe.stand
 	dc.b	playframe.stand
@@ -2829,93 +2829,93 @@ plchg05:
 	dc.b	$FE,2
 	even
 plchg06:
-	dc.b	$1F
+	dc.b	32-1
 	dc.b	playframe.balance1
 	dc.b	playframe.balance2
 	dc.b	$FF
 	even
 plchg07:
-	dc.b	$3F
+	dc.b	64-1
 	dc.b	playframe.lookup
 	dc.b	$FF
 	even
 plchg08:
-	dc.b	$3F
+	dc.b	64-1
 	dc.b	playframe.duck
 	dc.b	$FF
 	even
 plchg09:
-	dc.b	$3F
-	dc.b	$33
+	dc.b	64-1
+	dc.b	playframe_s1.hedcol1
 	dc.b	$FF
 	even
 plchg10:
-	dc.b	$3F
-	dc.b	$34
+	dc.b	64-1
+	dc.b	playframe_s1.hedcol2
 	dc.b	$FF
 	even
 plchg11:
-	dc.b	$3F
-	dc.b	$35
+	dc.b	64-1
+	dc.b	playframe_s1.hedcol3
 	dc.b	$FF
 	even
 plchg12:
-	dc.b	$3F
-	dc.b	$36
+	dc.b	64-1
+	dc.b	playframe_s1.hedcol4
 	dc.b	$FF
 	even
 plchg13:
-	dc.b	7
+	dc.b	8-1
 	dc.b	playframe.skid1
 	dc.b	playframe.skid2
 	dc.b	$FF
 	even
 plchg14:
-	dc.b	7
-	dc.b	$3C
-	dc.b	$3F
+	dc.b	8-1
+	dc.b	playframe_s1.watertunnel1
+	dc.b	playframe_s1.watertunnel4
 	dc.b	$FF
 	even
 plchg15:
-	dc.b	7
-	dc.b	$3C
-	dc.b	$3D
-	dc.b	$53
-	dc.b	$3E
-	dc.b	$54
+	dc.b	8-1
+	dc.b	playframe_s1.watertunnel1
+	dc.b	playframe_s1.watertunnel2
+	dc.b	playframe_s1.watertunnel5
+	dc.b	playframe_s1.watertunnel3
+	dc.b	playframe_s1.watertunnel6
 	dc.b	$FF
 	even
 plchg16:
-	dc.b	$2F
+	dc.b	48-1
 	dc.b	playframe.spring
 	dc.b	$FD,0
 	even
 plchg17:
-	dc.b	4
+	dc.b	5-1
 	dc.b	playframe.polehang1
 	dc.b	playframe.polehang2
 	dc.b	$FF
 	even
 plchg18:
-	dc.b	$F
-	dc.b	$43
-	dc.b	$43
-	dc.b	$43
+	dc.b	16-1
+	dc.b	playframe_s1.victory1
+	dc.b	playframe_s1.victory1
+	dc.b	playframe_s1.victory1
 	dc.b	$FE,1
 	even
 plchg19:
-	dc.b	$F
-	dc.b	$43
-	dc.b	$44
+	dc.b	16-1
+	dc.b	playframe_s1.victory1
+	dc.b	playframe_s1.victory2
 	dc.b	$FE,1
 	even
 plchg20:
-	dc.b	$3F
-	dc.b	$49
+	dc.b	64-1
+	dc.b	playframe_s1.surf
 	dc.b	$FF
 	even
 plchg21:
-	dc.b	$B
+	dc.b	12-1
 	dc.b	playframe.getair
 	dc.b	playframe.getair
 	dc.b	playframe.walk5
@@ -2923,62 +2923,62 @@ plchg21:
 	dc.b	$FD,0
 	even
 plchg22:
-	dc.b	$20
+	dc.b	33-1
 	dc.b	playframe.burnt
 	dc.b	$FF
 	even
 plchg23:
-	dc.b	$2F
+	dc.b	48-1
 	dc.b	playframe.drown
 	dc.b	$FF
 	even
 plchg24:
-	dc.b	3
+	dc.b	4-1
 	dc.b	playframe.death
 	dc.b	$FF
 	even
 plchg25:
-	dc.b	3
-	dc.b	$4E
-	dc.b	$4F
-	dc.b	$50
-	dc.b	$51
-	dc.b	$52
-	dc.b	0
+	dc.b	4-1
+	dc.b	playframe_s1.shrink1
+	dc.b	playframe_s1.shrink2
+	dc.b	playframe_s1.shrink3
+	dc.b	playframe_s1.shrink4
+	dc.b	playframe_s1.shrink5
+	dc.b	playframe_s1.empty
 	dc.b	$FE,1
 	even
 plchg26:
-	dc.b	3
+	dc.b	4-1
 	dc.b	playframe.hurt
 	dc.b	$FF
 	even
 plchg27:
-	dc.b	7
+	dc.b	8-1
 	dc.b	playframe.hurt
 	dc.b	playframe.waterfall
 	dc.b	$FF
 	even
 plchg28:
-	dc.b	$77
+	dc.b	120-1
 	dc.b	playframe.empty
 	dc.b	$FD,0
 	even
 plchg29:
-	dc.b	3
-	dc.b	$3C
-	dc.b	$3D
-	dc.b	$53
-	dc.b	$3E
-	dc.b	$54
+	dc.b	4-1
+	dc.b	playframe_s1.watertunnel1
+	dc.b	playframe_s1.watertunnel2
+	dc.b	playframe_s1.watertunnel5
+	dc.b	playframe_s1.watertunnel3
+	dc.b	playframe_s1.watertunnel6
 	dc.b	$FF
 	even
 plchg30:
-	dc.b	3
-	dc.b	$3C
+	dc.b	4-1
+	dc.b	playframe_s1.watertunnel1
 	dc.b	$FD,0
 	even
 plchg31:
-	dc.b	$17
+	dc.b	24-1
 	dc.b	playframe.chibistand
 	dc.b	playframe.chibistand
 	dc.b	playframe.chibistand
@@ -3000,7 +3000,7 @@ plchg31:
 	dc.b	$FE,2
 	even
 plchg32:
-	dc.b	$3F
+	dc.b	64-1
 	dc.b	playframe.chibiduck
 	dc.b	$FF
 	even
@@ -3029,18 +3029,18 @@ plchg35:
 	dc.b	$FF
 	even
 plchg36:
-	dc.b	7
+	dc.b	8-1
 	dc.b	playframe.chibiskid
 	dc.b	playframe.chibiskid
 	dc.b	$FF
 	even
 plchg37:
-	dc.b	3
+	dc.b	4-1
 	dc.b	playframe.chibihurt
 	dc.b	$FF
 	even
 plchg38:
-	dc.b	$1F
+	dc.b	32-1
 	dc.b	playframe.chibibalance1
 	dc.b	playframe.chibibalance2
 	dc.b	$FF
@@ -3055,17 +3055,17 @@ plchg39:
 	dc.b	$FF
 	even
 plchg40:
-	dc.b	$3F
+	dc.b	64-1
 	dc.b	playframe.chibistand
 	dc.b	$FF
 	even
 plchg41:
-	dc.b	$3F
+	dc.b	64-1
 	dc.b	playframe.lookback
 	dc.b	$FF
 	even
 plchg42:
-	dc.b	3
+	dc.b	4-1
 	dc.b	playframe.sneeze1
 	dc.b	playframe.sneeze1
 	dc.b	playframe.sneeze1
@@ -3082,7 +3082,7 @@ plchg42:
 	dc.b	$FD,5
 	even
 plchg43:
-	dc.b	9
+	dc.b	10-1
 	dc.b	playframe.outofhere1
 	dc.b	playframe.outofhere1
 	dc.b	playframe.outofhere1
@@ -3120,7 +3120,7 @@ plchg43:
 	dc.b	$FE,1
 	even
 plchg44:
-	dc.b	4
+	dc.b	5-1
 	dc.b	playframe.hang1
 	dc.b	playframe.hang2
 	dc.b	$FF
@@ -3153,25 +3153,25 @@ plchg47:
 	dc.b	$FF
 	even
 plchg48:
-	dc.b	$13
-	dc.b	$70
-	dc.b	$6F
-	dc.b	$70
-	dc.b	$79
+	dc.b	20-1
+	dc.b	playframe.chibiwait1
+	dc.b	playframe.chibistand
+	dc.b	playframe.chibiwait1
+	dc.b	playframe.chibihurt
 	dc.b	$FE,1
 	even
 
 playwrt:
 	lea	playpatno,a2
 	_cmpi.b	#play00_act,actno(a0)
-	beq.s	loc_20533E
+	beq.s	.jump
 	lea	playpatno1,a2
 
-loc_20533E:
+.jump:
 	moveq	#0,d0
 	move.b	patno(a0),d0
 	cmp.b	(a2),d0
-	beq.s	locret_205392
+	beq.s	.end
 	move.b	d0,(a2)
 	lea	playwrtpat.l,a2
 	add.w	d0,d0
@@ -3179,7 +3179,7 @@ loc_20533E:
 	moveq	#0,d1
 	move.b	(a2)+,d1
 	subq.b	#1,d1
-	bmi.s	locret_205392
+	bmi.s	.end
 	lea	playwrtwk,a3
 	move.b	#1,playwrtflag
 
@@ -3202,7 +3202,7 @@ loc_20533E:
 
 	dbf	d1,.loop
 
-locret_205392:
+.end:
 	rts
 
 frip_spd:

@@ -24,7 +24,7 @@ block_tbl:
 
 block_init:
 	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.l	#blockpat,patbase(a0)
 	moveq	#5,d0
 	jsr	pa_set.l

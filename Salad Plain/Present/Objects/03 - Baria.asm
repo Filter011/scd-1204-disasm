@@ -13,27 +13,27 @@ baria_move_tbl:
 bariainit:
 	addq.b	#word,r_no0(a0)
 	move.l	#bariapat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#baria_vram,sproffset(a0)
 	tst.b	mstno(a0)
-	beq.s	locret_2058C8
+	beq.s	.end
 	addq.b	#word,r_no0(a0)
 	cmpi.b	#5,mstno(a0)
-	blo.s	locret_2058C8
+	blo.s	.end
 	addq.b	#word,r_no0(a0)
 
-locret_2058C8:
+.end:
 	rts
 
 bariamove:
 	tst.b	plpower_b
-	beq.s	loc_20590C
+	beq.s	.jump
 	tst.b	plpower_a
-	bne.s	locret_20590A
+	bne.s	.end
 	tst.b	plpower_m
-	bne.s	locret_20590A
+	bne.s	.end
 	jsr	main_chk.l
 	move.w	xposi(a6),xposi(a0)
 	move.w	yposi(a6),yposi(a0)
@@ -42,18 +42,18 @@ bariamove:
 	jsr	patchg.l
 	bra.w	actionsub0
 
-locret_20590A:
+.end:
 	rts
 
-loc_20590C:
+.jump:
 	jmp	frameout.l
 
 mutekimove:
 	tst.b	plpower_a
-	beq.s	loc_20591C
+	beq.s	.jump
 	rts
 
-loc_20591C:
+.jump:
 	tst.b	plpower_m
 	bne.s	muteki_sub
 	jmp	frameout.l
@@ -68,10 +68,10 @@ muteki_sub:
 	move.b	mstno(a0),d1
 	subq.b	#1,d1
 	cmpi.b	#4,d1
-	blo.s	loc_20594A
+	blo.s	.jump
 	subq.b	#4,d1
 
-loc_20594A:
+.jump:
 	lsl.b	#3,d1
 	move.b	d1,d2
 	add.b	d1,d1
@@ -82,10 +82,10 @@ loc_20594A:
 	sub.b	d1,d0
 	addq.b	#4,d1
 	cmpi.b	#24,d1
-	blo.s	loc_205966
+	blo.s	.jump1
 	moveq	#0,d1
 
-loc_205966:
+.jump1:
 	move.b	d1,act30(a0)
 	lea	playposiwk,a1
 	lea	(a1,d0.w),a1
@@ -100,34 +100,34 @@ actionsub0:
 	move.b	plsubchg_flag,d0
 	andi.b	#7,d0
 	cmp.b	r_no0(a0),d0
-	beq.s	loc_2059B2
+	beq.s	.jump
 	move.b	r_no0(a0),plsubchg_flag
 	bset	#7,plsubchg_flag
 
-loc_2059B2:
+.jump:
 	jmp	actionsub.l
 
-sub_2059B8:
+plsubchg:
 	bclr	#7,plsubchg_flag
 	beq.s	.end
 	moveq	#0,d0
 	move.b	plsubchg_flag,d0
 	subq.b	#2,d0
 	add.w	d0,d0
-	movea.l	off_205A08(pc,d0.w),a1
-	lea	powerupwrtwk,a2
-	move.w	#(powerupwrtwk_end-powerupwrtwk-$180)/4-1,d0
+	movea.l	plsubchg_tbl(pc,d0.w),a1
+	lea	bariawrtwk,a2
+	move.w	#((bariawrtwk_end-bariawrtwk)-tile_size*$C)/4-1,d0
 
 .loop:
 	move.l	(a1)+,(a2)+
 	dbf	d0,.loop
 
-	dma68k	powerupwrtwk,4,baria_vram*tile_size
+	dma68k	bariawrtwk,4,baria_vram*tile_size
 
 .end:
 	rts
 
-off_205A08:
+plsubchg_tbl:
 	dc.l	bariacg
 	dc.l	mutekicg
 	dc.l	cg_timetravel

@@ -12,7 +12,7 @@ test_init:
 	btst	#7,cddat(a0)
 	bne.w	frameout
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#bariapat,patbase(a0)
 	move.w	#$541,sproffset(a0)

@@ -13,15 +13,15 @@ off_20C8C2:
 loc_20C8CA:
 	addq.b	#word,r_no0(a0)
 	move.l	#obj29_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	moveq	#17,d0
 	jsr	pa_set.l
 	move.b	act3D(a0),d0
 	bne.s	loc_20C92E
 	move.b	userflag(a0),d6
-	andi.w	#%1111,d6
+	andi.w	#%00001111,d6
 	jsr	sub_20C93C(pc)
 	move.b	act3D(a1),d0
 	ori.b	#%10000000,d0

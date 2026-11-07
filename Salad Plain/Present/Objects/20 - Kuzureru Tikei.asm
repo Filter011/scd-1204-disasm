@@ -13,7 +13,7 @@ off_20D030:
 
 acta_init:
 	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#3,sprpri(a0)
 	move.w	#$4000,sproffset(a0)
 	lea	patbase_kuzure_a(pc),a1
@@ -166,7 +166,7 @@ loc_20D1D4:
 	move.b	(a6)+,d0
 	bmi.w	loc_20D24C
 	move.b	d0,patno(a1)
-	ori.b	#4,actflg(a1)
+	ori.b	#%00000100,actflg(a1)
 	move.b	#3,sprpri(a1)
 	move.w	#$4000,sproffset(a1)
 	move.l	#patc,patbase(a1)
@@ -259,7 +259,7 @@ loc_20D2E4:
 	bne.w	locret_20D34A
 	move.b	#3,sprpri(a1)
 	move.w	#$4000,sproffset(a1)
-	ori.b	#4,actflg(a1)
+	ori.b	#%00000100,actflg(a1)
 	move.l	#patd,patbase(a1)
 	move.l	#$20000,act2C(a1)
 	_move.b	act3F(a0),actno(a1)

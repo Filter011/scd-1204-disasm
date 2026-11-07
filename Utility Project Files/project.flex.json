@@ -15,7 +15,8 @@
                 "path": "../Salad Plain/Present/Art/Uncompressed/Player.unc",
                 "compression": "Uncompressed",
                 "offset": 0,
-                "extra": []
+                "extra": [],
+                "paletteLine": 0
             },
             "mappings": {
                 "path": "../Salad Plain/Present/Patterns/Player.asm",

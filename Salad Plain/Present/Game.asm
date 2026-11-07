@@ -202,7 +202,7 @@ play_act_set:
 	tst.b	main_play
 	beq.s	.jump
 	lea	player2wk,a1
-	moveq	#objid_02,d0
+	moveq	#play01_act,d0
 
 .jump:
 	_move.b	d0,actno(a1)

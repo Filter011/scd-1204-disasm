@@ -12,7 +12,7 @@ iwa_move_tbl:
 
 iwa_init:
 	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#iwapat,patbase(a0)
 	move.b	#16,sprhsize(a0)

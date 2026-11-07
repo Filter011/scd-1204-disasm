@@ -11,7 +11,7 @@ baku_move_tbl:
 
 baku_init:
 	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.w	#bakuha_vram,sproffset(a0)
 	move.l	#bakupat,patbase(a0)
@@ -48,7 +48,7 @@ flow_move_tbl:
 	dc.w	flow_move3-flow_move_tbl
 
 flow_init:
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#0,sprvsize(a0)
 	move.w	#flow_vram+$4000,sproffset(a0)

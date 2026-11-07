@@ -26,9 +26,9 @@ hashi_move_tbl:
 hashi_init:
 	move.b	#$C,r_no0(a0)
 	move.l	#hashipat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	moveq	#9,d0
 	jsr	pa_set(pc)
 	move.b	#1,mstno(a0)
@@ -84,9 +84,9 @@ locret_20BDC4:
 sub_20BDC6:
 	move.b	#6,r_no0(a0)
 	move.l	#hashipat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	moveq	#9,d0
 	jsr	pa_set(pc)
 	move.b	#1,mstno(a0)
@@ -132,9 +132,9 @@ loc_20BE04:
 loc_20BE6A:
 	move.b	#8,r_no0(a0)
 	move.l	#hashipat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	moveq	#9,d0
 	jsr	pa_set(pc)
 	movea.w	act3E(a0),a2

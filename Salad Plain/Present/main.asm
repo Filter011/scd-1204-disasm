@@ -594,7 +594,7 @@ off_209BA4:
 loc_209BA8:
 	addq.b	#word,r_no0(a0)
 	move.l	#off_20B4C8,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
@@ -648,7 +648,7 @@ loc_209C66:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj13_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#0,d0
@@ -777,7 +777,7 @@ loc_209E08:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj13b_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
@@ -899,7 +899,7 @@ loc_209F9A:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj14_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#1,d0
@@ -1054,7 +1054,7 @@ loc_20A1AC:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj14_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#1,d0
@@ -1214,7 +1214,7 @@ loc_20A3D0:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj15_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#2,d0
@@ -1332,7 +1332,7 @@ loc_20A552:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj15_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#2,d0
@@ -1472,7 +1472,7 @@ loc_20A71E:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj16_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#3,d0
@@ -1561,7 +1561,7 @@ loc_20A830:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj16_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	moveq	#3,d0
@@ -1652,7 +1652,7 @@ loc_20A946:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj22_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
@@ -1888,7 +1888,7 @@ loc_20AC78:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#obj22_map,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#$400,sproffset(a0)
@@ -2755,7 +2755,7 @@ off_20B60E:
 loc_20B612:
 	addq.b	#word,r_no0(a0)
 	move.l	#off_20CF16,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#$47A,sproffset(a0)
@@ -3637,7 +3637,7 @@ pa17:
 	include	"Objects/17 - Goal.asm"
 
 sub_20DFF4:
-	jmp	sub_2059B8.l
+	jmp	plsubchg.l
 
 mapinittbl:
 	dc.l	ddevid_03<<24+zone1cg

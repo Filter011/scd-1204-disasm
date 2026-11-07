@@ -133,8 +133,8 @@ byte_FF1886:		ds.b	1
 	ds.b	3
 byte_FF188A:		ds.b	1
 	ds.b	$75
-powerupwrtwk:		ds.b	$480
-powerupwrtwk_end:
+bariawrtwk:		ds.b	tile_size*$24
+bariawrtwk_end:
 	ds.b	$6280
 	dephase
 	phase	$FFFF8000

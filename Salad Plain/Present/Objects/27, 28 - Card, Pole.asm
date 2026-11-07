@@ -1,28 +1,28 @@
 pole:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20B826(pc,d0.w),d0
-	jsr	off_20B826(pc,d0.w)
+	move.w	pole_move_tbl(pc,d0.w),d0
+	jsr	pole_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20B826:
-	dc.w	loc_20B834-off_20B826
-	dc.w	loc_20B888-off_20B826
-	dc.w	loc_20B8C8-off_20B826
-	dc.w	loc_20B9B4-off_20B826
-	dc.w	loc_20B908-off_20B826
-	dc.w	loc_20B9FC-off_20B826
-	dc.w	loc_20B950-off_20B826
+pole_move_tbl:
+	dc.w	poleinit-pole_move_tbl
+	dc.w	loc_20B888-pole_move_tbl
+	dc.w	loc_20B8C8-pole_move_tbl
+	dc.w	loc_20B9B4-pole_move_tbl
+	dc.w	loc_20B908-pole_move_tbl
+	dc.w	loc_20B9FC-pole_move_tbl
+	dc.w	loc_20B950-pole_move_tbl
 
-loc_20B834:
+poleinit:
 	move.l	#polepat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	moveq	#7,d0
 	jsr	pa_set(pc)
-	move.b	#24,sprhs(a0)
-	move.b	#4,sprvsize(a0)
+	move.b	#48/2,sprhs(a0)
+	move.b	#8/2,sprvsize(a0)
 	move.b	userflag(a0),d0
 	cmpi.b	#1,d0
 	beq.w	loc_20B87A
@@ -199,9 +199,9 @@ off_20BA74:
 loc_20BA7C:
 	addq.b	#word,r_no0(a0)
 	move.l	#cardpat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	moveq	#8,d0
 	jsr	pa_set(pc)
 	rts
@@ -430,8 +430,8 @@ loc_20BC80:
 	andi.w	#$FF80,d1
 	sub.w	d1,d0
 	cmpi.w	#$280,d0
-	blo.s	locret_20BCA2
+	blo.s	.end
 	jmp	frameout.l
 
-locret_20BCA2:
+.end:
 	rts

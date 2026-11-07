@@ -14,7 +14,7 @@ taki_move_tbl:
 taki_init:
 	addq.b	#word,r_no0(a0)
 	move.l	#shibukipat,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
 	move.w	#taki_vram,sproffset(a0)
@@ -84,7 +84,7 @@ jisin_set_move_tbl:
 
 jisin_set_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#bariapat,patbase(a0)
 	move.w	#jisin_vram,sproffset(a0)
@@ -136,11 +136,11 @@ jisin_move_tbl:
 
 jisin_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 
 jisin_move:
 	move.b	systemtimer+3,d0
-	andi.b	#$F,d0
+	andi.b	#15,d0
 	bne.s	locret_206930
 	subq.b	#1,act2E(a0)
 	bne.s	loc_2068E0

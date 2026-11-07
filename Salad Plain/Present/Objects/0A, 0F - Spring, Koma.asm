@@ -20,7 +20,7 @@ koma_move_tbl:
 
 koma_init:
 	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#komapat,patbase(a0)
 	move.b	#8,sprhsize(a0)
@@ -130,7 +130,7 @@ sjumpinit:
 	addq.b	#word,r_no0(a0)
 	move.l	#springpat,patbase(a0)
 	move.w	#spring_vram,sproffset(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#16,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
 	move.w	xposi(a0),act36(a0)

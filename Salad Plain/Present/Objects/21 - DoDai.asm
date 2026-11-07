@@ -18,7 +18,7 @@ ridechk:
 	jmp	ride_on_chk.l
 
 dodai_init:
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.w	#$4000,sproffset(a0)
 	move.b	#3,sprpri(a0)
 	move.w	xposi(a0),act38(a0)
@@ -36,7 +36,7 @@ loc_20D6EE:
 	move.l	d0,patbase(a0)
 	move.b	userflag(a0),d0
 	move.b	d0,d1
-	andi.w	#%0011,d0
+	andi.w	#%00000011,d0
 	move.b	d0,patno(a0)
 	move.b	dai_hstbl(pc,d0.w),sprhsize(a0)
 	move.b	#4,sprvsize(a0)
@@ -58,7 +58,7 @@ loc_20D72C:
 	move.w	a0,act34(a1)
 	move.b	act29(a0),d0
 	move.b	d0,d1
-	andi.b	#%0010,d1
+	andi.b	#%00000010,d1
 	move.b	d1,userflag(a1)
 	andi.b	#%11111000,d0
 	move.b	d0,act38(a1)

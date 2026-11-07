@@ -52,11 +52,11 @@ off_20B534:
 
 loc_20B538:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#4,sprhs(a0)
 	move.b	#4,sprvsize(a0)
-	move.w	#$2400,sproffset(a0)
+	move.w	#$400+$2000,sproffset(a0)
 	move.l	#obj23_map,patbase(a0)
 	move.l	#$10000,act2A(a0)
 	move.b	act3F(a0),d0

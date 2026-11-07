@@ -445,7 +445,7 @@ __LABEL__:	label	(*-act_tbl+4)/4
 
 objid_00:	equ	0
 play00_act:	act_ptr	play00
-objid_02:	act_ptr	play00
+play01_act:	act_ptr	play00
 baria_act:	act_ptr	baria
 taki_act:	act_ptr	taki
 jisin_act:	act_ptr	jisin

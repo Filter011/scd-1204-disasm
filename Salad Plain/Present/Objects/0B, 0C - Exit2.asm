@@ -4,23 +4,23 @@ exit2_set:
 	moveq	#0,d1
 	move.b	sprhsize(a0),d1
 	add.w	d1,d0
-	bmi.s	loc_20580E
+	bmi.s	.jump
 	add.w	d1,d1
 	cmp.w	d1,d0
-	bhs.s	loc_20580E
+	bhs.s	.jump
 	move.w	yposi(a1),d0
 	sub.w	yposi(a0),d0
 	moveq	#0,d1
 	move.b	sprvsize(a0),d1
 	add.w	d1,d0
-	bmi.s	loc_20580E
+	bmi.s	.jump
 	add.w	d1,d1
 	cmp.w	d1,d0
-	bhs.s	loc_20580E
+	bhs.s	.jump
 	moveq	#1,d0
 	rts
 
-loc_20580E:
+.jump:
 	moveq	#0,d0
 	rts
 
@@ -37,7 +37,7 @@ exit2_move_tbl:
 
 exit2_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.l	#exit2pat,patbase(a0)
 	move.b	userflag(a0),mstno(a0)
@@ -45,10 +45,10 @@ exit2_init:
 	jsr	pa_set.l
 	move.w	#se_A2,d0
 	cmpi.b	#2,userflag(a0)
-	blo.s	loc_20585C
+	blo.s	.jump
 	move.w	#se_A1,d0
 
-loc_20585C:
+.jump:
 	jsr	soundset.l
 
 exit2_move:

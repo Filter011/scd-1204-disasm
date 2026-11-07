@@ -23,7 +23,7 @@ dai_k_move_tbl:
 
 dai_k_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.l	#k_daipat,patbase(a0)
 	moveq	#6,d0

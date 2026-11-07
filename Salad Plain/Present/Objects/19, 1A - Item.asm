@@ -23,9 +23,9 @@ t_item_init:
 	move.b	#14,sprhs(a0)
 	move.l	#itempat,patbase(a0)
 	move.w	#item_vram,sproffset(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#3,sprpri(a0)
-	move.b	#$F,sprhsize(a0)
+	move.b	#15,sprhsize(a0)
 	move.b	userflag(a0),mstno(a0)
 	bsr.w	flagwkadr
 	bclr	#7,2(a2,d0.w)
@@ -114,9 +114,9 @@ iteminit:
 	move.b	#14,sprhs(a0)
 	move.l	#itempat,patbase(a0)
 	move.w	#item_vram,sproffset(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#3,sprpri(a0)
-	move.b	#$F,sprhsize(a0)
+	move.b	#15,sprhsize(a0)
 	bsr.w	flagwkadr
 	bclr	#7,2(a2,d0.w)
 	btst	#0,2(a2,d0.w)
@@ -202,7 +202,7 @@ item2_move_tbl:
 item2init:
 	addq.b	#word,r_no0(a0)
 	move.w	#item_vram,sproffset(a0)
-	move.b	#$24,actflg(a0)
+	move.b	#%00100100,actflg(a0)
 	move.b	#3,sprpri(a0)
 	move.b	#8,sprhsize(a0)
 	move.w	#-$300,yspeed(a0)

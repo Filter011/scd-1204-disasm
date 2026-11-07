@@ -23,10 +23,10 @@ off_20DCDE:
 
 t_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#8,sprhs(a0)
-	move.b	#8,sprvsize(a0)
+	move.b	#16/2,sprhs(a0)
+	move.b	#16/2,sprvsize(a0)
 	move.w	#friend1_vram,sproffset(a0)
 	move.l	#pat_friend0,patbase(a0)
 	move.l	xposi(a0),act2A(a0)
@@ -114,10 +114,10 @@ off_20DDD8:
 
 p_init:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#8,sprhs(a0)
-	move.b	#8,sprvsize(a0)
+	move.b	#16/2,sprhs(a0)
+	move.b	#16/2,sprvsize(a0)
 	move.w	#friend1_vram,sproffset(a0)
 	move.l	#pat_friend1,patbase(a0)
 	move.l	#-$40000,act2A(a0)

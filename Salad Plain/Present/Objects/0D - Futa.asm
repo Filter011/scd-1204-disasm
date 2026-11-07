@@ -42,7 +42,7 @@ futa_init:
 	addq.b	#word,r_no0(a0)
 	move.l	#futapat,patbase(a0)
 	move.b	#1,sprpri(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#44,sprhsize(a0)
 	move.b	#8,sprvsize(a0)
 	moveq	#12,d0
