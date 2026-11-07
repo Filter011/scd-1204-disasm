@@ -103,7 +103,7 @@ edit:
 	beq.s	.jump9
 	move.b	#0,editmode
 	move.l	#playpat,patbase(a0)
-	move.w	#$780,sproffset(a0)
+	move.w	#play00_vram,sproffset(a0)
 	move.b	#2,sprpri(a0)
 	move.b	#0,patno(a0)
 	move.b	#4,actflg(a0)

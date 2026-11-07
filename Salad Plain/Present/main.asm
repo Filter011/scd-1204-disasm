@@ -3696,7 +3696,7 @@ ddev_00_end:
 	if act_number=0
 
 ddev_01:	ddev_header
-	ddev_entry	cg_rock,$326
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
 	ddev_entry	futacg,futa_vram
@@ -3759,7 +3759,7 @@ ddev_09_end:
 
 ddev_0A:	ddev_header
 	ddev_entry	hashicg,hashi_vram
-	ddev_entry	cg_rock,$326
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
 	ddev_entry	futacg,futa_vram
@@ -3777,7 +3777,7 @@ ddev_0A_end:
 
 ddev_0B:	ddev_header
 	ddev_entry	hashicg,hashi_vram
-	ddev_entry	cg_rock,$326
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
 	ddev_entry	futacg,futa_vram
@@ -3793,7 +3793,7 @@ ddev_0B:	ddev_header
 ddev_0B_end:
 
 ddev_0C:	ddev_header
-	ddev_entry	cg_rock,$326
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
 	ddev_entry	futacg,futa_vram
@@ -3810,7 +3810,7 @@ ddev_0C_end:
 
 ddev_0E:	ddev_header
 	ddev_entry	hashicg,hashi_vram
-	ddev_entry	cg_rock,$326
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
 	ddev_entry	futacg,futa_vram
@@ -3827,7 +3827,7 @@ ddev_0E_end:
 
 ddev_0F:	ddev_header
 	ddev_entry	hashicg,hashi_vram
-	ddev_entry	cg_rock,$326
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
 	ddev_entry	cg_pole,$342
 	ddev_entry	futacg,futa_vram
@@ -3848,7 +3848,7 @@ ddev_0F_end:
 	ddev_entry	futacg,$375
 	ddev_entry	blockcg,$381
 	ddev_entry	daikcg,$393
-	ddev_entry	cg_rock,$3A2
+	ddev_entry	iwacg,$3A2
 	ddev_entry	cg_flickyricky,$3B6
 	ddev_entry	cg_anton,$3CE
 	ddev_entry	cg_mosqui,$3E4
@@ -3863,7 +3863,7 @@ ddev_unused_0:	ddev_header
 	ddev_entry	futacg,$375
 	ddev_entry	blockcg,$381
 	ddev_entry	daikcg,$393
-	ddev_entry	cg_rock,$3A2
+	ddev_entry	iwacg,$3A2
 	ddev_entry	cg_flickyricky,$3B6
 	ddev_entry	cg_anton,$3CE
 	ddev_entry	cg_mosqui,$3E4
@@ -3878,7 +3878,7 @@ ddev_unused_1:	ddev_header
 	ddev_entry	futacg,$375
 	ddev_entry	blockcg,$381
 	ddev_entry	daikcg,$393
-	ddev_entry	cg_rock,$3A2
+	ddev_entry	iwacg,$3A2
 	ddev_entry	cg_flickyricky,$3B6
 	ddev_entry	cg_anton,$3CE
 	ddev_entry	cg_mosqui,$3E4
@@ -3894,7 +3894,7 @@ ddev_unused_2:	ddev_header
 	ddev_entry	futacg,$375
 	ddev_entry	blockcg,$381
 	ddev_entry	daikcg,$393
-	ddev_entry	cg_rock,$3A2
+	ddev_entry	iwacg,$3A2
 	ddev_entry	cg_anton,$3CE
 	ddev_entry	cg_mosqui,$3E4
 	ddev_entry	cg_patabata,$42E
@@ -3926,7 +3926,7 @@ ddev_02:	ddev_header
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
 	ddev_entry	daikcg,dai_k_vram
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_anton,$4EB
 ddev_02_end:
 
@@ -3937,7 +3937,7 @@ ddev_04_end:
 ddev_05:	ddev_header
 	ddev_entry	cg_mosqui,$413
 	ddev_entry	cg_flickyricky,$45D
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_anton,$4EB
 ddev_05_end:
 
@@ -3948,7 +3948,7 @@ ddev_06_end:
 ddev_07:	ddev_header
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_mosqui,$413
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_swing,$49E
 	ddev_entry	cg_card,$4B2
 ddev_07_end:
@@ -3972,7 +3972,7 @@ ddev_09:	ddev_header
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
 	ddev_entry	daikcg,dai_k_vram
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_anton,$4EB
 ddev_09_end:
 
@@ -3987,7 +3987,7 @@ ddev_0A:	ddev_header
 	ddev_entry	cg_mosqui,$413
 	ddev_entry	cg_flickyricky,$45D
 	ddev_entry	daikcg,dai_k_vram
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_anton,$4EB
 ddev_0A_end:
 
@@ -4015,7 +4015,7 @@ ddev_0C:	ddev_header
 	ddev_entry	cg_tamabboh,$3D8
 	ddev_entry	cg_mosqui,$413
 	ddev_entry	daikcg,dai_k_vram
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_swing,$49E
 	ddev_entry	cg_card,$4B2
 	ddev_entry	cg_anton,$4EB
@@ -4033,7 +4033,7 @@ ddev_0D:	ddev_header
 	ddev_entry	cg_patabata,$413
 	ddev_entry	cg_flickyricky,$45D
 	ddev_entry	daikcg,dai_k_vram
-	ddev_entry	cg_rock,$48A
+	ddev_entry	iwacg,iwa_vram
 	ddev_entry	cg_swing,$49E
 	ddev_entry	cg_card,$4B2
 	ddev_entry	cg_anton,$4EB
@@ -4149,7 +4149,7 @@ goalcg:
 	incbin	"Art/BitDev/Goal.nem"
 	even
 
-cg_rock:
+iwacg:
 	incbin	"Art/BitDev/Rock.nem"
 	even
 
