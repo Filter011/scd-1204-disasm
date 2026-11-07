@@ -263,7 +263,7 @@ speeduptimer:	equ	act34
 footdir:	equ	act36
 footdir2:	equ	act37
 convexflag:	equ	act38
-overtimer:	equ	act3A
+dietimer:	equ	act3A
 jumpflag:	equ	act3C
 hlocktimer:	equ	act3E
 

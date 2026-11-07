@@ -2334,19 +2334,19 @@ play00die_sub:
 	subq.b	#1,pl_suu
 
 loc_204DA2:
-	move.w	#60,overtimer(a0)
+	move.w	#60,dietimer(a0)
 	tst.b	pltimeover_f
 	beq.s	locret_204DB8
-	move.w	#0,overtimer(a0)
+	move.w	#0,dietimer(a0)
 	bra.s	loc_204DA2
 
 locret_204DB8:
 	rts
 
 play00erase:
-	tst.w	overtimer(a0)
+	tst.w	dietimer(a0)
 	beq.s	locret_204E16
-	subq.w	#1,overtimer(a0)
+	subq.w	#1,dietimer(a0)
 	bne.s	locret_204E16
 	move.w	#1,gameflag
 	lea	player2wk,a5
