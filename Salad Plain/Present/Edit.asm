@@ -133,10 +133,10 @@ edit_tbl:
 	dcblw	hashi_act,1,hashipat,hashi_vram,0,0,0,0		;1:
 	dcblw	iwa_act,1,iwapat,iwa_vram,0,0,0,0		;2:
 	dcblw	toge_act,1,togepat,toge_vram,0,0,0,0		;3:
-	dcblw	objid_28,1,act28pat,$342,0,0,0,0		;4:
-	dcblw	objid_28,1,act28pat,$342,1,1,0,0		;5:
+	dcblw	pole_act,1,polepat,$342,0,0,0,0			;4:
+	dcblw	pole_act,1,polepat,$342,1,1,0,0			;5:
 	dcblw	futa_act,1,futapat,$357,0,0,0,0			;6:
-	dcblw	objid_27,1,act27pat,$49B,0,0,0,0		;7:
+	dcblw	card_act,1,cardpat,$49B,0,0,0,0			;7:
 	dcblw	dai_k_act,1,k_daipat,$4D2,0,0,0,0		;8:
 	dcblw	dai_k_act,1,k_daipat,$47C,0,0,1,0		;9:
 	dcblw	dodai_act,1,dai11a_pattbl,$4000,1,0,0,0		;10:
@@ -191,12 +191,12 @@ edit_tbl:
 	dc.b	50,0
 
 	dcblw	toge_act,1,togepat,$339,0,0,0,0			;1:
-	dcblw	objid_28,1,act28pat,$341,0,0,0,0		;2:
-	dcblw	objid_28,1,act28pat,$341,1,1,0,0		;3:
+	dcblw	pole_act,1,polepat,$341,0,0,0,0			;2:
+	dcblw	pole_act,1,polepat,$341,1,1,0,0			;3:
 	dcblw	futa_act,1,futapat,$3BE,0,0,0,0			;4:
 	dcblw	dai_k_act,1,k_daipat,$479,0,0,0,0		;5:
 	dcblw	iwa_act,1,iwapat,$488,0,0,0,0			;6:
-	dcblw	objid_27,1,act27pat,$49C,0,0,0,0		;7:
+	dcblw	card_act,1,cardpat,$49C,0,0,0,0			;7:
 	dcblw	dodai_act,1,dai11a_pattbl,$4000,1,0,0,0		;8:
 	dcblw	koma_act,4,komapat,$3A8,0,0,0,0			;9:
 	dcblw	hashi_act,1,hashipat,$40A,0,0,0,0		;10:

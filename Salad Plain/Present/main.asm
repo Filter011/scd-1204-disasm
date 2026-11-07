@@ -2923,7 +2923,7 @@ byte_20B80A:
 byte_20B80E:
 	dc.b	$10,$F0,$10,$F0
 
-	include	"Objects/27, 28.asm"
+	include	"Objects/27, 28 - Card, Pole.asm"
 	include	"Objects/25 - Hashi.asm"
 	include	"Objects/26 - Toge.asm"
 	include	"Objects/29.asm"
@@ -2959,12 +2959,12 @@ byte_20B80E:
 	dc.b	$F0,3,8,$11,-4
 	even
 
-obj28_ani:
-	dc.w	unk_20CCC0-obj28_ani
-	dc.w	unk_20CCD0-obj28_ani
-	dc.w	unk_20CCDA-obj28_ani
-	dc.w	unk_20CCE4-obj28_ani
-	dc.w	unk_20CCE8-obj28_ani
+polechg:
+	dc.w	unk_20CCC0-polechg
+	dc.w	unk_20CCD0-polechg
+	dc.w	unk_20CCDA-polechg
+	dc.w	unk_20CCE4-polechg
+	dc.w	unk_20CCE8-polechg
 unk_20CCC0:
 	dc.b	2
 	dc.b	0,1,0,2,0,1,0,3,4,3,5,3,4,3
@@ -2991,13 +2991,13 @@ unk_20CCE8:
 	dc.b	$FF
 	even
 
-act28pat:
-	dc.w	byte_20CCF8-act28pat
-	dc.w	byte_20CD04-act28pat
-	dc.w	byte_20CD10-act28pat
-	dc.w	byte_20CD1C-act28pat
-	dc.w	byte_20CD28-act28pat
-	dc.w	byte_20CD34-act28pat
+polepat:
+	dc.w	byte_20CCF8-polepat
+	dc.w	byte_20CD04-polepat
+	dc.w	byte_20CD10-polepat
+	dc.w	byte_20CD1C-polepat
+	dc.w	byte_20CD28-polepat
+	dc.w	byte_20CD34-polepat
 byte_20CCF8:
 	dc.b	2
 	dc.b	-4,1,0,0,-8
@@ -3029,21 +3029,21 @@ byte_20CD34:
 	dc.b	$F0,5,8,$11,$E8
 	even
 
-obj27_ani:
-	dc.w	unk_20CD5C-obj27_ani
-	dc.w	unk_20CD6C-obj27_ani
-	dc.w	unk_20CD70-obj27_ani
-	dc.w	unk_20CD74-obj27_ani
-	dc.w	unk_20CD78-obj27_ani
-	dc.w	unk_20CD7C-obj27_ani
-	dc.w	unk_20CD80-obj27_ani
-	dc.w	unk_20CD84-obj27_ani
-	dc.w	unk_20CD88-obj27_ani
-	dc.w	unk_20CD8C-obj27_ani
-	dc.w	unk_20CD90-obj27_ani
-	dc.w	unk_20CD94-obj27_ani
-	dc.w	unk_20CD98-obj27_ani
-	dc.w	unk_20CD9C-obj27_ani
+cardchg:
+	dc.w	unk_20CD5C-cardchg
+	dc.w	unk_20CD6C-cardchg
+	dc.w	unk_20CD70-cardchg
+	dc.w	unk_20CD74-cardchg
+	dc.w	unk_20CD78-cardchg
+	dc.w	unk_20CD7C-cardchg
+	dc.w	unk_20CD80-cardchg
+	dc.w	unk_20CD84-cardchg
+	dc.w	unk_20CD88-cardchg
+	dc.w	unk_20CD8C-cardchg
+	dc.w	unk_20CD90-cardchg
+	dc.w	unk_20CD94-cardchg
+	dc.w	unk_20CD98-cardchg
+	dc.w	unk_20CD9C-cardchg
 unk_20CD5C:
 	dc.b	9
 	dc.b	0,1,2,3,4,5,6,7,8,9,$A,$B,$C
@@ -3115,20 +3115,20 @@ unk_20CD9C:
 	dc.b	$FF
 	even
 
-act27pat:
-	dc.w	byte_20CDBA-act27pat
-	dc.w	byte_20CDCA-act27pat
-	dc.w	byte_20CDE4-act27pat
-	dc.w	byte_20CDF4-act27pat
-	dc.w	byte_20CE18-act27pat
-	dc.w	byte_20CE32-act27pat
-	dc.w	byte_20CE42-act27pat
-	dc.w	byte_20CE52-act27pat
-	dc.w	byte_20CE6C-act27pat
-	dc.w	byte_20CE7C-act27pat
-	dc.w	byte_20CEA0-act27pat
-	dc.w	byte_20CEBA-act27pat
-	dc.w	byte_20CECA-act27pat
+cardpat:
+	dc.w	byte_20CDBA-cardpat
+	dc.w	byte_20CDCA-cardpat
+	dc.w	byte_20CDE4-cardpat
+	dc.w	byte_20CDF4-cardpat
+	dc.w	byte_20CE18-cardpat
+	dc.w	byte_20CE32-cardpat
+	dc.w	byte_20CE42-cardpat
+	dc.w	byte_20CE52-cardpat
+	dc.w	byte_20CE6C-cardpat
+	dc.w	byte_20CE7C-cardpat
+	dc.w	byte_20CEA0-cardpat
+	dc.w	byte_20CEBA-cardpat
+	dc.w	byte_20CECA-cardpat
 byte_20CDBA:
 	dc.b	3
 	dc.b	$F0,$C,0,0,0
@@ -3698,7 +3698,7 @@ ddev_00_end:
 ddev_01:	ddev_header
 	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$342
+	ddev_entry	polecg,$342
 	ddev_entry	futacg,futa_vram
 	ddev_entry	blockcg,block_vram
 	ddev_entry	daikcg,dai_k_vram
@@ -3761,7 +3761,7 @@ ddev_0A:	ddev_header
 	ddev_entry	hashicg,hashi_vram
 	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$342
+	ddev_entry	polecg,$342
 	ddev_entry	futacg,futa_vram
 	ddev_entry	blockcg,block_vram
 	ddev_entry	daikcg,dai_k_vram
@@ -3779,7 +3779,7 @@ ddev_0B:	ddev_header
 	ddev_entry	hashicg,hashi_vram
 	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$342
+	ddev_entry	polecg,$342
 	ddev_entry	futacg,futa_vram
 	ddev_entry	blockcg,block_vram
 	ddev_entry	daikcg,dai_k_vram
@@ -3795,7 +3795,7 @@ ddev_0B_end:
 ddev_0C:	ddev_header
 	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$342
+	ddev_entry	polecg,$342
 	ddev_entry	futacg,futa_vram
 	ddev_entry	blockcg,block_vram
 	ddev_entry	daikcg,dai_k_vram
@@ -3812,7 +3812,7 @@ ddev_0E:	ddev_header
 	ddev_entry	hashicg,hashi_vram
 	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$342
+	ddev_entry	polecg,$342
 	ddev_entry	futacg,futa_vram
 	ddev_entry	blockcg,block_vram
 	ddev_entry	daikcg,dai_k_vram
@@ -3829,7 +3829,7 @@ ddev_0F:	ddev_header
 	ddev_entry	hashicg,hashi_vram
 	ddev_entry	iwacg,iwa_vram
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$342
+	ddev_entry	polecg,$342
 	ddev_entry	futacg,futa_vram
 	ddev_entry	blockcg,block_vram
 	ddev_entry	daikcg,dai_k_vram
@@ -3857,7 +3857,7 @@ ddev_0F_end:
 
 ddev_unused_0:	ddev_header
 	ddev_entry	togecg,$31E
-	ddev_entry	cg_pole,$32A
+	ddev_entry	polecg,$32A
 	ddev_entry	spring45cg,$33F
 	ddev_entry	komacg,$36D
 	ddev_entry	futacg,$375
@@ -3872,7 +3872,7 @@ ddev_unused_0_end:
 
 ddev_unused_1:	ddev_header
 	ddev_entry	togecg,$31E
-	ddev_entry	cg_pole,$32A
+	ddev_entry	polecg,$32A
 	ddev_entry	spring45cg,$33F
 	ddev_entry	komacg,$36D
 	ddev_entry	futacg,$375
@@ -3888,7 +3888,7 @@ ddev_unused_1_end:
 
 ddev_unused_2:	ddev_header
 	ddev_entry	togecg,$31E
-	ddev_entry	cg_pole,$32A
+	ddev_entry	polecg,$32A
 	ddev_entry	spring45cg,$33F
 	ddev_entry	komacg,$36D
 	ddev_entry	futacg,$375
@@ -3907,7 +3907,7 @@ ddev_unused_2_end:
 
 ddev_01:	ddev_header
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$361
+	ddev_entry	polecg,$361
 	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	komacg,koma_vram
 	ddev_entry	futacg,futa_vram
@@ -3963,7 +3963,7 @@ ddev_08_end:
 
 ddev_09:	ddev_header
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$361
+	ddev_entry	polecg,$361
 	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	komacg,$3A4
 	ddev_entry	futacg,futa_vram
@@ -3978,7 +3978,7 @@ ddev_09_end:
 
 ddev_0A:	ddev_header
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$361
+	ddev_entry	polecg,$361
 	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	komacg,$3A4
 	ddev_entry	futacg,futa_vram
@@ -3993,7 +3993,7 @@ ddev_0A_end:
 
 ddev_0B:	ddev_header
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$361
+	ddev_entry	polecg,$361
 	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	komacg,$3A4
 	ddev_entry	futacg,futa_vram
@@ -4007,7 +4007,7 @@ ddev_0B_end:
 
 ddev_0C:	ddev_header
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$361
+	ddev_entry	polecg,$361
 	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	komacg,$3A4
 	ddev_entry	futacg,futa_vram
@@ -4023,7 +4023,7 @@ ddev_0C_end:
 
 ddev_0D:	ddev_header
 	ddev_entry	togecg,toge_vram
-	ddev_entry	cg_pole,$361
+	ddev_entry	polecg,$361
 	ddev_entry	spring45cg,spring45_vram
 	ddev_entry	komacg,$3A4
 	ddev_entry	futacg,futa_vram
@@ -4197,7 +4197,7 @@ cg_tamabboh:
 	incbin	"Art/BitDev/Tamabboh.nem"
 	even
 
-cg_pole:
+polecg:
 	incbin	"Art/BitDev/Elastic Pole.nem"
 	even
 

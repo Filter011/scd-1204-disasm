@@ -1,4 +1,4 @@
-obj28:
+pole:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
 	move.w	off_20B826(pc,d0.w),d0
@@ -15,7 +15,7 @@ off_20B826:
 	dc.w	loc_20B950-off_20B826
 
 loc_20B834:
-	move.l	#act28pat,patbase(a0)
+	move.l	#polepat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
@@ -51,7 +51,7 @@ loc_20B888:
 	move.b	#3,mstno(a0)
 
 loc_20B8B6:
-	lea	obj28_ani.l,a1
+	lea	polechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
@@ -71,7 +71,7 @@ loc_20B8C8:
 	move.b	#4,mstno(a0)
 
 loc_20B8F6:
-	lea	obj28_ani.l,a1
+	lea	polechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
@@ -80,7 +80,7 @@ loc_20B908:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B926
-	lea	obj28_ani.l,a1
+	lea	polechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
@@ -125,7 +125,7 @@ loc_20B986:
 	rts
 
 loc_20B9A2:
-	lea	obj28_ani.l,a1
+	lea	polechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
@@ -134,7 +134,7 @@ loc_20B9B4:
 	bsr.w	sub_20B684
 	tst.b	d1
 	beq.w	loc_20B9D2
-	lea	obj28_ani.l,a1
+	lea	polechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
@@ -179,11 +179,11 @@ loc_20BA32:
 	rts
 
 loc_20BA4E:
-	lea	obj28_ani.l,a1
+	lea	polechg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
-obj27:
+card:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
 	move.w	off_20BA74(pc,d0.w),d0
@@ -198,7 +198,7 @@ off_20BA74:
 
 loc_20BA7C:
 	addq.b	#word,r_no0(a0)
-	move.l	#act27pat,patbase(a0)
+	move.l	#cardpat,patbase(a0)
 	move.b	#4,actflg(a0)
 	move.b	#1,sprpri(a0)
 	move.b	#16,sprhsize(a0)
@@ -220,7 +220,7 @@ loc_20BAA2:
 	move.w	#0,act2A(a0)
 
 loc_20BAD2:
-	lea	obj27_ani.l,a1
+	lea	cardchg.l,a1
 	jsr	patchg.l
 
 loc_20BADE:
@@ -285,7 +285,7 @@ loc_20BB7C:
 	bclr	#cd_ride,cddat(a1)
 
 loc_20BB96:
-	lea	obj27_ani.l,a1
+	lea	cardchg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
@@ -310,13 +310,13 @@ loc_20BBD8:
 	move.b	(a2,d0.w),d1
 	bmi.w	loc_20BC06
 	move.b	d1,mstno(a0)
-	lea	obj27_ani.l,a1
+	lea	cardchg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
 loc_20BC06:
 	move.b	#2,r_no0(a0)
-	lea	obj27_ani.l,a1
+	lea	cardchg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 
