@@ -76,7 +76,7 @@ edit:
 	move.b	13(a2,d1.w),patno(a0)
 	move.b	12(a2,d1.w),byte_FF188A
 	move.b	11(a2,d1.w),d0
-	ori.b	#%0100,d0
+	ori.b	#%00000100,d0
 	move.b	d0,actflg(a0)
 	move.b	#0,mstno(a0)
 	btst	#5,swdata1+1		; c button check
@@ -93,7 +93,7 @@ edit:
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	move.b	actflg(a0),d0
-	andi.b	#%0011,d0
+	andi.b	#%00000011,d0
 	move.b	d0,actflg(a1)
 	move.b	d0,cddat(a1)
 
@@ -106,7 +106,7 @@ edit:
 	move.w	#play00_vram,sproffset(a0)
 	move.b	#2,sprpri(a0)
 	move.b	#0,patno(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 
 .jump9:
 	jmp	actionsub.l
