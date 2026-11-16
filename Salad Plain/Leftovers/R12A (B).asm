@@ -1,0 +1,60 @@
+	dc.w	word_20FCEA-$20FCAC
+	dc.w	$408|tile_col2
+	dc.w	$452|tile_col2
+	dc.w	$3F2|tile_col2
+	dc.w	$428|tile_col2
+	dc.w	$486|tile_col2
+	dc.w	$000|tile_col2
+	dc.w	$31E
+	dc.w	$32A
+	dc.w	$000|tile_col3
+	dc.w	$000|tile_col3
+	dc.w	$3B7
+	dc.w	$3C6
+	dc.w	$399|tile_pri
+	dc.w	$4C1
+	dc.w	$391
+word_20FCEA:
+	dc.w	$36B
+
+	include	"Act 2/Objects (A)/24 - Friend.asm"
+	include	"Act 2/Objects (A)/17 - Goal.asm"
+
+	jmp	$20792C.l
+
+	dc.l	3<<24|$237DBA
+	dc.l	2<<24|$236D82
+	dc.l	$23A476
+	dc.w	bgm_81
+	dc.b	4,4
+
+off_20FFB0:
+	dc.w	word_20FFC0-off_20FFB0
+	dc.w	word_20FFC8-off_20FFB0
+	dc.w	word_20FFFA-off_20FFB0
+	dc.w	word_20FFC0-off_20FFB0
+	dc.w	$210050-off_20FFB0
+	dc.w	$21005E-off_20FFB0
+	dc.w	$210066-off_20FFB0
+	dc.w	$210074-off_20FFB0
+
+word_20FFC0:	ddev_header
+	ddev_entry	$237DBA,0
+word_20FFC0_end:
+
+word_20FFC8:	ddev_header
+	ddev_entry	$231B28,$4FE
+	ddev_entry	$231C36,$511
+	ddev_entry	$23051E,$520
+	ddev_entry	$231832,$568
+	ddev_entry	$230740,$5A8
+	ddev_entry	$230CD6,$680
+	ddev_entry	$23195E,$6D6
+	ddev_entry	$2311BE,$7AE
+word_20FFC8_end:
+
+word_20FFFA:
+	dc.w	13
+	dc.l	$233AAA
+
+	dephase

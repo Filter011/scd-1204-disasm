@@ -3,33 +3,165 @@
     "name": "CD Sonic The Hedgehog (1204 Prototype)",
     "objects": [
         {
-            "format": "Sonic 1.js",
-            "name": "Player",
-            "palettes": [
+            "name": "Stage Select",
+            "children": [
                 {
-                    "path": "../Salad Plain/Present/Palettes/Player.bin",
-                    "length": 1
+                    "format": "Sonic 1.js",
+                    "name": "Text",
+                    "palettes": [
+                        {
+                            "path": "../Screens/Stage Select/Palette/Stage Select.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Screens/Stage Select/Art/BitDev/Text.nem",
+                        "compression": "Nemesis",
+                        "offset": 0,
+                        "paletteLine": 0,
+                        "extra": []
+                    },
+                    "mappings": {
+                        "path": "",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": false
+                    }
                 }
             ],
-            "art": {
-                "path": "../Salad Plain/Present/Art/Uncompressed/Player.unc",
-                "compression": "Uncompressed",
-                "offset": 0,
-                "extra": [],
-                "paletteLine": 0
-            },
-            "mappings": {
-                "path": "../Salad Plain/Present/Patterns/Player.asm",
-                "label": ""
-            },
-            "dplcs": {
-                "enabled": true,
-                "path": "../Salad Plain/Present/Patterns/Wrt/Player.asm",
-                "label": ""
-            },
-            "config": {
-                "mapMacros": false
-            }
+            "isDirectory": true,
+            "expanded": false,
+            "config": {}
+        },
+        {
+            "name": "Level",
+            "children": [
+                {
+                    "format": "Sonic 1.js",
+                    "name": "Item",
+                    "palettes": [
+                        {
+                            "path": "../Salad Plain/Present/Palettes/Player.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Salad Plain/Present/Art/BitDev/Monitor and Time Sign.nem",
+                        "compression": "Nemesis",
+                        "offset": 0,
+                        "paletteLine": 0,
+                        "extra": []
+                    },
+                    "mappings": {
+                        "path": "../Salad Plain/Present/Patterns/Item.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": false
+                    }
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "Player",
+                    "palettes": [
+                        {
+                            "path": "../Salad Plain/Present/Palettes/Player.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Salad Plain/Present/Art/Uncompressed/Player.unc",
+                        "compression": "Uncompressed",
+                        "offset": 0,
+                        "extra": [],
+                        "paletteLine": 0
+                    },
+                    "mappings": {
+                        "path": "../Salad Plain/Present/Patterns/Player.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": true,
+                        "path": "../Salad Plain/Present/Patterns/Write/Player.asm",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": false
+                    }
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "Score",
+                    "palettes": [
+                        {
+                            "path": "../Salad Plain/Present/Palettes/Player.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Salad Plain/Present/Art/BitDev/HUD.nem",
+                        "compression": "Nemesis",
+                        "offset": 0,
+                        "paletteLine": 0,
+                        "extra": []
+                    },
+                    "mappings": {
+                        "path": "../Salad Plain/Present/Patterns/Score.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": false
+                    }
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "Spring",
+                    "palettes": [
+                        {
+                            "path": "../Salad Plain/Present/Palettes/Player.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "../Salad Plain/Present/Art/BitDev/Spring.nem",
+                        "compression": "Nemesis",
+                        "offset": 0,
+                        "paletteLine": 0,
+                        "extra": []
+                    },
+                    "mappings": {
+                        "path": "../Salad Plain/Present/Patterns/Spring.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "config": {
+                        "mapMacros": false
+                    }
+                }
+            ],
+            "isDirectory": true,
+            "expanded": false,
+            "config": {}
         }
     ]
 }

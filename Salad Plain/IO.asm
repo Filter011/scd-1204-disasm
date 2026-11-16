@@ -1,0 +1,112 @@
+;*******< port initial  >******;
+sw_init:				;port initial
+	bsr.w	z80bus_on
+	moveq	#$40,d0			;set TH out
+	move.b	d0,cont_1
+	move.b	d0,cont_2
+	move.b	d0,cont_3
+	bra.w	z80bus_off
+
+read_sw:
+	lea	swdata1,a0		;switch data store address
+	lea	port_1,a1		;port for p1
+	bsr.s	.rs_0
+	addq.w	#2,a1			;a1 = port_2
+
+;
+.rs_0:
+	move.b	#$0,(a1)		;set TH = 0
+	nop				;wait
+	nop
+	move.b	(a1),d0			;input data when TH = 0
+	lsl.b	#2,d0			;chane data when TH = 0 & wait
+	andi.b	#%11000000,d0		;chane data when TH = 0 & wait
+	move.b	#$40,(a1)		;set TH = 1
+	nop				;wait
+	nop
+	move.b	(a1),d1			;input data when TH = 1
+	andi.b	#%00111111,d1
+	or.b	d1,d0
+	not.b	d0			;push -> 1
+	move.b	(a0),d1			;copy
+	eor.b	d0,d1
+	move.b	d0,(a0)+		; switch data
+	and.b	d0,d1
+	move.b	d1,(a0)+		;switch edge data
+	rts
+
+vdpinit:
+	lea	vdp_cmd,a0
+	lea	vdp_dat,a1
+	lea	vdptbl.l,a2
+	moveq	#(vdptbl_end-vdptbl)/2-1,d7
+
+.loop:
+	move.w	(a2)+,(a0)
+	dbf	d7,.loop
+
+	move.w	vdptbl+2.l,d0
+	move.w	d0,word_FFF60C
+	move.w	#$8A00|224-1,hintposi
+	moveq	#$000,d0
+	move.l	#$C0000000,vdp_cmd
+	move.w	#$80/2-1,d7
+
+.loop1:
+	move.w	d0,(a1)
+	dbf	d7,.loop1
+
+	clr.l	vscroll
+	clr.l	hscroll
+
+	move.l	d1,-(sp)
+	dmaclr	$10000,0,4
+	move.l	(sp)+,d1
+	rts
+
+vdptbl:
+	dc.w	$8000|%00000100
+	dc.w	$8100|%00110100
+	dc.w	$8200|scroll_a_vram>>10
+	dc.w	$8300|scroll_w_vram>>10
+	dc.w	$8400|scroll_b_vram>>13
+	dc.w	$8500|sprdat_vram>>9
+	dc.w	$8600|%00000000
+	dc.w	$8700|%00000000
+	dc.w	$8800|%00000000
+	dc.w	$8900|%00000000
+	dc.w	$8A00|%00000000
+	dc.w	$8B00|%00000000
+	dc.w	$8C00|%10000001
+	dc.w	$8D00|hscroll_vram>>10
+	dc.w	$8E00|%00000000
+	dc.w	$8F00|%00000010
+	dc.w	$9000|%00000001
+	dc.w	$9100|%00000000
+	dc.w	$9200|%00000000
+vdptbl_end:
+
+scrinit:
+	dmaclr	$1000,scroll_a_vram,4
+	dmaclr	$1000,scroll_b_vram,4
+
+	clr.l	vscroll
+	clr.l	hscroll
+
+	lea	sprdat,a1
+	moveq	#0,d0
+	move.w	#(sprdat_end-sprdat)/4,d1
+
+.loop:
+	move.l	d0,(a1)+
+	dbf	d1,.loop
+
+	lea	hscrollwork,a1
+	moveq	#0,d0
+	move.w	#(hscrollwork_end_padded-hscrollwork)/4,d1
+
+.loop1:
+	move.l	d0,(a1)+
+	dbf	d1,.loop1
+
+	rts

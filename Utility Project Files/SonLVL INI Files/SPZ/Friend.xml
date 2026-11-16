@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ObjDef xmlns="http://www.sonicretro.org" Name="Friend" Image="flying" RememberState="false">
+  <Images>
+    <ImageFromMappings id="flying">
+      <ArtFile filename="../../Salad Plain/Art/BitDev/Flicky and Ricky.nem"/>
+      <MapFile type="ASM" filename="../../Salad Plain/Patterns/Friend 0.asm" frame="0" startpal="0"/>
+    </ImageFromMappings>
+    <ImageFromMappings id="ground">
+      <ArtFile filename="../../Salad Plain/Art/BitDev/Flicky and Ricky.nem"/>
+      <MapFile type="ASM" filename="../../Salad Plain/Patterns/Friend 1.asm" frame="0" startpal="0"/>
+    </ImageFromMappings>
+  </Images>
+  <Subtypes>
+    <Subtype id="00" name="Flying" image="flying"/>
+    <Subtype id="01" name="Ground" image="ground"/>
+    <Subtype id="80" name="Flying (Holographic)" image="flying"/>
+    <Subtype id="81" name="Ground (Holographic)" image="ground"/>
+  </Subtypes>
+  <Properties>
+    <BitsProperty name="Friend" type="FriendType" startbit="0" length="1"/>
+    <BitsProperty name="Holographic" type="HolographicFlag" startbit="7" length="1"/>
+  </Properties>
+  <Enums>
+    <Enum name="FriendType">
+      <EnumMember name="Flying"/>
+      <EnumMember name="Ground"/>
+    </Enum>
+    <Enum name="HolographicFlag">
+      <EnumMember name="False"/>
+      <EnumMember name="True"/>
+    </Enum>
+  </Enums>
+</ObjDef>
