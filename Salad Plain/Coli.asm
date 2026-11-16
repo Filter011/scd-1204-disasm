@@ -13,7 +13,7 @@ pcol:
 	moveq	#$A,d5
 
 .jump0:
-	move.w	#$10,d4
+	move.w	#16,d4
 	add.w	d5,d5
 	lea	byte_FFD800,a1
 	move.w	#(byte_FFD800_end-byte_FFD800)/actfree-1,d6
@@ -264,7 +264,7 @@ playdamageset:
 
 .jump:
 	move.w	#0,mspeed(a0)
-	move.b	#$1A,mstno(a0)
+	move.b	#26,mstno(a0)
 	move.w	#120,invulnerabilitytimer(a0)
 	moveq	#-1,d0
 	rts
@@ -286,7 +286,7 @@ playdieset:
 	move.w	#0,xspeed(a0)
 	move.w	#0,mspeed(a0)
 	move.w	yposi(a0),act38(a0)
-	move.b	#$18,mstno(a0)
+	move.b	#24,mstno(a0)
 	bset	#7,sproffset(a0)
 	move.w	#se_93,d0
 	jsr	soundset.l
@@ -343,8 +343,8 @@ pcolspecial:
 loc_206720:
 	addq.b	#1,colicnt(a1)
 	cmpa.w	#playerwk,a0
-	beq.s	locret_20672E
+	beq.s	.end
 	addq.b	#1,colicnt(a1)
 
-locret_20672E:
+.end:
 	rts

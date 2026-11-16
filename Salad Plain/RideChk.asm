@@ -58,7 +58,7 @@ locret_207F54:
 ride_on_chk:
 	cmpi.b	#4,r_no0(a1)
 	bhs.w	loc_20805C
-	cmpi.b	#$2B,mstno(a1)
+	cmpi.b	#43,mstno(a1)
 	beq.w	loc_20805C
 	_tst.b	actno(a1)
 	beq.w	loc_20805C
@@ -70,7 +70,7 @@ ride_on_chk:
 	moveq	#0,d2
 	move.b	sprvsize(a0),d2
 	move.b	sprhsize(a0),d1
-	moveq	#$10,d5
+	moveq	#16,d5
 	add.w	d1,d5
 	move.w	xposi(a1),d0
 	sub.w	d3,d0

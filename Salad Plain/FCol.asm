@@ -49,7 +49,7 @@ fcol_d:
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	scdchk
@@ -65,7 +65,7 @@ fcol_d:
 	neg.w	d0
 	add.w	d0,d3
 	lea	dirstk+2,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	scdchk
@@ -174,7 +174,7 @@ fcol_r:
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	scdchk_r
@@ -189,7 +189,7 @@ fcol_r:
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk+2,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	bsr.w	scdchk_r
@@ -228,12 +228,12 @@ fcol_u:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	eori.w	#$F,d2
+	eori.w	#%00001111,d2
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$1000,d6
 	moveq	#$D,d5
 	bsr.w	scdchk
@@ -244,12 +244,12 @@ fcol_u:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	eori.w	#$F,d2
+	eori.w	#%00001111,d2
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	lea	dirstk+2,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$1000,d6
 	moveq	#$D,d5
 	bsr.w	scdchk
@@ -291,9 +291,9 @@ fcol_l:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	eori.w	#$F,d3
+	eori.w	#%00001111,d3
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$800,d6
 	moveq	#$D,d5
 	bsr.w	scdchk_r
@@ -307,9 +307,9 @@ fcol_l:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	eori.w	#$F,d3
+	eori.w	#%00001111,d3
 	lea	dirstk+2,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$800,d6
 	moveq	#$D,d5
 	bsr.w	scdchk_r
@@ -408,7 +408,7 @@ loc_200E9C:
 	add.w	a3,d2
 	bsr.w	scdchk2
 	sub.w	a3,d2
-	addi.w	#$10,d1
+	addi.w	#16,d1
 	rts
 
 loc_200EAA:
@@ -420,26 +420,26 @@ loc_200EAA:
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d3,d1
-	btst	#$B,d4
+	btst	#11,d4
 	beq.s	loc_200ED0
 	not.w	d1
 	neg.b	(a4)
 
 loc_200ED0:
-	btst	#$C,d4
+	btst	#12,d4
 	beq.s	loc_200EE0
 	addi.b	#$40,(a4)
 	neg.b	(a4)
 	subi.b	#$40,(a4)
 
 loc_200EE0:
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d0,d1
 	lea	scdtblwk.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
-	btst	#$C,d4
+	btst	#12,d4
 	beq.s	loc_200EFC
 	neg.w	d0
 
@@ -447,27 +447,27 @@ loc_200EFC:
 	tst.w	d0
 	beq.s	loc_200E9C
 	bmi.s	loc_200F18
-	cmpi.b	#$10,d0
+	cmpi.b	#16,d0
 	beq.s	loc_200F34
 
 loc_200F08:
 	move.w	d2,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	move.w	#$F,d1
 	sub.w	d0,d1
 	rts
 
 loc_200F18:
-	cmpa.w	#$10,a3
+	cmpa.w	#16,a3
 	bne.s	loc_200F28
-	move.w	#$10,d0
+	move.w	#16,d0
 	move.b	#0,(a4)
 	bra.s	loc_200F08
 
 loc_200F28:
 	move.w	d2,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	bpl.w	loc_200E9C
 
@@ -475,7 +475,7 @@ loc_200F34:
 	sub.w	a3,d2
 	bsr.w	scdchk2
 	add.w	a3,d2
-	subi.w	#$10,d1
+	subi.w	#16,d1
 	rts
 
 scdchk2:
@@ -492,7 +492,7 @@ scdchk2:
 loc_200F5C:
 	move.w	#$F,d1
 	move.w	d2,d0
-	andi.w	#$F,d0
+	andi.w	#%00001111,d0
 	sub.w	d0,d1
 	rts
 
@@ -505,26 +505,26 @@ loc_200F6A:
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d3,d1
-	btst	#$B,d4
+	btst	#11,d4
 	beq.s	loc_200F90
 	not.w	d1
 	neg.b	(a4)
 
 loc_200F90:
-	btst	#$C,d4
+	btst	#12,d4
 	beq.s	loc_200FA0
 	addi.b	#$40,(a4)
 	neg.b	(a4)
 	subi.b	#$40,(a4)
 
 loc_200FA0:
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d0,d1
 	lea	scdtblwk.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
-	btst	#$C,d4
+	btst	#12,d4
 	beq.s	loc_200FBC
 	neg.w	d0
 
@@ -535,22 +535,22 @@ loc_200FBC:
 
 loc_200FC2:
 	move.w	d2,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	move.w	#$F,d1
 	sub.w	d0,d1
 	rts
 
 loc_200FD2:
-	cmpa.w	#$10,a3
+	cmpa.w	#16,a3
 	bne.s	loc_200FE2
-	move.w	#$10,d0
+	move.w	#16,d0
 	move.b	#0,(a4)
 	bra.s	loc_200FC2
 
 loc_200FE2:
 	move.w	d2,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	bpl.w	loc_200F5C
 	not.w	d1
@@ -571,7 +571,7 @@ loc_20100C:
 	add.w	a3,d3
 	bsr.w	scdchk2_r
 	sub.w	a3,d3
-	addi.w	#$10,d1
+	addi.w	#16,d1
 	rts
 
 loc_20101A:
@@ -583,7 +583,7 @@ loc_20101A:
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d2,d1
-	btst	#$C,d4
+	btst	#12,d4
 	beq.s	loc_201048
 	not.w	d1
 	addi.b	#$40,(a4)
@@ -591,18 +591,18 @@ loc_20101A:
 	subi.b	#$40,(a4)
 
 loc_201048:
-	btst	#$B,d4
+	btst	#11,d4
 	beq.s	loc_201050
 	neg.b	(a4)
 
 loc_201050:
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d0,d1
 	lea	scdtblwk2.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
-	btst	#$B,d4
+	btst	#11,d4
 	beq.s	loc_20106C
 	neg.w	d0
 
@@ -610,10 +610,10 @@ loc_20106C:
 	tst.w	d0
 	beq.s	loc_20100C
 	bmi.s	loc_201088
-	cmpi.b	#$10,d0
+	cmpi.b	#16,d0
 	beq.s	loc_201094
 	move.w	d3,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	move.w	#$F,d1
 	sub.w	d0,d1
@@ -621,7 +621,7 @@ loc_20106C:
 
 loc_201088:
 	move.w	d3,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	bpl.w	loc_20100C
 
@@ -629,7 +629,7 @@ loc_201094:
 	sub.w	a3,d3
 	bsr.w	scdchk2_r
 	add.w	a3,d3
-	subi.w	#$10,d1
+	subi.w	#16,d1
 	rts
 
 scdchk2_r:
@@ -646,7 +646,7 @@ scdchk2_r:
 loc_2010BC:
 	move.w	#$F,d1
 	move.w	d3,d0
-	andi.w	#$F,d0
+	andi.w	#%00001111,d0
 	sub.w	d0,d1
 	rts
 
@@ -659,7 +659,7 @@ loc_2010CA:
 	move.b	(a2,d0.w),(a4)
 	lsl.w	#4,d0
 	move.w	d2,d1
-	btst	#$C,d4
+	btst	#12,d4
 	beq.s	loc_2010F8
 	not.w	d1
 	addi.b	#$40,(a4)
@@ -667,18 +667,18 @@ loc_2010CA:
 	subi.b	#$40,(a4)
 
 loc_2010F8:
-	btst	#$B,d4
+	btst	#11,d4
 	beq.s	loc_201100
 	neg.b	(a4)
 
 loc_201100:
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d0,d1
 	lea	scdtblwk2.l,a2
 	move.b	(a2,d1.w),d0
 	ext.w	d0
 	eor.w	d6,d4
-	btst	#$B,d4
+	btst	#11,d4
 	beq.s	loc_20111C
 	neg.w	d0
 
@@ -687,7 +687,7 @@ loc_20111C:
 	beq.s	loc_2010BC
 	bmi.s	loc_201132
 	move.w	d3,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	move.w	#$F,d1
 	sub.w	d0,d1
@@ -695,7 +695,7 @@ loc_20111C:
 
 loc_201132:
 	move.w	d3,d1
-	andi.w	#$F,d1
+	andi.w	#%00001111,d1
 	add.w	d1,d0
 	bpl.w	loc_2010BC
 	not.w	d1

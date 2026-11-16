@@ -69,7 +69,7 @@ dircol_d:
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	scdchk.l
@@ -84,7 +84,7 @@ dircol_d:
 	ext.w	d0
 	sub.w	d0,d3
 	lea	dirstk+2,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	scdchk.l
@@ -113,7 +113,7 @@ dircol_d2:
 dircol_d3:
 	addi.w	#$A,d2
 	lea	dirstk,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	scdchk.l
@@ -137,7 +137,7 @@ emycol_d:
 	add.w	d0,d2
 	lea	dirstk,a4
 	move.b	#0,(a4)
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$D,d5
 	jsr	scdchk.l
@@ -160,7 +160,7 @@ dircol_r:
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -175,7 +175,7 @@ dircol_r:
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk+2,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -190,7 +190,7 @@ dircol_r2:
 dircol_r3:
 	addi.w	#$A,d3
 	lea	dirstk,a4
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -202,7 +202,7 @@ emycol_r:
 	move.w	yposi(a0),d2
 	lea	dirstk,a4
 	move.b	#0,(a4)
-	movea.w	#$10,a3
+	movea.w	#16,a3
 	move.w	#0,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -221,12 +221,12 @@ dircol_u:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	eori.w	#$F,d2
+	eori.w	#%00001111,d2
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	add.w	d0,d3
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	scdchk.l
@@ -237,12 +237,12 @@ dircol_u:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	eori.w	#$F,d2
+	eori.w	#%00001111,d2
 	move.b	sprhs(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
 	lea	dirstk+2,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	scdchk.l
@@ -256,9 +256,9 @@ dircol_u2:
 
 dircol_u3:
 	subi.w	#$A,d2
-	eori.w	#$F,d2
+	eori.w	#%00001111,d2
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	scdchk.l
@@ -272,9 +272,9 @@ emycol_u:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d2
-	eori.w	#$F,d2
+	eori.w	#%00001111,d2
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$1000,d6
 	moveq	#$E,d5
 	jsr	scdchk.l
@@ -296,9 +296,9 @@ dircol_l:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	eori.w	#$F,d3
+	eori.w	#%00001111,d3
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -312,9 +312,9 @@ dircol_l:
 	move.b	sprvsize(a0),d0
 	ext.w	d0
 	sub.w	d0,d3
-	eori.w	#$F,d3
+	eori.w	#%00001111,d3
 	lea	dirstk+2,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -328,9 +328,9 @@ dircol_l2:
 
 dircol_l3:
 	subi.w	#$A,d3
-	eori.w	#$F,d3
+	eori.w	#%00001111,d3
 	lea	dirstk,a4
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
@@ -342,7 +342,7 @@ emycol_l:
 	move.w	yposi(a0),d2
 	lea	dirstk,a4
 	move.b	#0,(a4)
-	movea.w	#-$10,a3
+	movea.w	#-16,a3
 	move.w	#$800,d6
 	moveq	#$E,d5
 	jsr	scdchk_r.l
