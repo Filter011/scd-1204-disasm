@@ -111,20 +111,18 @@ loc_2024FC:
 	move.l	(a1),loopmapno
 	rts
 
-	if act_number=0
 playpositbl:
+	if act_number=0
 	incbin	"Player Positions/Act 1.bin"
 	else
-playpositbl:
 	incbin	"Player Positions/Act 2.bin"
 	endif
 	even
 
-	if act_number=0
 playmapnotbl:
+	if act_number=0
 	dc.b	$8C,$7F,$1E,$1E
 	else
-playmapnotbl:
 	dc.b	$91,$B6,$7F,$7F
 	endif
 	even
