@@ -49,7 +49,7 @@ vdpinit:
 	move.w	d0,word_FFF60C
 	move.w	#$8A00|224-1,hintposi
 	moveq	#$000,d0
-	move.l	#$C0000000,vdp_cmd
+	dmawrt	0,$C
 	move.w	#$80/2-1,d7
 
 .loop1:
