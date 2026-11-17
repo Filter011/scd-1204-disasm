@@ -73,19 +73,19 @@ e_ka:
 	jmp	frameout_s.l
 
 loc_209C4C:
-	move.w	off_209C5A(pc,d0.w),d0
-	jsr	off_209C5A(pc,d0.w)
+	move.w	e_ka_move_tbl(pc,d0.w),d0
+	jsr	e_ka_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_209C5A:
-	dc.w	loc_209C66-off_209C5A
-	dc.w	loc_209CA2-off_209C5A
-	dc.w	loc_209CEA-off_209C5A
-	dc.w	loc_209D5C-off_209C5A
-	dc.w	loc_209D8A-off_209C5A
-	dc.w	loc_209DC0-off_209C5A
+e_ka_move_tbl:
+	dc.w	e_ka_init-e_ka_move_tbl
+	dc.w	e_ka_move_right-e_ka_move_tbl
+	dc.w	e_ka_move_left-e_ka_move_tbl
+	dc.w	loc_209D5C-e_ka_move_tbl
+	dc.w	loc_209D8A-e_ka_move_tbl
+	dc.w	loc_209DC0-e_ka_move_tbl
 
-loc_209C66:
+e_ka_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#e_ka_pat,patbase(a0)
@@ -99,8 +99,8 @@ loc_209C66:
 	move.l	d0,act2C(a0)
 	rts
 
-loc_209CA2:
-	bra.w	loc_209CEA
+e_ka_move_right:
+	bra.w	e_ka_move_left
 
 	move.w	#$400|tile_col2|tile_xflip,sproffset(a0)
 	move.l	xposi(a0),d0
@@ -120,7 +120,7 @@ loc_209CD2:
 	jmp	actionsub.l
 	rts
 
-loc_209CEA:
+e_ka_move_left:
 	moveq	#0,d0
 	jsr	pa_set.l
 	move.l	xposi(a0),d0
@@ -151,7 +151,7 @@ loc_209D2A:
 	bmi.w	locret_209D5A
 	move.b	#6,r_no0(a0)
 	move.b	#2,mstno(a0)
-	move.w	#$32,act2A(a0)
+	move.w	#50,act2A(a0)
 
 locret_209D5A:
 	rts
@@ -202,19 +202,19 @@ b_ka:
 	jmp	frameout_s.l
 
 loc_209DEE:
-	move.w	off_209DFC(pc,d0.w),d0
-	jsr	off_209DFC(pc,d0.w)
+	move.w	b_ka_move_tbl(pc,d0.w),d0
+	jsr	b_ka_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_209DFC:
-	dc.w	loc_209E08-off_209DFC
-	dc.w	loc_209E4A-off_209DFC
-	dc.w	loc_209E92-off_209DFC
-	dc.w	loc_209F04-off_209DFC
-	dc.w	loc_209F32-off_209DFC
-	dc.w	loc_209F68-off_209DFC
+b_ka_move_tbl:
+	dc.w	b_ka_init-b_ka_move_tbl
+	dc.w	b_ka_move_right-b_ka_move_tbl
+	dc.w	b_ka_move_left-b_ka_move_tbl
+	dc.w	loc_209F04-b_ka_move_tbl
+	dc.w	loc_209F32-b_ka_move_tbl
+	dc.w	loc_209F68-b_ka_move_tbl
 
-loc_209E08:
+b_ka_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#b_ka_pat,patbase(a0)
@@ -229,8 +229,8 @@ loc_209E08:
 	move.l	d0,act2C(a0)
 	rts
 
-loc_209E4A:
-	bra.w	loc_209E92
+b_ka_move_right:
+	bra.w	b_ka_move_left
 
 	move.w	#$400|tile_col2|tile_xflip,sproffset(a0)
 	move.l	xposi(a0),d0
@@ -250,7 +250,7 @@ loc_209E7A:
 	jmp	actionsub.l
 	rts
 
-loc_209E92:
+b_ka_move_left:
 	moveq	#0,d0
 	jsr	pa_set.l
 	move.l	xposi(a0),d0
@@ -325,18 +325,18 @@ loc_209F68:
 b_chou:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_209F90(pc,d0.w),d0
-	jsr	off_209F90(pc,d0.w)
+	move.w	b_chou_move_tbl(pc,d0.w),d0
+	jsr	b_chou_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_209F90:
-	dc.w	loc_209F9A-off_209F90
-	dc.w	loc_209FE8-off_209F90
-	dc.w	loc_20A11C-off_209F90
-	dc.w	loc_20A072-off_209F90
-	dc.w	loc_20A11C-off_209F90
+b_chou_move_tbl:
+	dc.w	b_chou_init-b_chou_move_tbl
+	dc.w	loc_209FE8-b_chou_move_tbl
+	dc.w	loc_20A11C-b_chou_move_tbl
+	dc.w	loc_20A072-b_chou_move_tbl
+	dc.w	loc_20A11C-b_chou_move_tbl
 
-loc_209F9A:
+b_chou_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#e_chou_pat,patbase(a0)
@@ -480,18 +480,18 @@ loc_20A186:
 e_chou:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20A1A2(pc,d0.w),d0
-	jsr	off_20A1A2(pc,d0.w)
+	move.w	e_chou_move_tbl(pc,d0.w),d0
+	jsr	e_chou_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20A1A2:
-	dc.w	loc_20A1AC-off_20A1A2
-	dc.w	loc_20A1FA-off_20A1A2
-	dc.w	loc_20A32E-off_20A1A2
-	dc.w	loc_20A286-off_20A1A2
-	dc.w	loc_20A32E-off_20A1A2
+e_chou_move_tbl:
+	dc.w	e_chou_init-e_chou_move_tbl
+	dc.w	loc_20A1FA-e_chou_move_tbl
+	dc.w	loc_20A32E-e_chou_move_tbl
+	dc.w	loc_20A286-e_chou_move_tbl
+	dc.w	loc_20A32E-e_chou_move_tbl
 
-loc_20A1AC:
+e_chou_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#e_chou_pat,patbase(a0)
@@ -641,17 +641,17 @@ e_ari:
 	jmp	frameout_s.l
 
 loc_20A3BA:
-	move.w	off_20A3C8(pc,d0.w),d0
-	jsr	off_20A3C8(pc,d0.w)
+	move.w	e_ari_move_tbl(pc,d0.w),d0
+	jsr	e_ari_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20A3C8:
-	dc.w	loc_20A3D0-off_20A3C8
-	dc.w	loc_20A404-off_20A3C8
-	dc.w	loc_20A43E-off_20A3C8
-	dc.w	loc_20A4AE-off_20A3C8
+e_ari_move_tbl:
+	dc.w	e_ari_init-e_ari_move_tbl
+	dc.w	e_ari_fall-e_ari_move_tbl
+	dc.w	e_ari_move_left-e_ari_move_tbl
+	dc.w	e_ari_move_right-e_ari_move_tbl
 
-loc_20A3D0:
+e_ari_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#ari_pat,patbase(a0)
@@ -663,7 +663,7 @@ loc_20A3D0:
 	move.b	#0,mstno(a0)
 	rts
 
-loc_20A404:
+e_ari_fall:
 	move.l	yposi(a0),d0
 	addi.l	#$20000,d0
 	move.l	d0,yposi(a0)
@@ -679,7 +679,7 @@ loc_20A436:
 	move.b	#4,r_no0(a0)
 	rts
 
-loc_20A43E:
+e_ari_move_left:
 	move.b	#36/2,sprvsize(a0)
 	subi.l	#$10000,xposi(a0)
 	moveq	#8,d3
@@ -713,7 +713,7 @@ loc_20A498:
 	rts
 	rts
 
-loc_20A4AE:
+e_ari_move_right:
 	move.b	#36/2,sprvsize(a0)
 	addi.l	#$10000,xposi(a0)
 	moveq	#8,d3
@@ -757,19 +757,19 @@ b_ari:
 	jmp	frameout_s.l
 
 loc_20A538:
-	move.w	off_20A546(pc,d0.w),d0
-	jsr	off_20A546(pc,d0.w)
+	move.w	b_ari_move_tbl(pc,d0.w),d0
+	jsr	b_ari_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20A546:
-	dc.w	loc_20A552-off_20A546
-	dc.w	loc_20A58C-off_20A546
-	dc.w	loc_20A5C6-off_20A546
-	dc.w	loc_20A642-off_20A546
-	dc.w	loc_20A686-off_20A546
-	dc.w	loc_20A664-off_20A546
+b_ari_move_tbl:
+	dc.w	b_ari_init-b_ari_move_tbl
+	dc.w	b_ari_fall-b_ari_move_tbl
+	dc.w	b_ari_move_left-b_ari_move_tbl
+	dc.w	loc_20A642-b_ari_move_tbl
+	dc.w	b_ari_move_right-b_ari_move_tbl
+	dc.w	loc_20A664-b_ari_move_tbl
 
-loc_20A552:
+b_ari_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#ari_pat,patbase(a0)
@@ -782,7 +782,7 @@ loc_20A552:
 	move.w	#0,act3E(a0)
 	rts
 
-loc_20A58C:
+b_ari_fall:
 	move.l	yposi(a0),d0
 	addi.l	#$10000,d0
 	move.l	d0,yposi(a0)
@@ -798,7 +798,7 @@ loc_20A5BE:
 	move.b	#4,r_no0(a0)
 	rts
 
-loc_20A5C6:
+b_ari_move_left:
 	move.w	act3E(a0),d0
 	addq.w	#1,d0
 	move.w	d0,act3E(a0)
@@ -860,7 +860,7 @@ loc_20A678:
 	move.b	#8,r_no0(a0)
 	bra.s	loc_20A60C
 
-loc_20A686:
+b_ari_move_right:
 	move.w	act3E(a0),d0
 	addq.w	#1,d0
 	move.w	d0,act3E(a0)
@@ -899,17 +899,17 @@ loc_20A6F4:
 e_tagame:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20A716(pc,d0.w),d0
-	jsr	off_20A716(pc,d0.w)
+	move.w	e_tagame_move_tbl(pc,d0.w),d0
+	jsr	e_tagame_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20A716:
-	dc.w	loc_20A71E-off_20A716
-	dc.w	loc_20A75A-off_20A716
-	dc.w	loc_20A7AA-off_20A716
-	dc.w	loc_20A802-off_20A716
+e_tagame_move_tbl:
+	dc.w	e_tagame_init-e_tagame_move_tbl
+	dc.w	loc_20A75A-e_tagame_move_tbl
+	dc.w	loc_20A7AA-e_tagame_move_tbl
+	dc.w	loc_20A802-e_tagame_move_tbl
 
-loc_20A71E:
+e_tagame_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#e_tagame_pat,patbase(a0)
@@ -988,15 +988,15 @@ loc_20A80C:
 b_tagame:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20A828(pc,d0.w),d0
-	jsr	off_20A828(pc,d0.w)
+	move.w	b_tagame_move_tbl(pc,d0.w),d0
+	jsr	b_tagame_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20A828:
-	dc.w	loc_20A830-off_20A828
-	dc.w	loc_20A86C-off_20A828
-	dc.w	loc_20A8BC-off_20A828
-	dc.w	loc_20A914-off_20A828
+b_tagame_move_tbl:
+	dc.w	loc_20A830-b_tagame_move_tbl
+	dc.w	loc_20A86C-b_tagame_move_tbl
+	dc.w	loc_20A8BC-b_tagame_move_tbl
+	dc.w	loc_20A914-b_tagame_move_tbl
 
 loc_20A830:
 	move.b	#6,colino(a0)
@@ -1077,19 +1077,19 @@ loc_20A91E:
 e_kamem:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20A93A(pc,d0.w),d0
-	jsr	off_20A93A(pc,d0.w)
+	move.w	e_kamem_move_tbl(pc,d0.w),d0
+	jsr	e_kamem_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20A93A:
-	dc.w	loc_20A946-off_20A93A
-	dc.w	loc_20A992-off_20A93A
-	dc.w	loc_20A9EA-off_20A93A
-	dc.w	loc_20AA90-off_20A93A
-	dc.w	loc_20ABA4-off_20A93A
-	dc.w	loc_20AB36-off_20A93A
+e_kamem_move_tbl:
+	dc.w	e_kamem_init-e_kamem_move_tbl
+	dc.w	loc_20A992-e_kamem_move_tbl
+	dc.w	loc_20A9EA-e_kamem_move_tbl
+	dc.w	loc_20AA90-e_kamem_move_tbl
+	dc.w	loc_20ABA4-e_kamem_move_tbl
+	dc.w	loc_20AB36-e_kamem_move_tbl
 
-loc_20A946:
+e_kamem_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#e_kamem_pat,patbase(a0)
@@ -1313,19 +1313,19 @@ locret_20AC56:
 b_kamem:
 	moveq	#0,d0
 	move.b	r_no0(a0),d0
-	move.w	off_20AC6C(pc,d0.w),d0
-	jsr	off_20AC6C(pc,d0.w)
+	move.w	b_kamem_move_tbl(pc,d0.w),d0
+	jsr	b_kamem_move_tbl(pc,d0.w)
 	jmp	frameout_s.l
 
-off_20AC6C:
-	dc.w	loc_20AC78-off_20AC6C
-	dc.w	loc_20ACC4-off_20AC6C
-	dc.w	loc_20AD1C-off_20AC6C
-	dc.w	loc_20ADC2-off_20AC6C
-	dc.w	loc_20AED6-off_20AC6C
-	dc.w	loc_20AE68-off_20AC6C
+b_kamem_move_tbl:
+	dc.w	b_kamem_init-b_kamem_move_tbl
+	dc.w	loc_20ACC4-b_kamem_move_tbl
+	dc.w	loc_20AD1C-b_kamem_move_tbl
+	dc.w	loc_20ADC2-b_kamem_move_tbl
+	dc.w	loc_20AED6-b_kamem_move_tbl
+	dc.w	loc_20AE68-b_kamem_move_tbl
 
-loc_20AC78:
+b_kamem_init:
 	move.b	#6,colino(a0)
 	addq.b	#word,r_no0(a0)
 	move.l	#e_kamem_pat,patbase(a0)
@@ -1864,10 +1864,10 @@ loc_20B538:
 	addq.b	#word,r_no0(a0)
 	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#4,sprhs(a0)
-	move.b	#4,sprvsize(a0)
+	move.b	#8/2,sprhs(a0)
+	move.b	#8/2,sprvsize(a0)
 	move.w	#$400|tile_col2,sproffset(a0)
-	move.l	#obj23_map,patbase(a0)
+	move.l	#obj23pat,patbase(a0)
 	move.l	#$10000,act2A(a0)
 	move.b	act3F(a0),d0
 	bpl.w	locret_20B576
@@ -1879,13 +1879,13 @@ locret_20B576:
 loc_20B578:
 	move.l	act2A(a0),d0
 	add.l	d0,xposi(a0)
-	lea	obj23_ani.l,a1
+	lea	obj23chg.l,a1
 	jsr	patchg.l
 	jmp	actionsub.l
 	rts
 
-obj23_ani:
-	dc.w	byte_20B592-obj23_ani
+obj23chg:
+	dc.w	byte_20B592-obj23chg
 
 byte_20B592:
 	dc.b	2-1
@@ -1893,9 +1893,9 @@ byte_20B592:
 	dc.b	$FF
 	even
 
-obj23_map:
-	dc.w	byte_20B59E-obj23_map
-	dc.w	byte_20B5B3-obj23_map
+obj23pat:
+	dc.w	byte_20B59E-obj23pat
+	dc.w	byte_20B5B3-obj23pat
 byte_20B59E:
 	dc.b	4
 	dc.b	-8,0,0,$2A,-8
