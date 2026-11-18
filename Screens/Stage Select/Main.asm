@@ -45,16 +45,16 @@ mmd_init:
 	lea	lpcolorwk,a1
 	moveq	#(colorssel_end-colorssel)/4-1,d7
 
-loc_FF2062:
+.loop1:
 	move.l	(a0)+,(a1)+
-	dbf	d7,loc_FF2062
+	dbf	d7,.loop1
 
 	bset	#1,$FF0583
 	bsr.w	sub_FF2346
 	bsr.w	sub_FF2D1C
 	bsr.w	sub_FF2364
 
-loc_FF207C:
+.loop2:
 	lea	word_FF21CE(pc),a0
 	move.w	#$8000,d0
 	bsr.w	sub_FF2416
@@ -62,15 +62,15 @@ loc_FF207C:
 	moveq	#0,d6
 	moveq	#$A,d7
 	btst	#0,swdata1+1
-	beq.s	loc_FF209E
+	beq.s	.jump
 	bsr.w	sub_FF23DE
 
-loc_FF209E:
+.jump:
 	btst	#1,swdata1+1
-	beq.s	loc_FF20AC
+	beq.s	.jump1
 	bsr.w	sub_FF23EC
 
-loc_FF20AC:
+.jump1:
 	move.w	(a1),d0
 	mulu.w	#10,d0
 	lea	word_FF2228(pc),a0
@@ -80,7 +80,7 @@ loc_FF20AC:
 	bsr.w	sub_FF2D1C
 	move.b	swdata1+1,d0
 	andi.w	#$F0,d0
-	beq.s	loc_FF207C
+	beq.s	.loop2
 	bsr.w	sub_FF22E0
 	move.w	word_FF20DE.l,d0
 	rts
