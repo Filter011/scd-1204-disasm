@@ -43,7 +43,7 @@ mmd_init:
 
 	lea	colorssel(pc),a0
 	lea	lpcolorwk,a1
-	moveq	#($20)/4-1,d7
+	moveq	#(colorssel_end-colorssel)/4-1,d7
 
 loc_FF2062:
 	move.l	(a0)+,(a1)+
@@ -164,6 +164,7 @@ vdptbl_end:
 
 colorssel:
 	incbin	"Palette/Stage Select.bin"
+colorssel_end:
 	even
 
 word_FF21CE:
