@@ -18,7 +18,7 @@ ZeroOffsetOptimization = 0
 
 mmd_init:
 	move.l	#vint,intmd
-	bsr.w	sub_FF2158
+	bsr.w	memwait
 
 	lea	$FFFF8000,a0
 	move.w	#($7C00)/4-1,d7
@@ -92,36 +92,36 @@ vint:
 	movem.l	d0-a6,-(sp)
 	move.b	#1,mcpu_int2
 	bclr	#0,$FF0583
-	beq.s	loc_FF2152
+	beq.s	.end
 	bset	#6,$FF0597
 	move.w	$FF0596,vdp_cmd
 
 	bsr.w	z80bus_on
 	move.w	vdp_cmd,d0
 	bclr	#1,$FF0583
-	beq.s	loc_FF214A
+	beq.s	.jump
 	dma68k	lpcolorwk,$C
 	dmawrt	0,$C,(a6)
 	move.w	lpcolorwk,vdp_dat
 
-loc_FF214A:
+.jump:
 	jsr	read_sw(pc)
 	bsr.w	z80bus_off
 
-loc_FF2152:
+.end:
 	movem.l	(sp)+,d0-a6
 	rte
 
-sub_FF2158:
+memwait:
 	btst	#1,mcpu_memmode
-	bne.s	locret_FF2174
+	bne.s	.end
 	bset	#1,mcpu_memmode
 
-loc_FF216A:
+.loop:
 	btst	#1,mcpu_memmode
-	beq.s	loc_FF216A
+	beq.s	.loop
 
-locret_FF2174:
+.end:
 	rts
 
 loc_FF2176:
@@ -322,7 +322,7 @@ sub_FF2312:
 	lea	lpcolorwk,a1
 	moveq	#(lpcolorwk_end-lpcolorwk)/2-1,d7
 
-loc_FF2318:
+.loop:
 	move.w	(a1),d2
 	rol.w	#1,d2
 	ror.w	d1,d2
@@ -330,15 +330,15 @@ loc_FF2318:
 	andi.w	#$E,d2
 	andi.w	#$EEE0,d3
 	sub.w	d0,d2
-	bhs.s	loc_FF232E
+	bhs.s	.jump
 	moveq	#0,d2
 
-loc_FF232E:
+.jump:
 	or.w	d3,d2
 	ror.w	#1,d2
 	rol.w	d1,d2
 	move.w	d2,(a1)+
-	dbf	d7,loc_FF2318
+	dbf	d7,.loop
 
 	bset	#1,$FF0583
 	bra.w	sub_FF2D1C
@@ -349,10 +349,10 @@ sub_FF2346:
 	moveq	#0,d1
 	moveq	#(lpcolorwk_end-lpcolorwk)/4-1,d7
 
-loc_FF2352:
+.loop:
 	move.l	(a1),(a2)+
 	move.l	d1,(a1)+
-	dbf	d7,loc_FF2352
+	dbf	d7,.loop
 
 	bset	#1,$FF0583
 	rts
@@ -393,7 +393,7 @@ sub_FF23A2:
 	lea	lpcolorwk2,a2
 	moveq	#(lpcolorwk_end-lpcolorwk)/2-1,d7
 
-loc_FF23AC:
+.loop:
 	move.w	(a2)+,d2
 	move.w	(a1),d3
 	rol.w	#1,d2
@@ -403,15 +403,15 @@ loc_FF23AC:
 	andi.w	#$E,d2
 	andi.w	#$EEE0,d3
 	cmp.w	d0,d2
-	bls.s	loc_FF23C6
+	bls.s	.jump
 	move.w	d0,d2
 
-loc_FF23C6:
+.jump:
 	or.w	d3,d2
 	rol.w	d1,d2
 	ror.w	#1,d2
 	move.w	d2,(a1)+
-	dbf	d7,loc_FF23AC
+	dbf	d7,.loop
 
 	bset	#1,$FF0583
 	bra.w	sub_FF2D1C
@@ -562,9 +562,9 @@ sub_FF2D1C:
 	bset	#0,$FF0583
 	move.w	#$2500,sr
 
-loc_FF2D28:
+.loop:
 	btst	#0,$FF0583
-	bne.s	loc_FF2D28
+	bne.s	.loop
 	rts
 
 sub_sync:
