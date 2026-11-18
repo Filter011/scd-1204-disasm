@@ -9,7 +9,9 @@ bitdevwk:		ds.b	$200
 	ds.b	$3700
 lpcolorwk:		ds.b	$80
 lpcolorwk_end:
-	ds.b	$388
+lpcolorwk2:		ds.b	$80
+lpcolorwk2_end:
+	ds.b	$308
 intmd:			ds.l	1
 	dephase
 	!org 0

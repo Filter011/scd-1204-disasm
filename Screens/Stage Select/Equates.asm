@@ -37,7 +37,7 @@ mcpu_int2:	equ	$A12000
 mcpu_memmode:	equ	$A12003
 mcpu_comflag:	equ	$A1200F
 mcpu_comcmd:	equ	$A12010
-mcpu_comcmd7:	equ	$A1201E
+swdata1:	equ	$A1201E
 mcpu_comsts:	equ	$A12020
 
 ; Mega CD Main CPU Commands

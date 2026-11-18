@@ -61,12 +61,12 @@ loc_FF207C:
 	lea	word_FF20DE(pc),a1
 	moveq	#0,d6
 	moveq	#$A,d7
-	btst	#0,mcpu_comcmd7+1
+	btst	#0,swdata1+1
 	beq.s	loc_FF209E
 	bsr.w	sub_FF23DE
 
 loc_FF209E:
-	btst	#1,mcpu_comcmd7+1
+	btst	#1,swdata1+1
 	beq.s	loc_FF20AC
 	bsr.w	sub_FF23EC
 
@@ -78,7 +78,7 @@ loc_FF20AC:
 	move.w	#$8040,d0
 	bsr.w	sub_FF2416
 	bsr.w	sub_FF2D1C
-	move.b	mcpu_comcmd7+1,d0
+	move.b	swdata1+1,d0
 	andi.w	#$F0,d0
 	beq.s	loc_FF207C
 	bsr.w	sub_FF22E0
@@ -105,7 +105,7 @@ vint:
 	move.w	lpcolorwk,vdp_dat
 
 loc_FF214A:
-	jsr	sub_FF2CE4(pc)
+	jsr	read_sw(pc)
 	bsr.w	z80bus_off
 
 loc_FF2152:
@@ -168,62 +168,62 @@ colorssel:
 
 word_FF21CE:
 	dc.w	11-1
-	dc.l	byte_FF2296
+	dc.l	stage11a
 	dc.l	$42040003
-	dc.l	byte_FF229C
+	dc.l	stage11b
 	dc.l	$42840003
-	dc.l	byte_FF22A2
+	dc.l	stage11c
 	dc.l	$43040003
-	dc.l	byte_FF22A8
+	dc.l	stage11d
 	dc.l	$43840003
-	dc.l	byte_FF22AE
+	dc.l	stage12a
 	dc.l	$44040003
-	dc.l	byte_FF22B4
+	dc.l	stage12b
 	dc.l	$44840003
-	dc.l	byte_FF22BA
+	dc.l	stage12c
 	dc.l	$45040003
-	dc.l	byte_FF22C0
+	dc.l	stage12d
 	dc.l	$45840003
-	dc.l	byte_FF22C6
+	dc.l	warp
 	dc.l	$46040003
-	dc.l	byte_FF22CB
+	dc.l	opening
 	dc.l	$46840003
-	dc.l	byte_FF22D3
+	dc.l	come
 	dc.l	$47040003
 
 word_FF2228:
 	dc.w	0
-	dc.l	byte_FF2296
+	dc.l	stage11a
 	dc.l	$42040003
 	dc.w	0
-	dc.l	byte_FF229C
+	dc.l	stage11b
 	dc.l	$42840003
 	dc.w	0
-	dc.l	byte_FF22A2
+	dc.l	stage11c
 	dc.l	$43040003
 	dc.w	0
-	dc.l	byte_FF22A8
+	dc.l	stage11d
 	dc.l	$43840003
 	dc.w	0
-	dc.l	byte_FF22AE
+	dc.l	stage12a
 	dc.l	$44040003
 	dc.w	0
-	dc.l	byte_FF22B4
+	dc.l	stage12b
 	dc.l	$44840003
 	dc.w	0
-	dc.l	byte_FF22BA
+	dc.l	stage12c
 	dc.l	$45040003
 	dc.w	0
-	dc.l	byte_FF22C0
+	dc.l	stage12d
 	dc.l	$45840003
 	dc.w	0
-	dc.l	byte_FF22C6
+	dc.l	warp
 	dc.l	$46040003
 	dc.w	0
-	dc.l	byte_FF22CB
+	dc.l	opening
 	dc.l	$46840003
 	dc.w	0
-	dc.l	byte_FF22D3
+	dc.l	come
 	dc.l	$47040003
 
 	charset	' ',$00
@@ -240,47 +240,47 @@ word_FF2228:
 	charset	'x',$2D
 	charset	'=',$2E
 
-byte_FF2296:
+stage11a:
 	dc.b	"1-1-A"
 	dc.b	-1
 
-byte_FF229C:
+stage11b:
 	dc.b	"1-1-B"
 	dc.b	-1
 
-byte_FF22A2:
+stage11c:
 	dc.b	"1-1-C"
 	dc.b	-1
 
-byte_FF22A8:
+stage11d:
 	dc.b	"1-1-D"
 	dc.b	-1
 
-byte_FF22AE:
+stage12a:
 	dc.b	"1-2-A"
 	dc.b	-1
 
-byte_FF22B4:
+stage12b:
 	dc.b	"1-2-B"
 	dc.b	-1
 
-byte_FF22BA:
+stage12c:
 	dc.b	"1-2-C"
 	dc.b	-1
 
-byte_FF22C0:
+stage12d:
 	dc.b	"1-2-D"
 	dc.b	-1
 
-byte_FF22C6:
+warp:
 	dc.b	"WARP"
 	dc.b	-1
 
-byte_FF22CB:
+opening:
 	dc.b	"OPENING"
 	dc.b	-1
 
-byte_FF22D3:
+come:
 	dc.b	"COMMING SOON"
 	dc.b	-1
 
@@ -292,28 +292,28 @@ sub_FF22E0:
 	moveq	#0,d0
 	moveq	#1,d1
 
-loc_FF22EC:
+.loop:
 	bsr.s	sub_FF2312
 	addq.w	#2,d0
-	dbf	d6,loc_FF22EC
+	dbf	d6,.loop
 
 	moveq	#8-1,d6
 	moveq	#0,d0
 	moveq	#5,d1
 
-loc_FF22FA:
+.loop1:
 	bsr.s	sub_FF2312
 	addq.w	#2,d0
-	dbf	d6,loc_FF22FA
+	dbf	d6,.loop1
 
 	moveq	#8-1,d6
 	moveq	#0,d0
 	moveq	#9,d1
 
-loc_FF2308:
+.loop2:
 	bsr.s	sub_FF2312
 	addq.w	#2,d0
-	dbf	d6,loc_FF2308
+	dbf	d6,.loop2
 
 	rts
 
@@ -344,7 +344,7 @@ loc_FF232E:
 
 sub_FF2346:
 	lea	lpcolorwk,a1
-	lea	$FFFFF980,a2
+	lea	lpcolorwk2,a2
 	moveq	#0,d1
 	moveq	#(lpcolorwk_end-lpcolorwk)/4-1,d7
 
@@ -361,35 +361,35 @@ sub_FF2364:
 	moveq	#0,d0
 	moveq	#9,d1
 
-loc_FF236C:
+.loop:
 	bsr.w	sub_FF23A2
 	addq.w	#2,d0
-	dbf	d6,loc_FF236C
+	dbf	d6,.loop
 
 	move.w	#8-1,d6
 	moveq	#0,d0
 	moveq	#5,d1
 
-loc_FF237E:
+.loop1:
 	bsr.w	sub_FF23A2
 	addq.w	#2,d0
-	dbf	d6,loc_FF237E
+	dbf	d6,.loop1
 
 	move.w	#8-1,d6
 	moveq	#0,d0
 	moveq	#1,d1
 
-loc_FF2390:
+.loop2:
 	bsr.w	sub_FF23A2
 	addq.w	#2,d0
-	dbf	d6,loc_FF2390
+	dbf	d6,.loop2
 
 	move.b	#0,$FFFFFA00
 	rts
 
 sub_FF23A2:
 	lea	lpcolorwk,a1
-	lea	$FFFFF980,a2
+	lea	lpcolorwk2,a2
 	moveq	#(lpcolorwk_end-lpcolorwk)/2-1,d7
 
 loc_FF23AC:
@@ -461,21 +461,21 @@ sub_FF2416:
 	lea	vdp_dat,a2
 	move.w	(a0)+,d2
 
-loc_FF241E:
+.loop:
 	movea.l	(a0)+,a1
 	move.l	(a0)+,vdp_cmd
 
-loc_FF2426:
+.loop1:
 	moveq	#0,d1
 	move.b	(a1)+,d1
 	cmpi.b	#-1,d1
-	beq.s	loc_FF2436
+	beq.s	.end
 	add.w	d0,d1
 	move.w	d1,(a2)
-	bra.s	loc_FF2426
+	bra.s	.loop1
 
-loc_FF2436:
-	dbf	d2,loc_FF241E
+.end:
+	dbf	d2,.loop
 
 	rts
 
@@ -535,8 +535,8 @@ z80bus_off:
 	move.w	$FFFFFA46,sr
 	rts
 
-sub_FF2CE4:
-	lea	mcpu_comcmd7,a0
+read_sw:
+	lea	swdata1,a0
 	lea	port_1,a1
 	move.b	#0,(a1)
 	tst.w	(a0)
@@ -586,9 +586,9 @@ loc_FF2D5A:
 	beq.s	loc_FF2D5A
 	move.w	#0,$A12012
 
-loc_FF2D6A:
+.loop1:
 	tst.w	$A12022
-	bne.s	loc_FF2D6A
+	bne.s	.loop1
 	rts
 
 	dephase
