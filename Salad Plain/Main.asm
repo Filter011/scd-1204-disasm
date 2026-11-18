@@ -13,7 +13,7 @@ ZeroOffsetOptimization = 0
 	include	"WorkRAM.asm"
 	include	"Macros.asm"
 
-	phase	wordram	; set section to use wordram
+	phase	wordram
 
 vectors:
 	dc.b	0,0

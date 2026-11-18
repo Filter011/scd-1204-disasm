@@ -46,10 +46,10 @@ ringinit_:
 	move.b	d1,d0
 	andi.w	#7,d1
 	cmpi.w	#7,d1
-	bne.s	loc_208A44
+	bne.s	.jump
 	moveq	#6,d1
 
-loc_208A44:
+.jump:
 	swap	d1
 	move.w	#1,d1
 	lsr.b	#4,d0
@@ -65,32 +65,32 @@ loc_208A44:
 	moveq	#0,d0
 	move.b	time_flag,d0
 
-loc_208A70:
+.loop:
 	move.b	-(a3),d4
 	lsr.b	d1,d4
-	blo.s	loc_208AEA
-	dbf	d0,loc_208A70
+	blo.s	.jump2
+	dbf	d0,.loop
 
 	bclr	#7,(a2)
-	bra.s	loc_208AA2
+	bra.s	.jump1
 
-loc_208A80:
+.loop1:
 	swap	d1
 	lea	1(a2),a3
 	moveq	#0,d0
 	move.b	time_flag,d0
 
-loc_208A8E:
+.loop2:
 	move.b	-(a3),d4
 	lsr.b	d1,d4
-	blo.s	loc_208AEA
-	dbf	d0,loc_208A8E
+	blo.s	.jump2
+	dbf	d0,.loop2
 
 	bclr	#7,(a2)
 	bsr.w	actwkchk
-	bne.s	loc_208AF6
+	bne.s	.worknai
 
-loc_208AA2:
+.jump1:
 	_move.b	#ring_act,actno(a1)
 	addq.b	#word,r_no0(a1)
 	move.w	d2,xposi(a1)
@@ -105,14 +105,14 @@ loc_208AA2:
 	move.b	cdsts(a0),cdsts(a1)
 	move.b	d1,act34(a1)
 
-loc_208AEA:
+.jump2:
 	addq.w	#1,d1
 	add.w	d5,d2
 	add.w	d6,d3
 	swap	d1
-	dbf	d1,loc_208A80
+	dbf	d1,.loop1
 
-loc_208AF6:
+.worknai:
 	btst	#0,(a2)
 	bne.w	frameout
 
@@ -163,20 +163,20 @@ ringgetsub:
 	ori.b	#1,plring_f
 	move.w	#se_95,d0
 	cmpi.w	#100,plring
-	blo.s	loc_208BC6
+	blo.s	.soundset
 	bset	#1,plring_f2
-	beq.s	loc_208BB6
+	beq.s	.suu
 	cmpi.w	#200,plring
-	blo.s	loc_208BC6
+	blo.s	.soundset
 	bset	#2,plring_f2
-	bne.s	loc_208BC6
+	bne.s	.soundset
 
-loc_208BB6:
+.suu:
 	addq.b	#1,pl_suu
 	addq.b	#1,pl_suu_f
 	move.w	#bgm_88,d0
 
-loc_208BC6:
+.soundset:
 	jmp	soundset.l
 
 flyring:
@@ -198,19 +198,19 @@ flyringinit:
 	move.w	plring,d5
 	moveq	#32,d0
 	cmp.w	d0,d5
-	blo.s	loc_208BF6
+	blo.s	.jump
 	move.w	d0,d5
 
-loc_208BF6:
+.jump:
 	subq.w	#1,d5
 	move.w	#$288,d4
-	bra.s	loc_208C06
+	bra.s	.jump1
 
-loc_208BFE:
+.loop:
 	bsr.w	actwkchk
-	bne.w	loc_208C8E
+	bne.w	.worknai
 
-loc_208C06:
+.jump1:
 	_move.b	#flyring_act,actno(a1)
 	addq.b	#word,r_no0(a1)
 	move.b	#16/2,sprvsize(a1)
@@ -225,7 +225,7 @@ loc_208C06:
 	move.b	#16/2,sprhsize(a1)
 	move.b	#-1,sys_pattim4
 	tst.w	d4
-	bmi.s	loc_208C7E
+	bmi.s	.jump2
 	move.w	d4,d0
 	jsr	sinset.l
 	move.w	d4,d2
@@ -235,19 +235,19 @@ loc_208C06:
 	move.w	d0,d2
 	move.w	d1,d3
 	addi.b	#$10,d4
-	bhs.s	loc_208C7E
+	bhs.s	.jump2
 	subi.w	#$80,d4
-	bhs.s	loc_208C7E
+	bhs.s	.jump2
 	move.w	#$288,d4
 
-loc_208C7E:
+.jump2:
 	move.w	d2,xspeed(a1)
 	move.w	d3,yspeed(a1)
 	neg.w	d2
 	neg.w	d4
-	dbf	d5,loc_208BFE
+	dbf	d5,.loop
 
-loc_208C8E:
+.worknai:
 	move.w	#0,plring
 	move.b	#$80,plring_f
 	move.b	#0,plring_f2
@@ -258,21 +258,21 @@ flyringmove:
 	move.b	sys_patno4,patno(a0)
 	bsr.w	speedset2
 	addi.w	#$18,yspeed(a0)
-	bmi.s	loc_208CEE
+	bmi.s	.jump
 	move.b	systemtimer+3,d0
 	add.b	d7,d0
 	andi.b	#3,d0
-	bne.s	loc_208CEE
+	bne.s	.jump
 	jsr	emycol_d.l
 	tst.w	d1
-	bpl.s	loc_208CEE
+	bpl.s	.jump
 	add.w	d1,yposi(a0)
 	move.w	yspeed(a0),d0
 	asr.w	#2,d0
 	sub.w	d0,yspeed(a0)
 	neg.w	yspeed(a0)
 
-loc_208CEE:
+.jump:
 	tst.b	sys_pattim4
 	beq.s	flyringerase
 	move.w	scralim_down,d0

@@ -249,12 +249,12 @@ chibiroll2:	ds.b	1
 	endstruct
 
 ; Player Equates
-walkheight:	equ	19
-walkwidth:	equ	9
-rollheight:	equ	14
-rollwidth:	equ	7
-chibiheight:	equ	10
-chibiwidth:	equ	5
+walkheight:	equ	38/2
+walkwidth:	equ	18/2
+rollheight:	equ	28/2
+rollwidth:	equ	14/2
+chibiheight:	equ	20/2
+chibiwidth:	equ	10/2
 mainplayflag:	equ	act29
 chargetimer:	equ	act2A
 lockcd:		equ	act2C

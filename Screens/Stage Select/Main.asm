@@ -7,7 +7,7 @@ ZeroOffsetOptimization = 0
 	include	"WorkRAM.asm"
 	include	"Macros.asm"
 
-	phase	wkram
+	phase	workram
 
 	dc.b	0,0
 	dc.l	mmd_init
@@ -41,7 +41,7 @@ mmd_init:
 	move.w	#$8000,d0
 	bsr.w	sub_FF2416
 
-	lea	word_FF21AE(pc),a0
+	lea	colorssel(pc),a0
 	lea	lpcolorwk,a1
 	moveq	#($20)/4-1,d7
 
@@ -61,12 +61,12 @@ loc_FF207C:
 	lea	word_FF20DE(pc),a1
 	moveq	#0,d6
 	moveq	#$A,d7
-	btst	#0,$A1201F
+	btst	#0,mcpu_comcmd7+1
 	beq.s	loc_FF209E
 	bsr.w	sub_FF23DE
 
 loc_FF209E:
-	btst	#1,$A1201F
+	btst	#1,mcpu_comcmd7+1
 	beq.s	loc_FF20AC
 	bsr.w	sub_FF23EC
 
@@ -78,7 +78,7 @@ loc_FF20AC:
 	move.w	#$8040,d0
 	bsr.w	sub_FF2416
 	bsr.w	sub_FF2D1C
-	move.b	$A1201F,d0
+	move.b	mcpu_comcmd7+1,d0
 	andi.w	#$F0,d0
 	beq.s	loc_FF207C
 	bsr.w	sub_FF22E0
@@ -162,7 +162,7 @@ vdptbl:
 vdptbl_end:
 	even
 
-word_FF21AE:
+colorssel:
 	incbin	"Palette/Stage Select.bin"
 	even
 
@@ -227,7 +227,7 @@ word_FF2228:
 	dc.l	$47040003
 
 	charset	' ',$00
-	charset '0','9',$01
+	charset	'0','9',$01
 	charset	'A','Z',$0B
 	charset	'-',$25
 	charset	',',$26
@@ -357,7 +357,7 @@ loc_FF2352:
 	rts
 
 sub_FF2364:
-	move.w	#7,d6
+	move.w	#8-1,d6
 	moveq	#0,d0
 	moveq	#9,d1
 
@@ -366,7 +366,7 @@ loc_FF236C:
 	addq.w	#2,d0
 	dbf	d6,loc_FF236C
 
-	move.w	#7,d6
+	move.w	#8-1,d6
 	moveq	#0,d0
 	moveq	#5,d1
 
@@ -375,7 +375,7 @@ loc_FF237E:
 	addq.w	#2,d0
 	dbf	d6,loc_FF237E
 
-	move.w	#7,d6
+	move.w	#8-1,d6
 	moveq	#0,d0
 	moveq	#1,d1
 
@@ -496,17 +496,16 @@ sub_FF243C:
 	move.b	#$C0,port_1
 	bsr.w	z80bus_on
 
-	move.l	#$40000000,vdp_cmd
+	dmawrt	0,4
 	lea	vdp_dat,a0
 	moveq	#0,d0
 	move.w	#$10000/16-1,d7
 
-loc_FF2488:
+.vramclear:
+	rept	4
 	move.l	d0,(a0)
-	move.l	d0,(a0)
-	move.l	d0,(a0)
-	move.l	d0,(a0)
-	dbf	d7,loc_FF2488
+	endr
+	dbf	d7,.vramclear
 
 	move.l	#$40000010,vdp_cmd
 	move.l	#0,vdp_dat
@@ -519,390 +518,8 @@ textcg:
 	incbin	"Art/BitDev/Text.nem"
 	even
 
-bitdevr:
-	movem.l	d0-a1/a3-a5,-(sp)
-	lea	sub_FF2AC2.l,a3
-	lea	vdp_dat,a4
-	bra.s	loc_FF2A1C
-
-	movem.l	d0-a1/a3-a5,-(sp)
-	lea	loc_FF2AD8.l,a3
-
-loc_FF2A1C:
-	lea	bitdevwk,a1
-	move.w	(a0)+,d2
-	lsl.w	#1,d2
-	bhs.s	loc_FF2A2A
-	adda.w	#$A,a3
-
-loc_FF2A2A:
-	lsl.w	#2,d2
-	movea.w	d2,a5
-	moveq	#8,d3
-	moveq	#0,d2
-	moveq	#0,d4
-	jsr	sub_FF2AEE(pc)
-	move.b	(a0)+,d5
-	asl.w	#8,d5
-	move.b	(a0)+,d5
-	move.w	#16,d6
-	bsr.s	sub_FF2A4A
-	movem.l	(sp)+,d0-a1/a3-a5
-	rts
-
-sub_FF2A4A:
-	move.w	d6,d7
-	subq.w	#8,d7
-	move.w	d5,d1
-	lsr.w	d7,d1
-	cmpi.b	#%11111100,d1
-	bhs.s	loc_FF2A96
-	andi.w	#%11111111,d1
-	add.w	d1,d1
-	move.b	(a1,d1.w),d0
-	ext.w	d0
-	sub.w	d0,d6
-	cmpi.w	#9,d6
-	bhs.s	loc_FF2A72
-	addq.w	#8,d6
-	asl.w	#8,d5
-	move.b	(a0)+,d5
-
-loc_FF2A72:
-	move.b	1(a1,d1.w),d1
-	move.w	d1,d0
-	andi.w	#%00001111,d1
-	andi.w	#%11110000,d0
-
-loc_FF2A80:
-	lsr.w	#4,d0
-
-loc_FF2A82:
-	lsl.l	#4,d4
-	or.b	d1,d4
-	subq.w	#1,d3
-	bne.s	loc_FF2A90
-	jmp	(a3)
-
-loc_FF2A8C:
-	moveq	#0,d4
-	moveq	#8,d3
-
-loc_FF2A90:
-	dbf	d0,loc_FF2A82
-
-	bra.s	sub_FF2A4A
-
-loc_FF2A96:
-	subq.w	#6,d6
-	cmpi.w	#9,d6
-	bhs.s	loc_FF2AA4
-	addq.w	#8,d6
-	asl.w	#8,d5
-	move.b	(a0)+,d5
-
-loc_FF2AA4:
-	subq.w	#7,d6
-	move.w	d5,d1
-	lsr.w	d6,d1
-	move.w	d1,d0
-	andi.w	#%00001111,d1
-	andi.w	#%01110000,d0
-	cmpi.w	#9,d6
-	bhs.s	loc_FF2A80
-	addq.w	#8,d6
-	asl.w	#8,d5
-	move.b	(a0)+,d5
-	bra.s	loc_FF2A80
-
-sub_FF2AC2:
-	move.l	d4,(a4)
-	subq.w	#1,a5
-	move.w	a5,d4
-	bne.s	loc_FF2A8C
-	rts
-
-	eor.l	d4,d2
-	move.l	d2,(a4)
-	subq.w	#1,a5
-	move.w	a5,d4
-	bne.s	loc_FF2A8C
-	rts
-
-loc_FF2AD8:
-	move.l	d4,(a4)+
-	subq.w	#1,a5
-	move.w	a5,d4
-	bne.s	loc_FF2A8C
-	rts
-
-	eor.l	d4,d2
-	move.l	d2,(a4)+
-	subq.w	#1,a5
-	move.w	a5,d4
-	bne.s	loc_FF2A8C
-	rts
-
-sub_FF2AEE:
-	move.b	(a0)+,d0
-
-loc_FF2AF0:
-	cmpi.b	#%11111111,d0
-	bne.s	loc_FF2AF8
-	rts
-
-loc_FF2AF8:
-	move.w	d0,d7
-
-loc_FF2AFA:
-	move.b	(a0)+,d0
-	cmpi.b	#%10000000,d0
-	bhs.s	loc_FF2AF0
-	move.b	d0,d1
-	andi.w	#%00001111,d7
-	andi.w	#%01110000,d1
-	or.w	d1,d7
-	andi.w	#%00001111,d0
-	move.b	d0,d1
-	lsl.w	#8,d1
-	or.w	d1,d7
-	moveq	#8,d1
-	sub.w	d0,d1
-	bne.s	loc_FF2B28
-	move.b	(a0)+,d0
-	add.w	d0,d0
-	move.w	d7,(a1,d0.w)
-	bra.s	loc_FF2AFA
-
-loc_FF2B28:
-	move.b	(a0)+,d0
-	lsl.w	d1,d0
-	add.w	d0,d0
-	moveq	#1,d5
-	lsl.w	d1,d5
-	subq.w	#1,d5
-
-loc_FF2B34:
-	move.w	d7,(a1,d0.w)
-	addq.w	#2,d0
-	dbf	d5,loc_FF2B34
-
-	bra.s	loc_FF2AFA
-
-mapdevr:
-	movem.l	d0-d7/a1-a5,-(sp)
-	movea.w	d0,a3
-	move.b	(a0)+,d0
-	ext.w	d0
-	movea.w	d0,a5
-	move.b	(a0)+,d4
-	lsl.b	#3,d4
-	movea.w	(a0)+,a2
-	adda.w	a3,a2
-	movea.w	(a0)+,a4
-	adda.w	a3,a4
-	move.b	(a0)+,d5
-	asl.w	#8,d5
-	move.b	(a0)+,d5
-	moveq	#16,d6
-
-loc_FF2B60:
-	moveq	#7,d0
-	move.w	d6,d7
-	sub.w	d0,d7
-	move.w	d5,d1
-	lsr.w	d7,d1
-	andi.w	#%1111111,d1
-	move.w	d1,d2
-	cmpi.w	#%1000000,d1
-	bhs.s	loc_FF2B7A
-	moveq	#6,d0
-	lsr.w	#1,d2
-
-loc_FF2B7A:
-	bsr.w	sub_FF2CAE
-	andi.w	#%00001111,d2
-	lsr.w	#4,d1
-	add.w	d1,d1
-	jmp	loc_FF2BD6(pc,d1.w)
-
-loc_FF2B8A:
-	move.w	a2,(a1)+
-	addq.w	#1,a2
-	dbf	d2,loc_FF2B8A
-
-	bra.s	loc_FF2B60
-
-loc_FF2B94:
-	move.w	a4,(a1)+
-	dbf	d2,loc_FF2B94
-
-	bra.s	loc_FF2B60
-
-loc_FF2B9C:
-	bsr.w	loc_FF2BFE
-
-loc_FF2BA0:
-	move.w	d1,(a1)+
-	dbf	d2,loc_FF2BA0
-
-	bra.s	loc_FF2B60
-
-loc_FF2BA8:
-	bsr.w	loc_FF2BFE
-
-loc_FF2BAC:
-	move.w	d1,(a1)+
-	addq.w	#1,d1
-	dbf	d2,loc_FF2BAC
-
-	bra.s	loc_FF2B60
-
-loc_FF2BB6:
-	bsr.w	loc_FF2BFE
-
-loc_FF2BBA:
-	move.w	d1,(a1)+
-	subq.w	#1,d1
-	dbf	d2,loc_FF2BBA
-
-	bra.s	loc_FF2B60
-
-loc_FF2BC4:
-	cmpi.w	#$F,d2
-	beq.s	loc_FF2BE6
-
-loc_FF2BCA:
-	bsr.w	loc_FF2BFE
-	move.w	d1,(a1)+
-	dbf	d2,loc_FF2BCA
-
-	bra.s	loc_FF2B60
-
-loc_FF2BD6:
-	bra.s	loc_FF2B8A
-	bra.s	loc_FF2B8A
-	bra.s	loc_FF2B94
-	bra.s	loc_FF2B94
-	bra.s	loc_FF2B9C
-	bra.s	loc_FF2BA8
-	bra.s	loc_FF2BB6
-	bra.s	loc_FF2BC4
-
-loc_FF2BE6:
-	subq.w	#1,a0
-	cmpi.w	#16,d6
-	bne.s	loc_FF2BF0
-	subq.w	#1,a0
-
-loc_FF2BF0:
-	move.w	a0,d0
-	lsr.w	#1,d0
-	bhs.s	loc_FF2BF8
-	addq.w	#1,a0
-
-loc_FF2BF8:
-	movem.l	(sp)+,d0-d7/a1-a5
-	rts
-
-loc_FF2BFE:
-	move.w	a3,d3
-	move.b	d4,d1
-	add.b	d1,d1
-	bhs.s	loc_FF2C10
-	subq.w	#1,d6
-	btst	d6,d5
-	beq.s	loc_FF2C10
-	ori.w	#$8000,d3
-
-loc_FF2C10:
-	add.b	d1,d1
-	bhs.s	loc_FF2C1E
-	subq.w	#1,d6
-	btst	d6,d5
-	beq.s	loc_FF2C1E
-	addi.w	#$4000,d3
-
-loc_FF2C1E:
-	add.b	d1,d1
-	bhs.s	loc_FF2C2C
-	subq.w	#1,d6
-	btst	d6,d5
-	beq.s	loc_FF2C2C
-	addi.w	#$2000,d3
-
-loc_FF2C2C:
-	add.b	d1,d1
-	bhs.s	loc_FF2C3A
-	subq.w	#1,d6
-	btst	d6,d5
-	beq.s	loc_FF2C3A
-	ori.w	#$1000,d3
-
-loc_FF2C3A:
-	add.b	d1,d1
-	bhs.s	loc_FF2C48
-	subq.w	#1,d6
-	btst	d6,d5
-	beq.s	loc_FF2C48
-	ori.w	#$800,d3
-
-loc_FF2C48:
-	move.w	d5,d1
-	move.w	d6,d7
-	sub.w	a5,d7
-	bhs.s	loc_FF2C78
-	move.w	d7,d6
-	addi.w	#16,d6
-	neg.w	d7
-	lsl.w	d7,d1
-	move.b	(a0),d5
-	rol.b	d7,d5
-	add.w	d7,d7
-	and.w	loc_FF2C8C(pc,d7.w),d5
-	add.w	d5,d1
-
-loc_FF2C66:
-	move.w	a5,d0
-	add.w	d0,d0
-	and.w	loc_FF2C8C(pc,d0.w),d1
-	add.w	d3,d1
-	move.b	(a0)+,d5
-	lsl.w	#8,d5
-	move.b	(a0)+,d5
-	rts
-
-loc_FF2C78:
-	beq.s	loc_FF2C8A
-	lsr.w	d7,d1
-	move.w	a5,d0
-	add.w	d0,d0
-	and.w	loc_FF2C8C(pc,d0.w),d1
-	add.w	d3,d1
-	move.w	a5,d0
-	bra.s	sub_FF2CAE
-
-loc_FF2C8A:
-	moveq	#16,d6
-
-loc_FF2C8C:
-	bra.s	loc_FF2C66
-
-	dc.w	%0000000000000001,%0000000000000011,%0000000000000111,%0000000000001111
-	dc.w	%0000000000011111,%0000000000111111,%0000000001111111,%0000000011111111
-	dc.w	%0000000111111111,%0000001111111111,%0000011111111111,%0000111111111111
-	dc.w	%0001111111111111,%0011111111111111,%0111111111111111,%1111111111111111
-
-sub_FF2CAE:
-	sub.w	d0,d6
-	cmpi.w	#9,d6
-	bhs.s	locret_FF2CBC
-	addq.w	#8,d6
-	asl.w	#8,d5
-	move.b	(a0)+,d5
-
-locret_FF2CBC:
-	rts
+	include	"../../Shared/Decompression/BitDev.asm"
+	include	"../../Shared/Decompression/MapDev.asm"
 
 z80bus_on:
 	move.w	sr,$FFFFFA46
@@ -919,7 +536,7 @@ z80bus_off:
 	rts
 
 sub_FF2CE4:
-	lea	$A1201E,a0
+	lea	mcpu_comcmd7,a0
 	lea	port_1,a1
 	move.b	#0,(a1)
 	tst.w	(a0)
@@ -952,14 +569,14 @@ loc_FF2D28:
 sub_sync:
 	move.w	d0,mcpu_comcmd
 
-loc_FF2D3A:
+.loop:
 	tst.w	mcpu_comsts
-	beq.s	loc_FF2D3A
+	beq.s	.loop
 	move.w	#0,mcpu_comcmd
 
-loc_FF2D4A:
+.loop1:
 	tst.w	mcpu_comsts
-	bne.s	loc_FF2D4A
+	bne.s	.loop1
 	rts
 
 	move.w	d0,$A12012
