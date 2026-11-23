@@ -178,7 +178,7 @@ JFVR:
 ;	PFVR		;	db	FVR,< PSG VIBR NO. >,< FM VIBR NO. >
 ;-----------------------;
 JPFVR:
-	res	7,(ix+7)
+	res	7,(ix+VIBR)
 	dec	de
 	ret
 ;-----------------------;
