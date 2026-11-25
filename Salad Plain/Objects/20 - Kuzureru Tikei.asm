@@ -28,7 +28,7 @@ loc_20D066:
 	btst	#4,d0
 	beq.w	loc_20D07E
 	bset	#0,actflg(a0)
-	bset	#0,cddat(a0)
+	bset	#cd_left,cddat(a0)
 
 loc_20D07E:
 	andi.w	#%00001111,d0
@@ -176,7 +176,7 @@ loc_20D1D4:
 	cmpa.w	#0,a4
 	beq.w	loc_20D22A
 	bset	#0,actflg(a1)
-	bset	#0,cddat(a1)
+	bset	#cd_left,cddat(a1)
 
 loc_20D22A:
 	tst.w	d6

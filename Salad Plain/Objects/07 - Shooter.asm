@@ -63,7 +63,7 @@ shootermove:
 	bsr.w	mspd_set
 	move.w	#0,xspeed(a6)
 	move.w	#0,yspeed(a6)
-	bclr	#5,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	bclr	#cd_push,cddat(a6)
 	bset	#cd_jump,cddat(a6)
 	move.w	xposi(a0),xposi(a6)

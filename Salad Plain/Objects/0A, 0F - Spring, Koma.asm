@@ -204,7 +204,7 @@ sub_20863E:
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
 	move.b	#16,mstno(a1)
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	move.w	#se_98,d0
 	jmp	soundset.l
 
@@ -217,7 +217,7 @@ sjumpmove2:
 	bra.w	patchg
 
 sjumpmove3:
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	move.b	#1,mstrestart(a0)
 	subq.b	#4,r_no0(a0)
 	move.b	#0,patno(a0)
@@ -233,14 +233,14 @@ sdushmove:
 	bpl.s	locret_2086D0
 	lea	playerwk,a1
 	bsr.s	ride_on_chk_s1
-	btst	#5,cddat(a0)
+	btst	#cd_push,cddat(a0)
 	beq.s	loc_2086C2
 	bsr.s	sub_2086D2
 
 loc_2086C2:
 	lea	player2wk,a1
 	bsr.s	ride_on_chk_s1
-	btst	#5,cddat(a0)
+	btst	#cd_push,cddat(a0)
 	bne.s	sub_2086D2
 
 locret_2086D0:
@@ -251,7 +251,7 @@ sub_2086D2:
 	move.w	act30(a0),xspeed(a1)
 	addq.w	#8,xposi(a1)
 	bset	#cd_left,cddat(a1)
-	btst	#0,cddat(a0)
+	btst	#cd_left,cddat(a0)
 	bne.s	loc_208700
 	subi.w	#$10,xposi(a1)
 	neg.w	xspeed(a1)
@@ -266,7 +266,7 @@ loc_208700:
 
 loc_20871A:
 	clr.b	direc(a1)
-	bclr	#5,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	bclr	#cd_push,cddat(a1)
 	move.w	#se_98,d0
 	jmp	soundset.l
@@ -313,7 +313,7 @@ sub_208788:
 	neg.w	yspeed(a1)
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	move.w	#se_98,d0
 	jsr	soundset.l
 
@@ -337,7 +337,7 @@ sjump3move:
 	lea	playerwk,a1
 	bsr.w	ride_on_chk_s2
 	bne.s	loc_2087F8
-	btst	#5,cddat(a0)
+	btst	#cd_push,cddat(a0)
 	beq.s	loc_2087FA
 
 loc_2087F8:
@@ -347,7 +347,7 @@ loc_2087FA:
 	lea	player2wk,a1
 	bsr.w	ride_on_chk_s2
 	bne.s	sub_20880E
-	btst	#5,cddat(a0)
+	btst	#cd_push,cddat(a0)
 	bne.s	sub_20880E
 
 locret_20880C:
@@ -385,8 +385,8 @@ loc_20886E:
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
 	bclr	#cd_push,cddat(a1)
-	bclr	#3,cddat(a0)
-	bclr	#5,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	move.w	#se_98,d0
 	jsr	soundset.l
 

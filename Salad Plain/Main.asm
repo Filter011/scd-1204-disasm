@@ -604,7 +604,7 @@ loc_20B612:
 	move.l	#off_20CF16,patbase(a0)
 	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#16,sprhsize(a0)
+	move.b	#32/2,sprhsize(a0)
 	move.w	#$47A,sproffset(a0)
 	move.l	playerwk+xposi,d0
 	addi.l	#$32,d0
@@ -634,7 +634,7 @@ sub_20B684:
 
 loc_20B694:
 	moveq	#0,d1
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	rts
 
 	lea	playerwk,a1
@@ -644,7 +644,7 @@ loc_20B694:
 
 loc_20B6AE:
 	moveq	#0,d1
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	rts
 
 	lea	playerwk,a1
@@ -654,7 +654,7 @@ loc_20B6AE:
 
 loc_20B6C8:
 	moveq	#0,d1
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	rts
 
 	lea	playerwk,a1
@@ -664,7 +664,7 @@ loc_20B6C8:
 
 loc_20B6E2:
 	moveq	#0,d1
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	rts
 
 loc_20B6EC:
@@ -734,12 +734,12 @@ loc_20B722:
 	cmp.w	d5,d4
 	bpl.w	loc_20B7AC
 	moveq	#-1,d1
-	bset	#3,cddat(a0)
+	bset	#cd_ride,cddat(a0)
 	rts
 
 loc_20B7AC:
 	moveq	#0,d1
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 	rts
 
 byte_20B7B6:
