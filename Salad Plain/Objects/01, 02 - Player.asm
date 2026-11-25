@@ -770,7 +770,7 @@ play00move:
 	bne.s	.jump2
 	moveq	#0,d0
 	move.b	cddat(a0),d0
-	andi.w	#%0110,d0
+	andi.w	#cd_walk<<1|cd_ball<<1,d0
 	move.w	play00move_tbl(pc,d0.w),d1
 	jsr	play00move_tbl(pc,d1.w)
 	bsr.w	sub_203826
@@ -886,7 +886,7 @@ sub_203E16:
 	bhi.w	frameout
 
 loc_203E2E:
-	addi.w	#576,d0
+	addi.w	#320+256,d0
 	cmp.w	xposi(a0),d0
 	blt.w	frameout
 	move.w	scra_v_posit,d0
@@ -896,7 +896,7 @@ loc_203E2E:
 	bhi.w	frameout
 
 loc_203E4C:
-	addi.w	#384,d0
+	addi.w	#224+160,d0
 	cmp.w	yposi(a0),d0
 	blt.w	frameout
 

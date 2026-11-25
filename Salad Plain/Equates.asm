@@ -268,14 +268,16 @@ jumpflag:	equ	act3C
 hlocktimer:	equ	act3E
 
 ; Player Bit Equates
-cd_left:	equ	0
 cd_walk:	equ	1
 cd_jump:	equ	1
 cd_ball:	equ	2
-cd_ride:	equ	3
 cd_ballj:	equ	4
-cd_push:	equ	5
 cd_underwater:	equ	6
+
+; Object Bit Equates
+cd_left:	equ	0
+cd_ride:	equ	3
+cd_push:	equ	5
 
 ; Tile Flag Equates
 tile_pri:	equ	1<<15
