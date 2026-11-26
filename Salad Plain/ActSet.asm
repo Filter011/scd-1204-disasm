@@ -213,7 +213,7 @@ loc_206F44:
 	_move.b	d0,actno(a1)
 	move.b	(a0)+,userflag(a1)
 	move.b	(a0)+,d0
-	move.b	(a0)+,act29(a1)
+	move.b	(a0)+,off29(a1)
 	moveq	#0,d0
 
 .worknai:

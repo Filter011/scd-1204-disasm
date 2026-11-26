@@ -22,7 +22,7 @@ loc_203580:
 	move.b	#$2B,mstno(a0)
 	move.w	#-$500,yspeed(a0)
 	move.w	#$100,xspeed(a0)
-	btst	#0,cddat(a0)
+	btst	#cd_right,cddat(a0)
 	beq.s	loc_2035A8
 	neg.w	xspeed(a0)
 
@@ -1113,7 +1113,7 @@ levermove:
 	btst	#cd_ride,cddat(a0)
 	beq.s	loc_204148
 	moveq	#0,d0
-	move.b	act3D(a0),d0
+	move.b	off3D(a0),d0
 	lsl.w	#6,d0
 	lea	actwk,a1
 	lea	(a1,d0.w),a1
@@ -1146,7 +1146,7 @@ loc_204148:
 	bne.s	loc_204164
 
 loc_20415C:
-	bclr	#cd_left,cddat(a0)
+	bclr	#cd_right,cddat(a0)
 	bra.s	loc_204172
 
 loc_204164:
@@ -1197,7 +1197,7 @@ loc_2041E4:
 	beq.s	loc_204210
 	move.b	#0,mstno(a0)
 	moveq	#$19,d0
-	btst	#cd_left,cddat(a0)
+	btst	#cd_right,cddat(a0)
 	beq.s	loc_20420A
 	neg.w	d0
 
@@ -1275,7 +1275,7 @@ loc_2042C8:
 	beq.s	loc_20430C
 	move.b	#1,chargetimer(a0)
 	move.w	#$16,mspeed(a0)
-	btst	#cd_left,cddat(a0)
+	btst	#cd_right,cddat(a0)
 	beq.s	loc_2042FE
 	neg.w	mspeed(a0)
 
@@ -1441,7 +1441,7 @@ loc_204468:
 	cmpi.w	#$400,d0
 	blt.s	locret_204496
 	move.b	#$D,mstno(a0)
-	bclr	#cd_left,cddat(a0)
+	bclr	#cd_right,cddat(a0)
 	move.w	#se_90,d0
 	jsr	soundset.l
 
@@ -1460,7 +1460,7 @@ plwalk_r:
 	move.b	#0,chargetimer(a0)
 
 loc_2044BA:
-	bclr	#cd_left,cddat(a0)
+	bclr	#cd_right,cddat(a0)
 	beq.s	loc_2044CE
 	bclr	#cd_push,cddat(a0)
 	move.b	#1,mstrestart(a0)
@@ -1523,7 +1523,7 @@ loc_204552:
 	move.w	#$19,d0
 	move.w	plmaxspdwk,d1
 	asl.w	#1,d1
-	btst	#cd_left,cddat(a0)
+	btst	#cd_right,cddat(a0)
 	beq.s	loc_204570
 	neg.w	d0
 	neg.w	d1
@@ -1653,7 +1653,7 @@ loc_204694:
 ballwalk_r:
 	move.w	mspeed(a0),d0
 	bmi.s	loc_2046AE
-	bclr	#cd_left,cddat(a0)
+	bclr	#cd_right,cddat(a0)
 	move.b	#2,mstno(a0)
 	rts
 
@@ -1686,7 +1686,7 @@ jumpmove:
 loc_2046EC:
 	btst	#3,swdata
 	beq.s	loc_204702
-	bclr	#cd_left,cddat(a0)
+	bclr	#cd_right,cddat(a0)
 	add.w	d5,d0
 	cmp.w	d6,d0
 	blt.s	loc_204702
@@ -3209,7 +3209,7 @@ playwrt:
 
 frip_spd:
 	moveq	#0,d0
-	move.b	act3D(a0),d0
+	move.b	off3D(a0),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	movea.l	d0,a1

@@ -22,31 +22,31 @@ off_20FD14:
 
 loc_20FD1A:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#8,sprhs(a0)
-	move.b	#8,sprvsize(a0)
+	move.b	#16/2,sprhs(a0)
+	move.b	#16/2,sprvsize(a0)
 	move.w	#$3DA,sproffset(a0)
 	move.l	#off_20FDF0,patbase(a0)
-	move.l	xposi(a0),act2A(a0)
-	move.l	yposi(a0),act2E(a0)
-	move.b	#1,act32(a0)
+	move.l	xposi(a0),off2A(a0)
+	move.l	yposi(a0),off2E(a0)
+	move.b	#1,off32(a0)
 	rts
 
 loc_20FD58:
-	move.b	act32(a0),d0
+	move.b	off32(a0),d0
 	jsr	$2006A2.l
 	swap	d1
 	swap	d0
 	asr.l	#1,d1
 	asr.l	#1,d0
-	add.l	act2A(a0),d1
-	add.l	act2E(a0),d0
+	add.l	off2A(a0),d1
+	add.l	off2E(a0),d0
 	move.l	d1,xposi(a0)
 	move.l	d0,yposi(a0)
-	move.w	#$BDA,sproffset(a0)
-	addq.b	#1,act32(a0)
-	cmpi.b	#$7F,act32(a0)
+	move.w	#$3DA|tile_xflip,sproffset(a0)
+	addq.b	#1,off32(a0)
+	cmpi.b	#$7F,off32(a0)
 	bpl.w	loc_20FDA2
 
 loc_20FD8E:
@@ -60,19 +60,19 @@ loc_20FDA2:
 	bra.s	loc_20FD8E
 
 loc_20FDA8:
-	move.b	act32(a0),d0
+	move.b	off32(a0),d0
 	jsr	$2006A2.l
 	swap	d1
 	swap	d0
 	asr.l	#1,d1
 	asr.l	#1,d0
-	add.l	act2A(a0),d1
-	add.l	act2E(a0),d0
+	add.l	off2A(a0),d1
+	add.l	off2E(a0),d0
 	move.l	d1,xposi(a0)
 	move.l	d0,yposi(a0)
 	move.w	#$3DA,sproffset(a0)
-	addi.b	#-1,act32(a0)
-	cmpi.b	#1,act32(a0)
+	addi.b	#-1,off32(a0)
+	cmpi.b	#1,off32(a0)
 	bmi.w	loc_20FDE2
 	bra.s	loc_20FD8E
 
@@ -112,22 +112,22 @@ off_20FE0E:
 
 loc_20FE14:
 	addq.b	#word,r_no0(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
-	move.b	#8,sprhs(a0)
-	move.b	#8,sprvsize(a0)
+	move.b	#16/2,sprhs(a0)
+	move.b	#16/2,sprvsize(a0)
 	move.w	#$3DA,sproffset(a0)
 	move.l	#off_20FEFC,patbase(a0)
-	move.l	#-$40000,act2A(a0)
+	move.l	#-$40000,off2A(a0)
 	rts
 
 loc_20FE48:
 	move.w	#$3DA,sproffset(a0)
 	addi.l	#$10000,xposi(a0)
-	move.l	act2A(a0),d0
+	move.l	off2A(a0),d0
 	add.l	d0,yposi(a0)
 	move.b	#0,mstno(a0)
-	addi.l	#$2000,act2A(a0)
+	addi.l	#$2000,off2A(a0)
 	bmi.w	loc_20FE76
 	move.b	#1,mstno(a0)
 
@@ -144,16 +144,16 @@ loc_20FE82:
 
 loc_20FE96:
 	addq.b	#word,r_no0(a0)
-	move.l	#-$40000,act2A(a0)
+	move.l	#-$40000,off2A(a0)
 	bra.s	loc_20FE82
 
 loc_20FEA4:
-	move.w	#$BDA,sproffset(a0)
+	move.w	#$3DA|tile_xflip,sproffset(a0)
 	addi.l	#-$10000,xposi(a0)
-	move.l	act2A(a0),d0
+	move.l	off2A(a0),d0
 	add.l	d0,yposi(a0)
 	move.b	#0,mstno(a0)
-	addi.l	#$2000,act2A(a0)
+	addi.l	#$2000,off2A(a0)
 	bmi.w	loc_20FED2
 	move.b	#1,mstno(a0)
 
@@ -165,7 +165,7 @@ loc_20FED2:
 
 loc_20FEE0:
 	addi.b	#-word,r_no0(a0)
-	move.l	#-$40000,act2A(a0)
+	move.l	#-$40000,off2A(a0)
 	bra.s	loc_20FE82
 
 off_20FEF0:

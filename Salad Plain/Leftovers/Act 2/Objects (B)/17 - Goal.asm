@@ -13,7 +13,7 @@ off_20E0F2:
 
 loc_20E0FC:
 	addq.b	#word,r_no0(a0)
-	ori.b	#4,actflg(a0)
+	ori.b	#%00000100,actflg(a0)
 	move.b	#4,sprpri(a0)
 	move.w	#$503,sproffset(a0)
 	move.l	#off_20E1DA,patbase(a0)
@@ -25,7 +25,7 @@ loc_20E11A:
 	bhs.s	locret_20E146
 	move.w	scralim_right,scralim_left
 	clr.b	pltime_f
-	move.b	#60,act2A(a0)
+	move.b	#60,off2A(a0)
 	move.b	#0,patno(a0)
 	addq.b	#word,r_no0(a0)
 
@@ -33,27 +33,27 @@ locret_20E146:
 	rts
 
 loc_20E148:
-	subq.b	#1,act2A(a0)
+	subq.b	#1,off2A(a0)
 	bne.s	locret_20E158
 	addq.b	#word,r_no0(a0)
-	move.b	#1,act2A(a0)
+	move.b	#1,off2A(a0)
 
 locret_20E158:
 	rts
 
 loc_20E15A:
-	subq.b	#1,act2A(a0)
+	subq.b	#1,off2A(a0)
 	bne.s	locret_20E176
 	bset	#0,plautoflag
 	move.w	#$808,swdata
-	move.b	#60,act2A(a0)
+	move.b	#60,off2A(a0)
 	addq.b	#word,r_no0(a0)
 
 locret_20E176:
 	rts
 
 loc_20E178:
-	subq.b	#1,act2A(a0)
+	subq.b	#1,off2A(a0)
 	bne.s	locret_20E1CE
 	move.w	#2,gameflag
 	move.b	#0,plflag

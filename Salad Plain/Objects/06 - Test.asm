@@ -1,4 +1,4 @@
-test_xposi:	equ act30
+test_xposi:	equ off30
 
 test_act:
 	moveq	#0,d0

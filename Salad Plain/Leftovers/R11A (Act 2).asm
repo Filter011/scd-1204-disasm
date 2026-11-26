@@ -2,7 +2,7 @@
 
 	include	"Act 1/Objects (Act 2)/25 - Hashi.asm"
 	include	"Act 1/Objects/26 - Toge.asm"
-	include	"Act 1/Objects/29.asm"
+	include	"Act 1/Objects/29 - Buranko.asm"
 
 	dc.b	1
 	dc.b	-8,5,0,0,-8
@@ -536,7 +536,7 @@ sub_20F8C0:
 	move.w	off_20F8E2(pc,d0.w),d4
 	lea	off_20F8E2(pc,d4.w),a2
 	moveq	#0,d1
-	move.b	act29(a0),d1
+	move.b	off29(a0),d1
 	add.w	d1,d1
 	move.w	(a2,d1.w),d5
 	move.w	d5,sproffset(a0)

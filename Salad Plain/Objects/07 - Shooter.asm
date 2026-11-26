@@ -39,10 +39,10 @@ shooterinit:
 	andi.w	#$1E,d0
 	lea	shooterpositbl(pc),a2
 	adda.w	(a2,d0.w),a2
-	move.w	(a2)+,act3A(a0)
-	move.l	a2,act3C(a0)
-	move.w	(a2)+,act36(a0)
-	move.w	(a2)+,act38(a0)
+	move.w	(a2)+,off3A(a0)
+	move.l	a2,off3C(a0)
+	move.w	(a2)+,off36(a0)
+	move.w	(a2)+,off38(a0)
 
 shootermove:
 	move.w	xposi(a6),d0
@@ -68,7 +68,7 @@ shootermove:
 	bset	#cd_jump,cddat(a6)
 	move.w	xposi(a0),xposi(a6)
 	move.w	yposi(a0),yposi(a6)
-	clr.b	act32(a0)
+	clr.b	off32(a0)
 	move.w	#se_91,d0
 	jsr	soundset.l
 
@@ -84,23 +84,23 @@ shootermove2:
 
 shootermove3:
 	addq.l	#4,sp
-	subq.b	#1,act2E(a0)
+	subq.b	#1,off2E(a0)
 	bpl.s	loc_207C90
-	move.w	act36(a0),xposi(a6)
-	move.w	act38(a0),yposi(a6)
+	move.w	off36(a0),xposi(a6)
+	move.w	off38(a0),yposi(a6)
 	moveq	#0,d1
-	move.b	act3A(a0),d1
+	move.b	off3A(a0),d1
 	addq.b	#4,d1
-	cmp.b	act3B(a0),d1
+	cmp.b	off3B(a0),d1
 	blo.s	loc_207C78
 	moveq	#0,d1
 	bra.s	loc_207CB6
 
 loc_207C78:
-	move.b	d1,act3A(a0)
-	movea.l	act3C(a0),a2
-	move.w	(a2,d1.w),act36(a0)
-	move.w	2(a2,d1.w),act38(a0)
+	move.b	d1,off3A(a0)
+	movea.l	off3C(a0),a2
+	move.w	(a2,d1.w),off36(a0)
+	move.w	2(a2,d1.w),off38(a0)
 	bra.w	shooterspdset
 
 loc_207C90:
@@ -129,7 +129,7 @@ shooterspdset:
 	moveq	#0,d0
 	move.w	mspeed(a6),d2
 	move.w	mspeed(a6),d3
-	move.w	act36(a0),d0
+	move.w	off36(a0),d0
 	sub.w	xposi(a6),d0
 	bge.s	loc_207CE4
 	neg.w	d0
@@ -137,7 +137,7 @@ shooterspdset:
 
 loc_207CE4:
 	moveq	#0,d1
-	move.w	act38(a0),d1
+	move.w	off38(a0),d1
 	sub.w	yposi(a6),d1
 	bge.s	loc_207CF4
 	neg.w	d1
@@ -147,12 +147,12 @@ loc_207CF4:
 	cmp.w	d0,d1
 	blo.s	loc_207D2A
 	moveq	#0,d1
-	move.w	act38(a0),d1
+	move.w	off38(a0),d1
 	sub.w	yposi(a6),d1
 	swap	d1
 	divs.w	d3,d1
 	moveq	#0,d0
-	move.w	act36(a0),d0
+	move.w	off36(a0),d0
 	sub.w	xposi(a6),d0
 	beq.s	loc_207D16
 	swap	d0
@@ -166,17 +166,17 @@ loc_207D16:
 	neg.w	d1
 
 loc_207D24:
-	move.w	d1,act2E(a0)
+	move.w	d1,off2E(a0)
 	rts
 
 loc_207D2A:
 	moveq	#0,d0
-	move.w	act36(a0),d0
+	move.w	off36(a0),d0
 	sub.w	xposi(a6),d0
 	swap	d0
 	divs.w	d2,d0
 	moveq	#0,d1
-	move.w	act38(a0),d1
+	move.w	off38(a0),d1
 	sub.w	yposi(a6),d1
 	beq.s	loc_207D48
 	swap	d1
@@ -190,7 +190,7 @@ loc_207D48:
 	neg.w	d0
 
 loc_207D56:
-	move.w	d0,act2E(a0)
+	move.w	d0,off2E(a0)
 	rts
 
 mspd_set:

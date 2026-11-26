@@ -78,7 +78,7 @@ muteki_sub:
 	add.b	d2,d1
 	addq.b	#4,d1
 	sub.b	d1,d0
-	move.b	act30(a0),d1
+	move.b	off30(a0),d1
 	sub.b	d1,d0
 	addq.b	#4,d1
 	cmpi.b	#24,d1
@@ -86,7 +86,7 @@ muteki_sub:
 	moveq	#0,d1
 
 .jump1:
-	move.b	d1,act30(a0)
+	move.b	d1,off30(a0)
 	lea	playposiwk,a1
 	lea	(a1,d0.w),a1
 	move.w	(a1)+,xposi(a0)

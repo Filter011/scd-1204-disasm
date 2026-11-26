@@ -1,4 +1,4 @@
-taki_yposi:	equ act2A
+taki_yposi:	equ off2A
 
 taki:
 	moveq	#0,d0
@@ -52,7 +52,7 @@ taki_move:
 .end:
 	rts
 
-jinsin_tim:	equ act2E
+jinsin_tim:	equ off2E
 
 jisin_set:
 	moveq	#0,d0
@@ -107,8 +107,8 @@ loc_20685A:
 	move.w	#$1940,xposi(a0)
 	move.w	#$2D0,yposi(a0)
 	move.b	#10-1,jinsin_tim(a0)
-	move.b	#24-1,act2C(a0)
-	move.b	#44-1,act2A(a0)
+	move.b	#24-1,off2C(a0)
+	move.b	#44-1,off2A(a0)
 
 locret_206884:
 	rts
@@ -154,13 +154,13 @@ loc_2068E0:
 	lea	mapwka,a4
 	move.w	yposi(a0),d4
 	moveq	#0,d0
-	move.b	act2A(a0),d0
+	move.b	off2A(a0),d0
 
 loc_2068EE:
 	movem.l	d0/a0,-(sp)
 	move.w	xposi(a0),d5
 	moveq	#0,d6
-	move.b	act2C(a0),d6
+	move.b	off2C(a0),d6
 
 loc_2068FC:
 	movem.l	d4-d5,-(sp)

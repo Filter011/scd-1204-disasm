@@ -93,7 +93,7 @@ loc_20B926:
 	rts
 
 loc_20B942:
-	move.w	#$64,act2A(a0)
+	move.w	#$64,off2A(a0)
 	move.b	#$C,r_no0(a0)
 	rts
 
@@ -113,12 +113,12 @@ loc_20B950:
 loc_20B97A:
 	neg.w	d0
 	move.w	d0,yspeed(a1)
-	move.w	#$64,act2A(a0)
+	move.w	#$64,off2A(a0)
 
 loc_20B986:
-	move.w	act2A(a0),d0
+	move.w	off2A(a0),d0
 	subq.w	#1,d0
-	move.w	d0,act2A(a0)
+	move.w	d0,off2A(a0)
 	bne.w	loc_20B9A2
 	move.b	#4,r_no0(a0)
 	move.b	#4,mstno(a0)
@@ -147,7 +147,7 @@ loc_20B9D2:
 	rts
 
 loc_20B9EE:
-	move.w	#$64,act2A(a0)
+	move.w	#$64,off2A(a0)
 	move.b	#$A,r_no0(a0)
 	rts
 
@@ -167,12 +167,12 @@ loc_20B9FC:
 loc_20BA26:
 	neg.w	d0
 	move.w	d0,yspeed(a1)
-	move.w	#$64,act2A(a0)
+	move.w	#$64,off2A(a0)
 
 loc_20BA32:
-	move.w	act2A(a0),d0
+	move.w	off2A(a0),d0
 	subq.w	#1,d0
-	move.w	d0,act2A(a0)
+	move.w	d0,off2A(a0)
 	bne.w	loc_20BA4E
 	move.b	#2,r_no0(a0)
 	move.b	#3,mstno(a0)
@@ -217,7 +217,7 @@ loc_20BAA2:
 	bclr	#cd_walk,cddat(a1)
 	bset	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
-	move.w	#0,act2A(a0)
+	move.w	#0,off2A(a0)
 
 loc_20BAD2:
 	lea	cardchg.l,a1
@@ -236,7 +236,7 @@ loc_20BAE4:
 	lea	playerwk,a1
 	bclr	#cd_ride,cddat(a1)
 	move.b	#6,r_no0(a0)
-	move.w	#0,act2A(a0)
+	move.w	#0,off2A(a0)
 
 loc_20BB0C:
 	lea	playerwk,a1
@@ -264,9 +264,9 @@ loc_20BB3C:
 
 loc_20BB4A:
 	moveq	#0,d0
-	move.w	act2A(a0),d0
+	move.w	off2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,act2A(a0)
+	move.w	d0,off2A(a0)
 	lea	loc_20BC80.l,a3
 	lea	unk_20BC1E.l,a2
 	move.w	xposi(a0),d2
@@ -300,13 +300,13 @@ loc_20BBA8:
 	bclr	#cd_walk,cddat(a1)
 	bset	#cd_ride,cddat(a1)
 	move.b	#4,r_no0(a0)
-	move.w	#0,act2A(a0)
+	move.w	#0,off2A(a0)
 
 loc_20BBD8:
 	lea	unk_20BC4A.l,a2
-	move.w	act2A(a0),d0
+	move.w	off2A(a0),d0
 	addq.w	#1,d0
-	move.w	d0,act2A(a0)
+	move.w	d0,off2A(a0)
 	move.b	(a2,d0.w),d1
 	bmi.w	loc_20BC06
 	move.b	d1,mstno(a0)

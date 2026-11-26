@@ -55,50 +55,50 @@ sub_208172:
 	bne.s	loc_2081A4
 	move.b	#45,mstno(a1)
 	moveq	#0,d0
-	move.b	d0,act2B(a1)
+	move.b	d0,off2B(a1)
 	move.w	xposi(a1),d0
 	sub.w	xposi(a0),d0
 	bhs.s	loc_2081A0
 	neg.w	d0
-	move.b	#$80,act2B(a1)
+	move.b	#$80,off2B(a1)
 
 loc_2081A0:
-	move.b	d0,act39(a1)
+	move.b	d0,off39(a1)
 
 loc_2081A4:
 	bra.s	loc_2081BE
 
 sub_2081A6:
 	moveq	#0,d0
-	move.b	act3D(a1),d0
+	move.b	off3D(a1),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
 	bne.s	locret_2081BC
-	clr.b	act2C(a1)
+	clr.b	off2C(a1)
 
 locret_2081BC:
 	rts
 
 loc_2081BE:
-	addq.b	#8,act2B(a1)
-	move.b	act2B(a1),d0
+	addq.b	#8,off2B(a1)
+	move.b	off2B(a1),d0
 	jsr	sinset.l
 	moveq	#0,d0
-	move.b	act39(a1),d0
+	move.b	off39(a1),d0
 	muls.w	d1,d0
 	lsr.l	#8,d0
 	move.w	xposi(a0),xposi(a1)
 	add.w	d0,xposi(a1)
 	moveq	#0,d0
-	move.b	act2B(a1),d0
+	move.b	off2B(a1),d0
 	move.b	d0,d1
 	andi.b	#$F0,d0
 	lsr.b	#4,d0
 	move.b	pattbl(pc,d0.w),patcnt(a1)
 	andi.b	#$3F,d1
 	bne.s	loc_2081FE
-	addq.b	#1,act39(a1)
+	addq.b	#1,off39(a1)
 
 loc_2081FE:
 	move.w	swdata1,swdata
@@ -136,29 +136,29 @@ k_move:
 	bhs.s	loc_20825A
 	btst	#2,swdata
 	beq.s	loc_208244
-	addq.b	#1,act39(a1)
+	addq.b	#1,off39(a1)
 	bra.s	locret_20827C
 
 loc_208244:
 	btst	#3,swdata
 	beq.s	locret_20827C
-	subq.b	#1,act39(a1)
+	subq.b	#1,off39(a1)
 	bhs.s	locret_20827C
-	move.b	#0,act39(a1)
+	move.b	#0,off39(a1)
 	bra.s	locret_20827C
 
 loc_20825A:
 	btst	#3,swdata
 	beq.s	loc_208268
-	addq.b	#1,act39(a1)
+	addq.b	#1,off39(a1)
 	bra.s	locret_20827C
 
 loc_208268:
 	btst	#2,swdata
 	beq.s	locret_20827C
-	subq.b	#1,act39(a1)
+	subq.b	#1,off39(a1)
 	bhs.s	locret_20827C
-	move.b	#0,act39(a1)
+	move.b	#0,off39(a1)
 
 locret_20827C:
 	rts

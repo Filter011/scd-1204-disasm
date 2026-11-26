@@ -10,7 +10,7 @@ off_20E670:
 loc_20E674:
 	addq.b	#word,r_no0(a0)
 	move.l	#off_20EDDE,patbase(a0)
-	move.b	#4,actflg(a0)
+	move.b	#%00000100,actflg(a0)
 	move.b	#1,sprpri(a0)
 	moveq	#10,d0
 	jsr	sub_20F8C0(pc)

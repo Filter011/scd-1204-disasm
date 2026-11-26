@@ -88,7 +88,7 @@ edit:
 	mulu.w	#12,d1
 	_move.b	2(a2,d1.w),actno(a1)
 	move.b	10(a2,d1.w),userflag(a1)
-	move.b	12(a2,d1.w),act29(a1)
+	move.b	12(a2,d1.w),off29(a1)
 	move.b	13(a2,d1.w),patno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)

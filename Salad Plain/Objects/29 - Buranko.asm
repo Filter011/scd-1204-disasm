@@ -18,14 +18,14 @@ burankoinit:
 	move.b	#32/2,sprhsize(a0)
 	moveq	#17,d0
 	jsr	pa_set.l
-	move.b	act3D(a0),d0
+	move.b	off3D(a0),d0
 	bne.s	loc_20C92E
 	move.b	userflag(a0),d6
 	andi.w	#%00001111,d6
 	jsr	sub_20C93C(pc)
-	move.b	act3D(a1),d0
+	move.b	off3D(a1),d0
 	ori.b	#%10000000,d0
-	move.b	d0,act3D(a1)
+	move.b	d0,off3D(a1)
 	movea.w	a2,a4
 	subq.w	#1,d6
 
@@ -43,7 +43,7 @@ locret_20C92C:
 	rts
 
 loc_20C92E:
-	move.b	act3D(a0),d0
+	move.b	off3D(a0),d0
 	bpl.s	locret_20C93A
 	move.b	#4,r_no0(a0)
 
@@ -55,10 +55,10 @@ sub_20C93C:
 	bne.s	locret_20C964
 	move.b	userflag(a0),userflag(a1)
 	_move.b	#buranko_act,actno(a1)
-	move.w	a0,act3E(a1)
+	move.w	a0,off3E(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
-	move.b	d6,act3D(a1)
+	move.b	d6,off3D(a1)
 
 locret_20C964:
 	rts
@@ -69,8 +69,8 @@ sub_20C966:
 	_move.b	#ka_act,actno(a1)
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
-	move.w	a4,act3E(a1)
-	move.b	#1,act3D(a1)
+	move.w	a4,off3E(a1)
+	move.b	#1,off3D(a1)
 	rts
 
 unk_20C98C:
@@ -110,7 +110,7 @@ unk_20C98C:
 
 loc_20C9AC:
 	moveq	#0,d0
-	move.b	act3D(a0),d0
+	move.b	off3D(a0),d0
 	lea	unk_20C98C.l,a3
 	move.b	(a3,d0.w),d2
 	move.b	d2,mstno(a0)
@@ -145,138 +145,138 @@ off_20CA06:
 	dc.l	loc_20CA32
 
 loc_20CA26:
-	move.b	act3C(a0),d0
+	move.b	off3C(a0),d0
 	addq.w	#1,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CA32:
-	move.b	act3C(a0),d0
+	move.b	off3C(a0),d0
 	subq.w	#1,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CA3E:
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	addq.w	#1,d0
 	andi.w	#$FF,d0
-	move.w	d0,act32(a0)
+	move.w	d0,off32(a0)
 	cmpi.w	#$80,d0
 	bpl.w	loc_20CA58
 	bmi.w	loc_20CA62
 
 loc_20CA58:
 	addi.w	#$40,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CA62:
 	not.w	d0
 	addi.w	#$40,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CA6E:
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	addq.w	#1,d0
 	andi.w	#$FF,d0
-	move.w	d0,act32(a0)
+	move.w	d0,off32(a0)
 	cmpi.w	#$80,d0
 	bpl.w	loc_20CA88
 	bmi.w	loc_20CA92
 
 loc_20CA88:
 	addi.w	#$C0,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CA92:
 	not.w	d0
 	addi.w	#$C0,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CA9E:
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	addq.w	#1,d0
 	cmpi.w	#$300,d0
 	bmi.w	loc_20CAAE
 	moveq	#0,d0
 
 loc_20CAAE:
-	move.w	d0,act32(a0)
+	move.w	d0,off32(a0)
 	cmpi.w	#$180,d0
 	bpl.w	loc_20CABE
 	bmi.w	loc_20CAC8
 
 loc_20CABE:
 	addi.w	#$C0,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CAC8:
 	not.w	d0
 	addi.w	#$C0,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CAD4:
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	addq.w	#1,d0
 	cmpi.w	#$200,d0
 	bmi.w	loc_20CAE4
 	moveq	#0,d0
 
 loc_20CAE4:
-	move.w	d0,act32(a0)
+	move.w	d0,off32(a0)
 	cmpi.w	#$100,d0
 	bpl.w	loc_20CAF4
 	bmi.w	loc_20CAFE
 
 loc_20CAF4:
 	addi.w	#$80,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CAFE:
 	addi.w	#$80,d0
 	not.w	d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CB0A:
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	addq.w	#1,d0
 	cmpi.w	#$80,d0
 	bmi.w	loc_20CB1A
 	moveq	#0,d0
 
 loc_20CB1A:
-	move.w	d0,act32(a0)
+	move.w	d0,off32(a0)
 	cmpi.w	#$40,d0
 	bpl.w	loc_20CB2A
 	bmi.w	loc_20CB34
 
 loc_20CB2A:
 	addi.w	#$A0,d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 loc_20CB34:
 	addi.w	#$E0,d0
 	not.w	d0
-	move.b	d0,act3C(a0)
+	move.b	d0,off3C(a0)
 	rts
 
 sub_20CB40:
-	move.l	xposi(a0),act38(a0)
-	move.l	yposi(a0),act34(a0)
-	movea.w	act3E(a0),a2
+	move.l	xposi(a0),off38(a0)
+	move.l	yposi(a0),off34(a0)
+	movea.w	off3E(a0),a2
 	moveq	#0,d0
-	move.b	act3C(a2),d0
+	move.b	off3C(a2),d0
 	jsr	sinset.l
 	moveq	#0,d3
-	move.b	act3D(a0),d3
+	move.b	off3D(a0),d3
 	andi.w	#$F,d3
 	mulu.w	#$100,d3
 	muls.w	d3,d0
@@ -334,11 +334,11 @@ loc_20CC02:
 	tst.b	d1
 	beq.w	loc_20CC3E
 	move.l	xposi(a0),d0
-	sub.l	act38(a0),d0
+	sub.l	off38(a0),d0
 	add.l	xposi(a1),d0
 	move.l	d0,xposi(a1)
 	move.l	yposi(a0),d0
-	sub.l	act34(a0),d0
+	sub.l	off34(a0),d0
 	add.l	yposi(a1),d0
 	move.l	d0,yposi(a1)
 	bra.s	loc_20CBEE

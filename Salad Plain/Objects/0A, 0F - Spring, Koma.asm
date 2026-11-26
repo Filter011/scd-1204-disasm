@@ -3,7 +3,7 @@ koma:
 	move.b	r_no0(a0),d0
 	move.w	koma_move_tbl(pc,d0.w),d0
 	jsr	koma_move_tbl(pc,d0.w)
-	move.w	act36(a0),d0
+	move.w	off36(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
@@ -25,7 +25,7 @@ koma_init:
 	move.l	#komapat,patbase(a0)
 	move.b	#16/2,sprhsize(a0)
 	move.b	#16/2,sprvsize(a0)
-	move.w	xposi(a0),act36(a0)
+	move.w	xposi(a0),off36(a0)
 	move.w	#$180,xspeed(a0)
 	moveq	#14,d0
 	jsr	pa_set.l
@@ -38,8 +38,8 @@ koma_init:
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	subi.w	#$10,yposi(a1)
-	move.b	#$F0,act39(a1)
-	move.w	a0,act34(a1)
+	move.b	#$F0,off39(a1)
+	move.w	a0,off34(a1)
 	move.b	userflag(a0),userflag(a1)
 
 koma_move:
@@ -47,7 +47,7 @@ koma_move:
 	tst.w	d1
 	bpl.s	loc_2084A4
 	add.w	d1,yposi(a0)
-	move.w	yposi(a0),act32(a0)
+	move.w	yposi(a0),off32(a0)
 	addq.b	#word,r_no0(a0)
 	rts
 
@@ -60,7 +60,7 @@ koma_move2:
 	bne.s	.actionsub
 	jsr	emycol_d.l
 	add.w	d1,yposi(a0)
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	sub.w	yposi(a0),d0
 	cmpi.w	#$C,d0
 	blo.s	.jump
@@ -88,20 +88,20 @@ loc_2084F4:
 loc_2084FC:
 	bsr.w	actionsub
 	move.l	#$FFFF0000,d1
-	move.w	act34(a0),d1
+	move.w	off34(a0),d1
 	beq.s	loc_20852E
 	movea.l	d1,a1
 	move.w	xposi(a1),xposi(a0)
 	move.w	yposi(a1),yposi(a0)
-	move.b	act38(a0),d0
+	move.b	off38(a0),d0
 	ext.w	d0
 	add.w	d0,xposi(a0)
-	move.b	act39(a0),d0
+	move.b	off39(a0),d0
 	ext.w	d0
 	add.w	d0,yposi(a0)
 
 loc_20852E:
-	move.w	act36(a0),d0
+	move.w	off36(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
@@ -133,7 +133,7 @@ sjumpinit:
 	ori.b	#%00000100,actflg(a0)
 	move.b	#32/2,sprhsize(a0)
 	move.b	#16/2,sprvsize(a0)
-	move.w	xposi(a0),act36(a0)
+	move.w	xposi(a0),off36(a0)
 	move.b	#4,sprpri(a0)
 	move.b	userflag(a0),d0
 	btst	#2,d0
@@ -169,7 +169,7 @@ loc_2085FA:
 
 loc_208606:
 	andi.w	#2,d0
-	move.w	sjumptbl(pc,d0.w),act30(a0)
+	move.w	sjumptbl(pc,d0.w),off30(a0)
 	rts
 
 sjumptbl:
@@ -200,7 +200,7 @@ locret_20863C:
 sub_20863E:
 	move.b	#4,r_no0(a0)
 	addq.w	#8,yposi(a1)
-	move.w	act30(a0),yspeed(a1)
+	move.w	off30(a0),yspeed(a1)
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
 	move.b	#16,mstno(a1)
@@ -248,7 +248,7 @@ locret_2086D0:
 
 sub_2086D2:
 	move.b	#$A,r_no0(a0)
-	move.w	act30(a0),xspeed(a1)
+	move.w	off30(a0),xspeed(a1)
 	addq.w	#8,xposi(a1)
 	bset	#cd_left,cddat(a1)
 	btst	#cd_left,cddat(a0)
@@ -258,7 +258,7 @@ sub_2086D2:
 	bclr	#cd_left,cddat(a1)
 
 loc_208700:
-	move.w	#$F,act3E(a1)
+	move.w	#$F,off3E(a1)
 	move.w	xspeed(a1),mspeed(a1)
 	btst	#cd_ball,cddat(a1)
 	bne.s	loc_20871A
@@ -309,7 +309,7 @@ locret_208786:
 sub_208788:
 	move.b	#$10,r_no0(a0)
 	subq.w	#8,yposi(a1)
-	move.w	act30(a0),yspeed(a1)
+	move.w	off30(a0),yspeed(a1)
 	neg.w	yspeed(a1)
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
@@ -358,7 +358,7 @@ sub_20880E:
 	moveq	#0,d0
 	move.b	#$D0,d0
 	jsr	sinset.l
-	move.w	act30(a0),d2
+	move.w	off30(a0),d2
 	neg.w	d2
 	mulu.w	d2,d0
 	mulu.w	d2,d1

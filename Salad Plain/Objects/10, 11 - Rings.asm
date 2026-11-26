@@ -94,7 +94,7 @@ ringinit_:
 	_move.b	#ring_act,actno(a1)
 	addq.b	#word,r_no0(a1)
 	move.w	d2,xposi(a1)
-	move.w	xposi(a0),act32(a1)
+	move.w	xposi(a0),off32(a1)
 	move.w	d3,yposi(a1)
 	move.l	#ringpat,patbase(a1)
 	move.w	#ring_vram|tile_col2|tile_pri,sproffset(a1)
@@ -103,7 +103,7 @@ ringinit_:
 	move.b	#$47,colino(a1)
 	move.b	#16/2,sprhsize(a1)
 	move.b	cdsts(a0),cdsts(a1)
-	move.b	d1,act34(a1)
+	move.b	d1,off34(a1)
 
 .jump2:
 	addq.w	#1,d1
@@ -117,7 +117,7 @@ ringinit_:
 	bne.w	frameout
 
 ringmove:
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	andi.w	#$FF80,d0
 	move.w	scra_h_posit,d1
 	subi.w	#$80,d1
@@ -146,7 +146,7 @@ ringget:
 	moveq	#0,d1
 	move.b	time_flag,d1
 	add.w	d1,d0
-	move.b	act34(a0),d1
+	move.b	off34(a0),d1
 	subq.b	#1,d1
 	bset	d1,2(a2,d0.w)
 
@@ -304,51 +304,11 @@ ringchg0:
 	dc.b	$FC
 	even
 
+ringpat:
 	include	"Patterns/Ring.asm"
 
 bigringpat:
-	dc.w	bigringsp0-bigringpat
-	dc.w	bigringsp1-bigringpat
-	dc.w	bigringsp2-bigringpat
-	dc.w	bigringsp3-bigringpat
-bigringsp0:
-	dc.b	10
-	dc.b	$E0,8,0,0,$E8
-	dc.b	$E0,8,0,3,0
-	dc.b	$E8,$C,0,6,$E0
-	dc.b	$E8,$C,0,$A,0
-	dc.b	$F0,7,0,$E,$E0
-	dc.b	$F0,7,0,$16,$10
-	dc.b	$10,$C,0,$1E,$E0
-	dc.b	$10,$C,0,$22,0
-	dc.b	$18,8,0,$26,$E8
-	dc.b	$18,8,0,$29,0
-bigringsp1:
-	dc.b	8
-	dc.b	$E0,$C,0,$2C,$F0
-	dc.b	$E8,8,0,$30,$E8
-	dc.b	$E8,9,0,$33,0
-	dc.b	$F0,7,0,$39,$E8
-	dc.b	-8,5,0,$41,8
-	dc.b	8,9,0,$45,0
-	dc.b	$10,8,0,$4B,$E8
-	dc.b	$18,$C,0,$4E,$F0
-bigringsp2:
-	dc.b	4
-	dc.b	$E0,7,0,$52,$F4
-	dc.b	$E0,3,8,$52,4
-	dc.b	0,7,0,$5A,$F4
-	dc.b	0,3,8,$5A,4
-bigringsp3:
-	dc.b	8
-	dc.b	$E0,$C,8,$2C,$F0
-	dc.b	$E8,8,8,$30,0
-	dc.b	$E8,9,8,$33,$E8
-	dc.b	$F0,7,8,$39,8
-	dc.b	-8,5,8,$41,$E8
-	dc.b	8,9,8,$45,$E8
-	dc.b	$10,8,8,$4B,0
-	dc.b	$18,$C,8,$4E,$F0
+	include	"Patterns/Big Ring.asm"
 
 off_208E1C:
 	dc.w	byte_208E2C-off_208E1C

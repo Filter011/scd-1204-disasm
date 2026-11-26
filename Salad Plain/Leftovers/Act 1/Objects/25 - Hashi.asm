@@ -5,9 +5,9 @@
 loc_20E402:
 	add.w	d0,d1
 	move.w	d1,xposi(a0)
-	move.w	act32(a0),d0
+	move.w	off32(a0),d0
 	addq.w	#1,d0
-	move.w	d0,act32(a0)
+	move.w	d0,off32(a0)
 	cmpi.w	#$26,d0
 	bne.w	locret_20E422
 	move.b	#$20,r_no0(a0)

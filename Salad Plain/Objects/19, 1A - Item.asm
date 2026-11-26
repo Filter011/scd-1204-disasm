@@ -1,3 +1,5 @@
+t_itemtim:	equ off2A
+
 t_item:
 	tst.b	ta_flag
 	beq.s	.jump
@@ -47,7 +49,7 @@ loc_20911E:
 t_item_move0:
 	tst.b	colicnt(a0)
 	beq.s	locret_209152
-	move.b	#60,act2A(a0)
+	move.b	#60,t_itemtim(a0)
 	addq.b	#word,r_no0(a0)
 	bsr.w	flagwkadr
 	bset	#0,2(a2,d0.w)
@@ -60,7 +62,7 @@ locret_209152:
 	rts
 
 t_item_move1:
-	subq.b	#1,act2A(a0)
+	subq.b	#1,t_itemtim(a0)
 	beq.s	loc_209164
 	lea	itemchg.l,a1
 	bra.w	patchg

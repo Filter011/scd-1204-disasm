@@ -60,7 +60,7 @@ speedset2:
 	btst	#3,cddat(a0)
 	beq.s	loc_2031A2
 	moveq	#0,d1
-	move.b	act3D(a0),d1
+	move.b	off3D(a0),d1
 	lsl.w	#6,d1
 	addi.l	#actwk&$FFFFFF,d1
 	movea.l	d1,a1
@@ -89,7 +89,7 @@ loc_2031A2:
 actionsub:
 	bclr	#7,actflg(a0)
 	move.b	actflg(a0),d0
-	andi.w	#%1100,d0
+	andi.w	#%00001100,d0
 	beq.s	loc_203204
 	move.b	sprhsize(a0),d0
 	move.w	xposi(a0),d3
@@ -175,7 +175,7 @@ loc_203272:
 	beq.w	loc_2032FA
 	move.b	actflg(a0),d0
 	move.b	d0,d4
-	andi.w	#%1100,d0
+	andi.w	#%00001100,d0
 	beq.s	loc_2032B0
 	movea.l	patsettbl(pc,d0.w),a1
 	moveq	#0,d0
@@ -410,5 +410,5 @@ pole_act:	act_ptr	pole
 buranko_act:	act_ptr	buranko
 
 noact:
-	move.b	#objid_00,(a0)
+	move.b	#objid_00,actno(a0)
 	rts

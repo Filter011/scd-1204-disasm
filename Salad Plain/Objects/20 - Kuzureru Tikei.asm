@@ -76,13 +76,13 @@ loc_20D0E2:
 	bra.w	actb_init_b
 
 actb_wait:
-	lea	act2A(a0),a3
+	lea	off2A(a0),a3
 	addi.w	#-1,(a3)
 	bne.w	loc_20D102
 	addq.b	#word,r_no0(a0)
 
 loc_20D102:
-	move.b	act3E(a0),d0
+	move.b	off3E(a0),d0
 	beq.w	locret_20D134
 	move.w	xposi(a0),d3
 	move.w	yposi(a0),d4
@@ -101,9 +101,9 @@ locret_20D134:
 	rts
 
 actb_down:
-	move.l	act2C(a0),d0
+	move.l	off2C(a0),d0
 	add.l	d0,yposi(a0)
-	addi.l	#$4000,act2C(a0)
+	addi.l	#$4000,off2C(a0)
 	move.w	yposi(a0),d0
 	lea	playerwk,a1
 	move.b	main_play,d1
@@ -152,7 +152,7 @@ loc_20D1AC:
 	asl.w	#3,d4
 	add.w	yposi(a0),d4
 	move.w	#9,d2
-	_move.b	actno(a0),act3F(a0)
+	_move.b	actno(a0),off3F(a0)
 	_clr.b	actno(a0)
 
 loc_20D1CE:
@@ -170,8 +170,8 @@ loc_20D1D4:
 	move.b	#3,sprpri(a1)
 	move.w	#$000|tile_col3,sproffset(a1)
 	move.l	#patc,patbase(a1)
-	move.l	#$20000,act2C(a1)
-	_move.b	act3F(a0),actno(a1)
+	move.l	#$20000,off2C(a1)
+	_move.b	off3F(a0),actno(a1)
 	move.b	r_no0(a0),r_no0(a1)
 	cmpa.w	#0,a4
 	beq.w	loc_20D22A
@@ -181,14 +181,14 @@ loc_20D1D4:
 loc_20D22A:
 	tst.w	d6
 	bne.w	loc_20D240
-	st.b	act3E(a1)
+	st.b	off3E(a1)
 	move.b	#16/2,sprhsize(a1)
 	move.b	#18/2,sprvsize(a1)
 
 loc_20D240:
 	move.w	d4,yposi(a1)
 	move.w	d3,xposi(a1)
-	move.w	d1,act2A(a1)
+	move.w	d1,off2A(a1)
 
 loc_20D24C:
 	add.w	a3,d3
@@ -251,7 +251,7 @@ loc_20D2C4:
 loc_20D2D2:
 	add.w	xposi(a0),d4
 	move.w	#9,d2
-	_move.b	actno(a0),act3F(a0)
+	_move.b	actno(a0),off3F(a0)
 	_clr.b	actno(a0)
 
 loc_20D2E4:
@@ -261,18 +261,18 @@ loc_20D2E4:
 	move.w	#0|tile_col3,sproffset(a1)
 	ori.b	#%00000100,actflg(a1)
 	move.l	#patd,patbase(a1)
-	move.l	#$20000,act2C(a1)
-	_move.b	act3F(a0),actno(a1)
+	move.l	#$20000,off2C(a1)
+	_move.b	off3F(a0),actno(a1)
 	move.b	r_no0(a0),r_no0(a1)
 	move.w	yposi(a0),yposi(a1)
-	st.b	act3E(a1)
+	st.b	off3E(a1)
 	move.b	#16/2,sprhsize(a1)
 	move.b	d1,sprvsize(a1)
 	move.b	(a6),patno(a1)
 	lea	(a6,d6.w),a6
 	move.w	d4,xposi(a1)
 	add.w	d3,d4
-	move.w	d2,act2A(a1)
+	move.w	d2,off2A(a1)
 	addi.w	#$C,d2
 	dbf	d5,loc_20D2E4
 

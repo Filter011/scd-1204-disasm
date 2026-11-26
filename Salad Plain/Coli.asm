@@ -181,12 +181,12 @@ pcolnomal:
 	moveq	#6,d0
 
 .jump5:
-	move.w	d0,act3E(a1)
+	move.w	d0,off3E(a1)
 	move.w	escoretbl(pc,d0.w),d0
 	cmpi.w	#2*16,emyscorecnt
 	blo.s	.jump6
 	move.w	#1000,d0
-	move.w	#10,act3E(a1)
+	move.w	#10,off3E(a1)
 
 .jump6:
 	bsr.w	scoreup
@@ -285,7 +285,7 @@ playdieset:
 	move.w	#-$700,yspeed(a0)
 	move.w	#0,xspeed(a0)
 	move.w	#0,mspeed(a0)
-	move.w	yposi(a0),act38(a0)
+	move.w	yposi(a0),off38(a0)
 	move.b	#24,mstno(a0)
 	bset	#7,sproffset(a0)
 	move.w	#se_93,d0
@@ -319,7 +319,7 @@ pcolspecial:
 	bhs.s	.yago4
 	move.w	xposi(a1),d0
 	subq.w	#4,d0
-	btst	#cd_left,cddat(a1)
+	btst	#cd_right,cddat(a1)
 	beq.s	.yago1
 	subi.w	#$10,d0
 

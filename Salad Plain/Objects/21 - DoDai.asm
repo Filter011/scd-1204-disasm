@@ -1,8 +1,8 @@
-dai_r_no:	equ act2B
-dai_mcnt:	equ act2D
-dai_tim:	equ act2E
-dai_xposi:	equ act38
-dai_yposi:	equ act3A
+dai_r_no:	equ off2B
+dai_mcnt:	equ off2D
+dai_tim:	equ off2E
+dai_xposi:	equ off38
+dai_yposi:	equ off3A
 
 dodai:
 	moveq	#0,d0
@@ -29,7 +29,7 @@ dodai_init:
 	move.b	#3,sprpri(a0)
 	move.w	xposi(a0),dai_xposi(a0)
 	move.w	yposi(a0),dai_yposi(a0)
-	move.w	yposi(a0),act36(a0)
+	move.w	yposi(a0),off36(a0)
 	move.l	#dai11a_pattbl,d0
 	cmpi.w	#(stage_spz<<8)+act_1,stageno
 	beq.s	loc_20D6EE
@@ -49,7 +49,7 @@ loc_20D6EE:
 	lsr.b	#2,d1
 	andi.w	#%00000011,d1
 	move.b	dai_mcnttbl(pc,d1.w),dai_mcnt(a0)
-	move.b	act29(a0),d0
+	move.b	off29(a0),d0
 	beq.s	loc_20D768
 	jsr	actwkchk.l
 	beq.s	loc_20D72C
@@ -60,14 +60,14 @@ loc_20D72C:
 	move.w	xposi(a0),xposi(a1)
 	move.w	yposi(a0),yposi(a1)
 	subi.w	#$10,yposi(a1)
-	move.b	#$F0,act39(a1)
-	move.w	a0,act34(a1)
-	move.b	act29(a0),d0
+	move.b	#$F0,off39(a1)
+	move.w	a0,off34(a1)
+	move.b	off29(a0),d0
 	move.b	d0,d1
 	andi.b	#%00000010,d1
 	move.b	d1,userflag(a1)
 	andi.b	#%11111000,d0
-	move.b	d0,act38(a1)
+	move.b	d0,off38(a1)
 	add.w	d0,xposi(a1)
 
 loc_20D768:
@@ -126,7 +126,7 @@ dodai_mtype:
 	dc.w	dodai_lm-dodai_mtype
 
 dodai_ud:
-	addq.b	#1,act2A(a0)
+	addq.b	#1,off2A(a0)
 	jsr	dodai_sub(pc)
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -137,9 +137,9 @@ dodai_lr:
 	jsr	dodai_sub(pc)
 	add.w	dai_xposi(a0),d0
 	move.w	d0,xposi(a0)
-	addq.b	#1,act2A(a0)
+	addq.b	#1,off2A(a0)
 	moveq	#0,d0
-	move.b	act2C(a0),d0
+	move.b	off2C(a0),d0
 	asr.b	#1,d0
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -154,10 +154,10 @@ dodai_ride1:
 dodai_ride2:
 	jsr	ridechk(pc)
 	beq.s	loc_20D82E
-	move.b	act2C(a0),d0
+	move.b	off2C(a0),d0
 	cmpi.b	#8,d0
 	bhs.s	loc_20D82A
-	addq.b	#1,act2C(a0)
+	addq.b	#1,off2C(a0)
 
 loc_20D82A:
 	moveq	#1,d0
@@ -165,9 +165,9 @@ loc_20D82A:
 
 loc_20D82E:
 	moveq	#0,d0
-	move.b	act2C(a0),d0
+	move.b	off2C(a0),d0
 	beq.s	loc_20D83A
-	subq.b	#1,act2C(a0)
+	subq.b	#1,off2C(a0)
 
 loc_20D83A:
 	moveq	#0,d0
@@ -175,7 +175,7 @@ loc_20D83A:
 
 dodai_nA:
 	move.l	xposi(a0),-(sp)
-	addq.b	#1,act2A(a0)
+	addq.b	#1,off2A(a0)
 	jsr	dodai_sub(pc)
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -186,7 +186,7 @@ dodai_nA:
 
 dodai_nB:
 	move.l	xposi(a0),-(sp)
-	addq.b	#1,act2A(a0)
+	addq.b	#1,off2A(a0)
 	jsr	dodai_sub(pc)
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -198,7 +198,7 @@ dodai_nB:
 
 dodai_fix:
 	moveq	#0,d0
-	move.b	act2C(a0),d0
+	move.b	off2C(a0),d0
 	asr.b	#1,d0
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -271,14 +271,14 @@ loc_20D930:
 	addq.b	#word,dai_r_no(a0)
 
 loc_20D934:
-	move.b	act2A(a0),d0
+	move.b	off2A(a0),d0
 	cmpi.b	#$40,d0
 	bhs.w	loc_20D958
 	jsr	dodai_sub(pc)
 	neg.w	d0
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
-	addq.b	#2,act2A(a0)
+	addq.b	#2,off2A(a0)
 	jmp	ridechk.l
 
 loc_20D958:
@@ -357,16 +357,16 @@ loc_20D9EE:
 	bra.w	dodai_fix
 
 loc_20D9FC:
-	move.b	act2A(a0),d0
+	move.b	off2A(a0),d0
 	cmpi.b	#$40,d0
 	bhs.w	loc_20DA30
 	move.l	xposi(a0),-(sp)
 	jsr	dodai_sub(pc)
 	add.w	dai_xposi(a0),d0
 	move.w	d0,xposi(a0)
-	addq.b	#1,act2A(a0)
+	addq.b	#1,off2A(a0)
 	moveq	#0,d0
-	move.b	act2C(a0),d0
+	move.b	off2C(a0),d0
 	asr.b	#1,d0
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -406,7 +406,7 @@ loc_20DA66:
 	bra.w	dodai_fix
 
 loc_20DA74:
-	move.b	act2A(a0),d0
+	move.b	off2A(a0),d0
 	cmpi.b	#$40,d0
 	bhs.s	loc_20DAA8
 	move.l	xposi(a0),-(sp)
@@ -414,9 +414,9 @@ loc_20DA74:
 	neg.w	d0
 	add.w	dai_xposi(a0),d0
 	move.w	d0,xposi(a0)
-	addq.b	#1,act2A(a0)
+	addq.b	#1,off2A(a0)
 	moveq	#0,d0
-	move.b	act2C(a0),d0
+	move.b	off2C(a0),d0
 	asr.b	#1,d0
 	add.w	dai_yposi(a0),d0
 	move.w	d0,yposi(a0)
@@ -431,7 +431,7 @@ loc_20DAB2:
 
 dodai_sub:
 	moveq	#0,d0
-	move.b	act2A(a0),d0
+	move.b	off2A(a0),d0
 	jsr	sinset.l
 	moveq	#0,d2
 	move.b	dai_mcnt(a0),d2

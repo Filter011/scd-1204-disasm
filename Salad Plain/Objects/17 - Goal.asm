@@ -1,4 +1,4 @@
-goaltim:	equ act2A
+goaltim:	equ off2A
 
 goal:
 	moveq	#0,d0

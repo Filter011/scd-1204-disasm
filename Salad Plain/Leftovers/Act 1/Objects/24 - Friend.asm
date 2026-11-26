@@ -28,25 +28,25 @@ loc_20F950:
 	move.b	#16/2,sprvsize(a0)
 	move.w	#$4BF,sproffset(a0)
 	move.l	#off_20FA26,patbase(a0)
-	move.l	xposi(a0),act2A(a0)
-	move.l	yposi(a0),act2E(a0)
-	move.b	#1,act32(a0)
+	move.l	xposi(a0),off2A(a0)
+	move.l	yposi(a0),off2E(a0)
+	move.b	#1,off32(a0)
 	rts
 
 loc_20F98E:
-	move.b	act32(a0),d0
+	move.b	off32(a0),d0
 	jsr	$2006A2.l
 	swap	d1
 	swap	d0
 	asr.l	#1,d1
 	asr.l	#1,d0
-	add.l	act2A(a0),d1
-	add.l	act2E(a0),d0
+	add.l	off2A(a0),d1
+	add.l	off2E(a0),d0
 	move.l	d1,xposi(a0)
 	move.l	d0,yposi(a0)
-	move.w	#$CBF,sproffset(a0)
-	addq.b	#1,act32(a0)
-	cmpi.b	#$7F,act32(a0)
+	move.w	#$4BF|tile_xflip,sproffset(a0)
+	addq.b	#1,off32(a0)
+	cmpi.b	#$7F,off32(a0)
 	bpl.w	loc_20F9D8
 
 loc_20F9C4:
@@ -60,19 +60,19 @@ loc_20F9D8:
 	bra.s	loc_20F9C4
 
 loc_20F9DE:
-	move.b	act32(a0),d0
+	move.b	off32(a0),d0
 	jsr	$2006A2.l
 	swap	d1
 	swap	d0
 	asr.l	#1,d1
 	asr.l	#1,d0
-	add.l	act2A(a0),d1
-	add.l	act2E(a0),d0
+	add.l	off2A(a0),d1
+	add.l	off2E(a0),d0
 	move.l	d1,xposi(a0)
 	move.l	d0,yposi(a0)
 	move.w	#$4BF,sproffset(a0)
-	addi.b	#-1,act32(a0)
-	cmpi.b	#1,act32(a0)
+	addi.b	#-1,off32(a0)
+	cmpi.b	#1,off32(a0)
 	bmi.w	loc_20FA18
 	bra.s	loc_20F9C4
 
@@ -118,16 +118,16 @@ loc_20FA4A:
 	move.b	#16/2,sprvsize(a0)
 	move.w	#$4BF,sproffset(a0)
 	move.l	#off_20FB32,patbase(a0)
-	move.l	#-$40000,act2A(a0)
+	move.l	#-$40000,off2A(a0)
 	rts
 
 loc_20FA7E:
 	move.w	#$4BF,sproffset(a0)
 	addi.l	#$10000,xposi(a0)
-	move.l	act2A(a0),d0
+	move.l	off2A(a0),d0
 	add.l	d0,yposi(a0)
 	move.b	#0,mstno(a0)
-	addi.l	#$2000,act2A(a0)
+	addi.l	#$2000,off2A(a0)
 	bmi.w	loc_20FAAC
 	move.b	#1,mstno(a0)
 
@@ -144,16 +144,16 @@ loc_20FAB8:
 
 loc_20FACC:
 	addq.b	#word,r_no0(a0)
-	move.l	#-$40000,act2A(a0)
+	move.l	#-$40000,off2A(a0)
 	bra.s	loc_20FAB8
 
 loc_20FADA:
-	move.w	#$CBF,sproffset(a0)
+	move.w	#$4BF|tile_xflip,sproffset(a0)
 	addi.l	#-$10000,xposi(a0)
-	move.l	act2A(a0),d0
+	move.l	off2A(a0),d0
 	add.l	d0,yposi(a0)
 	move.b	#0,mstno(a0)
-	addi.l	#$2000,act2A(a0)
+	addi.l	#$2000,off2A(a0)
 	bmi.w	loc_20FB08
 	move.b	#1,mstno(a0)
 
@@ -165,7 +165,7 @@ loc_20FB08:
 
 loc_20FB16:
 	addi.b	#-word,r_no0(a0)
-	move.l	#-$40000,act2A(a0)
+	move.l	#-$40000,off2A(a0)
 	bra.s	loc_20FAB8
 
 off_20FB26:

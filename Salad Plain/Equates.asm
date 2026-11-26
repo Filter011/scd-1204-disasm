@@ -15,7 +15,7 @@ port_1:		equ	$A10003		;port A
 port_2:		equ	$A10005		;port B
 port_3:		equ	$A10007		;port C
 cont_1:		equ	$A10009		;cont A
-cont_2:		equ	$A1000B		;cont B  === PCM-IPT conect enable ===
+cont_2:		equ	$A1000B		;cont B
 cont_3:		equ	$A1000D		;cont C
 
 ; Tile Equates
@@ -91,29 +91,29 @@ r_no0:		ds.b	1
 r_no1:		ds.b	1
 direc:		ds.w	1
 userflag:	ds.b	1
-act29:		ds.b	1
-act2A:		ds.b	1
-act2B:		ds.b	1
-act2C:		ds.b	1
-act2D:		ds.b	1
-act2E:		ds.b	1
-act2F:		ds.b	1
-act30:		ds.b	1
-act31:		ds.b	1
-act32:		ds.b	1
-act33:		ds.b	1
-act34:		ds.b	1
-act35:		ds.b	1
-act36:		ds.b	1
-act37:		ds.b	1
-act38:		ds.b	1
-act39:		ds.b	1
-act3A:		ds.b	1
-act3B:		ds.b	1
-act3C:		ds.b	1
-act3D:		ds.b	1
-act3E:		ds.b	1
-act3F:		ds.b	1
+off29:		ds.b	1
+off2A:		ds.b	1
+off2B:		ds.b	1
+off2C:		ds.b	1
+off2D:		ds.b	1
+off2E:		ds.b	1
+off2F:		ds.b	1
+off30:		ds.b	1
+off31:		ds.b	1
+off32:		ds.b	1
+off33:		ds.b	1
+off34:		ds.b	1
+off35:		ds.b	1
+off36:		ds.b	1
+off37:		ds.b	1
+off38:		ds.b	1
+off39:		ds.b	1
+off3A:		ds.b	1
+off3B:		ds.b	1
+off3C:		ds.b	1
+off3D:		ds.b	1
+off3E:		ds.b	1
+off3F:		ds.b	1
 actfree:	ds.b	0
 	dephase
 
@@ -255,17 +255,17 @@ rollheight:	equ	28/2
 rollwidth:	equ	14/2
 chibiheight:	equ	20/2
 chibiwidth:	equ	10/2
-mainplayflag:	equ	act29
-chargetimer:	equ	act2A
-lockcd:		equ	act2C
-invulnerabilitytimer:	equ	act30
-mutekitimer:	equ	act32
-speeduptimer:	equ	act34
-footdir:	equ	act36
-convexflag:	equ	act38
-dietimer:	equ	act3A
-jumpflag:	equ	act3C
-hlocktimer:	equ	act3E
+mainplayflag:	equ	off29
+chargetimer:	equ	off2A
+lockcd:		equ	off2C
+invulnerabilitytimer:	equ	off30
+mutekitimer:	equ	off32
+speeduptimer:	equ	off34
+footdir:	equ	off36
+convexflag:	equ	off38
+dietimer:	equ	off3A
+jumpflag:	equ	off3C
+hlocktimer:	equ	off3E
 
 ; Player Bit Equates
 cd_walk:	equ	1
@@ -276,8 +276,12 @@ cd_underwater:	equ	6
 
 ; Object Bit Equates
 cd_left:	equ	0
+cd_right:	equ	0
 cd_ride:	equ	3
 cd_push:	equ	5
+
+; Misc Equates
+cd_down:	equ	1
 
 ; Tile Flag Equates
 tile_pri:	equ	1<<15

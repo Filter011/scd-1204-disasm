@@ -1,13 +1,13 @@
-ringpat:
-	dc.w	ringsp0-ringpat
-	dc.w	ringsp1-ringpat
-	dc.w	ringsp2-ringpat
-	dc.w	ringsp3-ringpat
-	dc.w	ringsp4-ringpat
-	dc.w	ringsp5-ringpat
-	dc.w	ringsp6-ringpat
-	dc.w	ringsp7-ringpat
-	dc.w	ringsp8-ringpat
+ringpat_tbl:
+	dc.w	ringsp0-ringpat_tbl
+	dc.w	ringsp1-ringpat_tbl
+	dc.w	ringsp2-ringpat_tbl
+	dc.w	ringsp3-ringpat_tbl
+	dc.w	ringsp4-ringpat_tbl
+	dc.w	ringsp5-ringpat_tbl
+	dc.w	ringsp6-ringpat_tbl
+	dc.w	ringsp7-ringpat_tbl
+	dc.w	ringsp8-ringpat_tbl
 ringsp0:
 	dc.b	1
 	dc.b	-8,5,0,0,-8

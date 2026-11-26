@@ -4,7 +4,7 @@ ride_on_clr:
 	btst	#cd_ride,cddat(a1)
 	beq.s	locret_207EDA
 	moveq	#0,d0
-	move.b	act3D(a1),d0
+	move.b	off3D(a1),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
@@ -12,7 +12,7 @@ ride_on_clr:
 	clr.b	convexflag(a1)
 	bset	#cd_walk,cddat(a1)
 	bclr	#cd_ride,cddat(a1)
-	bclr	#3,cddat(a0)
+	bclr	#cd_ride,cddat(a0)
 
 locret_207EDA:
 	rts
@@ -20,7 +20,7 @@ locret_207EDA:
 ride_on_set:
 	clr.b	r_no1(a0)
 	clr.b	jumpflag(a1)
-	bset	#3,cddat(a0)
+	bset	#cd_ride,cddat(a0)
 	bne.s	loc_207F0A
 	bclr	#cd_ball,cddat(a1)
 	beq.s	loc_207F0A
@@ -33,20 +33,20 @@ loc_207F0A:
 	bset	#cd_ride,cddat(a1)
 	beq.s	loc_207F2C
 	moveq	#0,d0
-	move.b	act3D(a1),d0
+	move.b	off3D(a1),d0
 	lsl.w	#6,d0
 	addi.l	#actwk&$FFFFFF,d0
 	cmpa.w	d0,a0
 	beq.s	locret_207F54
 	movea.l	d0,a2
-	bclr	#3,cddat(a2)
+	bclr	#cd_ride,cddat(a2)
 
 loc_207F2C:
 	move.w	a0,d0
 	subi.w	#actwk&$FFFF,d0
 	lsr.w	#6,d0
 	andi.w	#$7F,d0
-	move.b	d0,act3D(a1)
+	move.b	d0,off3D(a1)
 	move.b	#0,direc(a1)
 	move.w	#0,yspeed(a1)
 	move.w	xspeed(a1),mspeed(a1)
@@ -188,12 +188,12 @@ loc_20809E:
 
 loc_2080A4:
 	bclr	#cd_push,cddat(a1)
-	bclr	#5,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	bra.s	loc_2080BE
 
 loc_2080B2:
 	bset	#cd_push,cddat(a1)
-	bset	#5,cddat(a0)
+	bset	#cd_push,cddat(a0)
 
 loc_2080BE:
 	cmp.w	d5,d6
@@ -210,6 +210,6 @@ loc_2080C6:
 
 loc_2080DA:
 	bclr	#cd_push,cddat(a1)
-	bclr	#5,cddat(a0)
+	bclr	#cd_push,cddat(a0)
 	moveq	#0,d0
 	rts

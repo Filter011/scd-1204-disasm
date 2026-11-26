@@ -559,13 +559,14 @@ byte_205E20:
 	include	"Score.asm"
 	include	"Enemy.asm"
 
+frameout2:
 	movea.l	a0,a1
 	moveq	#actfree-1,d0
 	moveq	#0,d1
 
-loc_20B5CE:
+.loop:
 	move.b	d1,(a1)+
-	dbf	d0,loc_20B5CE
+	dbf	d0,.loop
 
 	rts
 
@@ -1330,7 +1331,7 @@ pa_set:
 	move.w	pa_set_tbl(pc,d0.w),d4
 	lea	pa_set_tbl(pc,d4.w),a2
 	moveq	#0,d1
-	move.b	act29(a0),d1
+	move.b	off29(a0),d1
 	add.w	d1,d1
 	move.w	(a2,d1.w),d5
 	move.w	d5,sproffset(a0)
